@@ -1,0 +1,102 @@
+TISCH Framework - Release 1.0 "October Snow"
+============================================
+
+"Tangible Interactive Surfaces for Collaboration between Humans"
+
+The TISCH framework supports cross-platform development of multitouch
+applications. For details on the underlying architecture, please visit the
+Sourceforge website: http://tisch.sourceforge.net/
+
+
+Highlights
+----------
+
+- ready-to-use multitouch widgets based on OpenGL
+- reconfigurable, hardware-independent gesture recognition engine
+- support for widely used (move, scale, rotate..) as well as custom gestures
+
+- hardware drivers for FTIR, DI, Wiimote, DiamondTouch..
+- TUIO converters: source and sink
+
+- cross-platform: Linux, MacOS X, Windows (32 and 64 bit)
+- cross-language: C++ with bindings for C#, Java, Python
+
+
+Directory Layout
+----------------
+
+libtisch-1.0/
+	calibd/      Calibration Layer
+	drivers/     Hardware Abstraction Layer (HAL) including TUIO converters
+	gestured/    Generic Gesture Recognition Layer
+	libs/        various helper libraries
+	scripts/     cross-language wrappers (C#, Java, Python) & build scripts
+	widgets/     OpenGL-based Widget Layer
+
+
+Building & Requirements
+-----------------------
+
+Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
+
+	Requirements:
+	- Windows SDK 6.1 or greater (for DirectShow camera input)
+	- freeglut 2.4.0 or greater (preferably 2.6.0)
+
+	You need to have the Windows SDK & freeglut 2.4.0 or greater installed. By
+	default, the include paths point to a "freeglut" directory in the same parent
+	folder as the "libtisch-1.0" directory and to the default Windows SDK install
+	directory.
+
+	If you installed your libraries somewhere else, you may need to adjust these
+	paths. To do so,
+	- open libtisch.sln in Visual Studio. 
+	- Go to "Property Explorer".
+	- Expand the tree until	you see the "common" property page and open it.
+	- Click on "User Macros" and enter the correct path for "freeglut".
+
+	The same applies to "winsdk", which should point to the location where your
+	Windows SDK (formerly Platform SDK) is installed.
+
+	Then, just select the Debug or Release config and build the solution. All libs 
+	and binaries should be created in the appropriate output directory.
+
+Linux   (tested with gcc 4.1.2 & 4.4)
+MacOS X (tested with gcc 4.2)
+
+	Requirements:
+	- libdc1394 2.0.0 or greater (Linux & Mac, for Firewire cameras)
+	- freeglut 2.4.0 or greater (Linux only, preferably 2.6.0)
+
+	If you want to use a Firewire camera, install libdc1394 v2.0.0 or greater
+	first. Take care that pkg-config knows about it. For Linux, you should also
+	have installed a GLUT library (preferably freeglut 2.4.0 or greater) in your
+	system include/library paths.
+
+	Then, simply run "make all && make install" to build all binaries and put 
+	them into build/{bin,lib}/. Don't forget to add the lib directory to the 
+	library path (LD_LIBRARY_PATH on Linux, DYLD_LIBRARY_PATH on MacOS X). You 
+	can also run "make" without arguments to review the other available parameters.
+
+	The default method for camera access is through libdc1394 with Video4Linux as
+	fallback. Note that camera access has been tested with several different types
+	of Logitech QuickCams (both PWC- and UVC-based USB types) and with Pointgrey
+	FireflyMV Firewire cameras.
+
+
+Quick Start
+-----------
+
+If you only have a mouse and want to give it a try:
+
+	1. run "gestured"
+	2. run "demo -m" (enables mouse emulation mode)
+
+If you have a camera-based input device, e.g. an FTIR table:
+
+	1. run "touchd -Vf" (this is the most basic mode, just tracks bright blobs)
+	2. run "calibtool" and follow the instructions (this is necessary only once)
+	3. run "calibd", if not already running
+	4. run "gestured"
+	5. run "demo"
+

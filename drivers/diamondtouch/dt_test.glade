@@ -1,0 +1,351 @@
+<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+<!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
+
+<glade-interface>
+
+<widget class="GtkWindow" id="dt_test_main_window">
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">dt_test</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
+  <property name="modal">False</property>
+  <property name="resizable">False</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <signal name="delete_event" handler="gtk_main_quit" last_modification_time="Fri, 17 Feb 2006 23:58:39 GMT"/>
+
+  <child>
+    <widget class="GtkVBox" id="vbox1">
+      <property name="visible">True</property>
+      <property name="homogeneous">False</property>
+      <property name="spacing">0</property>
+
+      <child>
+	<widget class="GtkToolbar" id="toolbar1">
+	  <property name="visible">True</property>
+	  <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+	  <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
+	  <property name="tooltips">True</property>
+	  <property name="show_arrow">True</property>
+
+	  <child>
+	    <widget class="GtkToolButton" id="quit_button">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Quit the program</property>
+	      <property name="stock_id">gtk-quit</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="gtk_main_quit" last_modification_time="Mon, 20 Feb 2006 21:18:18 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioToolButton" id="info_button">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Show DiamondTouch basic information</property>
+	      <property name="label" translatable="yes">Info</property>
+	      <property name="use_underline">True</property>
+	      <property name="stock_id">gtk-dialog-info</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">True</property>
+	      <signal name="clicked" handler="on_info_button_clicked" last_modification_time="Mon, 20 Feb 2006 22:24:00 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioToolButton" id="debug_button">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Show DiamondTouch detailed information</property>
+	      <property name="label" translatable="yes">Debug</property>
+	      <property name="use_underline">True</property>
+	      <property name="stock_id">gtk-properties</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">False</property>
+	      <property name="group">info_button</property>
+	      <signal name="clicked" handler="on_debug_button_clicked" last_modification_time="Mon, 20 Feb 2006 22:24:05 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioToolButton" id="stats_button">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Show DiamondTouch data statistics</property>
+	      <property name="label" translatable="yes">Stats</property>
+	      <property name="use_underline">True</property>
+	      <property name="stock_id">gtk-add</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">False</property>
+	      <property name="group">info_button</property>
+	      <signal name="clicked" handler="on_stats_button_clicked" last_modification_time="Mon, 20 Feb 2006 22:24:10 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkToolButton" id="about_button">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Information about the program</property>
+	      <property name="stock_id">gtk-about</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="on_about_button_clicked" last_modification_time="Mon, 20 Feb 2006 21:23:41 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">False</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkTable" id="table1">
+	  <property name="visible">True</property>
+	  <property name="n_rows">3</property>
+	  <property name="n_columns">3</property>
+	  <property name="homogeneous">False</property>
+	  <property name="row_spacing">0</property>
+	  <property name="column_spacing">0</property>
+
+	  <child>
+	    <widget class="GtkDrawingArea" id="middle_drawingarea">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	      <signal name="expose_event" handler="on_middle_drawingarea_expose_event" last_modification_time="Sat, 18 Feb 2006 00:05:25 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">2</property>
+	      <property name="right_attach">3</property>
+	      <property name="top_attach">2</property>
+	      <property name="bottom_attach">3</property>
+	      <property name="x_options">fill</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkDrawingArea" id="columns_drawingarea">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	      <signal name="expose_event" handler="on_columns_drawingarea_expose_event" last_modification_time="Sat, 18 Feb 2006 00:06:26 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">2</property>
+	      <property name="right_attach">3</property>
+	      <property name="top_attach">0</property>
+	      <property name="bottom_attach">1</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkDrawingArea" id="rows_drawingarea">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	      <signal name="expose_event" handler="on_rows_drawingarea_expose_event" last_modification_time="Sat, 18 Feb 2006 00:06:03 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">0</property>
+	      <property name="right_attach">1</property>
+	      <property name="top_attach">2</property>
+	      <property name="bottom_attach">3</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkCheckButton" id="threshold_lock_checkbutton">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Lock row and column threshold sliders</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes"></property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="active">False</property>
+	      <property name="inconsistent">False</property>
+	      <property name="draw_indicator">True</property>
+	      <signal name="toggled" handler="on_threshold_lock_checkbutton_toggled" last_modification_time="Mon, 20 Feb 2006 00:30:41 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">1</property>
+	      <property name="right_attach">2</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
+	      <property name="x_options"></property>
+	      <property name="y_options"></property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkHSeparator" id="hseparator1">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">2</property>
+	      <property name="right_attach">3</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
+	      <property name="x_options">fill</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkVSeparator" id="vseparator1">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">1</property>
+	      <property name="right_attach">2</property>
+	      <property name="top_attach">2</property>
+	      <property name="bottom_attach">3</property>
+	      <property name="x_options">fill</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkHScale" id="row_threshold_scale">
+	      <property name="visible">True</property>
+	      <property name="draw_value">False</property>
+	      <property name="value_pos">GTK_POS_TOP</property>
+	      <property name="digits">0</property>
+	      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	      <property name="inverted">False</property>
+	      <property name="adjustment">30 0 255 1 10 0</property>
+	      <signal name="value_changed" handler="on_row_threshold_scale_value_changed" last_modification_time="Sun, 19 Feb 2006 23:00:48 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">0</property>
+	      <property name="right_attach">1</property>
+	      <property name="top_attach">1</property>
+	      <property name="bottom_attach">2</property>
+	      <property name="x_options">fill</property>
+	      <property name="y_options">expand</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkVScale" id="column_threshold_scale">
+	      <property name="visible">True</property>
+	      <property name="draw_value">False</property>
+	      <property name="value_pos">GTK_POS_LEFT</property>
+	      <property name="digits">0</property>
+	      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+	      <property name="inverted">False</property>
+	      <property name="adjustment">26.8421058655 0 255 1 10 0</property>
+	      <signal name="value_changed" handler="on_column_threshold_scale_value_changed" last_modification_time="Sun, 19 Feb 2006 23:00:56 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">1</property>
+	      <property name="right_attach">2</property>
+	      <property name="top_attach">0</property>
+	      <property name="bottom_attach">1</property>
+	      <property name="x_options">expand</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkEventBox" id="label_eventbox">
+	      <property name="visible">True</property>
+	      <property name="visible_window">True</property>
+	      <property name="above_child">False</property>
+
+	      <child>
+		<widget class="GtkLabel" id="dt_description_label">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">DT information box
+If you can read this,
+something in the program
+is broken.
+</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">True</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">True</property>
+		  <property name="xalign">0</property>
+		  <property name="yalign">0</property>
+		  <property name="xpad">5</property>
+		  <property name="ypad">5</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="left_attach">0</property>
+	      <property name="right_attach">1</property>
+	      <property name="top_attach">0</property>
+	      <property name="bottom_attach">1</property>
+	      <property name="x_options">fill</property>
+	      <property name="y_options">fill</property>
+	    </packing>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">False</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkAboutDialog" id="dt_test_aboutdialog">
+  <property name="destroy_with_parent">False</property>
+  <property name="name" translatable="yes">dt_test</property>
+  <property name="copyright" translatable="yes">Copyright 2006
+Mitsubishi Electric Research Laboratories
+All rights reserved.
+</property>
+  <property name="comments" translatable="yes">A debug and test program for DiamondTouch hardware.</property>
+  <property name="license" translatable="yes">This software is licensed under the GNU General Public License version 2.</property>
+  <property name="website">http://www.merl.com/</property>
+  <property name="website_label" translatable="yes">This is the website label.</property>
+  <property name="authors">Darren Leigh</property>
+  <property name="documenters">Documented by Darren Leigh.</property>
+  <property name="artists">Darren is such an artiste.</property>
+  <property name="translator_credits" translatable="yes" comments="TRANSLATORS: Replace this string with your names, one name per line.">Traducido por Dario Leigh.</property>
+  <signal name="delete_event" handler="gtk_widget_hide" last_modification_time="Mon, 20 Feb 2006 21:55:58 GMT"/>
+</widget>
+
+</glade-interface>
