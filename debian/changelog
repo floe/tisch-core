@@ -1,3 +1,16 @@
+libtisch (1.1-0ubuntu4) lucid; urgency=low
+
+  * try to fix build error by exporting MONO_DISABLE_SHM
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 13:24:12 +0200
+
+libtisch (1.1-0ubuntu3) lucid; urgency=low
+
+  * try to work around the corrupted /root/.wapi/ folder which prevents the
+    build from succeeding
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 13:24:12 +0200
+
 libtisch (1.1-0ubuntu2) lucid; urgency=low
 
   * minor internal bugfixes
