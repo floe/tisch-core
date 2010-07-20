@@ -1,0 +1,38 @@
+Source: libtisch
+Priority: extra
+Maintainer: Florian Echtler <floe@butterbrot.org>
+Build-Depends: debhelper (>= 7), freeglut3-dev (>= 2.6.0), libv4l-dev (>= 0.6.4), libdc1394-22-dev (>= 2.1.2), swig (>= 1.3.40), python-dev (>= 2.6.5), default-jdk (>= 1.6), mono-gmcs (>= 2.4.3)
+Standards-Version: 3.8.4
+Section: libs
+Homepage: http://tisch.sf.net/
+
+Package: libtisch
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3 (>= 2.6.0), libv4l (>= 0.6.4), libdc1394-22 (>= 2.1.2)
+Description: multitouch development platform - library files + demo binaries
+
+Package: libtisch-dev
+Section: libdevel
+Architecture: any
+Depends: libtisch (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: multitouch development platform - C++ development headers + demo source
+
+Package: libtisch-csharp
+Section: cli-mono
+Architecture: any
+Depends: libtisch (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, mono-gmcs (>= 2.4.3)
+Description: multitouch development platform - C# development files
+
+Package: libtisch-java
+Section: java
+Architecture: any
+Depends: libtisch (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, default-jdk (>= 1.6)
+Description: multitouch development platform - Java development files
+
+Package: libtisch-python
+Section: python
+Architecture: any
+Depends: libtisch (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, python-dev (>= 2.6.5)
+Description: multitouch development platform - Python development files
+

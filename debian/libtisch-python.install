@@ -1,0 +1,3 @@
+lib/_libtisch.so usr/lib/
+lib/libtisch.py usr/share/pyshared/
+share/doc/libtisch/example.py usr/share/doc/libtisch/

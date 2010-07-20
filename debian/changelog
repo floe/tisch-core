@@ -1,0 +1,12 @@
+libtisch (1.1-0ubuntu2) lucid; urgency=low
+
+  * minor internal bugfixes
+    included wrappers for C#/Java/Python
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 06 Jul 2010 19:50:51 +0200
+ 
+libtisch (1.1-0ubuntu1) lucid; urgency=low
+
+  * Initial Ubuntu/Debian release from SVN snapshot 2328
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 29 Jun 2010 10:50:45 +0200

@@ -1,0 +1,26 @@
+This work was packaged for Debian by:
+
+    Florian Echtler <floe@butterbrot.org> on Tue, 29 Jun 2010 10:50:45 +0200
+
+It was downloaded from http://tisch.sf.net/.
+
+Upstream Author(s):
+
+    Florian Echtler <floe@butterbrot.org>
+
+Copyright:
+
+    Copyright (C) 2010 Florian Echtler <floe@butterbrot.org>
+
+License:
+
+   libTISCH is licensed under the LGPL version 3, 
+    see `/usr/share/common-licenses/LGPL-3'.
+
+The Debian packaging is:
+
+    Copyright (C) 2010 Florian Echtler <floe@butterbrot.org>
+
+    and is licensed under the LGPL version 3, 
+    see `/usr/share/common-licenses/LGPL-3'.
+

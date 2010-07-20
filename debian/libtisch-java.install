@@ -1,0 +1,5 @@
+lib/libtisch_java.so usr/lib/
+lib/libtisch.jar usr/share/java/
+share/doc/libtisch/example.java usr/share/doc/libtisch/
+share/doc/libtisch/example.pde  usr/share/doc/libtisch/
+share/doc/libtisch/helpers.pde  usr/share/doc/libtisch/
