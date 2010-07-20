@@ -1,0 +1,6 @@
+lib/libtools.so usr/lib/
+lib/libsimplecv.so usr/lib/
+lib/libsimplegl.so usr/lib/
+lib/libgestures.so usr/lib/
+lib/libwidgets.so usr/lib/
+include/libtisch/ usr/include/

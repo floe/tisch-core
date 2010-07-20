@@ -1,0 +1,21 @@
+lib/libtools.so.1 usr/lib/
+lib/libtools.so.1.1 usr/lib/
+lib/libsimplecv.so.1 usr/lib/
+lib/libsimplecv.so.1.1 usr/lib/
+lib/libsimplegl.so.1 usr/lib/
+lib/libsimplegl.so.1.1 usr/lib/
+lib/libgestures.so.1 usr/lib/
+lib/libgestures.so.1.1 usr/lib/
+lib/libwidgets.so.1 usr/lib/
+lib/libwidgets.so.1.1 usr/lib/
+share/libtisch/ usr/share/
+share/doc/libtisch/README usr/share/doc/libtisch/
+bin/touchd usr/bin/
+bin/calibd usr/bin/
+bin/calibtool usr/bin/
+bin/gestured usr/bin/
+bin/picview usr/bin/
+bin/demo usr/bin/
+bin/graph usr/bin/
+bin/slideshow usr/bin/
+
