@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E8170DB-4CFD-456C-BC33-9E2C762CA7AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>libtisch</RootNamespace>
+    <AssemblyName>libtisch</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BasicBlob.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobCount.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobDim.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobGroup.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobHistory.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobID.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobPos.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\BlobState.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Button.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Checkbox.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Container.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\dequeBasicBlob.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Dial.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Dimensions.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\FeatureBase.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\FeatureDimensions.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\FeatureDouble.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\FeatureInt.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\FeatureVector.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Gesture.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\GLUTWindow.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\InputState.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\InputType.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\IntVector.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Label.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\libtisch.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\libtischPINVOKE.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\mapIntBlobHistory.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\mapStringFeatureBaseP.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\MasterContainer.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Motion.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Mouse.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\MultiBlobRotation.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\MultiBlobScale.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Region.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\RGBATexture.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Rotation.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Scale.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Slider.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\smartPtrFeatureBase.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\StateRegion.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLdouble.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLenum.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLfloat.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLint.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLuint.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLvoid.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_IntensityImage.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_RGBImage.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_ShortImage.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__dequeT_Widget_p_t.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__istream.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__ostream.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__setT_Widget_p_t.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__vectorT_Gesture_t__iterator.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__vectorT__VectorT_double_t_t__iterator.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Textbox.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Tile.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Vector.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorBlobState.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorDimensions.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorDouble.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorGesture.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorInt.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorSmartPtrFeatureBase.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\vectorVector.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Widget.cs" />
+    <Compile Include="..\libs\wrappers\csharp\libtisch\Window.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
