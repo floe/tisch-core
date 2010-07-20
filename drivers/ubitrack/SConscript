@@ -1,0 +1,39 @@
+import sys 
+import glob
+import os.path
+
+# import variables from other scons files
+Import( '*' )
+env = driverEnv.Clone()
+
+if sys.platform == 'win32':
+	tischpath = 'D:\\iTuepferl-Demos\\tisch\\framework\\'
+	env.Append( CPPPATH = [ tischpath, tischpath+'libs\\tools\\' ] )
+	env.Append( LIBPATH = [ tischpath+'Release', tischpath+'Debug' ] )
+	env.Append( LINKFLAGS = [ 'ws2_32.lib' , 'libtools.lib'] )
+else:
+	tischpath = '/home/echtler/uni/research/multitouch/tisch/framework/'
+	env.Append( CPPPATH = [ tischpath, tischpath+'libs/tools' ] )
+	env.Append( LIBPATH = [ tischpath+'build/lib' ] )
+	env.Append( LIBS = [ 'tools' ] )
+
+# take driver name from directory name, replace if you don't like the result
+driverName = os.path.basename( Dir( '.' ).srcnode().abspath )
+
+# automatically glob files
+headers = globSourceFiles( '*.h' )
+sources = globSourceFiles( '*.cpp' ) + globSourceFiles( '*.cc' )
+
+# compile driver
+driver = env.SharedLibrary( driverName, sources )
+Alias( [ 'drivers', 'all' ], driver )
+
+# install driver
+Alias( [ 'install-drivers', 'install-all' ], Install( install_components_prefix, driver[ 0 ] ) )
+
+# also create a visual studio project for the driver
+if 'vcproj' in COMMAND_LINE_TARGETS:
+	vcproj = env.MSVSProject( target = '#/driver-' + driverName + env[ 'MSVSPROJECTSUFFIX' ], 
+		srcs = toTopLevelPath( sources ), incs = toTopLevelPath( headers ), buildtarget = driver[ 0 ], 
+		auto_build_solution = 0 )
+	msvsTopDirProjects += [ vcproj ]

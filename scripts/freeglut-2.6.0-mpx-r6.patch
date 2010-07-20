@@ -1,0 +1,423 @@
+Index: src/freeglut_window.c
+===================================================================
+--- src/freeglut_window.c	(Revision 832)
++++ src/freeglut_window.c	(Arbeitskopie)
+@@ -934,6 +934,9 @@
+         window->Window.Context
+     );
+ 
++    /* register extension events _before_ window is mapped */
++    fgRegisterDevices( fgDisplay.Display, &(window->Window.Handle) );
++
+     XMapWindow( fgDisplay.Display, window->Window.Handle );
+ 
+     XFree(visualInfo);
+Index: src/freeglut_callbacks.c
+===================================================================
+--- src/freeglut_callbacks.c	(Revision 832)
++++ src/freeglut_callbacks.c	(Arbeitskopie)
+@@ -358,4 +358,40 @@
+     SET_CALLBACK( TabletButton );
+ }
+ 
++/*
++ * Sets the multi-pointer entry callback for the current window
++ */
++void FGAPIENTRY glutXExtensionEntryFunc( void (* callback)(int, int ) )
++{
++    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutXExtensionEntryFunc" );
++    SET_CALLBACK( XExtensionEntry );
++}
++
++/*
++ * Sets the multi-pointer button callback for the current window
++ */
++void FGAPIENTRY glutXExtensionButtonFunc( void (* callback)(int, int, int, int, int ) )
++{
++    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutXExtensionButtonFunc" );
++    SET_CALLBACK( XExtensionButton );
++}
++
++/*
++ * Sets the multi-pointer motion callback for the current window
++ */
++void FGAPIENTRY glutXExtensionMotionFunc( void (* callback)(int, int, int ) )
++{
++    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutXExtensionMotionFunc" );
++    SET_CALLBACK( XExtensionMotion );
++}
++
++/*
++ * Sets the multi-pointer passive motion callback for the current window
++ */
++void FGAPIENTRY glutXExtensionPassiveFunc( void (* callback)(int, int, int ) )
++{
++    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutXExtensionPassiveFunc" );
++    SET_CALLBACK( XExtensionPassive );
++}
++
+ /*** END OF FILE ***/
+Index: src/freeglut_internal.h
+===================================================================
+--- src/freeglut_internal.h	(Revision 832)
++++ src/freeglut_internal.h	(Arbeitskopie)
+@@ -227,6 +227,11 @@
+ typedef void (* FGCBTabletButton  )( int, int, int, int );
+ typedef void (* FGCBDestroy       )( void );
+ 
++typedef void (* FGCBXExtensionEntry   )( int, int );
++typedef void (* FGCBXExtensionButton  )( int, int, int, int, int );
++typedef void (* FGCBXExtensionMotion  )( int, int, int );
++typedef void (* FGCBXExtensionPassive )( int, int, int );
++
+ /* The global callbacks type definitions */
+ typedef void (* FGCBIdle          )( void );
+ typedef void (* FGCBTimer         )( int );
+@@ -561,6 +566,12 @@
+     CB_Joystick,
+     CB_Destroy,
+ 
++    /* MPX-related */
++    CB_XExtensionEntry,
++    CB_XExtensionButton,
++    CB_XExtensionMotion,
++    CB_XExtensionPassive,
++
+     /* Presently ignored */
+     CB_Select,
+     CB_OverlayDisplay,
+@@ -925,11 +936,17 @@
+ void fgError( const char *fmt, ... );
+ void fgWarning( const char *fmt, ... );
+ 
++#if TARGET_HOST_POSIX_X11
++
+ /*
+  * Check if "hint" is present in "property" for "window".  See freeglut_init.c
+  */
+-#if TARGET_HOST_POSIX_X11
+ int fgHintPresent(Window window, Atom property, Atom hint);
++
++/* Handler for X extension Events */
++void fgHandleExtensionEvents( XEvent * ev );
++void fgRegisterDevices( Display* dpy, Window* win );
++
+ #endif
+ 
+ SFG_Proc fghGetProcAddress( const char *procName );
+Index: src/freeglut_main.c
+===================================================================
+--- src/freeglut_main.c	(Revision 832)
++++ src/freeglut_main.c	(Arbeitskopie)
+@@ -483,7 +483,7 @@
+ /*
+  * Returns GLUT modifier mask for the state field of an X11 event.
+  */
+-static int fghGetXModifiers( int state )
++int fghGetXModifiers( int state )
+ {
+     int ret = 0;
+ 
+@@ -1405,7 +1405,8 @@
+             break;
+ 
+         default:
+-            fgWarning ("Unknown X event type: %d\n", event.type);
++            /* enter handling of Extension Events here */
++            fgHandleExtensionEvents( &event );
+             break;
+         }
+     }
+Index: src/freeglut_xinput.c
+===================================================================
+--- src/freeglut_xinput.c	(Revision 0)
++++ src/freeglut_xinput.c	(Revision 0)
+@@ -0,0 +1,225 @@
++/* Written for XI1 by Nikolas Doerfler <doerflen@in.tum.de> (c) 2008 *
++ * Rewritten for XI2 by Florian Echtler <echtler@in.tum.de> (c) 2009 */
++
++#include <GL/freeglut.h>
++
++#include "freeglut_internal.h"
++
++#if TARGET_HOST_POSIX_X11 && HAVE_X11_EXTENSIONS_XINPUT2_H
++
++#include <errno.h>
++#include <stdarg.h>
++
++#include <X11/Xlib.h>
++#include <X11/extensions/XInput2.h>
++
++/* import function from freeglut_main.c */
++int fghGetXModifiers( int state );
++
++/* extension opcode for XInput */
++int xi_opcode = -1;
++
++/**
++ * \brief Sets window up for XI2 events.
++ */
++void fgRegisterDevices( Display* dpy, Window* win ) {
++
++	XIEventMask mask;
++	unsigned char flags[2] = { 0, 0 };
++	int event, error;
++
++	/*Display* dpy = fgDisplay.Display;
++	Window* win = glutGetXWindow();*/
++
++	/* get XInput extension opcode */
++	if (!XQueryExtension( dpy, "XInputExtension", &xi_opcode, &event, &error )) { xi_opcode = -1; }
++
++	/* Select for motion events */
++	mask.deviceid = XIAllMasterDevices;
++	mask.mask_len = 2;
++	mask.mask = flags;
++
++	XISetMask(mask.mask, XI_Enter);
++	XISetMask(mask.mask, XI_Motion);
++	XISetMask(mask.mask, XI_ButtonPress);
++	XISetMask(mask.mask, XI_ButtonRelease);
++	XISetMask(mask.mask, XI_Leave);
++	/*XISetMask(mask.mask, XI_KeyPress);
++	XISetMask(mask.mask, XI_KeyRelease);
++	XISetMask(mask.mask, XI_DeviceChanged);
++	XISetMask(mask.mask, XI_RawEvent);
++	XISetMask(mask.mask, XI_FocusIn);
++	XISetMask(mask.mask, XI_FocusOut);
++	XISetMask(mask.mask, XI_HierarchyChanged);*/
++
++	XISelectEvents( dpy, *win, &mask, 1 );
++}
++
++
++void fgPrintXILeaveEvent(XILeaveEvent* event)
++{
++    char* mode = "";
++		char* detail = "";
++    int i;
++
++    printf("    windows: root 0x%lx event 0x%lx child 0x%ld\n",
++            event->root, event->event, event->child);
++    switch(event->mode)
++    {
++        case NotifyNormal:       mode = "NotifyNormal"; break;
++        case NotifyGrab:         mode = "NotifyGrab"; break;
++        case NotifyUngrab:       mode = "NotifyUngrab"; break;
++        case NotifyWhileGrabbed: mode = "NotifyWhileGrabbed"; break;
++    }
++    switch (event->detail)
++    {
++        case NotifyAncestor: detail = "NotifyAncestor"; break;
++        case NotifyVirtual: detail = "NotifyVirtual"; break;
++        case NotifyInferior: detail = "NotifyInferior"; break;
++        case NotifyNonlinear: detail = "NotifyNonlinear"; break;
++        case NotifyNonlinearVirtual: detail = "NotifyNonlinearVirtual"; break;
++        case NotifyPointer: detail = "NotifyPointer"; break;
++        case NotifyPointerRoot: detail = "NotifyPointerRoot"; break;
++        case NotifyDetailNone: detail = "NotifyDetailNone"; break;
++    }
++    printf("    mode: %s (detail %s)\n", mode, detail);
++    printf("    flags: %s %s\n", event->focus ? "[focus]" : "",
++                                 event->same_screen ? "[same screen]" : "");
++    printf("    buttons:");
++    for (i = 0; i < event->buttons.mask_len * 8; i++)
++        if (XIMaskIsSet(event->buttons.mask, i))
++            printf(" %d", i);
++    printf("\n");
++
++    printf("    modifiers: locked 0x%x latched 0x%x base 0x%x\n",
++            event->mods.locked, event->mods.latched,
++            event->mods.base);
++    printf("    group: locked 0x%x latched 0x%x base 0x%x\n",
++            event->group.locked, event->group.latched,
++            event->group.base);
++
++    printf("    root x/y:  %.2f / %.2f\n", event->root_x, event->root_y);
++    printf("    event x/y: %.2f / %.2f\n", event->event_x, event->event_y);
++
++}
++
++
++void fgPrintXIDeviceEvent(XIDeviceEvent* event)
++{
++    double *val;
++    int i;
++
++    printf("    device: %d (%d)\n", event->deviceid, event->sourceid);
++    printf("    detail: %d\n", event->detail);
++    printf("    buttons:");
++ 	  for (i = 0; i < event->buttons.mask_len * 8; i++)
++   	    if (XIMaskIsSet(event->buttons.mask, i))
++     	      printf(" %d", i);
++    printf("\n");
++
++    printf("    modifiers: locked 0x%x latched 0x%x base 0x%x\n",
++            event->mods.locked, event->mods.latched,
++            event->mods.base);
++    printf("    group: locked 0x%x latched 0x%x base 0x%x\n",
++            event->group.locked, event->group.latched,
++            event->group.base);
++    printf("    valuators:");
++
++    val = event->valuators.values;
++    for (i = 0; i < event->valuators.mask_len * 8; i++)
++        if (XIMaskIsSet(event->valuators.mask, i))
++            printf(" %d: %.2f", i, *val++);
++    printf("\n");
++
++    printf("    windows: root 0x%lx event 0x%lx child 0x%ld\n",
++            event->root, event->event, event->child);
++    printf("    root x/y:  %.2f / %.2f\n", event->root_x, event->root_y);
++    printf("    event x/y: %.2f / %.2f\n", event->event_x, event->event_y);
++
++}
++
++
++/**
++ * \brief This function is called when an Extension Event is received
++ * and calls the corresponding callback functions for these events.
++ */
++void fgHandleExtensionEvents( XEvent* base_ev ) {
++
++	int i, button = 0;
++	XGenericEventCookie* cookie = (XGenericEventCookie*)&(base_ev->xcookie);
++
++	if ( XGetEventData( fgDisplay.Display, cookie ) && (cookie->type == GenericEvent) && (cookie->extension == xi_opcode) ) {
++
++		XIDeviceEvent* event = (XIDeviceEvent*)(cookie->data);
++		/*printf("XI2 event type: %d - %d\n", cookie->evtype, event->type );*/
++
++		SFG_Window* window = fgWindowByHandle( event->event );
++		if (!window) return;
++
++		switch (cookie->evtype) {
++
++			case XI_Enter:
++			case XI_Leave:
++				fgState.Modifiers = fghGetXModifiers( ((XIEnterEvent*)event)->mods.base );
++				INVOKE_WCB( *window, XExtensionEntry, (
++					event->deviceid, 
++					(event->evtype == XI_Enter ? GLUT_ENTERED : GLUT_LEFT)
++				));
++				#if _DEBUG
++					fgPrintXILeaveEvent((XILeaveEvent*)event);
++				#endif
++				break;
++
++			case XI_ButtonPress:
++			case XI_ButtonRelease:
++				fgState.Modifiers = fghGetXModifiers( event->mods.base );
++				INVOKE_WCB( *window, XExtensionButton, (
++					event->deviceid, 
++					event->event_x,
++					event->event_y,
++					(event->detail)-1, 
++					(event->evtype == XI_ButtonPress ? GLUT_DOWN : GLUT_UP)
++				));
++				INVOKE_WCB( *window, Mouse, (
++					(event->detail)-1, 
++					(event->evtype == XI_ButtonPress ? GLUT_DOWN : GLUT_UP),
++					event->event_x,
++					event->event_y
++				));
++				break;
++
++			case XI_Motion:
++				fgState.Modifiers = fghGetXModifiers( event->mods.base );
++				for (i = 0; i < event->buttons.mask_len; i++) if (event->buttons.mask[i]) button = 1;
++				if (button) {
++					INVOKE_WCB( *window, XExtensionMotion,  ( event->deviceid, event->event_x, event->event_y ) );
++					INVOKE_WCB( *window,           Motion,  (                  event->event_x, event->event_y ) );
++				} else {
++					INVOKE_WCB( *window, XExtensionPassive, ( event->deviceid, event->event_x, event->event_y ) );
++					INVOKE_WCB( *window,           Passive, (                  event->event_x, event->event_y ) );
++				}
++				#if _DEBUG
++					fgPrintXIDeviceEvent(event);
++				#endif
++				break;
++
++			default:
++				#if _DEBUG
++					fgWarning( "Unknown XI2 device event:" );
++					fgPrintXIDeviceEvent( event );
++				#endif
++				break;
++		}
++		fgState.Modifiers = INVALID_MODIFIERS;
++	}
++	XFreeEventData( fgDisplay.Display, cookie );
++}
++
++#else
++
++/* empty stubs for non-MPX platforms */
++void fgRegisterDevices( Display* dpy, Window* win ) { }
++void fgHandleExtensionEvents( XEvent* ev ) { }
++
++#endif
++
+Index: src/Makefile.am
+===================================================================
+--- src/Makefile.am	(Revision 832)
++++ src/Makefile.am	(Arbeitskopie)
+@@ -37,7 +37,8 @@
+ 			 freeglut_structure.c \
+ 			 freeglut_teapot.c \
+ 			 freeglut_videoresize.c \
+-			 freeglut_window.c
++			 freeglut_window.c \
++			 freeglut_xinput.c
+ 
+ #
+ # Additional linker flags
+Index: src/freeglut_ext.c
+===================================================================
+--- src/freeglut_ext.c	(Revision 832)
++++ src/freeglut_ext.c	(Arbeitskopie)
+@@ -85,6 +85,10 @@
+     CHECK_NAME(glutReshapeFunc);
+     CHECK_NAME(glutKeyboardFunc);
+     CHECK_NAME(glutMouseFunc);
++    CHECK_NAME(glutXExtensionEntryFunc);
++    CHECK_NAME(glutXExtensionMotionFunc);
++    CHECK_NAME(glutXExtensionButtonFunc);
++    CHECK_NAME(glutXExtensionPassiveFunc);
+     CHECK_NAME(glutMotionFunc);
+     CHECK_NAME(glutPassiveMotionFunc);
+     CHECK_NAME(glutEntryFunc);
+Index: configure.ac
+===================================================================
+--- configure.ac	(Revision 832)
++++ configure.ac	(Arbeitskopie)
+@@ -50,6 +50,7 @@
+ AC_HEADER_TIME
+ AC_CHECK_HEADERS([X11/extensions/xf86vmode.h], [], [], [#include <X11/Xlib.h>])
+ AC_CHECK_HEADERS([X11/extensions/XI.h X11/extensions/XInput.h])
++AC_CHECK_HEADERS([X11/extensions/XInput2.h])
+ CPPFLAGS="$save_CPPFLAGS"
+ 
+ # Checks for library functions.
+Index: include/GL/freeglut_ext.h
+===================================================================
+--- include/GL/freeglut_ext.h	(Revision 832)
++++ include/GL/freeglut_ext.h	(Arbeitskopie)
+@@ -167,6 +167,17 @@
+ FGAPI GLUTproc FGAPIENTRY glutGetProcAddress( const char *procName );
+ 
+ /*
++ * MPX extensions, see freeglut_xinput.c
++ */
++
++#define GLUT_HAS_MPX 1
++
++FGAPI void FGAPIENTRY glutXExtensionEntryFunc( void (* callback)( int, int ) );
++FGAPI void FGAPIENTRY glutXExtensionButtonFunc( void (* callback)( int, int, int, int, int ) );
++FGAPI void FGAPIENTRY glutXExtensionMotionFunc( void (* callback)( int, int, int ) );
++FGAPI void FGAPIENTRY glutXExtensionPassiveFunc( void (* callback)( int, int, int ) );
++
++/*
+  * Joystick functions, see freeglut_joystick.c
+  */
+ /* USE OF THESE FUNCTIONS IS DEPRECATED !!!!! */

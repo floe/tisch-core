@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<UTQLPatternTemplates xmlns='http://ar.in.tum.de/ubitrack/utql'
+                      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                      xmlns:xi='http://www.w3.org/2001/XInclude'
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xsi:schemaLocation='http://ar.in.tum.de/ubitrack/utql ../../../schema/utql_templates.xsd'>
+
+    <Pattern name="TischPoseCollector" displayName="Collects 3 Poses into PoseList">
+    	<Description><h:p>This compoment collects 3 poses into an pose list</h:p></Description>
+
+        <Input>
+            <Node name="A" displayName="A"/>
+            <Node name="B" displayName="B"/>
+            <Node name="C" displayName="C"/>
+            <Node name="D" displayName="D"/>
+            <Edge name="AB" source="A" destination="B" displayName="First factor">
+            	<Description><h:p>The first input.</h:p></Description>
+                <Predicate>type=='6D'</Predicate>
+            </Edge>
+            <Edge name="AC" source="A" destination="C" displayName="Second factor">
+            	<Description><h:p>The second input.</h:p></Description>
+                <Predicate>type=='6D'</Predicate>
+            </Edge>
+            <Edge name="AD" source="A" destination="D" displayName="Third factor">
+            	<Description><h:p>The third input.</h:p></Description>
+                <Predicate>type=='6D'</Predicate>
+            </Edge>
+        </Input>
+
+        <Output>
+            <Node name="E" displayName="E"/>
+            <Edge name="AE" source="A" destination="E" displayName="List">
+            	<Description><h:p>The result computed as the list of AB and AC and AD.</h:p></Description>
+                <Attribute name="type" value="PoseList" xsi:type="EnumAttributeReferenceType"/>
+            </Edge>
+        </Output>
+
+        <Constraints>
+        	<TriggerGroup>
+                <Edge edge-ref="AB"/>
+                <Edge edge-ref="AC"/>
+                <Edge edge-ref="AD"/>
+                <Edge edge-ref="AE"/>
+            </TriggerGroup>
+        </Constraints>
+
+        <DataflowConfiguration>
+            <UbitrackLib class="TischPoseCollector"/>
+        </DataflowConfiguration>
+    </Pattern>
+
+    <!-- Attribute declarations -->
+
+    <GlobalNodeAttributeDeclarations>
+        <xi:include href="../../GlobalAttrSpec.xml" xpointer="element(/1/1/1)"/>
+    </GlobalNodeAttributeDeclarations>
+
+    <GlobalEdgeAttributeDeclarations>
+        <xi:include href="../../GlobalAttrSpec.xml" xpointer="element(/1/2/1)"/>
+        <xi:include href="../../GlobalAttrSpec.xml" xpointer="element(/1/2/2)"/>
+        <xi:include href="../../GlobalAttrSpec.xml" xpointer="element(/1/2/3)"/>
+    </GlobalEdgeAttributeDeclarations>
+
+    <GlobalDataflowAttributeDeclarations>
+        <xi:include href="../../GlobalAttrSpec.xml" xpointer="element(/1/3/1)"/>
+    </GlobalDataflowAttributeDeclarations>
+
+
+</UTQLPatternTemplates>
