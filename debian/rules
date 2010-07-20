@@ -8,6 +8,7 @@
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
+export MONO_DISABLE_SHM=1
 
 %:
 	dh  $@
