@@ -3,9 +3,15 @@
 # check if global config already defined
 ifndef TISCH_CONFIG
 
-  TOPDIR   = $(shell pwd)
-  DESTDIR ?= $(TOPDIR)/build/
-  PREFIX  ?= /usr
+  TOPDIR = $(shell pwd)
+
+  ifeq ($(DESTDIR),)
+    DESTDIR = $(TOPDIR)/build/
+    PREFIX ?= $(DESTDIR)
+  else
+    PREFIX ?= /usr
+  endif
+
   BINDIR   = $(DESTDIR)/bin/
   LIBDIR   = $(DESTDIR)/lib/
   INCDIR   = $(DESTDIR)/include/libtisch/
@@ -72,13 +78,18 @@ default:
 	@echo "  install  - install all binaries into $(DESTDIR)"
 	@echo "  clean    - remove all binaries"
 	@echo
-	@echo "  additional targets: $(TARGETS) $(WRAPPERS)"
+	@echo "  separate libTISCH targets: tools simplecv simplegl touchd tuio calibd gestured widgets"
+	@echo "  separate wrapper targets:  csharp java python"
 	@echo
 	@echo If you need special include/library paths, put them into the 
 	@echo CFLAGS and LDFLAGS environment variables. To choose a different
-	@echo installation target, set the DESTDIR variable. Example:
+	@echo installation target, set the DESTDIR variable. To change the 
+	@echo runtime prefix separately, set the PREFIX variable. Example:
 	@echo
-	@echo "  make CFLAGS=-I/opt/include DESTDIR=/usr/local/ install"
+	@echo "  make CFLAGS=-I/opt/include PREFIX=/usr/local/ install"
+	@echo
+	@echo "current install target (DESTDIR): $(DESTDIR)"
+	@echo "current runtime prefix (PREFIX):  $(PREFIX)"
 	@echo
 
 

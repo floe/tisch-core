@@ -1,13 +1,24 @@
+libtisch (1.1-0ubuntu5~karmic) karmic; urgency=low
+
+  * build also for karmic
+
+ -- Florian Echtler <floe@butterbrot.org>  Wed, 21 Jul 2010 08:36:13 +0200
+
+libtisch (1.1-0ubuntu5) lucid; urgency=low
+
+  * fix broken dependencies
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 18:41:02 +0200
+
 libtisch (1.1-0ubuntu4) lucid; urgency=low
 
-  * try to fix build error by exporting MONO_DISABLE_SHM
+  * fix build error by exporting MONO_DISABLE_SHM
 
- -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 13:24:12 +0200
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 14:32:29 +0200
 
 libtisch (1.1-0ubuntu3) lucid; urgency=low
 
-  * try to work around the corrupted /root/.wapi/ folder which prevents the
-    build from succeeding
+  * unsuccessful workaround for corrupted /root/.wapi/ folder
 
  -- Florian Echtler <floe@butterbrot.org>  Tue, 20 Jul 2010 13:24:12 +0200
 
