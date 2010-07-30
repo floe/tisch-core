@@ -3758,7 +3758,6 @@ class libtischJNI {
   public final static native int GL_NV_shader_buffer_load_get();
   public final static native int GL_NV_vertex_buffer_unified_memory_get();
   public final static native int GL_NV_texture_barrier_get();
-  public final static native int DEFAULT_TEXTURE_TARGET_get();
   public final static native long new_GLUTWindow__SWIG_0(int jarg1, int jarg2, String jarg3, int jarg4);
   public final static native long new_GLUTWindow__SWIG_1(int jarg1, int jarg2, String jarg3);
   public final static native void delete_GLUTWindow(long jarg1);

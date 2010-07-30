@@ -46449,16 +46449,6 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_texture_barrier_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_DEFAULT_TEXTURE_TARGET_get() {
-  int jresult ;
-  int result;
-  
-  result = (int) 0x84F5;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_new_GLUTWindow__SWIG_0(int jarg1, int jarg2, char * jarg3, int jarg4) {
   void * jresult ;
   int arg1 ;
@@ -47025,7 +47015,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_0(void * jarg1, void 
   GLint *argp2 ;
   GLenum *argp3 ;
   GLenum *argp4 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   argp1 = (GLint *)jarg1; 
   if (!argp1) {
@@ -47053,7 +47043,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_0(void * jarg1, void 
   arg4 = *argp4; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47073,7 +47063,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_1(void * jarg1, void 
   GLint *argp1 ;
   GLint *argp2 ;
   GLenum *argp3 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   argp1 = (GLint *)jarg1; 
   if (!argp1) {
@@ -47095,7 +47085,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_1(void * jarg1, void 
   arg3 = *argp3; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47113,7 +47103,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_2(void * jarg1, void 
   GLint arg2 ;
   GLint *argp1 ;
   GLint *argp2 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   argp1 = (GLint *)jarg1; 
   if (!argp1) {
@@ -47129,7 +47119,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_2(void * jarg1, void 
   arg2 = *argp2; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47148,7 +47138,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_3(char * jarg1, void 
   GLenum arg3 ;
   GLenum *argp2 ;
   GLenum *argp3 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   arg1 = (char *)jarg1; 
   argp2 = (GLenum *)jarg2; 
@@ -47165,7 +47155,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_3(char * jarg1, void 
   arg3 = *argp3; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47182,7 +47172,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_4(char * jarg1, void 
   char *arg1 = (char *) 0 ;
   GLenum arg2 ;
   GLenum *argp2 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   arg1 = (char *)jarg1; 
   argp2 = (GLenum *)jarg2; 
@@ -47193,7 +47183,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_4(char * jarg1, void 
   arg2 = *argp2; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47208,12 +47198,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_4(char * jarg1, void 
 SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_5(char * jarg1) {
   void * jresult ;
   char *arg1 = (char *) 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   arg1 = (char *)jarg1; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -47226,9 +47216,9 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_RGBATexture__SWIG_5(char * jarg1) {
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_delete_RGBATexture(void * jarg1) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       delete arg1;
@@ -47242,7 +47232,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_RGBATexture(void * jarg1) {
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   GLfloat arg4 ;
@@ -47250,7 +47240,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_0(void * jarg1, void
   GLenum *argp3 ;
   GLfloat *argp4 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   argp2 = (GLint *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null GLint", 0);
@@ -47282,13 +47272,13 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_0(void * jarg1, void
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   GLint *argp2 ;
   GLenum *argp3 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   argp2 = (GLint *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null GLint", 0);
@@ -47314,11 +47304,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_1(void * jarg1, void
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_2(void * jarg1, void * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLint *argp2 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   argp2 = (GLint *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null GLint", 0);
@@ -47338,9 +47328,9 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_2(void * jarg1, void
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_3(void * jarg1) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       (arg1)->render();
@@ -47354,11 +47344,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_render__SWIG_3(void * jarg1) {
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_bind__SWIG_0(void * jarg1, void * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLenum arg2 ;
   GLenum *argp2 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   argp2 = (GLenum *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null GLenum", 0);
@@ -47378,9 +47368,9 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_bind__SWIG_0(void * jarg1, void *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_bind__SWIG_1(void * jarg1) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       (arg1)->bind();
@@ -47394,9 +47384,9 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_bind__SWIG_1(void * jarg1) {
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_release(void * jarg1) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       (arg1)->release();
@@ -47411,10 +47401,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_release(void * jarg1) {
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_get(void * jarg1) {
   void * jresult ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLuint result;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       result = (arg1)->get();
@@ -47431,11 +47421,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_get(void * jarg1) {
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_width__SWIG_0(void * jarg1, int jarg2) {
   void * jresult ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   GLint result;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (int)jarg2; 
   {
     try {
@@ -47453,10 +47443,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_width__SWIG_0(void * jarg1, int
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_width__SWIG_1(void * jarg1) {
   void * jresult ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint result;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       result = (arg1)->width();
@@ -47473,11 +47463,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_width__SWIG_1(void * jarg1) {
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_height__SWIG_0(void * jarg1, int jarg2) {
   void * jresult ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   GLint result;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (int)jarg2; 
   {
     try {
@@ -47495,10 +47485,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_height__SWIG_0(void * jarg1, in
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_height__SWIG_1(void * jarg1) {
   void * jresult ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint result;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   {
     try {
       result = (arg1)->height();
@@ -47514,14 +47504,14 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_RGBATexture_height__SWIG_1(void * jarg1) {
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   GLenum arg3 ;
   GLenum arg4 ;
   GLenum *argp3 ;
   GLenum *argp4 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (GLvoid *)jarg2; 
   argp3 = (GLenum *)jarg3; 
   if (!argp3) {
@@ -47548,10 +47538,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_0(void * jarg1, void *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_1(void * jarg1, char * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   char *arg2 = (char *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (char *)jarg2; 
   {
     try {
@@ -47566,10 +47556,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_1(void * jarg1, char *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_2(void * jarg1, void * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   IntensityImage *arg2 = (IntensityImage *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (IntensityImage *)jarg2; 
   {
     try {
@@ -47584,10 +47574,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_2(void * jarg1, void *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_3(void * jarg1, void * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (RGBImage *)jarg2; 
   {
     try {
@@ -47602,10 +47592,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_3(void * jarg1, void *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_read(void * jarg1, void * jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   
-  arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
   arg2 = (GLvoid *)jarg2; 
   {
     try {

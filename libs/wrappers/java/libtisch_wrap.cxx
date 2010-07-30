@@ -52552,18 +52552,6 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1NV_1texture_1barrier_1get(
 }
 
 
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_DEFAULT_1TEXTURE_1TARGET_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (int) 0x84F5;
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1GLUTWindow_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3, jint jarg4) {
   jlong jresult = 0 ;
   int arg1 ;
@@ -53217,7 +53205,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_10(J
   GLint *argp2 ;
   GLenum *argp3 ;
   GLenum *argp4 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53247,14 +53235,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_10(J
   arg4 = *argp4; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   return jresult;
 }
 
@@ -53267,7 +53255,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_11(J
   GLint *argp1 ;
   GLint *argp2 ;
   GLenum *argp3 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53291,14 +53279,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_11(J
   arg3 = *argp3; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   return jresult;
 }
 
@@ -53309,7 +53297,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_12(J
   GLint arg2 ;
   GLint *argp1 ;
   GLint *argp2 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53327,14 +53315,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_12(J
   arg2 = *argp2; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   return jresult;
 }
 
@@ -53346,7 +53334,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_13(J
   GLenum arg3 ;
   GLenum *argp2 ;
   GLenum *argp3 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53369,14 +53357,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_13(J
   arg3 = *argp3; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   if (arg1) jenv->ReleaseStringUTFChars(jarg1, (const char *)arg1);
   return jresult;
 }
@@ -53387,7 +53375,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_14(J
   char *arg1 = (char *) 0 ;
   GLenum arg2 ;
   GLenum *argp2 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53404,14 +53392,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_14(J
   arg2 = *argp2; 
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   if (arg1) jenv->ReleaseStringUTFChars(jarg1, (const char *)arg1);
   return jresult;
 }
@@ -53420,7 +53408,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_14(J
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -53431,25 +53419,25 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1RGBATexture_1_1SWIG_15(J
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
+  *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jresult = result; 
   if (arg1) jenv->ReleaseStringUTFChars(jarg1, (const char *)arg1);
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1RGBATexture(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       delete arg1;
@@ -53463,7 +53451,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1RGBATexture(JNIEnv *je
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   GLfloat arg4 ;
@@ -53474,7 +53462,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_10
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   argp2 = *(GLint **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null GLint");
@@ -53506,7 +53494,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_10
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   GLint *argp2 ;
@@ -53515,7 +53503,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_11
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   argp2 = *(GLint **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null GLint");
@@ -53541,14 +53529,14 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_11
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLint *argp2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   argp2 = *(GLint **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null GLint");
@@ -53568,12 +53556,12 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_12
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       (arg1)->render();
@@ -53587,14 +53575,14 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1render_1_1SWIG_13
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1bind_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLenum arg2 ;
   GLenum *argp2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   argp2 = *(GLenum **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null GLenum");
@@ -53614,12 +53602,12 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1bind_1_1SWIG_10(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1bind_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       (arg1)->bind();
@@ -53633,12 +53621,12 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1bind_1_1SWIG_11(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1release(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       (arg1)->release();
@@ -53653,13 +53641,13 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1release(JNIEnv *j
 
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLuint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       result = (arg1)->get();
@@ -53676,14 +53664,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1get(JNIEnv *jenv
 
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1width_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   GLint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = (int)jarg2; 
   {
     try {
@@ -53701,13 +53689,13 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1width_1_1SWIG_10
 
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1width_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       result = (arg1)->width();
@@ -53724,14 +53712,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1width_1_1SWIG_11
 
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1height_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   GLint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = (int)jarg2; 
   {
     try {
@@ -53749,13 +53737,13 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1height_1_1SWIG_1
 
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1height_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   {
     try {
       result = (arg1)->height();
@@ -53771,7 +53759,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_RGBATexture_1height_1_1SWIG_1
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   GLenum arg3 ;
   GLenum arg4 ;
@@ -53781,7 +53769,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_10(J
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = *(GLvoid **)&jarg2; 
   argp3 = *(GLenum **)&jarg3; 
   if (!argp3) {
@@ -53808,13 +53796,13 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_10(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   char *arg2 = (char *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
@@ -53834,13 +53822,13 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_11(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   IntensityImage *arg2 = (IntensityImage *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = *(IntensityImage **)&jarg2; 
   {
     try {
@@ -53855,13 +53843,13 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_12(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = *(RGBImage **)&jarg2; 
   {
     try {
@@ -53876,13 +53864,13 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_13(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1read(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
   arg2 = *(GLvoid **)&jarg2; 
   {
     try {

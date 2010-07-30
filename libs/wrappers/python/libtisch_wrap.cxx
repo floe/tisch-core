@@ -3204,12 +3204,12 @@ namespace Swig {
 #define SWIGTYPE_p_SmartPtrT_FeatureBase_t swig_types[40]
 #define SWIGTYPE_p_StateRegion swig_types[41]
 #define SWIGTYPE_p_Textbox swig_types[42]
-#define SWIGTYPE_p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t swig_types[43]
-#define SWIGTYPE_p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t swig_types[44]
-#define SWIGTYPE_p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[45]
-#define SWIGTYPE_p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[46]
-#define SWIGTYPE_p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t swig_types[47]
-#define SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[48]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t swig_types[43]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t swig_types[44]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[45]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[46]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t swig_types[47]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[48]
 #define SWIGTYPE_p_Tile swig_types[49]
 #define SWIGTYPE_p_Type swig_types[50]
 #define SWIGTYPE_p_Widget swig_types[51]
@@ -39771,7 +39771,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:new_RGBATexture",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   {
@@ -39828,12 +39828,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3,arg4);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -39854,7 +39854,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_1(PyObject *SWIGUNUSEDPARM(self
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:new_RGBATexture",&obj0,&obj1,&obj2)) SWIG_fail;
   {
@@ -39898,12 +39898,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_1(PyObject *SWIGUNUSEDPARM(self
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2,arg3);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -39920,7 +39920,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_2(PyObject *SWIGUNUSEDPARM(self
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:new_RGBATexture",&obj0,&obj1)) SWIG_fail;
   {
@@ -39951,12 +39951,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_2(PyObject *SWIGUNUSEDPARM(self
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(arg1,arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -39978,7 +39978,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_3(PyObject *SWIGUNUSEDPARM(self
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:new_RGBATexture",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
@@ -40014,12 +40014,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_3(PyObject *SWIGUNUSEDPARM(self
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2,arg3);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
@@ -40039,7 +40039,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_4(PyObject *SWIGUNUSEDPARM(self
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:new_RGBATexture",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
@@ -40062,12 +40062,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_4(PyObject *SWIGUNUSEDPARM(self
   }
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1,arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
@@ -40083,7 +40083,7 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_5(PyObject *SWIGUNUSEDPARM(self
   char *buf1 = 0 ;
   int alloc1 = 0 ;
   PyObject * obj0 = 0 ;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_RGBATexture",&obj0)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
@@ -40093,12 +40093,12 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture__SWIG_5(PyObject *SWIGUNUSEDPARM(self
   arg1 = reinterpret_cast< char * >(buf1);
   {
     try {
-      result = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
+      result = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)new Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >((char const *)arg1);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
@@ -40205,29 +40205,29 @@ SWIGINTERN PyObject *_wrap_new_RGBATexture(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_RGBATexture'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint,GLenum,GLenum)\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint,GLenum)\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint)\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *,GLenum,GLenum)\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *,GLenum)\n"
-    "    Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *)\n");
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint,GLenum,GLenum)\n"
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint,GLenum)\n"
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(GLint,GLint)\n"
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *,GLenum,GLenum)\n"
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *,GLenum)\n"
+    "    Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE >(char const *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_delete_RGBATexture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:delete_RGBATexture",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_DISOWN |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RGBATexture" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RGBATexture" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       delete arg1;
@@ -40244,7 +40244,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   GLfloat arg4 ;
@@ -40262,11 +40262,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_0(PyObject *SWIGUNUSEDPARM(s
   PyObject * obj3 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:RGBATexture_render",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_GLint,  0  | 0);
     if (!SWIG_IsOK(res2)) {
@@ -40322,7 +40322,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   GLenum arg3 ;
   void *argp1 = 0 ;
@@ -40336,11 +40336,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_1(PyObject *SWIGUNUSEDPARM(s
   PyObject * obj2 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:RGBATexture_render",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_GLint,  0  | 0);
     if (!SWIG_IsOK(res2)) {
@@ -40383,7 +40383,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLint arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -40393,11 +40393,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_2(PyObject *SWIGUNUSEDPARM(s
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_render",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_GLint,  0  | 0);
     if (!SWIG_IsOK(res2)) {
@@ -40427,17 +40427,17 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_render__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_render",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_render" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       (arg1)->render();
@@ -40465,7 +40465,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_RGBATexture_render__SWIG_3(self, args);
@@ -40474,7 +40474,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_GLint, 0);
@@ -40487,7 +40487,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render(PyObject *self, PyObject *args) {
   if (argc == 3) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_GLint, 0);
@@ -40504,7 +40504,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render(PyObject *self, PyObject *args) {
   if (argc == 4) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_GLint, 0);
@@ -40526,17 +40526,17 @@ SWIGINTERN PyObject *_wrap_RGBATexture_render(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'RGBATexture_render'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    render(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint,GLenum,GLfloat)\n"
-    "    render(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint,GLenum)\n"
-    "    render(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint)\n"
-    "    render(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
+    "    render(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint,GLenum,GLfloat)\n"
+    "    render(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint,GLenum)\n"
+    "    render(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLint)\n"
+    "    render(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_RGBATexture_bind__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLenum arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -40546,11 +40546,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_bind__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_bind",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_bind" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_bind" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_GLenum,  0  | 0);
     if (!SWIG_IsOK(res2)) {
@@ -40580,17 +40580,17 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_bind__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_bind",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_bind" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_bind" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       (arg1)->bind();
@@ -40618,7 +40618,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_bind(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_RGBATexture_bind__SWIG_1(self, args);
@@ -40627,7 +40627,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_bind(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_GLenum, 0);
@@ -40641,25 +40641,25 @@ SWIGINTERN PyObject *_wrap_RGBATexture_bind(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'RGBATexture_bind'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    bind(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLenum)\n"
-    "    bind(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
+    "    bind(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLenum)\n"
+    "    bind(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_RGBATexture_release(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_release",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_release" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_release" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       (arg1)->release();
@@ -40676,18 +40676,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   GLuint result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_get" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_get" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       result = (arg1)->get();
@@ -40704,7 +40704,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_width__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -40715,11 +40715,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_width__SWIG_0(PyObject *SWIGUNUSEDPARM(se
   GLint result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_width",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_width" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_width" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RGBATexture_width" "', argument " "2"" of type '" "int""'");
@@ -40741,18 +40741,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_width__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   GLint result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_width",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_width" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_width" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       result = (arg1)->width();
@@ -40780,7 +40780,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_width(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_RGBATexture_width__SWIG_1(self, args);
@@ -40789,7 +40789,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_width(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -40805,15 +40805,15 @@ SWIGINTERN PyObject *_wrap_RGBATexture_width(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'RGBATexture_width'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    width(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,int)\n"
-    "    width(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
+    "    width(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,int)\n"
+    "    width(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_RGBATexture_height__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -40824,11 +40824,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_height__SWIG_0(PyObject *SWIGUNUSEDPARM(s
   GLint result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_height",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_height" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_height" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "RGBATexture_height" "', argument " "2"" of type '" "int""'");
@@ -40850,18 +40850,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_height__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   GLint result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:RGBATexture_height",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_height" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_height" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   {
     try {
       result = (arg1)->height();
@@ -40889,7 +40889,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_height(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_RGBATexture_height__SWIG_1(self, args);
@@ -40898,7 +40898,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_height(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -40914,15 +40914,15 @@ SWIGINTERN PyObject *_wrap_RGBATexture_height(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'RGBATexture_height'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    height(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,int)\n"
-    "    height(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
+    "    height(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,int)\n"
+    "    height(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   GLenum arg3 ;
   GLenum arg4 ;
@@ -40940,11 +40940,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj3 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:RGBATexture_load",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_GLvoid, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_load" "', argument " "2"" of type '" "GLvoid const *""'"); 
@@ -40992,7 +40992,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41003,11 +41003,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_1(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_load",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_load" "', argument " "2"" of type '" "char const *""'");
@@ -41031,7 +41031,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   IntensityImage *arg2 = (IntensityImage *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41041,11 +41041,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_2(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_load",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_IntensityImage, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_load" "', argument " "2"" of type '" "IntensityImage const *""'"); 
@@ -41067,7 +41067,7 @@ fail:
 
 SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41077,11 +41077,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_3(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_load",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_RGBImage, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_load" "', argument " "2"" of type '" "RGBImage const *""'"); 
@@ -41114,7 +41114,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
@@ -41128,7 +41128,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
@@ -41142,7 +41142,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
@@ -41155,7 +41155,7 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
   if (argc == 4) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
@@ -41178,17 +41178,17 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'RGBATexture_load'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    load(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLvoid const *,GLenum,GLenum)\n"
-    "    load(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,char const *)\n"
-    "    load(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,IntensityImage const *)\n"
-    "    load(Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,RGBImage const *)\n");
+    "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLvoid const *,GLenum,GLenum)\n"
+    "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,char const *)\n"
+    "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,IntensityImage const *)\n"
+    "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,RGBImage const *)\n");
   return NULL;
 }
 
 
 SWIGINTERN PyObject *_wrap_RGBATexture_read(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   GLvoid *arg2 = (GLvoid *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41198,11 +41198,11 @@ SWIGINTERN PyObject *_wrap_RGBATexture_read(PyObject *SWIGUNUSEDPARM(self), PyOb
   PyObject * obj1 = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_read",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_read" "', argument " "1"" of type '" "Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_read" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
   }
-  arg1 = reinterpret_cast< Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_GLvoid, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_read" "', argument " "2"" of type '" "GLvoid *""'"); 
@@ -41225,7 +41225,7 @@ fail:
 SWIGINTERN PyObject *RGBATexture_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -41374,7 +41374,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Widget" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Widget" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -41462,7 +41462,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_1(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Widget" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Widget" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -41882,7 +41882,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Widget__SWIG_1(self, args);
@@ -41924,7 +41924,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   {
@@ -43030,7 +43030,7 @@ SWIGINTERN PyObject *_wrap_Widget_texture(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_texture" "', argument " "1"" of type '" "Widget *""'"); 
   }
   arg1 = reinterpret_cast< Widget * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Widget_texture" "', argument " "2"" of type '" "RGBATexture *""'"); 
   }
@@ -43252,7 +43252,7 @@ SWIGINTERN PyObject *_wrap_Widget_paint_tex__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_paint_tex" "', argument " "1"" of type '" "Widget *""'"); 
   }
   arg1 = reinterpret_cast< Widget * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Widget_paint_tex" "', argument " "2"" of type '" "RGBATexture *""'"); 
   }
@@ -43324,7 +43324,7 @@ SWIGINTERN PyObject *_wrap_Widget_paint_tex(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Widget_paint_tex__SWIG_0(self, args);
@@ -44405,7 +44405,7 @@ SWIGINTERN PyObject *_wrap_Widget_mytex_set(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_mytex_set" "', argument " "1"" of type '" "Widget *""'"); 
   }
   arg1 = reinterpret_cast< Widget * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_DISOWN |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Widget_mytex_set" "', argument " "2"" of type '" "RGBATexture *""'"); 
   }
@@ -44436,7 +44436,7 @@ SWIGINTERN PyObject *_wrap_Widget_mytex_get(PyObject *SWIGUNUSEDPARM(self), PyOb
   arg1 = reinterpret_cast< Widget * >(argp1);
   darg = dynamic_cast<SwigDirector_Widget *>(arg1);
   result = (RGBATexture *) (darg->mytex);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -44798,7 +44798,7 @@ SWIGINTERN PyObject *_wrap_new_Label__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "new_Label" "', argument " "9"" of type '" "int""'");
   } 
   arg9 = static_cast< int >(val9);
-  res10 = SWIG_ConvertPtr(obj9, &argp10,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res10 = SWIG_ConvertPtr(obj9, &argp10,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res10)) {
     SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "new_Label" "', argument " "10"" of type '" "RGBATexture *""'"); 
   }
@@ -45589,7 +45589,7 @@ SWIGINTERN PyObject *_wrap_new_Label(PyObject *self, PyObject *args) {
                     }
                     if (_v) {
                       void *vptr = 0;
-                      int res = SWIG_ConvertPtr(argv[9], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                      int res = SWIG_ConvertPtr(argv[9], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                       _v = SWIG_CheckState(res);
                       if (_v) {
                         return _wrap_new_Label__SWIG_0(self, args);
@@ -46035,7 +46035,7 @@ SWIGINTERN PyObject *_wrap_new_Button__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Button" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Button" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -46450,7 +46450,7 @@ SWIGINTERN PyObject *_wrap_new_Button(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Button__SWIG_0(self, args);
@@ -46842,7 +46842,7 @@ SWIGINTERN PyObject *_wrap_new_Tile__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Tile" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Tile" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -46929,7 +46929,7 @@ SWIGINTERN PyObject *_wrap_new_Tile__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Tile" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Tile" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -47344,7 +47344,7 @@ SWIGINTERN PyObject *_wrap_new_Tile(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Tile__SWIG_1(self, args);
@@ -47386,7 +47386,7 @@ SWIGINTERN PyObject *_wrap_new_Tile(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   {
@@ -48006,7 +48006,7 @@ SWIGINTERN PyObject *_wrap_new_Container__SWIG_0(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Container" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Container" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -48093,7 +48093,7 @@ SWIGINTERN PyObject *_wrap_new_Container__SWIG_1(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Container" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Container" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -48363,7 +48363,7 @@ SWIGINTERN PyObject *_wrap_new_Container(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Container__SWIG_1(self, args);
@@ -48405,7 +48405,7 @@ SWIGINTERN PyObject *_wrap_new_Container(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   {
@@ -49662,7 +49662,7 @@ SWIGINTERN PyObject *_wrap_new_Checkbox__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_Checkbox" "', argument " "5"" of type '" "double""'");
   } 
   arg5 = static_cast< double >(val5);
-  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res6)) {
     SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Checkbox" "', argument " "6"" of type '" "RGBATexture *""'"); 
   }
@@ -50021,7 +50021,7 @@ SWIGINTERN PyObject *_wrap_new_Checkbox(PyObject *self, PyObject *args) {
             }
             if (_v) {
               void *vptr = 0;
-              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
               _v = SWIG_CheckState(res);
               if (_v) {
                 return _wrap_new_Checkbox__SWIG_0(self, args);
@@ -50286,7 +50286,7 @@ SWIGINTERN PyObject *_wrap_new_Textbox__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Textbox" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Textbox" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -50710,7 +50710,7 @@ SWIGINTERN PyObject *_wrap_new_Textbox(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Textbox__SWIG_0(self, args);
@@ -50955,7 +50955,7 @@ SWIGINTERN PyObject *_wrap_new_Slider__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_Slider" "', argument " "6"" of type '" "double""'");
   } 
   arg6 = static_cast< double >(val6);
-  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res7 = SWIG_ConvertPtr(obj6, &argp7,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res7)) {
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Slider" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
@@ -51370,7 +51370,7 @@ SWIGINTERN PyObject *_wrap_new_Slider(PyObject *self, PyObject *args) {
               }
               if (_v) {
                 void *vptr = 0;
-                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+                int res = SWIG_ConvertPtr(argv[6], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   return _wrap_new_Slider__SWIG_0(self, args);
@@ -51673,7 +51673,7 @@ SWIGINTERN PyObject *_wrap_new_Dial__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_Dial" "', argument " "5"" of type '" "double""'");
   } 
   arg5 = static_cast< double >(val5);
-  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
   if (!SWIG_IsOK(res6)) {
     SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Dial" "', argument " "6"" of type '" "RGBATexture *""'"); 
   }
@@ -52023,7 +52023,7 @@ SWIGINTERN PyObject *_wrap_new_Dial(PyObject *self, PyObject *args) {
             }
             if (_v) {
               void *vptr = 0;
-              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
               _v = SWIG_CheckState(res);
               if (_v) {
                 return _wrap_new_Dial__SWIG_0(self, args);
@@ -55935,12 +55935,12 @@ static swig_type_info _swigt__p_Slider = {"_p_Slider", "Slider *", 0, 0, (void*)
 static swig_type_info _swigt__p_SmartPtrT_FeatureBase_t = {"_p_SmartPtrT_FeatureBase_t", "SmartPtr< FeatureBase > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_StateRegion = {"_p_StateRegion", "StateRegion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Textbox = {"_p_Textbox", "Textbox *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t = {"_p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t", "DepthTexture *|Texture< 0x84F5,0x81A7,GL_DEPTH_COMPONENT,GL_FLOAT > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t = {"_p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t", "Texture< 0x84F5,0x8814,GL_RGBA,GL_FLOAT > *|FloatTexture *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t = {"_p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t", "Texture< 0x84F5,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_BYTE > *|GreyTexture *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t = {"_p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t", "Texture< 0x84F5,GL_RGB8,GL_RGB,GL_UNSIGNED_BYTE > *|RGBTexture *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t = {"_p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t", "ShortTexture *|Texture< 0x84F5,GL_RGBA16,GL_RGBA,GL_UNSIGNED_SHORT > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t = {"_p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t", "RGBATexture *|Texture< 0x84F5,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t", "DepthTexture *|Texture< DEFAULT_TEXTURE_TARGET,0x81A7,GL_DEPTH_COMPONENT,GL_FLOAT > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t", "FloatTexture *|Texture< DEFAULT_TEXTURE_TARGET,0x8814,GL_RGBA,GL_FLOAT > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_BYTE > *|GreyTexture *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t", "RGBTexture *|Texture< DEFAULT_TEXTURE_TARGET,GL_RGB8,GL_RGB,GL_UNSIGNED_BYTE > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA16,GL_RGBA,GL_UNSIGNED_SHORT > *|ShortTexture *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *|RGBATexture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Tile = {"_p_Tile", "Tile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Widget = {"_p_Widget", "Widget *", 0, 0, (void*)0, 0};
@@ -56065,12 +56065,12 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SmartPtrT_FeatureBase_t,
   &_swigt__p_StateRegion,
   &_swigt__p_Textbox,
-  &_swigt__p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
-  &_swigt__p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t,
-  &_swigt__p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
-  &_swigt__p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
-  &_swigt__p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
-  &_swigt__p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
   &_swigt__p_Tile,
   &_swigt__p_Type,
   &_swigt__p_Widget,
@@ -56195,12 +56195,12 @@ static swig_cast_info _swigc__p_Slider[] = {  {&_swigt__p_Slider, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_SmartPtrT_FeatureBase_t[] = {  {&_swigt__p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type, 0, 0, 0},  {&_swigt__p_SmartPtrT_FeatureBase_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_StateRegion[] = {  {&_swigt__p_StateRegion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Textbox[] = {  {&_swigt__p_Textbox, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t[] = {  {&_swigt__p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Tile[] = {  {&_swigt__p_Tile, 0, 0, 0},  {&_swigt__p_Window, _p_WindowTo_p_Tile, 0, 0},  {&_swigt__p_Container, _p_ContainerTo_p_Tile, 0, 0},  {&_swigt__p_MasterContainer, _p_MasterContainerTo_p_Tile, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Widget[] = {  {&_swigt__p_Checkbox, _p_CheckboxTo_p_Widget, 0, 0},  {&_swigt__p_Tile, _p_TileTo_p_Widget, 0, 0},  {&_swigt__p_Textbox, _p_TextboxTo_p_Widget, 0, 0},  {&_swigt__p_Label, _p_LabelTo_p_Widget, 0, 0},  {&_swigt__p_Window, _p_WindowTo_p_Widget, 0, 0},  {&_swigt__p_Button, _p_ButtonTo_p_Widget, 0, 0},  {&_swigt__p_Dial, _p_DialTo_p_Widget, 0, 0},  {&_swigt__p_Widget, 0, 0, 0},  {&_swigt__p_Container, _p_ContainerTo_p_Widget, 0, 0},  {&_swigt__p_MasterContainer, _p_MasterContainerTo_p_Widget, 0, 0},  {&_swigt__p_Slider, _p_SliderTo_p_Widget, 0, 0},{0, 0, 0, 0}};
@@ -56325,12 +56325,12 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SmartPtrT_FeatureBase_t,
   _swigc__p_StateRegion,
   _swigc__p_Textbox,
-  _swigc__p_TextureT_0x84F5_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
-  _swigc__p_TextureT_0x84F5_0x8814_GL_RGBA_GL_FLOAT_t,
-  _swigc__p_TextureT_0x84F5_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
-  _swigc__p_TextureT_0x84F5_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
-  _swigc__p_TextureT_0x84F5_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
-  _swigc__p_TextureT_0x84F5_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
   _swigc__p_Tile,
   _swigc__p_Type,
   _swigc__p_Widget,
@@ -60360,7 +60360,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_NV_shader_buffer_load",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_NV_vertex_buffer_unified_memory",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_NV_texture_barrier",SWIG_From_int(static_cast< int >(1)));
-  SWIG_Python_SetConstant(d, "DEFAULT_TEXTURE_TARGET",SWIG_From_int(static_cast< int >(0x84F5)));
   SWIG_addvarlink(SWIG_globals(),(char*)"g_proj",Swig_var_g_proj_get, Swig_var_g_proj_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_view",Swig_var_g_view_get, Swig_var_g_view_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_widgets",Swig_var_g_widgets_get, Swig_var_g_widgets_set);

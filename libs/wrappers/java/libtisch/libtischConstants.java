@@ -3358,7 +3358,6 @@ public interface libtischConstants {
   public final static int GL_NV_shader_buffer_load = libtischJNI.GL_NV_shader_buffer_load_get();
   public final static int GL_NV_vertex_buffer_unified_memory = libtischJNI.GL_NV_vertex_buffer_unified_memory_get();
   public final static int GL_NV_texture_barrier = libtischJNI.GL_NV_texture_barrier_get();
-  public final static int DEFAULT_TEXTURE_TARGET = libtischJNI.DEFAULT_TEXTURE_TARGET_get();
   public final static int TISCH_TILE_MOVE = libtischJNI.TISCH_TILE_MOVE_get();
   public final static int TISCH_TILE_SCALE = libtischJNI.TISCH_TILE_SCALE_get();
   public final static int TISCH_TILE_ROTATE = libtischJNI.TISCH_TILE_ROTATE_get();

@@ -64,6 +64,11 @@ In mouse emulation mode, you can move elements with click-and-drag. Rotate them
 by clicking any mouse button and scrolling the mouse wheel. Scale them by
 additionally pressing CTRL while using the wheel.
 
+NOTE: if you are running an X server with XInput2 support (commonly known as MPX),
+you can actually use multiple mice to emulate multitouch fairly well. See tisch.sh
+for how to start "gestured" in this case (you will need to send a configuration 
+message after startup).
+
 
 Building & Requirements
 -----------------------
