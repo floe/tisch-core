@@ -4677,7 +4677,6 @@ GL_NV_parameter_buffer_object2 = _libtisch.GL_NV_parameter_buffer_object2
 GL_NV_shader_buffer_load = _libtisch.GL_NV_shader_buffer_load
 GL_NV_vertex_buffer_unified_memory = _libtisch.GL_NV_vertex_buffer_unified_memory
 GL_NV_texture_barrier = _libtisch.GL_NV_texture_barrier
-DEFAULT_TEXTURE_TARGET = _libtisch.DEFAULT_TEXTURE_TARGET
 class GLUTWindow(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, GLUTWindow, name, value)

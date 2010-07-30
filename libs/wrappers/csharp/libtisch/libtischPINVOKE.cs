@@ -11701,9 +11701,6 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_NV_texture_barrier_get")]
   public static extern int GL_NV_texture_barrier_get();
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_DEFAULT_TEXTURE_TARGET_get")]
-  public static extern int DEFAULT_TEXTURE_TARGET_get();
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_GLUTWindow__SWIG_0")]
   public static extern IntPtr new_GLUTWindow__SWIG_0(int jarg1, int jarg2, string jarg3, int jarg4);
 

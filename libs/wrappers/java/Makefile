@@ -17,8 +17,8 @@ endif
 
 ifeq ($(OS),Linux)
   COREJAR ?= /usr/share/processing/lib/core.jar
-  JAVA_HOME ?= /usr/lib/jvm/default-java/
-  CFLAGS += -I$(JAVA_HOME)/include/ -I$(JAVA_HOME)/include/linux/
+  JAVA_HOME ?= /usr/lib/jvm/default-java/ /usr/lib/jvm/java/
+  CFLAGS += $(addsuffix include/,$(addprefix -I,$(JAVA_HOME))) $(addsuffix include/linux/,$(addprefix -I,$(JAVA_HOME)))
 else
   COREJAR ?= /Applications/Processing.app/Contents/Resources/Java/core.jar
   JAVA_HOME ?= /System/Library/Frameworks/JavaVM.framework/Versions/Current/

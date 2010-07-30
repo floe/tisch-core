@@ -64,6 +64,11 @@ In mouse emulation mode, you can move elements with click-and-drag. Rotate them
 by clicking any mouse button and scrolling the mouse wheel. Scale them by
 additionally pressing CTRL while using the wheel.
 
+NOTE: if you are running an X server with XInput2 support (commonly known as MPX),
+you can actually use multiple mice to emulate multitouch fairly well. See tisch.sh
+for how to start "gestured" in this case (you will need to send a configuration 
+message after startup).
+
 
 Building & Requirements
 -----------------------
@@ -93,21 +98,25 @@ Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
 	and binaries should be created in the appropriate output directory.
 
 Linux   (tested with gcc 4.4.3 on Ubuntu 10.04)
-MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.x on MacOS X 10.6)
+MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
 
 	Requirements:
-	- libdc1394 2.0.0 or greater (Linux & Mac, for Firewire cameras)
-	- freeglut 2.6.0 or greater (Linux only - use "apt-get install freeglut3-dev")
+	- freeglut 2.4.0 or greater (Linux only - use "apt-get install freeglut3-dev")
+	- libdc1394 2.0.0 or greater (optional - for Firewire cameras)
 
 	If you want to use a Firewire camera, install libdc1394 v2.0.0 or greater
 	first. Take care that pkg-config knows about it. For Linux, you should also
-	have installed a GLUT library (preferably freeglut 2.4.0 or greater) in your
+	have installed a GLUT library (preferably freeglut 2.6.0 or greater) in your
 	system include/library paths.
 
 	Then, simply run "make all && make install" to build all binaries and put 
 	them into build/{bin,lib}/. Don't forget to add the lib directory to the 
 	library path (LD_LIBRARY_PATH on Linux, DYLD_LIBRARY_PATH on MacOS X). You 
 	can also run "make" without arguments to review the other available parameters.
+
+	If you wish to install the binaries to a system directory such as /usr/local,
+	set the DESTDIR (installation directory) and PREFIX (runtime prefix) variables
+	when running make, e.g. as "make DESTDIR=/tmp/ PREFIX=/usr/local/ install".
 
 	The default method for camera access is through libdc1394 with Video4Linux as
 	fallback. Note that camera access has been tested with several different types

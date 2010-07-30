@@ -3437,7 +3437,6 @@ public class libtisch {
   public static readonly int GL_NV_shader_buffer_load = libtischPINVOKE.GL_NV_shader_buffer_load_get();
   public static readonly int GL_NV_vertex_buffer_unified_memory = libtischPINVOKE.GL_NV_vertex_buffer_unified_memory_get();
   public static readonly int GL_NV_texture_barrier = libtischPINVOKE.GL_NV_texture_barrier_get();
-  public static readonly int DEFAULT_TEXTURE_TARGET = libtischPINVOKE.DEFAULT_TEXTURE_TARGET_get();
   public static readonly int TISCH_TILE_MOVE = libtischPINVOKE.TISCH_TILE_MOVE_get();
   public static readonly int TISCH_TILE_SCALE = libtischPINVOKE.TISCH_TILE_SCALE_get();
   public static readonly int TISCH_TILE_ROTATE = libtischPINVOKE.TISCH_TILE_ROTATE_get();

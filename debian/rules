@@ -9,6 +9,10 @@
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
 export MONO_DISABLE_SHM=1
+export DH_PYCENTRAL=include-links
 
 %:
-	dh  $@
+	dh $@ --with python-central,cli
+
+override_dh_pysupport:
+	dh_pycentral
