@@ -6,7 +6,6 @@
 
 #include "Pipeline.h"
 
-
 Pipeline::Pipeline( PipelineParameters* _pipe ):
 	pipe(_pipe)
 {
@@ -51,8 +50,17 @@ void Pipeline::process() {
 }
 
 
-void Pipeline::send( ) {
-	*(pipe->output) << *bloblist;
+void Pipeline::send( osc::OutboundPacketStream oscOut ) {
+//	*(pipe->output) << *bloblist;
+
+	bloblist->sendBlobs( oscOut );
+	std::stringstream ssStream;
+	std::vector<Blob>::iterator it = bloblist->begin();
+	for( ; it != bloblist->end(); it++)
+		ssStream << " " << it->id;
+	oscOut	<< osc::BeginMessage( "/tuio2/alv" )
+			<< ssStream.str().c_str()
+			<< osc::EndMessage;
 }
 
 void Pipeline::update() {
@@ -83,4 +91,3 @@ void Pipeline::draw( GLUTWindow* win, int num ) {
 
 	bloblist->draw( win );
 }
-

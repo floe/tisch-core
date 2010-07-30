@@ -167,3 +167,38 @@ std::ostream& operator<<( std::ostream& s, BlobList& l ) {
 	return s;
 }
 
+void BlobList::sendBlobs(osc::OutboundPacketStream oscOut)
+{
+	//shadow
+//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
+	if(settings->name == "shadow")
+	{
+		for( std::vector<Blob>::iterator it = begin(); it != end(); it++)
+		{
+			oscOut	<< osc::BeginMessage( "/tuio2/tok" )
+					<< 0 << 0
+					<< it->id
+					<< it->pos.x
+					<< it->pos.y
+					<< 0//TODO angle
+					<< osc::EndMessage;
+		}
+	}
+
+	//finger
+//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+	else if( settings->name == "finger" )
+	{
+		for( std::vector<Blob>::iterator it = begin(); it != end(); it++)
+		{
+			oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
+					<< 0 << 0
+					<< it->id
+					<< it->pos.x
+					<< it->pos.y
+					<< it->axis2.length()
+					<< 0
+					<< osc::EndMessage;
+		}
+	}
+}

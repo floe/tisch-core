@@ -13,6 +13,8 @@
 #include "Settings.h"
 #include "GLUTWindow.h"
 #include "Blob.h"
+#include "osc/OscOutboundPacketStream.h"
+#include "ip/UdpSocket.h"
 
 
 class BlobList: public std::vector<Blob> {
@@ -28,6 +30,7 @@ class BlobList: public std::vector<Blob> {
 
 		int  getID( unsigned char value );
 		void correlate( BlobList* parents );
+		void sendBlobs( osc::OutboundPacketStream oscOut );
 
 	private:
 

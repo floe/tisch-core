@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\drivers\tuio\osc"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBTOOLS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -119,6 +119,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="..\drivers\tuio\osc"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBTOOLS_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -186,11 +187,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\Thread.cc"
+				RelativePath="..\libs\tools\Socket.cc"
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\Socket.cc"
+				RelativePath="..\libs\tools\Thread.cc"
 				>
 			</File>
 		</Filter>
@@ -216,11 +217,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\Thread.h"
+				RelativePath="..\libs\tools\Socket.h"
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\Socket.h"
+				RelativePath="..\libs\tools\Thread.h"
 				>
 			</File>
 			<File

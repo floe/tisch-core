@@ -22,6 +22,12 @@
 #include "touchd.h"
 #include "tisch.h"
 
+#include <time.h>
+
+using namespace osc;
+
+char buffer[OUTPUT_BUFFER_SIZE];
+osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
 
 // command line flags
 int mode = TOUCHD_MODE_MIXED;
@@ -225,8 +231,14 @@ void idle() {
 		return;
 	}
 
+	TimeTag current_time = TimeTag(time(NULL));
 	// announce new frame
-	(*out) << "frame " << ++frame << std::endl;
+//	(*out) << "frame " << ++frame << std::endl;
+	oscOut  << osc::BeginBundleImmediate;
+	oscOut	<< osc::BeginMessage( "/tuio2/frm" )
+			<< ++frame
+			<< current_time
+			<< osc::EndMessage;
 
 	// find blobs
 	if (mode & TOUCHD_MODE_FINGER) finger->process();
@@ -236,8 +248,8 @@ void idle() {
 	if (mode == TOUCHD_MODE_MIXED) finger->correlate( shadow );
 
 	// send the lot
-	if (mode & TOUCHD_MODE_FINGER) finger->send();
-	if (mode & TOUCHD_MODE_SHADOW) shadow->send();
+	if (mode & TOUCHD_MODE_FINGER) finger->send(oscOut);
+	if (mode & TOUCHD_MODE_SHADOW) shadow->send(oscOut);
 
 	if (verbose && ((frame % (vidset.fps?vidset.fps:60)) == 0)) std::cout << "acquisition: " << (curtime2-curtime1) << "ms. processing: " << (glutGet(GLUT_ELAPSED_TIME)-curtime2) << " ms." << std::endl;
 

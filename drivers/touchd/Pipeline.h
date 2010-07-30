@@ -12,6 +12,11 @@
 #include "Camera.h"
 #include "GLUTWindow.h"
 #include "BlobList.h"
+#include <sstream>
+#include "osc/OscOutboundPacketStream.h"
+#include "ip/UdpSocket.h"
+
+#define OUTPUT_BUFFER_SIZE 8196
 
 class Pipeline {
 
@@ -23,7 +28,7 @@ class Pipeline {
 		void acquire( int& intensity, unsigned long long int &timestamp );
 		void process();
 		void draw( GLUTWindow* win, int num );
-		void send();
+		void send( osc::OutboundPacketStream oscOut );
 		void update();
 		void correlate( Pipeline* parents );
 		void swap( Pipeline* other );
