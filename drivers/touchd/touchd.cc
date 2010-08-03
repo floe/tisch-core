@@ -24,10 +24,15 @@
 
 #include <time.h>
 
+#define ADDRESS "127.0.0.1"
+#define PORT 3333
+
 using namespace osc;
 
 char buffer[OUTPUT_BUFFER_SIZE];
 osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
+
+UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, PORT ) );
 
 // command line flags
 int mode = TOUCHD_MODE_MIXED;
@@ -250,6 +255,9 @@ void idle() {
 	// send the lot
 	if (mode & TOUCHD_MODE_FINGER) finger->send(oscOut);
 	if (mode & TOUCHD_MODE_SHADOW) shadow->send(oscOut);
+	
+	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
+	oscOut.Clear();
 
 	if (verbose && ((frame % (vidset.fps?vidset.fps:60)) == 0)) std::cout << "acquisition: " << (curtime2-curtime1) << "ms. processing: " << (glutGet(GLUT_ELAPSED_TIME)-curtime2) << " ms." << std::endl;
 

@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\drivers\tuio\osc"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtools.lib libgestures.lib"
+				AdditionalDependencies="libtools.lib libgestures.lib ws2_32.lib winmm.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
@@ -120,6 +120,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="..\drivers\tuio\osc"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -137,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtools.lib libgestures.lib"
+				AdditionalDependencies="libtools.lib libgestures.lib ws2_32.lib winmm.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -180,6 +181,90 @@
 			>
 			<File
 				RelativePath="..\gestured\gestured.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\IpEndpointName.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\win32\NetworkingUtils.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscOutboundPacketStream.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscPrintReceivedElements.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscReceivedElements.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscTypes.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\win32\UdpSocket.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\IpEndpointName.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\MessageMappingOscPacketListener.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\NetworkingUtils.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscException.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscHostEndianness.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscOutboundPacketStream.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscPacketListener.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscPrintReceivedElements.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscReceivedElements.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\osc\OscTypes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\PacketListener.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\TimerListener.h"
+				>
+			</File>
+			<File
+				RelativePath="..\drivers\tuio\osc\ip\UdpSocket.h"
 				>
 			</File>
 		</Filter>
