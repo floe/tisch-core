@@ -20,16 +20,116 @@
 
 #include "tisch.h"
 
+#include <osc/OscReceivedElements.h>
+#include <osc/OscPacketListener.h>
+#include <ip/UdpSocket.h>
+#include <osc/OscOutboundPacketStream.h>
+
 // global objects
 Calibration cal;
 UDPSocket* input;
 UDPSocket* output;
+
+using namespace osc;
+
+#define OUTPUT_BUFFER_SIZE 8196
+#define ADDRESS "127.0.0.1"
+
+char buffer[OUTPUT_BUFFER_SIZE];
+osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
+
+UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
 
 int run = 1;
 int do_calib = 0;
 
 
 void handler( int signal ) { run = 0; if (signal == SIGUSR1) do_calib = 1; }
+
+
+struct ReceiverThread : public osc::OscPacketListener 
+{
+	
+virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
+{
+	if( strcmp( m.AddressPattern(), "/tuio2/frm" ) == 0 ) 
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 framenum;
+		TimeTag current_time;
+		args >> framenum >> current_time;
+		
+		oscOut  << osc::BeginBundleImmediate;
+		oscOut	<< osc::BeginMessage( "/tuio2/frm" )
+				<< framenum
+				<< current_time
+				<< osc::EndMessage;
+	}
+	BasicBlob blob;
+//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+	if( strcmp( m.AddressPattern(), "/tuio2/ptr" ) == 0 ) //finger
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid;
+		osc::int32 unusedid;
+		float posx, posy, width, press;
+		args >> unusedid >> unusedid >> objectid >> posx >> posy >> width >> press;
+		blob.id = objectid;
+		blob.pos.x = posx;
+		blob.pos.y = posy;
+		cal.apply(blob);
+
+		oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
+				<< 0 << 0
+				<< blob.id
+				<< blob.pos.x
+				<< blob.pos.y
+				<< blob.axis2.length()
+				<< 0
+				<< osc::EndMessage;
+}
+//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
+	else if ( strcmp( m.AddressPattern(), "/tuio2/tok" ) == 0 ) //shadow
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid;
+		osc::int32 unusedid;
+		float posx, posy, angle;
+		args >> unusedid >> unusedid >> objectid >> posx >> posy >> angle;
+		blob.id = objectid;
+		blob.pos.x = posx;
+		blob.pos.y = posy;
+		cal.apply(blob);
+
+		oscOut	<< osc::BeginMessage( "/tuio2/tok" )
+				<< 0 << 0
+				<< blob.id
+				<< blob.pos.x
+				<< blob.pos.y
+				<< 0//TODO angle
+				<< osc::EndMessage;
+	}
+	//TODO additional information of blobs in content messages (prob. /tuio2/ctl)
+	else if( strcmp( m.AddressPattern(), "/tuio2/alv" ) == 0 )
+	{
+		osc::int32 id;
+		std::stringstream ssStream;
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		while(args.Eos())
+		{
+			args >> id;
+			ssStream << " " << id;
+		}
+		oscOut	<< osc::BeginMessage( "/tuio2/alv" )
+				<< ssStream.str().c_str()
+				<< osc::EndMessage;
+		transmitSocket.Send( oscOut.Data(), oscOut.Size() );
+		oscOut.Clear();
+	}
+}
+};
+
+ReceiverThread receiver;
 
 
 int main( int argc, char* argv[] ) {
@@ -69,29 +169,8 @@ int main( int argc, char* argv[] ) {
 	signal( SIGINT,  handler );
 	signal( SIGUSR1, handler );
 
-	input  = new UDPSocket( INADDR_ANY, TISCH_PORT_RAW );
-	output = new UDPSocket( INADDR_ANY, 0 );
-	output->target( INADDR_LOOPBACK, TISCH_PORT_CALIB );
-
-	std::string id;
-	BasicBlob blob;
-	int framenum;
-
-	while (run) {
-		(*input) >> id;
-		if (id.compare("frame")) {
-			(*input) >> blob;
-			if (!(*input)) { input->flush(); continue; }
-			cal.apply( blob );
-			(*output) << id << " " << blob << std::endl;
-			if (log) (*log) << id << " " << blob << std::endl;
-		} else {
-			(*input)  >> framenum;
-			if (!(*input)) { input->flush(); continue; }
-			(*output) << id << " " << framenum << std::endl;
-			if (log) (*log) << id << " " << framenum << std::endl;
-		}
-	}
+	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_RAW ), &receiver );
+	s.RunUntilSigInt();
 
 	std::cout << "Cleaning up.." << std::flush;
 

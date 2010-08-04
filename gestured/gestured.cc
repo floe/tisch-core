@@ -24,8 +24,6 @@
 #include <osc/OscPacketListener.h>
 #include <ip/UdpSocket.h>
 
-#define PORT 3333
-
 // 9 ms timeout + 1 ms delay ~ 100 Hz
 struct timeval tv = { 0, 9000 };
 
@@ -407,9 +405,8 @@ int main( int argc, char* argv[] ) {
 
 	gthr.start();
 
-	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ), &receiver );
+	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_CALIB ), &receiver );
 	s.RunUntilSigInt();
 
-	
 }
 

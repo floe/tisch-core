@@ -25,14 +25,13 @@
 #include <time.h>
 
 #define ADDRESS "127.0.0.1"
-#define PORT 3333
 
 using namespace osc;
 
 char buffer[OUTPUT_BUFFER_SIZE];
 osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
 
-UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, PORT ) );
+UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
 
 // command line flags
 int mode = TOUCHD_MODE_MIXED;
