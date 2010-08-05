@@ -28,7 +28,7 @@ class Pipeline {
 		void acquire( int& intensity, unsigned long long int &timestamp );
 		void process();
 		void draw( GLUTWindow* win, int num );
-		void send( osc::OutboundPacketStream oscOut );
+		void send( osc::OutboundPacketStream& oscOut );
 		void update();
 		void correlate( Pipeline* parents );
 		void swap( Pipeline* other );

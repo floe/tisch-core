@@ -30,7 +30,7 @@ class BlobList: public std::vector<Blob> {
 
 		int  getID( unsigned char value );
 		void correlate( BlobList* parents );
-		void sendBlobs( osc::OutboundPacketStream oscOut );
+		void sendBlobs( osc::OutboundPacketStream& oscOut );
 
 	private:
 

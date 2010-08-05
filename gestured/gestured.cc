@@ -331,7 +331,8 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 		osc::int32 objectid;
 		osc::int32 unusedid;
-		float posx, posy, width, press;
+		osc::int32 press;
+		double posx, posy, width;
 		args >> unusedid >> unusedid >> objectid >> posx >> posy >> width >> press;
 		blob.id = objectid;
 		blob.pos.x = posx;

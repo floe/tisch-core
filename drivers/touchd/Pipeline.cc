@@ -50,7 +50,7 @@ void Pipeline::process() {
 }
 
 
-void Pipeline::send( osc::OutboundPacketStream oscOut ) {
+void Pipeline::send( osc::OutboundPacketStream& oscOut ) {
 //	*(pipe->output) << *bloblist;
 
 	bloblist->sendBlobs( oscOut );
@@ -58,9 +58,9 @@ void Pipeline::send( osc::OutboundPacketStream oscOut ) {
 	std::vector<Blob>::iterator it = bloblist->begin();
 	for( ; it != bloblist->end(); it++)
 		ssStream << " " << it->id;
-	oscOut	<< osc::BeginMessage( "/tuio2/alv" )
-			<< ssStream.str().c_str()
-			<< osc::EndMessage;
+//	oscOut	<< osc::BeginMessage( "/tuio2/alv" )
+//			<< ssStream.str().c_str()
+//			<< osc::EndMessage;
 }
 
 void Pipeline::update() {

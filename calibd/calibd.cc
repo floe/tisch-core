@@ -72,7 +72,8 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 		osc::int32 objectid;
 		osc::int32 unusedid;
-		float posx, posy, width, press;
+		osc::int32 press;
+		double posx, posy, width;
 		args >> unusedid >> unusedid >> objectid >> posx >> posy >> width >> press;
 		blob.id = objectid;
 		blob.pos.x = posx;
@@ -91,6 +92,7 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
 	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
 	{
+std::cout << "calibd:got shadow" << std::endl;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 		osc::int32 objectid;
 		osc::int32 unusedid;

@@ -254,7 +254,10 @@ void idle() {
 	// send the lot
 	if (mode & TOUCHD_MODE_FINGER) finger->send(oscOut);
 	if (mode & TOUCHD_MODE_SHADOW) shadow->send(oscOut);
-	
+oscOut << osc::BeginMessage( "/tuio2/alv" )
+<< 0
+<< osc::EndMessage;
+
 	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
 	oscOut.Clear();
 
