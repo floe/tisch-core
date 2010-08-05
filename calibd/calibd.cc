@@ -38,7 +38,7 @@ using namespace osc;
 char buffer[OUTPUT_BUFFER_SIZE];
 osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
 
-UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_CALIB ) );
 
 int run = 1;
 int do_calib = 0;

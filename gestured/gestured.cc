@@ -30,7 +30,7 @@ struct timeval tv = { 0, 9000 };
 int verbose = 0;
 bool use_peak = false;
 
-UDPSocket blobsrc( INADDR_ANY, TISCH_PORT_CALIB, &tv );
+//UDPSocket blobsrc( INADDR_ANY, TISCH_PORT_CALIB, &tv );
 TCPSocket  gstsrc( INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
 
