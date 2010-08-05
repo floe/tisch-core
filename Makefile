@@ -94,10 +94,10 @@ default:
 
 
 # target directories
-TARGETS = libs/tools libs/simplegl gestured widgets
+TARGETS = libs/tools libs/osc libs/simplegl gestured widgets
 
 ifneq ($(OS),iPhone)
-  TARGETS += libs/simplecv drivers/touchd drivers/tuio calibd
+  TARGETS += libs/simplecv drivers/touchd calibd
 endif
 
 ifneq ($(shell which gmcs),)
@@ -132,7 +132,7 @@ endif
 simplecv: libs/simplecv
 simplegl: libs/simplegl
 touchd: drivers/touchd
-tuio:   drivers/tuio
+osc:   libs/osc 
 tools: libs/tools
 
 csharp: libs/wrappers/csharp

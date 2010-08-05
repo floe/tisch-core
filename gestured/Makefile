@@ -1,6 +1,6 @@
 TOPDIR = ../
-CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR) -I. -Ifeatures
-LDFLAGS += -ltools -L$(TOPDIR)/libs/tools/
+CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR)/libs/osc/ -I$(TOPDIR) -I. -Ifeatures
+LDFLAGS += -ltools -losc -L$(TOPDIR)/libs/tools/ -L$(TOPDIR)/libs/osc/
 
 APPS = gestured
 LIBS = libgestures.$(LSF)

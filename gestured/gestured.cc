@@ -211,7 +211,7 @@ struct ReceiverThread : public osc::OscPacketListener
 	
 virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
 {
-	if( strcmp( m.AddressPattern(), "/tuio2/frm" ) == 0 ) 
+	if( std::string(m.AddressPattern()) == "/tuio2/frm" ) 
 	{
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 
@@ -325,7 +325,7 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 
 	BasicBlob blob;
 //	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	if( strcmp( m.AddressPattern(), "/tuio2/ptr" ) == 0 ) //finger
+	if( std::string(m.AddressPattern()) == "/tuio2/ptr") //finger
 	{
 		input_type = 0;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
@@ -338,7 +338,7 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 		blob.pos.y = posy;
 	}
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	else if ( strcmp( m.AddressPattern(), "/tuio2/tok" ) == 0 ) //shadow
+	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
 	{
 		input_type = 2;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
@@ -351,7 +351,7 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 		blob.pos.y = posy;
 	}
 	//TODO additional information of blobs in content messages (prob. /tuio2/ctl)
-	else if( strcmp( m.AddressPattern(), "/tuio2/alv" ) == 0 )
+	else if( std::string(m.AddressPattern()) == "/tuio2/alv" )
 	{
 		//call new function
 		return;
