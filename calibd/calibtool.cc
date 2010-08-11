@@ -23,6 +23,10 @@
 
 #include "tisch.h"
 
+#include <osc/OscReceivedElements.h>
+#include <osc/OscPacketListener.h>
+#include <ip/UdpSocket.h>
+
 
 #define MAX_CORR 4 // 8
 #define HOM_CORR 4
@@ -33,6 +37,7 @@
 // global objects
 GLUTWindow* win = 0;
 Calibration cal;
+BasicBlob blob;
 
 UDPSocket* input;
 
@@ -136,19 +141,13 @@ void keyb( unsigned char key, int x, int y ) {
 	}
 }
 
-
-void idle() {
-
-	if (run > 1) { run = 1; keyb( 'f', 0, 0 ); }
-	if (!run) cleanup();
-
-	std::string id;
-	BasicBlob blob;
-
-	(*input) >> id;
-
-	if (!id.compare( "frame" )) {
-
+struct ReceiverThread : public osc::OscPacketListener 
+{
+	
+virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
+{
+	if( std::string(m.AddressPattern()) == "/tuio2/frm" ) 
+	{
 		std::map< int, std::vector<Vector> >::iterator pos = blobs.begin();
 		std::map< int, std::vector<Vector> >::iterator end = blobs.end();
 
@@ -194,7 +193,6 @@ void idle() {
 			if (erase) blobs.erase(pos++);
 			else ++pos;
 		}
-
 		// all correspondences captured?
 		if (current == MAX_CORR) {
 
@@ -206,12 +204,57 @@ void idle() {
 		}
 	}
 
-	if ((!input) || delay || id.compare( target_id )) { input->flush(); return; }
-	(*input) >> blob; if (!input) { input->flush(); return; }
-	blobs[blob.id].push_back(blob.peak);
+//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+	if( std::string(m.AddressPattern()) == "/tuio2/ptr" ) //finger
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid, unusedid, press;
+		double width;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
+		blob.id = objectid;
+}
+//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
+	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid, unusedid;
+		double angle;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
+		blob.id = objectid;
+	}
+//	/tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+	else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" )
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid, parentid, size;
+		args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
+		blob.pid = parentid;
+		blob.size = size;
+		if(objectid != blob.id) return; //packet lost
+		blobs[blob.id].push_back(blob.peak);
+	}
+}
+};
+
+ReceiverThread receiver;
+
+/*void idle() {
+
+	if (run > 1) { run = 1; keyb( 'f', 0, 0 ); }
+	if (!run) cleanup();
+
+/*	std::string id;
+	BasicBlob blob;
+
+	(*input) >> id;
+
+	if (!id.compare( "frame" )) {
+	}
+
+//	if ((!input) || delay || id.compare( target_id )) { input->flush(); return; }
 
 	glutPostRedisplay();
-}
+}*/
 
 
 
@@ -244,7 +287,7 @@ int main( int argc, char* argv[] ) {
 	input = new UDPSocket( INADDR_ANY, TISCH_PORT_RAW );
 	win = new GLUTWindow( xres, yres, "calibtool - libTISCH 1.1 calibration layer" );
 
-	glutIdleFunc(idle);
+//	glutIdleFunc(idle);
 	glutDisplayFunc(disp);
 	glutKeyboardFunc(keyb);
 
@@ -276,6 +319,9 @@ int main( int argc, char* argv[] ) {
 	screen_coords.push_back( Vector(      xres/2, yres-OFFSET ) );
 	screen_coords.push_back( Vector(      OFFSET,      yres/2 ) );
 	screen_coords.push_back( Vector(      xres/2,      yres/2 ) );*/
+
+	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_CALIB ), &receiver );
+	s.RunUntilSigInt();
 
 	win->run();
 

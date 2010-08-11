@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\drivers\tuio\osc"
+				AdditionalIncludeDirectories="..\libs\osc\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -119,7 +119,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\drivers\tuio\osc"
+				AdditionalIncludeDirectories="..\libs\osc\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -179,27 +179,27 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\IpEndpointName.cpp"
+				RelativePath="..\libs\osc\ip\IpEndpointName.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\win32\NetworkingUtils.cpp"
+				RelativePath="..\libs\osc\ip\win32\NetworkingUtils.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscOutboundPacketStream.cpp"
+				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscPrintReceivedElements.cpp"
+				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscReceivedElements.cpp"
+				RelativePath="..\libs\osc\osc\OscReceivedElements.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscTypes.cpp"
+				RelativePath="..\libs\osc\osc\OscTypes.cpp"
 				>
 			</File>
 			<File
@@ -207,24 +207,8 @@
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\win32\UdpSocket.cpp"
+				RelativePath="..\libs\osc\ip\win32\UdpSocket.cpp"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\OSCUdpSocket.obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\OSCUdpSocket.obj"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -233,55 +217,55 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\IpEndpointName.h"
+				RelativePath="..\libs\osc\ip\IpEndpointName.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\MessageMappingOscPacketListener.h"
+				RelativePath="..\libs\osc\osc\MessageMappingOscPacketListener.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\NetworkingUtils.h"
+				RelativePath="..\libs\osc\ip\NetworkingUtils.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscException.h"
+				RelativePath="..\libs\osc\osc\OscException.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscHostEndianness.h"
+				RelativePath="..\libs\osc\osc\OscHostEndianness.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscOutboundPacketStream.h"
+				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscPacketListener.h"
+				RelativePath="..\libs\osc\osc\OscPacketListener.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscPrintReceivedElements.h"
+				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscReceivedElements.h"
+				RelativePath="..\libs\osc\osc\OscReceivedElements.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\osc\OscTypes.h"
+				RelativePath="..\libs\osc\osc\OscTypes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\PacketListener.h"
+				RelativePath="..\libs\osc\ip\PacketListener.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\TimerListener.h"
+				RelativePath="..\libs\osc\ip\TimerListener.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\tuio\osc\ip\UdpSocket.h"
+				RelativePath="..\libs\osc\ip\UdpSocket.h"
 				>
 			</File>
 		</Filter>

@@ -54,6 +54,9 @@ std::set<int> old_ids;
 
 std::set<StateRegion*> needs_update;
 
+BasicBlob blob;
+int input_type = -1;
+
 
 struct GestureThread: public Thread {
 
@@ -206,6 +209,37 @@ GestureThread gthr;
 //     - wenn geste sticky: in stickies einfügen
 
 
+void send_blob()
+{
+	cur_ids.insert( blob.id );
+
+	gthr.lock();
+
+	//if use_peak is set, use peak of blob instead of pos
+	if (use_peak) blob.pos = blob.peak;
+
+	// insert blob into correct region 
+	std::map<int,StateRegion*>::iterator target = stickies.find( blob.id );
+	if (target != stickies.end()) {
+		// blob is sticky, so add to the previous region
+		target->second->state[input_type][blob.id].add( blob );
+		//std::cout << "adding blob " << blob.id << " to region " << target->first << std::endl;
+	}
+	else
+		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++)
+			// check all regions and insert blob into first match
+			if ((*reg)->contains( blob.pos )) {
+				// also check type flags (is the blob transparent to this object type?)
+				if ((*reg)->flags() & (1<<input_type)) {
+					(*reg)->state[input_type][blob.id].add( blob );
+					//std::cout << "adding blob type " << input_type << " with id " << blob.id << " to region " << (*reg)->id << " with flags " << (*reg)->flags() << std::endl;
+					break;
+				}
+			}
+
+	gthr.release();
+}
+
 struct ReceiverThread : public osc::OscPacketListener 
 {
 	
@@ -320,71 +354,42 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 		return;
 	}
 
-	// find matching input type
-	int input_type = -1;
-
-	BasicBlob blob;
+	input_type = -1;	
 //	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
 	if( std::string(m.AddressPattern()) == "/tuio2/ptr") //finger
 	{
 		input_type = 0;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid;
-		osc::int32 unusedid;
-		osc::int32 press;
-		double posx, posy, width;
-		args >> unusedid >> unusedid >> objectid >> posx >> posy >> width >> press;
+		osc::int32 objectid, unusedid, press;
+		double width;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
 		blob.id = objectid;
-		blob.pos.x = posx;
-		blob.pos.y = posy;
 	}
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
 	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
 	{
 		input_type = 2;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid;
-		osc::int32 unusedid;
-		float posx, posy, angle;
-		args >> unusedid >> unusedid >> objectid >> posx >> posy >> angle;
+		osc::int32 objectid, unusedid;
+		double angle;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
 		blob.id = objectid;
-		blob.pos.x = posx;
-		blob.pos.y = posy;
 	}
-	//TODO additional information of blobs in content messages (prob. /tuio2/ctl)
-	else if( std::string(m.AddressPattern()) == "/tuio2/alv" )
+//	/tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+	else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" )
 	{
-		//call new function
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid, parentid, size;
+		args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
+		blob.pid = parentid;
+		blob.size = size;
+		if(objectid != blob.id) return;
+		send_blob();
+	}
+	else if( std::string(m.AddressPattern()) == "/tuio2/alv" )
 		return;
-	}
 
-	cur_ids.insert( blob.id );
-
-	gthr.lock();
-
-	//if use_peak is set, use peak of blob instead of pos
-	if (use_peak) blob.pos = blob.peak;
-
-	// insert blob into correct region 
-	std::map<int,StateRegion*>::iterator target = stickies.find( blob.id );
-	if (target != stickies.end()) {
-		// blob is sticky, so add to the previous region
-		target->second->state[input_type][blob.id].add( blob );
-		//std::cout << "adding blob " << blob.id << " to region " << target->first << std::endl;
-	}
-	else
-		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++)
-			// check all regions and insert blob into first match
-			if ((*reg)->contains( blob.pos )) {
-				// also check type flags (is the blob transparent to this object type?)
-				if ((*reg)->flags() & (1<<input_type)) {
-					(*reg)->state[input_type][blob.id].add( blob );
-					//std::cout << "adding blob type " << input_type << " with id " << blob.id << " to region " << (*reg)->id << " with flags " << (*reg)->flags() << std::endl;
-					break;
-				}
-			}
-
-	gthr.release();
+	
 }
 
 };

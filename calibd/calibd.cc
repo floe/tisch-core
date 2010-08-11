@@ -43,6 +43,8 @@ UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_CALIB ) );
 int run = 1;
 int do_calib = 0;
 
+BasicBlob blob;
+
 
 void handler( int signal ) { run = 0; if (signal == SIGUSR1) do_calib = 1; }
 
@@ -65,53 +67,84 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 				<< current_time
 				<< osc::EndMessage;
 	}
-	BasicBlob blob;
+
 //	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
 	if( std::string(m.AddressPattern()) == "/tuio2/ptr" ) //finger
 	{
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid;
-		osc::int32 unusedid;
-		osc::int32 press;
-		double posx, posy, width;
-		args >> unusedid >> unusedid >> objectid >> posx >> posy >> width >> press;
+		osc::int32 objectid, unusedid, press;
+		double width;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
 		blob.id = objectid;
-		blob.pos.x = posx;
-		blob.pos.y = posy;
-		cal.apply(blob);
-
-		oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
-				<< 0 << 0
-				<< blob.id
-				<< blob.pos.x
-				<< blob.pos.y
-				<< blob.axis2.length()
-				<< 0
-				<< osc::EndMessage;
 }
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
 	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
 	{
 std::cout << "calibd:got shadow" << std::endl;
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid;
-		osc::int32 unusedid;
-		float posx, posy, angle;
-		args >> unusedid >> unusedid >> objectid >> posx >> posy >> angle;
+		osc::int32 objectid, unusedid;
+		double angle;
+		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
 		blob.id = objectid;
-		blob.pos.x = posx;
-		blob.pos.y = posy;
-		cal.apply(blob);
-
-		oscOut	<< osc::BeginMessage( "/tuio2/tok" )
-				<< 0 << 0
-				<< blob.id
-				<< blob.pos.x
-				<< blob.pos.y
-				<< 0//TODO angle
-				<< osc::EndMessage;
 	}
-	//TODO additional information of blobs in content messages (prob. /tuio2/ctl)
+//	/tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+	else if ( std::string(m.AddressPattern()) == "/tuio2/_cPPPPPPPP" )
+	{
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 objectid, parentid, size;
+		args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
+		blob.pid = parentid;
+		blob.size = size;
+		if(objectid != blob.id) return; //packet lost
+		cal.apply(blob);
+		if(blob.id % 2)//odd equals shadow
+		{
+			oscOut	<< osc::BeginMessage( "/tuio2/tok" )
+					<< 0 << 0
+					<< blob.id
+					<< blob.pos.x
+					<< blob.pos.y
+					<< 0//TODO angle
+					<< osc::EndMessage;
+
+			//c_id, parentid, size, peak.x, peak.y, axis1.x, axis1.y, axis2.x, axis2.y
+			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )
+					<< blob.id
+					<< blob.pid
+					<< blob.size
+					<< blob.peak.x
+					<< blob.peak.y
+					<< blob.axis1.x
+					<< blob.axis1.y
+					<< blob.axis2.x
+					<< blob.axis2.y
+					<< osc::EndMessage;
+		}
+		else //finger
+		{
+			oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
+					<< 0 << 0
+					<< blob.id
+					<< blob.pos.x
+					<< blob.pos.y
+					<< blob.axis2.length()
+					<< 0
+					<< osc::EndMessage;
+			
+			//c_id, parentid, size, peak.x, peak.y, axis1.x, axis1.y, axis2.x, axis2.y
+			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )	
+					<< blob.id
+					<< blob.pid
+					<< blob.size
+					<< blob.peak.x
+					<< blob.peak.y
+					<< blob.axis1.x
+					<< blob.axis1.y
+					<< blob.axis2.x
+					<< blob.axis2.y
+					<< osc::EndMessage;
+		}
+	}
 	else if( std::string(m.AddressPattern()) == "/tuio2/alv" )
 	{
 		osc::int32 id;

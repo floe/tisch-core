@@ -171,7 +171,7 @@ void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
 {
 	//shadow
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	if(settings->name == "shadow")
+	if( std::string(settings->name) == "shadow" )
 	{
 		for( std::vector<Blob>::iterator it = begin(); it != end(); it++)
 		{
@@ -181,6 +181,19 @@ void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
 					<< it->pos.x
 					<< it->pos.y
 					<< 0//TODO angle
+					<< osc::EndMessage;
+
+//	/tuio2/_cPPPPPPPP c_id parent_id size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )
+					<< it->id
+					<< it->pid
+					<< it->size
+					<< it->peak.x
+					<< it->peak.y
+					<< it->axis1.x
+					<< it->axis1.y
+					<< it->axis2.x
+					<< it->axis2.y
 					<< osc::EndMessage;
 		}
 	}
@@ -198,6 +211,19 @@ void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
 					<< it->pos.y
 					<< it->axis2.length()
 					<< 0
+					<< osc::EndMessage;
+			
+//	/tuio2/_cPPPPPPPP c_id parent_id size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )	
+					<< it->id
+					<< it->pid
+					<< it->size
+					<< it->peak.x
+					<< it->peak.y
+					<< it->axis1.x
+					<< it->axis1.y
+					<< it->axis2.x
+					<< it->axis2.y
 					<< osc::EndMessage;
 		}
 	}
