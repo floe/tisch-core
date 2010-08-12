@@ -51,8 +51,8 @@ int bright = 255;
 int lasttime = 0;
 int lastframe = 0;
 
-int width = 640;
-int height = 480;
+int width = 1024;
+int height = 768;
 
 Vector scale( width, width, 0 );
 Vector delta( 0.5, (double)height/(2.0*width), 0 );
@@ -69,17 +69,18 @@ void disp() {
 	}
 
 	win->clear( );
+	win->mode2D();
 
-	if (curframe % 2 == mode) {
+	if (mode) {
 		std::ostringstream out;
 		out << "Coefficients " << coeff[0] << ", " << coeff[1] << ", " << coeff[2] << ", " << coeff[3] << " Delta " << delta.x << "," << delta.y << " (Press s to save.)";
 		cal.set( coeff, delta, scale );
 		tmp->undistort( scale, delta, coeff, *bla );
-		win->mode2D();
 		win->print(out.str(),10,10);
 		win->show( *bla, 0, 0 );
-		win->swap( );
-	} 
+	} else win->show( *tmp, 0, 0 );
+
+	win->swap( );
 }
 
 void special( int key, int, int ) {
@@ -164,9 +165,6 @@ int main( int argc, char* argv[] ) {
 			tmp = new IntensityImage( argv[1] );
 		} else {
 			tmp = new IntensityImage( width, height );
-			#ifdef __linux
-				src = new V4LImageSource( "/dev/video0", width, height, 30, 1 );
-			#endif
 			#ifdef HAS_DC1394
 				dsrc = new DCImageSource( width, height, 30, 0, 0 );
 
@@ -208,6 +206,8 @@ int main( int argc, char* argv[] ) {
 				src = dsrc;
 				sleep(1);
 
+			#else
+				src = new V4LImageSource( "/dev/video0", width, height, 30, 1 );
 			#endif
 			glutIdleFunc(idle);
 		}
