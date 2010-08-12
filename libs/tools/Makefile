@@ -3,7 +3,7 @@ TOPDIR = ../../
 LIBS = libtools.$(LSF)
 INCS = *.h $(TOPDIR)/tisch.h
 OBJS = Socket.o BasicBlob.o Thread.o
-DOCS = $(TOPDIR)/README $(TOPDIR)/tisch.sh
+DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 
 LDFLAGS += -lpthread
 
