@@ -1,3 +1,11 @@
+libtisch (1.1.1-0ubuntu10~lucid) lucid; urgency=low
+
+  * touchd: Firewire-related bugfixes
+  * distort: adapted default parameters
+  * added calibration script
+
+ -- Florian Echtler <floe@butterbrot.org>  Fri, 13 Aug 2010 12:18:44 +0200
+
 libtisch (1.1.0-0ubuntu9~lucid) lucid; urgency=low
 
   * final touches to packaging/README - based on libTISCH 1.1.0 (r2521)
