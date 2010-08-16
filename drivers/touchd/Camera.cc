@@ -75,10 +75,26 @@ Camera::Camera( VideoSettings* vidset, int verbose, const char* videodev, const 
 			dccam->setReg( PIO_DIRECTION, reg | 0xF0000000 );
 
 			// enable GPIO0-3 10us high strobe on exposure start
-			dccam->setReg( STROBE_0_CNT, 0x830000C8 );
-			dccam->setReg( STROBE_1_CNT, 0x830000C8 );
-			dccam->setReg( STROBE_2_CNT, 0x830000C8 );
-			dccam->setReg( STROBE_3_CNT, 0x830000C8 );
+			dccam->setReg( STROBE_0_CNT, 0x83000020 );
+			dccam->setReg( STROBE_1_CNT, 0x83000020 );
+			dccam->setReg( STROBE_2_CNT, 0x83000020 );
+			dccam->setReg( STROBE_3_CNT, 0x83000020 );
+
+			// HDR Mode for Dragonfly
+			/*reg = dccam->getReg( HDR_CTRL );
+			dccam->setReg( HDR_CTRL, reg | 0x02000000 );
+
+			dccam->setReg( HDR_SHUTTER0, 0x820002BC );
+			dccam->setReg( HDR_GAIN0,    0x820002AB );
+
+			dccam->setReg( HDR_SHUTTER1, 0x82000040 );
+			dccam->setReg( HDR_GAIN1,    0x820002AB );
+
+			dccam->setReg( HDR_SHUTTER2, 0x820002BC );
+			dccam->setReg( HDR_GAIN2,    0x820002AB );
+
+			dccam->setReg( HDR_SHUTTER3, 0x82000040 );
+			dccam->setReg( HDR_GAIN3,    0x820002AB );*/
 		} else
 	#endif
 

@@ -208,7 +208,8 @@ void idle() {
 
 			// check for completely lost frames
 			unsigned long long int timediff = labs((long)(stime - ftime));
-			int count = (int)round((double)timediff/16399087.25); // expected frame time difference in nanoseconds
+			double frametime = 1000000000.0/(vidset.fps != 0 ? vidset.fps : 60.0); // default to 60 Hz in free-running mode
+			int count = (int)round((double)timediff/frametime); // expected frame time difference in nanoseconds
 			if ((count > 1) && (count < 2800)) { // 
 				std::cout << "Warning: lost " << count-1 << " image(s)." << std::endl;
 				if (count%2 == 0) return;

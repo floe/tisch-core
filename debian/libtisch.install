@@ -11,6 +11,7 @@ lib/libwidgets.so.1.1 usr/lib/
 share/libtisch/ usr/share/
 share/doc/libtisch/README usr/share/doc/libtisch/
 share/doc/libtisch/tisch.sh usr/share/doc/libtisch/
+share/doc/libtisch/calib.sh usr/share/doc/libtisch/
 bin/touchd usr/bin/
 bin/calibd usr/bin/
 bin/calibtool usr/bin/
