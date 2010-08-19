@@ -71,7 +71,7 @@ void ImageSet::process( ) {
 
 	int n = settings->vision.noise;
 	binary->despeckle( *final, n );
-	bkgnd->update( *raw, *final );
+	if (settings->vision.bgfactor != 0.0) bkgnd->update( *raw, *final );
 
 	bg_intensity  = bkgnd->intensity();
 	//bg_intensity /= settings->video->width * settings->video->height;

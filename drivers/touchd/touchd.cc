@@ -276,7 +276,7 @@ int main( int argc, char* argv[] ) {
 	std::cout << "(c) 2008 by Florian Echtler <echtler@in.tum.de>" << std::endl;
 
 	// create expected config file path
-	char* homedir = getenv( "HOME" ); if (!homedir) homedir = "/tmp";
+	const char* homedir = getenv( "HOME" ); if (!homedir) homedir = "/tmp";
 	cfgpath = std::string( homedir ) + "/.tisch.touchd";
 
 	std::ifstream config( cfgpath.c_str() );
