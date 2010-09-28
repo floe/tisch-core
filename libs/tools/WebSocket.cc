@@ -52,10 +52,11 @@ void md5block( unsigned char block[64], unsigned char result[16] ) {
 	uint32_t h2 = 0x98BADCFE;
 	uint32_t h3 = 0x10325476;
 
-	// process the message in successive 512-bit chunks:
+	// process the message in successive 512-bit chunks
 
 // for each 512-bit chunk of message
 
+	// FIXME - only works for little endian
 	uint32_t* w = (uint32_t*)block;
 
 	// initialize hash values for this chunk
@@ -98,7 +99,7 @@ void md5block( unsigned char block[64], unsigned char result[16] ) {
 
 // end for each 512-bit chunk
 
-	// assemble result
+	// assemble result - FIXME: only works for little endian
 	uint32_t* res = (uint32_t*)result;
 	res[0] = h0;
 	res[1] = h1;
@@ -152,11 +153,12 @@ void get_response( std::string key1_raw, std::string key2_raw, unsigned char cha
 	uint32_t key1 = calc_key( key1_raw );
 	uint32_t key2 = calc_key( key2_raw );
 
-	std::cout << "key1: " << key1 << std::endl;
-	std::cout << "key2: " << key2 << std::endl;
+	printf("key1: %08x\n",key1);
+	printf("key2: %08x\n",key2);
 
-	((uint32_t*)msg)[0] = key1;
-	((uint32_t*)msg)[1] = key2;
+	// store keys as big-endian
+	msg[0] = (key1 >> 24) & 0xFF; msg[1] = (key1 >> 16) & 0xFF; msg[2] = (key1 >>  8) & 0xFF; msg[3] = (key1 >>  0) & 0xFF;
+	msg[4] = (key2 >> 24) & 0xFF; msg[5] = (key2 >> 16) & 0xFF; msg[6] = (key2 >>  8) & 0xFF; msg[7] = (key2 >>  0) & 0xFF;
 
 	for (int i = 0; i < 8; i++) msg[i+8] = challenge[i];
 
@@ -203,11 +205,13 @@ WebSocket* WebSocket::listen() {
 	conn->get( (char*)challenge, 8 );
 	get_response( key1, key2, challenge, response );
 
-	*conn << "HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
+	*conn << "HTTP/1.1 101 WebSocket Protocol Handshake\r\n"
            "Upgrade: WebSocket\r\n"
            "Connection: Upgrade\r\n"
-					 "WebSocket-Origin: null\r\n"
-					 "WebSocket-Location: ws://localhost:12345/websession\r\n\r\n" << response << std::flush;
+					 "Sec-WebSocket-Origin: file://\r\n"
+					 "Sec-WebSocket-Location: ws://localhost:12345/\r\n\r\n";
+	conn->write( (const char*)response, 16 );
+	*conn << std::flush;
 
 	stream->start_filter();
 	return conn;
