@@ -143,7 +143,7 @@ unsigned int calc_key( std::string key ) {
 	}
 
 	unsigned long long int num = atoll(nums.c_str());
-	if (num % spaces) std::cerr << "Warning: Sec-WebSocket-Key divisor error. Handshake will fail." << std::endl;
+	if ((spaces == 0) || (num % spaces)) throw std::runtime_error( "Error: Sec-WebSocket-Key divisor mismatch. Handshake will fail." );
 
 	/*std::cout << "key: " << key << std::endl;
 	std::cout << "nums: " << num << " spaces: " << spaces << " res: " << num/spaces << std::endl; */
@@ -246,10 +246,12 @@ WebSocketStream::WebSocketStream( int _type, in_addr_t addr, int port, struct ti
 { }
 
 WebSocketStream::WebSocketStream( const WebSocketStream* stream ):
-	SocketStream( stream ), filter( 0 )
+	SocketStream( stream ), filter( stream->filter )
 { }
 
 WebSocketStream::~WebSocketStream() { }
+
+WebSocketStream* WebSocketStream::clone() { return new WebSocketStream(this); }
 
 
 void WebSocketStream::start_filter() {
@@ -270,8 +272,10 @@ int WebSocketStream::underflow( ) {
 	char* eptr = egptr() - 1;
 	if (!filter) return *ptr;
 
-	if (*ptr  != 0x00) throw std::runtime_error( "Error: WebSocket frame not starting with 0x00!" );
-	if (*eptr != 0xFF) throw std::runtime_error( "Error: WebSocket frame not ending with 0xFF!" );
+	//for (char* p = ptr; p <= eptr; p++) printf("%02hhx ",*p); printf("\n"); 
+
+	if ((unsigned char)(*ptr ) != 0x00) throw std::runtime_error( "Error: WebSocket frame not starting with 0x00." );
+	if ((unsigned char)(*eptr) != 0xFF) throw std::runtime_error( "Error: WebSocket frame not ending with 0xFF." );
 
 	ptr = ptr+1;
 	setg( ptr, ptr, eptr );
@@ -292,7 +296,6 @@ void WebSocketStream::put_buffer() {
 	char fstop  = 0xFF;
 	int len = pptr() - pbase();
 	if (len) {
-		std::cout << filter << std::endl;
 		if (filter) sendto( sock, &fstart, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 		sendto( sock, pbase(), len, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 		if (filter) sendto( sock,  &fstop, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );

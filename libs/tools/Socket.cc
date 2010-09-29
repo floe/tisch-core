@@ -181,6 +181,8 @@ SocketStream::~SocketStream() {
 	delete[] pbase();
 }
 
+SocketStream* SocketStream::clone() { return new SocketStream(this); }
+
 
 SocketStream* SocketStream::listen() {
 
@@ -193,7 +195,7 @@ SocketStream* SocketStream::listen() {
 	if ((newsock = accept( sock, (struct sockaddr*)&source_addr, &len )) == -1)
 		throw std::runtime_error( std::string( "accept: " ) + std::string(strerror(errno)) );
 
-	SocketStream* newstream = new SocketStream( this );
+	SocketStream* newstream = clone();
 	newstream->sock = newsock;
 
 	return newstream;
@@ -259,7 +261,7 @@ int SocketStream::underflow( ) {
 		res = recvfrom( sock, ptr, size, 0, (struct sockaddr*)&source_addr, &len );
 		if (res == -1) throw std::runtime_error( std::string( "recvfrom: ") + std::string(strerror(errno)) );
 
-		if (verbose) write( 1, ptr, res );
+		if (verbose) { for (int i = 0; i < res; i++) printf("%02hhx ",ptr[i]); printf("\n"); }
 		setg( ptr, ptr, ptr+res );
 	}
 
@@ -289,15 +291,16 @@ int SocketStream::sync() {
 void SocketStream::put_char( int chr ) {
 	char tmp = chr;
 	sendto( sock, &tmp, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
-	if (verbose) write( 1, &tmp, 1 );
+	if (verbose) printf( "%02hhx\n", tmp );
 }
 
 void SocketStream::put_buffer() {
-	int len = pptr() - pbase();
+	char* ptr = pbase();
+	int len = pptr() - ptr;
 	if (len) {
-		sendto( sock, pbase(), len, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
-		if (verbose) write( 1, pbase(), len );
-		setp( pbase(), epptr() );
+		sendto( sock, ptr, len, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		if (verbose) { for (int i = 0; i < len; i++) printf("%02hhx ",ptr[i]); printf("\n"); }
+		setp( ptr, epptr() );
 	}
 }
 

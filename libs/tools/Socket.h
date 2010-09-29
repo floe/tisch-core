@@ -84,10 +84,10 @@ class TISCH_SHARED SocketStream: public std::streambuf {
 
 	public:
 
-		 SocketStream( int _type, in_addr_t addr, int port, struct timeval* _timeout, int _verbose, int _size );
-		 SocketStream( const SocketStream* stream );
+		SocketStream( int _type, in_addr_t addr, int port, struct timeval* _timeout, int _verbose, int _size );
+		SocketStream( const SocketStream* stream );
 
-		~SocketStream();
+		virtual ~SocketStream();
 
 		void target( in_addr_t addr, int port );
 		void close();
@@ -99,13 +99,15 @@ class TISCH_SHARED SocketStream: public std::streambuf {
 
 	protected:
 
-		int underflow( );
+		virtual SocketStream* clone();
+
+		virtual int underflow( );
 
 		int overflow( int chr );
 		int	sync();
 
-		void put_buffer();
-		void put_char( int chr );
+		virtual void put_buffer();
+		virtual void put_char( int chr );
 
 		struct sockaddr_in target_addr;
 		struct sockaddr_in source_addr;

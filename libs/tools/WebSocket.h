@@ -32,17 +32,19 @@ class TISCH_SHARED WebSocketStream: public SocketStream {
 
 	public:
 
-		 WebSocketStream( int _type, in_addr_t addr, int port, struct timeval* _timeout );
-		 WebSocketStream( const WebSocketStream* stream );
+		WebSocketStream( int _type, in_addr_t addr, int port, struct timeval* _timeout );
+		WebSocketStream( const WebSocketStream* stream );
 
 		virtual ~WebSocketStream();
 
-		void close();
+		virtual void close();
 		void start_filter();
 
 	protected:
 
-		int underflow( );
+		virtual WebSocketStream* clone();
+
+		virtual int underflow( );
 
 		virtual void put_buffer();
 		virtual void put_char( int chr );
