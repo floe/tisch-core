@@ -128,13 +128,13 @@ void md5sum( unsigned char msg[16], unsigned char result[16] ) {
 
 // handshaking stuff
 
-unsigned int calc_key( std::string str ) {
+unsigned int calc_key( std::string key ) {
 
 	unsigned long int spaces = 0;
 	std::string nums;
 
-	const char* chr = str.c_str();
-	int len = str.length();
+	const char* chr = key.c_str();
+	int len = key.length();
 
 	for (int i = 0; i < len; i++) {
 		char cur = chr[i];
@@ -143,6 +143,11 @@ unsigned int calc_key( std::string str ) {
 	}
 
 	unsigned long long int num = atoll(nums.c_str());
+	if (num % spaces) std::cerr << "Warning: Sec-WebSocket-Key divisor error. Handshake will fail." << std::endl;
+
+	/*std::cout << "key: " << key << std::endl;
+	std::cout << "nums: " << num << " spaces: " << spaces << " res: " << num/spaces << std::endl; */
+
 	return num / spaces;
 }
 
@@ -153,8 +158,8 @@ void get_response( std::string key1_raw, std::string key2_raw, unsigned char cha
 	uint32_t key1 = calc_key( key1_raw );
 	uint32_t key2 = calc_key( key2_raw );
 
-	printf("key1: %08x\n",key1);
-	printf("key2: %08x\n",key2);
+	/*printf("key1: %08x\n",key1);
+	printf("key2: %08x\n",key2);*/
 
 	// store keys as big-endian
 	msg[0] = (key1 >> 24) & 0xFF; msg[1] = (key1 >> 16) & 0xFF; msg[2] = (key1 >>  8) & 0xFF; msg[3] = (key1 >>  0) & 0xFF;
@@ -164,8 +169,8 @@ void get_response( std::string key1_raw, std::string key2_raw, unsigned char cha
 
 	md5sum( msg, resp );
 
-	printf("message: "); for (int i = 0; i < 16; i++) printf("%02x ",msg[i]); printf("\n");
-	printf("md5sum:  "); for (int i = 0; i < 16; i++) printf("%02x ",resp[i]); printf("\n");
+	/*printf("message: "); for (int i = 0; i < 16; i++) printf("%02x ",msg[i]); printf("\n");
+	printf("md5sum:  "); for (int i = 0; i < 16; i++) printf("%02x ",resp[i]); printf("\n");*/
 }
 
 
@@ -189,27 +194,44 @@ WebSocket* WebSocket::listen() {
 	WebSocketStream* stream = (WebSocketStream*)server->listen();
 	WebSocket* conn = new WebSocket( stream );
 
+	// websocket challenge-response
 	std::string key1, key2;
 	unsigned char challenge[8];
 	unsigned char response[16];
 
-	// read client request
-	std::string buf("foo");
+	// HTTP variables
+	std::string request;
+	std::string origin;
+	std::string host;
+	std::string buf;
+
+	// GET/POST request
+	*conn >> buf >> request;
+
+	// read client handshake challenge
 	while ((buf != "") && (buf != "\r")) {
-		std::getline(*conn,buf);
-		std::cout << buf << std::endl;
+
+		std::getline( *conn, buf );
+
 		if (buf.compare(0,20,"Sec-WebSocket-Key1: ") == 0) key1 = buf.substr(20);
 		if (buf.compare(0,20,"Sec-WebSocket-Key2: ") == 0) key2 = buf.substr(20);
+
+		if (buf.compare(0,8,"Origin: ") == 0) origin = buf.substr(8,buf.length()-9);
+		if (buf.compare(0,6,"Host: "  ) == 0) host   = buf.substr(6,buf.length()-7);
 	}
 
-	conn->get( (char*)challenge, 8 );
+	conn->read( (char*)challenge, 8 );
+
+	// generate handshake response
 	get_response( key1, key2, challenge, response );
 
-	*conn << "HTTP/1.1 101 WebSocket Protocol Handshake\r\n"
-           "Upgrade: WebSocket\r\n"
-           "Connection: Upgrade\r\n"
-					 "Sec-WebSocket-Origin: file://\r\n"
-					 "Sec-WebSocket-Location: ws://localhost:12345/\r\n\r\n";
+	*conn << "HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
+	         "Upgrade: WebSocket\r\n"
+	         "Connection: Upgrade\r\n"
+	         "Sec-WebSocket-Origin: " << origin << "\r\n"
+	         "Sec-WebSocket-Location: ws://" << host << request << "\r\n"
+	         "Sec-WebSocket-Protocol: unknown\r\n\r\n";
+
 	conn->write( (const char*)response, 16 );
 	*conn << std::flush;
 
