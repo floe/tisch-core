@@ -1,3 +1,9 @@
+libtisch (1.1.1-0ubuntu11~maverick) maverick; urgency=low
+
+  * touchd: actually uses background update setting now
+
+ -- Florian Echtler <floe@butterbrot.org>  Tue, 12 Oct 2010 14:26:42 +0200
+
 libtisch (1.1.1-0ubuntu10~lucid) lucid; urgency=low
 
   * touchd: Firewire-related bugfixes
