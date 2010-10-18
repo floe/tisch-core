@@ -1,3 +1,5 @@
+/* based on evtest.c by Vojtec Pavlik */
+
 #include <BasicBlob.h>
 #include <Socket.h>
 #include <tisch.h>
@@ -23,6 +25,7 @@
 BasicBlob blobs[1024];
 int blobcount = 0;
 int framenum = 0;
+int blobid = 0;
 
 UDPSocket output( INADDR_ANY, 0 );
 
@@ -111,6 +114,7 @@ int main (int argc, char *argv[]) {
 			} else if (ev[i].type == EV_ABS) {
 
 				blobs[blobcount].id = 2*blobcount+1;
+				//blobs[blobcount].id = ++blobid;
 
 				if (ev[i].code == ABS_MT_POSITION_X) {
 					double tx = xres * ev[i].value / maxx;
