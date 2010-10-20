@@ -238,6 +238,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\libs\simplecv\DirectShowStub.h"
+				>
+			</File>
+			<File
 				RelativePath="..\libs\simplecv\Image.h"
 				>
 			</File>

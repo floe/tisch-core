@@ -16,6 +16,8 @@
 #include <Socket.h>
 
 #define PORT 3333
+#define XRES 1024.0
+#define YRES 768.0
 
 BasicBlob blob;
 UDPSocket* output;
@@ -41,10 +43,10 @@ protected:
 				{
 					args >> objectid >> posx >> posy >> xspeed >> yspeed >> maccel;//osc::EndMessage;
 					blob.id = objectid + 1000;
-					blob.pos.x = posx;
-					blob.pos.y = posy;
-					blob.peak.x = posx;
-					blob.peak.y = posy;
+					blob.pos.x = posx * XRES;
+					blob.pos.y = posy * YRES;
+					blob.peak.x = posx * XRES;
+					blob.peak.y = posy * YRES;
 					*output << "shadow " << blob << std::endl;
 					blob.id = objectid;
 					*output << "finger " << blob << std::endl;
@@ -78,7 +80,7 @@ int main(int argc, char* argv[])
 					&listener );
 
 	output = new UDPSocket(INADDR_ANY, 0);
-	output->target("131.159.10.70", TISCH_PORT_RAW );
+	output->target( INADDR_LOOPBACK, TISCH_PORT_CALIB );
 	blob.size = 50;
 	blob.id = 1;
 	blob.pid = 1;
