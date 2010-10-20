@@ -13,16 +13,7 @@
 #include <iostream>
 #include <dshow.h>
 
-// define before qedit.h if you only have 
-// the Windows SDK, but not the DirectX SDK
-#pragma include_alias( "dxtrans.h", "qedit.h" )
-#define __IDxtCompositor_INTERFACE_DEFINED__
-#define __IDxtAlphaSetter_INTERFACE_DEFINED__
-#define __IDxtJpeg_INTERFACE_DEFINED__
-#define __IDxtKey_INTERFACE_DEFINED__
-
-#include <qedit.h>
-
+#include "DirectShowStub.h"
 #include "ImageSource.h"
 #include "RGBImage.h"
 
