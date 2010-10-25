@@ -246,8 +246,8 @@ void V4LImageSource::setExposure( int exp ) {
 
 	struct v4l2_control ctrl;
 
-	ctrl.id = V4L2_CID_EXPOSURE_AUTO;
-	ctrl.value = (exp < 0) ? 8 : 1;
+	ctrl.id    = V4L2_CID_EXPOSURE_AUTO;
+	ctrl.value = (exp < 0) ? 2 : 1; // 2 = auto, 1 = manual (at least for UVC cams)
 
 	if (safe_ioctl( vdev, VIDIOC_S_CTRL, &ctrl ) < 0) std::cerr << "V4L2_CID_EXPOSURE_AUTO\n";
 
@@ -265,7 +265,19 @@ void V4LImageSource::setShutter( int speed ) {
 
 void V4LImageSource::setBrightness( int bright ) { }
 
-void V4LImageSource::printInfo( int feature ) { }
+#define do_query(x) query.id = x; \
+	if (safe_ioctl( vdev, VIDIOC_QUERYCTRL, &query ) < 0) std::cerr << #x " VIDIOC_QUERYCTRL\n"; else \
+	std::cout << query.name << ": range " << query.minimum << "-" << query.maximum << ", step " << query.step << std::endl;
+
+
+void V4LImageSource::printInfo( int feature ) {
+	struct v4l2_queryctrl query;
+	do_query(V4L2_CID_EXPOSURE_ABSOLUTE);
+	do_query(V4L2_CID_EXPOSURE_AUTO);
+	do_query(V4L2_CID_EXPOSURE);
+	do_query(V4L2_CID_AUTOGAIN);
+	do_query(V4L2_CID_GAIN);
+}
 
 
 void V4LImageSource::setFPS( int fps ) {
