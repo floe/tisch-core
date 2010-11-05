@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 
 #include <mtirdefs.h>
 #include <mtirctldll.h>
@@ -24,6 +25,8 @@ int main ( int argc, char* argv[] ) {
 	MTIR_POSITION pos[64];
 	MTIR_SCANRES scanres;
 	scanres.pPosition = pos;
+	scanres.pMap = NULL;
+	scanres.pReserved1 = NULL;
 
 	while (run) {
 
