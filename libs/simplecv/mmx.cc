@@ -47,8 +47,8 @@
 
 int mmxintensity( unsigned char* in, ASMINT count ) {
 
-	ASMINT start = 0;
-	int tmp = 0x12345678;
+	static ASMINT start = 0;
+	static int tmp = 0x12345678;
 
 	asm(
 
@@ -110,8 +110,8 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 int mmxintensity( unsigned short* in, ASMINT count ) {
 
-	ASMINT start = 0;
-	int tmp = 0x12345678;
+	static ASMINT start = 0;
+	static int tmp = 0x12345678;
 
 	asm(
 
@@ -164,7 +164,7 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count ) {
 
-	ASMINT start = 0;
+	static ASMINT start = 0;
 
 	asm(
 
@@ -199,7 +199,7 @@ void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, AS
 
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count ) {
 
-	ASMINT start = 0;
+	static ASMINT start = 0;
 
 	asm(
 
@@ -245,7 +245,7 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 	 *   mm7: zero for byte/word unpacking
 	*/
 
-	ASMINT start = 0;
+	static ASMINT start = 0;
 
 	asm(
 
@@ -359,9 +359,9 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		  [inc] "d" (inc)
 	);*/
 
-	ASMINT start = 0;
-	ASMINT inc   = STEP;
-	ASMINT thr   = thresh;
+	static ASMINT start = 0;
+	static ASMINT inc   = STEP;
+	static ASMINT thr   = thresh;
 
 	asm(
 
@@ -409,7 +409,7 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 	 *   mm6: 8 * (neighbor count threshold)
 	*/
 
-	ASMINT count = linecnt * stride;
+	static ASMINT count = linecnt * stride;
 
 	asm(
 
