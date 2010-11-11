@@ -34,6 +34,9 @@ KinectImageSource::KinectImageSource( int debug ) {
 	kdev = libusb_open_device_with_vid_pid( NULL, 0x045E, 0x02AE );
 	if (kdev == 0) throw std::runtime_error( "Kinect USB device not found." );
 
+	pthread_mutex_init( &kinect_lock, NULL );
+	pthread_cond_init(  &kinect_cond, NULL );
+
 	width  = 640;
 	height = 480;
 	fps    =  30;
@@ -50,13 +53,17 @@ KinectImageSource::KinectImageSource( int debug ) {
 KinectImageSource::~KinectImageSource() {
 	stop();
 	pthread_join( kinect_thread, NULL );
+	for (int i = 0; i < KINECT_BUFCOUNT; i++) delete buffers[i];
 }
 
 
 KinectImageSource* src = 0;
 
 void depth_cb( uint16_t* buf, int width, int height ) {
+	pthread_mutex_lock( &(src->kinect_lock) );
 	memcpy( src->buffers[0]->getData(), buf, width*height*2 );
+	pthread_cond_signal( &(src->kinect_cond) );
+	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
 void rgb_cb( uint8_t* buf, int width, int height ) {
@@ -87,9 +94,13 @@ void KinectImageSource::stop() {
 
 
 int KinectImageSource::acquire() {
+	pthread_mutex_lock( &kinect_lock );
+	pthread_cond_wait( &kinect_cond, &kinect_lock );
+	return 1;
 }
 
 void KinectImageSource::release() {
+	pthread_mutex_unlock( &kinect_lock );
 }
 
 

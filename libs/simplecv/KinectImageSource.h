@@ -56,6 +56,8 @@ class KinectImageSource: public ImageSource {
 		int bufcount, current;
 		ShortImage* buffers[KINECT_BUFCOUNT];
 
+		pthread_mutex_t kinect_lock;
+		pthread_cond_t  kinect_cond;
 };
 
 #endif // _KINECTIMAGESOURCE_H_
