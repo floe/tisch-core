@@ -16,6 +16,10 @@ ifneq (,$(findstring dc1394,$(LDFLAGS)))
   OBJS += DCImageSource.o
 endif
 
+ifneq (,$(findstring libfreenect,$(CFLAGS)))
+  OBJS += KinectImageSource.o
+endif
+
 ifneq ($(OS),iPhone)
   OBJS += mmx.o PicoPNG.o
 else
