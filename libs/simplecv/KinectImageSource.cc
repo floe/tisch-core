@@ -109,7 +109,8 @@ void KinectImageSource::getImage( IntensityImage& target ) const {
 	uint8_t*  targ = (uint8_t*)target.getData();
 	for (int i = 0; i < width*height; i++) {
 		// the depth sensor is actually 11 bits - 2047 == too near/too far
-		targ[i] = srce[i] >> 3;
+		uint8_t tmp = srce[i] >> 3;
+		targ[i] = 255 - tmp; // remapping: 0 = no data, 254 = very close
 	}
 }
 
