@@ -15,7 +15,7 @@
 #include "ShortImage.h"
 
 
-#define IMGSRC_BUFCOUNT 2
+#define KINECT_BUFCOUNT 2
 
 
 class KinectImageSource: public ImageSource {
@@ -32,15 +32,16 @@ class KinectImageSource: public ImageSource {
 		int  acquire();
 		void release();
 
+		void getImage( IntensityImage& target ) const;
 		void getImage( ShortImage& target ) const;
 		void getImage( RGBImage&   target ) const;
 
-		/*void setGain( int gain );
+		void setGain( int gain );
 		void setExposure( int exp );
 		void setShutter( int speed );
 		void setBrightness( int bright );
 		void setFPS( int fps );
-		void printInfo( int feature = 0 );*/
+		void printInfo( int feature = 0 );
 
 		// video device
 		libusb_device_handle* kdev;
@@ -51,11 +52,9 @@ class KinectImageSource: public ImageSource {
 		// thread control
 		int run;
 
-	private:
-
 		// buffer management
 		int bufcount, current;
-		Image* buffers[IMGSRC_BUFCOUNT];
+		ShortImage* buffers[KINECT_BUFCOUNT];
 
 };
 

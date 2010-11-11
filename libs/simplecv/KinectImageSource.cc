@@ -21,7 +21,9 @@
 
 #include "KinectImageSource.h"
 
+extern "C" {
 #include <libfreenect.h>
+}
 
 
 KinectImageSource::KinectImageSource( int debug ) {
@@ -37,6 +39,11 @@ KinectImageSource::KinectImageSource( int debug ) {
 	fps    =  30;
 	run    =   1;
 
+	for (int i = 0; i < KINECT_BUFCOUNT; i++) {
+		buffers[i] = new ShortImage( width, height );
+		memset( buffers[i]->getData(), 128, width*height*2 );
+	}
+
 	start();
 }
 
@@ -49,11 +56,10 @@ KinectImageSource::~KinectImageSource() {
 KinectImageSource* src = 0;
 
 void depth_cb( uint16_t* buf, int width, int height ) {
-	std::cout << "got depth data " << std::endl;
+	memcpy( src->buffers[0]->getData(), buf, width*height*2 );
 }
 
 void rgb_cb( uint8_t* buf, int width, int height ) {
-	std::cout << "got RGB data " << std::endl;
 }
 
 void* kinecthandler( void* arg ) {
@@ -87,17 +93,31 @@ void KinectImageSource::release() {
 }
 
 
+void KinectImageSource::getImage( IntensityImage& target ) const {
+	uint16_t* srce = (uint16_t*)buffers[0]->getData();
+	uint8_t*  targ = (uint8_t*)target.getData();
+	for (int i = 0; i < width*height; i++) {
+		// the depth sensor is actually 11 bits - 2047 == too near/too far
+		targ[i] = srce[i] >> 3;
+	}
+}
+
 void KinectImageSource::getImage( ShortImage& target ) const {
+	uint16_t* srce = (uint16_t*)buffers[0]->getData();
+	uint16_t* targ = (uint16_t*)target.getData();
+	for (int i = 0; i < width*height; i++) {
+		// the depth sensor is actually 11 bits - 2047 == too near/too far
+		targ[i] = srce[i] << 5;
+	}
 }
 
-void KinectImageSource::getImage( RGBImage& target ) const {
-}
+void KinectImageSource::getImage( RGBImage& target ) const { }
 
 
-/*void KinectImageSource::setGain( int gain ) { }
+void KinectImageSource::setGain( int gain ) { }
 void KinectImageSource::setExposure( int exp ) { } 
 void KinectImageSource::setShutter( int speed ) { }
 void KinectImageSource::setBrightness( int bright ) { }
 void KinectImageSource::printInfo( int feature ) { }
-void KinectImageSource::setFPS( int fps ) { }*/
+void KinectImageSource::setFPS( int fps ) { }
 
