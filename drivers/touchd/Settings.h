@@ -14,6 +14,7 @@
 #define CAMERA_TYPE_DC1394     2
 #define CAMERA_TYPE_DIRECTSHOW 3
 #define CAMERA_TYPE_BIGTOUCH   4
+#define CAMERA_TYPE_KINECT     5
 
 
 class Camera;

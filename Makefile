@@ -33,6 +33,9 @@ ifndef TISCH_CONFIG
     ifeq (v4l2,$(findstring v4l2,$(LDFLAGS)))
       CFLAGS += -DHAS_LIBV4L
     endif
+    ifeq (freenect,$(findstring freenect,$(LDFLAGS)))
+      CFLAGS += -DHAS_FREENECT
+    endif
     LDFLAGS += -lGL -lGLU -lglut
     SLFLAGS += -shared
     CFLAGS  += -O2 -fno-strict-aliasing

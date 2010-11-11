@@ -16,7 +16,7 @@ ifneq (,$(findstring dc1394,$(LDFLAGS)))
   OBJS += DCImageSource.o
 endif
 
-ifneq (,$(findstring libfreenect,$(CFLAGS)))
+ifneq (,$(findstring freenect,$(LDFLAGS)))
   OBJS += KinectImageSource.o
 endif
 

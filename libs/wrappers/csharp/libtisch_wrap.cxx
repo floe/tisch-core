@@ -12993,7 +12993,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_GLEXT_VERSION_get() {
   int jresult ;
   int result;
   
-  result = (int) 56;
+  result = (int) 64;
   jresult = result; 
   return jresult;
 }
@@ -18654,6 +18654,126 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_CONTEXT_PROFILE_MASK_get() {
   int result;
   
   result = (int) 0x9126;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERTEX_ATTRIB_ARRAY_DIVISOR_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88FE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLE_SHADING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8C36;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_SAMPLE_SHADING_VALUE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8C37;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9009;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x900F;
   jresult = result; 
   return jresult;
 }
@@ -24749,7 +24869,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_INTEGER_SAMPLES_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLE_SHADING_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLE_SHADING_ARB_get() {
   int jresult ;
   int result;
   
@@ -24759,7 +24879,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLE_SHADING_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_SAMPLE_SHADING_VALUE_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_SAMPLE_SHADING_VALUE_ARB_get() {
   int jresult ;
   int result;
   
@@ -24769,7 +24889,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_SAMPLE_SHADING_VALUE_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24779,7 +24899,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24789,7 +24909,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24799,7 +24919,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24809,7 +24929,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_ARB_get() {
   int jresult ;
   int result;
   
@@ -24819,7 +24939,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_SAMPLER_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24829,7 +24949,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB_get() {
   int jresult ;
   int result;
   
@@ -24839,7 +24959,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB_get() {
   int jresult ;
   int result;
   
@@ -24849,7 +24969,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB_get() {
   int jresult ;
   int result;
   
@@ -24859,11 +24979,1521 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_get() {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_COMPONENTS_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SHADER_INCLUDE_ARB_get() {
   int jresult ;
   int result;
   
-  result = (int) 0x8F9F;
+  result = (int) 0x8DAE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NAMED_STRING_LENGTH_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DE9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NAMED_STRING_TYPE_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DEA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMPRESSED_RGBA_BPTC_UNORM_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E8C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E8D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E8E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E8F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SRC1_COLOR_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88F9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ONE_MINUS_SRC1_COLOR_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88FA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ONE_MINUS_SRC1_ALPHA_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88FB;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_DUAL_SOURCE_DRAW_BUFFERS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88FC;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ANY_SAMPLES_PASSED_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8C2F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_BINDING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8919;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_RGB10_A2UI_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_SWIZZLE_R_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E42;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_SWIZZLE_G_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E43;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_SWIZZLE_B_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E44;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_SWIZZLE_A_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E45;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_SWIZZLE_RGBA_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E46;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TIME_ELAPSED_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88BF;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TIMESTAMP_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E28;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_2_10_10_10_REV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8D9F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DRAW_INDIRECT_BUFFER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DRAW_INDIRECT_BUFFER_BINDING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F43;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_GEOMETRY_SHADER_INVOCATIONS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x887F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_GEOMETRY_SHADER_INVOCATIONS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRAGMENT_INTERPOLATION_OFFSET_BITS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFC;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFD;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC4_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F46;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F47;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F48;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2x3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F49;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2x4_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3x2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3x4_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4x2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4x3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_SUBROUTINES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DE5;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_SUBROUTINE_UNIFORMS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DE6;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E47;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_SUBROUTINE_MAX_LENGTH_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E48;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E49;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_SUBROUTINES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DE7;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_SUBROUTINE_UNIFORM_LOCATIONS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DE8;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NUM_COMPATIBLE_SUBROUTINES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E4A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMPATIBLE_SUBROUTINES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E4B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PATCHES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x000E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PATCH_VERTICES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E72;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PATCH_DEFAULT_INNER_LEVEL_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E73;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PATCH_DEFAULT_OUTER_LEVEL_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E74;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_CONTROL_OUTPUT_VERTICES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E75;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_GEN_MODE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E76;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_GEN_SPACING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E77;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_GEN_VERTEX_ORDER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E78;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_GEN_POINT_MODE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E79;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ISOLINES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRACTIONAL_ODD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRACTIONAL_EVEN_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PATCH_VERTICES_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_GEN_LEVEL_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_UNIFORM_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E7F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_EVALUATION_UNIFORM_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E80;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_TEXTURE_IMAGE_UNITS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E81;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_EVALUATION_TEXTURE_IMAGE_UNITS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E82;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_OUTPUT_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E83;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_PATCH_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E84;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_TOTAL_OUTPUT_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E85;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_EVALUATION_OUTPUT_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E86;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_UNIFORM_BLOCKS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E89;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_EVALUATION_UNIFORM_BLOCKS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E8A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_CONTROL_INPUT_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x886C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TESS_EVALUATION_INPUT_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x886D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_COMBINED_TESS_CONTROL_UNIFORM_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E1E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_COMBINED_TESS_EVALUATION_UNIFORM_COMPONENTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E1F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x84F0;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x84F1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_EVALUATION_SHADER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E87;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_CONTROL_SHADER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E88;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E22;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E23;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E24;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_BINDING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E25;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_TRANSFORM_FEEDBACK_BUFFERS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E70;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_VERTEX_STREAMS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E71;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FIXED_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x140C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMPLEMENTATION_COLOR_READ_TYPE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8B9A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMPLEMENTATION_COLOR_READ_FORMAT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8B9B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_LOW_FLOAT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF0;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MEDIUM_FLOAT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_HIGH_FLOAT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF2;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_LOW_INT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF3;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MEDIUM_INT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF4;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_HIGH_INT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF5;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SHADER_COMPILER_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DFA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NUM_SHADER_BINARY_FORMATS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DF9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_VERTEX_UNIFORM_VECTORS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DFB;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_VARYING_VECTORS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DFC;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_FRAGMENT_UNIFORM_VECTORS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DFD;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROGRAM_BINARY_RETRIEVABLE_HINT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8257;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROGRAM_BINARY_LENGTH_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8741;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NUM_PROGRAM_BINARY_FORMATS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x87FE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROGRAM_BINARY_FORMATS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x87FF;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERTEX_SHADER_BIT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000001;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRAGMENT_SHADER_BIT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000002;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_GEOMETRY_SHADER_BIT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000004;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_CONTROL_SHADER_BIT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000008;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_EVALUATION_SHADER_BIT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000010;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ALL_SHADER_BITS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0xFFFFFFFF;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROGRAM_SEPARABLE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8258;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ACTIVE_PROGRAM_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8259;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PROGRAM_PIPELINE_BINDING_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_VIEWPORTS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VIEWPORT_SUBPIXEL_BITS_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VIEWPORT_BOUNDS_RANGE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_LAYER_PROVOKING_VERTEX_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VIEWPORT_INDEX_PROVOKING_VERTEX_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x825F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNDEFINED_VERTEX_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8260;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SYNC_CL_EVENT_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8240;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SYNC_CL_EVENT_COMPLETE_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8241;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8242;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_NEXT_LOGGED_MESSAGE_LENGTH_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8243;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CALLBACK_FUNCTION_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8244;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CALLBACK_USER_PARAM_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8245;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_API_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8246;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8247;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_SHADER_COMPILER_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8248;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_THIRD_PARTY_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8249;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_APPLICATION_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SOURCE_OTHER_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_ERROR_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_PORTABILITY_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x824F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_PERFORMANCE_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8250;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_TYPE_OTHER_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8251;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_DEBUG_MESSAGE_LENGTH_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9143;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_DEBUG_LOGGED_MESSAGES_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9144;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_LOGGED_MESSAGES_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9145;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_HIGH_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9146;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_MEDIUM_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9147;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_LOW_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9148;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000004;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_LOSE_CONTEXT_ON_RESET_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8252;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_GUILTY_CONTEXT_RESET_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8253;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INNOCENT_CONTEXT_RESET_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8254;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNKNOWN_CONTEXT_RESET_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8255;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_RESET_NOTIFICATION_STRATEGY_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8256;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NO_RESET_NOTIFICATION_ARB_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8261;
   jresult = result; 
   return jresult;
 }
@@ -37483,7 +39113,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_ELEMENT_ARRAY_APPLE_get() {
   int jresult ;
   int result;
   
-  result = (int) 0x8768;
+  result = (int) 0x8A0C;
   jresult = result; 
   return jresult;
 }
@@ -37493,7 +39123,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_ELEMENT_ARRAY_TYPE_APPLE_get() {
   int jresult ;
   int result;
   
-  result = (int) 0x8769;
+  result = (int) 0x8A0D;
   jresult = result; 
   return jresult;
 }
@@ -37503,7 +39133,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_ELEMENT_ARRAY_POINTER_APPLE_get() {
   int jresult ;
   int result;
   
-  result = (int) 0x876A;
+  result = (int) 0x8A0E;
   jresult = result; 
   return jresult;
 }
@@ -37574,6 +39204,16 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERTEX_ARRAY_RANGE_POINTER_APPLE_get() {
   int result;
   
   result = (int) 0x8521;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_STORAGE_CLIENT_APPLE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x85B4;
   jresult = result; 
   return jresult;
 }
@@ -40709,6 +42349,66 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_NV_get() 
 }
 
 
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_LAYER_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8DAA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NEXT_BUFFER_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) -2;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SKIP_COMPONENTS4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) -3;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SKIP_COMPONENTS3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) -4;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SKIP_COMPONENTS2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) -5;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SKIP_COMPONENTS1_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) -6;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_VERTEX_BINDABLE_UNIFORMS_EXT_get() {
   int jresult ;
   int result;
@@ -42969,6 +44669,1346 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_ELEMENT_ARRAY_LENGTH_NV_get() {
 }
 
 
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DRAW_INDIRECT_UNIFIED_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F40;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DRAW_INDIRECT_ADDRESS_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F41;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DRAW_INDIRECT_LENGTH_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F42;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_IMAGE_UNITS_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F38;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_COMBINED_IMAGE_UNITS_AND_FRAGMENT_OUTPUTS_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F39;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_NAME_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_LEVEL_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_LAYERED_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_LAYER_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_ACCESS_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F3E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_1D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x904C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_2D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x904D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_3D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x904E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_2D_RECT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x904F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_CUBE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9050;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BUFFER_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9051;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_1D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9052;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_2D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9053;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_CUBE_MAP_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9054;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_2D_MULTISAMPLE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9055;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_2D_MULTISAMPLE_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9056;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_1D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9057;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_2D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9058;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_3D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9059;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_2D_RECT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_CUBE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_BUFFER_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_1D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_2D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_CUBE_MAP_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x905F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_2D_MULTISAMPLE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9060;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT_IMAGE_2D_MULTISAMPLE_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9061;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_1D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9062;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_2D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9063;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_3D_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9064;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_2D_RECT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9065;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_CUBE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9066;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_BUFFER_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9067;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_1D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9068;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_2D_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9069;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_IMAGE_SAMPLES_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_IMAGE_BINDING_FORMAT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x906E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000001;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ELEMENT_ARRAY_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000002;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNIFORM_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000004;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_FETCH_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000008;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SHADER_IMAGE_ACCESS_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000020;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COMMAND_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000040;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PIXEL_BUFFER_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000080;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TEXTURE_UPDATE_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000100;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_BUFFER_UPDATE_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000200;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRAMEBUFFER_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000400;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TRANSFORM_FEEDBACK_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000800;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ATOMIC_COUNTER_BARRIER_BIT_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00001000;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ALL_BARRIER_BITS_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0xFFFFFFFF;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC2_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFC;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC3_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFD;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_VEC4_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F46;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F47;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F48;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2x3_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F49;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT2x4_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3x2_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT3x4_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4x2_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DOUBLE_MAT4x3_EXT_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F4E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_GEOMETRY_PROGRAM_INVOCATIONS_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F44;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_SUBROUTINE_NUM_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8F45;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT64_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x140E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT64_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x140F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT8_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE0;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT8_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT8_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE2;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT8_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE3;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT16_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE4;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT16_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE5;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT16_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE6;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT16_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE7;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT64_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FE9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT64_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FEA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_INT64_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FEB;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT8_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FEC;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT8_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FED;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT8_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FEE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT8_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FEF;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT16_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF0;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT16_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT16_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF2;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT16_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF3;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT64_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF5;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT64_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF6;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_UNSIGNED_INT64_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF7;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FLOAT16_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF8;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FLOAT16_VEC2_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FF9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FLOAT16_VEC3_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFA;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_FLOAT16_VEC4_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8FFB;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SHADER_GLOBAL_ACCESS_BARRIER_BIT_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x00000010;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_PATCH_ATTRIBS_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x86D8;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_CONTROL_PROGRAM_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x891E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_EVALUATION_PROGRAM_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x891F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_CONTROL_PROGRAM_PARAMETER_BUFFER_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8C74;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_TESS_EVALUATION_PROGRAM_PARAMETER_BUFFER_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8C75;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COVERAGE_SAMPLES_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x80A9;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_COLOR_SAMPLES_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E20;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DATA_BUFFER_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9151;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_PERFORMANCE_MONITOR_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9152;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_QUERY_OBJECT_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9153;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERTEX_ARRAY_OBJECT_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9154;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SAMPLER_OBJECT_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9155;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_DEBUG_LOGGED_MESSAGES_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9144;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_LOGGED_MESSAGES_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9145;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_HIGH_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9146;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_MEDIUM_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9147;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_SEVERITY_LOW_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9148;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_API_ERROR_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9149;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_WINDOW_SYSTEM_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914A;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_DEPRECATION_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914B;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_UNDEFINED_BEHAVIOR_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914C;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_PERFORMANCE_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914D;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_SHADER_COMPILER_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_APPLICATION_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x914F;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEBUG_CATEGORY_OTHER_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x9150;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SURFACE_STATE_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x86EB;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SURFACE_REGISTERED_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x86FD;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_SURFACE_MAPPED_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8700;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_WRITE_DISCARD_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x88BE;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_1_2_get() {
   int jresult ;
   int result;
@@ -43080,6 +46120,36 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_3_1_get() {
 
 
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_3_2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_3_3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_4_0_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_VERSION_4_1_get() {
   int jresult ;
   int result;
   
@@ -43720,6 +46790,276 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_gather_get() {
 
 
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_query_lod_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_shading_language_include_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_compression_bptc_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_blend_func_extended_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_explicit_attrib_location_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_occlusion_query2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_sampler_objects_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_rgb10_a2ui_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_swizzle_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_timer_query_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_vertex_type_2_10_10_10_rev_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_draw_indirect_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_gpu_shader5_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_gpu_shader_fp64_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_shader_subroutine_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_tessellation_shader_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_texture_buffer_object_rgb32_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_transform_feedback2_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_transform_feedback3_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_ES2_compatibility_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_get_program_binary_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_separate_shader_objects_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_vertex_attrib_64bit_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_viewport_array_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_cl_event_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_debug_output_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_robustness_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_ARB_shader_stencil_export_get() {
   int jresult ;
   int result;
   
@@ -46440,6 +49780,156 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_vertex_buffer_unified_memory_get() {
 
 
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_texture_barrier_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_shader_stencil_export_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_seamless_cubemap_per_texture_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_conservative_depth_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_EXT_shader_image_load_store_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_EXT_vertex_attrib_64bit_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_gpu_program5_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_gpu_shader5_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_shader_buffer_store_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_tessellation_program5_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_vertex_attrib_integer_64bit_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_multisample_coverage_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_name_gen_delete_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_debug_output_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_NV_vdpau_interop_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_transform_feedback3_lines_triangles_get() {
   int jresult ;
   int result;
   
