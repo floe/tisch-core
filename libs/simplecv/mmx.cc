@@ -40,7 +40,7 @@
 #elif __i586__ || __i686__ || __tune_i686__ || __i386__
 
 	//#define ASMLOOP "		addl %[inc], %[idx] \n		cmpl %[cnt], %[idx] \n"
-	#define STORAGE ""
+	#define STORAGE 
 	#define ASMINIT "	pushl %%ebx\n"
 	#define ASMEXIT "	popl  %%ebx\n	emms\n"
 
