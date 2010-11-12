@@ -10,7 +10,7 @@
 
 #ifdef __x86_64__
 
-	#define ASMINT static long long int
+	#define ASMINT long long int
 
 #elif __i586__ || __i686__ || __tune_i686__ || __i386__
 
