@@ -33,12 +33,14 @@
 #ifdef __x86_64__
 
 	//#define ASMLOOP "		addq %[inc], %[idx] \n		cmpq %[cnt], %[idx] \n"
+	#define STORAGE static
 	#define ASMINIT "	pushq %%rbx\n"
 	#define ASMEXIT "	popq  %%rbx\n	emms\n"
 
 #elif __i586__ || __i686__ || __tune_i686__ || __i386__
 
 	//#define ASMLOOP "		addl %[inc], %[idx] \n		cmpl %[cnt], %[idx] \n"
+	#define STORAGE 
 	#define ASMINIT "	pushl %%ebx\n"
 	#define ASMEXIT "	popl  %%ebx\n	emms\n"
 
@@ -47,8 +49,8 @@
 
 int mmxintensity( unsigned char* in, ASMINT count ) {
 
-	ASMINT start = 0;
-	int tmp = 0x12345678;
+	STORAGE ASMINT start = 0;
+	STORAGE int tmp = 0x12345678;
 
 	asm(
 
@@ -110,8 +112,8 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 int mmxintensity( unsigned short* in, ASMINT count ) {
 
-	ASMINT start = 0;
-	int tmp = 0x12345678;
+	STORAGE ASMINT start = 0;
+	STORAGE int tmp = 0x12345678;
 
 	asm(
 
@@ -164,7 +166,7 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count ) {
 
-	ASMINT start = 0;
+	STORAGE ASMINT start = 0;
 
 	asm(
 
@@ -199,7 +201,7 @@ void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, AS
 
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count ) {
 
-	ASMINT start = 0;
+	STORAGE ASMINT start = 0;
 
 	asm(
 
@@ -245,7 +247,7 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 	 *   mm7: zero for byte/word unpacking
 	*/
 
-	ASMINT start = 0;
+	STORAGE ASMINT start = 0;
 
 	asm(
 
@@ -359,9 +361,9 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		  [inc] "d" (inc)
 	);*/
 
-	ASMINT start = 0;
-	ASMINT inc   = STEP;
-	ASMINT thr   = thresh;
+	STORAGE ASMINT start = 0;
+	STORAGE ASMINT inc   = STEP;
+	STORAGE ASMINT thr   = thresh;
 
 	asm(
 
@@ -409,7 +411,7 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 	 *   mm6: 8 * (neighbor count threshold)
 	*/
 
-	ASMINT count = linecnt * stride;
+	STORAGE ASMINT count = linecnt * stride;
 
 	asm(
 

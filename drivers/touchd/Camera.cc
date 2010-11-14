@@ -18,6 +18,10 @@
 	#include "V4LImageSource.h"
 #endif
 
+#ifdef HAS_FREENECT
+	#include "KinectImageSource.h"
+#endif
+
 #ifdef HAS_DC1394
 	#include "DCImageSource.h"
 #endif
@@ -61,6 +65,12 @@ Camera::Camera( VideoSettings* vidset, int verbose, const char* videodev, const 
 	#if defined(USE_BIGTOUCH)
 		if (vidset->source == CAMERA_TYPE_BIGTOUCH)
 			cam = new FlatSensorImageSource( vidset->width, vidset->height, "bigtouch.bin", false ); // true );
+		else
+	#endif
+
+	#ifdef HAS_FREENECT
+		if (vidset->source == CAMERA_TYPE_KINECT) 
+			cam = new KinectImageSource( );
 		else
 	#endif
 
