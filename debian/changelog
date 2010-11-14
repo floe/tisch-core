@@ -1,3 +1,10 @@
+libtisch (1.1.2-0ubuntu12~maverick) maverick; urgency=low
+
+  * various smaller bugfixes
+  * new device drivers: Kinect!
+
+ -- Florian Echtler <floe@butterbrot.org>  Sun, 14 Nov 2010 19:25:09 +0100
+
 libtisch (1.1.1-0ubuntu11~maverick) maverick; urgency=low
 
   * touchd: actually uses background update setting now
