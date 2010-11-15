@@ -294,8 +294,8 @@ oscOut << osc::BeginMessage( "/tuio2/alv" )
 
 int main( int argc, char* argv[] ) {
 
-	std::cout << "touchd - libTISCH 1.1 image processing layer" << std::endl;
-	std::cout << "(c) 2008 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
+	std::cout << "(c) 2010 by Florian Echtler <echtler@in.tum.de>" << std::endl;
 
 	// create expected config file path
 	const char* homedir = getenv( "HOME" ); if (!homedir) homedir = "/tmp";

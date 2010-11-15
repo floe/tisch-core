@@ -124,8 +124,8 @@ endif
 ifneq ($(COMMAND),clean)
   libs/simplecv: libs/tools
   libs/simplegl: libs/simplecv
-  drivers/touchd calibd: libs/simplegl
-  drivers/tuio gestured: libs/tools
+  drivers/touchd calibd: libs/simplegl libs/osc
+  drivers/tuio gestured: libs/tools libs/osc
   widgets: libs/simplegl gestured
   $(WRAPPERS): widgets
 endif
