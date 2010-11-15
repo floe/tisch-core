@@ -6,6 +6,7 @@
 
 #include "Settings.h"
 #include <string>
+#include <tinyxml.h>
 
 template< > std::ostream& operator<< <unsigned char>( std::ostream& s, const _Vector<unsigned char>& t ) {
 	return s << (int)t.x << " " << (int)t.y << " " << (int)t.z;
@@ -21,74 +22,110 @@ template< > std::istream& operator>> <unsigned char>( std::istream& s, _Vector<u
 
 std::ostream& operator<<( std::ostream& s, Settings& set ) {
 
-	s << set.name << "\n";
+	TiXmlDocument doc;  
 
-	s << set.camera.apply    << " ";
-	s << set.camera.gain     << " ";
-	s << set.camera.exposure << " ";
-	s << set.camera.flash    << "\n";
+	/*TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "", "" );  
+	doc.LinkEndChild( decl );*/
 
-	s << set.vision.threshold << " ";
-	s << set.vision.invert    << " ";
-	s << set.vision.noise     << " ";
-	s << set.vision.bgfactor  << "\n";
+	TiXmlElement* root = new TiXmlElement( "TISCHSettings" );  
+	doc.LinkEndChild( root );
+	root->SetAttribute( "type", set.name );
 
-	s << set.blob.minsize  << " ";
-	s << set.blob.maxsize  << " ";
-	s << set.blob.gid      << " ";
-	s << set.blob.factor   << " ";
-	s << set.blob.radius   << " ";
-	s << set.blob.peakdist << " ";
-	s << set.blob.cross    << " ";
-	s << set.blob.trail    << "\n";
+	TiXmlElement* cam = new TiXmlElement( "CamSettings" );
+	root->LinkEndChild( cam );
+	cam->SetAttribute( "Apply",    set.camera.apply    );
+	cam->SetAttribute( "Gain",     set.camera.gain     );
+	cam->SetAttribute( "Exposure", set.camera.exposure );
+	cam->SetAttribute( "Flash",    set.camera.flash    );
 
-	s << set.video->width       << " ";
-	s << set.video->height      << " ";
-	s << set.video->fps         << " ";
-	s << set.video->source      << " ";
-	s << set.video->startgain   << " ";
-	s << set.video->startexpo   << " ";
-	s << set.video->startbright << " ";
-	s << set.video->startflash  << std::endl;
+	TiXmlElement* vis = new TiXmlElement( "VisionSettings" );
+	root->LinkEndChild( vis );
+	vis->SetAttribute( "Threshold",   set.vision.threshold );
+	vis->SetAttribute( "Invert",      set.vision.invert    );
+	vis->SetAttribute( "NoiseReduct", set.vision.noise     );
+	vis->SetAttribute( "BkGndFactor", set.vision.bgfactor  );
 
+	TiXmlElement* blob = new TiXmlElement( "BlobSettings" );
+	root->LinkEndChild( blob );
+	blob->SetAttribute( "MinSize",      set.blob.minsize  );
+	blob->SetAttribute( "MaxSize",      set.blob.maxsize  );
+	blob->SetAttribute( "GlobalID",     set.blob.gid      );
+	blob->SetAttribute( "TrackFactor",  set.blob.factor   );
+	blob->SetAttribute( "TrackRadius",  set.blob.radius   );
+	blob->SetAttribute( "PeakDistance", set.blob.peakdist );
+	//blob.SetAttribute( "CrossColor",   set.blob.cross    );
+	//blob.SetAttribute( "TrailColor",   set.blob.trail    );
+
+	TiXmlElement* vid = new TiXmlElement( "VideoSettings" );
+	root->LinkEndChild( vid );
+	vid->SetAttribute( "Width",       set.video->width       );
+	vid->SetAttribute( "Height",      set.video->height      );
+	vid->SetAttribute( "FPS",         set.video->fps         );
+	vid->SetAttribute( "SourceType",  set.video->source      );
+	vid->SetAttribute( "StartGain",   set.video->startgain   );
+	vid->SetAttribute( "StartExpo",   set.video->startexpo   );
+	vid->SetAttribute( "StartBright", set.video->startbright );
+	vid->SetAttribute( "StartFlash",  set.video->startflash  );
+
+	TiXmlPrinter printer;
+	doc.Accept( &printer );
+	s << printer.Str();
 	return s;
 }
 
 
 std::istream& operator>>( std::istream& s, Settings& set ) {
 
-	std::string* tmp = new std::string();
-	s >> *tmp; set.name = tmp->c_str();
+	TiXmlDocument doc;
+	TiXmlHandle hdoc( &doc );
+	s >> doc;
 
-	s >> set.camera.apply;
-	s >> set.camera.gain;
-	s >> set.camera.exposure;
-	s >> set.camera.flash;
+	TiXmlElement* root = hdoc.FirstChildElement().Element();
+	TiXmlHandle hroot( root );
+	if (!root) return s;
 
-	s >> set.vision.threshold;
-	s >> set.vision.invert;
-	s >> set.vision.noise;
-	s >> set.vision.bgfactor;
+	root->QueryStringAttribute( "type", &set.name );
 
-	s >> set.blob.minsize;
-	s >> set.blob.maxsize;
-	s >> set.blob.gid;
-	s >> set.blob.factor;
-	s >> set.blob.radius;
-	s >> set.blob.peakdist;
-	s >> set.blob.cross;
-	s >> set.blob.trail;
+	TiXmlElement* cam = hroot.FirstChild( "CamSettings" ).Element();
+	if (cam) {
+		cam->QueryIntAttribute( "Apply",    &set.camera.apply    );
+		cam->QueryIntAttribute( "Gain",     &set.camera.gain     );
+		cam->QueryIntAttribute( "Exposure", &set.camera.exposure );
+		cam->QueryIntAttribute( "Flash",    &set.camera.flash    );
+	}
 
-	if (!set.video) set.video = new VideoSettings;
+	TiXmlElement* vis = hroot.FirstChild( "VisionSettings" ).Element();
+	if (vis) {
+		vis->QueryIntAttribute   ( "Threshold",   &set.vision.threshold );
+		vis->QueryIntAttribute   ( "Invert",      &set.vision.invert    );
+		vis->QueryIntAttribute   ( "NoiseReduct", &set.vision.noise     );
+		vis->QueryDoubleAttribute( "BkGndFactor", &set.vision.bgfactor  );
+	}
 
-	s >> set.video->width;
-	s >> set.video->height;
-	s >> set.video->fps;
-	s >> set.video->source;
-	s >> set.video->startgain;
-	s >> set.video->startexpo;
-	s >> set.video->startbright;
-	s >> set.video->startflash;
+	TiXmlElement* blob = hroot.FirstChild( "BlobSettings" ).Element();
+	if (blob) {
+		blob->QueryIntAttribute( "MinSize",  &set.blob.minsize  );
+		blob->QueryIntAttribute( "MaxSize",  &set.blob.maxsize  );
+		blob->QueryIntAttribute( "GlobalID", &set.blob.gid      );
+		blob->QueryDoubleAttribute( "TrackFactor",  &set.blob.factor   );
+		blob->QueryDoubleAttribute( "TrackRadius",  &set.blob.radius   );
+		blob->QueryDoubleAttribute( "PeakDistance", &set.blob.peakdist );
+		//blob->QueryIntAttribute( "CrossColor", &set.blob.cross);
+		//blob->QueryIntAttribute( "TrailColor", &set.blob.trail);
+	}
+
+	TiXmlElement* vid  = hroot.FirstChild( "VideoSettings" ).Element();
+	if (vid) {
+		if (!set.video) set.video = new VideoSettings;
+		vid->QueryIntAttribute( "Width",       &set.video->width       );
+		vid->QueryIntAttribute( "Height",      &set.video->height      );
+		vid->QueryIntAttribute( "FPS",         &set.video->fps         );
+		vid->QueryIntAttribute( "SourceType",  &set.video->source      );
+		vid->QueryIntAttribute( "StartGain",   &set.video->startgain   );
+		vid->QueryIntAttribute( "StartExpo",   &set.video->startexpo   );
+		vid->QueryIntAttribute( "StartBright", &set.video->startbright );
+		vid->QueryIntAttribute( "StartFlash",  &set.video->startflash  );
+	}
 
 	return s;
 }

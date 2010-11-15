@@ -49,7 +49,7 @@ struct Settings {
 
 	VideoSettings* video;
 
-	const char* name;
+	std::string name;
 };
 
 std::ostream& operator<<( std::ostream& s, Settings& set );
