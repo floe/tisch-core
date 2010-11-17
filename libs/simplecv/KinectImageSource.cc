@@ -21,18 +21,17 @@
 
 #include "KinectImageSource.h"
 
-extern "C" {
-#include <libfreenect.h>
-}
-
 
 KinectImageSource::KinectImageSource( int debug ) {
 
 	libusb_init( NULL );
 
 	// open the device
-	kdev = libusb_open_device_with_vid_pid( NULL, 0x045E, 0x02AE );
-	if (kdev == 0) throw std::runtime_error( "Kinect USB device not found." );
+	if (freenect_init( &f_ctx, NULL ) < 0)
+		throw std::runtime_error( "freenect_init() failed." );
+
+	if (freenect_open_device( f_ctx, &f_dev, 0 ) < 0) 
+		throw std::runtime_error( "freenect_open_device() failed." );
 
 	pthread_mutex_init( &kinect_lock, NULL );
 	pthread_cond_init(  &kinect_cond, NULL );
@@ -59,24 +58,30 @@ KinectImageSource::~KinectImageSource() {
 
 KinectImageSource* src = 0;
 
-void depth_cb( uint16_t* buf, int width, int height ) {
+void depth_cb( freenect_device* dev, freenect_depth* depth, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
-	memcpy( src->buffers[0]->getData(), buf, width*height*2 );
+	memcpy( src->buffers[0]->getData(), depth, FREENECT_DEPTH_SIZE );
 	pthread_cond_signal( &(src->kinect_cond) );
 	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
-void rgb_cb( uint8_t* buf, int width, int height ) {
+void rgb_cb( freenect_device* dev, freenect_pixel* rgb, uint32_t timestamp ) {
 }
 
 void* kinecthandler( void* arg ) {
 
 	src = (KinectImageSource*)arg;
-	cams_init( src->kdev, depth_cb, rgb_cb );
+
+	freenect_set_depth_callback( src->f_dev, depth_cb );
+	freenect_set_rgb_callback( src->f_dev, rgb_cb );
+	freenect_set_rgb_format( src->f_dev, FREENECT_FORMAT_RGB );
+
+	freenect_start_depth( src->f_dev );
+	freenect_start_rgb( src->f_dev );
 
 	while (src->run) {
-		int res = libusb_handle_events( NULL );
-		if (res != 0) throw std::runtime_error( "error in libusb_handle_event." );
+		int res = freenect_process_events( src->f_ctx );
+		if (res != 0) throw std::runtime_error( "freenect_process_events() failed." );
 	}
 
 	return 0;

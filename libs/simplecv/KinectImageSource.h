@@ -9,7 +9,7 @@
 
 #include <stdexcept> // runtime_error
 #include <pthread.h>
-#include <libusb-1.0/libusb.h>
+#include <libfreenect.h>
 
 #include "ImageSource.h"
 #include "ShortImage.h"
@@ -44,7 +44,8 @@ class KinectImageSource: public ImageSource {
 		void printInfo( int feature = 0 );
 
 		// video device
-		libusb_device_handle* kdev;
+		freenect_context* f_ctx;
+		freenect_device*  f_dev;
 
 		// worker thread
 		pthread_t kinect_thread;
