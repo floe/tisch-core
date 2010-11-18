@@ -49,8 +49,8 @@ ifndef TISCH_CONFIG
       CFLAGS  += -DTISCH_IPHONE
       OS = iPhone
     else
-      LDFLAGS += -framework OpenGL -framework GLUT -arch i386
-      CFLAGS  += -O2 -fno-strict-aliasing -arch i386
+      LDFLAGS += -framework OpenGL -framework GLUT
+      CFLAGS  += -O2 -fno-strict-aliasing
       OS = MacOSX
     endif
     SLFLAGS += -dynamiclib

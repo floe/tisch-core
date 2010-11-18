@@ -17,6 +17,7 @@ ifneq (,$(findstring dc1394,$(LDFLAGS)))
 endif
 
 ifneq (,$(findstring freenect,$(LDFLAGS)))
+  SLFLAGS += -lusb-1.0
   OBJS += KinectImageSource.o
 endif
 

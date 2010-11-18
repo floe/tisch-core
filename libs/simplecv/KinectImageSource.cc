@@ -9,11 +9,13 @@
 #include <sys/stat.h>
 #include <unistd.h> // close
 #include <string.h> // memset
+#ifdef __linux
 #include <error.h>  // errno
+#include <asm/types.h>
+#endif
 #include <errno.h>  // errno
 
 #include <sys/time.h>
-#include <asm/types.h>
 
 #include <cstdio>
 #include <iostream> // cout
