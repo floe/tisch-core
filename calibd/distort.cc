@@ -207,7 +207,9 @@ int main( int argc, char* argv[] ) {
 				sleep(1);
 
 			#else
+			#ifdef __linux
 				src = new V4LImageSource( "/dev/video0", width, height, 30, 1 );
+			#endif
 			#endif
 			glutIdleFunc(idle);
 		}
