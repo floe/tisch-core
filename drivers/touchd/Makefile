@@ -9,7 +9,7 @@ ifdef USE_BIGTOUCH
 endif
 
 APPS=touchd #touchd.prof
-OBJS=touchd.o FlashControl.o ImageSet.o Pipeline.o Blob.o BlobList.o Camera.o Settings.o Filter.o
+OBJS=Pipeline2.o FlashControl.o ImageSet.o Pipeline.o Blob.o BlobList.o Camera.o Settings.o Filter.o
 
 include $(TOPDIR)/scripts/rules.mk
 

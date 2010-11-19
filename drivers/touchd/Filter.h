@@ -22,8 +22,17 @@ class Filter {
 		virtual ~Filter() { delete image; }
 
 		virtual void process() = 0;
-		IntensityImage* getImage() { return image; }
-		double getResult() { return result; }
+
+		void checkImage() {
+			if (!image) {
+				int w = input->getImage()->getWidth();
+				int h = input->getImage()->getHeight();
+				image = new IntensityImage( w, h );
+			}
+		}
+
+		inline IntensityImage* getImage() const { return image; }
+		inline double getResult()  const { return result; }
 
 	protected:
 
@@ -68,7 +77,6 @@ class ThreshFilter: public Filter {
 	public:
 
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual ~ThreshFilter();
 
 		virtual void process();
 
@@ -77,12 +85,11 @@ class ThreshFilter: public Filter {
 		int threshold;
 };
 
-class DespeckleFilter: public Filter {
+class SpeckleFilter: public Filter {
 
 	public:
 
-		DespeckleFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual ~DespeckleFilter();
+		SpeckleFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 
 		virtual void process();
 	
