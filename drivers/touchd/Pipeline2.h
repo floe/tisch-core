@@ -10,7 +10,7 @@
 #include "Filter.h"
 
 
-class Pipeline2: std::vector<Filter*> {
+class Pipeline2: public std::vector<Filter*> {
 
 	public:
 
@@ -20,6 +20,7 @@ class Pipeline2: std::vector<Filter*> {
 		void createFilter( TiXmlElement* config, Filter* parent );
 
 		void process();
+		void reset();
 
 };
 

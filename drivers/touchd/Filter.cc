@@ -11,7 +11,7 @@
 SourceFilter::SourceFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	int sourcetype;
 	//extract source type from config
-	config->QueryIntAttribute( "SourceType" , &sourcetype ); std::cout << sourcetype << std::endl;
+	config->QueryIntAttribute( "SourceType" , &sourcetype ); //std::cout << sourcetype << std::endl;
 	imgsrc = new V4LImageSource("/dev/video0",640,480,30);
 	imgsrc->start();
 	image = new IntensityImage( 640, 480 );
@@ -26,7 +26,7 @@ void SourceFilter::process() {
 	imgsrc->acquire();
 	imgsrc->getImage( *image );
 	imgsrc->release();
-	std::cout << "source" << std::endl;
+	//std::cout << "source" << std::endl;
 }
 
 
@@ -40,9 +40,13 @@ BGSubFilter::~BGSubFilter() {
 	delete background;
 }
 
+void BGSubFilter::reset() {
+	*background = *(input->getImage());
+}
+
 void BGSubFilter::process() {
 	background->subtract( *(input->getImage()), *image, invert );
-	std::cout << "bgsub" << std::endl;
+	//std::cout << "bgsub" << std::endl;
 }
 
 
@@ -53,7 +57,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 
 void ThreshFilter::process() {
 	input->getImage()->threshold( threshold, *image );
-	std::cout << "thresh" << std::endl;
+	//std::cout << "thresh" << std::endl;
 }
 
 
@@ -64,6 +68,6 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 
 void SpeckleFilter::process() {
 	input->getImage()->despeckle( *image, noisecount );
-	std::cout << "speckle" << std::endl;
+	//std::cout << "speckle" << std::endl;
 }
 

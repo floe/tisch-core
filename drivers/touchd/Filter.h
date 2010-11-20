@@ -22,6 +22,7 @@ class Filter {
 		virtual ~Filter() { delete image; }
 
 		virtual void process() = 0;
+		virtual void reset() { }
 
 		void checkImage() {
 			if (!image) {
@@ -65,6 +66,7 @@ class BGSubFilter: public Filter {
 		virtual ~BGSubFilter();
 
 		virtual void process();
+		virtual void reset();
 
 	protected:
 

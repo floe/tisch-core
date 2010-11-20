@@ -38,3 +38,8 @@ void Pipeline2::process() {
 		(*filter)->process();
 }
 
+void Pipeline2::reset() {
+	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
+		(*filter)->reset();
+}
+
