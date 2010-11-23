@@ -37,6 +37,7 @@ Calibration::Calibration( int v ): verbose(v) {
 	coeff[1] = 0.0;
 	coeff[2] = 0.0;
 	coeff[3] = 0.0;
+	coeff[4] = 0.0;
 }
 
 void Calibration::reset( ) {
@@ -165,14 +166,14 @@ void Calibration::calculate( std::vector< ::Vector >& image, std::vector< ::Vect
 	if (homography_corrs == image.size()) return;
 }
 
-void Calibration::set( double _coeff[4], ::Vector _delta, ::Vector _scale ) {
-	for (int i = 0; i < 4; i++) coeff[i] = _coeff[i];
+void Calibration::set( double _coeff[5], ::Vector _delta, ::Vector _scale ) {
+	for (int i = 0; i < 5; i++) coeff[i] = _coeff[i];
 	delta = _delta;
 	scale = _scale;
 }
 
-void Calibration::get( double _coeff[4], ::Vector& _delta, ::Vector& _scale ) {
-	for (int i = 0; i < 4; i++) _coeff[i] = coeff[i];
+void Calibration::get( double _coeff[5], ::Vector& _delta, ::Vector& _scale ) {
+	for (int i = 0; i < 5; i++) _coeff[i] = coeff[i];
 	_delta = delta;
 	_scale = scale;
 }

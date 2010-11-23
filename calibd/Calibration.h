@@ -13,23 +13,30 @@
 #include "BasicBlob.h"
 
 
-inline void undistort( ::Vector& vec, ::Vector scale, ::Vector delta, const double coeff[4] ) {
+inline void undistort( ::Vector& vec, ::Vector scale, ::Vector delta, const double coeff[5] ) {
 
 		// normalize vector
 		::Vector temp = vec;
+		temp = temp - delta;
 		temp.x /= scale.x;
 		temp.y /= scale.y;
-		temp = temp - delta;
+
+		::Vector result;
 
 		// perform undistortion. note: according to the Matlab camera calibration toolbox
 		// and the paper by Zhang, the 2nd and 4th order coefficients are most important.
 		double len = temp.length();
-		temp = temp * ( coeff[0] / ( 1 + coeff[1]*len + coeff[2]*len*len + coeff[3]*len*len*len*len ) );
+		double p2  = len*len;
+		double p4  = p2*p2;
+		double p6  = p2*p4;
+		result.x = temp.x * ( 1 + coeff[0]*p2 + coeff[1]*p4 + coeff[4]*p6 ) + 2*coeff[2]*temp.x*temp.y + coeff[3]*(p2+2*temp.x*temp.x);
+		result.y = temp.y * ( 1 + coeff[0]*p2 + coeff[1]*p4 + coeff[4]*p6 ) + coeff[2]*(p2+2*temp.x*temp.x) + 2*coeff[3]*temp.x*temp.y;
+		temp = result;
 
 		// scale back to original
-		temp = temp + delta;
 		temp.x *= scale.x;
 		temp.y *= scale.y;
+		temp = temp + delta;
 		vec = temp;
 }
 
@@ -56,8 +63,8 @@ class Calibration {
 
 		void calculate( std::vector< ::Vector >& image, std::vector< ::Vector >& screen, unsigned int homography_corrs = 0 );
 
-		void set( double _coeff[4], ::Vector  _delta, ::Vector  _scale );
-		void get( double _coeff[4], ::Vector& _delta, ::Vector& _scale );
+		void set( double _coeff[5], ::Vector  _delta, ::Vector  _scale );
+		void get( double _coeff[5], ::Vector& _delta, ::Vector& _scale );
 
 	private:
 
@@ -65,7 +72,7 @@ class Calibration {
 		double mat[9];
 		::Vector delta;
 		::Vector scale;
-		double coeff[4];
+		double coeff[5];
 		std::string name;
 };
 

@@ -44,7 +44,7 @@ class TISCH_SHARED IntensityImage: public Image {
 
 		long long int integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol = 255, unsigned char newcol = 0 );
 
-		void undistort( Vector scale, Vector delta, double coeff[4], IntensityImage& target ) const;
+		void undistort( Vector scale, Vector delta, double coeff[5], IntensityImage& target ) const;
 
 		void despeckle( IntensityImage& target, unsigned char threshold = 8 ) const;
 		void houghLine( IntensityImage& target ) const;

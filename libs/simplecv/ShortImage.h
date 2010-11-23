@@ -28,6 +28,10 @@ class TISCH_SHARED ShortImage: public Image {
 		void convert( IntensityImage& img );
 
 		int intensity() const;
+		void undistort( Vector scale, Vector delta, double coeff[5], ShortImage& target ) const;
+
+		unsigned short getPixel(int x, int y) const; 
+		void setPixel(int x, int y, unsigned short value);
 
 	private:
 

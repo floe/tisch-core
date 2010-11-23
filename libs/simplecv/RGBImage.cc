@@ -4,6 +4,8 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#include <Calibration.h>
+
 #include "RGBImage.h"
 
 #include <fstream>
@@ -78,5 +80,24 @@ std::ostream& operator<<( std::ostream& s, const RGBImage& i ) {
 	s << "P6 " << i.width << " " << i.height << " 255 ";
 	s.write( (char*)i.data, i.size );
 	return s;	
+}
+
+void RGBImage::undistort( Vector scale, Vector delta, double coeff[5], RGBImage& target ) const {
+
+	Vector temp;
+	target.clear();
+
+	for (int u = 0; u < width; u++) for (int v = 0; v < height; v++) {
+
+		temp = Vector( u, v, 0 );
+		::undistort( temp, scale, delta, coeff );
+
+		if ((temp.x < 0) || (temp.x >=  width)) continue;
+		if ((temp.y < 0) || (temp.y >= height)) continue;
+
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, R ), R );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, G ), G );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, B ), B );
+	}
 }
 

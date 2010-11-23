@@ -439,19 +439,19 @@ int IntensityImage::threshold( unsigned char value, IntensityImage& target ) con
 }
 
 
-void IntensityImage::undistort( Vector scale, Vector delta, double coeff[4], IntensityImage& target ) const {
+void IntensityImage::undistort( Vector scale, Vector delta, double coeff[5], IntensityImage& target ) const {
 
 	Vector temp;
 	target.clear();
 
-	for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
+	for (int u = 0; u < width; u++) for (int v = 0; v < height; v++) {
 
-		temp = Vector( x, y, 0 );
+		temp = Vector( u, v, 0 );
 		::undistort( temp, scale, delta, coeff );
 
 		if ((temp.x < 0) || (temp.x >=  width)) continue;
 		if ((temp.y < 0) || (temp.y >= height)) continue;
-		target.setPixel( (int)temp.x, (int)temp.y, getPixel(x,y) );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y ) );
 	}
 }
 

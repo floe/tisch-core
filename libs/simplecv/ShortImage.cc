@@ -4,8 +4,13 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#include <Calibration.h>
+
 #include "ShortImage.h"
 #include "mmx.h"
+
+unsigned short ShortImage::getPixel(int x, int y) const { return ((unsigned short*)data)[(y*width)+x]; }
+void ShortImage::setPixel(int x, int y, unsigned short value) { ((unsigned short*)data)[(y*width)+x] = value; }
 
 ShortImage::ShortImage( int w, int h ): Image( w, h, sizeof(unsigned short) ) { sdata = (unsigned short*)data; }
 ShortImage::ShortImage( const ShortImage& img ): Image( img ) { sdata = (unsigned short*)data; }
@@ -86,5 +91,22 @@ int ShortImage::intensity() const {
 	#else
 		return mmxintensity( sdata, count );
 	#endif
+}
+
+void ShortImage::undistort( Vector scale, Vector delta, double coeff[5], ShortImage& target ) const {
+
+	Vector temp;
+	target.clear();
+
+	for (int u = 0; u < width; u++) for (int v = 0; v < height; v++) {
+
+		temp = Vector( u, v, 0 );
+		::undistort( temp, scale, delta, coeff );
+
+		if ((temp.x < 0) || (temp.x >=  width)) continue;
+		if ((temp.y < 0) || (temp.y >= height)) continue;
+
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y ) );
+	}
 }
 

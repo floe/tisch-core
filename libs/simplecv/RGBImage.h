@@ -34,6 +34,8 @@ class TISCH_SHARED RGBImage: public Image {
 		void setPixel(int x, int y, unsigned char value, int channel);
 		void setPixel(int x, int y, unsigned char r, unsigned char g, unsigned char b );
 
+		void undistort( Vector scale, Vector delta, double coeff[5], RGBImage& target ) const; 
+
 };
 
 std::ostream& operator<<( std::ostream& s, const RGBImage& i );
