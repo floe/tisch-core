@@ -13,9 +13,7 @@
 
 #include "ImageSource.h"
 #include "ShortImage.h"
-
-
-#define KINECT_BUFCOUNT 2
+#include "RGBImage.h"
 
 
 class KinectImageSource: public ImageSource {
@@ -55,7 +53,8 @@ class KinectImageSource: public ImageSource {
 
 		// buffer management
 		int bufcount, current;
-		ShortImage* buffers[KINECT_BUFCOUNT];
+		ShortImage* depthbuf;
+		RGBImage* rgbbuf;
 
 		pthread_mutex_t kinect_lock;
 		pthread_cond_t  kinect_cond;

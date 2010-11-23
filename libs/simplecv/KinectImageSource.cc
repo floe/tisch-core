@@ -43,10 +43,8 @@ KinectImageSource::KinectImageSource( int debug ) {
 	fps    =  30;
 	run    =   1;
 
-	for (int i = 0; i < KINECT_BUFCOUNT; i++) {
-		buffers[i] = new ShortImage( width, height );
-		memset( buffers[i]->getData(), 128, width*height*2 );
-	}
+	depthbuf = new ShortImage( width, height );
+	rgbbuf   = new RGBImage( width, height );
 
 	start();
 }
@@ -54,7 +52,8 @@ KinectImageSource::KinectImageSource( int debug ) {
 KinectImageSource::~KinectImageSource() {
 	stop();
 	pthread_join( kinect_thread, NULL );
-	for (int i = 0; i < KINECT_BUFCOUNT; i++) delete buffers[i];
+	delete depthbuf;
+	delete rgbbuf;
 }
 
 
@@ -62,12 +61,16 @@ KinectImageSource* src = 0;
 
 void depth_cb( freenect_device* dev, freenect_depth* depth, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
-	memcpy( src->buffers[0]->getData(), depth, FREENECT_DEPTH_SIZE );
+	memcpy( src->depthbuf->getData(), depth, FREENECT_DEPTH_SIZE );
 	pthread_cond_signal( &(src->kinect_cond) );
 	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
 void rgb_cb( freenect_device* dev, freenect_pixel* rgb, uint32_t timestamp ) {
+	pthread_mutex_lock( &(src->kinect_lock) );
+	memcpy( src->rgbbuf->getData(), rgb, FREENECT_RGB_SIZE );
+	pthread_cond_signal( &(src->kinect_cond) );
+	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
 void* kinecthandler( void* arg ) {
@@ -112,7 +115,7 @@ void KinectImageSource::release() {
 
 
 void KinectImageSource::getImage( IntensityImage& target ) const {
-	uint16_t* srce = (uint16_t*)buffers[0]->getData();
+	uint16_t* srce = (uint16_t*)depthbuf->getData();
 	uint8_t*  targ = (uint8_t*)target.getData();
 	for (int i = 0; i < width*height; i++) {
 		// the depth sensor is actually 11 bits - 2047 == too near/too far
@@ -122,15 +125,18 @@ void KinectImageSource::getImage( IntensityImage& target ) const {
 }
 
 void KinectImageSource::getImage( ShortImage& target ) const {
-	uint16_t* srce = (uint16_t*)buffers[0]->getData();
+	target = *depthbuf;
+	/*uint16_t* srce = (uint16_t*)depthbuf->getData();
 	uint16_t* targ = (uint16_t*)target.getData();
 	for (int i = 0; i < width*height; i++) {
 		// the depth sensor is actually 11 bits - 2047 == too near/too far
 		targ[i] = srce[i] << 5;
-	}
+	}*/
 }
 
-void KinectImageSource::getImage( RGBImage& target ) const { }
+void KinectImageSource::getImage( RGBImage& target ) const {
+	target = *rgbbuf;
+}
 
 
 void KinectImageSource::setGain( int gain ) { }
