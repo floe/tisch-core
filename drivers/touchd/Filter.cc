@@ -40,12 +40,18 @@ BGSubFilter::~BGSubFilter() {
 	delete background;
 }
 
+void BGSubFilter::link( Filter* _mask ) {
+	mask = _mask;
+}
+
 void BGSubFilter::reset() {
 	*background = *(input->getImage());
 }
 
 void BGSubFilter::process() {
 	background->subtract( *(input->getImage()), *image, invert );
+	background->update( *(input->getImage()), *(mask->getImage()) );
+	result = background->intensity();
 	//std::cout << "bgsub" << std::endl;
 }
 

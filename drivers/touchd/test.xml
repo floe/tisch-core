@@ -1,0 +1,12 @@
+<SourceFilter SourceType=122>
+	<BGSubFilter>
+		<ThreshFilter>
+			<SpeckleFilter/>
+		</ThreshFilter>
+	</BGSubFilter>
+	<BGSubFilter>
+		<ThreshFilter>
+			<SpeckleFilter/>
+		</ThreshFilter>
+	</BGSubFilter>
+</SourceFilter>

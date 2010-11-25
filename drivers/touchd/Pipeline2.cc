@@ -8,6 +8,12 @@
 
 Pipeline2::Pipeline2( TiXmlElement* _config ) {
 	createFilter( _config, 0 );
+	Filter* last = 0;
+	for (std::vector<Filter*>::reverse_iterator filter = rbegin(); filter != rend(); filter++) {
+		// background subtraction needs a forward link to the final output of the chain
+		if (dynamic_cast<SpeckleFilter*>(*filter) != 0) { last = *filter; std::cout << "speckle" << std::endl; }
+		if (dynamic_cast<BGSubFilter*>(*filter) != 0) { (*filter)->link(last); std::cout << "bgsub" << std::endl; }
+	}
 }
 
 void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {

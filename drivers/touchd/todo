@@ -1,0 +1,5 @@
+bloblist->filter
+camera:filter
+split-filter
+
+int process() == 0 -> abort pipeline

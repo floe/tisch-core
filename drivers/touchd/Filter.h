@@ -23,6 +23,7 @@ class Filter {
 
 		virtual void process() = 0;
 		virtual void reset() { }
+		virtual void link( Filter* _link )  { }
 
 		void checkImage() {
 			if (!image) {
@@ -68,9 +69,12 @@ class BGSubFilter: public Filter {
 		virtual void process();
 		virtual void reset();
 
+		virtual void link( Filter* _mask );
+
 	protected:
 
 		ShortImage* background;
+		Filter* mask;
 		int invert;
 };
 
