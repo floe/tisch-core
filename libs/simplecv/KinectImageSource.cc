@@ -59,7 +59,7 @@ KinectImageSource::~KinectImageSource() {
 
 KinectImageSource* src = 0;
 
-void depth_cb( freenect_device* dev, freenect_depth* depth, uint32_t timestamp ) {
+void depth_cb( freenect_device* dev, void* depth, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
 	memcpy( src->depthbuf->getData(), depth, FREENECT_DEPTH_SIZE );
 	pthread_cond_signal( &(src->kinect_cond) );
