@@ -23,7 +23,7 @@ class TISCH_SHARED IntensityImage: public Image {
 
 	public:
 
-		IntensityImage( int w, int h ): Image( w, h, 1 ) { }
+		IntensityImage( int w, int h, key_t key = 0, unsigned long long int flags = 0 ): Image( w, h, 1, key, flags ) { }
 		IntensityImage( const IntensityImage& img ): Image( img ) { }
 		IntensityImage( const char* path );
 

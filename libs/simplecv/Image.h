@@ -30,12 +30,7 @@
 
 #elif _MSC_VER
 
-	#define munmap(a,b)
-	#define mmap(a,b,c,d,e,f) 0
 	#define key_t int
-	#define F_GETFL 0
-	#define MAP_FAILED 0
-	#define fcntl(a,b) -1
 
 #endif
 
@@ -69,12 +64,16 @@ class TISCH_SHARED Image {
 				// no key given, so simply delete the image
 				delete[] rawdata;
 				
-			} else if (shm == 0) {
+			}
+			
+			#ifndef _MSC_VER
+
+			else if (shm == 0) {
 
 				// we used mmap, so detach again
 				munmap( data, size );
 
-			} /*else {
+			} else {
 
 				struct shmid_ds shmstat;
 				
@@ -86,7 +85,9 @@ class TISCH_SHARED Image {
 				  shmctl( shm, IPC_RMID, &shmstat );
 				  semctl( sem, 0, IPC_RMID );
 				}
-			}*/
+			}
+
+			#endif
 		}
 
 		Image& operator= ( const Image& img ) {
@@ -110,8 +111,12 @@ class TISCH_SHARED Image {
 		inline void timestamp( unsigned long long int val ) { imgtime = val; }
 		inline unsigned long long int timestamp() { return imgtime; }
 
-		/*inline int acquire() { return do_sem( -1 ); }
-		inline int release() { return do_sem( +1 ); }*/
+		#ifndef _MSC_VER
+
+		inline int acquire() { return do_sem( -1 ); }
+		inline int release() { return do_sem( +1 ); }
+
+		#endif
 		
 	protected:
 
@@ -148,16 +153,18 @@ class TISCH_SHARED Image {
 				// uncomment for debugging to make valgrind happy (doesn't know mmap)
 				// for (int i = 0; i < size; i++) rawdata[i] = 0;
 
-			} else if (fcntl( key, F_GETFL ) != -1) {
+			}
 
-				#if __linux
+			#ifndef _MSC_VER
+
+			else if (fcntl( key, F_GETFL ) != -1) {
+
 				// key is a file descriptor, so use mmap with flags == struct v4l2_buffer* giving offset & size
 				struct v4l2_buffer* tmpbuf = (struct v4l2_buffer*)_flags;
 				data = (unsigned char*) mmap( NULL, tmpbuf->length, PROT_READ | PROT_WRITE, MAP_SHARED, key, tmpbuf->m.offset );
 				if (data == MAP_FAILED) throw std::runtime_error( std::string("mmap: ").append(strerror(errno)) );
-				#endif
 
-			} /*else {
+			} else {
 				
 				// flag setting '1' doesn't make sense, replace with default values
 			 	if (flags	== 1) flags = (IPC_CREAT | 0666);
@@ -166,23 +173,27 @@ class TISCH_SHARED Image {
 				if (flags | IPC_CREAT) flags |= IPC_EXCL;
 
 				// key is a IPC id, so create/retrieve segment and semaphore handles
+				std::cout << "calling shmget " << key << " " << size << " " << flags << std::endl;
 				shm = shmget( key, size, flags );
+				std::cout << "got id: " << shm << std::endl;
 				sem = semget( key,    1, flags );
 
 				// attach segment and check for errors
 				data = (unsigned char*) shmat( shm, 0, 0 );
-				if ((int) data == -1) throw std::runtime_error( std::string("shmat: ") + std::string(strerror(errno)) );
+				if (data == (void*)-1) throw std::runtime_error( std::string("shmat: ") + std::string(strerror(errno)) );
 				
 				// set semaphore value to 1 if it was newly created
 				if (flags | IPC_CREAT) semctl( sem, 0, SETVAL, 1 );
-			}*/
+			}
 		}
 
 		// wrapper for semaphore access
-		/*inline int do_sem( int val ) {
+		inline int do_sem( int val ) {
 			struct sembuf sem_op = { 0, val, 0 };
 			return semop( sem, &sem_op, 1 );
-		}*/
+		}
+
+		#endif
 		
 		// image parameters
 		int width, height, bpp, size, count;
