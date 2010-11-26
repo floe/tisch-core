@@ -45,20 +45,6 @@ class Filter {
 };
 
 
-class SourceFilter: public Filter {
-
-	public:
-		
-		SourceFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual ~SourceFilter();
-
-		virtual void process();
-
-	protected:
-
-		ImageSource* imgsrc;
-};
-
 class BGSubFilter: public Filter {
 
 	public:

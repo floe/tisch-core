@@ -8,8 +8,8 @@ ifdef USE_BIGTOUCH
   LDFLAGS += -lusb -lpthread $(shell pkg-config --libs opencv)
 endif
 
-APPS=touchd pipetest #touchd.prof
-OBJS=Pipeline2.o FlashControl.o ImageSet.o Pipeline.o Blob.o BlobList.o Camera.o Settings.o Filter.o
+APPS=pipetest #touchd.prof
+OBJS=Pipeline2.o FlashControl.o ImageSet.o Blob.o BlobList.o Camera.o Settings.o Filter.o
 
 include $(TOPDIR)/scripts/rules.mk
 

@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -48,36 +48,61 @@ void dump_plot( int in[], const char* name ) {
 }*/
 
 
-Camera::Camera( VideoSettings* vidset, int verbose, const char* videodev, const char* ctrlport ) {
+Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+
+	// generic low-end default settings
+	width = 640; height = 480; fps = 30;
+	sourcetype = __linux ? CAMERA_TYPE_V4L : CAMERA_TYPE_DIRECTSHOW;
+	sourcepath = "/dev/video0";
+
+	// try to read settings from XML
+	config->QueryIntAttribute   ( "SourceType", &sourcetype );
+	config->QueryStringAttribute( "SourcePath", &sourcepath );
+
+	config->QueryIntAttribute   ( "FlashMode",  &flashmode );
+	config->QueryStringAttribute( "FlashPath",  &flashpath );
+
+	config->QueryIntAttribute( "Width",  &width  );
+	config->QueryIntAttribute( "Height", &height );
+	config->QueryIntAttribute( "FPS",    &fps    );
+
+	config->QueryIntAttribute( "Gain",       &gain   );
+	config->QueryIntAttribute( "Exposure",   &expo   );
+	config->QueryIntAttribute( "Brightness", &bright );
+
+	config->QueryIntAttribute( "Verbose", &verbose );
+
+	// create image buffer
+	image = new IntensityImage( width, height );
 
 	#ifdef _MSC_VER
-		if (vidset->source == CAMERA_TYPE_DIRECTSHOW) 
-			cam = new DirectShowImageSource( vidset->width, vidset->height, videodev, verbose );
+		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
+			cam = new DirectShowImageSource( width, height, sourcepath, verbose );
 		else
 	#endif
 
 	#ifdef __linux
-		if (vidset->source == CAMERA_TYPE_V4L) 
-			cam = new V4LImageSource( videodev, vidset->width, vidset->height, vidset->fps, verbose );
+		if (sourcetype == CAMERA_TYPE_V4L) 
+			cam = new V4LImageSource( sourcepath, width, height, fps, verbose );
 		else
 	#endif
 
 	#if defined(USE_BIGTOUCH)
-		if (vidset->source == CAMERA_TYPE_BIGTOUCH)
-			cam = new FlatSensorImageSource( vidset->width, vidset->height, "bigtouch.bin", false ); // true );
+		if (sourcetype == CAMERA_TYPE_BIGTOUCH)
+			cam = new FlatSensorImageSource( width, height, "bigtouch.bin", false ); // true );
 		else
 	#endif
 
 	#ifdef HAS_FREENECT
-		if (vidset->source == CAMERA_TYPE_KINECT) 
+		if (sourcetype == CAMERA_TYPE_KINECT) 
 			cam = new KinectImageSource( );
 		else
 	#endif
 
 	#ifdef HAS_DC1394
-		if (vidset->source == CAMERA_TYPE_DC1394) {
+		if (sourcetype == CAMERA_TYPE_DC1394) {
 
-			DCImageSource* dccam = new DCImageSource( vidset->width, vidset->height, vidset->fps, 0, verbose );
+			DCImageSource* dccam = new DCImageSource( width, height, fps, 0, verbose );
 			cam = dccam;
 
 			// switch GPIO0-3 to output
@@ -110,11 +135,11 @@ Camera::Camera( VideoSettings* vidset, int verbose, const char* videodev, const 
 
 		throw std::runtime_error( "Error: unknown camera type requested." );
 
+	// disable auto exposure, set other parameters
 	cam->setExposure( IMGSRC_OFF );
-
-	cam->setBrightness( vidset->startbright );
-	cam->setShutter( vidset->startexpo );
-	cam->setGain( vidset->startgain );
+	cam->setBrightness( bright );
+	cam->setShutter( expo );
+	cam->setGain( gain );
 
 	#ifdef HAS_DC1394
 		if (verbose) {
@@ -125,49 +150,36 @@ Camera::Camera( VideoSettings* vidset, int verbose, const char* videodev, const 
 		}
 	#endif
 
-	#if defined(USE_BIGTOUCH)
-		cam->start();
-	#endif
-
+	// try to create a flash control instance
 	try {
-		flash = new FlashControl( ctrlport );
-		flash->set( vidset->startflash );
+		flash = new FlashControl( flashpath.c_str() );
+		flash->set( flashmode );
 	} catch (...) {
 		std::cout << "Warning: unable to control flash." << std::endl;
 		flash = 0;
 	}
+
+	cam->start();
 }
 
 
 Camera::~Camera() {
-	#if defined(USE_BIGTOUCH)
-		cam->stop();
-	#endif
+
+	cam->stop();
 
 	delete flash;
 	delete cam;
 }
 
 
-void Camera::apply( CameraSettings* camset ) {
-	// adjust camera settings once
-	if (camset->apply) {
-		cam->setShutter( camset->exposure );
-		cam->setGain( camset->gain );
-		flash->set( camset->flash );
-		camset->apply = 0;
-	}
-}
+void Camera::process() {
 
-
-void Camera::acquire( IntensityImage* target ) {
-
-	// get the image, try again on error..
+	// get the image, retry on error
 	int res = cam->acquire();
 	if (!res) cam->acquire();
 
 	// retrieve image, release buffer and return
-	cam->getImage( *target );
+	cam->getImage( *image );
 	cam->release();
 }
 

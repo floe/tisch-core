@@ -6,29 +6,6 @@
 
 #include "Filter.h"
 
-#include "V4LImageSource.h"
-
-SourceFilter::SourceFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	int sourcetype;
-	//extract source type from config
-	config->QueryIntAttribute( "SourceType" , &sourcetype ); //std::cout << sourcetype << std::endl;
-	imgsrc = new V4LImageSource("/dev/video0",640,480,30);
-	imgsrc->start();
-	image = new IntensityImage( 640, 480 );
-}
-
-SourceFilter::~SourceFilter() {
-	imgsrc->stop();
-	delete imgsrc;
-}
-
-void SourceFilter::process() {
-	imgsrc->acquire();
-	imgsrc->getImage( *image );
-	imgsrc->release();
-	//std::cout << "source" << std::endl;
-}
-
 
 BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();

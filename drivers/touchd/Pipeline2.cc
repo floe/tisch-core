@@ -5,6 +5,7 @@
 \*************************************************************************/
 
 #include "Pipeline2.h"
+#include "Camera.h"
 
 Pipeline2::Pipeline2( TiXmlElement* _config ) {
 	createFilter( _config, 0 );
@@ -21,7 +22,7 @@ void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {
 	std::string type = config->Value();
 	Filter* filter = 0;
 
-	if (type ==  "SourceFilter") filter = new  SourceFilter( config, parent );
+	if (type ==        "Camera") filter = new        Camera( config, parent );
 	if (type ==   "BGSubFilter") filter = new   BGSubFilter( config, parent );
 	if (type ==  "ThreshFilter") filter = new  ThreshFilter( config, parent );
 	if (type == "SpeckleFilter") filter = new SpeckleFilter( config, parent );
