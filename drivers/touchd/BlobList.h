@@ -17,7 +17,6 @@
 #include "ip/UdpSocket.h"
 
 
-
 class BlobList: public Filter {
 
 	friend std::ostream& operator<<( std::ostream& s, BlobList& l );
@@ -29,17 +28,22 @@ class BlobList: public Filter {
 
 		virtual void reset();
 		virtual void process();
-		virtual void link( Filter* _link );
 
-		void draw( GLUTWindow* win );
+		virtual void draw( GLUTWindow* win );
+		virtual void link( Filter* _link   );
 
-		int  getID( unsigned char value );
-		void correlate( );
 		void sendBlobs( osc::OutboundPacketStream& oscOut );
 
-	private:
+	protected:
 
-		BlobSettings settings;
+		int getID( unsigned char value );
+
+		double factor, radius, peakdist; // tracking settings
+		int minsize, maxsize, gid;       // blob detection settings
+
+		Color cross, trail; // display settings
+		const char* name;
+
 		BlobList* parent;
 
 		std::vector<Blob>* blobs;

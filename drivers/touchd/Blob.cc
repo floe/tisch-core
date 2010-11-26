@@ -14,9 +14,9 @@
 
 
 // create a blob starting at point seed in image. throws std::exception when below minsize.
-Blob::Blob( IntensityImage* image, Point seed, unsigned char _value, BlobSettings* set ) {
+Blob::Blob( IntensityImage* image, Point seed, unsigned char _value, int gid, int minsize, int maxsize ) {
 
-	id = set->gid;
+	id = gid;
 	value = _value;
 	tracked = pid = 0;
 
@@ -24,7 +24,7 @@ Blob::Blob( IntensityImage* image, Point seed, unsigned char _value, BlobSetting
 	size = (int)image->integrate( seed, pos, axis1, axis2, 255, value );
 
 	// if the spot is too small, wipe it out and abort
-	if ( (size < set->minsize) || ((set->maxsize != 0) && (size > set->maxsize)) ){
+	if ( (size < minsize) || ((maxsize != 0) && (size > maxsize)) ){
 		image->integrate( seed, pos, axis1, axis2, value, 0 );
 		throw std::exception();
 	}

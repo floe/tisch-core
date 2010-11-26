@@ -10,13 +10,6 @@
 #include <IntensityImage.h>
 #include <BasicBlob.h>
 
-struct BlobSettings {
-	int minsize, maxsize, gid;
-	double factor, radius, peakdist;
-	const char* name;
-	Color cross;
-	Color trail;
-};
 
 class Blob: public BasicBlob {
 
@@ -24,11 +17,11 @@ class Blob: public BasicBlob {
 
 	public:
 
-		Blob( IntensityImage* image, Point seed, unsigned char value, BlobSettings* set );
+		Blob( IntensityImage* image, Point seed, unsigned char value, int gid, int minsize, int maxsize );
 
 		unsigned char scan( IntensityImage* image, double factor );
 
-		void setPeak( IntensityImage* image, double factor = 1.4, double maxdist = 100 );
+		void setPeak( IntensityImage* image, double factor, double maxdist );
 
 };
 

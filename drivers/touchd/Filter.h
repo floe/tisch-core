@@ -9,7 +9,7 @@
 
 #include <tinyxml.h>
 
-#include "ImageSource.h"
+#include "GLUTWindow.h"
 #include "ShortImage.h"
 #include "IntensityImage.h"
 
@@ -23,7 +23,9 @@ class Filter {
 
 		virtual void process() = 0;
 		virtual void reset() { }
-		virtual void link( Filter* _link )  { }
+
+		virtual void draw( GLUTWindow* win ) { win->show( *image, 0, 0 ); }
+		virtual void link( Filter* _link   ) { }
 
 		void checkImage() {
 			if (!image) {
@@ -46,47 +48,31 @@ class Filter {
 
 
 class BGSubFilter: public Filter {
-
 	public:
-
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual ~BGSubFilter();
-
 		virtual void process();
 		virtual void reset();
-
 		virtual void link( Filter* _mask );
-
 	protected:
-
 		ShortImage* background;
 		Filter* mask;
 		int invert;
 };
 
 class ThreshFilter: public Filter {
-
 	public:
-
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-
 		virtual void process();
-
 	protected:
-
 		int threshold;
 };
 
 class SpeckleFilter: public Filter {
-
 	public:
-
 		SpeckleFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-
 		virtual void process();
-	
 	protected:
-
 		int noiselevel;
 };
 

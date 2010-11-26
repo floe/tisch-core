@@ -40,7 +40,6 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 
 void ThreshFilter::process() {
 	input->getImage()->threshold( threshold, *image );
-	//std::cout << "thresh" << std::endl;
 }
 
 
@@ -52,6 +51,5 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 
 void SpeckleFilter::process() {
 	input->getImage()->despeckle( *image, noiselevel );
-	//std::cout << "speckle" << std::endl;
 }
 

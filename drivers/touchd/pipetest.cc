@@ -5,7 +5,7 @@ int width  = 640;
 int height = 480;
 
 GLUTWindow* win;
-IntensityImage* tmp = 0;
+Filter* tmp = 0;
 Pipeline2* mypipe = 0;
 
 int curframe = 0;
@@ -26,7 +26,10 @@ void disp() {
 	win->clear( );
 	win->mode2D();
 
-	if (tmp) win->show( *tmp, 0, 0 );
+	glColor4f( 1.0, 0.0, 0.0, 1.0 ); 
+	win->print( "foobar", 5, 5 );
+
+	if (tmp) tmp->draw( win );
 	win->swap( );
 }
 
@@ -38,7 +41,7 @@ void keyb( unsigned char c, int, int ) {
 	if ((c >= '0') && (c <= '9')) {
 		c = c - '0';
 		if (c < mypipe->size())
-			tmp = (*mypipe)[c]->getImage();
+			tmp = (*mypipe)[c];
 	}
 
 	glutPostRedisplay();
