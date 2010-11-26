@@ -35,12 +35,11 @@ void keyb( unsigned char c, int, int ) {
 	if (c == 'q') exit(0);
 	if (c == ' ') mypipe->reset();
 
-	if (c == '1') tmp = (*mypipe)[0]->getImage();
-	if (c == '2') tmp = (*mypipe)[1]->getImage();
-	if (c == '3') tmp = (*mypipe)[2]->getImage();
-	if (c == '4') tmp = (*mypipe)[3]->getImage();
-	if (c == '5') tmp = (*mypipe)[4]->getImage();
-	if (c == '6') tmp = (*mypipe)[5]->getImage();
+	if ((c >= '0') && (c <= '9')) {
+		c = c - '0';
+		if (c < mypipe->size())
+			tmp = (*mypipe)[c]->getImage();
+	}
 
 	glutPostRedisplay();
 }

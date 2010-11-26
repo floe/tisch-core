@@ -87,7 +87,7 @@ class SpeckleFilter: public Filter {
 	
 	protected:
 
-		int noisecount;
+		int noiselevel;
 };
 
 #endif // _FILTER_H_

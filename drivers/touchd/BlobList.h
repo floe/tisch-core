@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -10,33 +10,40 @@
 #include <vector>
 #include <iostream>
 
-#include "Settings.h"
+#include "Filter.h"
 #include "GLUTWindow.h"
 #include "Blob.h"
 #include "osc/OscOutboundPacketStream.h"
 #include "ip/UdpSocket.h"
 
 
-class BlobList: public std::vector<Blob> {
+
+class BlobList: public Filter {
 
 	friend std::ostream& operator<<( std::ostream& s, BlobList& l );
 
 	public:
 
-		BlobList( Settings* _settings, IntensityImage* _image = 0 );
+		 BlobList( TiXmlElement* _config, Filter* _input );
+		~BlobList();
+
+		virtual void reset();
+		virtual void process();
+		virtual void link( Filter* _link );
 
 		void draw( GLUTWindow* win );
-		void track( BlobList* old );
 
 		int  getID( unsigned char value );
-		void correlate( BlobList* parents );
+		void correlate( );
 		void sendBlobs( osc::OutboundPacketStream& oscOut );
 
 	private:
 
-		Settings* settings;
-		IntensityImage* image;
+		BlobSettings settings;
+		BlobList* parent;
 
+		std::vector<Blob>* blobs;
+		std::vector<Blob>* oldblobs;
 };
 
 std::ostream& operator<<( std::ostream& s, BlobList& l );

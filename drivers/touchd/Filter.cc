@@ -10,7 +10,7 @@
 BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	background = new ShortImage( image->getWidth(), image->getHeight() );
-	config->QueryIntAttribute("Invert",&invert);
+	config->QueryIntAttribute( "Invert", &invert );
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -28,14 +28,14 @@ void BGSubFilter::reset() {
 void BGSubFilter::process() {
 	background->subtract( *(input->getImage()), *image, invert );
 	background->update( *(input->getImage()), *(mask->getImage()) );
-	result = background->intensity();
-	//std::cout << "bgsub" << std::endl;
+	result = background->intensity(); // does 'invert' have to be factored in here?
 }
 
 
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
-	config->QueryIntAttribute("Threshold",&threshold);
+	threshold = 128;
+	config->QueryIntAttribute( "Threshold", &threshold );
 }
 
 void ThreshFilter::process() {
@@ -46,11 +46,12 @@ void ThreshFilter::process() {
 
 SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
-	config->QueryIntAttribute("Noise",&noisecount);
+	noiselevel = 7;
+	config->QueryIntAttribute( "NoiseLevel", &noiselevel );
 }
 
 void SpeckleFilter::process() {
-	input->getImage()->despeckle( *image, noisecount );
+	input->getImage()->despeckle( *image, noiselevel );
 	//std::cout << "speckle" << std::endl;
 }
 

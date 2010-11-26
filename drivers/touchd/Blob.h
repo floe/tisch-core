@@ -10,7 +10,13 @@
 #include <IntensityImage.h>
 #include <BasicBlob.h>
 
-#include "Settings.h"
+struct BlobSettings {
+	int minsize, maxsize, gid;
+	double factor, radius, peakdist;
+	const char* name;
+	Color cross;
+	Color trail;
+};
 
 class Blob: public BasicBlob {
 

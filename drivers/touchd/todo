@@ -2,3 +2,5 @@ bloblist->filter
 split-filter
 
 int process() == 0 -> abort pipeline
+
+void Filter::draw( GlutWindow* win )

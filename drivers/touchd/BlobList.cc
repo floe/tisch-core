@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -10,13 +10,35 @@
 
 
 // create new BlobList from a {0,255}-image
-BlobList::BlobList( Settings* _settings, IntensityImage* _image ):
-	std::vector<Blob>()
-{
-	settings = _settings;
-	image = _image;
+BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	reset();
+	checkImage();
+	parent = 0;
+}
 
-	if (!image) return;
+BlobList::~BlobList() {
+	delete blobs;
+	delete oldblobs;
+}
+
+void BlobList::reset() {
+	delete blobs;
+	delete oldblobs;
+	blobs = new std::vector<Blob>;
+	oldblobs = NULL;
+}
+
+void BlobList::link( Filter* _link ) {
+	parent = dynamic_cast<BlobList*>(_link);
+}
+
+void BlobList::process() {
+
+	oldblobs = blobs;
+	blobs = new std::vector<Blob>;
+
+	// clone the input image
+	*image = *(input->getImage());
 
 	int width  = image->getWidth();
 	int height = image->getHeight();
@@ -24,41 +46,39 @@ BlobList::BlobList( Settings* _settings, IntensityImage* _image ):
 	// frame-local blob counter to differentiate between blobs
 	unsigned char value = 254;
 
-	// scan for finger spots
+	// scan for bright spots
 	unsigned char* data = image->getData();
 	for (int i = 0; i < width*height; i++) if (data[i] == 255) try {
 
 		// try to create a new blob. throws if blob too small, continues silently.
-		push_back( Blob( image, Point(i%width,i/width), value, &(settings->blob) ) );
+		blobs->push_back( Blob( image, Point(i%width,i/width), value, &settings ) );
 
 		// adjust counters
 		value--;
-		settings->blob.gid++;
+		settings.gid++;
 
 		// did the frame-local blob counter overflow?
 		if (value == 0) {
 			value = 254;
-			std::cerr << "Warning: too many " << settings->name << " blobs!" << std::endl;
+			std::cerr << "Warning: too many " << settings.name << " blobs!" << std::endl;
 		}
 
 	} catch (...) { }
-}
 
-
-// update IDs from a previous list
-void BlobList::track( BlobList* old ) {
+	// update IDs from a previous list
+	if (!oldblobs) return;
 
 	// for each old blob: find the nearest new blob at the predicted location
-	for ( std::vector<Blob>::iterator oldblob = old->begin(); oldblob != old->end(); oldblob++ ) {
+	for ( std::vector<Blob>::iterator oldblob = oldblobs->begin(); oldblob != oldblobs->end(); oldblob++ ) {
 
 		double speed = oldblob->speed.length();
 		Vector newpos = oldblob->pos + oldblob->speed;
 
-		double mindist = speed + settings->blob.radius;
-		std::vector<Blob>::iterator nearest = end();
+		double mindist = speed + settings.radius;
+		std::vector<Blob>::iterator nearest = blobs->end();
 
 		// find closest new blob within search radius (that hasn't yet been assigned)
-		for ( std::vector<Blob>::iterator newblob = begin(); newblob != end(); newblob++ ) {
+		for ( std::vector<Blob>::iterator newblob = blobs->begin(); newblob != blobs->end(); newblob++ ) {
 			if (newblob->tracked) continue;
 			Vector delta = newblob->pos - newpos;
 			double dist = delta.length();
@@ -69,7 +89,7 @@ void BlobList::track( BlobList* old ) {
 		}
 
 		// if new blob found, assign previous id/peak/speed and remove from search list
-		if ( nearest != end() ) {
+		if ( nearest != blobs->end() ) {
 			nearest->id = oldblob->id;
 			nearest->peak = oldblob->peak;
 			nearest->speed = nearest->pos - oldblob->pos;
@@ -78,25 +98,26 @@ void BlobList::track( BlobList* old ) {
 	}
 
 	// for each new blob: find peak according to old peak, major and minor axis
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ )
-		blob->setPeak( image, settings->blob.factor, settings->blob.peakdist );
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
+		blob->setPeak( image, settings.factor, settings.peakdist );
 }
 
 
 // retrieve a GID using a frame-local value
 int BlobList::getID( unsigned char value ) {
 	if (value == 0) return 0;
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ )
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
 		if (blob->value == value) return blob->id;
 	return 0;
 }
 
 
 // find parent IDs from another list
-void BlobList::correlate( BlobList* parents ) {
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ ) {
-		unsigned char value = blob->scan( parents->image, settings->blob.factor );
-		int pid = parents->getID( value );
+void BlobList::correlate( ) {
+	if (!parent) return;
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
+		unsigned char value = blob->scan( parent->image, settings.factor );
+		int pid = parent->getID( value );
 		blob->pid = pid;
 	}
 }
@@ -111,10 +132,10 @@ void BlobList::draw( GLUTWindow* win ) {
 	glTranslatef(0,0,500); // FIXME: compensate video image default z offset
 
 	// draw trails
-	glColor4f( settings->blob.trail.x, settings->blob.trail.y, settings->blob.trail.z, 1.0 );
+	glColor4f( settings.trail.x, settings.trail.y, settings.trail.z, 1.0 );
 	glBegin( GL_LINES );
 
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ ) {
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 
 		xoff = blob->pos.x;
 		yoff = height - blob->pos.y;
@@ -126,14 +147,14 @@ void BlobList::draw( GLUTWindow* win ) {
 	glEnd();
 
 	// draw size-adjusted crosshairs
-	glColor4f( settings->blob.cross.x, settings->blob.cross.y, settings->blob.cross.z, 1.0 );
+	glColor4f( settings.cross.x, settings.cross.y, settings.cross.z, 1.0 );
 	glBegin( GL_LINES );
 
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ ) {
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 
 		xoff = blob->pos.x;
 		yoff = height - blob->pos.y;
-		size = sqrt((double)blob->size)/settings->blob.factor;
+		size = sqrt((double)blob->size)/settings.factor;
 
 		glVertex2d( xoff - blob->axis1.x, yoff + blob->axis1.y );
 		glVertex2d( xoff + blob->axis1.x, yoff - blob->axis1.y );
@@ -150,7 +171,7 @@ void BlobList::draw( GLUTWindow* win ) {
 	glEnd();
 
 	// print IDs (and parent IDs)
-	for ( std::vector<Blob>::iterator blob = begin(); blob != end(); blob++ ) {
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 		std::ostringstream tmp;
 		tmp << blob->id; if (blob->pid) tmp << "." << blob->pid;
 		win->print( tmp.str(), (int)blob->peak.x, (int)blob->peak.y );
@@ -161,8 +182,8 @@ void BlobList::draw( GLUTWindow* win ) {
 // dump the list into an ostream, prefixing every entry with the list name
 std::ostream& operator<<( std::ostream& s, BlobList& l ) {
 
-	for ( std::vector<Blob>::iterator blob = l.begin(); blob != l.end(); blob++ )
-		s << l.settings->name << " " << *blob << std::endl;
+	for ( std::vector<Blob>::iterator blob = l.blobs->begin(); blob != l.blobs->end(); blob++ )
+		s << l.settings.name << " " << *blob << std::endl;
 
 	return s;
 }
@@ -171,9 +192,9 @@ void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
 {
 	//shadow
 //	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	if( std::string(settings->name) == "shadow" )
+	if( std::string(settings.name) == "shadow" )
 	{
-		for( std::vector<Blob>::iterator it = begin(); it != end(); it++)
+		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++)
 		{
 			oscOut	<< osc::BeginMessage( "/tuio2/tok" )
 					<< 0 << 0
@@ -200,9 +221,9 @@ void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
 
 	//finger
 //	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	else if( std::string(settings->name) == "finger" )
+	else if( std::string(settings.name) == "finger" )
 	{
-		for( std::vector<Blob>::iterator it = begin(); it != end(); it++)
+		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++)
 		{
 			oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
 					<< 0 << 0
