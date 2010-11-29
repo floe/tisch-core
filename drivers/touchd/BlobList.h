@@ -19,7 +19,7 @@
 
 class BlobList: public Filter {
 
-	friend std::ostream& operator<<( std::ostream& s, BlobList& l );
+	//friend std::ostream& operator<<( std::ostream& s, BlobList& l );
 
 	public:
 
@@ -32,7 +32,7 @@ class BlobList: public Filter {
 		virtual void draw( GLUTWindow* win );
 		virtual void link( Filter* _link   );
 
-		void sendBlobs( osc::OutboundPacketStream& oscOut );
+		void send( osc::OutboundPacketStream& oscOut );
 
 	protected:
 
@@ -42,15 +42,16 @@ class BlobList: public Filter {
 		int minsize, maxsize, gid;       // blob detection settings
 
 		Color cross, trail; // display settings
-		const char* name;
+		std::string type;
 
 		BlobList* parent;
+		int width, height;
 
 		std::vector<Blob>* blobs;
 		std::vector<Blob>* oldblobs;
 };
 
-std::ostream& operator<<( std::ostream& s, BlobList& l );
+//std::ostream& operator<<( std::ostream& s, BlobList& l );
 
 #endif // _BLOBLIST_H_
 

@@ -11,14 +11,38 @@
 
 // create new BlobList from a {0,255}-image
 BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+
 	blobs = oldblobs = NULL;
-	name = "finger";
-	minsize = 50;
-	factor = 1.5;
-	radius = 20;
 	reset();
+
 	checkImage();
 	parent = 0;
+
+	width  = image->getWidth();
+	height = image->getHeight();
+
+	type = "ptr";
+
+	minsize = 50;
+	maxsize = 0;
+	gid = 0;
+
+	factor = 1.5;
+	radius = 20;
+	peakdist = 0.0;
+
+	// try to read settings from XML
+	config->QueryStringAttribute( "Type", &type );
+
+	config->QueryIntAttribute( "MinSize",  &minsize  );
+	config->QueryIntAttribute( "MaxSize",  &maxsize  );
+	config->QueryIntAttribute( "GlobalID", &gid      );
+
+	config->QueryDoubleAttribute( "TrackFactor",  &factor   );
+	config->QueryDoubleAttribute( "TrackRadius",  &radius   );
+	config->QueryDoubleAttribute( "PeakDistance", &peakdist );
+	//config->QueryIntAttribute( "CrossColor", &cross);
+	//config->QueryIntAttribute( "TrailColor", &trail);
 }
 
 BlobList::~BlobList() {
@@ -48,9 +72,6 @@ int BlobList::process() {
 	// clone the input image
 	*image = *(input->getImage());
 
-	int width  = image->getWidth();
-	int height = image->getHeight();
-
 	// frame-local blob counter to differentiate between blobs
 	unsigned char value = 254;
 
@@ -68,7 +89,7 @@ int BlobList::process() {
 		// did the frame-local blob counter overflow?
 		if (value == 0) {
 			value = 254;
-			std::cerr << "Warning: too many " << name << " blobs!" << std::endl;
+			std::cerr << "Warning: too many " << type << " blobs!" << std::endl;
 		}
 
 	} catch (...) { }
@@ -195,72 +216,41 @@ void BlobList::draw( GLUTWindow* win ) {
 
 
 // dump the list into an ostream, prefixing every entry with the list name
-std::ostream& operator<<( std::ostream& s, BlobList& l ) {
+/*std::ostream& operator<<( std::ostream& s, BlobList& l ) {
 
 	for ( std::vector<Blob>::iterator blob = l.blobs->begin(); blob != l.blobs->end(); blob++ )
-		s << l.name << " " << *blob << std::endl;
+		s << l.type << " " << *blob << std::endl;
 
 	return s;
-}
+}*/
 
-void BlobList::sendBlobs(osc::OutboundPacketStream& oscOut)
-{
-	//shadow
-//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	if( std::string(name) == "shadow" )
-	{
-		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++)
-		{
-			oscOut	<< osc::BeginMessage( "/tuio2/tok" )
-					<< 0 << 0
-					<< it->id
-					<< it->pos.x
-					<< it->pos.y
-					<< 0//TODO angle
-					<< osc::EndMessage;
+void BlobList::send( osc::OutboundPacketStream& oscOut ) {
 
-//	/tuio2/_cPPPPPPPP c_id parent_id size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
-			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )
-					<< it->id
-					<< it->pid
-					<< it->size
-					<< it->peak.x
-					<< it->peak.y
-					<< it->axis1.x
-					<< it->axis1.y
-					<< it->axis2.x
-					<< it->axis2.y
-					<< osc::EndMessage;
+	if( type == "bnd" ) {
+		// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
+		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+			double w = it->axis1.length();
+			double h = it->axis2.length();
+			oscOut << osc::BeginMessage( "/tuio2/bnd" )
+				<< it->id << it->pos.x/(double)width << it->pos.y/(double)height
+				<< acos((it->axis1*(1.0/w))*Vector(1,0,0))
+				<< w << h << it->size/(w*h)
+				<< osc::EndMessage;
 		}
-	}
-
-	//finger
-//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	else if( std::string(name) == "finger" )
-	{
-		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++)
-		{
-			oscOut	<< osc::BeginMessage( "/tuio2/ptr" )
-					<< 0 << 0
-					<< it->id
-					<< it->pos.x
-					<< it->pos.y
-					<< it->axis2.length()
-					<< 0
+	} else if( type == "ptr" ) {
+		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+			oscOut << osc::BeginMessage( "/tuio2/ptr" )
+					<< it->id << 1 << 0 // type/user id 1 == unidentified finger
+					<< it->pos.x/(double)width << it->pos.y/(double)height
+					<< it->axis1.length() << 1.0
 					<< osc::EndMessage;
 			
-//	/tuio2/_cPPPPPPPP c_id parent_id size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
-			oscOut	<< osc::BeginMessage( "/tuio2/_cPPPPPPPP" )	
-					<< it->id
-					<< it->pid
-					<< it->size
-					<< it->peak.x
-					<< it->peak.y
-					<< it->axis1.x
-					<< it->axis1.y
-					<< it->axis2.x
-					<< it->axis2.y
+			if (it->pid) 
+				oscOut << osc::BeginMessage( "/tuio2/lia" )
+					<< it->pid << true << it->id << 0
 					<< osc::EndMessage;
 		}
 	}
 }
+

@@ -10,7 +10,7 @@
 	<BGSubFilter Invert=1>
 		<ThreshFilter Threshold=150>
 			<SpeckleFilter NoiseLevel=2>
-				<BlobFilter/>
+				<BlobFilter Type="bnd"/>
 			</SpeckleFilter>
 		</ThreshFilter>
 	</BGSubFilter>

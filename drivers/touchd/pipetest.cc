@@ -67,17 +67,12 @@ void idle() {
 	if (mypipe->process() != 0) curframe++;
 	if (curframe == 2) mypipe->reset();
 
-	TimeTag current_time = TimeTag(time(NULL));
-
 	oscOut  << osc::BeginBundleImmediate;
-	oscOut	<< osc::BeginMessage( "/tuio2/frm" )
-			<< curframe
-			<< current_time
-			<< osc::EndMessage;
+	oscOut	<< osc::BeginMessage( "/tuio2/frm" ) << curframe << TimeTag(time(NULL)) << osc::EndMessage;
 
 	for (std::vector<Filter*>::iterator filter = mypipe->begin(); filter != mypipe->end(); filter++) {
 		BlobList* bl;
-		if ((bl = dynamic_cast<BlobList*>(*filter)) != 0) bl->sendBlobs(oscOut);
+		if ((bl = dynamic_cast<BlobList*>(*filter)) != 0) bl->send( oscOut );
 	}
 
 	oscOut << osc::BeginMessage( "/tuio2/alv" ) << 0 << osc::EndMessage;
