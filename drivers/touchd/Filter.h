@@ -26,22 +26,23 @@ class Filter {
 
 		virtual ~Filter() { delete image; }
 
+		void checkImage() {
+			if (!image) {
+				IntensityImage* inputimg = input->getImage();
+				int w = inputimg->getWidth();
+				int h = inputimg->getHeight();
+				image = new IntensityImage( w, h, shmid, 0 );
+			}
+		}
+
 		virtual int process() = 0;
 		virtual void reset() { }
 
 		virtual void draw( GLUTWindow* win ) { win->show( *image, 0, 0 ); }
 		virtual void link( Filter* _link   ) { }
 
-		void checkImage() {
-			if (!image) {
-				int w = input->getImage()->getWidth();
-				int h = input->getImage()->getHeight();
-				image = new IntensityImage( w, h, shmid, 0 );
-			}
-		}
-
-		inline IntensityImage* getImage() const { return image; }
-		inline double getResult()  const { return result; }
+		virtual IntensityImage* getImage() { return image; }
+		virtual double getResult() { return result; }
 
 	protected:
 
@@ -80,6 +81,17 @@ class SpeckleFilter: public Filter {
 		virtual int process();
 	protected:
 		int noiselevel;
+};
+
+class SplitFilter: public Filter {
+	public:
+		SplitFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+		virtual void reset();
+		virtual IntensityImage* getImage();
+	protected:
+		IntensityImage* image2;
+		int incount, outcount;
 };
 
 #endif // _FILTER_H_

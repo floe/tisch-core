@@ -26,8 +26,9 @@ void BGSubFilter::reset() {
 }
 
 int BGSubFilter::process() {
-	background->subtract( *(input->getImage()), *image, invert );
-	background->update( *(input->getImage()), *(mask->getImage()) );
+	IntensityImage* inputimg = input->getImage();
+	background->subtract( *(inputimg), *image, invert );
+	background->update( *(inputimg), *(mask->getImage()) );
 	result = background->intensity(); // does 'invert' have to be factored in here?
 	return 0;
 }
@@ -54,5 +55,33 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 int SpeckleFilter::process() {
 	input->getImage()->despeckle( *image, noiselevel );
 	return 0;
+}
+
+
+SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+	image2 = NULL;
+	reset();
+}
+
+void SplitFilter::reset() {
+	incount = outcount = 0;
+}	
+
+int SplitFilter::process() {
+	incount++;
+	if (incount % 2) {
+		*image = *(input->getImage());
+		return 1;
+	} else {
+		image2 = input->getImage();
+		return 0;
+	}
+}
+
+IntensityImage* SplitFilter::getImage() {
+	outcount++;
+	if (outcount % 2) return image;
+	else return image2 ? image2 : image;
 }
 

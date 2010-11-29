@@ -11,6 +11,7 @@
 
 // create new BlobList from a {0,255}-image
 BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	blobs = oldblobs = NULL;
 	name = "finger";
 	minsize = 50;
 	factor = 1.5;

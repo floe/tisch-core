@@ -27,6 +27,7 @@ void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {
 
 	if (type ==        "Camera") filter = new        Camera( config, parent );
 	if (type ==    "BlobFilter") filter = new      BlobList( config, parent );
+	if (type ==   "SplitFilter") filter = new   SplitFilter( config, parent );
 	if (type ==   "BGSubFilter") filter = new   BGSubFilter( config, parent );
 	if (type ==  "ThreshFilter") filter = new  ThreshFilter( config, parent );
 	if (type == "SpeckleFilter") filter = new SpeckleFilter( config, parent );
