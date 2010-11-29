@@ -217,14 +217,12 @@ void BlobList::draw( GLUTWindow* win ) {
 }
 
 
-// get list of currently active IDs
-void BlobList::getIDs( std::vector<int>& ids ) {
+// send blob list via OSC as TUIO 2.0
+void BlobList::send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids ) {
+
+	// get list of currently active IDs
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
 		ids.push_back( blob->id );
-}
-
-// send blob list via OSC as TUIO 2.0
-void BlobList::send( osc::OutboundPacketStream& oscOut ) {
 
 	if( type == "bnd" ) {
 		// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]

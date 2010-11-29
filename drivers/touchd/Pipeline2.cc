@@ -15,9 +15,10 @@ Pipeline2::Pipeline2( TiXmlElement* _config ) {
 	Filter* last = 0;
 	// FIXME: this is rather ugly...
 	for (std::vector<Filter*>::reverse_iterator filter = rbegin(); filter != rend(); filter++) {
+		// bloblist can use previous bloblist as parent blobs
+		if (dynamic_cast<   BlobList*>(*filter) != 0) { (*filter)->link(last); last = *filter; }
 		// background subtraction needs a forward link to the final output of the chain
-		if (dynamic_cast<   BlobList*>(*filter) != 0) last = *filter; 
-		if (dynamic_cast<BGSubFilter*>(*filter) != 0) (*filter)->link(last); 
+		if (dynamic_cast<BGSubFilter*>(*filter) != 0)   (*filter)->link(last); 
 	}
 }
 

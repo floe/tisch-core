@@ -5,17 +5,17 @@
 #include "osc/OscOutboundPacketStream.h"
 #include "ip/UdpSocket.h"
 
-int width  = 640;
-int height = 480;
 
 GLUTWindow* win;
 Filter* tmp = 0;
 Pipeline2* mypipe = 0;
 
+
 int curframe = 0;
 int frame = 0;
 int lasttime = 0;
 int lastframe = 0;
+
 
 #define OUTPUT_BUFFER_SIZE 0x10000
 #define ADDRESS "127.0.0.1"
@@ -26,7 +26,8 @@ using namespace osc;
 char buffer[OUTPUT_BUFFER_SIZE];
 osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
 
-UdpTransmitSocket transmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+UdpTransmitSocket* transmitSocket; // ( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+
 
 void disp() {
 
@@ -41,10 +42,7 @@ void disp() {
 	win->clear( );
 	win->mode2D();
 
-	glColor4f( 1.0, 0.0, 0.0, 1.0 ); 
-	win->print( "foobar", 5, 5 );
-
-	if (tmp) tmp->draw( win );
+	tmp->draw( win );
 	win->swap( );
 }
 
@@ -69,17 +67,15 @@ void idle() {
 	if (mypipe->process() != 0) curframe++;
 	if (curframe == 2) mypipe->reset();
 
-	oscOut  << osc::BeginBundleImmediate;
+	oscOut << osc::BeginBundleImmediate;
 
 	// frame message
-	oscOut	<< osc::BeginMessage( "/tuio2/frm" ) << curframe << TimeTag(time(NULL)) << osc::EndMessage;
+	oscOut << osc::BeginMessage( "/tuio2/frm" ) << curframe << TimeTag(time(NULL)) << osc::EndMessage;
 
 	// blob/pointer messages
 	for (std::vector<Filter*>::iterator filter = mypipe->begin(); filter != mypipe->end(); filter++) {
 		BlobList* bl = dynamic_cast<BlobList*>(*filter);
-		if (!bl) continue;
-		bl->send( oscOut );
-		bl->getIDs( alive );
+		if (bl) bl->send( oscOut, alive );
 	}
 
 	// alive message
@@ -89,26 +85,32 @@ void idle() {
 
 	//oscOut << osc::EndBundle; ?
 
-	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
+	transmitSocket->Send( oscOut.Data(), oscOut.Size() );
 	oscOut.Clear();
 
 	glutPostRedisplay();
 }
 
-int main( int argc, char* argv[] ) {
 
-	win = new GLUTWindow( width, height, "mypipeline test" );
+int main( int argc, char* argv[] ) {
 
 	TiXmlDocument doc("test.xml");
 	doc.LoadFile();
 
 	mypipe = new Pipeline2( doc.FirstChildElement() );
+	tmp = (*mypipe)[0];
+
+	transmitSocket = new UdpTransmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+
+	int width  = tmp->getImage()->getWidth();
+	int height = tmp->getImage()->getHeight();
+
+	win = new GLUTWindow( width, height, "mypipeline test" );
 
 	glutIdleFunc(idle);
 	glutDisplayFunc(disp);
 	glutKeyboardFunc(keyb);
 
 	win->run();
-
 }
 

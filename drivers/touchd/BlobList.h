@@ -30,8 +30,7 @@ class BlobList: public Filter {
 		virtual void draw( GLUTWindow* win );
 		virtual void link( Filter* _link   );
 
-		void send( osc::OutboundPacketStream& oscOut );
-		void getIDs( std::vector<int>& ids );
+		void send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids );
 
 	protected:
 
