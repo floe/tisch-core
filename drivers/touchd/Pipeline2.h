@@ -19,7 +19,7 @@ class Pipeline2: public std::vector<Filter*> {
 
 		void createFilter( TiXmlElement* config, Filter* parent );
 
-		void process();
+		int process();
 		void reset();
 
 };

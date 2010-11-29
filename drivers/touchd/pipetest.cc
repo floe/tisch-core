@@ -64,14 +64,14 @@ void keyb( unsigned char c, int, int ) {
 
 void idle() {
 
-	mypipe->process();
-	if (curframe == 0) mypipe->reset();
+	if (mypipe->process() != 0) curframe++;
+	if (curframe == 2) mypipe->reset();
 
 	TimeTag current_time = TimeTag(time(NULL));
 
 	oscOut  << osc::BeginBundleImmediate;
 	oscOut	<< osc::BeginMessage( "/tuio2/frm" )
-			<< ++curframe
+			<< curframe
 			<< current_time
 			<< osc::EndMessage;
 

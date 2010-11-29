@@ -139,6 +139,8 @@ void BlobList::draw( GLUTWindow* win ) {
 	double xoff,yoff,height,size;
 	height = win->getHeight();
 
+	win->show( *image, 0, 0 );
+
 	glTranslatef(0,0,500); // FIXME: compensate video image default z offset
 	glLineWidth(2.0);
 
