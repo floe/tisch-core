@@ -19,8 +19,6 @@
 
 class BlobList: public Filter {
 
-	//friend std::ostream& operator<<( std::ostream& s, BlobList& l );
-
 	public:
 
 		 BlobList( TiXmlElement* _config, Filter* _input );
@@ -33,13 +31,14 @@ class BlobList: public Filter {
 		virtual void link( Filter* _link   );
 
 		void send( osc::OutboundPacketStream& oscOut );
+		void getIDs( std::vector<int>& ids );
 
 	protected:
 
 		int getID( unsigned char value );
 
 		double factor, radius, peakdist; // tracking settings
-		int minsize, maxsize, gid;       // blob detection settings
+		int minsize, maxsize;            // blob detection settings
 
 		Color cross, trail; // display settings
 		std::string type;
@@ -50,8 +49,6 @@ class BlobList: public Filter {
 		std::vector<Blob>* blobs;
 		std::vector<Blob>* oldblobs;
 };
-
-//std::ostream& operator<<( std::ostream& s, BlobList& l );
 
 #endif // _BLOBLIST_H_
 

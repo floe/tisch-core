@@ -9,6 +9,10 @@
 #include <sstream>
 
 
+// static global ID counter for all TUIO entities
+int gid = 0;
+
+
 // create new BlobList from a {0,255}-image
 BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 
@@ -25,7 +29,6 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 
 	minsize = 50;
 	maxsize = 0;
-	gid = 0;
 
 	factor = 1.5;
 	radius = 20;
@@ -36,7 +39,6 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 
 	config->QueryIntAttribute( "MinSize",  &minsize  );
 	config->QueryIntAttribute( "MaxSize",  &maxsize  );
-	config->QueryIntAttribute( "GlobalID", &gid      );
 
 	config->QueryDoubleAttribute( "TrackFactor",  &factor   );
 	config->QueryDoubleAttribute( "TrackRadius",  &radius   );
@@ -215,20 +217,18 @@ void BlobList::draw( GLUTWindow* win ) {
 }
 
 
-// dump the list into an ostream, prefixing every entry with the list name
-/*std::ostream& operator<<( std::ostream& s, BlobList& l ) {
+// get list of currently active IDs
+void BlobList::getIDs( std::vector<int>& ids ) {
+	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
+		ids.push_back( blob->id );
+}
 
-	for ( std::vector<Blob>::iterator blob = l.blobs->begin(); blob != l.blobs->end(); blob++ )
-		s << l.type << " " << *blob << std::endl;
-
-	return s;
-}*/
-
+// send blob list via OSC as TUIO 2.0
 void BlobList::send( osc::OutboundPacketStream& oscOut ) {
 
 	if( type == "bnd" ) {
 		// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
-		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+		for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 			double w = it->axis1.length();
 			double h = it->axis2.length();
 			oscOut << osc::BeginMessage( "/tuio2/bnd" )
@@ -239,7 +239,7 @@ void BlobList::send( osc::OutboundPacketStream& oscOut ) {
 		}
 	} else if( type == "ptr" ) {
 		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-		for( std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+		for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 			oscOut << osc::BeginMessage( "/tuio2/ptr" )
 					<< it->id << 1 << 0 // type/user id 1 == unidentified finger
 					<< it->pos.x/(double)width << it->pos.y/(double)height

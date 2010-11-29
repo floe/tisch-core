@@ -64,18 +64,30 @@ void keyb( unsigned char c, int, int ) {
 
 void idle() {
 
+	std::vector<int> alive;
+
 	if (mypipe->process() != 0) curframe++;
 	if (curframe == 2) mypipe->reset();
 
 	oscOut  << osc::BeginBundleImmediate;
+
+	// frame message
 	oscOut	<< osc::BeginMessage( "/tuio2/frm" ) << curframe << TimeTag(time(NULL)) << osc::EndMessage;
 
+	// blob/pointer messages
 	for (std::vector<Filter*>::iterator filter = mypipe->begin(); filter != mypipe->end(); filter++) {
-		BlobList* bl;
-		if ((bl = dynamic_cast<BlobList*>(*filter)) != 0) bl->send( oscOut );
+		BlobList* bl = dynamic_cast<BlobList*>(*filter);
+		if (!bl) continue;
+		bl->send( oscOut );
+		bl->getIDs( alive );
 	}
 
-	oscOut << osc::BeginMessage( "/tuio2/alv" ) << 0 << osc::EndMessage;
+	// alive message
+	oscOut << osc::BeginMessage( "/tuio2/alv" );
+	for (std::vector<int>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
+	oscOut << osc::EndMessage;
+
+	//oscOut << osc::EndBundle; ?
 
 	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
 	oscOut.Clear();
