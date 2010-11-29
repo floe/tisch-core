@@ -11,6 +11,7 @@
 
 
 Pipeline2::Pipeline2( TiXmlElement* _config ) {
+	if (!_config) throw std::runtime_error( "Configuration file empty or not found." );
 	createFilter( _config, 0 );
 	Filter* last = 0;
 	// FIXME: this is rather ugly...
