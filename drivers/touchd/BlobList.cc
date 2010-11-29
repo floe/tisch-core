@@ -37,7 +37,7 @@ void BlobList::link( Filter* _link ) {
 }
 
 
-void BlobList::process() {
+int BlobList::process() {
 
 	// swap blob lists
 	delete oldblobs;
@@ -74,7 +74,7 @@ void BlobList::process() {
 
 	// ---------------------------------------------------------------------------
 	// tracking: update IDs from a previous list
-	if (!oldblobs) return;
+	if (!oldblobs) return 0;
 
 	// for each old blob: find the nearest new blob at the predicted location
 	for ( std::vector<Blob>::iterator oldblob = oldblobs->begin(); oldblob != oldblobs->end(); oldblob++ ) {
@@ -112,12 +112,14 @@ void BlobList::process() {
 
 	// ---------------------------------------------------------------------------
 	// find parent IDs from another list (if available)
-	if (!parent) return;
+	if (!parent) return 0;
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 		unsigned char value = blob->scan( parent->image, factor );
 		int pid = parent->getID( value );
 		blob->pid = pid;
 	}
+
+	return 0;
 }
 
 

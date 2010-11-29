@@ -27,8 +27,7 @@ class Camera: public Filter {
 		Camera( TiXmlElement* _config, Filter* _input );
 		~Camera();
 
-		// apply settings 
-		void process( );
+		virtual int process( );
 
 	private:
 

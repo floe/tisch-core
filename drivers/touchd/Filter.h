@@ -18,10 +18,15 @@ class Filter {
 
 	public:
 
-		Filter( TiXmlElement* _config = 0, Filter* _input = 0 ): input(_input), result(0.0), config(_config), image(NULL) { }
+		Filter( TiXmlElement* _config = 0, Filter* _input = 0 ):
+			shmid(0), input(_input), result(0.0), config(_config), image(NULL)
+		{ 
+			if (config) config->QueryIntAttribute("ShmID",&shmid);
+		}
+
 		virtual ~Filter() { delete image; }
 
-		virtual void process() = 0;
+		virtual int process() = 0;
 		virtual void reset() { }
 
 		virtual void draw( GLUTWindow* win ) { win->show( *image, 0, 0 ); }
@@ -31,7 +36,7 @@ class Filter {
 			if (!image) {
 				int w = input->getImage()->getWidth();
 				int h = input->getImage()->getHeight();
-				image = new IntensityImage( w, h );
+				image = new IntensityImage( w, h, shmid, 0 );
 			}
 		}
 
@@ -40,6 +45,7 @@ class Filter {
 
 	protected:
 
+		int shmid;
 		Filter* input;
 		double result;
 		TiXmlElement* config;
@@ -51,7 +57,7 @@ class BGSubFilter: public Filter {
 	public:
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual ~BGSubFilter();
-		virtual void process();
+		virtual int process();
 		virtual void reset();
 		virtual void link( Filter* _mask );
 	protected:
@@ -63,7 +69,7 @@ class BGSubFilter: public Filter {
 class ThreshFilter: public Filter {
 	public:
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual void process();
+		virtual int process();
 	protected:
 		int threshold;
 };
@@ -71,7 +77,7 @@ class ThreshFilter: public Filter {
 class SpeckleFilter: public Filter {
 	public:
 		SpeckleFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual void process();
+		virtual int process();
 	protected:
 		int noiselevel;
 };

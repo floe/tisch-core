@@ -27,7 +27,7 @@ class BlobList: public Filter {
 		~BlobList();
 
 		virtual void reset();
-		virtual void process();
+		virtual int process();
 
 		virtual void draw( GLUTWindow* win );
 		virtual void link( Filter* _link   );

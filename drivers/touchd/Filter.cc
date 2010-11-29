@@ -25,10 +25,11 @@ void BGSubFilter::reset() {
 	*background = *(input->getImage());
 }
 
-void BGSubFilter::process() {
+int BGSubFilter::process() {
 	background->subtract( *(input->getImage()), *image, invert );
 	background->update( *(input->getImage()), *(mask->getImage()) );
 	result = background->intensity(); // does 'invert' have to be factored in here?
+	return 0;
 }
 
 
@@ -38,8 +39,9 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	config->QueryIntAttribute( "Threshold", &threshold );
 }
 
-void ThreshFilter::process() {
+int ThreshFilter::process() {
 	input->getImage()->threshold( threshold, *image );
+	return 0;
 }
 
 
@@ -49,7 +51,8 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 	config->QueryIntAttribute( "NoiseLevel", &noiselevel );
 }
 
-void SpeckleFilter::process() {
+int SpeckleFilter::process() {
 	input->getImage()->despeckle( *image, noiselevel );
+	return 0;
 }
 

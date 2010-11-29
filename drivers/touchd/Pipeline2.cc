@@ -46,7 +46,7 @@ Pipeline2::~Pipeline2() {
 
 void Pipeline2::process() {
 	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
-		(*filter)->process();
+		if ((*filter)->process() != 0) return;
 }
 
 void Pipeline2::reset() {

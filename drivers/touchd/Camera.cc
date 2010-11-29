@@ -172,7 +172,7 @@ Camera::~Camera() {
 }
 
 
-void Camera::process() {
+int Camera::process() {
 
 	// get the image, retry on error
 	int res = cam->acquire();
@@ -181,5 +181,7 @@ void Camera::process() {
 	// retrieve image, release buffer and return
 	cam->getImage( *image );
 	cam->release();
+
+	return 0;
 }
 
