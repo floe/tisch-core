@@ -10,12 +10,12 @@
 #include "Filter.h"
 
 
-class Pipeline2: public std::vector<Filter*> {
+class Pipeline: public std::vector<Filter*> {
 
 	public:
 
-		 Pipeline2( TiXmlElement* _config );
-		~Pipeline2();
+		 Pipeline( TiXmlElement* _config );
+		~Pipeline();
 
 		void createFilter( TiXmlElement* config, Filter* parent );
 

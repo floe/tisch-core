@@ -10,7 +10,7 @@
 #include "Camera.h"
 
 
-Pipeline2::Pipeline2( TiXmlElement* _config ) {
+Pipeline::Pipeline( TiXmlElement* _config ) {
 	if (!_config) throw std::runtime_error( "Configuration file empty or not found." );
 	createFilter( _config, 0 );
 	Filter* last = 0;
@@ -23,7 +23,7 @@ Pipeline2::Pipeline2( TiXmlElement* _config ) {
 	}
 }
 
-void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {
+void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 
 	std::string type = config->Value();
 	Filter* filter = 0;
@@ -42,13 +42,13 @@ void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {
 }
 
 
-Pipeline2::~Pipeline2() {
+Pipeline::~Pipeline() {
 	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
 		delete *filter;
 }
 
 
-int Pipeline2::process() {
+int Pipeline::process() {
 	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++) {
 		int res =  (*filter)->process();
 		if (res != 0) return res;
@@ -56,7 +56,7 @@ int Pipeline2::process() {
 	return 0;
 }
 
-void Pipeline2::reset() {
+void Pipeline::reset() {
 	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
 		(*filter)->reset();
 }
