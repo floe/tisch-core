@@ -32,7 +32,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 
 	factor = 1.5;
 	radius = 20;
-	peakdist = 0.0;
+	peaksize = 0.0;
 
 	// try to read settings from XML
 	config->QueryStringAttribute( "Type", &type );
@@ -40,9 +40,9 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	config->QueryIntAttribute( "MinSize",  &minsize  );
 	config->QueryIntAttribute( "MaxSize",  &maxsize  );
 
-	config->QueryDoubleAttribute( "TrackFactor",  &factor   );
-	config->QueryDoubleAttribute( "TrackRadius",  &radius   );
-	config->QueryDoubleAttribute( "PeakDistance", &peakdist );
+	config->QueryDoubleAttribute( "TrackRadius",   &radius   );
+	config->QueryDoubleAttribute( "PeakFactor",    &factor   );
+	config->QueryDoubleAttribute( "PeakThreshold", &peaksize );
 	//config->QueryIntAttribute( "CrossColor", &cross);
 	//config->QueryIntAttribute( "TrailColor", &trail);
 }
@@ -132,7 +132,7 @@ int BlobList::process() {
 	// ---------------------------------------------------------------------------
 	// for each new blob: find peak according to old peak, major and minor axis
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
-		blob->setPeak( image, factor, peakdist );
+		blob->setPeak( image, factor, peaksize );
 
 	// ---------------------------------------------------------------------------
 	// TODO: allow disabling this feature (even if parent set)

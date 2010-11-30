@@ -36,7 +36,7 @@ class BlobList: public Filter {
 
 		int getID( unsigned char value );
 
-		double factor, radius, peakdist; // tracking settings
+		double radius, factor, peaksize; // tracking & peak settings
 		int minsize, maxsize;            // blob detection settings
 
 		// Color cross, trail;
