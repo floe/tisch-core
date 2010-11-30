@@ -31,7 +31,7 @@ class Filter {
 				IntensityImage* inputimg = input->getImage();
 				int w = inputimg->getWidth();
 				int h = inputimg->getHeight();
-				image = new IntensityImage( w, h, shmid, 0 );
+				image = new IntensityImage( w, h, shmid, 1 );
 			}
 		}
 

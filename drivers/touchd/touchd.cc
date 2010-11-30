@@ -85,7 +85,7 @@ void idle() {
 
 	std::vector<int> alive;
 
-	if (mypipe->process() != 0) curframe++;
+	if (mypipe->process() == 0) curframe++;
 	if (curframe == 2) mypipe->reset();
 
 	oscOut << osc::BeginBundleImmediate;

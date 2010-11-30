@@ -73,7 +73,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	config->QueryIntAttribute( "Verbose", &verbose );
 
 	// create image buffer
-	image = new IntensityImage( width, height );
+	image = new IntensityImage( width, height, shmid, 1 );
 
 	#ifdef _MSC_VER
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
