@@ -135,6 +135,7 @@ int BlobList::process() {
 		blob->setPeak( image, factor, peakdist );
 
 	// ---------------------------------------------------------------------------
+	// TODO: allow disabling this feature (even if parent set)
 	// find parent IDs from another list (if available)
 	if (!parent) return 0;
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {

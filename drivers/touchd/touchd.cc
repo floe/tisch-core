@@ -66,6 +66,7 @@ void disp() {
 	win->swap();
 }
 
+// TODO: better keyboard functionality (adjust filter params)
 void keyb( unsigned char c, int, int ) {
 
 	if (c == 'q') cleanup( 0 );

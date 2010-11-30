@@ -29,11 +29,12 @@ int BGSubFilter::process() {
 	IntensityImage* inputimg = input->getImage();
 	background->subtract( *(inputimg), *image, invert );
 	background->update( *(inputimg), *(mask->getImage()) );
-	result = background->intensity(); // does 'invert' have to be factored in here?
+	result = background->intensity(); // FIXME: does 'invert' have to be factored in here?
 	return 0;
 }
 
 
+// TODO: use result from bgsub filter for threshold adjustment
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	threshold = 128;

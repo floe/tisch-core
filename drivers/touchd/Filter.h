@@ -38,6 +38,7 @@ class Filter {
 		virtual int process() = 0;
 		virtual void reset() { }
 
+		// TODO: print filter information
 		virtual void draw( GLUTWindow* win ) { win->show( *image, 0, 0 ); }
 		virtual void link( Filter* _link   ) { }
 
@@ -52,6 +53,9 @@ class Filter {
 		TiXmlElement* config;
 		IntensityImage* image;
 };
+
+
+// TODO add highpass filter from ITS paper
 
 
 class BGSubFilter: public Filter {
