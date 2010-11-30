@@ -173,9 +173,7 @@ class TISCH_SHARED Image {
 				if (flags | IPC_CREAT) flags |= IPC_EXCL;
 
 				// key is a IPC id, so create/retrieve segment and semaphore handles
-				std::cout << "calling shmget " << key << " " << size << " " << flags << std::endl;
 				shm = shmget( key, size, flags );
-				std::cout << "got id: " << shm << std::endl;
 				sem = semget( key,    1, flags );
 
 				// attach segment and check for errors

@@ -22,20 +22,6 @@
 
 #include <linux/videodev2.h>
 
-// private identifiers for PWC cameras
-#define PWC_FPS_SNAPSHOT 0x00400000
-#define PWC_FPS_FRMASK   0x003F0000
-#define PWC_FPS_SHIFT    16
-
-// some V4L2 definitions for older kernels
-#ifndef V4L2_CTRL_CLASS_CAMERA
-	#warning V4L2_CTRL_CLASS_CAMERA is missing - kernel 2.6.26 or higher is recommended.
-	#define V4L2_CTRL_CLASS_CAMERA     0x009a0000
-	#define V4L2_CID_CAMERA_CLASS_BASE (V4L2_CTRL_CLASS_CAMERA | 0x900)
-	#define V4L2_CID_EXPOSURE_AUTO     (V4L2_CID_CAMERA_CLASS_BASE+1)
-	#define V4L2_CID_EXPOSURE_ABSOLUTE (V4L2_CID_CAMERA_CLASS_BASE+2)
-#endif
-
 
 #include "V4LImageSource.h"
 #include "YUV420Image.h"
@@ -104,9 +90,7 @@ V4LImageSource::V4LImageSource( const std::string& path, int _width, int _height
 	vfmt.fmt.pix.width  = _width;
 	vfmt.fmt.pix.height = _height;
 
-	// rather PWC driver specific stuff - set framerate, prefer no compression, snapshot mode off
-	vfmt.fmt.pix.priv = (fps << PWC_FPS_SHIFT) & PWC_FPS_FRMASK;
-
+	// query available formats
 	for ( int i = 0; i < num_formats; i++ ) {
 		vfmt.fmt.pix.pixelformat = formats[i];
 		ret = ioctl( vdev, VIDIOC_S_FMT, &vfmt );
