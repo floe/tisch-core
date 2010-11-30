@@ -25,7 +25,7 @@ int lastframe = 0;
 
 #define OUTPUT_BUFFER_SIZE 0x10000
 #define ADDRESS "127.0.0.1"
-#define TISCH_PORT_RAW 3333
+#define TUIO_PORT_DEFAULT 3333
 
 using namespace osc;
 
@@ -114,6 +114,8 @@ void idle() {
 
 int main( int argc, char* argv[] ) {
 
+	int outport = TUIO_PORT_DEFAULT;
+
 	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
@@ -121,19 +123,21 @@ int main( int argc, char* argv[] ) {
 	std::string homedir = getenv( "HOME" ); if (homedir == "") homedir = ".";
 	cfgfile = homedir + "/.tisch.touchd.xml";
 
-	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vVhdc:" ) ) switch (opt) {
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vVhdc:p:" ) ) switch (opt) {
 
 		case 'v': verbose += 1; break;
 		case 'V': vidout   = 1; break;
 
 		case 'd': if (fork()) return 0; break;
 		case 'c': cfgfile = optarg; break;
+		case 'p': outport = atoi(optarg); break;
 
 		case 'h':
 		case '?': std::cout << "\nUsage: touchd [options]\n\n";
+		          std::cout << "  -p udpport  use alternate target port (default: 3333)\n";
+		          std::cout << "  -c cfgfile  use alternate config file\n";
 		          std::cout << "  -V          open video output window\n";
 		          std::cout << "  -d          fork into background\n";
-		          std::cout << "  -c cfgfile  use alternate config\n";
 		          std::cout << "  -v          be verbose\n";
 		          std::cout << "  -h          this\n\n";
 		          return 0; break;
@@ -150,7 +154,7 @@ int main( int argc, char* argv[] ) {
 	mypipe = new Pipeline( doc.FirstChildElement() );
 	tmp = (*mypipe)[0];
 
-	transmitSocket = new UdpTransmitSocket( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+	transmitSocket = new UdpTransmitSocket( IpEndpointName( ADDRESS, outport ) );
 
 	int width  = tmp->getImage()->getWidth();
 	int height = tmp->getImage()->getHeight();
