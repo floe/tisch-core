@@ -39,7 +39,7 @@ class BlobList: public Filter {
 		double factor, radius, peakdist; // tracking settings
 		int minsize, maxsize;            // blob detection settings
 
-		Color cross, trail; // display settings
+		// Color cross, trail;
 		std::string type;
 
 		BlobList* parent;

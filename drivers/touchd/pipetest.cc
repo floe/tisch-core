@@ -3,7 +3,7 @@
 #include "osc/OscOutboundPacketStream.h"
 #include "ip/UdpSocket.h"
 
-#include "Pipeline2.h"
+#include "Pipeline.h"
 #include "BlobList.h"
 #include <GLUTWindow.h>
 

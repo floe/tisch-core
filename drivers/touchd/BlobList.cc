@@ -168,8 +168,8 @@ void BlobList::draw( GLUTWindow* win ) {
 	glLineWidth(2.0);
 
 	// draw trails
-	glColor4f( trail.x, trail.y, trail.z, 1.0 );
-	glColor4f( 0.0, 0.0,1.0, 1.0 );
+	// glColor4f( trail.x, trail.y, trail.z, 1.0 );
+	glColor4f( 0.0, 0.0, 1.0, 1.0 );
 	glBegin( GL_LINES );
 
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
@@ -184,8 +184,8 @@ void BlobList::draw( GLUTWindow* win ) {
 	glEnd();
 
 	// draw size-adjusted crosshairs
-	glColor4f( cross.x, cross.y, cross.z, 1.0 );
-	glColor4f( 0.0, 1.0,0.0, 1.0 );
+	//glColor4f( cross.x, cross.y, cross.z, 1.0 );
+	glColor4f( 0.0, 1.0, 0.0, 1.0 );
 	glBegin( GL_LINES );
 
 	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {

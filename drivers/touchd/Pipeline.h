@@ -4,42 +4,25 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-#ifndef _PIPELINE_H_
-#define _PIPELINE_H_
+#ifndef _PIPELINE2_H_
+#define _PIPELINE2_H_
 
-#include "Settings.h"
-#include "ImageSet.h"
-#include "Camera.h"
-#include "GLUTWindow.h"
-#include "BlobList.h"
-#include <sstream>
-#include "osc/OscOutboundPacketStream.h"
-#include "ip/UdpSocket.h"
+#include "Filter.h"
 
-#define OUTPUT_BUFFER_SIZE 8196
 
-class Pipeline {
+class Pipeline2: public std::vector<Filter*> {
 
 	public:
 
-		 Pipeline( PipelineParameters* _pipe );
-		~Pipeline();
+		 Pipeline2( TiXmlElement* _config );
+		~Pipeline2();
 
-		void acquire( int& intensity, unsigned long long int &timestamp );
-		void process();
-		void draw( GLUTWindow* win, int num );
-		void send( osc::OutboundPacketStream& oscOut );
-		void update();
-		void correlate( Pipeline* parents );
-		void swap( Pipeline* other );
+		void createFilter( TiXmlElement* config, Filter* parent );
 
-	private:
+		int process();
+		void reset();
 
-		PipelineParameters* pipe;
-
-		ImageSet* imageset;
-		BlobList* bloblist;
 };
 
-#endif // _PIPELINE_H_
+#endif // _PIPELINE2_H_
 

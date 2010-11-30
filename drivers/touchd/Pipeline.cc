@@ -1,93 +1,63 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
 #include "Pipeline.h"
 
-Pipeline::Pipeline( PipelineParameters* _pipe ):
-	pipe(_pipe)
-{
-	imageset = new ImageSet( &(pipe->settings) );
-	bloblist = new BlobList( &(pipe->settings) );
-}
+#include "BlobList.h"
+#include "Camera.h"
 
 
-Pipeline::~Pipeline() {
-	delete imageset;
-	delete bloblist;
-}
-
-
-void Pipeline::acquire( int& intensity, unsigned long long int &timestamp ) {
-
-	IntensityImage* target = imageset->getRaw();
-	pipe->camera->apply( &(pipe->settings.camera) );
-	pipe->camera->acquire( target );
-
-	//target->histogram( hist );
-	//for (int i = 0; i < 256; i++) sum += (hist[i]*i);
-	//int hist[256];
-	//int sum = target->intensity();
-	//sum /= pipe->settings.video->width * pipe->settings.video->height;
-
-	intensity = imageset->analyze();
-	timestamp = target->timestamp();
-}
-
-
-void Pipeline::process() {
-
-	BlobList* oldbl = bloblist;
-
-	imageset->process();
-
-	bloblist = new BlobList( &(pipe->settings), imageset->getFinal() );
-
-	bloblist->track( oldbl );
-	delete oldbl;
-}
-
-
-void Pipeline::send( osc::OutboundPacketStream& oscOut ) {
-//	*(pipe->output) << *bloblist;
-
-	bloblist->sendBlobs( oscOut );
-	std::stringstream ssStream;
-	std::vector<Blob>::iterator it = bloblist->begin();
-	for( ; it != bloblist->end(); it++)
-		ssStream << " " << it->id;
-//	oscOut	<< osc::BeginMessage( "/tuio2/alv" )
-//			<< ssStream.str().c_str()
-//			<< osc::EndMessage;
-}
-
-void Pipeline::update() {
-	imageset->update();
-}
-
-void Pipeline::correlate( Pipeline* parents ) {
-	bloblist->correlate( parents->bloblist );
-}
-
-void Pipeline::swap( Pipeline* other ) {
-	imageset->swap( other->imageset );
-}
-
-
-void Pipeline::draw( GLUTWindow* win, int num ) {
-
-	std::string info("");
-
-	if (num != 0) {
-		info = pipe->settings.name; info += ": ";
-		info += imageset->draw( win, num );
+Pipeline2::Pipeline2( TiXmlElement* _config ) {
+	if (!_config) throw std::runtime_error( "Configuration file empty or not found." );
+	createFilter( _config, 0 );
+	Filter* last = 0;
+	// FIXME: this is rather ugly...
+	for (std::vector<Filter*>::reverse_iterator filter = rbegin(); filter != rend(); filter++) {
+		// bloblist can use previous bloblist as parent blobs
+		if (dynamic_cast<   BlobList*>(*filter) != 0) { (*filter)->link(last); last = *filter; }
+		// background subtraction needs a forward link to the final output of the chain
+		if (dynamic_cast<BGSubFilter*>(*filter) != 0)   (*filter)->link(last); 
 	}
-
-	win->mode2D();
-	glColor4f( 1.0, 0.0, 0.0, 1.0 ); 
-	win->print( info, 5, 5 );
-
-	bloblist->draw( win );
 }
+
+void Pipeline2::createFilter( TiXmlElement* config, Filter* parent ) {
+
+	std::string type = config->Value();
+	Filter* filter = 0;
+
+	if (type ==        "Camera") filter = new        Camera( config, parent );
+	if (type ==    "BlobFilter") filter = new      BlobList( config, parent );
+	if (type ==   "SplitFilter") filter = new   SplitFilter( config, parent );
+	if (type ==   "BGSubFilter") filter = new   BGSubFilter( config, parent );
+	if (type ==  "ThreshFilter") filter = new  ThreshFilter( config, parent );
+	if (type == "SpeckleFilter") filter = new SpeckleFilter( config, parent );
+
+	if (filter) push_back( filter );
+
+	for ( TiXmlElement* child = config->FirstChildElement(); child != 0; child = child->NextSiblingElement() )
+		createFilter( child, filter );
+}
+
+
+Pipeline2::~Pipeline2() {
+	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
+		delete *filter;
+}
+
+
+int Pipeline2::process() {
+	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++) {
+		int res =  (*filter)->process();
+		if (res != 0) return res;
+	}
+	return 0;
+}
+
+void Pipeline2::reset() {
+	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
+		(*filter)->reset();
+}
+
