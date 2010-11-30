@@ -231,7 +231,7 @@ void BlobList::send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids ) 
 			double w = it->axis1.length();
 			double h = it->axis2.length();
 			oscOut << osc::BeginMessage( "/tuio2/bnd" )
-				<< it->id << it->pos.x/(double)width << it->pos.y/(double)height
+				<< it->id << it->peak.x/(double)width << it->peak.y/(double)height
 				<< acos((it->axis1*(1.0/w))*Vector(1,0,0))
 				<< w << h << it->size/(w*h)
 				<< osc::EndMessage;
@@ -241,7 +241,7 @@ void BlobList::send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids ) 
 		for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 			oscOut << osc::BeginMessage( "/tuio2/ptr" )
 					<< it->id << 1 << 0 // type/user id 1 == unidentified finger
-					<< it->pos.x/(double)width << it->pos.y/(double)height
+					<< it->peak.x/(double)width << it->peak.y/(double)height
 					<< it->axis1.length() << 1.0
 					<< osc::EndMessage;
 			
