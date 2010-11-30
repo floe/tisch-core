@@ -80,6 +80,7 @@ int SplitFilter::process() {
 	}
 }
 
+// TODO: add intensity heuristic (e.g. 2nd image is the brighter one)
 IntensityImage* SplitFilter::getImage() {
 	outcount++;
 	if (outcount % 2) return image;

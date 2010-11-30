@@ -10,6 +10,7 @@
 
 int vidout  = 0;
 int verbose = 0;
+int startup = 1;
 
 GLUTWindow* win = 0;
 Filter* tmp = 0;
@@ -86,7 +87,7 @@ void idle() {
 	std::vector<int> alive;
 
 	if (mypipe->process() == 0) curframe++;
-	if (curframe == 2) mypipe->reset();
+	if (startup) { mypipe->reset(); startup = 0; }
 
 	oscOut << osc::BeginBundleImmediate;
 
