@@ -54,7 +54,7 @@ std::set<int> old_ids;
 
 std::set<StateRegion*> needs_update;
 
-BasicBlob blob;
+std::map<int,BasicBlob> blobs;
 int input_type = -1;
 
 
@@ -209,8 +209,8 @@ GestureThread gthr;
 //     - wenn geste sticky: in stickies einfügen
 
 
-void send_blob()
-{
+void process_blob( BasicBlob& blob ) {
+
 	cur_ids.insert( blob.id );
 
 	gthr.lock();
@@ -224,195 +224,182 @@ void send_blob()
 		// blob is sticky, so add to the previous region
 		target->second->state[input_type][blob.id].add( blob );
 		//std::cout << "adding blob " << blob.id << " to region " << target->first << std::endl;
-	}
-	else
-		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++)
+	} else {
+		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++) {
 			// check all regions and insert blob into first match
 			if ((*reg)->contains( blob.pos )) {
 				// also check type flags (is the blob transparent to this object type?)
 				if ((*reg)->flags() & (1<<input_type)) {
 					(*reg)->state[input_type][blob.id].add( blob );
-					//std::cout << "adding blob type " << input_type << " with id " << blob.id << " to region " << (*reg)->id << " with flags " << (*reg)->flags() << std::endl;
+					//std::cout << "adding blob type " << input_type << " with id " << blob.id << " to region ";
+					//std::cout << (*reg)->id << " with flags " << (*reg)->flags() << std::endl;
 					break;
 				}
 			}
+		}
+	}
 
 	gthr.release();
 }
 
-struct ReceiverThread : public osc::OscPacketListener 
-{
-	
-virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
-{
-	if( std::string(m.AddressPattern()) == "/tuio2/frm" ) 
-	{
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 
-		int update = 0;
-		osc::int32 framenum;
+void process_gestures() {
 
-		args >> framenum;
+	int update = 0;
 
-		// check for active client connection
-		if (!gstcon) return;
+	// check for active client connection
+	if (!gstcon) return;
 
-		// remove vanished IDs from stickies, add to update list
-		for (std::set<int>::iterator id = old_ids.begin(); id != old_ids.end(); id++)
-			if (cur_ids.find(*id) == cur_ids.end()) {
+	// remove vanished IDs from stickies, add to update list
+	for (std::set<int>::iterator id = old_ids.begin(); id != old_ids.end(); id++)
+		if (cur_ids.find(*id) == cur_ids.end()) {
 
-				std::map<int,StateRegion*>::iterator sticky = stickies.find( *id );
-				if (sticky == stickies.end()) continue;
+			std::map<int,StateRegion*>::iterator sticky = stickies.find( *id );
+			if (sticky == stickies.end()) continue;
 
-				needs_update.insert( sticky->second ); //stickies[-(*id)] = sticky->second;
-				stickies.erase( sticky );
-			}
-
-		// check for new ids since last frame
-		for (std::set<int>::iterator id = cur_ids.begin(); id != cur_ids.end(); id++)
-			if (old_ids.find(*id) == old_ids.end())
-				update = 1;
-
-		// new ids found: request region update and clear stickies
-		if (update) {
-
-			gthr.lock();
-
-			// add all volatile regions to update list
-			for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++)
-				if ((*reg)->flags() & REGION_FLAGS_VOLATILE)
-					needs_update.insert( *reg );
-
-			// add all stickies to update list
-			for (std::map<int,StateRegion*>::iterator sticky = stickies.begin(); sticky != stickies.end(); sticky++)
-				needs_update.insert( sticky->second );
-
-			// update all (ex-)stickies and all volatiles
-			for (std::set<StateRegion*>::iterator reg = needs_update.begin(); reg != needs_update.end(); reg++) {
-				if (verbose) std::cout << "requesting update of " << (*reg)->id << std::endl;
-				*gstcon << "update " << (*reg)->id << std::endl;
-			}
-
-			needs_update.clear();
-
-			gthr.release();
-
-			// TODO: sleep? if so, how long?
-			usleep( 5000 );
+			needs_update.insert( sticky->second ); //stickies[-(*id)] = sticky->second;
+			stickies.erase( sticky );
 		}
 
-		// cycle ids
-		old_ids = cur_ids;
-		cur_ids.clear();
+	// check for new ids since last frame
+	for (std::set<int>::iterator id = cur_ids.begin(); id != cur_ids.end(); id++)
+		if (old_ids.find(*id) == old_ids.end())
+			update = 1;
+
+	// new ids found: request region update and clear stickies
+	if (update) {
 
 		gthr.lock();
 
-		// announce start of this block
-		if (verbose > 2) std::cout << "start processing gestures:" << std::endl;
+		// add all volatile regions to update list
+		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++)
+			if ((*reg)->flags() & REGION_FLAGS_VOLATILE)
+				needs_update.insert( *reg );
 
-		// loop over all registered regions
-		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++) {
+		// add all stickies to update list
+		for (std::map<int,StateRegion*>::iterator sticky = stickies.begin(); sticky != stickies.end(); sticky++)
+			needs_update.insert( sticky->second );
 
-			Gesture* gst = 0;
-
-			// no input data available -> go to next region
-			//if (!(*reg)->state.changed()) continue;
-
-			// wipe old blobs & reset flags
-			(*reg)->state.purge(); // TODO: split into check & purge
-
-			// update all features for this region from inputstate
-			(*reg)->update();
-
-			// iterate over all matching gestures
-			while ((gst = (*reg)->nextMatch())) {
-
-				// check the oneshot flag
-				if (gst->flags() & GESTURE_FLAGS_ONESHOT) {
-					// even if a match occured, only send if the input ids have changed
-					if (!(*reg)->state.changed()) continue;
-				}
-
-				// transmit the current gesture along with the matched feature instances
-				*gstcon << "gesture " << (*reg)->id << " " << *gst << std::endl;
-				if (verbose > 2) std::cout << "recognized a gesture: " << (*reg)->id << " " << *gst << std::endl;
-
-				if (gst->flags() & GESTURE_FLAGS_STICKY) {
-					// now add all blob ids from the current input state to stickies..
-					// TODO: do this for all types of input state
-					// TODO: only for matching blobs (possible in any way?)
-					for (std::map<int,BlobHistory>::iterator ids = (*reg)->state[INPUT_TYPE_FINGER].begin(); ids != (*reg)->state[INPUT_TYPE_FINGER].end(); ids++) stickies[ids->first] = *reg;
-				}
-			}
+		// update all (ex-)stickies and all volatiles
+		for (std::set<StateRegion*>::iterator reg = needs_update.begin(); reg != needs_update.end(); reg++) {
+			if (verbose) std::cout << "requesting update of " << (*reg)->id << std::endl;
+			*gstcon << "update " << (*reg)->id << std::endl;
 		}
 
-		// announce end of this block
-		if (verbose > 2) std::cout << "finished processing gestures." << std::endl;
+		needs_update.clear();
 
 		gthr.release();
 
-		return;
+		// TODO: sleep? if so, how long?
+		usleep( 5000 );
 	}
 
-	input_type = -1;	
-//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	if( std::string(m.AddressPattern()) == "/tuio2/ptr") //finger
-	{
-		input_type = 0;
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, unusedid, press;
-		double width;
-		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
-		blob.id = objectid;
-	}
-//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
-	{
-		input_type = 2;
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, unusedid;
-		double angle;
-		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
-		blob.id = objectid;
-	}
-//	/tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
-	else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" )
-	{
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, parentid, size;
-		args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
-		blob.pid = parentid;
-		blob.size = size;
-		if(objectid != blob.id) return;
-		send_blob();
-	}
-	else if( std::string(m.AddressPattern()) == "/tuio2/alv" )
-		return;
+	// cycle ids
+	old_ids = cur_ids;
+	cur_ids.clear();
 
-	
+	gthr.lock();
+
+	// announce start of this block
+	if (verbose > 2) std::cout << "start processing gestures:" << std::endl;
+
+	// loop over all registered regions
+	for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++) {
+
+		Gesture* gst = 0;
+
+		// no input data available -> go to next region
+		//if (!(*reg)->state.changed()) continue;
+
+		// wipe old blobs & reset flags
+		(*reg)->state.purge(); // TODO: split into check & purge
+
+		// update all features for this region from inputstate
+		(*reg)->update();
+
+		// iterate over all matching gestures
+		while ((gst = (*reg)->nextMatch())) {
+
+			// check the oneshot flag
+			if (gst->flags() & GESTURE_FLAGS_ONESHOT) {
+				// even if a match occured, only send if the input ids have changed
+				if (!(*reg)->state.changed()) continue;
+			}
+
+			// transmit the current gesture along with the matched feature instances
+			*gstcon << "gesture " << (*reg)->id << " " << *gst << std::endl;
+			if (verbose > 2) std::cout << "recognized a gesture: " << (*reg)->id << " " << *gst << std::endl;
+
+			if (gst->flags() & GESTURE_FLAGS_STICKY) {
+				// now add all blob ids from the current input state to stickies..
+				// TODO: do this for all types of input state
+				// TODO: only for matching blobs (possible in any way?)
+				for (std::map<int,BlobHistory>::iterator ids = (*reg)->state[INPUT_TYPE_FINGER].begin(); ids != (*reg)->state[INPUT_TYPE_FINGER].end(); ids++)
+					stickies[ids->first] = *reg;
+			}
+		}
+	}
+
+	// announce end of this block
+	if (verbose > 2) std::cout << "finished processing gestures." << std::endl;
+
+	gthr.release();
 }
 
+
+struct ReceiverThread : public osc::OscPacketListener {
+	
+	virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint ) {
+
+		BasicBlob blob;
+
+		if ( std::string(m.AddressPattern()) == "/tuio2/frm" ) {
+			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+				process_blob(blob->second);
+			process_gestures();
+			return;
+		} else if (std::string(m.AddressPattern()) == "/tuio2/ptr") { 
+			// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+			input_type = 0;
+			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+			osc::int32 objectid, unusedid, press;
+			double width;
+			args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
+			blob.id = objectid;
+		} else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) {
+			input_type = 2;
+			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+			osc::int32 objectid, unusedid;
+			double angle;
+			args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
+			blob.id = objectid;
+		} else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" ) {
+			// /tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
+			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+			osc::int32 objectid, parentid, size;
+			args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
+			blob.pid = parentid;
+			blob.size = size;
+			if(objectid != blob.id) return;
+		} else if( std::string(m.AddressPattern()) == "/tuio2/alv" ) { }
+	}
 };
+
 
 ReceiverThread receiver;
 
-void quit( int i ) { exit(i); }
-
 int main( int argc, char* argv[] ) {
 
-	std::cout << "gestured - libTISCH 1.1 interpretation layer" << std::endl;
-	std::cout << "(c) 2008 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
+	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	for ( int opt = 1; opt < argc; opt++ ) {
 		if (std::string(argv[opt]) == "-v") verbose += 1;
 	}
 
-	//signal( SIGINT, quit );
-
 	gthr.start();
 
 	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_CALIB ), &receiver );
 	s.RunUntilSigInt();
-
 }
 
