@@ -61,14 +61,14 @@ KinectImageSource* src = 0;
 
 void depth_cb( freenect_device* dev, void* depth, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
-	memcpy( src->depthbuf->getData(), depth, FREENECT_DEPTH_SIZE );
+	memcpy( src->depthbuf->getData(), depth, FREENECT_DEPTH_11BIT_SIZE );
 	pthread_cond_signal( &(src->kinect_cond) );
 	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
-void rgb_cb( freenect_device* dev, freenect_pixel* rgb, uint32_t timestamp ) {
+void rgb_cb( freenect_device* dev, void* rgb, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
-	memcpy( src->rgbbuf->getData(), rgb, FREENECT_RGB_SIZE );
+	memcpy( src->rgbbuf->getData(), rgb, FREENECT_VIDEO_RGB_SIZE );
 	pthread_cond_signal( &(src->kinect_cond) );
 	pthread_mutex_unlock( &(src->kinect_lock) );
 }
@@ -78,11 +78,11 @@ void* kinecthandler( void* arg ) {
 	src = (KinectImageSource*)arg;
 
 	freenect_set_depth_callback( src->f_dev, depth_cb );
-	freenect_set_rgb_callback( src->f_dev, rgb_cb );
-	freenect_set_rgb_format( src->f_dev, FREENECT_FORMAT_RGB );
+	freenect_set_video_callback( src->f_dev, rgb_cb );
+	freenect_set_video_format( src->f_dev, FREENECT_VIDEO_RGB );
 
 	freenect_start_depth( src->f_dev );
-	freenect_start_rgb( src->f_dev );
+	freenect_start_video( src->f_dev );
 
 	while (src->run) {
 		int res = freenect_process_events( src->f_ctx );
