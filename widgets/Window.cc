@@ -21,6 +21,9 @@ Window::Window( int w, int h, std::string title, int use_mouse , const char* tar
 {
 	mymouse = use_mouse ? new Mouse() : NULL;
 
+	// FIXME: hardcoded image size
+	try { ghost = new IntensityImage( 640, 480, 0xF10E, 0 ); } catch (...) { ghost = NULL; }
+
 	// default background: white
 	mycolor[0] = 1.0;
 	mycolor[1] = 1.0;
@@ -56,6 +59,14 @@ void Window::display() {
 	mode2D();
 	glClear(GL_DEPTH_BUFFER_BIT);
 	draw();
+	if (ghost) {
+		glDisable( GL_DEPTH_TEST );
+		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+		glColor4f( 1.0, 1.0, 1.0, 0.15 );
+		show( *ghost, 0, 0 );
+		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+		glEnable( GL_DEPTH_TEST );
+	}
 	swap();
 }
 

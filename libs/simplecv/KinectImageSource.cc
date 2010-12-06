@@ -45,8 +45,6 @@ KinectImageSource::KinectImageSource( int debug ) {
 
 	depthbuf = new ShortImage( width, height );
 	rgbbuf   = new RGBImage( width, height );
-
-	start();
 }
 
 KinectImageSource::~KinectImageSource() {
