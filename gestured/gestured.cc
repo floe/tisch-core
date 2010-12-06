@@ -55,7 +55,6 @@ std::set<int> old_ids;
 std::set<StateRegion*> needs_update;
 
 std::map<int,BasicBlob> blobs;
-int input_type = -1;
 
 
 struct GestureThread: public Thread {
@@ -222,16 +221,16 @@ void process_blob( BasicBlob& blob ) {
 	std::map<int,StateRegion*>::iterator target = stickies.find( blob.id );
 	if (target != stickies.end()) {
 		// blob is sticky, so add to the previous region
-		target->second->state[input_type][blob.id].add( blob );
+		target->second->state[blob.value][blob.id].add( blob );
 		//std::cout << "adding blob " << blob.id << " to region " << target->first << std::endl;
 	} else {
 		for (RegionList::reverse_iterator reg = regions.rbegin(); reg != regions.rend(); reg++) {
 			// check all regions and insert blob into first match
 			if ((*reg)->contains( blob.pos )) {
 				// also check type flags (is the blob transparent to this object type?)
-				if ((*reg)->flags() & (1<<input_type)) {
-					(*reg)->state[input_type][blob.id].add( blob );
-					//std::cout << "adding blob type " << input_type << " with id " << blob.id << " to region ";
+				if ((*reg)->flags() & (1<<blob.value)) {
+					(*reg)->state[blob.value][blob.id].add( blob );
+					//std::cout << "adding blob type " << blob.value << " with id " << blob.id << " to region ";
 					//std::cout << (*reg)->id << " with flags " << (*reg)->flags() << std::endl;
 					break;
 				}
@@ -351,37 +350,47 @@ struct ReceiverThread : public osc::OscPacketListener {
 	
 	virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint ) {
 
-		BasicBlob blob;
+		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+		osc::int32 blobid, unused, parent;
+		double width, height, angle, area;
+		bool tmp;
 
-		if ( std::string(m.AddressPattern()) == "/tuio2/frm" ) {
-			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
-				process_blob(blob->second);
-			process_gestures();
+		if (std::string(m.AddressPattern()) == "/tuio2/frm") {
+
 			return;
-		} else if (std::string(m.AddressPattern()) == "/tuio2/ptr") { 
-			// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-			input_type = 0;
-			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-			osc::int32 objectid, unusedid, press;
-			double width;
-			args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
-			blob.id = objectid;
-		} else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) {
-			input_type = 2;
-			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-			osc::int32 objectid, unusedid;
-			double angle;
-			args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
-			blob.id = objectid;
-		} else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" ) {
-			// /tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
-			osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-			osc::int32 objectid, parentid, size;
-			args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
-			blob.pid = parentid;
-			blob.size = size;
-			if(objectid != blob.id) return;
-		} else if( std::string(m.AddressPattern()) == "/tuio2/alv" ) { }
+
+		} else if (std::string(m.AddressPattern()) == "/tuio2/ptr") {
+
+			// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc]
+			args >> blobid;
+			BasicBlob& curblob = blobs[blobid];
+			args >> unused >> unused >> curblob.pos.x >> curblob.pos.y >> width;
+			curblob.id = blobid;
+			curblob.value = INPUT_TYPE_FINGER;
+
+		} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
+
+			// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
+			args >> blobid;
+			BasicBlob& curblob = blobs[blobid];
+			args >> curblob.pos.x >> curblob.pos.y >> angle >> width >> height >> area;
+			curblob.id = blobid;
+			curblob.value = INPUT_TYPE_SHADOW;
+
+		} else if ( std::string(m.AddressPattern()) == "/tuio2/lia" ) {
+
+			args >> parent >> tmp >> blobid >> unused;
+			BasicBlob& curblob = blobs[blobid];
+			curblob.pid = parent;
+
+		} else if( std::string(m.AddressPattern()) == "/tuio2/alv" ) { 
+
+			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+				process_blob( blob->second );
+
+			blobs.clear();
+			process_gestures();
+		}
 	}
 };
 
