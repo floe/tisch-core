@@ -183,7 +183,10 @@ class TISCH_SHARED Image {
 				// set semaphore value to 1 if it was newly created
 				if (flags | IPC_CREAT) semctl( sem, 0, SETVAL, 1 );
 			}
+			#endif
 		}
+
+		#ifndef _MSC_VER
 
 		// wrapper for semaphore access
 		inline int do_sem( int val ) {
