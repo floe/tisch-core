@@ -491,7 +491,7 @@ void ReceivedMessageArgumentIterator::Advance()
         case BLOB_TYPE_TAG:
             {
                 uint32 blobSize = ToUInt32( value_.argument_ );
-                value_.argument_ = value_.argument_ + 4 + RoundUp4( blobSize );
+                value_.argument_ = value_.argument_ + 4 + RoundUp4( (unsigned long)blobSize );
             }
             break;
 
@@ -631,7 +631,7 @@ void ReceivedMessage::Init( const char *message, unsigned long size )
                                 MalformedMessageException( "arguments exceed message size" );
                                 
                             uint32 blobSize = ToUInt32( argument );
-                            argument = argument + 4 + RoundUp4( blobSize );
+                            argument = argument + 4 + RoundUp4( (unsigned long)blobSize );
                             if( argument > end )
                                 MalformedMessageException( "arguments exceed message size" );
                         }
