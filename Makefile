@@ -36,7 +36,7 @@ ifndef TISCH_CONFIG
     ifeq (freenect,$(findstring freenect,$(LDFLAGS)))
       CFLAGS += -DHAS_FREENECT
     endif
-    LDFLAGS += -lGL -lGLU -lglut
+    LDFLAGS += -lGL -lGLU -lglut -Wl,-rpath-link=$(LIBDIR)
     SLFLAGS += -shared
     CFLAGS  += -O2 -fno-strict-aliasing
     SUFFIX = so
