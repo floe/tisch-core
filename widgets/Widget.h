@@ -69,7 +69,7 @@ class TISCH_SHARED Widget {
 		Vector glOutline2d( double ox, double oy, int push = 1 ) {
 			GLdouble resx, resy, resz;
 			gluProject( ox, oy, 0.0, m_model, g_proj, g_view, &resx, &resy, &resz );
-			Vector res(resx,resy,resz);
+			Vector res( resx/g_view[2], resy/g_view[3], resz );
 			if (push) region.push_back( res );
 			return res;
 		}

@@ -20,36 +20,23 @@ unsigned long long us1;
 
 
 Mouse::Mouse( const char* target ):
-	output( INADDR_ANY, 0 ),
+	output( target, TISCH_PORT_CALIB ),
 	blobs(), framenum( 0 )
-{
-	output.target( target, TISCH_PORT_CALIB );
-}
+{ }
 
 Mouse::~Mouse() { }
 
 
 void Mouse::send_blobs() {
 
-	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
+	std::string prefix = "ptr";
+	output.start();
+	output.setPrefix( prefix );
 
-		blob->second.peak = blob->second.pos;
+	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+		output << blob->second;
 
-		if (blob->second.value >= 1) {
-			blob->second.id  = blob->first+1;
-			blob->second.pid = 0;
-			output << "shadow " << blob->second << std::endl;
-		}
-
-		if (blob->second.value >= 2) {
-			blob->second.id  = blob->first;
-			blob->second.pid = blob->first+1;
-			output << "finger " << blob->second << std::endl;
-		}
-
-	}
-
-	output << "frame " << framenum++ << std::endl;
+	output.send( );
 }
 
 

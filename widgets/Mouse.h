@@ -9,8 +9,9 @@
 
 #include <map>
 
-#include <Socket.h>
+#include <TUIOStream.h>
 #include <BasicBlob.h>
+
 
 class TISCH_SHARED Mouse {
 
@@ -28,7 +29,7 @@ class TISCH_SHARED Mouse {
 
 	private:
 
-		UDPSocket output;
+		TUIOStream output;
 
 		std::map<int,BasicBlob> blobs;
 		int framenum;
