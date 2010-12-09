@@ -97,7 +97,7 @@ default:
 
 
 # target directories
-TARGETS = libs/tools libs/osc libs/simplegl gestured widgets
+TARGETS = libs/osc libs/tools libs/simplegl gestured widgets
 
 ifneq ($(OS),iPhone)
   TARGETS += libs/simplecv drivers/touchd calibd
