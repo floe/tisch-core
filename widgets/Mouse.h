@@ -25,7 +25,7 @@ class TISCH_SHARED Mouse {
 		void passive( int num, int x, int y );
 		void entry  ( int num, int state );
 
-		void send_blobs();
+		void send_blobs( double w, double h );
 
 	private:
 

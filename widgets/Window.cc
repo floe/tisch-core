@@ -72,7 +72,7 @@ void Window::display() {
 
 void Window::idle() {
 	if (!process()) {
-		if (mymouse) mymouse->send_blobs();
+		if (mymouse) mymouse->send_blobs( width, height );
 		glutPostRedisplay();
 	}
 }

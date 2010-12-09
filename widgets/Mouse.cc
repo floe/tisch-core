@@ -27,14 +27,17 @@ Mouse::Mouse( const char* target ):
 Mouse::~Mouse() { }
 
 
-void Mouse::send_blobs() {
+void Mouse::send_blobs( double w, double h ) {
 
 	std::string prefix = "ptr";
 	output.start();
 	output.setPrefix( prefix );
 
-	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
+		blob->second.peak.x = blob->second.pos.x / w;
+		blob->second.peak.y = blob->second.pos.y / h;
 		output << blob->second;
+	}
 
 	output.send( );
 }
@@ -58,7 +61,7 @@ void Mouse::motion( int num, int x, int y ) {
 	BasicBlob& foo = blobs[num];
 	foo.pos.x = x;
 	foo.pos.y = y; //height-y;
-	send_blobs();
+	//send_blobs();
 }
 
 void Mouse::passive( int num, int x, int y ) {
