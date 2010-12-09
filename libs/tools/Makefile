@@ -2,10 +2,11 @@ TOPDIR = ../../
 
 LIBS = libtools.$(LSF)
 INCS = *.h $(TOPDIR)/tisch.h
-OBJS = Socket.o BasicBlob.o Thread.o WebSocket.o
+OBJS = Socket.o BasicBlob.o Thread.o WebSocket.o TUIOStream.o
 DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 #APPS = wstest
 
+CFLAGS  += -I$(TOPDIR) -I$(TOPDIR)/libs/osc
 LDFLAGS += -lpthread
 
 ifeq ($(OS),Linux)
