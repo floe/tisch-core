@@ -219,37 +219,15 @@ void BlobList::draw( GLUTWindow* win ) {
 
 
 // send blob list via OSC as TUIO 2.0
-void BlobList::send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids ) {
+void BlobList::send( TUIOStream* oscOut ) {
 
-	// get list of currently active IDs
-	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ )
-		ids.push_back( blob->id );
+	oscOut->setPrefix( type );
 
-	if( type == "bnd" ) {
-		// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
-		for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
-			double w = it->axis1.length();
-			double h = it->axis2.length();
-			oscOut << osc::BeginMessage( "/tuio2/bnd" )
-				<< it->id << it->peak.x/(double)width << it->peak.y/(double)height
-				<< acos((it->axis1*(1.0/w))*Vector(1,0,0))
-				<< w << h << it->size/(w*h)
-				<< osc::EndMessage;
-		}
-	} else if( type == "ptr" ) {
-		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-		for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
-			oscOut << osc::BeginMessage( "/tuio2/ptr" )
-					<< it->id << 1 << 0 // type/user id 1 == unidentified finger
-					<< it->peak.x/(double)width << it->peak.y/(double)height
-					<< it->axis1.length() << 1.0
-					<< osc::EndMessage;
-			
-			if (it->pid) 
-				oscOut << osc::BeginMessage( "/tuio2/lia" )
-					<< it->pid << true << it->id << 0
-					<< osc::EndMessage;
-		}
+	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+		BasicBlob tmp = *it;
+		tmp.peak.x = tmp.peak.x / (double)width;
+		tmp.peak.y = tmp.peak.y / (double)height;
+		*oscOut << tmp;
 	}
 }
 

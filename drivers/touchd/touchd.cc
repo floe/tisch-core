@@ -1,11 +1,12 @@
+#include <tisch.h>
 #include <signal.h>
-
-#include "osc/OscOutboundPacketStream.h"
-#include "ip/UdpSocket.h"
 
 #include "Pipeline.h"
 #include "BlobList.h"
 #include <GLUTWindow.h>
+#include <TUIOStream.h>
+
+#define ADDRESS "127.0.0.1"
 
 
 int vidout  = 0;
@@ -22,25 +23,15 @@ int curframe = 0;
 int lasttime = 0;
 int lastframe = 0;
 
-
-#define OUTPUT_BUFFER_SIZE 0x10000
-#define ADDRESS "127.0.0.1"
-#define TUIO_PORT_DEFAULT 3333
-
-using namespace osc;
-
-char buffer[OUTPUT_BUFFER_SIZE];
-osc::OutboundPacketStream oscOut( buffer, OUTPUT_BUFFER_SIZE );
-
-UdpTransmitSocket* transmitSocket; // ( IpEndpointName( ADDRESS, TISCH_PORT_RAW ) );
+TUIOStream* tuio;
 
 
 void cleanup( int signal ) {
 
 	std::cout << "Cleaning up.. " << std::flush;
 
-	delete transmitSocket;
 	delete mypipe;
+	delete tuio;
 
 	if (vidout) delete win;
 
@@ -84,29 +75,18 @@ void keyb( unsigned char c, int, int ) {
 
 void idle() {
 
-	std::vector<int> alive;
-
 	if (mypipe->process() == 0) curframe++;
 	if (startup) { mypipe->reset(); startup = 0; }
 
-	oscOut << osc::BeginBundleImmediate;
-
-	// frame message
-	oscOut << osc::BeginMessage( "/tuio2/frm" ) << curframe << TimeTag(time(NULL)) << osc::EndMessage;
+	tuio->start();
 
 	// blob/pointer messages
 	for (std::vector<Filter*>::iterator filter = mypipe->begin(); filter != mypipe->end(); filter++) {
 		BlobList* bl = dynamic_cast<BlobList*>(*filter);
-		if (bl) bl->send( oscOut, alive );
+		if (bl) bl->send( tuio );
 	}
 
-	// alive message
-	oscOut << osc::BeginMessage( "/tuio2/alv" );
-	for (std::vector<int>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
-	oscOut << osc::EndMessage;
-
-	transmitSocket->Send( oscOut.Data(), oscOut.Size() );
-	oscOut.Clear();
+	tuio->send();
 
 	if (win) glutPostRedisplay();
 }
@@ -114,7 +94,7 @@ void idle() {
 
 int main( int argc, char* argv[] ) {
 
-	int outport = TUIO_PORT_DEFAULT;
+	int outport = TISCH_PORT_CALIB;
 
 	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
@@ -154,7 +134,7 @@ int main( int argc, char* argv[] ) {
 	mypipe = new Pipeline( doc.FirstChildElement() );
 	tmp = (*mypipe)[0];
 
-	transmitSocket = new UdpTransmitSocket( IpEndpointName( ADDRESS, outport ) );
+	tuio = new TUIOStream( ADDRESS, outport );
 
 	int width  = tmp->getImage()->getWidth();
 	int height = tmp->getImage()->getHeight();

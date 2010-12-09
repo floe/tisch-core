@@ -10,11 +10,11 @@
 #include <vector>
 #include <iostream>
 
+#include <GLUTWindow.h>
+#include <TUIOStream.h>
+
 #include "Filter.h"
-#include "GLUTWindow.h"
 #include "Blob.h"
-#include "osc/OscOutboundPacketStream.h"
-#include "ip/UdpSocket.h"
 
 
 class BlobList: public Filter {
@@ -30,7 +30,7 @@ class BlobList: public Filter {
 		virtual void draw( GLUTWindow* win );
 		virtual void link( Filter* _link   );
 
-		void send( osc::OutboundPacketStream& oscOut, std::vector<int>& ids );
+		void send( TUIOStream* tuio );
 
 	protected:
 

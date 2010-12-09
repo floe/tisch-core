@@ -7,16 +7,16 @@
 #ifndef _TUIOSTREAM_H_
 #define _TUIOSTREAM_H_
 
+#include <string>
 #include <vector>
 
 #include <osc/OscOutboundPacketStream.h>
 #include <ip/UdpSocket.h>
+#include <BasicBlob.h>
 #include <tisch.h>
 
 #define TUIOSTREAM_BUFFER_SIZE 0x10000
 
-class TUIOStream;
-template <class T> TUIOStream& operator<< ( TUIOStream& s, const T& t ); 
 
 class TUIOStream {
 
@@ -27,6 +27,7 @@ class TUIOStream {
 		TUIOStream( const char* target = "127.0.0.1", int port = TISCH_PORT_CALIB );
 
 		void start();
+		void setPrefix( std::string& _prefix );
 		void send();
 
 	protected:
@@ -35,13 +36,17 @@ class TUIOStream {
 		osc::OutboundPacketStream oscOut;
 		UdpTransmitSocket transmitSocket;
 		std::vector<int> alive;
+		std::string prefix;
 		int frame;
 };
+
 
 template <class T> TUIOStream& operator<< ( TUIOStream& s, const T& t ) {
 	s.oscOut << t;
 	return s;
 }
+
+template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b );
 
 #endif // _TUIOSTREAM_H_
 

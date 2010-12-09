@@ -51,7 +51,7 @@ template< typename Type > class _Vector {
 			return tmp;
 		}
 
-		double operator*(_Vector in) {
+		double operator*(_Vector in) const {
 			double tmp;
 			tmp = x*in.x + y*in.y + z*in.z;
 			return tmp;
@@ -61,7 +61,7 @@ template< typename Type > class _Vector {
 			return ((x != other.x) || (y != other.y) || (z != other.z));
 		}
 
-		_Vector operator*(double in) {
+		_Vector operator*(double in) const {
 			_Vector tmp;
 			tmp.x = x*in;
 			tmp.y = y*in;
@@ -74,7 +74,7 @@ template< typename Type > class _Vector {
 
 		void set( Type _x = 0, Type _y = 0, Type _z = 0 ) { x = _x; y = _y; z = _z; }
 
-		double length() { return sqrt((double)x*x+y*y+z*z); }
+		double length() const { return sqrt((double)x*x+y*y+z*z); }
 
 		void rotate( double angle ) {
 			double tx = x *  cos(angle) + y * sin(angle);
