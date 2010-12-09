@@ -9,7 +9,7 @@
 *                                                                         *
 *                      http://tisch.sourceforge.net/                      *
 *                                                                         *
-*   Copyright (c) 2006-2009 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*    Copyright (c) 2006-2010 by Florian Echtler <floe@butterbrot.org>     *
 *                                                                         *
 *  This program is free software: you can redistribute it and/or modify   *
 *  it under the terms of the GNU Lesser General Public License (LGPL) as  *
@@ -21,11 +21,9 @@
 #ifndef _TISCH_H_
 #define _TISCH_H_
 
-#define TISCH_PORT_BASE 0x7AB1 // base UDP port - "TABL"
-
-#define TISCH_PORT_RAW    TISCH_PORT_BASE-1  // raw camera image positions - 31408
-#define TISCH_PORT_CALIB  TISCH_PORT_BASE    // calibrated blob positions  - 31409
-#define TISCH_PORT_EVENT  TISCH_PORT_BASE+1  // processed gestures/events  - 31410
+#define TISCH_PORT_RAW     3332 // UDP port for uncalibrated blob positions (TUIO/OSC data)
+#define TISCH_PORT_CALIB   3333 // TUIO/OSC default UDP port for calibrated blob positions
+#define TISCH_PORT_EVENT 0x7AB1 // base TCP port for processed gestures/events - "TABL"
 
 // some magic defines to make Visual Studio happy with classes in a DLL
 #ifdef _MSC_VER
