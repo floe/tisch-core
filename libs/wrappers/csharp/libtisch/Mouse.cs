@@ -68,8 +68,8 @@ public class Mouse : IDisposable {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void send_blobs() {
-    libtischPINVOKE.Mouse_send_blobs(swigCPtr);
+  public void send_blobs(double w, double h) {
+    libtischPINVOKE.Mouse_send_blobs(swigCPtr, w, h);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

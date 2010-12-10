@@ -59,8 +59,8 @@ public class Mouse {
     libtischJNI.Mouse_entry(swigCPtr, this, num, state);
   }
 
-  public void send_blobs() {
-    libtischJNI.Mouse_send_blobs(swigCPtr, this);
+  public void send_blobs(double w, double h) {
+    libtischJNI.Mouse_send_blobs(swigCPtr, this, w, h);
   }
 
 }

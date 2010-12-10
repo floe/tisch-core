@@ -3909,7 +3909,7 @@ SWIGEXPORT jdouble JNICALL Java_libtisch_libtischJNI_Vector_1length(JNIEnv *jenv
   arg1 = *(_Vector< double > **)&jarg1; 
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< double > const *)arg1)->length();
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
@@ -4277,7 +4277,7 @@ SWIGEXPORT jdouble JNICALL Java_libtisch_libtischJNI_IntVector_1length(JNIEnv *j
   arg1 = *(_Vector< int > **)&jarg1; 
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< int > const *)arg1)->length();
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
@@ -64735,16 +64735,20 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Mouse_1entry(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Mouse_1send_1blobs(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Mouse_1send_1blobs(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2, jdouble jarg3) {
   Mouse *arg1 = (Mouse *) 0 ;
+  double arg2 ;
+  double arg3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Mouse **)&jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = (double)jarg3; 
   {
     try {
-      (arg1)->send_blobs();
+      (arg1)->send_blobs(arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 

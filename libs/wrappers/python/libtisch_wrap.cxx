@@ -10355,7 +10355,7 @@ SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(self)
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "_Vector< double > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "_Vector< double > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< double > * >(argp1);
   {
@@ -10373,7 +10373,7 @@ SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(self)
   }
   {
     try {
-      result = (double)(arg1)->operator *(arg2);
+      result = (double)((_Vector< double > const *)arg1)->operator *(arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -10440,7 +10440,7 @@ SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(self)
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "_Vector< double > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "_Vector< double > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< double > * >(argp1);
   ecode2 = SWIG_AsVal_double(obj1, &val2);
@@ -10450,7 +10450,7 @@ SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(self)
   arg2 = static_cast< double >(val2);
   {
     try {
-      result = (arg1)->operator *(arg2);
+      result = ((_Vector< double > const *)arg1)->operator *(arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -10801,12 +10801,12 @@ SWIGINTERN PyObject *_wrap_Vector_length(PyObject *SWIGUNUSEDPARM(self), PyObjec
   if (!PyArg_ParseTuple(args,(char *)"O:Vector_length",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_length" "', argument " "1"" of type '" "_Vector< double > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_length" "', argument " "1"" of type '" "_Vector< double > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< double > * >(argp1);
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< double > const *)arg1)->length();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -11453,7 +11453,7 @@ SWIGINTERN PyObject *_wrap_IntVector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(se
   if (!PyArg_ParseTuple(args,(char *)"OO:IntVector___mul__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector___mul__" "', argument " "1"" of type '" "_Vector< int > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector___mul__" "', argument " "1"" of type '" "_Vector< int > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< int > * >(argp1);
   {
@@ -11471,7 +11471,7 @@ SWIGINTERN PyObject *_wrap_IntVector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(se
   }
   {
     try {
-      result = (double)(arg1)->operator *(arg2);
+      result = (double)((_Vector< int > const *)arg1)->operator *(arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -11538,7 +11538,7 @@ SWIGINTERN PyObject *_wrap_IntVector___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(se
   if (!PyArg_ParseTuple(args,(char *)"OO:IntVector___mul__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector___mul__" "', argument " "1"" of type '" "_Vector< int > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector___mul__" "', argument " "1"" of type '" "_Vector< int > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< int > * >(argp1);
   ecode2 = SWIG_AsVal_double(obj1, &val2);
@@ -11548,7 +11548,7 @@ SWIGINTERN PyObject *_wrap_IntVector___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(se
   arg2 = static_cast< double >(val2);
   {
     try {
-      result = (arg1)->operator *(arg2);
+      result = ((_Vector< int > const *)arg1)->operator *(arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -11899,12 +11899,12 @@ SWIGINTERN PyObject *_wrap_IntVector_length(PyObject *SWIGUNUSEDPARM(self), PyOb
   if (!PyArg_ParseTuple(args,(char *)"O:IntVector_length",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p__VectorT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector_length" "', argument " "1"" of type '" "_Vector< int > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IntVector_length" "', argument " "1"" of type '" "_Vector< int > const *""'"); 
   }
   arg1 = reinterpret_cast< _Vector< int > * >(argp1);
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< int > const *)arg1)->length();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -54800,19 +54800,37 @@ fail:
 SWIGINTERN PyObject *_wrap_Mouse_send_blobs(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Mouse *arg1 = (Mouse *) 0 ;
+  double arg2 ;
+  double arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Mouse_send_blobs",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Mouse_send_blobs",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Mouse, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mouse_send_blobs" "', argument " "1"" of type '" "Mouse *""'"); 
   }
   arg1 = reinterpret_cast< Mouse * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Mouse_send_blobs" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Mouse_send_blobs" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
   {
     try {
-      (arg1)->send_blobs();
+      (arg1)->send_blobs(arg2,arg3);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }

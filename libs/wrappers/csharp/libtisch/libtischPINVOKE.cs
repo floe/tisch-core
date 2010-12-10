@@ -13831,7 +13831,7 @@ class libtischPINVOKE {
   public static extern void Mouse_entry(HandleRef jarg1, int jarg2, int jarg3);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Mouse_send_blobs")]
-  public static extern void Mouse_send_blobs(HandleRef jarg1);
+  public static extern void Mouse_send_blobs(HandleRef jarg1, double jarg2, double jarg3);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_BlobHistoryUpcast")]
   public static extern IntPtr BlobHistoryUpcast(IntPtr objectRef);

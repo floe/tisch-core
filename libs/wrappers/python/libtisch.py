@@ -5531,7 +5531,7 @@ class Mouse(_object):
     def motion(self, *args): return _libtisch.Mouse_motion(self, *args)
     def passive(self, *args): return _libtisch.Mouse_passive(self, *args)
     def entry(self, *args): return _libtisch.Mouse_entry(self, *args)
-    def send_blobs(self): return _libtisch.Mouse_send_blobs(self)
+    def send_blobs(self, *args): return _libtisch.Mouse_send_blobs(self, *args)
 Mouse_swigregister = _libtisch.Mouse_swigregister
 Mouse_swigregister(Mouse)
 

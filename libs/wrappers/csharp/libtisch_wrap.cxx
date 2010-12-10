@@ -3111,7 +3111,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_Vector_length(void * jarg1) {
   arg1 = (_Vector< double > *)jarg1; 
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< double > const *)arg1)->length();
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -3427,7 +3427,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_IntVector_length(void * jarg1) {
   arg1 = (_Vector< int > *)jarg1; 
   {
     try {
-      result = (double)(arg1)->length();
+      result = (double)((_Vector< int > const *)arg1)->length();
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -56693,13 +56693,17 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Mouse_entry(void * jarg1, int jarg2, int jarg
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Mouse_send_blobs(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Mouse_send_blobs(void * jarg1, double jarg2, double jarg3) {
   Mouse *arg1 = (Mouse *) 0 ;
+  double arg2 ;
+  double arg3 ;
   
   arg1 = (Mouse *)jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = (double)jarg3; 
   {
     try {
-      (arg1)->send_blobs();
+      (arg1)->send_blobs(arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 

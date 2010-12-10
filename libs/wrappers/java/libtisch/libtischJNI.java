@@ -4485,7 +4485,7 @@ class libtischJNI {
   public final static native void Mouse_motion(long jarg1, Mouse jarg1_, int jarg2, int jarg3, int jarg4);
   public final static native void Mouse_passive(long jarg1, Mouse jarg1_, int jarg2, int jarg3, int jarg4);
   public final static native void Mouse_entry(long jarg1, Mouse jarg1_, int jarg2, int jarg3);
-  public final static native void Mouse_send_blobs(long jarg1, Mouse jarg1_);
+  public final static native void Mouse_send_blobs(long jarg1, Mouse jarg1_, double jarg2, double jarg3);
   public final static native long SWIGBlobHistoryUpcast(long jarg1);
   public final static native long SWIGBlobStateUpcast(long jarg1);
   public final static native long SWIGInputStateUpcast(long jarg1);
