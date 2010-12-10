@@ -27,7 +27,7 @@ class TUIOStream {
 		TUIOStream( const char* target = "127.0.0.1", int port = TISCH_PORT_CALIB );
 
 		void start();
-		void setPrefix( std::string& _prefix );
+		void setPrefix( const char* _prefix );
 		void send();
 
 	protected:

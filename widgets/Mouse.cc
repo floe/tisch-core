@@ -29,15 +29,25 @@ Mouse::~Mouse() { }
 
 void Mouse::send_blobs( double w, double h ) {
 
-	std::string prefix = "ptr";
 	output.start();
-	output.setPrefix( prefix );
 
 	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
 		blob->second.peak.x = blob->second.pos.x / w;
 		blob->second.peak.y = blob->second.pos.y / h;
-		output << blob->second;
 	}
+
+	output.setPrefix( "ptr" );
+	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) 
+		if (blob->second.value >= 2) {
+			blob->second.pid = blob->second.id;
+			blob->second.id = blob->second.id + 1;
+			output << blob->second;
+			blob->second.id = blob->second.pid;
+		}
+
+	output.setPrefix( "bnd" );
+	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+		if (blob->second.value >= 1) output << blob->second;
 
 	output.send( );
 }
@@ -49,6 +59,8 @@ void Mouse::entry( int num, int state ) {
 
 	if (state == GLUT_ENTERED) {
 		BasicBlob foo;
+		foo.id    = 2*num;
+		foo.pid   = 0;
 		foo.size  = 1;
 		foo.value = 1;
 		foo.axis1 = Vector(2,0);

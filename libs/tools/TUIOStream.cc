@@ -24,7 +24,7 @@ void TUIOStream::start() {
 }
 
 
-void TUIOStream::setPrefix( std::string& _prefix ) { prefix = _prefix; }
+void TUIOStream::setPrefix( const char* _prefix ) { prefix = _prefix; }
 
 
 template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b ) {

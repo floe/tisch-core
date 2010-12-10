@@ -221,7 +221,7 @@ void BlobList::draw( GLUTWindow* win ) {
 // send blob list via OSC as TUIO 2.0
 void BlobList::send( TUIOStream* oscOut ) {
 
-	oscOut->setPrefix( type );
+	oscOut->setPrefix( type.c_str() );
 
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 		BasicBlob tmp = *it;
