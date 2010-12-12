@@ -71,6 +71,12 @@ class BGSubFilter: public Filter {
 		int invert;
 };
 
+class FlipFilter: public Filter {
+	public:
+		FlipFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+};
+
 class ThreshFilter: public Filter {
 	public:
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );

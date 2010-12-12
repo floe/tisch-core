@@ -34,6 +34,30 @@ int BGSubFilter::process() {
 }
 
 
+FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+}
+
+int FlipFilter::process() {
+
+	unsigned char* inbuf  = input->getImage()->getData();
+	unsigned char* outbuf = image->getData();
+
+	int width  = image->getWidth();
+	int height = image->getHeight();
+
+	int inoffset  = 0;
+	int outoffset = width-1;
+
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
+		inoffset  += width;
+		outoffset += width;
+	}
+	return 0;
+}
+
+
 // TODO: use result from bgsub filter for threshold adjustment
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
