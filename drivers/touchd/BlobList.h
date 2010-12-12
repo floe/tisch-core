@@ -41,6 +41,7 @@ class BlobList: public Filter {
 
 		// Color cross, trail;
 		std::string type;
+		int hflip,vflip;
 
 		BlobList* parent;
 		int width, height;

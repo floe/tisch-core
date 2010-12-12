@@ -26,6 +26,8 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	height = image->getHeight();
 
 	type = "ptr";
+	hflip = 0;
+	vflip = 0;
 
 	minsize = 50;
 	maxsize = 0;
@@ -36,6 +38,8 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 
 	// try to read settings from XML
 	config->QueryStringAttribute( "Type", &type );
+	config->QueryIntAttribute( "HFlip", &hflip );
+	config->QueryIntAttribute( "VFlip", &vflip );
 
 	config->QueryIntAttribute( "MinSize",  &minsize  );
 	config->QueryIntAttribute( "MaxSize",  &maxsize  );
@@ -227,6 +231,8 @@ void BlobList::send( TUIOStream* oscOut ) {
 		BasicBlob tmp = *it;
 		tmp.peak.x = tmp.peak.x / (double)width;
 		tmp.peak.y = tmp.peak.y / (double)height;
+		if (hflip) tmp.peak.x = 1.0 - tmp.peak.x;
+		if (vflip) tmp.peak.y = 1.0 - tmp.peak.y;
 		*oscOut << tmp;
 	}
 }
