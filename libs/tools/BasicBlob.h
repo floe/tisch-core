@@ -8,6 +8,7 @@
 #define _BASICBLOB_H_
 
 #include <iostream>
+#include <osc/OscTypes.h>
 #include "Vector.h"
 
 class TISCH_SHARED BasicBlob {
@@ -19,7 +20,8 @@ class TISCH_SHARED BasicBlob {
 
 		BasicBlob();
 
-		int size, id, pid, tracked;
+		osc::int32 id, pid;
+		int size, tracked;
 		unsigned char value;
 
 		::Vector pos, speed;
