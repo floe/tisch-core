@@ -385,8 +385,11 @@ struct ReceiverThread : public osc::OscPacketListener {
 
 		} else if( std::string(m.AddressPattern()) == "/tuio2/alv" ) { 
 
-			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
+				if (verbose >= 2)
+					std::cout << "processing blob: " << blob->first << " " << blob->second << std::endl;
 				process_blob( blob->second );
+			}
 
 			blobs.clear();
 			process_gestures();
