@@ -11,7 +11,7 @@
 	<BGSubFilter Invert=1>
 		<ThreshFilter Threshold=150>
 			<SpeckleFilter NoiseLevel=2>
-				<BlobFilter Type="bnd"/>
+				<BlobFilter Type=1/> <!-- TUIO 2.0 object type -->
 			</SpeckleFilter>
 		</ThreshFilter>
 	</BGSubFilter>

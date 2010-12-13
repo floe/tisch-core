@@ -25,7 +25,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	width  = image->getWidth();
 	height = image->getHeight();
 
-	type = "ptr";
+	type  = 0;
 	hflip = 0;
 	vflip = 0;
 
@@ -37,7 +37,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	peaksize = 0.0;
 
 	// try to read settings from XML
-	config->QueryStringAttribute( "Type", &type );
+	config->QueryIntAttribute( "Type",  &type  );
 	config->QueryIntAttribute( "HFlip", &hflip );
 	config->QueryIntAttribute( "VFlip", &vflip );
 
@@ -95,7 +95,7 @@ int BlobList::process() {
 		// did the frame-local blob counter overflow?
 		if (value == 0) {
 			value = 254;
-			std::cerr << "Warning: too many " << type << " blobs!" << std::endl;
+			std::cerr << "Warning: too many type " << type << " blobs!" << std::endl;
 		}
 
 	} catch (...) { }
@@ -228,6 +228,7 @@ void BlobList::send( TUIOStream* oscOut ) {
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 
 		BasicBlob tmp = *it;
+		tmp.type = type;
 
 		tmp.pos.x  = tmp.pos.x  / (double)width; tmp.pos.y  = tmp.pos.y  / (double)height;
 		tmp.peak.x = tmp.peak.x / (double)width; tmp.peak.y = tmp.peak.y / (double)height;

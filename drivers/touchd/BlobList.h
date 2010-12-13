@@ -40,8 +40,7 @@ class BlobList: public Filter {
 		int minsize, maxsize;            // blob detection settings
 
 		// Color cross, trail;
-		std::string type;
-		int hflip,vflip;
+		int type, hflip, vflip;
 
 		BlobList* parent;
 		int width, height;

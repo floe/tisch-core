@@ -40,7 +40,7 @@ template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob&
 	s.oscOut << osc::BeginMessage( "/tuio2/ptr" )
 		<< b.id << b.type << osc::int32(0)
 		<< b.peak.x << b.peak.y
-		<< b.axis1.length() << double(1.0)
+		<< w << double(1.0)
 		<< osc::EndMessage;
 	
 	if (b.pid)
