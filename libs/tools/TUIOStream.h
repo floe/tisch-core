@@ -35,7 +35,7 @@ class TUIOStream {
 		osc::OutboundPacketStream oscOut;
 		UdpTransmitSocket transmitSocket;
 		std::vector<osc::int32> alive;
-		int frame;
+		osc::int32 frame;
 };
 
 
