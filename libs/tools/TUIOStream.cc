@@ -28,12 +28,13 @@ template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob&
 
 	double w = b.axis1.length();
 	double h = b.axis2.length();
+	double angle = acos((b.axis1*(1.0/w))*Vector(1,0,0));
+	if (b.axis1.y < 0) angle = 2*M_PI - angle;
 
 	// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
 	s.oscOut << osc::BeginMessage( "/tuio2/bnd" )
 		<< b.id << b.pos.x << b.pos.y
-		<< acos((b.axis1*(1.0/w))*Vector(1,0,0))
-		<< w << h << b.size/(w*h)
+		<< angle << w << h << b.size/(w*h)
 		<< osc::EndMessage;
 
 	// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 

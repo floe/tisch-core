@@ -32,20 +32,17 @@ void Mouse::send_blobs( double w, double h ) {
 	output.start();
 
 	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
-		blob->second.peak.x = blob->second.pos.x / w;
-		blob->second.peak.y = blob->second.pos.y / h;
+
+		BasicBlob tmp = blob->second;
+
+		tmp.pos.x = tmp.pos.x / w;
+		tmp.pos.y = tmp.pos.y / h;
+
+		if (tmp.type == 1) tmp.id++;
+		tmp.peak = tmp.pos;
+
+		output << tmp;
 	}
-
-	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) 
-		if (blob->second.value >= 2) {
-			blob->second.pid = blob->second.id;
-			blob->second.id = blob->second.id + 1;
-			output << blob->second;
-			blob->second.id = blob->second.pid;
-		}
-
-	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
-		if (blob->second.value >= 1) output << blob->second;
 
 	output.send( );
 }
@@ -90,8 +87,8 @@ void Mouse::button( int num, int button, int state, int x, int y ) {
 	}
 
 	// handle normal mouse clicks
-	if (state == GLUT_DOWN) blobs[num].value = 2;
-	if (state == GLUT_UP  ) blobs[num].value = 1;
+	if (state == GLUT_DOWN) blobs[num].type = 1;
+	if (state == GLUT_UP  ) blobs[num].type = 0;
 
 	#ifdef TISCH_LATENCY
 		if (state == GLUT_DOWN) {

@@ -14,19 +14,6 @@
 
 #include <BasicBlob.h>
 
-enum InputType {
-	INPUT_TYPE_FINGER,
-	INPUT_TYPE_HAND,
-	INPUT_TYPE_SHADOW,
-	INPUT_TYPE_OBJECT,
-	INPUT_TYPE_OTHER,
-	// always keep as last 
-	INPUT_TYPE_COUNT
-};
-
-// TODO: this sucks, should be a map<string,int>
-extern TISCH_SHARED const char* inputname[INPUT_TYPE_COUNT];
-
 
 class TISCH_SHARED BlobHistory: public std::deque<BasicBlob> {
 

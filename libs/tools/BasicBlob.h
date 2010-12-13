@@ -11,6 +11,19 @@
 #include <osc/OscTypes.h>
 #include "Vector.h"
 
+
+// TODO: these should be TUIO 2.0 types
+enum InputType {
+	INPUT_TYPE_FINGER,
+	INPUT_TYPE_HAND,
+	INPUT_TYPE_SHADOW,
+	INPUT_TYPE_OBJECT,
+	INPUT_TYPE_OTHER,
+	// always keep as last 
+	INPUT_TYPE_COUNT
+};
+
+
 class TISCH_SHARED BasicBlob {
 
 	friend TISCH_SHARED std::istream& operator>>( std::istream& s, BasicBlob& b );

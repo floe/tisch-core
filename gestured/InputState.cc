@@ -6,14 +6,6 @@
 
 #include "InputState.h"
 
-TISCH_SHARED const char* inputname[INPUT_TYPE_COUNT] = {
-	"finger",
-	"hand",
-	"shadow",
-	"object",
-	"other"
-};
-
 
 InputState::InputState(): std::vector<BlobState>(INPUT_TYPE_COUNT) { }
 
