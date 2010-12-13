@@ -107,43 +107,11 @@ IntensityImage::IntensityImage( const IntensityImage& img, int downsample ):
 }
 
 
-long long int IntensityImage::integrate( int x, int y, Moments* m ) {
+inline long long int   sum( int x ) { long long int t = x; return (t*(t+1))/2;         } // 1 + 2 + ... + x
+inline long long int sqsum( int x ) { long long int t = x; return (t*(t+1)*(2*t+1))/6; } // 1^2 + 2^2 + ... + x^2
 
-	long long int pcount = 0;
-	register int x1,lmax,rmax,offs = width*y;
-
-	register unsigned char oldcol = m->ov;
-	register unsigned char newcol = m->nv;
-
-	if (getPixel(x,y) != oldcol) return 0;
-
-	// draw scanline from start position to the right and left
-	rmax = x; x1 = x;   while ((x1 <  width) && (data[offs+x1] == oldcol)) { data[offs+x1] = newcol; rmax = x1++; }
-	lmax = x; x1 = x-1; while ((x1 >=     0) && (data[offs+x1] == oldcol)) { data[offs+x1] = newcol; lmax = x1--; }
-
-	// increase pixel count and y value (pcount pixels with coordinate y)
-	pcount = rmax - lmax + 1;
-	m->m01 += pcount * y;
-	m->m02 += pcount * y*y;
-
-	// test for new scanlines above and below
-	for (x1 = lmax; x1 <= rmax; x1++) {
-		m->m10 += x1;
-		m->m20 += x1*x1;
-		m->m11 += x1*y;
-		if ((y < height-1) && (getPixel(x1,y+1) == oldcol)) pcount += integrate( x1, y+1, m );
-		if ((y >        0) && (getPixel(x1,y-1) == oldcol)) pcount += integrate( x1, y-1, m );
-	}
-
-	return pcount;
-}
-
-
-inline long long int   sum( int x ) { long long int t = x; return (t*(t+1))/2; }
-inline long long int sqsum( int x ) { long long int t = x; return (t*(t+1)*(2*t+1))/6; }
-
-inline long long int   sum( int x1, int x2 ) { return   sum(x2)-  sum(x1-1); }
-inline long long int sqsum( int x1, int x2 ) { return sqsum(x2)-sqsum(x1-1); }
+inline long long int   sum( int x1, int x2 ) { return   sum(x2)-  sum(x1-1); } // x1 + x1+1 + ... + x2
+inline long long int sqsum( int x1, int x2 ) { return sqsum(x2)-sqsum(x1-1); } // x1^2 + (x1+1)^2 + ... + x2^2
 
 
 void IntensityImage::scanSpan( int add, int dir, int x1, int x2, int y, Moments* m ) {
@@ -213,7 +181,7 @@ void IntensityImage::scanSpan( int add, int dir, int x1, int x2, int y, Moments*
 }
 
 
-long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol, unsigned char newcol ) {
+long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol, unsigned char newcol, std::vector<Point>* border ) {
 
 	Moments m = { 0, 0, 0, 0, 0, 0, oldcol, newcol };
 
@@ -223,7 +191,7 @@ long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& 
 	scanSpan( 0,  1, start.x, start.x, start.y, &m );
 
 	//std::cout << "moments: m00 = " << m00 << " m10 = " << m10 << " m01 = " << m01 << " m11 = " << m11 << " m20 = " << m20 << " m02 = " << m02 << std::endl;
-
+	
 	// calculate centroid: 1st order central moments
 	double cx = (double)m.m10/(double)m.m00; centroid.x = cx;
 	double cy = (double)m.m01/(double)m.m00; centroid.y = cy;
@@ -261,6 +229,27 @@ long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& 
 	double t = (mu02-mu20)/(2.0*mu11);
 	double angle2 = atan(t+sqrt(t*t+1));*/
 	centroid.z = 0.5 * atan( 2.0*mu11 / ( mu20 - mu02 ) );
+
+	if (!border) return m.m00;
+
+	// scan the border
+	int neighbor[] = { -width-1, -width, -width+1, +1, width+1, width, width-1, -1 };
+
+	int offs0 = start.y * width + start.x;
+	int offset = offs0;
+	int found = 0;
+
+	while ((offset != offs0) || (!found)) {
+		found = 0;
+		for (int i = 0; i < 8; i++)
+			if ((data[offset+neighbor[i]] == newcol) && (data[offset+neighbor[(i+1)%8]] != newcol)) {
+				border->push_back( Point(offset%width,offset/width) );
+				offset += neighbor[i];
+				found = 1;
+				break;
+			}
+		if (!found) { offset++; offs0 = offset; }
+	}
 
 	return m.m00;
 }

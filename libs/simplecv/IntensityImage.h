@@ -42,7 +42,7 @@ class TISCH_SHARED IntensityImage: public Image {
 		int histogram( int hg[] ) const;
 		int intensity() const;
 
-		long long int integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol = 255, unsigned char newcol = 0 );
+		long long int integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol = 255, unsigned char newcol = 0, std::vector<Point>* border = NULL );
 
 		void undistort( Vector scale, Vector delta, double coeff[5], IntensityImage& target ) const;
 
@@ -77,8 +77,6 @@ class TISCH_SHARED IntensityImage: public Image {
 		};
 
 		void scanSpan( int add, int dir, int x1, int x2, int y, Moments* m );
-
-		long long int integrate( int x, int y, Moments* m );
 
 		void sobel( unsigned char* target );
 		void gradient( char* xgrad, char* ygrad );
