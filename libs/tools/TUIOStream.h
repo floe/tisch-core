@@ -27,7 +27,6 @@ class TUIOStream {
 		TUIOStream( const char* target = "127.0.0.1", int port = TISCH_PORT_CALIB );
 
 		void start();
-		void setPrefix( const char* _prefix );
 		void send();
 
 	protected:
@@ -35,8 +34,7 @@ class TUIOStream {
 		char buffer[TUIOSTREAM_BUFFER_SIZE];
 		osc::OutboundPacketStream oscOut;
 		UdpTransmitSocket transmitSocket;
-		std::vector<int> alive;
-		std::string prefix;
+		std::vector<osc::int32> alive;
 		int frame;
 };
 

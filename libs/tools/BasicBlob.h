@@ -20,7 +20,7 @@ class TISCH_SHARED BasicBlob {
 
 		BasicBlob();
 
-		osc::int32 id, pid;
+		osc::int32 id, pid, type;
 		int size, tracked;
 		unsigned char value;
 

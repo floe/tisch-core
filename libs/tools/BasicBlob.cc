@@ -14,10 +14,11 @@ BasicBlob::BasicBlob():
 	pos(0,0,0),
 	speed(0,0,0),
 	peak(0,0,0),
-	axis1(2,0,0),
+	axis1(1,0,0),
 	axis2(0,1,0)
 {
 	size = 1;
+	type = 0;
 	value = 1;
 	tracked = 0;
 	id = pid = 0;

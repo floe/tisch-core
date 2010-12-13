@@ -225,14 +225,23 @@ void BlobList::draw( GLUTWindow* win ) {
 // send blob list via OSC as TUIO 2.0
 void BlobList::send( TUIOStream* oscOut ) {
 
-	oscOut->setPrefix( type.c_str() );
-
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
+
 		BasicBlob tmp = *it;
-		tmp.peak.x = tmp.peak.x / (double)width;
-		tmp.peak.y = tmp.peak.y / (double)height;
-		if (hflip) tmp.peak.x = 1.0 - tmp.peak.x;
-		if (vflip) tmp.peak.y = 1.0 - tmp.peak.y;
+
+		tmp.pos.x  = tmp.pos.x  / (double)width; tmp.pos.y  = tmp.pos.y  / (double)height;
+		tmp.peak.x = tmp.peak.x / (double)width; tmp.peak.y = tmp.peak.y / (double)height;
+
+		if (hflip) {
+			tmp.pos.x  = 1.0 - tmp.pos.x;
+			tmp.peak.x = 1.0 - tmp.peak.x;
+		}
+
+		if (vflip) {
+			tmp.pos.y  = 1.0 - tmp.pos.y;
+			tmp.peak.y = 1.0 - tmp.peak.y;
+		}
+
 		*oscOut << tmp;
 	}
 }

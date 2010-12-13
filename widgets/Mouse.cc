@@ -36,7 +36,6 @@ void Mouse::send_blobs( double w, double h ) {
 		blob->second.peak.y = blob->second.pos.y / h;
 	}
 
-	output.setPrefix( "ptr" );
 	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) 
 		if (blob->second.value >= 2) {
 			blob->second.pid = blob->second.id;
@@ -45,7 +44,6 @@ void Mouse::send_blobs( double w, double h ) {
 			blob->second.id = blob->second.pid;
 		}
 
-	output.setPrefix( "bnd" );
 	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
 		if (blob->second.value >= 1) output << blob->second;
 
@@ -54,31 +52,18 @@ void Mouse::send_blobs( double w, double h ) {
 
 
 void Mouse::entry( int num, int state ) {
-
 	if (state == GLUT_LEFT) blobs.erase( num );
-
-	if (state == GLUT_ENTERED) {
-		BasicBlob foo;
-		foo.id    = 2*num;
-		foo.pid   = 0;
-		foo.size  = 1;
-		foo.value = 1;
-		foo.axis1 = Vector(2,0);
-		foo.axis2 = Vector(0,1);
-		blobs[num] = foo;
-	}
 }
 
 void Mouse::motion( int num, int x, int y ) {
 	BasicBlob& foo = blobs[num];
+	foo.id  = 2*num;
+	foo.pid = 0;
 	foo.pos.x = x;
-	foo.pos.y = y; //height-y;
-	//send_blobs();
+	foo.pos.y = y;
 }
 
 void Mouse::passive( int num, int x, int y ) {
-	// TODO: BasicBlob should just have a sensible default constructor
-	if (blobs.find(num) == blobs.end()) entry( num, GLUT_ENTERED );
 	motion( num, x, y );
 }
 

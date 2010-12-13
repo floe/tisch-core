@@ -34,10 +34,12 @@ int BGSubFilter::process() {
 }
 
 
+// TODO: make hflip/vflip configurable
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 }
 
+// TODO: should be MMX-accelerated
 int FlipFilter::process() {
 
 	unsigned char* inbuf  = input->getImage()->getData();
@@ -54,6 +56,7 @@ int FlipFilter::process() {
 		inoffset  += width;
 		outoffset += width;
 	}
+
 	return 0;
 }
 
