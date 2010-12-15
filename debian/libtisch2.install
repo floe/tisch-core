@@ -1,3 +1,5 @@
+lib/liboscpack.so.2 usr/lib/
+lib/liboscpack.so.2.0 usr/lib/
 lib/libtools.so.2 usr/lib/
 lib/libtools.so.2.0 usr/lib/
 lib/libsimplecv.so.2 usr/lib/

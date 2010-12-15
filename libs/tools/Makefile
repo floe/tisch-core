@@ -7,7 +7,7 @@ DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 #APPS = wstest
 
 CFLAGS  += -I$(TOPDIR) -I$(TOPDIR)/libs/osc
-LDFLAGS += -lpthread -losc -L$(TOPDIR)/libs/osc
+LDFLAGS += -lpthread -loscpack -L$(TOPDIR)/libs/osc
 
 ifeq ($(OS),Linux)
 
