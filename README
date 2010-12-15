@@ -1,5 +1,5 @@
-TISCH Framework - Release 1.1 "November Rain"
-=============================================
+TISCH Framework - Release 2.0 Alpha 1 "Ice Age"
+===============================================
 
 "Tangible Interactive Surfaces for Collaboration between Humans"
 
@@ -17,8 +17,8 @@ Highlights
 - reconfigurable, hardware-independent gesture recognition engine
 - support for widely used (move, scale, rotate..) as well as custom gestures
 
-- hardware drivers for FTIR, DI, Wiimote, DiamondTouch..
-- TUIO converters: source and sink
+- hardware drivers for FTIR, DI, Wiimote, Kinect..
+- native use of popular TUIO 2.0 transport format
 
 - cross-platform: Linux, MacOS X, Windows (32 and 64 bit)
 - cross-language: C++ with bindings for C#, Java, Python
@@ -27,9 +27,9 @@ Highlights
 Directory Layout
 ----------------
 
-libtisch-1.1/
+libtisch2-0.1/
 	calibd/      Calibration Layer
-	drivers/     Hardware Abstraction Layer (HAL) including TUIO converters
+	drivers/     Hardware Abstraction Layer (HAL)
 	gestured/    Generic Gesture Recognition Layer
 	libs/        various helper libraries & wrappers for C#, Java, Python
 	scripts/     build scripts
@@ -44,9 +44,9 @@ If you only have a mouse and want to give it a try:
 	1. run "gestured"
 	2. run "demo -m" (enables mouse emulation mode)
 
-If you have a camera-based input device, e.g. an FTIR table:
+If you have a camera-based input device, e.g. an FTIR table or a Kinect:
 
-	1. run "touchd -Vf" (this is the most basic mode, just tracks bright blobs)
+	1. run "touchd -V -c example.xml" (this is the most basic mode, just tracks bright blobs)
 	2. run "calibtool -f" and follow the instructions (this is necessary only once)
 	3. run "calibd", if not already running
 	4. run "gestured"
@@ -97,7 +97,7 @@ Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
 	Then, just select the Debug or Release config and build the solution. All libs 
 	and binaries should be created in the appropriate output directory.
 
-Linux   (tested with gcc 4.4.3 on Ubuntu 10.04)
+Linux   (tested with gcc 4.4.3 on Ubuntu 10.04 and gcc 4.4.4 on Ubuntu 10.10)
 MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
 
 	Requirements:
