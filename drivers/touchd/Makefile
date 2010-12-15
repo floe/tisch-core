@@ -9,6 +9,7 @@ ifdef USE_BIGTOUCH
 endif
 
 APPS=touchd
+MORE=*.xml
 OBJS=Pipeline.o FlashControl.o Blob.o BlobList.o Camera.o Filter.o
 
 include $(TOPDIR)/scripts/rules.mk
