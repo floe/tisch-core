@@ -40,7 +40,7 @@ ifndef TISCH_CONFIG
     SLFLAGS += -shared
     CFLAGS  += -O2 -fno-strict-aliasing
     SUFFIX = so
-    LSF = so.1.1
+    LSF = so.2.0
 
   else ifeq ($(OS),Darwin)
 
