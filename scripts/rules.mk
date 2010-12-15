@@ -21,13 +21,13 @@ $(APPS): %: %.o $(OBJS) $(LIBS)
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 ifeq ($(OS),Linux)
-  SLFLAGS += -Wl,-soname,$(subst .1.1,.1,$@)
+  SLFLAGS += -Wl,-soname,$(subst .2.0,.2,$@)
 endif
 
 $(LIBS): $(OBJS)
 	$(CXX) $(SLFLAGS) $(LDFLAGS) $^ -o $@
-	-ln -s $@ $(subst .1.1,.1,$@)
-	-ln -s $(subst .1.1,.1,$@) $(subst .1.1,,$@)
+	-ln -s $@ $(subst .2.0,.2,$@)
+	-ln -s $(subst .2.0,.2,$@) $(subst .2.0,,$@)
 
 .PRECIOUS: %_wrap.cxx
 
