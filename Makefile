@@ -81,7 +81,7 @@ default:
 	@echo "  install  - install all binaries into $(DESTDIR)"
 	@echo "  clean    - remove all binaries"
 	@echo
-	@echo "  separate libTISCH targets: tools simplecv simplegl touchd tuio calibd gestured widgets"
+	@echo "  separate libTISCH targets: osc tools simplecv simplegl touchd calibd gestured widgets"
 	@echo "  separate wrapper targets:  csharp java python"
 	@echo
 	@echo If you need special include/library paths, put them into the 
@@ -125,7 +125,7 @@ ifneq ($(COMMAND),clean)
   libs/simplecv: libs/tools
   libs/simplegl: libs/simplecv
   drivers/touchd calibd: libs/simplegl libs/osc
-  drivers/tuio gestured: libs/tools libs/osc
+  gestured: libs/tools libs/osc
   widgets: libs/simplegl gestured
   $(WRAPPERS): widgets
 endif
