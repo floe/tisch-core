@@ -39,14 +39,6 @@ public class BasicBlob {
     this(libtischJNI.new_BasicBlob(), true);
   }
 
-  public void setSize(int value) {
-    libtischJNI.BasicBlob_size_set(swigCPtr, this, value);
-  }
-
-  public int getSize() {
-    return libtischJNI.BasicBlob_size_get(swigCPtr, this);
-  }
-
   public void setId(int value) {
     libtischJNI.BasicBlob_id_set(swigCPtr, this, value);
   }
@@ -61,6 +53,22 @@ public class BasicBlob {
 
   public int getPid() {
     return libtischJNI.BasicBlob_pid_get(swigCPtr, this);
+  }
+
+  public void setType(int value) {
+    libtischJNI.BasicBlob_type_set(swigCPtr, this, value);
+  }
+
+  public int getType() {
+    return libtischJNI.BasicBlob_type_get(swigCPtr, this);
+  }
+
+  public void setSize(int value) {
+    libtischJNI.BasicBlob_size_set(swigCPtr, this, value);
+  }
+
+  public int getSize() {
+    return libtischJNI.BasicBlob_size_get(swigCPtr, this);
   }
 
   public void setTracked(int value) {

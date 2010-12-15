@@ -373,12 +373,6 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_BasicBlob")]
   public static extern IntPtr new_BasicBlob();
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_size_set")]
-  public static extern void BasicBlob_size_set(HandleRef jarg1, int jarg2);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_size_get")]
-  public static extern int BasicBlob_size_get(HandleRef jarg1);
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_id_set")]
   public static extern void BasicBlob_id_set(HandleRef jarg1, int jarg2);
 
@@ -390,6 +384,18 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_pid_get")]
   public static extern int BasicBlob_pid_get(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_type_set")]
+  public static extern void BasicBlob_type_set(HandleRef jarg1, int jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_type_get")]
+  public static extern int BasicBlob_type_get(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_size_set")]
+  public static extern void BasicBlob_size_set(HandleRef jarg1, int jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_size_get")]
+  public static extern int BasicBlob_size_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_BasicBlob_tracked_set")]
   public static extern void BasicBlob_tracked_set(HandleRef jarg1, int jarg2);
@@ -615,12 +621,6 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_vectorBlobState")]
   public static extern void delete_vectorBlobState(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_inputname_set")]
-  public static extern void inputname_set(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_inputname_get")]
-  public static extern IntPtr inputname_get();
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_BlobHistory__SWIG_0")]
   public static extern IntPtr new_BlobHistory__SWIG_0(int jarg1);

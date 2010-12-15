@@ -61,12 +61,14 @@ class libtischJNI {
   public final static native long read_from__SWIG_2(long jarg1, long jarg2, BasicBlob jarg2_);
   public final static native long write_to__SWIG_3(long jarg1, long jarg2, BasicBlob jarg2_);
   public final static native long new_BasicBlob();
-  public final static native void BasicBlob_size_set(long jarg1, BasicBlob jarg1_, int jarg2);
-  public final static native int BasicBlob_size_get(long jarg1, BasicBlob jarg1_);
   public final static native void BasicBlob_id_set(long jarg1, BasicBlob jarg1_, int jarg2);
   public final static native int BasicBlob_id_get(long jarg1, BasicBlob jarg1_);
   public final static native void BasicBlob_pid_set(long jarg1, BasicBlob jarg1_, int jarg2);
   public final static native int BasicBlob_pid_get(long jarg1, BasicBlob jarg1_);
+  public final static native void BasicBlob_type_set(long jarg1, BasicBlob jarg1_, int jarg2);
+  public final static native int BasicBlob_type_get(long jarg1, BasicBlob jarg1_);
+  public final static native void BasicBlob_size_set(long jarg1, BasicBlob jarg1_, int jarg2);
+  public final static native int BasicBlob_size_get(long jarg1, BasicBlob jarg1_);
   public final static native void BasicBlob_tracked_set(long jarg1, BasicBlob jarg1_, int jarg2);
   public final static native int BasicBlob_tracked_get(long jarg1, BasicBlob jarg1_);
   public final static native void BasicBlob_value_set(long jarg1, BasicBlob jarg1_, short jarg2);
@@ -128,8 +130,6 @@ class libtischJNI {
   public final static native long vectorBlobState_get(long jarg1, vectorBlobState jarg1_, int jarg2);
   public final static native void vectorBlobState_set(long jarg1, vectorBlobState jarg1_, int jarg2, long jarg3, BlobState jarg3_);
   public final static native void delete_vectorBlobState(long jarg1);
-  public final static native void inputname_set(long jarg1);
-  public final static native long inputname_get();
   public final static native long new_BlobHistory__SWIG_0(int jarg1);
   public final static native long new_BlobHistory__SWIG_1();
   public final static native void BlobHistory_add(long jarg1, BlobHistory jarg1_, long jarg2, BasicBlob jarg2_);

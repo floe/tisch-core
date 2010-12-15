@@ -11,19 +11,6 @@ using System;
 using System.Runtime.InteropServices;
 
 public class libtisch {
-  public static SWIGTYPE_p_p_char inputname {
-    set {
-      libtischPINVOKE.inputname_set(SWIGTYPE_p_p_char.getCPtr(value));
-      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      IntPtr cPtr = libtischPINVOKE.inputname_get();
-      SWIGTYPE_p_p_char ret = (cPtr == IntPtr.Zero) ? null : new SWIGTYPE_p_p_char(cPtr, false);
-      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
   public static SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t g_factory() {
     SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t ret = new SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t(libtischPINVOKE.g_factory(), false);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

@@ -219,6 +219,12 @@ class vectorVector(_object):
 vectorVector_swigregister = _libtisch.vectorVector_swigregister
 vectorVector_swigregister(vectorVector)
 
+INPUT_TYPE_FINGER = _libtisch.INPUT_TYPE_FINGER
+INPUT_TYPE_HAND = _libtisch.INPUT_TYPE_HAND
+INPUT_TYPE_SHADOW = _libtisch.INPUT_TYPE_SHADOW
+INPUT_TYPE_OBJECT = _libtisch.INPUT_TYPE_OBJECT
+INPUT_TYPE_OTHER = _libtisch.INPUT_TYPE_OTHER
+INPUT_TYPE_COUNT = _libtisch.INPUT_TYPE_COUNT
 class BasicBlob(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, BasicBlob, name, value)
@@ -229,15 +235,18 @@ class BasicBlob(_object):
         this = _libtisch.new_BasicBlob()
         try: self.this.append(this)
         except: self.this = this
-    __swig_setmethods__["size"] = _libtisch.BasicBlob_size_set
-    __swig_getmethods__["size"] = _libtisch.BasicBlob_size_get
-    if _newclass:size = _swig_property(_libtisch.BasicBlob_size_get, _libtisch.BasicBlob_size_set)
     __swig_setmethods__["id"] = _libtisch.BasicBlob_id_set
     __swig_getmethods__["id"] = _libtisch.BasicBlob_id_get
     if _newclass:id = _swig_property(_libtisch.BasicBlob_id_get, _libtisch.BasicBlob_id_set)
     __swig_setmethods__["pid"] = _libtisch.BasicBlob_pid_set
     __swig_getmethods__["pid"] = _libtisch.BasicBlob_pid_get
     if _newclass:pid = _swig_property(_libtisch.BasicBlob_pid_get, _libtisch.BasicBlob_pid_set)
+    __swig_setmethods__["type"] = _libtisch.BasicBlob_type_set
+    __swig_getmethods__["type"] = _libtisch.BasicBlob_type_get
+    if _newclass:type = _swig_property(_libtisch.BasicBlob_type_get, _libtisch.BasicBlob_type_set)
+    __swig_setmethods__["size"] = _libtisch.BasicBlob_size_set
+    __swig_getmethods__["size"] = _libtisch.BasicBlob_size_get
+    if _newclass:size = _swig_property(_libtisch.BasicBlob_size_get, _libtisch.BasicBlob_size_set)
     __swig_setmethods__["tracked"] = _libtisch.BasicBlob_tracked_set
     __swig_getmethods__["tracked"] = _libtisch.BasicBlob_tracked_get
     if _newclass:tracked = _swig_property(_libtisch.BasicBlob_tracked_get, _libtisch.BasicBlob_tracked_set)
@@ -406,12 +415,6 @@ class vectorBlobState(_object):
 vectorBlobState_swigregister = _libtisch.vectorBlobState_swigregister
 vectorBlobState_swigregister(vectorBlobState)
 
-INPUT_TYPE_FINGER = _libtisch.INPUT_TYPE_FINGER
-INPUT_TYPE_HAND = _libtisch.INPUT_TYPE_HAND
-INPUT_TYPE_SHADOW = _libtisch.INPUT_TYPE_SHADOW
-INPUT_TYPE_OBJECT = _libtisch.INPUT_TYPE_OBJECT
-INPUT_TYPE_OTHER = _libtisch.INPUT_TYPE_OTHER
-INPUT_TYPE_COUNT = _libtisch.INPUT_TYPE_COUNT
 class BlobHistory(dequeBasicBlob):
     __swig_setmethods__ = {}
     for _s in [dequeBasicBlob]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -450,7 +453,6 @@ class BlobHistory(dequeBasicBlob):
     __del__ = lambda self : None;
 BlobHistory_swigregister = _libtisch.BlobHistory_swigregister
 BlobHistory_swigregister(BlobHistory)
-cvar = _libtisch.cvar
 
 class BlobState(mapIntBlobHistory):
     __swig_setmethods__ = {}
@@ -5177,6 +5179,7 @@ class Widget(_object):
         return weakref_proxy(self)
 Widget_swigregister = _libtisch.Widget_swigregister
 Widget_swigregister(Widget)
+cvar = _libtisch.cvar
 
 class Label(Widget):
     __swig_setmethods__ = {}

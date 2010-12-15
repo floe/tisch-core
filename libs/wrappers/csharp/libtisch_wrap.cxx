@@ -4193,6 +4193,72 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_BasicBlob() {
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_id_set(void * jarg1, int jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->id = arg2;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_id_get(void * jarg1) {
+  int jresult ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  result = (osc::int32) ((arg1)->id);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_pid_set(void * jarg1, int jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->pid = arg2;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_pid_get(void * jarg1) {
+  int jresult ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  result = (osc::int32) ((arg1)->pid);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_type_set(void * jarg1, int jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->type = arg2;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_type_get(void * jarg1) {
+  int jresult ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  arg1 = (BasicBlob *)jarg1; 
+  result = (osc::int32) ((arg1)->type);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_size_set(void * jarg1, int jarg2) {
   BasicBlob *arg1 = (BasicBlob *) 0 ;
   int arg2 ;
@@ -4210,50 +4276,6 @@ SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_size_get(void * jarg1) {
   
   arg1 = (BasicBlob *)jarg1; 
   result = (int) ((arg1)->size);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_id_set(void * jarg1, int jarg2) {
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  
-  arg1 = (BasicBlob *)jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->id = arg2;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_id_get(void * jarg1) {
-  int jresult ;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int result;
-  
-  arg1 = (BasicBlob *)jarg1; 
-  result = (int) ((arg1)->id);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_BasicBlob_pid_set(void * jarg1, int jarg2) {
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  
-  arg1 = (BasicBlob *)jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->pid = arg2;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_BasicBlob_pid_get(void * jarg1) {
-  int jresult ;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int result;
-  
-  arg1 = (BasicBlob *)jarg1; 
-  result = (int) ((arg1)->pid);
   jresult = result; 
   return jresult;
 }
@@ -5824,28 +5846,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_vectorBlobState(void * jarg1) {
       };
     }
   }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_inputname_set(void * jarg1) {
-  char **arg1 ;
-  
-  arg1 = (char **)jarg1; 
-  {
-    size_t ii;
-    char const * *b = (char const * *) inputname;
-    for (ii = 0; ii < (size_t)INPUT_TYPE_COUNT; ii++) b[ii] = *((char const * *) arg1 + ii);
-  }
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_inputname_get() {
-  void * jresult ;
-  char **result = 0 ;
-  
-  result = (char **)(char **)inputname;
-  jresult = result; 
-  return jresult;
 }
 
 

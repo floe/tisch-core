@@ -4783,6 +4783,90 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BasicBlob(JNIEnv *jenv, 
 }
 
 
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1id_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->id = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1id_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  result = (osc::int32) ((arg1)->id);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1pid_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->pid = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1pid_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  result = (osc::int32) ((arg1)->pid);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  arg2 = (osc::int32)jarg2; 
+  if (arg1) (arg1)->type = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BasicBlob **)&jarg1; 
+  result = (osc::int32) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1size_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   BasicBlob *arg1 = (BasicBlob *) 0 ;
   int arg2 ;
@@ -4806,62 +4890,6 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1size_1get(JNIEnv *j
   (void)jarg1_;
   arg1 = *(BasicBlob **)&jarg1; 
   result = (int) ((arg1)->size);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1id_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(BasicBlob **)&jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->id = arg2;
-}
-
-
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1id_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(BasicBlob **)&jarg1; 
-  result = (int) ((arg1)->id);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BasicBlob_1pid_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(BasicBlob **)&jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->pid = arg2;
-}
-
-
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_BasicBlob_1pid_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(BasicBlob **)&jarg1; 
-  result = (int) ((arg1)->pid);
   jresult = (jint)result; 
   return jresult;
 }
@@ -6216,33 +6244,6 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1vectorBlobState(JNIEnv
       };
     }
   }
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_inputname_1set(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  char **arg1 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(char ***)&jarg1; 
-  {
-    size_t ii;
-    char const * *b = (char const * *) inputname;
-    for (ii = 0; ii < (size_t)INPUT_TYPE_COUNT; ii++) b[ii] = *((char const * *) arg1 + ii);
-  }
-  
-}
-
-
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_inputname_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  char **result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char **)(char **)inputname;
-  *(char ***)&jresult = result; 
-  return jresult;
 }
 
 

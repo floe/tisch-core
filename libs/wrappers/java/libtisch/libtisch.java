@@ -9,15 +9,6 @@
 package libtisch;
 
 public class libtisch implements libtischConstants {
-  public static void setInputname(SWIGTYPE_p_p_char value) {
-    libtischJNI.inputname_set(SWIGTYPE_p_p_char.getCPtr(value));
-  }
-
-  public static SWIGTYPE_p_p_char getInputname() {
-    long cPtr = libtischJNI.inputname_get();
-    return (cPtr == 0) ? null : new SWIGTYPE_p_p_char(cPtr, false);
-  }
-
   public static SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t g_factory() {
     return new SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_t(libtischJNI.g_factory(), false);
   }

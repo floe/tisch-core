@@ -44,18 +44,6 @@ public class BasicBlob : IDisposable {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public int size {
-    set {
-      libtischPINVOKE.BasicBlob_size_set(swigCPtr, value);
-      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      int ret = libtischPINVOKE.BasicBlob_size_get(swigCPtr);
-      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
   public int id {
     set {
       libtischPINVOKE.BasicBlob_id_set(swigCPtr, value);
@@ -75,6 +63,30 @@ public class BasicBlob : IDisposable {
     } 
     get {
       int ret = libtischPINVOKE.BasicBlob_pid_get(swigCPtr);
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    } 
+  }
+
+  public int type {
+    set {
+      libtischPINVOKE.BasicBlob_type_set(swigCPtr, value);
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    } 
+    get {
+      int ret = libtischPINVOKE.BasicBlob_type_get(swigCPtr);
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    } 
+  }
+
+  public int size {
+    set {
+      libtischPINVOKE.BasicBlob_size_set(swigCPtr, value);
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    } 
+    get {
+      int ret = libtischPINVOKE.BasicBlob_size_get(swigCPtr);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 

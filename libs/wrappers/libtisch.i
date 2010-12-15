@@ -77,6 +77,10 @@ generate generic type wrapper classes of style SWITTYPE_p_<xxx>. */
 %template(IntVector) _Vector<int>;
 %template(vectorVector) std::vector<Vector>;
 
+namespace osc {
+  typedef int int32;
+}
+
 %include ../../libs/tools/BasicBlob.h
 %template(dequeBasicBlob) std::deque<BasicBlob>;
 

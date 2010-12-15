@@ -3224,25 +3224,25 @@ namespace Swig {
 #define SWIGTYPE_p_allocator_type swig_types[60]
 #define SWIGTYPE_p_char swig_types[61]
 #define SWIGTYPE_p_difference_type swig_types[62]
-#define SWIGTYPE_p_int64_t swig_types[63]
-#define SWIGTYPE_p_key_type swig_types[64]
-#define SWIGTYPE_p_mapped_type swig_types[65]
-#define SWIGTYPE_p_p_BlobCount swig_types[66]
-#define SWIGTYPE_p_p_BlobDim swig_types[67]
-#define SWIGTYPE_p_p_BlobGroup swig_types[68]
-#define SWIGTYPE_p_p_BlobID swig_types[69]
-#define SWIGTYPE_p_p_BlobPos swig_types[70]
-#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[71]
-#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[72]
-#define SWIGTYPE_p_p_FeatureT_double_t swig_types[73]
-#define SWIGTYPE_p_p_FeatureT_int_t swig_types[74]
-#define SWIGTYPE_p_p_Motion swig_types[75]
-#define SWIGTYPE_p_p_MultiBlobRotation swig_types[76]
-#define SWIGTYPE_p_p_MultiBlobScale swig_types[77]
-#define SWIGTYPE_p_p_PyObject swig_types[78]
-#define SWIGTYPE_p_p_Rotation swig_types[79]
-#define SWIGTYPE_p_p_Scale swig_types[80]
-#define SWIGTYPE_p_p_char swig_types[81]
+#define SWIGTYPE_p_int swig_types[63]
+#define SWIGTYPE_p_int64_t swig_types[64]
+#define SWIGTYPE_p_key_type swig_types[65]
+#define SWIGTYPE_p_mapped_type swig_types[66]
+#define SWIGTYPE_p_p_BlobCount swig_types[67]
+#define SWIGTYPE_p_p_BlobDim swig_types[68]
+#define SWIGTYPE_p_p_BlobGroup swig_types[69]
+#define SWIGTYPE_p_p_BlobID swig_types[70]
+#define SWIGTYPE_p_p_BlobPos swig_types[71]
+#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[72]
+#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[73]
+#define SWIGTYPE_p_p_FeatureT_double_t swig_types[74]
+#define SWIGTYPE_p_p_FeatureT_int_t swig_types[75]
+#define SWIGTYPE_p_p_Motion swig_types[76]
+#define SWIGTYPE_p_p_MultiBlobRotation swig_types[77]
+#define SWIGTYPE_p_p_MultiBlobScale swig_types[78]
+#define SWIGTYPE_p_p_PyObject swig_types[79]
+#define SWIGTYPE_p_p_Rotation swig_types[80]
+#define SWIGTYPE_p_p_Scale swig_types[81]
 #define SWIGTYPE_p_ptrdiff_t swig_types[82]
 #define SWIGTYPE_p_size_type swig_types[83]
 #define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t swig_types[84]
@@ -14239,6 +14239,162 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_BasicBlob_id_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BasicBlob_id_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_id_set" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BasicBlob_id_set" "', argument " "2"" of type '" "osc::int32""'");
+  } 
+  arg2 = static_cast< osc::int32 >(val2);
+  if (arg1) (arg1)->id = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BasicBlob_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  osc::int32 result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BasicBlob_id_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_id_get" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  result = (osc::int32) ((arg1)->id);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BasicBlob_pid_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BasicBlob_pid_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_pid_set" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BasicBlob_pid_set" "', argument " "2"" of type '" "osc::int32""'");
+  } 
+  arg2 = static_cast< osc::int32 >(val2);
+  if (arg1) (arg1)->pid = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BasicBlob_pid_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  osc::int32 result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BasicBlob_pid_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_pid_get" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  result = (osc::int32) ((arg1)->pid);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BasicBlob_type_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  osc::int32 arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BasicBlob_type_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_type_set" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BasicBlob_type_set" "', argument " "2"" of type '" "osc::int32""'");
+  } 
+  arg2 = static_cast< osc::int32 >(val2);
+  if (arg1) (arg1)->type = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BasicBlob_type_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BasicBlob *arg1 = (BasicBlob *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  osc::int32 result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BasicBlob_type_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_type_get" "', argument " "1"" of type '" "BasicBlob *""'"); 
+  }
+  arg1 = reinterpret_cast< BasicBlob * >(argp1);
+  result = (osc::int32) ((arg1)->type);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_BasicBlob_size_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   BasicBlob *arg1 = (BasicBlob *) 0 ;
@@ -14284,110 +14440,6 @@ SWIGINTERN PyObject *_wrap_BasicBlob_size_get(PyObject *SWIGUNUSEDPARM(self), Py
   }
   arg1 = reinterpret_cast< BasicBlob * >(argp1);
   result = (int) ((arg1)->size);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BasicBlob_id_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:BasicBlob_id_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_id_set" "', argument " "1"" of type '" "BasicBlob *""'"); 
-  }
-  arg1 = reinterpret_cast< BasicBlob * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BasicBlob_id_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  if (arg1) (arg1)->id = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BasicBlob_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:BasicBlob_id_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_id_get" "', argument " "1"" of type '" "BasicBlob *""'"); 
-  }
-  arg1 = reinterpret_cast< BasicBlob * >(argp1);
-  result = (int) ((arg1)->id);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BasicBlob_pid_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:BasicBlob_pid_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_pid_set" "', argument " "1"" of type '" "BasicBlob *""'"); 
-  }
-  arg1 = reinterpret_cast< BasicBlob * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BasicBlob_pid_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  if (arg1) (arg1)->pid = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BasicBlob_pid_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  BasicBlob *arg1 = (BasicBlob *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:BasicBlob_pid_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BasicBlob, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BasicBlob_pid_get" "', argument " "1"" of type '" "BasicBlob *""'"); 
-  }
-  arg1 = reinterpret_cast< BasicBlob * >(argp1);
-  result = (int) ((arg1)->pid);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -19991,33 +20043,6 @@ SWIGINTERN PyObject *vectorBlobState_swigregister(PyObject *SWIGUNUSEDPARM(self)
   SWIG_TypeNewClientData(SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
-
-SWIGINTERN int Swig_var_inputname_set(PyObject *_val) {
-  {
-    char const * *inp = 0;
-    int res = SWIG_ConvertPtr(_val, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_p_char,  0 );
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""inputname""' of type '""char const *[INPUT_TYPE_COUNT]""'");
-    } else if (inp) {
-      size_t ii = 0;
-      for (; ii < (size_t)INPUT_TYPE_COUNT; ++ii) inputname[ii] = inp[ii];
-    } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""inputname""' of type '""char const *[INPUT_TYPE_COUNT]""'");
-    }
-  }
-  return 0;
-fail:
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_inputname_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(inputname), SWIGTYPE_p_p_char,  0 );
-  return pyobj;
-}
-
 
 SWIGINTERN PyObject *_wrap_new_BlobHistory__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -54944,12 +54969,14 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_vectorVector", _wrap_delete_vectorVector, METH_VARARGS, NULL},
 	 { (char *)"vectorVector_swigregister", vectorVector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BasicBlob", _wrap_new_BasicBlob, METH_VARARGS, NULL},
-	 { (char *)"BasicBlob_size_set", _wrap_BasicBlob_size_set, METH_VARARGS, NULL},
-	 { (char *)"BasicBlob_size_get", _wrap_BasicBlob_size_get, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_id_set", _wrap_BasicBlob_id_set, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_id_get", _wrap_BasicBlob_id_get, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_pid_set", _wrap_BasicBlob_pid_set, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_pid_get", _wrap_BasicBlob_pid_get, METH_VARARGS, NULL},
+	 { (char *)"BasicBlob_type_set", _wrap_BasicBlob_type_set, METH_VARARGS, NULL},
+	 { (char *)"BasicBlob_type_get", _wrap_BasicBlob_type_get, METH_VARARGS, NULL},
+	 { (char *)"BasicBlob_size_set", _wrap_BasicBlob_size_set, METH_VARARGS, NULL},
+	 { (char *)"BasicBlob_size_get", _wrap_BasicBlob_size_get, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_tracked_set", _wrap_BasicBlob_tracked_set, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_tracked_get", _wrap_BasicBlob_tracked_get, METH_VARARGS, NULL},
 	 { (char *)"BasicBlob_value_set", _wrap_BasicBlob_value_set, METH_VARARGS, NULL},
@@ -55973,11 +56000,11 @@ static swig_type_info _swigt__p__VectorT_unsigned_int_t = {"_p__VectorT_unsigned
 static swig_type_info _swigt__p_allocator_type = {"_p_allocator_type", "allocator_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|GLchar *|GLcharARB *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_int = {"_p_int", "int *|osc::int32 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int64_t = {"_p_int64_t", "int64_t *|GLint64EXT *|GLint64 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_key_type = {"_p_key_type", "key_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_PyObject = {"_p_p_PyObject", "PyObject **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ptrdiff_t = {"_p_ptrdiff_t", "ptrdiff_t *|GLsizeiptr *|GLsizeiptrARB *|GLintptrARB *|GLintptr *|GLvdpauSurfaceNV *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t = {"_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t", "std::deque< BasicBlob > *|std::deque< BasicBlob,std::allocator< BasicBlob > > *", 0, 0, (void*)0, 0};
@@ -56103,6 +56130,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_allocator_type,
   &_swigt__p_char,
   &_swigt__p_difference_type,
+  &_swigt__p_int,
   &_swigt__p_int64_t,
   &_swigt__p_key_type,
   &_swigt__p_mapped_type,
@@ -56121,7 +56149,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p_PyObject,
   &_swigt__p_p_Rotation,
   &_swigt__p_p_Scale,
-  &_swigt__p_p_char,
   &_swigt__p_ptrdiff_t,
   &_swigt__p_size_type,
   &_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t,
@@ -56233,11 +56260,11 @@ static swig_cast_info _swigc__p__VectorT_unsigned_int_t[] = {  {&_swigt__p__Vect
 static swig_cast_info _swigc__p_allocator_type[] = {  {&_swigt__p_allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int64_t[] = {  {&_swigt__p_int64_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_key_type[] = {  {&_swigt__p_key_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_PyObject[] = {  {&_swigt__p_p_PyObject, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ptrdiff_t[] = {  {&_swigt__p_ptrdiff_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t[] = {  {&_swigt__p_BlobHistory, _p_BlobHistoryTo_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0},  {&_swigt__p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type, _p_BlobHistoryTo_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0},  {&_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -56363,6 +56390,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_allocator_type,
   _swigc__p_char,
   _swigc__p_difference_type,
+  _swigc__p_int,
   _swigc__p_int64_t,
   _swigc__p_key_type,
   _swigc__p_mapped_type,
@@ -56381,7 +56409,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_p_PyObject,
   _swigc__p_p_Rotation,
   _swigc__p_p_Scale,
-  _swigc__p_p_char,
   _swigc__p_ptrdiff_t,
   _swigc__p_size_type,
   _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t,
@@ -57027,8 +57054,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "INPUT_TYPE_OBJECT",SWIG_From_int(static_cast< int >(INPUT_TYPE_OBJECT)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_OTHER",SWIG_From_int(static_cast< int >(INPUT_TYPE_OTHER)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_COUNT",SWIG_From_int(static_cast< int >(INPUT_TYPE_COUNT)));
-  PyDict_SetItemString(d,(char*)"cvar", SWIG_globals());
-  SWIG_addvarlink(SWIG_globals(),(char*)"inputname",Swig_var_inputname_get, Swig_var_inputname_set);
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_STICKY",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_ONESHOT",SWIG_From_int(static_cast< int >(2)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_DEFAULT",SWIG_From_int(static_cast< int >(4)));
@@ -60727,6 +60752,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_AMD_debug_output",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_NV_vdpau_interop",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_AMD_transform_feedback3_lines_triangles",SWIG_From_int(static_cast< int >(1)));
+  PyDict_SetItemString(d,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"g_proj",Swig_var_g_proj_get, Swig_var_g_proj_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_view",Swig_var_g_view_get, Swig_var_g_view_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_widgets",Swig_var_g_widgets_get, Swig_var_g_widgets_set);
