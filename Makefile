@@ -19,7 +19,7 @@ ifndef TISCH_CONFIG
   SHARED   = $(DESTDIR)/share/libtisch/
 
   CFLAGS  += -Wall -ggdb -fPIC -DTISCH_SHARED="" -DTIXML_USE_STL -I. -DTISCH_PREFIX='"$(PREFIX)/share/libtisch/"'
-  LDFLAGS += -Wall -ggdb -L$(LIBDIR) $(shell pkg-config --libs libdc1394-2 2> /dev/null) $(shell pkg-config --libs libv4l2 2> /dev/null)
+  LDFLAGS += -Wall -ggdb -L$(LIBDIR) $(shell pkg-config --libs libdc1394-2 2> /dev/null) $(shell pkg-config --libs libv4l2 2> /dev/null) $(shell pkg-config --libs libfreenect 2> /dev/null)
   SLFLAGS += -Wall -ggdb -fPIC -L$(LIBDIR)
 
   OS = $(shell uname)
