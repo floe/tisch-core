@@ -1,7 +1,7 @@
 Source: libtisch2
 Priority: extra
 Maintainer: Florian Echtler <floe@butterbrot.org>
-Build-Depends: debhelper (>= 7.0.50~), freeglut3-dev (>= 2.6.0-0ubuntu2ppa1), libv4l-dev (>= 0.6.0), libdc1394-22-dev (>= 2.1.2), python-dev (>= 2.6.4), default-jdk (>= 1.6), mono-gmcs (>= 2.4.2), python-central (>= 0.6), cli-common-dev (>= 0.7), libfreenect-dev (>= 0.0.1+20101211-2ubuntu2~maverick)
+Build-Depends: debhelper (>= 7.0.50~), freeglut3-dev (>= 2.6.0-0ubuntu2ppa1), libv4l-dev (>= 0.6.0), libdc1394-22-dev (>= 2.1.2), python-dev (>= 2.6.4), default-jdk (>= 1.6), mono-gmcs (>= 2.4.2), python-central (>= 0.6), cli-common-dev (>= 0.7), libfreenect-dev (>= 0.0.1+20101211-2ubuntu2~maverick), libfreenect (>= 0.0.1+20101211-2ubuntu2~maverick)
 XS-Python-Version: >= 2.6
 Standards-Version: 3.9.1
 Section: libs
@@ -10,7 +10,9 @@ Homepage: http://tisch.sf.net/
 Package: libtisch2
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3 (>= 2.6.0-0ubuntu2ppa1), libv4l-0 (>= 0.6.0), libdc1394-22 (>= 2.1.2), libfreenect-dev (>= 0.0.1+20101211-2ubuntu2~maverick)
+Conflicts: libtisch
+Replaces: libtisch
+Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3 (>= 2.6.0-0ubuntu2ppa1), libv4l-0 (>= 0.6.0), libdc1394-22 (>= 2.1.2), libfreenect (>= 0.0.1+20101211-2ubuntu2~maverick)
 Description: multitouch development platform - library files + demo binaries
 
 Package: libtisch2-dev
@@ -24,18 +26,24 @@ Description: multitouch development platform - C++ development headers + demo so
 Package: libtisch2-csharp
 Section: cli-mono
 Architecture: any
+Conflicts: libtisch-csharp
+Replaces: libtisch-csharp
 Depends: libtisch2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, mono-gmcs (>= 2.4.3), cli-common-dev (>= 0.7)
 Description: multitouch development platform - C# development files
 
 Package: libtisch2-java
 Section: java
 Architecture: any
+Conflicts: libtisch-java
+Replaces: libtisch-java
 Depends: libtisch2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, default-jdk (>= 1.6)
 Description: multitouch development platform - Java development files
 
 Package: libtisch2-python
 Section: python
 Architecture: any
+Conflicts: libtisch-python
+Replaces: libtisch-python
 Depends: libtisch2 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, python-dev (>= 2.6.5), python-central (>= 0.6)
 Description: multitouch development platform - Python development files
 

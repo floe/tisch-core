@@ -1,3 +1,15 @@
+libtisch2 (0.1-0ubuntu3~maverick) maverick; urgency=low
+
+  * support for legacy TUIO 1 data
+
+ -- Florian Echtler <floe@butterbrot.org>  Thu, 16 Dec 2010 17:40:58 +0100
+
+libtisch2 (0.1-0ubuntu2~maverick) maverick; urgency=low
+
+  * (hopefully) fix for libfreenect dependencies
+
+ -- Florian Echtler <floe@butterbrot.org>  Thu, 16 Dec 2010 09:29:31 +0100
+
 libtisch2 (0.1-0ubuntu1~maverick) maverick; urgency=low
 
   * first beta release of libtisch2 from SVN rev. 138
