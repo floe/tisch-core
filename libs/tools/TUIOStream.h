@@ -16,6 +16,7 @@
 #include <tisch.h>
 
 #define TUIOSTREAM_BUFFER_SIZE 0x10000
+#define TUIO_LEGACY 1 // send also TUIO 1.0 format
 
 
 class TUIOStream {

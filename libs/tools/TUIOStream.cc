@@ -18,9 +18,19 @@ TUIOStream::TUIOStream( const char* target, int port ):
 void TUIOStream::start() {
 
 	oscOut << osc::BeginBundleImmediate;
+	frame++;
 
 	// frame message
-	oscOut << osc::BeginMessage( "/tuio2/frm" ) << frame++ << osc::TimeTag(time(NULL)) << osc::EndMessage;
+	oscOut << osc::BeginMessage( "/tuio2/frm" ) << frame << osc::TimeTag(time(NULL)) << osc::EndMessage;
+
+	#ifdef TUIO_LEGACY
+		// alive message
+		oscOut << osc::BeginMessage( "/tuio/2Dcur" ) << "alive";
+		for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
+		oscOut << osc::EndMessage;
+	#endif
+
+	alive.clear();
 }
 
 
@@ -50,6 +60,21 @@ template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob&
 			<< osc::EndMessage;
 
 	s.alive.push_back( b.id );
+
+	#ifdef TUIO_LEGACY
+		// /tuio/2Dcur set s x y X Y m
+		s.oscOut << osc::BeginMessage( "/tuio/2Dcur" ) << "set"
+		  << b.id << b.pos.x << b.pos.y
+			<< 0.0 << 0.0 << 0.0 
+			<< osc::EndMessage;
+		// /tuio/2Dblb set s x y a w h f X Y A m r
+		/*s.oscOUT << osc::BeginMessage( "/tuio/2Dblb" ) << "set"
+		  << b.id << b.pos.x << b.pos.y
+			<< angle << w << h << b.size/(w*h)
+			<< 0.0 << 0.0 << 0.0 << 0.0 << 0.0
+			<< osc::EndMessage;*/
+	#endif
+
 	return s;
 }
 
@@ -61,11 +86,15 @@ void TUIOStream::send() {
 	for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
 	oscOut << osc::EndMessage;
 
+	#ifdef TUIO_LEGACY
+		// frame message
+		oscOut<< osc::BeginMessage( "/tuio/2Dcur" ) << "fseq" << frame << osc::EndMessage;
+	#endif
+
 	oscOut << osc::EndBundle;
 
 	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
 
 	oscOut.Clear();
-	alive.clear();
 }
 
