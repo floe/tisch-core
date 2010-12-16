@@ -142,7 +142,7 @@ int main( int argc, char* argv[] ) {
 	if (!vidout) {
 		while (1) idle();
 	} else {
-		win = new GLUTWindow( width, height, "mypipeline test" );
+		win = new GLUTWindow( width, height, "libTISCH 2.0 image processor - press 0-9 to switch channel" );
 		glutIdleFunc(idle);
 		glutDisplayFunc(disp);
 		glutKeyboardFunc(keyb);
