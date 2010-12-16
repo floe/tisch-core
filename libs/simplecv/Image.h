@@ -25,6 +25,8 @@
 #elif __APPLE__
 
 	#include <fcntl.h>
+	#include <sys/shm.h>
+	#include <sys/sem.h>
 	#include <sys/mman.h>
 	#include <sys/types.h>
 
@@ -159,10 +161,12 @@ class TISCH_SHARED Image {
 
 			else if (fcntl( key, F_GETFL ) != -1) {
 
+				#ifndef __APPLE__
 				// key is a file descriptor, so use mmap with flags == struct v4l2_buffer* giving offset & size
 				struct v4l2_buffer* tmpbuf = (struct v4l2_buffer*)_flags;
 				data = (unsigned char*) mmap( NULL, tmpbuf->length, PROT_READ | PROT_WRITE, MAP_SHARED, key, tmpbuf->m.offset );
 				if (data == MAP_FAILED) throw std::runtime_error( std::string("mmap: ").append(strerror(errno)) );
+				#endif
 
 			} else {
 				

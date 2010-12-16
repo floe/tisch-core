@@ -52,8 +52,15 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 
 	// generic low-end default settings
 	width = 640; height = 480; fps = 30;
-	sourcetype = __linux ? CAMERA_TYPE_V4L : CAMERA_TYPE_DIRECTSHOW;
 	sourcepath = "/dev/video0";
+
+	#ifdef __linux
+		sourcetype = CAMERA_TYPE_V4L;
+	#elif _MSC_VER
+		sourcetype = CAMERA_TYPE_DIRECTSHOW;
+	#else
+		sourcetype = CAMERA_TYPE_DC1394;
+	#endif
 
 	// try to read settings from XML
 	config->QueryIntAttribute   ( "SourceType", &sourcetype );
