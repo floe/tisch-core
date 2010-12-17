@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\drivers\tuio\osc"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBTOOLS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -119,7 +119,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\drivers\tuio\osc"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBTOOLS_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -194,6 +194,14 @@
 				RelativePath="..\libs\tools\Thread.cc"
 				>
 			</File>
+			<File
+				RelativePath="..\libs\tools\TUIOStream.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\tools\WebSocket.cc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -225,7 +233,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\libs\tools\TUIOStream.h"
+				>
+			</File>
+			<File
 				RelativePath="..\libs\tools\Vector.h"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\tools\WebSocket.h"
 				>
 			</File>
 		</Filter>
