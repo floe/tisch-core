@@ -24,7 +24,6 @@
 	typedef int socklen_t;
 	typedef unsigned long in_addr_t; 
 	#define close closesocket
-	#define write _write
 	#define ssocast (const char*)
 #endif
 

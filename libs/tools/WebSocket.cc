@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <math.h>
 
+#include "nanolibc.h"
 #include "WebSocket.h"
 
 
@@ -286,9 +287,9 @@ int WebSocketStream::underflow( ) {
 void WebSocketStream::put_char( int chr ) {
 	char tmp[3] = { 0x00, chr, 0xFF };
 	if (filter)
-		sendto( sock,  tmp, 3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		sendto( sock,   tmp,     3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 	else
-		sendto( sock, &chr, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		sendto( sock, &(tmp[1]), 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 }
 
 void WebSocketStream::put_buffer() {

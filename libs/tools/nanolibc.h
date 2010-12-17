@@ -20,9 +20,21 @@
 #include <float.h>
 #include <math.h>
 
+typedef __int32 int32_t;
+typedef unsigned __int32 uint32_t;
+typedef __int64 int64_t;
+typedef unsigned __int64 uint64_t;
+
+inline long long atoll( const char* in ) {
+	long long ret = 0;
+	while (*in) { ret = 10*ret + (*in - '0'); in++; }
+	return ret;
+}
+
 #define isnan(x) _isnan(x)
 #define isinf(x) (!_finite(x))
 inline double round(double x) { return floor(x+0.5); }
+
 #define M_PI 3.14159265358979323846
 
 #define srandom srand
