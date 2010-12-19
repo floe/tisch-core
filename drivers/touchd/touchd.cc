@@ -1,5 +1,6 @@
 #include <tisch.h>
 #include <signal.h>
+#include <typeinfo>
 
 #include "Pipeline.h"
 #include "BlobList.h"
@@ -55,6 +56,14 @@ void disp() {
 	win->mode2D();
 
 	tmp->draw( win );
+
+	std::string filter = typeid( *tmp ).name();
+	const char* name = filter.c_str();
+	while (name && (*name >= '0') && (*name <= '9')) name++;
+
+	glColor4f( 1.0, 0.0, 0.0, 1.0 );
+	win->print( std::string("showing filter: ") + name, 10, 10 );
+
 	win->swap();
 }
 
@@ -142,7 +151,7 @@ int main( int argc, char* argv[] ) {
 	if (!vidout) {
 		while (1) idle();
 	} else {
-		win = new GLUTWindow( width, height, "libTISCH 2.0 image processor - press 0-9 to switch channel" );
+		win = new GLUTWindow( width, height, "libTISCH 2.0 image processor - press 0-9 to switch filter" );
 		glutIdleFunc(idle);
 		glutDisplayFunc(disp);
 		glutKeyboardFunc(keyb);
