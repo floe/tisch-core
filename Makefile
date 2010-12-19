@@ -122,10 +122,11 @@ endif
 
 # dependencies
 ifneq ($(COMMAND),clean)
+  libs/tools: libs/osc
   libs/simplecv: libs/tools
   libs/simplegl: libs/simplecv
-  drivers/touchd calibd: libs/simplegl libs/osc
-  gestured: libs/tools libs/osc
+  drivers/touchd calibd: libs/simplegl
+  gestured: libs/tools
   widgets: libs/simplegl gestured
   $(WRAPPERS): widgets
 endif
