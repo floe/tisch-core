@@ -4,7 +4,7 @@
 		<ThreshFilter Threshold=150/> <!-- add ShmID=61710 to put image into shared memory -->
 		<ThreshFilter Threshold=190>
 			<SpeckleFilter NoiseLevel=7>
-				<BlobFilter MinSize=500 PeakThreshold=500 PeakFactor=1.0 VFlip=1 Type=1/>
+				<BlobFilter MinSize=500 PeakThreshold=500 PeakMode=-1 VFlip=1 Type=1/>
 			</SpeckleFilter>
 		</ThreshFilter>
 	</FlipFilter>

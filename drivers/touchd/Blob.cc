@@ -59,9 +59,9 @@ unsigned char Blob::scan( IntensityImage* image, double factor ) {
 
 
 // use old peak, centroid, major and minor axis to find peak of blob
-void Blob::setPeak( IntensityImage* image, double factor, double maxsize ) {
+void Blob::setPeak( IntensityImage* image, double factor, double peakmode ) {
 
-	if (maxsize == 0.0) { peak = pos; return; }
+	if (peakmode == 0.0) { peak = pos; return; }
 
 	int width  = image->getWidth();
 	int height = image->getHeight();
@@ -120,9 +120,13 @@ void Blob::setPeak( IntensityImage* image, double factor, double maxsize ) {
 
 	double d0,d1,dx,dy;
 
+	// peakmode < 0: take the topmost peak, otherwise:
 	// blob is smaller than threshold: take the peak farther away from the border
 	// blob is larger than threshold: take the peak closest to the old one
-	if (size < maxsize) {
+	if (peakmode < 0) {
+		d0 = peaks[0].y;
+		d1 = peaks[1].y;
+	} else if (size < peakmode) {
 		dx = std::min( peaks[0].x,  width-peaks[0].x );
 		dy = std::min( peaks[0].y, height-peaks[0].y );
 		d1 = std::min( dx, dy );

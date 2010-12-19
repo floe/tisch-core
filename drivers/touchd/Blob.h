@@ -21,7 +21,7 @@ class Blob: public BasicBlob {
 
 		unsigned char scan( IntensityImage* image, double factor );
 
-		void setPeak( IntensityImage* image, double factor, double maxdist );
+		void setPeak( IntensityImage* image, double factor, double peakmode );
 
 };
 
