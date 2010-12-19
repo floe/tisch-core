@@ -50,7 +50,7 @@ class TISCH_SHARED Window: public GLUTWindow, public MasterContainer {
 	private:
 
 		Mouse* mymouse;
-		IntensityImage* ghost;
+		IntensityImage* ghost[3];
 };
 
 #endif // _WINDOW_H_

@@ -21,8 +21,13 @@ Window::Window( int w, int h, std::string title, int use_mouse , const char* tar
 {
 	mymouse = use_mouse ? new Mouse() : NULL;
 
+	// create ghost overlays from shared memory
 	// FIXME: hardcoded image size
-	try { ghost = new IntensityImage( 640, 480, 0xF10E, 0 ); } catch (...) { ghost = NULL; }
+	for (int i = 0; i < 3; i++) try {
+		ghost[i] = new IntensityImage( 640, 480, i+0xF10E, 0 );
+	} catch (...) {
+		ghost[i] = NULL;
+	}
 
 	// default background: white
 	mycolor[0] = 1.0;
@@ -59,11 +64,12 @@ void Window::display() {
 	mode2D();
 	glClear(GL_DEPTH_BUFFER_BIT);
 	draw();
-	if (ghost) {
+	if (ghost[0] || ghost[1] || ghost[2]) {
 		glDisable( GL_DEPTH_TEST );
 		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-		glColor4f( 1.0, 1.0, 1.0, 0.15 );
-		show( *ghost, 0, 0 );
+		if (ghost[0]) { glColor4f( 1.0, 0.0, 0.0, 0.1 ); show( *ghost[0], 0, 0 ); }
+		if (ghost[1]) { glColor4f( 0.0, 1.0, 0.0, 0.1 ); show( *ghost[1], 0, 0 ); }
+		if (ghost[2]) { glColor4f( 0.0, 0.0, 1.0, 0.1 ); show( *ghost[2], 0, 0 ); }
 		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 		glEnable( GL_DEPTH_TEST );
 	}
