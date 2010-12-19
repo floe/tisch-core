@@ -9,7 +9,7 @@
 *                                                                         *
 *                      http://tisch.sourceforge.net/                      *
 *                                                                         *
-*    Copyright (c) 2006-2010 by Florian Echtler <floe@butterbrot.org>     *
+*   Copyright (c) 2006 - 2010 by Florian Echtler <floe@butterbrot.org>    *
 *                                                                         *
 *  This program is free software: you can redistribute it and/or modify   *
 *  it under the terms of the GNU Lesser General Public License (LGPL) as  *
@@ -20,6 +20,9 @@
 
 #ifndef _TISCH_H_
 #define _TISCH_H_
+
+#define TISCH_VERSION "libTISCH 2.0 Alpha 1 \"Ice Age\""
+#define TISCH_COPY    "(c) 2010 by Florian Echtler <floe@butterbrot.org>"
 
 #define TISCH_PORT_RAW     3332 // UDP port for uncalibrated blob positions (TUIO/OSC data)
 #define TISCH_PORT_CALIB   3333 // TUIO/OSC default UDP port for calibrated blob positions
