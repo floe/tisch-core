@@ -19,7 +19,7 @@
 #define TUIO_LEGACY 1 // send also TUIO 1.0 format
 
 
-class TUIOStream {
+class TISCH_SHARED TUIOStream {
 
 	template <class T> friend TUIOStream& operator<< ( TUIOStream& s, const T& t );
 
