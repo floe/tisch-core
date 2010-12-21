@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libsimplecv.lib libsimplegl.lib libgestures.lib libtools.lib"
+				AdditionalDependencies="libsimplecv.lib libsimplegl.lib libgestures.lib libtools.lib liboscpack.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
@@ -136,7 +136,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libsimplecv.lib libsimplegl.lib libgestures.lib libtools.lib"
+				AdditionalDependencies="libsimplecv.lib libsimplegl.lib libgestures.lib libtools.lib liboscpack.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"

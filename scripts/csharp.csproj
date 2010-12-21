@@ -93,7 +93,6 @@
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLuint.cs" />
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_GLvoid.cs" />
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_IntensityImage.cs" />
-    <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_p_char.cs" />
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_RGBImage.cs" />
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_ShortImage.cs" />
     <Compile Include="..\libs\wrappers\csharp\libtisch\SWIGTYPE_p_std__dequeT_Widget_p_t.cs" />

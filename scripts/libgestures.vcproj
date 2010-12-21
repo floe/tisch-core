@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\gestured\Matcher.cc"
+				>
+			</File>
+			<File
 				RelativePath="..\gestured\features\Motion.cc"
 				>
 			</File>
@@ -289,6 +293,10 @@
 			</File>
 			<File
 				RelativePath="..\gestured\InputState.h"
+				>
+			</File>
+			<File
+				RelativePath="..\gestured\Matcher.h"
 				>
 			</File>
 			<File

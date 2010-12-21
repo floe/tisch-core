@@ -191,19 +191,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\drivers\touchd\Filter.cc"
+				>
+			</File>
+			<File
 				RelativePath="..\drivers\touchd\FlashControl.cc"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\touchd\ImageSet.cc"
-				>
-			</File>
-			<File
 				RelativePath="..\drivers\touchd\Pipeline.cc"
-				>
-			</File>
-			<File
-				RelativePath="..\drivers\touchd\Settings.cc"
 				>
 			</File>
 			<File
@@ -229,11 +225,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\touchd\FlashControl.h"
+				RelativePath="..\drivers\touchd\Filter.h"
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\touchd\ImageSet.h"
+				RelativePath="..\drivers\touchd\FlashControl.h"
 				>
 			</File>
 			<File
@@ -241,95 +237,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\drivers\touchd\Settings.h"
-				>
-			</File>
-			<File
 				RelativePath="..\drivers\touchd\touchd.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			>
-			<File
-				RelativePath="..\libs\osc\ip\IpEndpointName.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\IpEndpointName.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\MessageMappingOscPacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\win32\NetworkingUtils.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\NetworkingUtils.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscException.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscHostEndianness.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscReceivedElements.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscReceivedElements.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscTypes.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscTypes.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\PacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\TimerListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\win32\UdpSocket.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\UdpSocket.h"
 				>
 			</File>
 		</Filter>

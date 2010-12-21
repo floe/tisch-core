@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtools.lib libsimplecv.lib libsimplegl.lib ws2_32.lib winmm.lib"
+				AdditionalDependencies="liboscpack.lib libtools.lib libsimplecv.lib libsimplegl.lib ws2_32.lib winmm.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -137,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtools.lib libsimplecv.lib libsimplegl.lib ws2_32.lib winmm.lib"
+				AdditionalDependencies="liboscpack.lib libtools.lib libsimplecv.lib libsimplegl.lib ws2_32.lib winmm.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -195,90 +195,6 @@
 			>
 			<File
 				RelativePath="..\calibd\Calibration.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			>
-			<File
-				RelativePath="..\libs\osc\ip\IpEndpointName.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\IpEndpointName.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\MessageMappingOscPacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\win32\NetworkingUtils.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\NetworkingUtils.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscException.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscHostEndianness.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscOutboundPacketStream.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscPrintReceivedElements.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscReceivedElements.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscReceivedElements.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscTypes.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\osc\OscTypes.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\PacketListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\TimerListener.h"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\win32\UdpSocket.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libs\osc\ip\UdpSocket.h"
 				>
 			</File>
 		</Filter>

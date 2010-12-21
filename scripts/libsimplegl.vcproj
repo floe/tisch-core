@@ -187,6 +187,18 @@
 				RelativePath="..\libs\simplegl\GLUTWrapper.cc"
 				>
 			</File>
+			<File
+				RelativePath="..\libs\simplegl\tinyxml.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\simplegl\tinyxmlerror.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\simplegl\tinyxmlparser.cc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -203,6 +215,10 @@
 			</File>
 			<File
 				RelativePath="..\libs\simplegl\Texture.h"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\simplegl\tinyxml.h"
 				>
 			</File>
 		</Filter>
