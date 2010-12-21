@@ -45,7 +45,7 @@ template <class T> TUIOStream& operator<< ( TUIOStream& s, const T& t ) {
 	return s;
 }
 
-template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b );
+template <> TISCH_SHARED TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b );
 
 #endif // _TUIOSTREAM_H_
 

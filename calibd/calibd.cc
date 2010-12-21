@@ -25,6 +25,16 @@
 #include <ip/UdpSocket.h>
 #include <osc/OscOutboundPacketStream.h>
 
+// this is a very ugly hack to work around a Visual C++ bug
+// that prevents proper resolution of static objects in DLLs
+#ifdef _MSC_VER
+	namespace osc {
+		BundleInitiator BeginBundleImmediate(1);
+		BundleTerminator EndBundle;
+		MessageTerminator EndMessage;
+	}
+#endif
+
 // global objects
 Calibration cal;
 UDPSocket* input;
