@@ -7,7 +7,7 @@
 	<Tool
 		Name="VCCLCompilerTool"
 		AdditionalIncludeDirectories="..\calibd;&quot;$(WindowsSdkDir)\Include&quot;;&quot;$(freeglut)\include&quot;;..\libs\tools;..\libs\simplecv;..\libs\simplegl;..\gestured;..\gestured\features;..\widgets;..\;..\libs\math\jama;..\libs\math\tnt;..\libs\math;..\libs\osc"
-		PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE"
+		PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;TIXML_USE_STL"
 		UsePrecompiledHeader="0"
 		DisableSpecificWarnings="4251"
 		ForcedIncludeFiles="$(SolutionDir)\tisch.h"

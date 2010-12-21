@@ -8,17 +8,6 @@
 #include <time.h>
 
 
-// this is a very ugly hack to work around a Visual C++ bug
-// that prevents proper resolution of static objects in DLLs
-#ifdef _MSC_VER
-	namespace osc {
-		BundleInitiator BeginBundleImmediate(1);
-		BundleTerminator EndBundle;
-		MessageTerminator EndMessage;
-	}
-#endif
-
-
 TUIOStream::TUIOStream( const char* target, int port ):
 	oscOut( buffer, TUIOSTREAM_BUFFER_SIZE ), 
 	transmitSocket( IpEndpointName( target, port ) ),

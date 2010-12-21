@@ -33,7 +33,7 @@
 
 class IpEndpointName;
 
-class TISCH_SHARED PacketListener{
+class PacketListener{
 public:
     virtual ~PacketListener() {}
     virtual void ProcessPacket( const char *data, int size, 

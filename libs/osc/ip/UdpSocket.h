@@ -44,7 +44,7 @@ class TimerListener;
 
 class UdpSocket;
 
-class TISCH_SHARED SocketReceiveMultiplexer{
+class SocketReceiveMultiplexer{
     class Implementation;
     Implementation *impl_;
 
@@ -72,7 +72,7 @@ public:
 };
 
 
-class TISCH_SHARED UdpSocket{
+class UdpSocket{
     class Implementation;
     Implementation *impl_;
     
@@ -116,14 +116,14 @@ public:
 // note that you can still use a receive socket
 // for transmitting etc
 
-class TISCH_SHARED UdpTransmitSocket : public UdpSocket{
+class UdpTransmitSocket : public UdpSocket{
 public:
 	UdpTransmitSocket( const IpEndpointName& remoteEndpoint )
 		{ Connect( remoteEndpoint ); }
 };
 
 
-class TISCH_SHARED UdpReceiveSocket : public UdpSocket{
+class UdpReceiveSocket : public UdpSocket{
 public:
 	UdpReceiveSocket( const IpEndpointName& localEndpoint )
 		{ Bind( localEndpoint ); }
