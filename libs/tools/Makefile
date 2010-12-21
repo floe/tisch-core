@@ -2,7 +2,7 @@ TOPDIR = ../../
 
 LIBS = libtools.$(LSF)
 INCS = *.h $(TOPDIR)/tisch.h
-OBJS = Socket.o BasicBlob.o Thread.o WebSocket.o TUIOStream.o
+OBJS = Socket.o BasicBlob.o Thread.o WebSocket.o TUIOStream.o TUIOInStream.o
 DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 #APPS = wstest
 
