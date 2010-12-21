@@ -191,7 +191,7 @@ const TiXmlEncoding TIXML_DEFAULT_ENCODING = TIXML_ENCODING_UNKNOWN;
 	A Decleration contains: Attributes (not on tree)
 	@endverbatim
 */
-class TiXmlBase
+class TISCH_SHARED TiXmlBase
 {
 	friend class TiXmlNode;
 	friend class TiXmlElement;
@@ -420,7 +420,7 @@ private:
 	in a document, or stand on its own. The type of a TiXmlNode
 	can be queried, and it can be cast to its more defined type.
 */
-class TiXmlNode : public TiXmlBase
+class TISCH_SHARED TiXmlNode : public TiXmlBase
 {
 	friend class TiXmlDocument;
 	friend class TiXmlElement;
@@ -937,7 +937,7 @@ private:
 	and can contain other elements, text, comments, and unknowns.
 	Elements also contain an arbitrary number of attributes.
 */
-class TiXmlElement : public TiXmlNode
+class TISCH_SHARED TiXmlElement : public TiXmlNode
 {
 public:
 	/// Construct an element.
@@ -1383,7 +1383,7 @@ private:
 	XML pieces. It can be saved, loaded, and printed to the screen.
 	The 'value' of a document node is the xml file name.
 */
-class TiXmlDocument : public TiXmlNode
+class TISCH_SHARED TiXmlDocument : public TiXmlNode
 {
 public:
 	/// Create an empty document, that has no name.

@@ -15,7 +15,7 @@
 
 typedef std::deque<StateRegion*> RegionList;
 
-class Matcher: public Thread {
+class TISCH_SHARED Matcher: public Thread {
 
 	public:
 		

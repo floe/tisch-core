@@ -70,7 +70,7 @@ public:
 };
 
 
-class ReceivedPacket{
+class TISCH_SHARED ReceivedPacket{
 public:
     ReceivedPacket( const char *contents, int32 size )
         : contents_( contents )
@@ -88,7 +88,7 @@ private:
 };
 
 
-class ReceivedBundleElement{
+class TISCH_SHARED ReceivedBundleElement{
 public:
     ReceivedBundleElement( const char *size )
         : size_( size ) {}
@@ -106,7 +106,7 @@ private:
 };
 
 
-class ReceivedBundleElementIterator{
+class TISCH_SHARED ReceivedBundleElementIterator{
 public:
 	ReceivedBundleElementIterator( const char *sizePtr )
         : value_( sizePtr ) {}
@@ -155,7 +155,7 @@ inline bool operator!=(const ReceivedBundleElementIterator& lhs,
 }
 
 
-class ReceivedMessageArgument{
+class TISCH_SHARED ReceivedMessageArgument{
 public:
 	ReceivedMessageArgument( const char *typeTag, const char *argument )
 		: typeTag_( typeTag )
@@ -227,7 +227,7 @@ private:
 };
 
 
-class ReceivedMessageArgumentIterator{
+class TISCH_SHARED ReceivedMessageArgumentIterator{
 public:
 	ReceivedMessageArgumentIterator( const char *typeTags, const char *arguments )
         : value_( typeTags, arguments ) {}
@@ -276,7 +276,7 @@ inline bool operator!=(const ReceivedMessageArgumentIterator& lhs,
 }
 
 
-class ReceivedMessageArgumentStream{
+class TISCH_SHARED ReceivedMessageArgumentStream{
     friend class ReceivedMessage;
     ReceivedMessageArgumentStream( const ReceivedMessageArgumentIterator& begin,
             const ReceivedMessageArgumentIterator& end )
@@ -411,7 +411,7 @@ public:
 };
 
 
-class ReceivedMessage{
+class TISCH_SHARED ReceivedMessage{
     void Init( const char *bundle, unsigned long size );
 public:
     explicit ReceivedMessage( const ReceivedPacket& packet );
@@ -453,7 +453,7 @@ private:
 };
 
 
-class ReceivedBundle{
+class TISCH_SHARED ReceivedBundle{
     void Init( const char *message, unsigned long size );
 public:
     explicit ReceivedBundle( const ReceivedPacket& packet );

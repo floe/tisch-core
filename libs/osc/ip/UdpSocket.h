@@ -44,7 +44,7 @@ class TimerListener;
 
 class UdpSocket;
 
-class SocketReceiveMultiplexer{
+class TISCH_SHARED SocketReceiveMultiplexer{
     class Implementation;
     Implementation *impl_;
 
@@ -123,7 +123,7 @@ public:
 };
 
 
-class UdpReceiveSocket : public UdpSocket{
+class TISCH_SHARED UdpReceiveSocket : public UdpSocket{
 public:
 	UdpReceiveSocket( const IpEndpointName& localEndpoint )
 		{ Bind( localEndpoint ); }
