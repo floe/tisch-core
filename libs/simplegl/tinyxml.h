@@ -80,14 +80,16 @@ distribution.
 	#endif
 #endif	
 
-class TiXmlDocument;
-class TiXmlElement;
-class TiXmlComment;
-class TiXmlUnknown;
-class TiXmlAttribute;
-class TiXmlText;
-class TiXmlDeclaration;
-class TiXmlParsingData;
+class TISCH_SHARED TiXmlDocument;
+class TISCH_SHARED TiXmlElement;
+class TISCH_SHARED TiXmlComment;
+class TISCH_SHARED TiXmlUnknown;
+class TISCH_SHARED TiXmlAttribute;
+class TISCH_SHARED TiXmlText;
+class TISCH_SHARED TiXmlDeclaration;
+class TISCH_SHARED TiXmlParsingData;
+class TISCH_SHARED TiXmlNode;
+class TISCH_SHARED TiXmlBase;
 
 const int TIXML_MAJOR_VERSION = 2;
 const int TIXML_MINOR_VERSION = 6;
@@ -191,7 +193,7 @@ const TiXmlEncoding TIXML_DEFAULT_ENCODING = TIXML_ENCODING_UNKNOWN;
 	A Decleration contains: Attributes (not on tree)
 	@endverbatim
 */
-class TISCH_SHARED TiXmlBase
+class TiXmlBase
 {
 	friend class TiXmlNode;
 	friend class TiXmlElement;
@@ -420,7 +422,7 @@ private:
 	in a document, or stand on its own. The type of a TiXmlNode
 	can be queried, and it can be cast to its more defined type.
 */
-class TISCH_SHARED TiXmlNode : public TiXmlBase
+class TiXmlNode : public TiXmlBase
 {
 	friend class TiXmlDocument;
 	friend class TiXmlElement;
@@ -937,7 +939,7 @@ private:
 	and can contain other elements, text, comments, and unknowns.
 	Elements also contain an arbitrary number of attributes.
 */
-class TISCH_SHARED TiXmlElement : public TiXmlNode
+class TiXmlElement : public TiXmlNode
 {
 public:
 	/// Construct an element.
@@ -1383,7 +1385,7 @@ private:
 	XML pieces. It can be saved, loaded, and printed to the screen.
 	The 'value' of a document node is the xml file name.
 */
-class TISCH_SHARED TiXmlDocument : public TiXmlNode
+class TiXmlDocument : public TiXmlNode
 {
 public:
 	/// Create an empty document, that has no name.
