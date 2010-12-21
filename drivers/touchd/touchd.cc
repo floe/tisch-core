@@ -2,6 +2,7 @@
 #include <signal.h>
 #include <typeinfo>
 
+#include <nanolibc.h>
 #include "Pipeline.h"
 #include "BlobList.h"
 #include <GLUTWindow.h>

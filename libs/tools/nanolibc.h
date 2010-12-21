@@ -42,6 +42,7 @@ inline double round(double x) { return floor(x+0.5); }
 
 #define snprintf sprintf_s
 #define usleep(x) Sleep(x/1000)
+#define sleep(x) Sleep(x)
 
 #define alarm(x) countdown(x)
 #define execv(x,y) _execv(x,y)
@@ -52,6 +53,7 @@ inline double round(double x) { return floor(x+0.5); }
 #define SIGALRM SIGTERM
 #define SIGUSR1 SIGTERM
 
+extern TISCH_SHARED char* optarg;
 int TISCH_SHARED getopt( unsigned int argc, char* argv[], const char* opts );
 
 #endif // _NANOLIBC_H_

@@ -4,6 +4,7 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#include <nanolibc.h>
 #include "Camera.h"
 
 #ifdef _MSC_VER
@@ -84,7 +85,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 
 	#ifdef _MSC_VER
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
-			cam = new DirectShowImageSource( width, height, sourcepath, verbose );
+			cam = new DirectShowImageSource( width, height, sourcepath.c_str(), verbose );
 		else
 	#endif
 
