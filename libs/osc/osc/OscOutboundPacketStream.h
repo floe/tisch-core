@@ -64,7 +64,7 @@ public:
 };
 
 
-class OutboundPacketStream{
+class TISCH_SHARED OutboundPacketStream{
 public:
 	OutboundPacketStream( char *buffer, unsigned long capacity );
 	~OutboundPacketStream();

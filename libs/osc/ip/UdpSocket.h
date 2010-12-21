@@ -72,7 +72,7 @@ public:
 };
 
 
-class UdpSocket{
+class TISCH_SHARED UdpSocket{
     class Implementation;
     Implementation *impl_;
     
@@ -116,7 +116,7 @@ public:
 // note that you can still use a receive socket
 // for transmitting etc
 
-class UdpTransmitSocket : public UdpSocket{
+class TISCH_SHARED UdpTransmitSocket : public UdpSocket{
 public:
 	UdpTransmitSocket( const IpEndpointName& remoteEndpoint )
 		{ Connect( remoteEndpoint ); }

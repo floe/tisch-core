@@ -31,7 +31,7 @@
 #define INCLUDED_IPENDPOINTNAME_H
 
 
-class IpEndpointName{
+class TISCH_SHARED IpEndpointName{
     static unsigned long GetHostByName( const char *s );
 public:
     static const unsigned long ANY_ADDRESS = 0xFFFFFFFF;
