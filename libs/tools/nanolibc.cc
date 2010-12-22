@@ -26,6 +26,7 @@ int getopt( unsigned int argc, char* argv[], const char* opts ) {
 						getopt_num++;
 						optarg = (getopt_num < argc ? argv[getopt_num] : 0);
 						getopt_num++;
+						getopt_pos  = 1;
 					}
 					return opt;
 				}
