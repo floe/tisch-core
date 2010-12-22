@@ -15,7 +15,6 @@ unsigned int getopt_num = 1;
 int getopt( unsigned int argc, char* argv[], const char* opts ) {
 	while (getopt_num < argc) {
 		char* curr = argv[getopt_num];
-	//	optarg = (getopt_num+1 < argc ? argv[getopt_num+1] : 0);
 		if (curr[0] != '-') continue;
 		while (getopt_pos < strlen(curr)) {
 			char opt = curr[getopt_pos++];
