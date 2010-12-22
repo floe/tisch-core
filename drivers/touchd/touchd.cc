@@ -110,7 +110,12 @@ int main( int argc, char* argv[] ) {
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	// create expected config file path
-	std::string homedir = getenv( "HOME" ); if (homedir == "") homedir = ".";
+#ifdef _MSC_VER
+	std::string homedir = "";
+#else
+	std::string homedir = getenv( "HOME" );
+#endif
+	if (homedir == "") homedir = ".";
 	cfgfile = homedir + "/.tisch.touchd.xml";
 
 	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vVhdc:p:" ) ) switch (opt) {
