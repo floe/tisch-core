@@ -15,11 +15,21 @@ unsigned int getopt_num = 1;
 int getopt( unsigned int argc, char* argv[], const char* opts ) {
 	while (getopt_num < argc) {
 		char* curr = argv[getopt_num];
-		optarg = (getopt_num+1 < argc ? argv[getopt_num+1] : 0);
+	//	optarg = (getopt_num+1 < argc ? argv[getopt_num+1] : 0);
 		if (curr[0] != '-') continue;
 		while (getopt_pos < strlen(curr)) {
 			char opt = curr[getopt_pos++];
-			for (unsigned int i = 1; i < strlen(opts); i++) if (opts[i] == opt) return opt;
+			for (unsigned int i = 0; i < strlen(opts); i++) 
+				if (opts[i] == opt) 
+				{
+					if( (i+1 < strlen(opts)) && (opts[i+1] == ':'))
+					{
+						getopt_num++;
+						optarg = (getopt_num < argc ? argv[getopt_num] : 0);
+						getopt_num++;
+					}
+					return opt;
+				}
 			return '?';
 		}
 		getopt_pos  = 1;
