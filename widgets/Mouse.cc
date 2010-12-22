@@ -20,7 +20,7 @@ unsigned long long us1;
 
 
 Mouse::Mouse( const char* target ):
-	output( target, TISCH_PORT_CALIB ),
+	output( TISCH_TUIO2, target, TISCH_PORT_CALIB ),
 	blobs(), framenum( 0 )
 { }
 

@@ -9,7 +9,7 @@
 
 #include <map>
 
-#include <TUIOStream.h>
+#include <TUIOOutStream.h>
 #include <BasicBlob.h>
 
 
@@ -29,7 +29,7 @@ class TISCH_SHARED Mouse {
 
 	private:
 
-		TUIOStream output;
+		TUIOOutStream output;
 
 		std::map<int,BasicBlob> blobs;
 		int framenum;

@@ -4,37 +4,37 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-#include "TUIOStream.h"
+#include "TUIOOutStream.h"
 #include <time.h>
 
 
-TUIOStream::TUIOStream( const char* target, int port ):
-	oscOut( buffer, TUIOSTREAM_BUFFER_SIZE ), 
+TUIOOutStream::TUIOOutStream( int _mode, const char* target, int port ):
+	osc1( buffer1, TUIOSTREAM_BUFFER_SIZE ),
+	osc2( buffer2, TUIOSTREAM_BUFFER_SIZE ),
 	transmitSocket( IpEndpointName( target, port ) ),
-	frame( 0 )
+	frame( 0 ), mode( _mode )
 { }
 
 
-void TUIOStream::start() {
+void TUIOOutStream::start() {
 
-	oscOut << osc::BeginBundleImmediate;
-	frame++;
+	osc2 << osc::BeginBundleImmediate;
 
 	// frame message
-	oscOut << osc::BeginMessage( "/tuio2/frm" ) << frame << osc::TimeTag(time(NULL)) << osc::EndMessage;
+	osc2 << osc::BeginMessage( "/tuio2/frm" ) << ++frame << osc::TimeTag(time(NULL)) << osc::EndMessage;
 
-	#ifdef TUIO_LEGACY
+	if (mode & TISCH_TUIO1) {
 		// alive message
-		oscOut << osc::BeginMessage( "/tuio/2Dcur" ) << "alive";
-		for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
-		oscOut << osc::EndMessage;
-	#endif
+		osc1 << osc::BeginBundleImmediate << osc::BeginMessage( "/tuio/2Dcur" ) << "alive";
+		for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) osc1 << *id;
+		osc1 << osc::EndMessage;
+	}
 
 	alive.clear();
 }
 
 
-template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b ) {
+TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 
 	double w = b.axis1.length();
 	double h = b.axis2.length();
@@ -42,59 +42,59 @@ template <> TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob&
 	if (b.axis1.y < 0) angle = 2*M_PI - angle;
 
 	// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
-	s.oscOut << osc::BeginMessage( "/tuio2/bnd" )
+	s.osc2 << osc::BeginMessage( "/tuio2/bnd" )
 		<< b.id << b.pos.x << b.pos.y
 		<< angle << w << h << b.size/(w*h)
 		<< osc::EndMessage;
 
 	// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	s.oscOut << osc::BeginMessage( "/tuio2/ptr" )
+	s.osc2 << osc::BeginMessage( "/tuio2/ptr" )
 		<< b.id << b.type << osc::int32(0)
 		<< b.peak.x << b.peak.y
 		<< w << double(1.0)
 		<< osc::EndMessage;
 	
 	if (b.pid)
-		s.oscOut << osc::BeginMessage( "/tuio2/lia" )
+		s.osc2 << osc::BeginMessage( "/tuio2/lia" )
 			<< b.pid << true << b.id << osc::int32(0)
 			<< osc::EndMessage;
 
 	s.alive.push_back( b.id );
 
-	#ifdef TUIO_LEGACY
+	if (s.mode & TISCH_TUIO1) {
 		// /tuio/2Dcur set s x y X Y m
-		s.oscOut << osc::BeginMessage( "/tuio/2Dcur" ) << "set"
+		s.osc1 << osc::BeginMessage( "/tuio/2Dcur" ) << "set"
 		  << b.id << b.pos.x << b.pos.y
 			<< 0.0 << 0.0 << 0.0 
 			<< osc::EndMessage;
 		// /tuio/2Dblb set s x y a w h f X Y A m r
-		/*s.oscOUT << osc::BeginMessage( "/tuio/2Dblb" ) << "set"
+		/*s.osc1 << osc::BeginMessage( "/tuio/2Dblb" ) << "set"
 		  << b.id << b.pos.x << b.pos.y
 			<< angle << w << h << b.size/(w*h)
 			<< 0.0 << 0.0 << 0.0 << 0.0 << 0.0
 			<< osc::EndMessage;*/
-	#endif
+	}
 
 	return s;
 }
 
 
-void TUIOStream::send() {
+void TUIOOutStream::send() {
 
 	// alive message
-	oscOut << osc::BeginMessage( "/tuio2/alv" );
-	for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) oscOut << *id;
-	oscOut << osc::EndMessage;
+	osc2 << osc::BeginMessage( "/tuio2/alv" );
+	for (std::vector<osc::int32>::iterator id = alive.begin(); id != alive.end(); id++) osc2 << *id;
+	osc2 << osc::EndMessage << osc::EndBundle;
 
-	#ifdef TUIO_LEGACY
+	transmitSocket.Send( osc2.Data(), osc2.Size() );
+	osc2.Clear();
+
+	if (mode & TISCH_TUIO1) {
 		// frame message
-		oscOut<< osc::BeginMessage( "/tuio/2Dcur" ) << "fseq" << frame << osc::EndMessage;
-	#endif
-
-	oscOut << osc::EndBundle;
-
-	transmitSocket.Send( oscOut.Data(), oscOut.Size() );
-
-	oscOut.Clear();
+		osc1 << osc::BeginMessage( "/tuio/2Dcur" ) << "fseq" << frame << osc::EndMessage;
+		osc1 << osc::EndBundle;
+		transmitSocket.Send( osc1.Data(), osc1.Size() );
+		osc1.Clear();
+	}
 }
 

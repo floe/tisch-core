@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include <GLUTWindow.h>
-#include <TUIOStream.h>
+#include <TUIOOutStream.h>
 
 #include "Filter.h"
 #include "Blob.h"
@@ -30,7 +30,7 @@ class BlobList: public Filter {
 		virtual void draw( GLUTWindow* win );
 		virtual void link( Filter* _link   );
 
-		void send( TUIOStream* tuio );
+		void send( TUIOOutStream* tuio );
 
 	protected:
 

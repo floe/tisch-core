@@ -16,36 +16,37 @@
 #include <tisch.h>
 
 #define TUIOSTREAM_BUFFER_SIZE 0x10000
-#define TUIO_LEGACY 1 // send also TUIO 1.0 format
+#define TISCH_TUIO1 1 // send TUIO 1.0 format
+#define TISCH_TUIO2 2 // send TUIO 2.0 format
 
 
-class TISCH_SHARED TUIOStream {
+class TISCH_SHARED TUIOOutStream {
 
-	template <class T> friend TUIOStream& operator<< ( TUIOStream& s, const T& t );
+	friend TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b );
 
 	public:
 
-		TUIOStream( const char* target = "127.0.0.1", int port = TISCH_PORT_CALIB );
+		TUIOOutStream( int mode = TISCH_TUIO2, const char* target = "127.0.0.1", int port = TISCH_PORT_CALIB );
 
 		void start();
 		void send();
 
 	protected:
 
-		char buffer[TUIOSTREAM_BUFFER_SIZE];
-		osc::OutboundPacketStream oscOut;
+		char buffer1[TUIOSTREAM_BUFFER_SIZE];
+		char buffer2[TUIOSTREAM_BUFFER_SIZE];
+		osc::OutboundPacketStream osc1, osc2;
+
 		UdpTransmitSocket transmitSocket;
+
 		std::vector<osc::int32> alive;
 		osc::int32 frame;
+
+		int mode;
 };
 
 
-template <class T> TUIOStream& operator<< ( TUIOStream& s, const T& t ) {
-	s.oscOut << t;
-	return s;
-}
-
-template <> TISCH_SHARED TUIOStream& operator<< <BasicBlob> ( TUIOStream& s, const BasicBlob& b );
+TISCH_SHARED TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b );
 
 #endif // _TUIOSTREAM_H_
 

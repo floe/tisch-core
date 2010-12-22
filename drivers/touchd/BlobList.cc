@@ -223,7 +223,7 @@ void BlobList::draw( GLUTWindow* win ) {
 
 
 // send blob list via OSC as TUIO 2.0
-void BlobList::send( TUIOStream* oscOut ) {
+void BlobList::send( TUIOOutStream* oscOut ) {
 
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 

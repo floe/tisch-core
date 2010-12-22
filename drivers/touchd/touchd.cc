@@ -6,7 +6,7 @@
 #include "Pipeline.h"
 #include "BlobList.h"
 #include <GLUTWindow.h>
-#include <TUIOStream.h>
+#include <TUIOOutStream.h>
 
 #define ADDRESS "127.0.0.1"
 
@@ -25,7 +25,7 @@ int curframe = 0;
 int lasttime = 0;
 int lastframe = 0;
 
-TUIOStream* tuio;
+TUIOOutStream* tuio;
 
 
 void cleanup( int signal ) {
@@ -145,7 +145,7 @@ int main( int argc, char* argv[] ) {
 	mypipe = new Pipeline( doc.FirstChildElement() );
 	tmp = (*mypipe)[0];
 
-	tuio = new TUIOStream( ADDRESS, outport );
+	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, ADDRESS, outport );
 
 	int width  = tmp->getImage()->getWidth();
 	int height = tmp->getImage()->getHeight();
