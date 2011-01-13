@@ -5,6 +5,7 @@
 \*************************************************************************/
 
 #include "TUIOInStream.h"
+#include <string>
 
 
 TUIOInStream::TUIOInStream( int port ):

@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liboscpack.lib libtools.lib ws2_32.lib winmm.lib"
+				AdditionalDependencies="liboscpack.lib libtools.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -137,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liboscpack.lib libtools.lib ws2_32.lib winmm.lib"
+				AdditionalDependencies="liboscpack.lib libtools.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"

@@ -195,7 +195,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\TUIOStream.cc"
+				RelativePath="..\libs\tools\TUIOInStream.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\tools\TUIOOutStream.cc"
 				>
 			</File>
 			<File
@@ -233,7 +237,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\libs\tools\TUIOStream.h"
+				RelativePath="..\libs\tools\TUIOInStream.h"
+				>
+			</File>
+			<File
+				RelativePath="..\libs\tools\TUIOOutStream.h"
 				>
 			</File>
 			<File

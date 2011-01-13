@@ -22,7 +22,7 @@
 
 class TISCH_SHARED TUIOOutStream {
 
-	friend TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b );
+	friend TISCH_SHARED TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b );
 
 	public:
 
