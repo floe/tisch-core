@@ -157,7 +157,11 @@ class TISCH_SHARED Image {
 
 			}
 
-			#ifndef _MSC_VER
+			#ifdef _MSC_VER
+
+				else throw std::runtime_error( "Shared memory is currently unsupported on Windows." );
+
+			#else
 
 			else if (fcntl( key, F_GETFL ) != -1) {
 
@@ -187,6 +191,7 @@ class TISCH_SHARED Image {
 				// set semaphore value to 1 if it was newly created
 				if (flags | IPC_CREAT) semctl( sem, 0, SETVAL, 1 );
 			}
+
 			#endif
 		}
 
