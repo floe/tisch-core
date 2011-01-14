@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <freeglut>..\..\freeglut\</freeglut>
+    <winsdk>C:\Program Files\Microsoft SDKs\Windows\v6.1\</winsdk>
+    <javasdk>C:\Program Files\Java\jdk1.6.0_20\</javasdk>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\calibd;$(WindowsSdkDir)\Include;$(freeglut)\include;..\libs\tools;..\libs\simplecv;..\libs\simplegl;..\gestured;..\gestured\features;..\widgets;..\;..\libs\math\jama;..\libs\math\tnt;..\libs\math;..\libs\osc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;TIXML_USE_STL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ForcedIncludeFiles>$(SolutionDir)\tisch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut)\VisualStudio2008\$(Configuration);$(freeglut)\$(Configuration);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="freeglut">
+      <Value>$(freeglut)</Value>
+    </BuildMacro>
+    <BuildMacro Include="winsdk">
+      <Value>$(winsdk)</Value>
+    </BuildMacro>
+    <BuildMacro Include="javasdk">
+      <Value>$(javasdk)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
