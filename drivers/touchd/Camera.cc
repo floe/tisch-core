@@ -3,7 +3,7 @@
 *  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
-
+#define HAS_FREENECT
 #include <nanolibc.h>
 #include "Camera.h"
 

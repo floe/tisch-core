@@ -4,18 +4,24 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-#include <sys/ioctl.h>
+
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h> // close
+
 #include <string.h> // memset
 #ifdef __linux
+#include <sys/ioctl.h>
+#include <unistd.h> // close
 #include <error.h>  // errno
 #include <asm/types.h>
-#endif
-#include <errno.h>  // errno
-
 #include <sys/time.h>
+#endif
+
+#ifdef _MSC_VER
+#include "usb.h"
+#endif
+
+#include <errno.h>  // errno
 
 #include <cstdio>
 #include <iostream> // cout
@@ -26,7 +32,11 @@
 
 KinectImageSource::KinectImageSource( int debug ) {
 
+#ifdef _MSC_VER
+	usb_init();
+#else
 	libusb_init( NULL );
+#endif
 
 	// open the device
 	if (freenect_init( &f_ctx, NULL ) < 0)

@@ -55,7 +55,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Andi\Uni\libraries\libusb-win32-bin-1.2.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -66,7 +66,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libtools.lib;strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtools.lib;strmiids.lib;pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -78,7 +78,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Andi\Uni\libraries\libusb-win32-bin-1.2.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -87,7 +87,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libtools.lib;strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtools.lib;strmiids.lib;pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -104,6 +104,7 @@
     <ClCompile Include="..\libs\simplecv\ColorLUT.cc" />
     <ClCompile Include="..\libs\simplecv\DirectShowImageSource.cc" />
     <ClCompile Include="..\libs\simplecv\IntensityImage.cc" />
+    <ClCompile Include="..\libs\simplecv\KinectImageSource.cc" />
     <ClCompile Include="..\libs\simplecv\Line.cc" />
     <ClCompile Include="..\libs\simplecv\PicoPNG.cc" />
     <ClCompile Include="..\libs\simplecv\RGBImage.cc" />
@@ -119,6 +120,7 @@
     <ClInclude Include="..\libs\simplecv\Image.h" />
     <ClInclude Include="..\libs\simplecv\ImageSource.h" />
     <ClInclude Include="..\libs\simplecv\IntensityImage.h" />
+    <ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
     <ClInclude Include="..\libs\simplecv\Line.h" />
     <ClInclude Include="..\libs\simplecv\mmx.h" />
     <ClInclude Include="..\libs\simplecv\PicoPNG.h" />

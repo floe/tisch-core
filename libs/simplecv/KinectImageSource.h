@@ -16,7 +16,7 @@
 #include "RGBImage.h"
 
 
-class KinectImageSource: public ImageSource {
+class TISCH_SHARED KinectImageSource: public ImageSource {
 
 	public:
 
