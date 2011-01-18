@@ -208,8 +208,8 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 	if( std::string(m.AddressPattern()) == "/tuio2/ptr" ) //finger
 	{
 		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, unusedid, press;
-		double width;
+		osc::int32 objectid, unusedid;
+		double width, press;
 		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
 		blob.id = objectid;
 }
