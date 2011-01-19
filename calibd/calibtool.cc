@@ -19,13 +19,9 @@
 
 #include "Calibration.h"
 #include "GLUTWindow.h"
-#include "Socket.h"
+#include "TUIOInStream.h"
 
 #include "tisch.h"
-
-#include <osc/OscReceivedElements.h>
-#include <osc/OscPacketListener.h>
-#include <ip/UdpSocket.h>
 
 
 #define MAX_CORR 4 // 8
@@ -39,10 +35,7 @@ GLUTWindow* win = 0;
 Calibration cal;
 BasicBlob blob;
 
-UDPSocket* input;
-
 // total screen size
-//Vector resolution( 800, 600 );
 int xres = 800, yres = 600;
 
 // current input candidates
@@ -59,12 +52,12 @@ std::string msg( "Please check corner markers and tap the cross.\nPress (f) for 
 int delay = 0;
 char* myname = 0;
 char** myargs;
-int run = 2;
+int do_run = 2;
 int fork_calibd = 1;
 
 
 
-void handler( int signal ) { run = 0; }
+void handler( int signal ) { do_run = 0; }
 
 void countdown( int signal ) {
 	delay = 0;
@@ -76,7 +69,6 @@ void cleanup() {
 
 	std::cout << "Cleaning up.." << std::flush;
 
-	delete input;
 	delete win;
 
 	std::cout << "done. Goodbye." << std::endl;
@@ -137,20 +129,21 @@ void keyb( unsigned char key, int x, int y ) {
 	if ((key == 'q') || (key == 'Q')) {
 		cal.restore( );
 		std::cout << "User abort. Restarting.." << std::endl;
-		run = 0;
+		do_run = 0;
 	}
 }
 
-struct ReceiverThread : public osc::OscPacketListener 
-{
+
+struct CalibTUIOInput: public TUIOInStream {
+
+	CalibTUIOInput(): TUIOInStream() { }
 	
-virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
-{
-	if( std::string(m.AddressPattern()) == "/tuio2/frm" ) 
-	{
+	virtual void process_frame() {
+
 		std::map< int, std::vector<Vector> >::iterator pos = blobs.begin();
 		std::map< int, std::vector<Vector> >::iterator end = blobs.end();
 
+		// calculate average position and std. deviation (= jitter)
 		while ( pos != end ) {
 
 			int erase = 0;
@@ -193,6 +186,7 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 			if (erase) blobs.erase(pos++);
 			else ++pos;
 		}
+
 		// all correspondences captured?
 		if (current == MAX_CORR) {
 
@@ -200,68 +194,24 @@ virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName
 			cal.save( );
 
 			std::cout << "New calibration saved. Restarting.." << std::endl;
-			run = 0; return;
+			do_run = 0; return;
 		}
 	}
 
-//	/tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
-	if( std::string(m.AddressPattern()) == "/tuio2/ptr" ) //finger
-	{
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, unusedid;
-		double width, press;
-		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> width >> press;
-		blob.id = objectid;
-}
-//	/tuio2/tok s_id tu_id c_id x_pos y_pos angle [x_vel y_vel a_vel m_acc r_acc] 
-	else if ( std::string(m.AddressPattern()) == "/tuio2/tok" ) //shadow
-	{
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, unusedid;
-		double angle;
-		args >> unusedid >> unusedid >> objectid >> blob.pos.x >> blob.pos.y >> angle;
-		blob.id = objectid;
+	virtual void process_blob( BasicBlob& b ) {
+		blobs[b.id].push_back(b.peak);
 	}
-//	/tuio2/_cPPPPPPPP c_id parentid size peak.x peak.y axis1.x axis1.y axis2.x axis2.y
-	else if ( std::string(m.AddressPattern()) == "/tuio2/TODO" )
-	{
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 objectid, parentid, size;
-		args >> objectid >> parentid >> size >> blob.peak.x >> blob.peak.y >> blob.axis1.x >> blob.axis1.y >> blob.axis2.x >> blob.axis2.y;
-		blob.pid = parentid;
-		blob.size = size;
-		if(objectid != blob.id) return; //packet lost
-		blobs[blob.id].push_back(blob.peak);
-	}
-}
+
 };
 
-ReceiverThread receiver;
-
-/*void idle() {
-
-	if (run > 1) { run = 1; keyb( 'f', 0, 0 ); }
-	if (!run) cleanup();
-
-/*	std::string id;
-	BasicBlob blob;
-
-	(*input) >> id;
-
-	if (!id.compare( "frame" )) {
-	}
-
-//	if ((!input) || delay || id.compare( target_id )) { input->flush(); return; }
-
-	glutPostRedisplay();
-}*/
+CalibTUIOInput* input;
 
 
 
 int main( int argc, char* argv[] ) {
 
-	std::cout << "calibtool - libTISCH 1.1 calibration layer" << std::endl;
-	std::cout << "(c) 2008 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "calibtool - libTISCH 2.0 calibration layer" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <echtler@in.tum.de>" << std::endl;
 
 	myargs = argv;
 
@@ -284,10 +234,9 @@ int main( int argc, char* argv[] ) {
 		          return 0; break;
 	}
 
-	input = new UDPSocket( INADDR_ANY, TISCH_PORT_RAW );
-	win = new GLUTWindow( xres, yres, "calibtool - libTISCH 1.1 calibration layer" );
+	input = new CalibTUIOInput();
+	win = new GLUTWindow( xres, yres, "calibtool - libTISCH 2.0 calibration layer" );
 
-//	glutIdleFunc(idle);
 	glutDisplayFunc(disp);
 	glutKeyboardFunc(keyb);
 
@@ -320,9 +269,7 @@ int main( int argc, char* argv[] ) {
 	screen_coords.push_back( Vector(      OFFSET,      yres/2 ) );
 	screen_coords.push_back( Vector(      xres/2,      yres/2 ) );*/
 
-	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_CALIB ), &receiver );
-	s.RunUntilSigInt();
-
+	input->run();
 	win->run();
 
 	return 0;
