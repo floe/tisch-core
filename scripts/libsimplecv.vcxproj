@@ -55,8 +55,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Andi\Uni\libraries\libusb-win32-bin-1.2.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(freenect)\libfreenect.h')">HAS_FREENECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(winsdk)\include\dshow.h')">HAS_DIRECTSHOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -66,7 +68,9 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libtools.lib;strmiids.lib;pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -78,8 +82,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Andi\Uni\libraries\libusb-win32-bin-1.2.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(freenect)\libfreenect.h')">HAS_FREENECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(winsdk)\include\dshow.h')">HAS_DIRECTSHOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -87,7 +93,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libtools.lib;strmiids.lib;pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -102,9 +110,7 @@
   <ItemGroup>
     <ClCompile Include="..\libs\simplecv\Circle.cc" />
     <ClCompile Include="..\libs\simplecv\ColorLUT.cc" />
-    <ClCompile Include="..\libs\simplecv\DirectShowImageSource.cc" />
     <ClCompile Include="..\libs\simplecv\IntensityImage.cc" />
-    <ClCompile Include="..\libs\simplecv\KinectImageSource.cc" />
     <ClCompile Include="..\libs\simplecv\Line.cc" />
     <ClCompile Include="..\libs\simplecv\PicoPNG.cc" />
     <ClCompile Include="..\libs\simplecv\RGBImage.cc" />
@@ -112,15 +118,21 @@
     <ClCompile Include="..\libs\simplecv\YUV420Image.cc" />
     <ClCompile Include="..\libs\simplecv\YUYVImage.cc" />
   </ItemGroup>
+  <ItemGroup Condition="Exists('$(freenect)\libfreenect.h')">
+    <ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
+    <ClCompile Include="..\libs\simplecv\KinectImageSource.cc" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(winsdk)\include\dshow.h')">
+    <ClInclude Include="..\libs\simplecv\DirectShowImageSource.h" />
+    <ClInclude Include="..\libs\simplecv\DirectShowStub.h" />
+    <ClCompile Include="..\libs\simplecv\DirectShowImageSource.cc" />
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\simplecv\Circle.h" />
     <ClInclude Include="..\libs\simplecv\ColorLUT.h" />
-    <ClInclude Include="..\libs\simplecv\DirectShowImageSource.h" />
-    <ClInclude Include="..\libs\simplecv\DirectShowStub.h" />
     <ClInclude Include="..\libs\simplecv\Image.h" />
     <ClInclude Include="..\libs\simplecv\ImageSource.h" />
     <ClInclude Include="..\libs\simplecv\IntensityImage.h" />
-    <ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
     <ClInclude Include="..\libs\simplecv\Line.h" />
     <ClInclude Include="..\libs\simplecv\mmx.h" />
     <ClInclude Include="..\libs\simplecv\PicoPNG.h" />

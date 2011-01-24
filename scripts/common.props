@@ -2,8 +2,9 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
     <freeglut>..\..\freeglut\</freeglut>
-    <winsdk>C:\Program Files\Microsoft SDKs\Windows\v6.1\</winsdk>
+    <winsdk>C:\Program Files\Microsoft SDKs\Windows\v7.0A\</winsdk>
     <javasdk>C:\Program Files\Java\jdk1.6.0_20\</javasdk>
+    <freenect>c:\put_libfreenect_dir_here</freenect>
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -24,12 +25,19 @@
   <ItemGroup>
     <BuildMacro Include="freeglut">
       <Value>$(freeglut)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="winsdk">
       <Value>$(winsdk)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="javasdk">
       <Value>$(javasdk)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="freenect">
+      <Value>$(freenect)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>
 </Project>
