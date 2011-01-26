@@ -26,7 +26,7 @@ int current_frame;
 int currentBlobIDs[MAX_BLOBS];
 float currentBlobXCoords[MAX_BLOBS];
 float currentBlobYCoords[MAX_BLOBS];
-
+float zerof = 0.0;
 
 void clearBlobIDArray() {
 	int i;
@@ -94,7 +94,7 @@ void dumpBlobsToOSC(osc::OutboundPacketStream &oscOut, UdpTransmitSocket &transm
 								<< currentBlobIDs[i] 
 								<< currentBlobXCoords[i] 
 								<< currentBlobYCoords[i]
-								<< 0.0 << 0.0 << 0.0
+								<< zerof << zerof << zerof
 								<< osc::EndMessage;
 								std::cout << currentBlobIDs[i] 
 													<< " x: " << currentBlobXCoords[i] 
