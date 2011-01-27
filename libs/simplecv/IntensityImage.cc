@@ -411,7 +411,7 @@ int IntensityImage::threshold( unsigned char value ) {
 	return threshold( value, *this );
 }
 
-int IntensityImage::threshold( unsigned char value, IntensityImage& target ) const {
+int IntensityImage::threshold( unsigned char value, IntensityImage& target , unsigned char minvalue ) const {
 	#ifndef NOMMX
 		mmxthreshold( data, target.data, size, value );
 		return 0;
@@ -419,7 +419,7 @@ int IntensityImage::threshold( unsigned char value, IntensityImage& target ) con
 		unsigned char tmp;
 		int hits = 0;
 		for (int i = 0; i < count; i++) {
-			tmp = (data[i] > value) ? 255 : 0;
+			tmp = ((data[i] > value) && (data[i] <= minvalue)) ? 255 : 0;
 			if (tmp) hits++;
 			target.data[i] = tmp;
 		}
