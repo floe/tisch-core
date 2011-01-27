@@ -64,12 +64,14 @@ int FlipFilter::process() {
 // TODO: use result from bgsub filter for threshold adjustment
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
-	threshold = 128;
-	config->QueryIntAttribute( "Threshold", &threshold );
+	threshold_max = 128;
+	threshold_min = 255;
+	config->QueryIntAttribute( "Threshold_max", &threshold_max);
+	config->QueryIntAttribute( "Threshold_min", &threshold_min );
 }
 
 int ThreshFilter::process() {
-	input->getImage()->threshold( threshold, *image );
+	input->getImage()->threshold( threshold_max, *image, threshold_min );
 	return 0;
 }
 

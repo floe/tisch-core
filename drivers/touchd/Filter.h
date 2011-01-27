@@ -82,7 +82,8 @@ class ThreshFilter: public Filter {
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
 	protected:
-		int threshold;
+		int threshold_min;
+		int threshold_max;
 };
 
 class SpeckleFilter: public Filter {
