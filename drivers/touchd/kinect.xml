@@ -1,11 +1,15 @@
 <!-- libTISCH 2.0 touchd example config file -->
 <Camera SourceType=5 Width=640 Height=480 FPS=30 Verbose=0>
 	<FlipFilter>
-		<ThreshFilter Threshold=150/> <!-- add ShmID=61710 to put image into shared memory -->
-		<ThreshFilter Threshold=170>
-			<SpeckleFilter NoiseLevel=2>
-				<BlobFilter MinSize=500 PeakMode=-1 VFlip=1 Type=1/>
-			</SpeckleFilter>
-		</ThreshFilter>
+<!--		<ThreshFilter Threshold_max=150 Threshold_min=150/> <!-- add ShmID=61710 to put image into shared memory -->
+<!--		<BGSubFilter Invert=0>-->
+			<ThreshFilter Threshold_max=158 Threshold_min=159>
+				<SpeckleFilter NoiseLevel=2>
+					<BlobFilter MinSize=100 PeakMode=-1 VFlip=1 Type=1/>
+				</SpeckleFilter>
+			</ThreshFilter>
+<!--		</BGSubFilter> -->
 	</FlipFilter>
 </Camera>
+
+
