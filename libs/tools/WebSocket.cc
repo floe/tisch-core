@@ -285,7 +285,7 @@ int WebSocketStream::underflow( ) {
 }
 
 void WebSocketStream::put_char( int chr ) {
-	char tmp[3] = { 0x00, chr, 0xFF };
+	unsigned char tmp[3] = { 0x00, (unsigned char)chr, 0xFF };
 	if (filter)
 		sendto( sock,   tmp,     3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 	else

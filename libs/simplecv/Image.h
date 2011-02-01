@@ -198,7 +198,7 @@ class TISCH_SHARED Image {
 		#ifndef _MSC_VER
 
 		// wrapper for semaphore access
-		inline int do_sem( int val ) {
+		inline int do_sem( short int val ) {
 			struct sembuf sem_op = { 0, val, 0 };
 			return semop( sem, &sem_op, 1 );
 		}
