@@ -11,6 +11,7 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	checkImage();
 	background = new ShortImage( image->getWidth(), image->getHeight() );
 	config->QueryIntAttribute( "Invert", &invert );
+	config->QueryIntAttribute( "Adaptive", &adaptive );
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -28,7 +29,7 @@ void BGSubFilter::reset() {
 int BGSubFilter::process() {
 	IntensityImage* inputimg = input->getImage();
 	background->subtract( *(inputimg), *image, invert );
-	background->update( *(inputimg), *(mask->getImage()) );
+	if( adaptive ) background->update( *(inputimg), *(mask->getImage()) );
 	result = background->intensity(); // FIXME: does 'invert' have to be factored in here?
 	return 0;
 }
@@ -66,7 +67,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	checkImage();
 	threshold_max = 128;
 	threshold_min = 255;
-	config->QueryIntAttribute( "Threshold_max", &threshold_max);
+	config->QueryIntAttribute( "Threshold_max", &threshold_max );
 	config->QueryIntAttribute( "Threshold_min", &threshold_min );
 }
 

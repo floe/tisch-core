@@ -2,13 +2,13 @@
 <Camera SourceType=5 Width=640 Height=480 FPS=30 Verbose=0>
 	<FlipFilter>
 <!--		<ThreshFilter Threshold_max=150 Threshold_min=150/> <!-- add ShmID=61710 to put image into shared memory -->
-<!--		<BGSubFilter Invert=0>-->
-			<ThreshFilter Threshold_max=158 Threshold_min=159>
-				<SpeckleFilter NoiseLevel=2>
+		<BGSubFilter Invert=0 Adaptive=0>
+			<ThreshFilter Threshold_max=0 Threshold_min=2>
+				<SpeckleFilter NoiseLevel=7>
 					<BlobFilter MinSize=100 PeakMode=-1 VFlip=1 Type=1/>
 				</SpeckleFilter>
 			</ThreshFilter>
-<!--		</BGSubFilter> -->
+		</BGSubFilter>
 	</FlipFilter>
 </Camera>
 

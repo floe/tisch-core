@@ -68,7 +68,7 @@ class BGSubFilter: public Filter {
 	protected:
 		ShortImage* background;
 		Filter* mask;
-		int invert;
+		int invert, adaptive;
 };
 
 class FlipFilter: public Filter {
