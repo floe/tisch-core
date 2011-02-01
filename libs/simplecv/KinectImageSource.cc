@@ -154,3 +154,7 @@ void KinectImageSource::setBrightness( int bright ) { }
 void KinectImageSource::printInfo( int feature ) { }
 void KinectImageSource::setFPS( int fps ) { }
 
+void KinectImageSource::tilt( int angle )
+{
+	freenect_set_tilt_degs(f_dev,angle);
+}

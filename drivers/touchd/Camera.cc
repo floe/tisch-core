@@ -194,3 +194,9 @@ int Camera::process() {
 	return 0;
 }
 
+void Camera::tilt_kinect( int angle )
+{
+	if( sourcetype == CAMERA_TYPE_KINECT )
+		((KinectImageSource*)cam)->tilt( angle );
+}
+

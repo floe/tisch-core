@@ -40,6 +40,7 @@ class TISCH_SHARED KinectImageSource: public ImageSource {
 		void setBrightness( int bright );
 		void setFPS( int fps );
 		void printInfo( int feature = 0 );
+		void tilt( int angle );
 
 		// video device
 		freenect_context* f_ctx;

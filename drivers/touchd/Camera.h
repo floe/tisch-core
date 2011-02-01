@@ -29,6 +29,8 @@ class Camera: public Filter {
 
 		virtual int process( );
 
+		void tilt_kinect( int angle );
+
 	private:
 
 		FlashControl* flash;

@@ -8,6 +8,8 @@
 #include <GLUTWindow.h>
 #include <TUIOOutStream.h>
 
+#include "Camera.h"
+
 #define ADDRESS "127.0.0.1"
 
 
@@ -24,6 +26,7 @@ std::string cfgfile;
 int curframe = 0;
 int lasttime = 0;
 int lastframe = 0;
+int angle = 0;
 
 TUIOOutStream* tuio;
 
@@ -79,7 +82,19 @@ void keyb( unsigned char c, int, int ) {
 		if (c < mypipe->size())
 			tmp = (*mypipe)[c];
 	}
-
+	if (c == 'x') {
+		if( angle > -30 ) angle--; 
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+	if (c == 'w') {
+		if( angle < 30 ) angle++;
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+	if (c == 's') {
+		angle = 0;
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+	
 	glutPostRedisplay();
 }
 
