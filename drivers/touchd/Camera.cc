@@ -194,9 +194,10 @@ int Camera::process() {
 	return 0;
 }
 
-void Camera::tilt_kinect( int angle )
-{
+void Camera::tilt_kinect( int angle ) {
+#ifdef HAS_FREENECT
 	if( sourcetype == CAMERA_TYPE_KINECT )
 		((KinectImageSource*)cam)->tilt( angle );
+#endif
 }
 
