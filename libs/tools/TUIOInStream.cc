@@ -16,7 +16,8 @@ TUIOInStream::TUIOInStream( int port ):
 void TUIOInStream::process_blob( BasicBlob& b ) { }
 void TUIOInStream::process_frame() { }
 
-void TUIOInStream::run() { sock.RunUntilSigInt(); }
+void TUIOInStream::run() { sock.Run(); }
+void TUIOInStream::stop() { sock.AsynchronousBreak(); }
 
 
 TUIOInStream::ReceiverThread::ReceiverThread( TUIOInStream* s ): stream( s ) { }
@@ -24,7 +25,7 @@ TUIOInStream::ReceiverThread::ReceiverThread( TUIOInStream* s ): stream( s ) { }
 void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint ) {
 
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	osc::int32 blobid, type, unused, parent;
+	osc::int32 blobid, unused, parent;
 	double width, height, angle, area;
 	bool tmp;
 
@@ -37,9 +38,8 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc]
 		args >> blobid;
 		BasicBlob& curblob = blobs[blobid];
-		args >> type >> unused >> curblob.peak.x >> curblob.peak.y >> width;
+		args >> curblob.type >> unused >> curblob.peak.x >> curblob.peak.y >> width;
 		curblob.id = blobid;
-		curblob.type = type ? INPUT_TYPE_FINGER : INPUT_TYPE_SHADOW;
 
 	} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
 

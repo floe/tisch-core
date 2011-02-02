@@ -24,6 +24,7 @@ class TISCH_SHARED TUIOInStream {
 		virtual void process_frame();
 
 		void run();
+		void stop();
 
 	protected:
 
