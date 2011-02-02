@@ -113,12 +113,13 @@ GLUTWindow::GLUTWindow( int w, int h, const std::string& title, int mode ) {
 	glutSpecialFunc ( g_special  );
 	glutKeyboardFunc( g_keyboard );
 
-	#ifndef GLUT_HAS_MPX
+	#if !defined(GLUT_HAS_MPX) || defined(_MSC_VER)
 		glutEntryFunc( g_entry );
 		glutMouseFunc( g_mouse );
 		glutMotionFunc( g_motion );
 		glutPassiveMotionFunc( g_passive );
-	#else
+	#endif
+	#ifdef GLUT_HAS_MPX
 		glutXExtensionEntryFunc( g_extentry );
 		glutXExtensionButtonFunc( g_extbutton );
 		glutXExtensionMotionFunc( g_extmotion );

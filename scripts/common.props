@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
-    <freeglut>..\..\freeglut\</freeglut>
+    <freeglut>..\libs\freeglut\</freeglut>
     <winsdk>C:\Program Files\Microsoft SDKs\Windows\v7.0A\</winsdk>
     <javasdk>C:\Program Files\Java\jdk1.6.0_20\</javasdk>
     <freenect>c:\put_libfreenect_dir_here</freenect>
@@ -19,7 +19,7 @@
       <ForcedIncludeFiles>$(SolutionDir)\tisch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut)\VisualStudio2008\$(Configuration);$(freeglut)\$(Configuration);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut);$(freeglut)\VisualStudio\2010\build\$(Configuration);$(freeglut)\VisualStudio\2008\build\$(Configuration);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
