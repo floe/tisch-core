@@ -1,8 +1,8 @@
-- finish factoring TUIO input into tools/TUIOInStream
-- use TUIOInStream in calibd & gestured
-- fix calibd & calibtool
-- add target IP parameter to calibd/touchd
 - add upper threshold to MMX function
+
+- use TUIOInStream in calibd & gestured
+- add target IP parameter to calibd/touchd
+- rename Threshold params in touchd
 
 - convert Feature/Region/Gesture << and >> operators to output JSON
 - create webgestured (using a WebSocket for connections)
