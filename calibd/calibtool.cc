@@ -20,6 +20,7 @@
 #include "Calibration.h"
 #include "GLUTWindow.h"
 #include "TUIOInStream.h"
+#include "Thread.h"
 
 #include "tisch.h"
 
@@ -27,20 +28,22 @@
 #define MAX_CORR 4 // 8
 #define HOM_CORR 4
 
-#define OFFSET 20
+#define TARGET_OFFSET 20
+#define TARGET_SIZE   40
+
+#define MAX_VARIANCE 0.005
+#define MIN_SAMPLES  50
 
 
 // global objects
 GLUTWindow* win = 0;
 Calibration cal;
-BasicBlob blob;
 
 // total screen size
 int xres = 800, yres = 600;
 
 // current input candidates
 std::map < int, std::vector < Vector > > blobs;
-std::string target_id( "finger" );
 
 // correspondences
 std::vector< Vector > image_coords;
@@ -50,34 +53,14 @@ int current = 0;
 std::string msg( "Please check corner markers and tap the cross.\nPress (f) for fullscreen, (q) to abort.\nNow sampling." );
 
 int delay = 0;
-char* myname = 0;
-char** myargs;
-int do_run = 2;
-int fork_calibd = 1;
+int ttype = 1;
 
-
-
-void handler( int signal ) { do_run = 0; }
 
 void countdown( int signal ) {
 	delay = 0;
 	msg = "Please tap the cross.\nNow sampling.";
 	glutPostRedisplay();
 }
-
-void cleanup() {
-
-	std::cout << "Cleaning up.." << std::flush;
-
-	delete win;
-
-	std::cout << "done. Goodbye." << std::endl;
-
-	if (fork_calibd) execv( "./calibd", myargs );
-
-	exit( 0 );
-}
-
 
 void disp() {
 
@@ -92,7 +75,7 @@ void disp() {
 	glBegin(GL_LINES);
 		
 		// corner markers
-		size = 40;
+		size = TARGET_SIZE;
 		glVertex2i(  0,  0); glVertex2i(  0,    size); glVertex2i(  0,  0); glVertex2i(    size,  0);
 		glVertex2i(  0,lyr); glVertex2i(  0,lyr-size); glVertex2i(  0,lyr); glVertex2i(    size,lyr);
 		glVertex2i(lxr,  0); glVertex2i(lxr,    size); glVertex2i(lxr,  0); glVertex2i(lxr-size,  0);
@@ -100,9 +83,9 @@ void disp() {
 
 		// calibration cross
 		if (!delay) {
-			size = 15;
-			double xoff = screen_coords[current].x;
-			double yoff = screen_coords[current].y;
+			size = (TARGET_SIZE/2)-5;
+			double xoff = screen_coords[current].x * xres;
+			double yoff = screen_coords[current].y * yres;
 			glVertex2d(xoff-size,yoff);
 			glVertex2d(xoff+size,yoff);
 			glVertex2d(xoff,yoff-size);
@@ -119,21 +102,6 @@ void disp() {
 	win->swap();
 }
 
-
-void keyb( unsigned char key, int x, int y ) {
-	if ((key == 'f') || (key == 'F')) {
-		glutPositionWindow( 0, 0 );
-		glutReshapeWindow( xres, yres );
-		glutFullScreen();
-	}
-	if ((key == 'q') || (key == 'Q')) {
-		cal.restore( );
-		std::cout << "User abort. Restarting.." << std::endl;
-		do_run = 0;
-	}
-}
-
-
 struct CalibTUIOInput: public TUIOInStream {
 
 	CalibTUIOInput(): TUIOInStream() { }
@@ -149,7 +117,12 @@ struct CalibTUIOInput: public TUIOInStream {
 			int erase = 0;
 			int size = pos->second.size();
 
-			if (size > 45) {
+			if (size%10 == 0) { 
+				msg += ".";
+				glutPostRedisplay();
+			}
+
+			if (size > MIN_SAMPLES) {
 
 				Vector avg,avg2;
 
@@ -167,7 +140,7 @@ struct CalibTUIOInput: public TUIOInStream {
 				Vector var( avg.x*avg.x, avg.y*avg.y );
 				var = avg2 - var;
 
-				if ((var.x > 1) || (var.y > 1)) erase = 1;
+				if ((var.x > MAX_VARIANCE) || (var.y > MAX_VARIANCE)) erase = 1;
 				else {
 					// good enough..
 					std::cout << "blob " << pos->first << " is persistent" << std::endl;
@@ -193,18 +166,41 @@ struct CalibTUIOInput: public TUIOInStream {
 			cal.calculate( image_coords, screen_coords, HOM_CORR );
 			cal.save( );
 
-			std::cout << "New calibration saved. Restarting.." << std::endl;
-			do_run = 0; return;
+			std::cout << "New calibration saved. Exiting..." << std::endl;
+			exit(0);	
 		}
 	}
 
 	virtual void process_blob( BasicBlob& b ) {
-		blobs[b.id].push_back(b.peak);
+		if (!delay && (b.type == ttype))
+			blobs[b.id].push_back(b.peak);
 	}
 
 };
 
 CalibTUIOInput* input;
+
+struct InputThread: public Thread {
+	InputThread(): Thread() { }
+	void* run() { input->run(); return 0; }
+};
+
+InputThread inputthread;
+
+
+void keyb( unsigned char key, int x, int y ) {
+	if ((key == 'f') || (key == 'F')) {
+		glutPositionWindow( 0, 0 );
+		glutReshapeWindow( xres, yres );
+		glutFullScreen();
+	}
+	if ((key == 'q') || (key == 'Q')) {
+		cal.restore( );
+		std::cout << "User abort. Exiting..." << std::endl;
+		input->stop();
+		exit(1);
+	}
+}
 
 
 
@@ -213,24 +209,17 @@ int main( int argc, char* argv[] ) {
 	std::cout << "calibtool - libTISCH 2.0 calibration layer" << std::endl;
 	std::cout << "(c) 2011 by Florian Echtler <echtler@in.tum.de>" << std::endl;
 
-	myargs = argv;
-
 	signal( SIGALRM, countdown );
-	signal( SIGINT,  handler   );
 
-	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "fshq" ) ) switch (opt) {
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "ht:" ) ) switch (opt) {
 
-		case 'f': target_id = "finger"; break;
-		case 's': target_id = "shadow"; break;
-
-		case 'q': fork_calibd = 0; break;
+		case 't': ttype = atoi(optarg);
+		          break;
 
 		case 'h':
 		case '?':	std::cout << "Usage: calibtool [options]\n";
-		          std::cout << "  -f  use finger tracking for calibration (default)\n";
-		          std::cout << "  -s  use shadow tracking for calibration\n";
-		          std::cout << "  -q  exit after calibration without forking calibd\n";
-		          std::cout << "  -h  this\n";
+		          std::cout << "  -t num  use TUIO type #num for calibration, default = 1 (generic finger)\n";
+		          std::cout << "  -h      this\n";
 		          return 0; break;
 	}
 
@@ -251,10 +240,10 @@ int main( int argc, char* argv[] ) {
 	cal.backup();
 
 	// four corners: determine homography
-	screen_coords.push_back( Vector(      OFFSET,      OFFSET ) );
-	screen_coords.push_back( Vector( xres-OFFSET,      OFFSET ) );
-	screen_coords.push_back( Vector( xres-OFFSET, yres-OFFSET ) );
-	screen_coords.push_back( Vector(      OFFSET, yres-OFFSET ) );
+	screen_coords.push_back( Vector(      TARGET_OFFSET,      TARGET_OFFSET ) );
+	screen_coords.push_back( Vector( xres-TARGET_OFFSET,      TARGET_OFFSET ) );
+	screen_coords.push_back( Vector( xres-TARGET_OFFSET, yres-TARGET_OFFSET ) );
+	screen_coords.push_back( Vector(      TARGET_OFFSET, yres-TARGET_OFFSET ) );
 
 	/*int offx[4] = { OFFSET, (xres-2*OFFSET)/3, (xres-2*OFFSET)*2/3, xres-OFFSET };
 	int offy[4] = { OFFSET, (yres-2*OFFSET)/3, (yres-2*OFFSET)*2/3, yres-OFFSET };
@@ -269,7 +258,13 @@ int main( int argc, char* argv[] ) {
 	screen_coords.push_back( Vector(      OFFSET,      yres/2 ) );
 	screen_coords.push_back( Vector(      xres/2,      yres/2 ) );*/
 
-	input->run();
+	// scale down to (1.0,1.0) reference frame
+	for (unsigned int i = 0; i < screen_coords.size(); i++) {
+		screen_coords[i].x /= (double)xres;
+		screen_coords[i].y /= (double)yres;
+	}
+
+	inputthread.start();
 	win->run();
 
 	return 0;
