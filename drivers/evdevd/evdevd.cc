@@ -1,7 +1,7 @@
 /* based on evtest.c by Vojtec Pavlik */
 
 #include <BasicBlob.h>
-#include <Socket.h>
+#include <TUIOOutStream.h>
 #include <tisch.h>
 
 #include <linux/input.h>
@@ -27,7 +27,7 @@ int blobcount = 0;
 int framenum = 0;
 int blobid = 0;
 
-UDPSocket output( INADDR_ANY, 0 );
+TUIOOutStream output( TISCH_TUIO1 | TISCH_TUIO2 );
 
 
 int main (int argc, char *argv[]) {
@@ -46,18 +46,10 @@ int main (int argc, char *argv[]) {
 	double maxx = 1.0;
 	double maxy = 1.0;
 
-	double xres = 1024;
-	double yres = 600;
-
-	if (argc < 4) {
-		printf("Usage: evbridge /dev/input/eventX screen_width screen_height\n");
+	if (argc < 2) {
+		printf("Usage: evdevd /dev/input/eventX\n");
 		return 1;
 	}
-
-	output.target( INADDR_LOOPBACK, TISCH_PORT_CALIB );
-
-	xres = atoi(argv[2]);
-	yres = atoi(argv[3]);
 
 	if ((fd = open(argv[1], O_RDONLY)) < 0) { perror("evtest: open"); return 1; }
 
@@ -85,6 +77,7 @@ int main (int argc, char *argv[]) {
 		}
 
 	printf("Processing...\n");
+	output.start();
 
 	while (1) {
 
@@ -101,29 +94,30 @@ int main (int argc, char *argv[]) {
 				
 				if (ev[i].code) { // config sync
 
-					output << "finger " << blobs[blobcount] << std::endl;
+					output << blobs[blobcount];
 					blobcount++;
 
 				} else { // report sync
 
-					output << "frame " << framenum++ << std::endl;
+					output.send();
+					output.start();
 					blobcount = 0;
 
 				}
 
 			} else if (ev[i].type == EV_ABS) {
 
-				blobs[blobcount].id = 2*blobcount+1;
-				//blobs[blobcount].id = ++blobid;
+				blobs[blobcount].id   = 2*blobcount+1;
+				blobs[blobcount].type = 1; // generic finger
 
 				if (ev[i].code == ABS_MT_POSITION_X) {
-					double tx = xres * ev[i].value / maxx;
+					double tx = ev[i].value / maxx;
 					blobs[blobcount].pos.x  = tx;
 					blobs[blobcount].peak.x = tx;
 				}
 
 				if (ev[i].code == ABS_MT_POSITION_Y) {
-					double ty = yres * (1.0 - (ev[i].value / maxy));
+					double ty = (1.0 - (ev[i].value / maxy));
 					blobs[blobcount].pos.y  = ty;
 					blobs[blobcount].peak.y = ty;
 				}
