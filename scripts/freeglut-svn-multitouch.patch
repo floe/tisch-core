@@ -214,7 +214,7 @@ Index: src/freeglut_window.c
       SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED); */
  
 +    /* Enable multitouch: additional flag TWF_FINETOUCH, TWF_WANTPALM */
-+		RegisterTouchWindow( window->Window.Handle, 0 );
++    RegisterTouchWindow( window->Window.Handle, TWF_FINETOUCH | TWF_WANTPALM );
  
  #if defined(_WIN32_WCE)
      ShowWindow( window->Window.Handle, SW_SHOW );

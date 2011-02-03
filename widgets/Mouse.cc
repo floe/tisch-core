@@ -31,7 +31,16 @@ void Mouse::send_blobs( double w, double h ) {
 
 	output.start();
 
-	for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
+	std::map<int,BasicBlob>::iterator blob = blobs.begin();
+
+	#ifdef _MSC_VER
+		// on windows, the first touch point is reported twice
+		// (once as mouse pointer with ID -1, once as touch)
+		// => skip the very first one
+		if (blobs.size() > 1) blob++;
+	#endif
+
+	for ( ; blob != blobs.end(); blob++) {
 
 		BasicBlob tmp = blob->second;
 
