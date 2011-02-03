@@ -66,7 +66,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtools.lib;libgestures.lib;libsimplecv.lib;libsimplegl.lib;libwidgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)libtisch_csharp.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
