@@ -80,7 +80,7 @@ int main( int argc, char* argv[] ) {
 		return 1;
 	}
 
-	Window* win = new Window( 640, 480, "PicView", mouse );
+	Window* win = new Window( 800, 480, "PicView", mouse );
 	win->texture(0);
 
 	srandom(45890);
@@ -91,7 +91,7 @@ int main( int argc, char* argv[] ) {
 		MyContainer* foo = new MyContainer( 
 			tmp->width(1)/5, 
 			tmp->height(1)/5,
-			(int)(((double)random()/(double)RAND_MAX)*600-300),
+			(int)(((double)random()/(double)RAND_MAX)*700-350),
 			(int)(((double)random()/(double)RAND_MAX)*450-225),
 			(int)(((double)random()/(double)RAND_MAX)*360),
 			tmp, 0xFF

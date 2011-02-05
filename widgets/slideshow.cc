@@ -44,7 +44,7 @@ int main( int argc, char* argv[] ) {
 		return 1;
 	}
 
-	Window* win = new Window( 640, 480, "slideshow", mouse );
+	Window* win = new Window( 800, 480, "slideshow", mouse );
 	win->texture(0);
 
 	double total_width = 0;

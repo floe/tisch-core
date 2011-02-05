@@ -58,7 +58,7 @@ int main( int argc, char* argv[] ) {
 	std::cout << "(c) 2010 by Florian Echtler <echtler@in.tum.de>" << std::endl;
 
 	int mouse = ((argc > 1) && (std::string("-m") == argv[1]));
-	GraphWin* win = new GraphWin( 640, 480, "Graph", mouse );
+	GraphWin* win = new GraphWin( 800, 480, "Graph", mouse );
 	win->texture(0);
 
 	srandom(45890);
@@ -67,7 +67,7 @@ int main( int argc, char* argv[] ) {
 
 	for (int i = 0; i < 20; i++) {
 		Tile* foo = new Tile( 50, 50,
-			(int)(((double)random()/(double)RAND_MAX)*600-300),
+			(int)(((double)random()/(double)RAND_MAX)*700-350),
 			(int)(((double)random()/(double)RAND_MAX)*450-225),
 			0, tmp, TISCH_TILE_MOVE|TISCH_TILE_SLIDE|TISCH_TILE_BOUNCE
 		);

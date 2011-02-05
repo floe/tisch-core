@@ -37,7 +37,7 @@ class MyButton: public Button {
 int main( int argc, char* argv[] ) {
 
 	// create a new window: width, height, title, use_mouse
-	Window* win = new Window( 640, 480, "Widget Demo", (argc > 1) );
+	Window* win = new Window( 800, 480, "Widget Demo", (argc > 1) );
 	win->texture( 0 );
 
 	Container* foo = new Container( 400,300, 0, 0, M_PI*20/180, 0, 0xFF );
