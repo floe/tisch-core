@@ -103,6 +103,14 @@ ifneq ($(OS),iPhone)
   TARGETS += libs/simplecv drivers/touchd calibd
 endif
 
+ifeq ($(OS),Linux)
+  TARGETS += drivers/evdevd
+endif
+
+ifeq ($(OS),Darwin)
+  TARGETS += drivers/macmtd
+endif
+
 ifneq ($(shell which gmcs),)
   WRAPPERS += libs/wrappers/csharp
 endif
@@ -126,6 +134,7 @@ ifneq ($(COMMAND),clean)
   libs/simplecv: libs/tools
   libs/simplegl: libs/simplecv
   drivers/touchd calibd: libs/simplegl
+  drivers/evdevd drivers/macmtd: libs/tools
   gestured: libs/tools
   widgets: libs/simplegl gestured
   $(WRAPPERS): widgets
@@ -136,6 +145,8 @@ endif
 simplecv: libs/simplecv
 simplegl: libs/simplegl
 touchd: drivers/touchd
+evdevd: drivers/evdevd
+macmtd: drivers/macmtd
 osc:   libs/osc 
 tools: libs/tools
 

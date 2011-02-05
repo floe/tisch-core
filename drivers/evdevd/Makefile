@@ -1,2 +1,9 @@
-evdevd: evdevd.cc
-	g++ -Wall -I ../../ -I ../../libs/tools -I ../../libs/osc -DTISCH_SHARED="" -L ../../libs/tools -L ../../libs/osc -loscpack -ltools -o $@ $^ 
+TOPDIR = ../../
+
+CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR)/libs/osc/ -I$(TOPDIR)
+LDFLAGS += -ltools -loscpack -L$(TOPDIR)/libs/tools/ -L$(TOPDIR)/libs/osc/
+
+APPS=evdevd
+
+include $(TOPDIR)/scripts/rules.mk
+
