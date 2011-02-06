@@ -163,7 +163,14 @@ void GLUTWindow::show( const ShortImage& img, int x, int y ) const {
 
 
 void GLUTWindow::print( const std::string& text, int x, int y ) const {
-#ifndef TISCH_IPHONE
+
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix();
+	glTranslatef( width/2+x, (height-y)-7.5, 500 ); // 500 = 0.5 in Texture::render()
+	glutDrawString( text, width, 15, 0, 1, 1 );
+	glPopMatrix();
+
+#if 0
 	float zoom[2];
 
 	// save and reset pixel zoom value
