@@ -108,7 +108,7 @@ int main (int argc, char *argv[]) {
 			} else if (ev[i].type == EV_ABS) {
 
 				blobs[blobcount].id   = 2*blobcount+1;
-				blobs[blobcount].type = 1; // generic finger
+				blobs[blobcount].type = INPUT_TYPE_FINGER;
 
 				if (ev[i].code == ABS_MT_POSITION_X) {
 					double tx = ev[i].value / maxx;

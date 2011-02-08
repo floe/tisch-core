@@ -8,10 +8,7 @@
 #include <algorithm>
 #include <sstream>
 
-#include <osc/OscReceivedElements.h>
-#include <osc/OscPacketListener.h>
-#include <ip/UdpSocket.h>
-
+#include <TUIOInStream.h>
 #include <nanolibc.h>
 #include <Socket.h>
 #include <tisch.h>
@@ -23,7 +20,6 @@ struct timeval tv = { 0, 9000 };
 
 int verbose = 0;
 
-//UDPSocket blobsrc( INADDR_ANY, TISCH_PORT_CALIB, &tv );
 TCPSocket  gstsrc( INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
 
@@ -46,7 +42,6 @@ const char* default_gestures[] = {
 };
 const char* defaults = default_gestures[0];
 
-std::map<int,BasicBlob> blobs;
 
 
 struct DaemonMatcher: public Matcher {
@@ -157,65 +152,26 @@ GestureThread gthr;
 
 
 
-struct ReceiverThread : public osc::OscPacketListener {
+struct MatcherTUIOInput: public TUIOInStream {
+
+	MatcherTUIOInput(): TUIOInStream() { }
 	
-	virtual void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint ) {
-
-		osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-		osc::int32 blobid, type, unused, parent;
-		double width, height, angle, area;
-		bool tmp;
-
-		if (std::string(m.AddressPattern()) == "/tuio2/frm") {
-
-			return;
-
-		} else if (std::string(m.AddressPattern()) == "/tuio2/ptr") {
-
-			// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc]
-			args >> blobid;
-			BasicBlob& curblob = blobs[blobid];
-			args >> type >> unused >> curblob.peak.x >> curblob.peak.y >> width;
-			curblob.id = blobid;
-			curblob.type = type ? INPUT_TYPE_FINGER : INPUT_TYPE_SHADOW;
-
-		} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
-
-			// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
-			args >> blobid;
-			BasicBlob& curblob = blobs[blobid];
-			args >> curblob.pos.x >> curblob.pos.y >> angle >> width >> height >> area;
-			curblob.id = blobid;
-			curblob.axis1 = curblob.axis1 * width;  curblob.axis1.rotate( angle );
-			curblob.axis2 = curblob.axis2 * height; curblob.axis2.rotate( angle );
-			curblob.size  = width * height * area;
-
-		} else if ( std::string(m.AddressPattern()) == "/tuio2/lia" ) {
-
-			args >> parent >> tmp >> blobid >> unused;
-			BasicBlob& curblob = blobs[blobid];
-			curblob.pid = parent;
-
-		} else if( std::string(m.AddressPattern()) == "/tuio2/alv" ) {
-
-			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
-				if (verbose >= 2)
-					std::cout << "processing blob: id " << blob->first << " type " << blob->second.type << " geometry " << blob->second << std::endl;
-				matcher.process_blob( blob->second );
-			}
-
-			blobs.clear();
-			matcher.process_gestures();
-		}
+	virtual void process_frame() {
+		matcher.process_gestures();
 	}
+
+	virtual void process_blob( BasicBlob& b ) {
+		matcher.process_blob( b );
+	}
+
 };
 
 
-ReceiverThread receiver;
 
 int main( int argc, char* argv[] ) {
 
 	int defnum, defcount = (sizeof(default_gestures)/sizeof(const char*))-1;
+	MatcherTUIOInput input;
 
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
@@ -238,8 +194,6 @@ int main( int argc, char* argv[] ) {
 	}
 
 	gthr.start();
-
-	UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, TISCH_PORT_CALIB ), &receiver );
-	s.RunUntilSigInt();
+	input.run();
 }
 
