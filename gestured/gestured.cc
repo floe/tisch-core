@@ -28,14 +28,23 @@ TCPSocket  gstsrc( INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
 
 // default gestures as parseable string
-const char* defaults = "region 1 0 0 6 \
-	move 5 1 Motion 0 31 0 0 0 0 \
-	scale 5 1 RelativeAxisScale 0 31 0 0 \
-	rotate 5 1 RelativeAxisRotation 0 31 0 0 \
-	tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-	remove 6 1 BlobID 0 31 0 1 -1 \
-	release 6 1 BlobCount 0 31 0 2 0 0 \
-";
+const char* default_gestures[] = {
+	"region 1 0 0 6 \
+		move 5 1 Motion 0 31 0 0 0 0 \
+		scale 5 1 RelativeAxisScale 0 31 0 0 \
+		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
+		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
+		remove 6 1 BlobID 0 31 0 1 -1 \
+		release 6 1 BlobCount 0 31 0 2 0 0",
+	"region 1 0 0 6 \
+		move 5 1 Motion 0 31 0 0 0 0 \
+		scale 5 1 MultiBlobScale 0 31 0 0 \
+		rotate 5 1 MultiBlobRotation 0 31 0 0 \
+		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
+		remove 6 1 BlobID 0 31 0 1 -1 \
+		release 6 1 BlobCount 0 31 0 2 0 0",
+};
+const char* defaults = default_gestures[0];
 
 std::map<int,BasicBlob> blobs;
 
@@ -206,11 +215,26 @@ ReceiverThread receiver;
 
 int main( int argc, char* argv[] ) {
 
+	int defnum, defcount = (sizeof(default_gestures)/sizeof(const char*))-1;
+
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
-	for ( int opt = 1; opt < argc; opt++ ) {
-		if (std::string(argv[opt]) == "-v") verbose += 1;
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vhd:" ) ) switch (opt) {
+
+		case 'v': verbose += 1; break;
+		case 'd': defnum = atoi(optarg);
+		          defnum = (defnum < 0 ? 0 : (defnum > defcount ? defcount : defnum ) );
+		          defaults = default_gestures[defnum];
+							std::cout << "selected default gesture set #" << defnum << std::endl;
+							break;
+
+		case 'h':
+		case '?': std::cout << "\nUsage: gestured [options]\n\n";
+		          std::cout << "  -d num  use default gesture set #num\n";
+		          std::cout << "  -v      be verbose\n";
+		          std::cout << "  -h      this\n\n";
+		          return 0; break;
 	}
 
 	gthr.start();
