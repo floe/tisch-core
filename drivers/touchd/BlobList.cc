@@ -148,7 +148,7 @@ int BlobList::process() {
 	while ( blob != blobs->end() ) {
 		unsigned char value = blob->scan( parent->image, factor );
 		int pid = parent->getID( value );
-		if (ignore_orphans && !pid) blobs->erase( blob );
+		if (ignore_orphans && !pid) blob = blobs->erase( blob );
 		else { blob->pid = pid; blob++; }
 	}
 
