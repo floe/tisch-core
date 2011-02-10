@@ -10,8 +10,8 @@
 
 #include "Camera.h"
 
-#define ADDRESS "127.0.0.1"
 
+const char* address = "127.0.0.1";
 
 int vidout  = 0;
 int verbose = 0;
@@ -129,17 +129,19 @@ int main( int argc, char* argv[] ) {
 	if (!homedir || (homedir[0] == 0)) homedir = ".";
 	cfgfile = std::string(homedir) + "/.tisch.touchd.xml";
 
-	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vVhdc:p:" ) ) switch (opt) {
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vVhdc:p:t:" ) ) switch (opt) {
 
 		case 'v': verbose += 1; break;
 		case 'V': vidout   = 1; break;
 
 		case 'd': if (fork()) return 0; break;
 		case 'c': cfgfile = optarg; break;
+		case 't': address = optarg; break;
 		case 'p': outport = atoi(optarg); break;
 
 		case 'h':
 		case '?': std::cout << "\nUsage: touchd [options]\n\n";
+		          std::cout << "  -t target   use alternate target host (default: 127.0.0.1)\n";
 		          std::cout << "  -p udpport  use alternate target port (default: 3333)\n";
 		          std::cout << "  -c cfgfile  use alternate config file\n";
 		          std::cout << "  -V          open video output window\n";
@@ -160,7 +162,7 @@ int main( int argc, char* argv[] ) {
 	mypipe = new Pipeline( doc.FirstChildElement() );
 	tmp = (*mypipe)[0];
 
-	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, ADDRESS, outport );
+	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, address, outport );
 
 	int width  = tmp->getImage()->getWidth();
 	int height = tmp->getImage()->getHeight();

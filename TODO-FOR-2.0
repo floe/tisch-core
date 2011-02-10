@@ -1,8 +1,7 @@
 - add upper threshold to MMX function
 
 - use TUIOInStream in calibd
-- add target IP parameter to calibd/touchd
-- rename Threshold params in touchd
+- add target IP parameter to calibd
 
 - use TUIO 2.0 object types where possible
 - convert Feature/Region/Gesture << and >> operators to output JSON
