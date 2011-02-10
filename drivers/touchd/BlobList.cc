@@ -35,11 +35,13 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	factor = 1.5;
 	radius = 20;
 	peakmode = 0.0;
+	ignore_orphans = 0;
 
 	// try to read settings from XML
 	config->QueryIntAttribute( "Type",  &type  );
 	config->QueryIntAttribute( "HFlip", &hflip );
 	config->QueryIntAttribute( "VFlip", &vflip );
+	config->QueryIntAttribute( "IgnoreOrphans", &ignore_orphans );
 
 	config->QueryIntAttribute( "MinSize",  &minsize  );
 	config->QueryIntAttribute( "MaxSize",  &maxsize  );
@@ -142,10 +144,12 @@ int BlobList::process() {
 	// TODO: allow disabling this feature (even if parent set)
 	// find parent IDs from another list (if available)
 	if (!parent) return 0;
-	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
+	std::vector<Blob>::iterator blob = blobs->begin(); 
+	while ( blob != blobs->end() ) {
 		unsigned char value = blob->scan( parent->image, factor );
 		int pid = parent->getID( value );
-		blob->pid = pid;
+		if (ignore_orphans && !pid) blobs->erase( blob++ );
+		else { blob->pid = pid; blob++; }
 	}
 
 	return 0;

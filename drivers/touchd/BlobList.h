@@ -41,6 +41,7 @@ class BlobList: public Filter {
 
 		// Color cross, trail;
 		int type, hflip, vflip;
+		int ignore_orphans;
 
 		BlobList* parent;
 		int width, height;
