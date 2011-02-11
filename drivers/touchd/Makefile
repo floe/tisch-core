@@ -10,7 +10,7 @@ endif
 
 APPS=touchd
 MORE=*.xml
-OBJS=Pipeline.o FlashControl.o Blob.o BlobList.o Camera.o Filter.o
+OBJS=Pipeline.o FlashControl.o Blob.o BlobList.o Camera.o Filter.o Configurator.o
 
 include $(TOPDIR)/scripts/rules.mk
 

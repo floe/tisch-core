@@ -9,6 +9,7 @@
 #include <TUIOOutStream.h>
 
 #include "Camera.h"
+#include "Configurator.h"
 
 
 const char* address = "127.0.0.1";
@@ -19,6 +20,7 @@ int startup = 1;
 
 GLUTWindow* win = 0;
 Filter* tmp = 0;
+Configurator* configure = 0;
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
@@ -68,6 +70,12 @@ void disp() {
 	glColor4f( 1.0, 0.0, 0.0, 1.0 );
 	win->print( std::string("showing filter: ") + name, 10, 10 );
 
+	// display data of configurator
+	if(configure != 0){
+		configure->update(tmp);
+		configure->showInfo();
+	}
+
 	win->swap();
 }
 
@@ -82,6 +90,30 @@ void keyb( unsigned char c, int, int ) {
 		if (c < mypipe->size())
 			tmp = (*mypipe)[c];
 	}
+
+	// switch configurator on/off
+	if(c == 'c'){
+		if (configure == 0)
+			configure = new Configurator(win, tmp);
+		else{
+			configure->~Configurator();
+			configure = 0;
+		}
+	}
+
+	// adjust values
+	if(configure != 0) {
+		// increase
+		if(c == 'i'){
+			configure->increaseValue();
+		}
+
+		// decrease
+		if(c == 'd') {
+			configure->decreaseValue();
+		}
+	}
+
 	if (c == 'x') {
 		if( angle > -30 ) angle--; 
 		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );

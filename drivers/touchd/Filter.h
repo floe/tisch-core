@@ -81,7 +81,7 @@ class ThreshFilter: public Filter {
 	public:
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
-	protected:
+	//protected:
 		int threshold_min;
 		int threshold_max;
 };
