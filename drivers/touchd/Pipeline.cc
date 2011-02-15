@@ -35,6 +35,7 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	if (type ==   "BGSubFilter") filter = new   BGSubFilter( config, parent );
 	if (type ==  "ThreshFilter") filter = new  ThreshFilter( config, parent );
 	if (type == "SpeckleFilter") filter = new SpeckleFilter( config, parent );
+	if (type == "LowpassFilter") filter = new LowpassFilter( config, parent );
 
 	if (filter) push_back( filter );
 

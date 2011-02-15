@@ -47,6 +47,7 @@ class TISCH_SHARED IntensityImage: public Image {
 		void undistort( Vector scale, Vector delta, double coeff[5], IntensityImage& target ) const;
 
 		void despeckle( IntensityImage& target, unsigned char threshold = 8 ) const;
+		void lowpass( IntensityImage& target, unsigned char range = 1, unsigned char mode = 0 ) const;
 		void houghLine( IntensityImage& target ) const;
 
 		void cross( int x, int y, int size, unsigned char color = 255 );

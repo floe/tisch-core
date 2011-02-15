@@ -94,6 +94,14 @@ class SpeckleFilter: public Filter {
 		int noiselevel;
 };
 
+class LowpassFilter: public Filter {
+	public:
+		LowpassFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+	protected:
+		int mode, range;
+};
+
 class SplitFilter: public Filter {
 	public:
 		SplitFilter( TiXmlElement* _config = 0, Filter* _input = 0 );

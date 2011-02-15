@@ -89,6 +89,19 @@ int SpeckleFilter::process() {
 	return 0;
 }
 
+LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+	mode = 0;
+	range = 1;
+	config->QueryIntAttribute( "Mode", &mode);
+	config->QueryIntAttribute( "Range", &range);
+}
+
+int LowpassFilter::process() {
+	input->getImage()->lowpass( *image, range, mode );
+	return 0;
+}
+
 
 SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();

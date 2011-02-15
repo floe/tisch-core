@@ -273,6 +273,41 @@ void IntensityImage::despeckle( IntensityImage& target, unsigned char threshold 
 	#endif
 }
 
+void IntensityImage::lowpass( IntensityImage& target, unsigned char range, unsigned char mode ) const {
+	int sum;
+	target.clear();
+	if(mode == 0) //horizontal
+	{
+		for (int i = range; i < count-range; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) if (data[i+j]) sum++;
+			target.data[i] = (sum == 2*range + 1) ? 255 : 0;
+		}
+	}
+	else if (mode == 1) //vertical
+	{
+		for (int i = range*width; i < count-range*width; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) if (data[i+j*width]) sum++;
+			target.data[i] = (sum == 2*range + 1) ? 255 : 0;
+		}
+	}
+	else if (mode == 2) //horizontal + vertical
+	{
+		for (int i = range*width + range; i < count-range*width - range; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) {
+				if (data[i+j]) sum++; 
+				if (data[i+j*width]) sum++;
+			}
+			target.data[i] = (sum == 4*range + 2) ? 255 : 0;
+		}
+	}
+}
+
 
 void IntensityImage::houghLine( IntensityImage& target ) const {
 
