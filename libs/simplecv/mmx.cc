@@ -56,6 +56,8 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 		ASMINIT
 
+		// "call myintensity\n"        // requires additional register setup code for VC++
+
 		"	pxor %%mm7, %%mm7            \n" // zero in mm7
 		"	movl $255, %%ebx             \n"
 		"	movd %%ebx, %%mm2            \n"
