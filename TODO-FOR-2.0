@@ -1,7 +1,6 @@
 - add upper threshold to MMX function
-
-- use TUIOInStream in calibd
-- add target IP parameter to calibd
+- add fast highpass filter from ITS paper
+- convert MMX functions to Intel syntax, include in VC++
 
 - use TUIO 2.0 object types where possible
 - convert Feature/Region/Gesture << and >> operators to output JSON
