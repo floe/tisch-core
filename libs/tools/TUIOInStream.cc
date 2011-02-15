@@ -26,7 +26,7 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 	osc::int32 blobid, unused, parent;
-	double width, height, angle, area;
+	float x, y, width, height, angle, area;
 	bool tmp;
 
 	if (std::string(m.AddressPattern()) == "/tuio2/frm") {
@@ -38,19 +38,23 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc]
 		args >> blobid;
 		BasicBlob& curblob = blobs[blobid];
-		args >> curblob.type >> unused >> curblob.peak.x >> curblob.peak.y >> width;
+		args >> curblob.type >> unused >> x >> y >> width;
 		curblob.id = blobid;
+		curblob.peak.x = x;
+		curblob.peak.y = y;
 
 	} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
 
 		// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
 		args >> blobid;
 		BasicBlob& curblob = blobs[blobid];
-		args >> curblob.pos.x >> curblob.pos.y >> angle >> width >> height >> area;
+		args >> x >> y >> angle >> width >> height >> area;
 		curblob.id = blobid;
 		curblob.axis1 = curblob.axis1 * width;  curblob.axis1.rotate( angle );
 		curblob.axis2 = curblob.axis2 * height; curblob.axis2.rotate( angle );
 		curblob.size  = width * height * area;
+		curblob.pos.x = x;
+		curblob.pos.y = y;
 
 	} else if ( std::string(m.AddressPattern()) == "/tuio2/lia" ) {
 

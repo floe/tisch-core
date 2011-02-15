@@ -36,22 +36,22 @@ void TUIOOutStream::start() {
 
 TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 
-	double w = b.axis1.length();
-	double h = b.axis2.length();
-	double angle = acos((b.axis1*(1.0/w))*Vector(1,0,0));
+	float w = b.axis1.length();
+	float h = b.axis2.length();
+	float angle = acos((b.axis1*(1.0/w))*Vector(1,0,0));
 	if (b.axis1.y < 0) angle = 2*M_PI - angle;
 
 	// /tuio2/bnd s_id x_pos y_pos angle width height area [x_vel y_vel a_vel m_acc r_acc]
 	s.osc2 << osc::BeginMessage( "/tuio2/bnd" )
-		<< b.id << b.pos.x << b.pos.y
-		<< angle << w << h << b.size/(w*h)
+		<< b.id << float(b.pos.x) << float(b.pos.y)
+		<< angle << w << h << float(b.size/(w*h))
 		<< osc::EndMessage;
 
 	// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
 	s.osc2 << osc::BeginMessage( "/tuio2/ptr" )
 		<< b.id << b.type << osc::int32(0)
-		<< b.peak.x << b.peak.y
-		<< w << double(1.0)
+		<< float(b.peak.x) << float(b.peak.y)
+		<< w << float(1.0)
 		<< osc::EndMessage;
 	
 	if (b.pid)
@@ -64,8 +64,8 @@ TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 	if (s.mode & TISCH_TUIO1) {
 		// /tuio/2Dcur set s x y X Y m
 		s.osc1 << osc::BeginMessage( "/tuio/2Dcur" ) << "set"
-		  << b.id << b.pos.x << b.pos.y
-			<< 0.0 << 0.0 << 0.0 
+		  << b.id << float(b.pos.x) << float(b.pos.y)
+			<< 0.0f << 0.0f << 0.0f
 			<< osc::EndMessage;
 		// /tuio/2Dblb set s x y a w h f X Y A m r
 		/*s.osc1 << osc::BeginMessage( "/tuio/2Dblb" ) << "set"
