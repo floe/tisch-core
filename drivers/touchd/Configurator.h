@@ -3,7 +3,7 @@
 
 #include <GLUTWindow.h>
 #include <typeinfo>
-
+#include <GL/glut.h>
 #include <iostream>
 #include <sstream>
 
@@ -17,13 +17,19 @@ public:
 	virtual ~Configurator();
 	virtual void update(Filter* currentFilter);
 	virtual void showInfo();
+	virtual void toggleOption();
 	virtual void increaseValue();
 	virtual void decreaseValue();
+	virtual void activateFirstOption();
 
 protected:
 	GLUTWindow* win;
 	Filter* filter;
 	ThreshFilter *myThreshFilter;
+	int *p_currentOption;
+
+	int toggle;
+	int numberOfOptions;
 
 };
 

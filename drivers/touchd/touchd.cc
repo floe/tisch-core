@@ -72,7 +72,7 @@ void disp() {
 
 	// display data of configurator
 	if(configure != 0){
-		configure->update(tmp);
+
 		configure->showInfo();
 	}
 
@@ -87,8 +87,12 @@ void keyb( unsigned char c, int, int ) {
 
 	if ((c >= '0') && (c <= '9')) {
 		c = c - '0';
-		if (c < mypipe->size())
+		if (c < mypipe->size()){
 			tmp = (*mypipe)[c];
+			if(configure != 0) {
+				configure->update(tmp);
+			}
+		}
 	}
 
 	// switch configurator on/off
@@ -111,6 +115,11 @@ void keyb( unsigned char c, int, int ) {
 		// decrease
 		if(c == 'd') {
 			configure->decreaseValue();
+		}
+
+		// toggle Option with Tab
+		if(c == 0x09) {
+			configure->toggleOption();
 		}
 	}
 
