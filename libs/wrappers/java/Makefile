@@ -15,7 +15,7 @@ ifndef COREJAR
   $(warning COREJAR not set - trying to guess a default value.)
 endif
 
-ifeq ($(OS),Linux)
+ifeq ($(OS),linux)
   COREJAR ?= /usr/share/processing/lib/core.jar
   JAVA_HOME ?= /usr/lib/jvm/default-java/ /usr/lib/jvm/java/
   CFLAGS += $(addsuffix include/,$(addprefix -I,$(JAVA_HOME))) $(addsuffix include/linux/,$(addprefix -I,$(JAVA_HOME)))

@@ -27,7 +27,7 @@ else
   OBJS += PicoPNG.oo
 endif
 
-ifeq ($(OS),Linux)
+ifeq ($(OS),linux)
   OBJS += V4LImageSource.o 
 endif
 

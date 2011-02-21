@@ -9,7 +9,7 @@ DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 CFLAGS  += -I$(TOPDIR) -I$(TOPDIR)/libs/osc
 LDFLAGS += -lpthread -loscpack -L$(TOPDIR)/libs/osc
 
-ifeq ($(OS),Linux)
+ifeq ($(OS),linux)
 
   LDFLAGS += $(shell pkg-config --libs   bluez dbus-1 2> /dev/null)
   CFLAGS  += $(shell pkg-config --cflags bluez dbus-1 2> /dev/null) -I.

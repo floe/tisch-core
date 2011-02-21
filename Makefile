@@ -19,40 +19,64 @@ ifndef TISCH_CONFIG
   SHARED   = $(DESTDIR)/share/libtisch/
 
   CFLAGS  += -Wall -ggdb -fPIC -DTISCH_SHARED="" -DTIXML_USE_STL -I. -DTISCH_PREFIX='"$(PREFIX)/share/libtisch/"'
-  LDFLAGS += -Wall -ggdb -L$(LIBDIR) $(shell pkg-config --libs libdc1394-2 2> /dev/null) $(shell pkg-config --libs libv4l2 2> /dev/null) $(shell pkg-config --libs libfreenect 2> /dev/null)
+  LDFLAGS += -Wall -ggdb -L$(LIBDIR) 
   SLFLAGS += -Wall -ggdb -fPIC -L$(LIBDIR)
 
-  OS = $(shell uname)
+  TARGET = $(subst -, ,$(shell $(CXX) -dumpmachine))
+  OS   = $(word 2,$(TARGET))
+  ABI  = $(word 3,$(TARGET))
+  ARCH = $(word 1,$(TARGET))
+
   TISCH_CONFIG = 1
 
-  ifeq ($(OS),Linux)
+  ifeq ($(OS),linux)
 
-    ifeq (dc1394,$(findstring dc1394,$(LDFLAGS)))
-      CFLAGS += -DHAS_DC1394
+    ifeq ($(ABI),androideabi)
+
+      LDFLAGS += -lGLESv1_CM -Wl,-rpath-link=$(LIBDIR)
+      CFLAGS  += -DTISCH_OPENGLES
+      ABI = opengles
+ 
+    else
+
+      LDFLAGS += -lpthread -lGL -lGLU -lglut -Wl,-rpath-link=$(LIBDIR)
+
+      LDFLAGS += $(shell pkg-config --libs libdc1394-2 2> /dev/null)
+      LDFLAGS += $(shell pkg-config --libs libfreenect 2> /dev/null)
+      LDFLAGS += $(shell pkg-config --libs libv4l2 2> /dev/null)
+
+      ifeq (dc1394,$(findstring dc1394,$(LDFLAGS)))
+        CFLAGS += -DHAS_DC1394
+      endif
+      ifeq (v4l2,$(findstring v4l2,$(LDFLAGS)))
+        CFLAGS += -DHAS_LIBV4L
+      endif
+      ifeq (freenect,$(findstring freenect,$(LDFLAGS)))
+        CFLAGS += -DHAS_FREENECT
+      endif
+
     endif
-    ifeq (v4l2,$(findstring v4l2,$(LDFLAGS)))
-      CFLAGS += -DHAS_LIBV4L
-    endif
-    ifeq (freenect,$(findstring freenect,$(LDFLAGS)))
-      CFLAGS += -DHAS_FREENECT
-    endif
-    LDFLAGS += -lGL -lGLU -lglut -Wl,-rpath-link=$(LIBDIR)
+
     SLFLAGS += -shared
     CFLAGS  += -O2 -fno-strict-aliasing
     SUFFIX = so
     LSF = so.2.0
 
-  else ifeq ($(OS),Darwin)
+  else ifeq ($(OS),apple)
 
-    ifeq (arm-apple-darwin9,$(shell $(CXX) -dumpmachine))
+    ifeq ($(ARCH),arm)
+
       LDFLAGS += -lobjc -framework Foundation -framework CoreFoundation -framework CoreGraphics -framework CoreSurface -framework GraphicsServices -framework QuartzCore -framework OpenGLES -framework UIKit -bind_at_load -multiply_defined suppress -F/System/Library/PrivateFrameworks
-      CFLAGS  += -DTISCH_IPHONE
-      OS = iPhone
+      CFLAGS  += -DTISCH_GLES
+      ABI = opengles
+
     else
+
       LDFLAGS += -framework OpenGL -framework GLUT
       CFLAGS  += -O2 -fno-strict-aliasing
-      OS = MacOSX
+
     endif
+
     SLFLAGS += -dynamiclib
     SUFFIX = dylib
     LSF = dylib
@@ -62,7 +86,7 @@ ifndef TISCH_CONFIG
 endif
 
 # export global config variables
-export TOPDIR BINDIR LIBDIR INCDIR DOCDIR SHARED OS SUFFIX LSF CFLAGS LDFLAGS SLFLAGS TISCH_CONFIG
+export TOPDIR BINDIR LIBDIR INCDIR DOCDIR SHARED OS ABI ARCH SUFFIX LSF CFLAGS LDFLAGS SLFLAGS TISCH_CONFIG
 
 
 # info blurb
@@ -94,20 +118,22 @@ default:
 	@echo "current install target (DESTDIR): $(DESTDIR)"
 	@echo "current runtime prefix (PREFIX):  $(PREFIX)"
 	@echo
+	@echo "(note: detected target ARCH-OS-ABI is $(ARCH)-$(OS)-$(ABI))"
+	@echo
 
 
 # target directories
-TARGETS = libs/osc libs/tools libs/simplegl gestured widgets
+TARGETS = libs/osc libs/tools libs/simplecv libs/simplegl gestured widgets
 
-ifneq ($(OS),iPhone)
-  TARGETS += libs/simplecv drivers/touchd calibd
+ifneq ($(ABI),opengles)
+  TARGETS += drivers/touchd calibd
 endif
 
-ifeq ($(OS),Linux)
+ifeq ($(OS),linux)
   TARGETS += drivers/evdevd
 endif
 
-ifeq ($(OS),Darwin)
+ifeq ($(OS),apple)
   TARGETS += drivers/macmtd
 endif
 
