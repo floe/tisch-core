@@ -191,7 +191,7 @@ template < int TEXTURE_TARGET, int TEXTURE_FORMAT, int DATA_FORMAT, int DATA_TYP
 };
 
 
-#ifndef TISCH_IPHONE
+#if 0
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_RGBA16,            GL_RGBA,            GL_UNSIGNED_SHORT > ShortTexture;
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_RGBA32F_ARB,       GL_RGBA,            GL_FLOAT          > FloatTexture;
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_DEPTH_COMPONENT32, GL_DEPTH_COMPONENT, GL_FLOAT          > DepthTexture;

@@ -20,7 +20,7 @@ struct timeval tv = { 0, 9000 };
 
 int verbose = 0;
 
-TCPSocket  gstsrc( INADDR_ANY, TISCH_PORT_EVENT, &tv );
+TCPSocket  gstsrc( (in_addr_t)INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
 
 // default gestures as parseable string

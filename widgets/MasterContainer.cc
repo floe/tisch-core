@@ -21,7 +21,7 @@ TISCH_SHARED std::set<Widget*> g_widgets;
 
 MasterContainer::MasterContainer( int w, int h, const char* target ):
 	Container( w, h, w/2, h/2 ),
-	input( INADDR_ANY, 0, &tv )
+	input( (in_addr_t)INADDR_ANY, 0, &tv )
 {
 	std::cout << "connecting to gestured..." << std::flush;
 	input.target( target, TISCH_PORT_EVENT );

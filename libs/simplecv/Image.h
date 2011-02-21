@@ -11,10 +11,14 @@
 
 	#include <fcntl.h>
 	#include <unistd.h>
-	#include <sys/ipc.h>
-	#include <sys/shm.h>
-	#include <sys/sem.h>
-	#include <sys/mman.h>
+	
+	#ifndef __ANDROID__
+		#include <sys/ipc.h>
+		#include <sys/shm.h>
+		#include <sys/sem.h>
+		#include <sys/mman.h>
+	#endif
+
 	#include <linux/videodev.h>
 
 	#ifdef HAS_LIBV4L
@@ -68,7 +72,7 @@ class TISCH_SHARED Image {
 				
 			}
 			
-			#ifndef _MSC_VER
+			#if !defined(_MSC_VER) && !defined(__ANDROID__)
 
 			else if (shm == 0) {
 
@@ -113,7 +117,7 @@ class TISCH_SHARED Image {
 		inline void timestamp( unsigned long long int val ) { imgtime = val; }
 		inline unsigned long long int timestamp() { return imgtime; }
 
-		#ifndef _MSC_VER
+		#if !defined(_MSC_VER) && !defined(__ANDROID__)
 
 		inline int acquire() { return do_sem( -1 ); }
 		inline int release() { return do_sem( +1 ); }
@@ -157,9 +161,9 @@ class TISCH_SHARED Image {
 
 			}
 
-			#ifdef _MSC_VER
+			#if defined(_MSC_VER) || defined(__ANDROID__)
 
-				else throw std::runtime_error( "Shared memory is currently unsupported on Windows." );
+				else throw std::runtime_error( "Shared memory is currently unsupported on Android & Windows." );
 
 			#else
 
@@ -195,7 +199,7 @@ class TISCH_SHARED Image {
 			#endif
 		}
 
-		#ifndef _MSC_VER
+		#if !defined(_MSC_VER) && !defined(__ANDROID__)
 
 		// wrapper for semaphore access
 		inline int do_sem( short int val ) {
