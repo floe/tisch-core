@@ -100,7 +100,7 @@ void keyb( unsigned char c, int, int ) {
 		if (configure == 0)
 			configure = new Configurator(win, tmp);
 		else{
-			configure->~Configurator();
+			delete configure; // free memory, also calls destructor
 			configure = 0;
 		}
 	}
