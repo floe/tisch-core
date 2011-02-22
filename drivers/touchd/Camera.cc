@@ -9,6 +9,7 @@
 
 #ifdef _MSC_VER
 	#include "DirectShowImageSource.h"
+	#include "FFMVImageSource.h"
 #endif
 
 #if defined(USE_BIGTOUCH)
@@ -86,6 +87,8 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	#ifdef _MSC_VER
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
 			cam = new DirectShowImageSource( width, height, sourcepath.c_str(), verbose );
+		else if (sourcetype == CAMERA_TYPE_FFMV) 
+			cam = new FFMVImageSource( width, height, sourcepath.c_str(), verbose );
 		else
 	#endif
 
