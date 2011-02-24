@@ -23,7 +23,7 @@ else
   COREJAR ?= /Applications/Processing.app/Contents/Resources/Java/core.jar
   JAVA_HOME ?= /System/Library/Frameworks/JavaVM.framework/Versions/Current/
   CFLAGS += -I$(JAVA_HOME)/Headers/ -framework OpenGL -framework GLUT -dynamiclib
-  SWIGFLAGS = -I/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers
+  SWIGFLAGS += -I/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers
 endif
 
 ifeq ($(wildcard $(COREJAR)),)

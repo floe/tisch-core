@@ -20,7 +20,7 @@ all: $(APPS) $(LIBS) $(WRAP)
 $(APPS): %: %.o $(OBJS) $(LIBS)
 	$(CXX) $(LDFLAGS) $^ -o $@
 
-ifeq ($(OS),Linux)
+ifeq ($(OS),linux)
   SLFLAGS += -Wl,-soname,$(subst .2.0,.2,$@)
 endif
 
