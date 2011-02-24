@@ -1,3 +1,9 @@
+/*************************************************************************\
+*    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
+*     Copyright (c) 2011 by Norbert Wiedermann, <wiederma@in.tum.de>      *
+*   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
+\*************************************************************************/
+
 #include "Configurator.h"
 
 Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
