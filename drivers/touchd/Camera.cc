@@ -7,12 +7,15 @@
 #include <nanolibc.h>
 #include "Camera.h"
 
-#ifdef _MSC_VER
+#ifdef HAS_DIRECTSHOW
 	#include "DirectShowImageSource.h"
+#endif
+
+#ifdef HAS_FLYCAPTURE
 	#include "FFMVImageSource.h"
 #endif
 
-#if defined(USE_BIGTOUCH)
+#ifdef USE_BIGTOUCH
 	#include "ledtouch/FlatSensorImageSource.h"
 #endif
 
@@ -84,10 +87,14 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	// create image buffer
 	image = new IntensityImage( width, height, shmid, 1 );
 
-	#ifdef _MSC_VER
+	#ifdef HAS_DIRECTSHOW
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
 			cam = new DirectShowImageSource( width, height, sourcepath.c_str(), verbose );
-		else if (sourcetype == CAMERA_TYPE_FFMV) 
+		else
+	#endif
+
+	#ifdef HAS_FLYCAPTURE
+		if (sourcetype == CAMERA_TYPE_FFMV) 
 			cam = new FFMVImageSource( width, height, sourcepath.c_str(), verbose );
 		else
 	#endif
@@ -98,7 +105,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 		else
 	#endif
 
-	#if defined(USE_BIGTOUCH)
+	#ifdef USE_BIGTOUCH
 		if (sourcetype == CAMERA_TYPE_BIGTOUCH)
 			cam = new FlatSensorImageSource( width, height, "bigtouch.bin", false ); // true );
 		else

@@ -102,6 +102,7 @@
     <ClCompile Include="..\drivers\touchd\Blob.cc" />
     <ClCompile Include="..\drivers\touchd\BlobList.cc" />
     <ClCompile Include="..\drivers\touchd\Camera.cc" />
+    <ClCompile Include="..\drivers\touchd\Configurator.cc" />
     <ClCompile Include="..\drivers\touchd\Filter.cc" />
     <ClCompile Include="..\drivers\touchd\FlashControl.cc" />
     <ClCompile Include="..\drivers\touchd\Pipeline.cc" />
@@ -111,6 +112,7 @@
     <ClInclude Include="..\drivers\touchd\Blob.h" />
     <ClInclude Include="..\drivers\touchd\BlobList.h" />
     <ClInclude Include="..\drivers\touchd\Camera.h" />
+    <ClInclude Include="..\drivers\touchd\Configurator.h" />
     <ClInclude Include="..\drivers\touchd\Filter.h" />
     <ClInclude Include="..\drivers\touchd\FlashControl.h" />
     <ClInclude Include="..\drivers\touchd\Pipeline.h" />

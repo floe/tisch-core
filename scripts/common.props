@@ -5,6 +5,7 @@
     <winsdk>C:\Program Files\Microsoft SDKs\Windows\v7.0A\</winsdk>
     <javasdk>C:\Program Files\Java\jdk1.6.0_20\</javasdk>
     <freenect>c:\put_libfreenect_dir_here</freenect>
+    <flycapture>c:\put_flycapture_sdk_dir_here</flycapture>
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -37,6 +38,10 @@
     </BuildMacro>
     <BuildMacro Include="freenect">
       <Value>$(freenect)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="flycapture">
+      <Value>$(flycapture)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>

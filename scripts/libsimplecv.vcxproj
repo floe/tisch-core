@@ -55,8 +55,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories Condition="Exists('$(flycapture)\FlyCapture2.h')">$(flycapture);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(flycapture)\FlyCapture2.h')">HAS_FLYCAPTURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(freenect)\libfreenect.h')">HAS_FREENECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(winsdk)\include\dshow.h')">HAS_DIRECTSHOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -69,6 +71,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(flycapture)\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -82,8 +85,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalIncludeDirectories Condition="Exists('$(flycapture)\FlyCapture2.h')">$(flycapture);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSIMPLECV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(flycapture)\FlyCapture2.h')">HAS_FLYCAPTURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(freenect)\libfreenect.h')">HAS_FREENECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(winsdk)\include\dshow.h')">HAS_DIRECTSHOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -94,6 +99,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(flycapture)\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -117,6 +123,10 @@
     <ClCompile Include="..\libs\simplecv\ShortImage.cc" />
     <ClCompile Include="..\libs\simplecv\YUV420Image.cc" />
     <ClCompile Include="..\libs\simplecv\YUYVImage.cc" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(flycapture)\FlyCapture2.h')">
+    <ClInclude Include="..\libs\simplecv\FFMVImageSource.h" />
+    <ClCompile Include="..\libs\simplecv\FFMVImageSource.cc" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(freenect)\libfreenect.h')">
     <ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
