@@ -1,9 +1,18 @@
-/* compile with: as intensity_intel.s -o intel.o */
-; .intel_syntax noprefix
-; .globl myintensity
-; .hidden myintensity
-; myintensity:
+/* 
+	compile with: as mmx_intensity_pci.s -o intel.o 
+	register usage:
+		eax: index  (0)
+		ebx: result (out, uint32_t)
+		ecx: count  (in,  uint32_t)
+		esi: data   (in,  uint8_t*)
+*/
 
+; .intel_syntax noprefix
+; .globl mmx_intensity_pci
+; .hidden mmx_intensity_pci
+; mmx_intensity_pci:
+
+xor   eax, eax
 pxor  mm7, mm7
 mov   ebx, 255
 movd  mm2, ebx
@@ -41,5 +50,5 @@ movd  eax, mm7
 psrlq mm7, 32
 movd  ebx, mm7
 add   ebx, eax
-mov   edi, ebx
 
+; ret
