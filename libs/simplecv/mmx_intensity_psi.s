@@ -1,5 +1,5 @@
 /* 
-	compile with: as mmx_intensity_psi.s -o intel.o 
+	int mmx_intensity( unsigned short* in, ASMINT count )
 	register usage:
 		eax: index   (0)
 		ebx: result  (out, uint32_t)
