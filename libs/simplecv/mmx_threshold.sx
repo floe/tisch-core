@@ -20,7 +20,7 @@ punpcklbw mm3, mm3
 punpcklbw mm3, mm3
 punpcklbw mm3, mm3
 
-xor eax, eax   /* eax now used as index register, starts at 0 */
+xor pax, pax   /* eax now used as index register, starts at 0 */
 
 movd mm1, edx  /* 8 bytes with lower threshold in mm1 */
 punpcklbw mm1, mm1
@@ -36,12 +36,12 @@ punpcklbw mm2, mm2
 pxor mm1, mm2 /* convert unsigned->signed by flipping each MSB */
 
 mmx_threshold_loop:
-	movq mm0, [esi+eax]  /* load 8 bytes to mm0 */
+	movq mm0, [psi+pax]  /* load 8 bytes to mm0 */
 	pxor mm0, mm2        /* convert unsigned->signed by flipping each MSB */
 	pcmpgtb mm0, mm1     /* signed compare of mm1 and mm0 */
-	movq [edi+eax], mm0  /* store 8 bytes from mm0  */
-	add eax,   8         /* FIXME: fixed step width */
-	cmp eax, ecx
+	movq [pdi+pax], mm0  /* store 8 bytes from mm0  */
+	add pax,   8         /* FIXME: fixed step width */
+	cmp pax, pcx
 	jb mmx_threshold_loop
 
 emms
