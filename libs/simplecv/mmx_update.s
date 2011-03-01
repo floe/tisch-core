@@ -1,5 +1,5 @@
 /*
-	void unsigned, mmxupdate( unsigned char* in char* unsigned, mask short* ASMINT, out count )
+	void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASMINT count )
 
 	register usage:
 
@@ -11,22 +11,22 @@
 		mm5: temporary register
 		mm7: zero for byte/word unpacking
 
-		esi: , data   (in uint8_t*)
-		edi: , result (in uint16_t*)
-		edx: , mask   (in uint8_t*)
-		ecx: , count  (in uint32_t*)
+		esi: data   (in uint8_t*)
+		edi: result (in uint16_t*)
+		edx: mask   (in uint8_t*)
+		ecx: count  (in uint32_t)
 		eax: index  (0)
 */
 
 ; .intel_syntax noprefix
-; .globl mmx_update_pcpcpsi
-; .hidden mmx_update_pcpcpsi
-; mmx_update_pcpcpsi:
+; .globl mmx_update
+; .hidden mmx_update
+; mmx_update:
 
 xor  eax, eax
 pxor mm7, mm7 /* load zero into mm7 */
 
-updloop:
+mmx_update_loop:
 
 	movq mm0, [esi+eax] /* load input data in mm0 */
 	movq mm1, [edx+eax] /* load mask in mm1 */
@@ -78,6 +78,7 @@ updloop:
 
 	add eax, 8 /* FIXME: hardcoded step width */
 	cmp eax, ecx 
-	jb updloop
+	jb mmx_update_loop
 
+emms
 ; ret

@@ -1,50 +1,13 @@
 /* 
-	void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char thresh )
+	void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char lower, unsigned char upper)
 
 	register usage:
-		esi: data
-		edi: result
-		edx: (lower) threshold
-		ecx: count
-		eax: index
+		esi: data   (in, uint8_t*)
+		edi: result (in, uint8_t*)
+		eax: upper  (in, uint8_t), later used as index (0)
+		edx: lower  (in, uint8_t)
+		ecx: count  (in, uint32_t)
 
-	// example for GCC inline SSE2 code (requires P4 or above)
-
-	if (count % 16) return;
-
-	ASMINT start = 0;
-	ASMINT inc   = 16;
-	ASMINT thr   = thresh;
-
-	asm(
-		"	movd %[thr], %%xmm1              \n" // 16 bytes with threshold in mm1
-		"	punpcklbw %%xmm1, %%xmm1         \n"
-		"	punpcklbw %%xmm1, %%xmm1         \n"
-		"	punpcklbw %%xmm1, %%xmm1         \n"
-		"	punpcklbw %%xmm1, %%xmm1         \n"
-		"	movd %[inc], %%xmm2              \n" // 16 bytes with MSB set in mm2
-		"	psllw $3, %%xmm2                 \n"
-		"	punpcklbw %%xmm2, %%xmm2         \n"
-		"	punpcklbw %%xmm2, %%xmm2         \n"
-		"	punpcklbw %%xmm2, %%xmm2         \n"
-		"	punpcklbw %%xmm2, %%xmm2         \n"
-		"	pxor %%xmm2, %%xmm1              \n" // convert unsigned->signed by flipping each MSB
-		"	thrloop:                         \n"
-		"		movapd (%[in],%[idx]), %%xmm0  \n" // load 16 bytes to mm0
-		"		pxor %%xmm2, %%xmm0            \n" // convert unsigned->signed by flipping each MSB
-		"		pcmpgtb %%xmm1, %%xmm0         \n" // signed compare of mm1 and mm0
-		"		movapd %%xmm0, (%[out],%[idx]) \n" // store 16 bytes from mm0
-				ASMLOOP
-		"		jb thrloop                     \n"
-		"	emms                             \n"
-		::[in]  "S" (in),
-		  [out] "D" (out),
-		  [cnt] "c" (count),
-		  [idx] "a" (start),
-		  [thr] "m" (thr),
-		  [inc] "d" (inc)
-	);
-	
 */
 
 ; .intel_syntax noprefix
@@ -52,13 +15,20 @@
 ; .hidden mmx_threshold
 ; mmx_threshold:
 
-movd mm1, edx /* 8 bytes with threshold in mm1 */
+movd mm3, eax  /* 8 bytes with upper threshold in mm3 */
+punpcklbw mm3, mm3
+punpcklbw mm3, mm3
+punpcklbw mm3, mm3
+
+xor eax, eax   /* eax now used as index register, starts at 0 */
+
+movd mm1, edx  /* 8 bytes with lower threshold in mm1 */
 punpcklbw mm1, mm1
 punpcklbw mm1, mm1
 punpcklbw mm1, mm1
 
-movd  mm2, 8  /* 8 bytes with MSB set in mm2 */
-psllw mm2, 4
+mov  edx, 128
+movd mm2, edx  /* 8 bytes with MSB set in mm2 */
 punpcklbw mm2, mm2
 punpcklbw mm2, mm2
 punpcklbw mm2, mm2
@@ -74,5 +44,6 @@ mmx_threshold_loop:
 	cmp eax, ecx
 	jb mmx_threshold_loop
 
+emms
 ; ret
 
