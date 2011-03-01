@@ -1,5 +1,5 @@
 /* 
-	int mmx_intensity( unsigned char* in, ASMINT count )
+	int mmx_intensity_c( unsigned char* in, ASMINT count )
 	register usage:
 		eax: index  (0)
 		ebx: result (out, uint32_t)
@@ -8,9 +8,9 @@
 */
 
 ; .intel_syntax noprefix
-; .globl mmx_intensity_pci
-; .hidden mmx_intensity_pci
-; mmx_intensity_pci:
+; .globl mmx_intensity_c
+; .hidden mmx_intensity_c
+; mmx_intensity_c:
 
 xor   eax, eax
 pxor  mm7, mm7
@@ -20,7 +20,7 @@ movq  mm3, mm2
 psllq mm3, 32
 por   mm3, mm2
 
-cintloop:
+mmx_intensity_c_loop:
 
 	movq  mm1, [esi+eax]
 	movq  mm4, mm3
@@ -44,7 +44,7 @@ cintloop:
 
 	add eax, 8
 	cmp eax, ecx
-	jb cintloop
+	jb mmx_intensity_c_loop
 
 movd  eax, mm7
 psrlq mm7, 32

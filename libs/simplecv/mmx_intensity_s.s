@@ -1,5 +1,5 @@
 /* 
-	int mmx_intensity( unsigned short* in, ASMINT count )
+	int mmx_intensity_s( unsigned short* in, ASMINT count )
 	register usage:
 		eax: index   (0)
 		ebx: result  (out, uint32_t)
@@ -8,9 +8,9 @@
 */
 
 ; .intel_syntax noprefix
-; .globl mmx_intensity_psi
-; .hidden mmx_intensity_psi
-; mmx_intensity_psi:
+; .globl mmx_intensity_s
+; .hidden mmx_intensity_s
+; mmx_intensity_s:
 
 xor   eax, eax
 pxor  mm7, mm7
@@ -20,7 +20,7 @@ movq  mm3, mm2
 psllq mm3, 32
 por   mm3, mm2
 
-sintloop:
+mmx_intensity_s_loop:
 
 	movq  mm1, [esi+eax]
 	psrlq mm1, 8
@@ -35,7 +35,7 @@ sintloop:
 
 	add eax, 8
 	cmp eax, ecx
-	jb sintloop
+	jb mmx_intensity_s_loop
 
 movd  eax, mm7
 psrlq mm7, 32

@@ -1,5 +1,5 @@
 /* 
-	void mmx_subtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count )
+	void mmx_subtract_sc( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count )
 	register usage:
 		esi: data1  (in, uint8_t*)
 		edi: result (in, uint8_t*)
@@ -9,13 +9,13 @@
 */
 
 ; .intel_syntax noprefix
-; .globl mmx_subtract_pspcpci
-; .hidden mmx_subtract_pspcpci
-; mmx_subtract_pspcpci:
+; .globl mmx_subtract_sc
+; .hidden mmx_subtract_sc
+; mmx_subtract_sc:
 
 xor eax, eax
 
-sub1loop:
+mmx_subtract_sc_loop:
 
 	movq  mm0, [esi+eax]      /* load input data in mm0 */
 	movq  mm1, [edx+eax*2]    /* load first 4 words in mm1 */
@@ -28,6 +28,6 @@ sub1loop:
 
 	add eax, 8                /* FIXME: fixed step width */
 	cmp eax, ecx
-	jb sub1loop
+	jb mmx_subtract_sc_loop
 
 ; ret

@@ -17,9 +17,9 @@
 */
 
 ; .intel_syntax noprefix
-; .globl mmx_despeckle_pcpciic
-; .hidden mmx_despeckle_pcpciic
-; mmx_despeckle_pcpciic:
+; .globl mmx_despeckle
+; .hidden mmx_despeckle
+; mmx_despeckle:
 
 mov ebx, eax   /* move count to ebx */
 xor eax, eax   /* set index to 0    */
@@ -45,7 +45,7 @@ movq mm1, [esi+eax] /* preload second row */
 pand mm1, mm3
 add eax, edx
 
-dsploop:
+mmx_despeckle_loop:
 
 	movq mm2, [esi+eax] /* load next row */
 	pand mm2, mm3
@@ -92,7 +92,7 @@ dsploop:
 
 	add eax, edx  /* next loop iteration? */
 	cmp eax, ebx
-	jb dsploop
+	jb mmx_despeckle_loop
 
 ; ret
 
