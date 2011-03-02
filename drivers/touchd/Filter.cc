@@ -6,12 +6,17 @@
 
 #include "Filter.h"
 
-
+/*==============================================================================
+ * BGSubFilter
+==============================================================================*/
 BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	background = new ShortImage( image->getWidth(), image->getHeight() );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
+	// setting variables for Configurator
+	toggle = 0;
+	countOfOptions = 2; // number of variables that can be manipulated
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -34,10 +39,62 @@ int BGSubFilter::process() {
 	return 0;
 }
 
+const char* BGSubFilter::getOptionName(int option) {
+	const char* OptionName = "";
 
+	switch(option) {
+	case 0:
+		OptionName = "Invert";
+		break;
+	case 1:
+		OptionName = "Adaptive";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double BGSubFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = invert;
+		break;
+	case 1:
+		OptionValue = adaptive;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void BGSubFilter::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0:
+		invert = (invert + 1) % 2; // boolean value
+		break;
+	case 1:
+		adaptive = (adaptive + 1) % 2; // boolean value
+		break;
+	}
+}
+
+/*==============================================================================
+ * FlipFilter
+==============================================================================*/
 // TODO: make hflip/vflip configurable
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
+	// setting variables for Configurator
+	toggle = 0;
+	countOfOptions = 0; // number of variables that can be manipulated
 }
 
 // TODO: should be MMX-accelerated
@@ -61,7 +118,9 @@ int FlipFilter::process() {
 	return 0;
 }
 
-
+/*==============================================================================
+ * ThreshFilter
+==============================================================================*/
 // TODO: use result from bgsub filter for threshold adjustment
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
@@ -70,6 +129,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	config->QueryIntAttribute(      "Threshold", &threshold_min );
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
+	// setting variables for Configurator
 	toggle = 0;
 	countOfOptions = 2; // number of variables that can be manipulated: Min/Max Threshold
 }
@@ -79,45 +139,39 @@ int ThreshFilter::process() {
 	return 0;
 }
 
-void ThreshFilter::nextOption() {
-	toggle = (toggle + 1) % countOfOptions;
-}
-
-int ThreshFilter::getCurrentOption() {
-	return toggle;
-}
-
-const int ThreshFilter::getOptionCount() {
-	return countOfOptions;
-}
-
 const char* ThreshFilter::getOptionName(int option) {
 	const char* OptionName = "";
-	if(option >= 0 && option < countOfOptions) {
-		switch(option) {
-		case 0:
-			OptionName = "Threshold Min";
-			break;
-		case 1:
-			OptionName = "Threshold Max";
-			break;
-		}
+
+	switch(option) {
+	case 0:
+		OptionName = "Threshold Min";
+		break;
+	case 1:
+		OptionName = "Threshold Max";
+		break;
+	default:
+		// leave OptionName empty
+		break;
 	}
+
 	return OptionName;
 }
 
 double ThreshFilter::getOptionValue(int option) {
 	double OptionValue = -1.0;
-	if(option >= 0 && option < countOfOptions) {
-		switch(option) {
-		case 0:
-			OptionValue = threshold_min;
-			break;
-		case 1:
-			OptionValue = threshold_max;
-			break;
-		}
+
+	switch(option) {
+	case 0:
+		OptionValue = threshold_min;
+		break;
+	case 1:
+		OptionValue = threshold_max;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
 	}
+
 	return OptionValue;
 }
 
@@ -134,11 +188,16 @@ void ThreshFilter::modifyOptionValue(double delta) {
 	}
 }
 
-
+/*==============================================================================
+ * SpeckleFilter
+==============================================================================*/
 SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	noiselevel = 7;
 	config->QueryIntAttribute( "NoiseLevel", &noiselevel );
+	// setting variables for Configurator
+	toggle = 0;
+	countOfOptions = 1; // number of variables that can be manipulated
 }
 
 int SpeckleFilter::process() {
@@ -146,12 +205,56 @@ int SpeckleFilter::process() {
 	return 0;
 }
 
+const char* SpeckleFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "Noiselevel";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double SpeckleFilter::getOptionValue(int option) {
+	/*double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = noiselevel;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+*/
+	return noiselevel;
+}
+
+void SpeckleFilter::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0:
+		noiselevel += delta;
+		noiselevel = (noiselevel < 0) ? 0 : (noiselevel > 7) ? 7 : noiselevel;
+		break;
+	}
+}
+/*==============================================================================
+ * LowpassFilter
+==============================================================================*/
 LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	mode = 0;
 	range = 1;
 	config->QueryIntAttribute( "Mode", &mode);
 	config->QueryIntAttribute( "Range", &range);
+	// setting variables for Configurator
+	toggle = 0;
+	countOfOptions = 2; // number of variables that can be manipulated
 }
 
 int LowpassFilter::process() {
@@ -159,11 +262,64 @@ int LowpassFilter::process() {
 	return 0;
 }
 
+const char* LowpassFilter::getOptionName(int option) {
+	const char* OptionName = "";
 
+	switch(option) {
+	case 0:
+		OptionName = "Mode";
+		break;
+	case 1:
+		OptionName = "Range";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double LowpassFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = mode;
+		break;
+	case 1:
+		OptionValue = range;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void LowpassFilter::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0: // mode: 0,1,2
+		mode = (mode + 1) % 3;
+		break;
+	case 1: // range 0 ... MAX_VALUE
+		range += delta;
+		range = (range < 0) ? 0 : (range > 65535) ? 65535 : range;
+		break;
+	}
+}
+
+/*==============================================================================
+ * SplitFilter
+==============================================================================*/
 SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	image2 = NULL;
 	reset();
+	// setting variables for Configurator
+	toggle = 0;
+	countOfOptions = 0; // number of variables that can be manipulated
 }
 
 void SplitFilter::reset() {
@@ -188,3 +344,51 @@ IntensityImage* SplitFilter::getImage() {
 	else return image2 ? image2 : image;
 }
 
+const char* SplitFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "Incount";
+		break;
+	case 1:
+		OptionName = "Outcount";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double SplitFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = incount;
+		break;
+	case 1:
+		OptionValue = outcount;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void SplitFilter::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0: // incount 0 ... MAX_VALUE
+		incount += delta;
+		incount = (incount < 0) ? 0 : (incount > 65535) ? 65535 : incount;
+		break;
+	case 1: // outcount 0 ... MAX_VALUE
+		outcount += delta;
+		outcount = (outcount < 0) ? 0 : (outcount > 65535) ? 65535 : outcount;
+		break;
+	}
+}

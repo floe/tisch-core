@@ -46,9 +46,9 @@ class Filter {
 		virtual double getResult() { return result; }
 
 		// Configurator functions
-		virtual void nextOption() { };
-		virtual int getCurrentOption() { return -1; };
-		virtual const int getOptionCount() { return -1; };
+		void nextOption() { toggle = (countOfOptions > 0) ? ((toggle + 1) % countOfOptions) : toggle; }
+		int getCurrentOption() { return toggle; }
+		const int getOptionCount() { return countOfOptions; }
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta) { };
@@ -60,6 +60,9 @@ class Filter {
 		double result;
 		TiXmlElement* config;
 		IntensityImage* image;
+		// Configurator, need to be set in constructor of subclass!!
+		int toggle;
+		int countOfOptions;
 };
 
 
@@ -73,10 +76,15 @@ class BGSubFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual void link( Filter* _mask );
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
 	protected:
 		ShortImage* background;
 		Filter* mask;
 		int invert, adaptive;
+
 };
 
 class FlipFilter: public Filter {
@@ -90,9 +98,6 @@ class ThreshFilter: public Filter {
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
 		// Configurator
-		virtual void nextOption();
-		virtual int getCurrentOption();
-		virtual const int getOptionCount();
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta);
@@ -100,15 +105,16 @@ class ThreshFilter: public Filter {
 		// Options
 		int threshold_min;
 		int threshold_max;
-		// Configurator
-		int toggle;
-		int countOfOptions;
 };
 
 class SpeckleFilter: public Filter {
 	public:
 		SpeckleFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
 	protected:
 		int noiselevel;
 };
@@ -117,6 +123,10 @@ class LowpassFilter: public Filter {
 	public:
 		LowpassFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
 	protected:
 		int mode, range;
 };
@@ -127,6 +137,10 @@ class SplitFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual IntensityImage* getImage();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;

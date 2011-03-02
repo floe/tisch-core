@@ -23,6 +23,11 @@ class Blob: public BasicBlob {
 
 		void setPeak( IntensityImage* image, double factor, double peakmode );
 
+	protected:
+		// Configutator
+		int toggle;
+		int countOfOptions;
+
 };
 
 #endif // _BLOB_H_
