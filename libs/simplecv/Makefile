@@ -12,6 +12,16 @@ ifdef USE_BIGTOUCH
   LDFLAGS += -lusb -lpthread $(shell pkg-config --libs opencv)
 endif
 
+ifeq ($(ARCH),x86_64)
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o
+  ASFLAGS = -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
+endif
+
+ifeq ($(ARCH),x86)
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o
+  ASFLAGS = -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
+endif
+
 ifneq (,$(findstring dc1394,$(LDFLAGS)))
   OBJS += DCImageSource.o
 endif
@@ -22,7 +32,7 @@ ifneq (,$(findstring freenect,$(LDFLAGS)))
 endif
 
 ifneq ($(OS),iPhone)
-  OBJS += mmx.o PicoPNG.o
+  OBJS += PicoPNG.o
 else
   OBJS += PicoPNG.oo
 endif

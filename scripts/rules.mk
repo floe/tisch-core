@@ -15,7 +15,7 @@ all: $(APPS) $(LIBS) $(WRAP)
 	$(CXX) -c $(CFLAGS) $< -o $@
 
 %.o: %.sx
-	gcc -Wall -c -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi $< -o $@
+	gcc -Wall -c $(ASFLAGS) $< -o $@
 
 %.o: %.cc *.h
 	$(CXX) -c $(CFLAGS) $< -o $@

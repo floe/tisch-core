@@ -23,15 +23,15 @@
 ; .hidden mmx_update
 ; mmx_update:
 
-xor  eax, eax
+xor  pax, pax
 pxor mm7, mm7 /* load zero into mm7 */
 
 mmx_update_loop:
 
-	movq mm0, [esi+eax] /* load input data in mm0 */
-	movq mm1, [edx+eax] /* load mask in mm1 */
+	movq mm0, [psi+pax] /* load input data in mm0 */
+	movq mm1, [pdx+pax] /* load mask in mm1 */
 
-	movq mm2, [edi+eax*2] /* load first four words into mm2 */
+	movq mm2, [pdi+pax*2] /* load first four words into mm2 */
 
 	movq mm3, mm0 
 	punpcklbw mm3, mm7 /* word-converted input data in mm3 */
@@ -51,10 +51,10 @@ mmx_update_loop:
 	pandn mm4, mm3 /* masked updated data in mm4 */
 	por mm4, mm5 /* combine in mm4 */
 
-	movq [edi+eax*2], mm4 /* store first four words from mm4 */
+	movq [pdi+pax*2], mm4 /* store first four words from mm4 */
 
 
-	movq mm2, [edi+8+eax*2] /* load next four words into mm2 */
+	movq mm2, [pdi+8+pax*2] /* load next four words into mm2 */
 
 	movq mm3, mm0 
 	punpckhbw mm3, mm7 /* word-converted input data in mm3 */
@@ -74,10 +74,10 @@ mmx_update_loop:
 	pandn mm4, mm3 /* masked updated data in mm4 */
 	por mm4, mm5 /* combine in mm4 */
 
-	movq [edi+8+eax*2], mm4 /* store next four words from mm4 */
+	movq [pdi+8+pax*2], mm4 /* store next four words from mm4 */
 
-	add eax, 8 /* FIXME: hardcoded step width */
-	cmp eax, ecx 
+	add pax, 8 /* FIXME: hardcoded step width */
+	cmp pax, pcx 
 	jb mmx_update_loop
 
 emms

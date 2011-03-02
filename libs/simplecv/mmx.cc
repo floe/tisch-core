@@ -32,14 +32,12 @@
  
 #ifdef __x86_64__
 
-	//#define ASMLOOP "		addq %[inc], %[idx] \n		cmpq %[cnt], %[idx] \n"
 	#define STORAGE static
 	#define ASMINIT "	pushq %%rbx\n"
 	#define ASMEXIT "	popq  %%rbx\n	emms\n"
 
 #elif __i586__ || __i686__ || __tune_i686__ || __i386__
 
-	//#define ASMLOOP "		addl %[inc], %[idx] \n		cmpl %[cnt], %[idx] \n"
 	#define STORAGE 
 	#define ASMINIT "	pushl %%ebx\n"
 	#define ASMEXIT "	popl  %%ebx\n	emms\n"
@@ -253,7 +251,7 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 
 	asm(
 
-		ASMINIT
+		/*ASMINIT
 
 		" pxor %%mm7, %%mm7                \n" // load zero into mm7
 
@@ -311,14 +309,14 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 		"		cmp %[cnt],%[idx]          \n"
 		"		jb updloop                 \n"
 
-		ASMEXIT
+		ASMEXIT*/
+
+		"call mmx_update \n"
 
 		::[in]   "S" (in),
 		  [out]  "D" (out),
 		  [mask] "d" (mask),
-		  [cnt]  "c" (count),
-		  [idx]  "a" (start),
-		  [inc]  "i" (STEP)
+		  [cnt]  "c" (count)
 
 	);
 }
@@ -369,7 +367,7 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 
 	asm(
 
-		ASMINIT
+		/* ASMINIT
 
 		"	movd %[thr], %%mm1            \n" // 8 bytes with threshold in mm1
 		"	punpcklbw %%mm1, %%mm1        \n"
@@ -390,14 +388,15 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		"		cmp %[cnt],%[idx]           \n"
 		"		jb thrloop                  \n"
 
-		ASMEXIT
+		ASMEXIT*/
+
+		"call mmx_threshold\n"
 
 		::[in]  "S" (in),
 		  [out] "D" (out),
 		  [cnt] "c" (count),
-		  [idx] "a" (start),
-		  [thr] "m" (thr),
-		  [inc] "d" (inc)
+		  [low] "a" (start),
+		  [thr] "d" (thr)
 
 	);
 }
@@ -417,7 +416,7 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 
 	asm(
 
-		ASMINIT
+		/* ASMINIT
 
 		//" movl %[thr], %%ebx          \n" // generate threshold values
 		//" movl $7, %%ebx              \n"
@@ -491,12 +490,13 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 		"		cmp  %[cnt], %[idx]         \n"
 		"		jb dsploop                  \n"
 
-		ASMEXIT
+		ASMEXIT */
+
+		"call mmx_despeckle\n"
 
 		::[in]  "S" (in),
 		  [out] "D" (out),
-		  [cnt] "m" (count), // grr. right now, no way to avoid memory access here (should use BX register!)
-		  [idx] "a" ((ASMINT)0),
+		  [cnt] "a" ((ASMINT)count),
 		  [inc] "d" (stride),
 		  [thr] "c" ((ASMINT)thresh)
 

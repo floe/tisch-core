@@ -10,8 +10,8 @@
 
 		esi: data (in)
 		edi: result (out)
-		[cnt] no, "m" (count = linecnt * stride) grr. right now way to avoid memory access here (should use BX register!)
-		eax: index (0)
+		eax: count = linecnt * stride / input index (0)
+		ebx: count
 		edx: stride
 		ecx: thresh / output index
 */
@@ -21,33 +21,35 @@
 ; .hidden mmx_despeckle
 ; mmx_despeckle:
 
-mov ebx, eax   /* move count to ebx */
-xor eax, eax   /* set index to 0    */
+push pbx
+
+mov pbx, pax   /* move count to ebx */
+xor pax, pax   /* set index to 0    */
 
 movd mm6, ecx  /* generate threshold values */
 punpcklbw mm6, mm6
 punpcklbw mm6, mm6
 punpcklbw mm6, mm6
 
-mov  ebx, 1  /* generate bitmask with LSB set */
-movd mm3, ebx
+mov  ecx, 1  /* generate bitmask with LSB set */
+movd mm3, ecx
 punpcklbw mm3, mm3
 punpcklbw mm3, mm3
 punpcklbw mm3, mm3
 
-movq mm0, [esi+eax] /* preload first row */
+movq mm0, [psi+pax] /* preload first row */
 pand mm0, mm3
-add eax, edx
+add pax, pdx
 
-mov ecx, eax /* reuse threshold register as output index */
+mov pcx, pax /* reuse threshold register as output index */
 
-movq mm1, [esi+eax] /* preload second row */
+movq mm1, [psi+pax] /* preload second row */
 pand mm1, mm3
-add eax, edx
+add pax, pdx
 
 mmx_despeckle_loop:
 
-	movq mm2, [esi+eax] /* load next row */
+	movq mm2, [psi+pax] /* load next row */
 	pand mm2, mm3
 
 	pxor mm4, mm4  /* clear the accumulator */
@@ -84,15 +86,18 @@ mmx_despeckle_loop:
 	psrlq mm4, 8 /* shift results (6 inner bytes) to the right  */
 	             /* 2 junk bytes are overwritten by next column */
 
-	movq [edi+ecx+1], mm4 /* store back to saved location + 1 */
-	add ecx, edx
+	movq [pdi+pcx+1], mm4 /* store back to saved location + 1 */
+	add pcx, pdx
 
 	movq mm0, mm1 /* cycle previous/current/next row values */
 	movq mm1, mm2
 
-	add eax, edx  /* next loop iteration? */
-	cmp eax, ebx
+	add pax, pdx  /* next loop iteration? */
+	cmp pax, pbx
 	jb mmx_despeckle_loop
+
+pop pbx
+emms
 
 ; ret
 
