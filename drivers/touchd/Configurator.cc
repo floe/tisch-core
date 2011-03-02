@@ -1,116 +1,50 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*     Copyright (c) 2011 by Norbert Wiedermann, <wiederma@in.tum.de>      *
-*   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
-\*************************************************************************/
+ *     Copyright (c) 2011 by Norbert Wiedermann, <wiederma@in.tum.de>      *
+ *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
+ \*************************************************************************/
 
 #include "Configurator.h"
 
 Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
 	win = targetWindow;
-	filter = currentFilter;
 
-	update(currentFilter);
+	updateCurrentFilter(currentFilter);
 
 }
 
 Configurator::~Configurator() {
 }
 
-void Configurator::update(Filter* currentFilter) {
+void Configurator::updateCurrentFilter(Filter* currentFilter) {
 	filter = currentFilter;
-
-	// retrieve filter name
-	std::string name = typeid(*filter).name();
-	const char* myfiltername = name.c_str();
-	// skip string length
-	while (myfiltername && (*myfiltername >= '0') && (*myfiltername <= '9'))
-		myfiltername++;
-
-	if (strcmp(myfiltername, "ThreshFilter") == 0) {
-		myThreshFilter = (ThreshFilter*) filter;
-		numberOfOptions = 2;
-	} else {
-		myThreshFilter = 0;
-	}
-
-	// when switching the filter set first option active
-	activateFirstOption();
 }
 
 void Configurator::showInfo() {
+	int xCoord = 10;
+	int yCoord = 40;
+
 	glColor4f(0.0, 1.0, 0.0, 1.0);
+	win->print(std::string("Configuration"), xCoord, yCoord);
 
-	win->print(std::string("Configuration"), 10, 40);
+	for (int i = 0; i < filter->getOptionCount(); i++) {
+		yCoord += 20;
 
-	// dirty
-	if (myThreshFilter != 0) {
-
-		std::ostringstream result;
-		result.str("");
-
-		result << "TH Min: ";
-		result << myThreshFilter->threshold_min;
-		if (toggle == 0) {
+		// highlight the current selected option
+		if (i == filter->getCurrentOption()) {
 			glColor4f(0.0, 0.0, 1.0, 1.0); // blue
 		} else {
 			glColor4f(0.0, 1.0, 0.0, 1.0); // green
 		}
-		win->print(result.str(), 10, 60);
+		// display each option of filter in a line
+		std::ostringstream OptionValue;
+		OptionValue.str("");
+		OptionValue << filter->getOptionName(i) << ": ";
+		OptionValue << filter->getOptionValue(i);
+		win->print(OptionValue.str(), xCoord, yCoord);
 
-		// reset result
-		result.str("");
-		result << "TH Max: ";
-		result << myThreshFilter->threshold_max;
-
-		if (toggle == 0) {
-			glColor4f(0.0, 1.0, 0.0, 1.0); // green
-		} else {
-			glColor4f(0.0, 0.0, 1.0, 1.0); // blue
-		}
-		win->print(result.str(), 10, 80);
 	}
 
 	win->swap();
-}
-
-// value manipulation
-void Configurator::toggleOption() {
-
-	toggle = (toggle + 1) % numberOfOptions;
-
-	if (myThreshFilter != 0) {
-		// switch possible options for Threshold Filter
-		switch (toggle) {
-		case 0:
-			p_currentOption = &(myThreshFilter->threshold_min);
-			break;
-		case 1:
-			p_currentOption = &(myThreshFilter->threshold_max);
-			break;
-		}
-	}
 
 }
-
-void Configurator::activateFirstOption() {
-	toggle = 0;
-
-	if (myThreshFilter != 0) {
-		p_currentOption = &(myThreshFilter->threshold_min);
-	}
-}
-
-void Configurator::increaseValue() {
-
-	if (*p_currentOption < 255)
-		(*p_currentOption)++;
-
-}
-
-void Configurator::decreaseValue() {
-	if (*p_currentOption > 0)
-		(*p_currentOption)--;
-
-}
-

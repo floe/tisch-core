@@ -96,7 +96,7 @@ void keyb( unsigned char c, int, int ) {
 		if (c < mypipe->size()){
 			tmp = (*mypipe)[c];
 			if(configure != 0) {
-				configure->update(tmp);
+				configure->updateCurrentFilter(tmp);
 			}
 		}
 	}
@@ -115,17 +115,17 @@ void keyb( unsigned char c, int, int ) {
 	if(configure != 0) {
 		// increase
 		if(c == 'i'){
-			configure->increaseValue();
+			tmp->modifyOptionValue(1.0);
 		}
 
 		// decrease
 		if(c == 'd') {
-			configure->decreaseValue();
+			tmp->modifyOptionValue(-1.0);
 		}
 
 		// toggle Option with Tab
 		if(c == 0x09) {
-			configure->toggleOption();
+			tmp->nextOption();
 		}
 	}
 

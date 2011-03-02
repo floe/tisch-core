@@ -45,6 +45,14 @@ class Filter {
 		virtual IntensityImage* getImage() { return image; }
 		virtual double getResult() { return result; }
 
+		// Configurator functions
+		virtual void nextOption() { };
+		virtual int getCurrentOption() { return -1; };
+		virtual const int getOptionCount() { return -1; };
+		virtual const char* getOptionName(int option) { return ""; };
+		virtual double getOptionValue(int option) { return -1;};
+		virtual void modifyOptionValue(double delta) { };
+
 	protected:
 
 		int shmid;
@@ -81,9 +89,20 @@ class ThreshFilter: public Filter {
 	public:
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
-	//protected:
+		// Configurator
+		virtual void nextOption();
+		virtual int getCurrentOption();
+		virtual const int getOptionCount();
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
+	protected:
+		// Options
 		int threshold_min;
 		int threshold_max;
+		// Configurator
+		int toggle;
+		int countOfOptions;
 };
 
 class SpeckleFilter: public Filter {
