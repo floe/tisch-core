@@ -13,7 +13,7 @@ ifdef USE_BIGTOUCH
 endif
 
 ifeq ($(ARCH),x86_64)
-  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o
   ASFLAGS = -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
 endif
 
