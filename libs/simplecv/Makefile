@@ -13,13 +13,13 @@ ifdef USE_BIGTOUCH
 endif
 
 ifeq ($(ARCH),x86_64)
-  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o
-  ASFLAGS = -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o mmx_subtract_cs.o mmx_subtract_sc.o
+  ASFLAGS = -g -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
 endif
 
 ifeq ($(ARCH),x86)
-  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o
-  ASFLAGS = -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o mmx_subtract_cs.o mmx_subtract_sc.o
+  ASFLAGS = -g -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
 endif
 
 ifneq (,$(findstring dc1394,$(LDFLAGS)))

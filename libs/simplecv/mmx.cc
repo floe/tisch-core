@@ -166,11 +166,9 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count ) {
 
-	STORAGE ASMINT start = 0;
-
 	asm(
 
-		ASMINIT
+		/*ASMINIT
 
 		"	sub1loop:                        \n"
 
@@ -183,29 +181,27 @@ void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, AS
 		"		psubusb %%mm0, %%mm1           \n" // subtract
 		"		movq %%mm1, (%[out],%[idx])    \n" // store result in mm1
 
-		"		add %[inc],%[idx]          \n"
+		"		add     $8,%[idx]          \n"
 		"		cmp %[cnt],%[idx]          \n"
 		"		jb sub1loop                \n"
 
-		ASMEXIT
+		ASMEXIT */
+
+		"call mmx_subtract_sc \n"
 
 		::[in]  "S" (in),
 		  [out] "D" (out),
 		  [sub] "d" (sub),
-		  [cnt] "c" (count),
-		  [idx] "a" (start),
-		  [inc] "i" (STEP)
+		  [cnt] "c" (count)
 
 	);
 }
 
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count ) {
 
-	STORAGE ASMINT start = 0;
-
 	asm(
 
-		ASMINIT
+		/*ASMINIT
 
 		"	sub2loop:                        \n"
 
@@ -222,14 +218,14 @@ void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, AS
 		"		cmp %[cnt],%[idx]          \n"
 		"		jb sub2loop                \n"
 
-		ASMEXIT
+		ASMEXIT*/
+
+		"call mmx_subtract_cs \n"
 
 		::[in]  "S" (in),
 		  [out] "D" (out),
 		  [sub] "d" (sub),
-		  [cnt] "c" (count),
-		  [idx] "a" (start),
-		  [inc] "i" (STEP)
+		  [cnt] "c" (count)
 
 	);
 }
@@ -246,8 +242,6 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 	 *   mm5: temporary register
 	 *   mm7: zero for byte/word unpacking
 	*/
-
-	STORAGE ASMINT start = 0;
 
 	asm(
 
@@ -362,7 +356,6 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 	);*/
 
 	STORAGE ASMINT start = 0;
-	STORAGE ASMINT inc   = STEP;
 	STORAGE ASMINT thr   = thresh;
 
 	asm(
