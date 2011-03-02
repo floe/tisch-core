@@ -108,6 +108,7 @@
     <ClCompile Include="..\libs\simplecv\ColorLUT.cc" />
     <ClCompile Include="..\libs\simplecv\IntensityImage.cc" />
     <ClCompile Include="..\libs\simplecv\Line.cc" />
+    <ClCompile Include="..\libs\simplecv\mmx.cc" />
     <ClCompile Include="..\libs\simplecv\PicoPNG.cc" />
     <ClCompile Include="..\libs\simplecv\RGBImage.cc" />
     <ClCompile Include="..\libs\simplecv\ShortImage.cc" />

@@ -42,6 +42,28 @@
 	#define ASMINIT "	pushl %%ebx\n"
 	#define ASMEXIT "	popl  %%ebx\n	emms\n"
 
+#elif _M_X64
+
+	#define STORAGE
+
+	#define pax rax
+	#define pbx rbx
+	#define pcx rcx
+	#define pdx rdx
+	#define psi rsi
+	#define pdi rdi
+
+#elif _M_IX86
+
+	#define STORAGE
+
+	#define pax eax
+	#define pbx ebx
+	#define pcx ecx
+	#define pdx edx
+	#define psi esi
+	#define pdi edi
+
 #endif
 
 
@@ -49,6 +71,18 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 	STORAGE ASMINT start = 0;
 	STORAGE int tmp = 0x12345678;
+
+#ifdef _MSC_VER
+
+	__asm {
+	mov psi, in
+	mov pcx, count
+	mov pax, start
+	#include "mmx_intensity_c.sx"
+	mov tmp, eax
+	}
+
+#else
 
 	asm(
 
@@ -100,10 +134,12 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 		: [out] "=m" (tmp)
 		: [in]  "S" (in),
-			[cnt] "c" (count),
-			[idx] "a" (start)
+		  [cnt] "c" (count),
+		  [idx] "a" (start)
 
 	);
+
+#endif
 
 	return tmp/count;
 }
@@ -112,7 +148,20 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 int mmxintensity( unsigned short* in, ASMINT count ) {
 
 	STORAGE ASMINT start = 0;
+	STORAGE ASMINT count2 = 2*count;
 	STORAGE int tmp = 0x12345678;
+
+#ifdef _MSC_VER
+
+	__asm {
+	mov psi, in
+	mov pcx, count2
+	mov pax, start
+	#include "mmx_intensity_s.sx"
+	mov tmp, eax
+	}
+
+#else
 
 	asm(
 
@@ -155,15 +204,18 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 
 		: [out] "=m" (tmp)
 		: [in]  "S" (in),
-			[cnt] "c" (count*2),
-			[idx] "a" (start)
+		  [cnt] "c" (count2),
+		  [idx] "a" (start)
 
 	);
+
+#endif
 
 	return tmp/count;
 }
 
 
+#ifndef _MSC_VER
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count ) {
 
 	asm(
@@ -496,3 +548,4 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 	);
 }
 
+#endif
