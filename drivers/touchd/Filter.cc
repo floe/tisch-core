@@ -124,18 +124,12 @@ double ThreshFilter::getOptionValue(int option) {
 void ThreshFilter::modifyOptionValue(double delta) {
 	switch(toggle) {
 	case 0:
-		if((threshold_min > 0 && threshold_min < 255) ||
-			(threshold_min == 0 && delta > 0) ||
-			(threshold_min == 255 && delta < 0)) {
-			threshold_min += delta;
-		}
+		threshold_min += delta;
+		threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 255) ? 255 : threshold_min;
 		break;
 	case 1:
-		if((threshold_max > 0 && threshold_max < 255) ||
-			(threshold_max == 0 && delta > 0) ||
-			(threshold_max == 255 && delta < 0)) {
-			threshold_max += delta;
-		}
+		threshold_max += delta;
+		threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 255) ? 255 : threshold_max;
 		break;
 	}
 }
