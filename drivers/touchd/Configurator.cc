@@ -44,7 +44,4 @@ void Configurator::showInfo() {
 		win->print(OptionValue.str(), xCoord, yCoord);
 
 	}
-
-	win->swap();
-
 }
