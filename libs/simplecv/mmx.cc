@@ -52,9 +52,7 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 
 	asm(
 
-		ASMINIT
-
-		// "call myintensity\n"        // requires additional register setup code for VC++
+		/*ASMINIT
 
 		"	pxor %%mm7, %%mm7            \n" // zero in mm7
 		"	movl $255, %%ebx             \n"
@@ -95,14 +93,15 @@ int mmxintensity( unsigned char* in, ASMINT count ) {
 		"	addl %%eax, %%ebx            \n"
 		"	movl %%ebx, %[out]           \n"
 
-		ASMEXIT
+		ASMEXIT*/
+
+		"call mmx_intensity_c \n"
+		"movl %%eax, %[out]   \n"
 
 		: [out] "=m" (tmp)
 		: [in]  "S" (in),
-			[tmp] "m" (tmp),
 			[cnt] "c" (count),
-			[idx] "a" (start),
-		  [inc] "i" (STEP)
+			[idx] "a" (start)
 
 	);
 
@@ -117,7 +116,7 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 
 	asm(
 
-		ASMINIT
+		/*ASMINIT
 
 		"	pxor %%mm7, %%mm7            \n" // zero in mm7
 		"	movl $255, %%ebx             \n"
@@ -149,14 +148,15 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 		"	addl %%eax, %%ebx            \n"
 		"	movl %%ebx, %[out]           \n"
 
-		ASMEXIT
+		ASMEXIT*/
+
+		"call mmx_intensity_s \n"
+		"movl %%eax, %[out]   \n"
 
 		: [out] "=m" (tmp)
 		: [in]  "S" (in),
-			[tmp] "m" (tmp),
 			[cnt] "c" (count*2),
-			[idx] "a" (start),
-		  [inc] "i" (STEP)
+			[idx] "a" (start)
 
 	);
 
