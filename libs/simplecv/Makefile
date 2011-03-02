@@ -17,7 +17,7 @@ ifeq ($(ARCH),x86_64)
   ASFLAGS = -g -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
 endif
 
-ifeq ($(ARCH),x86)
+ifeq ($(ARCH),i686)
   OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o mmx_subtract_cs.o mmx_subtract_sc.o
   ASFLAGS = -g -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
 endif
