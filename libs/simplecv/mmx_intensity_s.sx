@@ -41,5 +41,6 @@ psrlq mm7, 32
 movd  ecx, mm7
 add   eax, ecx
 
+emms
 ; ret
 

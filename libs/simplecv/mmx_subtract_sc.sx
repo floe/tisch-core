@@ -13,21 +13,22 @@
 ; .hidden mmx_subtract_sc
 ; mmx_subtract_sc:
 
-xor eax, eax
+xor pax, pax
 
 mmx_subtract_sc_loop:
 
-	movq  mm0, [esi+eax]      /* load input data in mm0 */
-	movq  mm1, [edx+eax*2]    /* load first 4 words in mm1 */
+	movq  mm0, [psi+pax]      /* load input data in mm0 */
+	movq  mm1, [pdx+pax*2]    /* load first 4 words in mm1 */
 	psrlw mm1, 8              /* convert to bytes */
-	movq  mm2, [edx+8+eax*2]  /* load next 4 words in mm2 */
+	movq  mm2, [pdx+8+pax*2]  /* load next 4 words in mm2 */
 	psrlw mm2, 8              /* convert to bytes */
 	packuswb mm1, mm2         /* pack into single qword */
 	psubusb  mm1, mm0         /* subtract */
-	movq [edi+eax], mm1       /* store result in mm1 */
+	movq [pdi+pax], mm1       /* store result in mm1 */
 
-	add eax, 8                /* FIXME: fixed step width */
-	cmp eax, ecx
+	add pax, 8                /* FIXME: fixed step width */
+	cmp pax, pcx
 	jb mmx_subtract_sc_loop
 
+emms
 ; ret
