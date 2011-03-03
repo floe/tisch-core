@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -8,22 +8,22 @@
 #define _MMX_H_
 
 
-#ifdef __x86_64__
+#if __x86_64__ || _M_X64
 
 	#define ASMINT long long int
 
-#elif __i586__ || __i686__ || __tune_i686__ || __i386__
+#elif __i586__ || __i686__ || __tune_i686__ || __i386__ || _M_IX86
 
 	#define ASMINT int
 
 #else
 
 	#define ASMINT int
-	#define ASMLOOP ""
 	//#error Architecture not supported: i586, i686 or x86_64 required.
 	#define NOMMX 1
 
 #endif
+
 
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count );
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count );
@@ -35,5 +35,5 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 int mmxintensity( unsigned  char* in, ASMINT count );
 int mmxintensity( unsigned short* in, ASMINT count );
 
-#endif // _MMX_H_
 
+#endif // _MMX_H_

@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -215,8 +215,19 @@ int mmxintensity( unsigned short* in, ASMINT count ) {
 }
 
 
-#ifndef _MSC_VER
 void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, ASMINT count ) {
+
+#ifdef _MSC_VER
+
+	__asm {
+		mov psi, in
+		mov pdi, out
+		mov pdx, sub
+		mov pcx, count
+		#include "mmx_subtract_sc.sx"
+	}
+
+#else
 
 	asm(
 
@@ -247,9 +258,22 @@ void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, AS
 		  [cnt] "c" (count)
 
 	);
+#endif
 }
 
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count ) {
+
+#ifdef _MSC_VER
+
+	__asm {
+		mov psi, in
+		mov pdi, out
+		mov pdx, sub
+		mov pcx, count
+		#include "mmx_subtract_cs.sx"
+	}
+
+#else
 
 	asm(
 
@@ -280,6 +304,7 @@ void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, AS
 		  [cnt] "c" (count)
 
 	);
+#endif
 }
 
 
@@ -294,6 +319,18 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 	 *   mm5: temporary register
 	 *   mm7: zero for byte/word unpacking
 	*/
+
+#ifdef _MSC_VER
+
+	__asm {
+		mov psi, in
+		mov pdi, out
+		mov pdx, mask
+		mov pcx, count
+		#include "mmx_update.sx"
+	}
+
+#else
 
 	asm(
 
@@ -365,6 +402,7 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 		  [cnt]  "c" (count)
 
 	);
+#endif
 }
 
 
@@ -410,6 +448,19 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 	STORAGE ASMINT start = 0;
 	STORAGE ASMINT thr   = thresh;
 
+#ifdef _MSC_VER
+
+	__asm {
+		mov psi, in
+		mov pdi, out
+		mov pax, start
+		mov pcx, count
+		mov pdx, thr
+		#include "mmx_threshold.sx"
+	}
+
+#else
+
 	asm(
 
 		/* ASMINIT
@@ -444,10 +495,11 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		  [thr] "d" (thr)
 
 	);
+#endif
 }
 
 
-void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT stride, unsigned char thresh ) {
+void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT stride, unsigned char thr ) {
 
 	/* register usage:
 	 *   mm0,1,2: previous, current, next row
@@ -458,6 +510,20 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 	*/
 
 	STORAGE ASMINT count = linecnt * stride;
+	STORAGE ASMINT thresh = thr;
+
+#ifdef _MSC_VER
+
+	__asm {
+		mov psi, in
+		mov pdi, out
+		mov pax, count
+		mov pcx, thresh
+		mov pdx, stride
+		#include "mmx_despeckle.sx"
+	}
+
+#else
 
 	asm(
 
@@ -546,6 +612,5 @@ void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT
 		  [thr] "c" ((ASMINT)thresh)
 
 	);
-}
-
 #endif
+}
