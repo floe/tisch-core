@@ -47,7 +47,7 @@ void Mouse::send_blobs( double w, double h ) {
 		tmp.pos.x = tmp.pos.x / w;
 		tmp.pos.y = tmp.pos.y / h;
 
-		if (tmp.type == 1) tmp.id++;
+		if (tmp.type == INPUT_TYPE_FINGER) tmp.id++;
 		tmp.peak = tmp.pos;
 
 		output << tmp;
@@ -59,6 +59,7 @@ void Mouse::send_blobs( double w, double h ) {
 
 void Mouse::entry( int num, int state ) {
 	if (state == GLUT_LEFT) blobs.erase( num );
+	else blobs[num].type = INPUT_TYPE_SHADOW;
 }
 
 void Mouse::motion( int num, int x, int y ) {
@@ -96,8 +97,8 @@ void Mouse::button( int num, int button, int state, int x, int y ) {
 	}
 
 	// handle normal mouse clicks
-	if (state == GLUT_DOWN) blobs[num].type = 1;
-	if (state == GLUT_UP  ) blobs[num].type = 0;
+	if (state == GLUT_DOWN) blobs[num].type = INPUT_TYPE_FINGER;
+	if (state == GLUT_UP  ) blobs[num].type = INPUT_TYPE_SHADOW;
 
 	#ifdef TISCH_LATENCY
 		if (state == GLUT_DOWN) {
