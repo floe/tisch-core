@@ -448,7 +448,7 @@ int IntensityImage::threshold( unsigned char value ) {
 
 int IntensityImage::threshold( unsigned char value, IntensityImage& target , unsigned char minvalue ) const {
 	#ifndef NOMMX
-		mmxthreshold( data, target.data, size, value );
+		mmxthreshold( data, target.data, size, value, minvalue );
 		return 0;
 	#else
 		unsigned char tmp;
