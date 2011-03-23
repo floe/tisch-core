@@ -51,6 +51,9 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	config->QueryDoubleAttribute( "PeakMode",    &peakmode );
 	//config->QueryIntAttribute( "CrossColor", &cross);
 	//config->QueryIntAttribute( "TrailColor", &trail);
+
+	// setting variables for Configurator
+	countOfOptions = 5; // quantity of variables that can be manipulated
 }
 
 BlobList::~BlobList() {
@@ -251,3 +254,78 @@ void BlobList::send( TUIOOutStream* oscOut ) {
 	}
 }
 
+const char* BlobList::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "Horizontal Flip";
+		break;
+	case 1:
+		OptionName = "Vertical Flip";
+		break;
+	case 2:
+		OptionName = "Minimum Size";
+		break;
+	case 3:
+		OptionName = "Maximum Size";
+		break;
+	case 4:
+		OptionName = "Ignore Orphans";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double BlobList::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = hflip;
+		break;
+	case 1:
+		OptionValue = vflip;
+		break;
+	case 2:
+		OptionValue = minsize;
+		break;
+	case 3:
+		OptionValue = maxsize;
+		break;
+	case 4:
+		OptionValue = ignore_orphans;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void BlobList::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0:
+		hflip = (hflip + 1) % 2; // boolean value
+		break;
+	case 1:
+		vflip = (vflip + 1) % 2; // boolean value
+		break;
+	case 2:
+		minsize += delta;
+		minsize = (minsize < 0) ? 0 : (minsize > 65535) ? 65535 : minsize;
+		break;
+	case 3:
+		maxsize += delta;
+		maxsize = (maxsize < 0) ? 0 : (maxsize > 65535) ? 65535 : maxsize;
+		break;
+	case 4:
+		ignore_orphans = (ignore_orphans + 1) % 2; // boolean value
+		break;
+	}
+}

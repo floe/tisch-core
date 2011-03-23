@@ -11,12 +11,13 @@
 ==============================================================================*/
 BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
+	invert = 0;
+	adaptive = 0;
 	background = new ShortImage( image->getWidth(), image->getHeight() );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 2; // number of variables that can be manipulated
+	countOfOptions = 2; // quantity of variables that can be manipulated
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -92,9 +93,10 @@ void BGSubFilter::modifyOptionValue(double delta) {
 // TODO: make hflip/vflip configurable
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
+	hflip = 0;
+	vflip = 0;
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 0; // number of variables that can be manipulated
+	countOfOptions = 2; // quantity of variables that can be manipulated
 }
 
 // TODO: should be MMX-accelerated
@@ -118,6 +120,53 @@ int FlipFilter::process() {
 	return 0;
 }
 
+const char* FlipFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "Horizontal Flip";
+		break;
+	case 1:
+		OptionName = "Vertical Flip";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double FlipFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+		switch(option) {
+		case 0:
+			OptionValue = hflip;
+			break;
+		case 1:
+			OptionValue = vflip;
+			break;
+		default:
+			// leave OptionValue = -1.0
+			break;
+		}
+
+		return OptionValue;
+}
+
+void FlipFilter::modifyOptionValue(double delta) {
+	switch(toggle) {
+	case 0:
+		hflip = (hflip + 1) % 2; // boolean value
+		break;
+	case 1:
+		vflip = (vflip + 1) % 2; // boolean value
+		break;
+	}
+}
+
 /*==============================================================================
  * ThreshFilter
 ==============================================================================*/
@@ -130,8 +179,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 2; // number of variables that can be manipulated: Min/Max Threshold
+	countOfOptions = 2; // quantity of variables that can be manipulated
 }
 
 int ThreshFilter::process() {
@@ -196,8 +244,7 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 	noiselevel = 7;
 	config->QueryIntAttribute( "NoiseLevel", &noiselevel );
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 1; // number of variables that can be manipulated
+	countOfOptions = 1; // quantity of variables that can be manipulated
 }
 
 int SpeckleFilter::process() {
@@ -221,17 +268,7 @@ const char* SpeckleFilter::getOptionName(int option) {
 }
 
 double SpeckleFilter::getOptionValue(int option) {
-	/*double OptionValue = -1.0;
-
-	switch(option) {
-	case 0:
-		OptionValue = noiselevel;
-		break;
-	default:
-		// leave OptionValue = -1.0
-		break;
-	}
-*/
+	// only one variable to manipulate, so return it
 	return noiselevel;
 }
 
@@ -253,8 +290,7 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 	config->QueryIntAttribute( "Mode", &mode);
 	config->QueryIntAttribute( "Range", &range);
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 2; // number of variables that can be manipulated
+	countOfOptions = 2; // quantity of variables that can be manipulated
 }
 
 int LowpassFilter::process() {
@@ -318,8 +354,7 @@ SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	image2 = NULL;
 	reset();
 	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 0; // number of variables that can be manipulated
+	countOfOptions = 0; // quantity of variables that can be manipulated
 }
 
 void SplitFilter::reset() {
@@ -342,53 +377,4 @@ IntensityImage* SplitFilter::getImage() {
 	outcount++;
 	if (outcount % 2) return image;
 	else return image2 ? image2 : image;
-}
-
-const char* SplitFilter::getOptionName(int option) {
-	const char* OptionName = "";
-
-	switch(option) {
-	case 0:
-		OptionName = "Incount";
-		break;
-	case 1:
-		OptionName = "Outcount";
-		break;
-	default:
-		// leave OptionName empty
-		break;
-	}
-
-	return OptionName;
-}
-
-double SplitFilter::getOptionValue(int option) {
-	double OptionValue = -1.0;
-
-	switch(option) {
-	case 0:
-		OptionValue = incount;
-		break;
-	case 1:
-		OptionValue = outcount;
-		break;
-	default:
-		// leave OptionValue = -1.0
-		break;
-	}
-
-	return OptionValue;
-}
-
-void SplitFilter::modifyOptionValue(double delta) {
-	switch(toggle) {
-	case 0: // incount 0 ... MAX_VALUE
-		incount += delta;
-		incount = (incount < 0) ? 0 : (incount > 65535) ? 65535 : incount;
-		break;
-	case 1: // outcount 0 ... MAX_VALUE
-		outcount += delta;
-		outcount = (outcount < 0) ? 0 : (outcount > 65535) ? 65535 : outcount;
-		break;
-	}
 }
