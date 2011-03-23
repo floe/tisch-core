@@ -318,11 +318,11 @@ void BlobList::modifyOptionValue(double delta) {
 		break;
 	case 2:
 		minsize += delta;
-		minsize = (minsize < 0) ? 0 : (minsize > 65535) ? 65535 : minsize;
+		minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
 		break;
 	case 3:
 		maxsize += delta;
-		maxsize = (maxsize < 0) ? 0 : (maxsize > 65535) ? 65535 : maxsize;
+		maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
 		break;
 	case 4:
 		ignore_orphans = (ignore_orphans + 1) % 2; // boolean value

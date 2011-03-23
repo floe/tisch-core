@@ -24,6 +24,7 @@ class Filter {
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
 			// init switching variable for Configurator options
 			toggle = 0;
+			MAX_VALUE = 65535;
 		}
 
 		virtual ~Filter() { delete image; }
@@ -64,7 +65,8 @@ class Filter {
 		IntensityImage* image;
 		// Configurator
 		int toggle; // initialized in basic Filter constructor
-		int countOfOptions; // initialisation required in each subfilter class !
+		int MAX_VALUE; // initialized in basic Filter constructor
+		int countOfOptions; // Initialization required in each subfilter class !
 };
 
 

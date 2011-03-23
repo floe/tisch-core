@@ -341,7 +341,7 @@ void LowpassFilter::modifyOptionValue(double delta) {
 		break;
 	case 1: // range 0 ... MAX_VALUE
 		range += delta;
-		range = (range < 0) ? 0 : (range > 65535) ? 65535 : range;
+		range = (range < 0) ? 0 : (range > MAX_VALUE) ? MAX_VALUE : range;
 		break;
 	}
 }
