@@ -32,6 +32,11 @@ class BlobList: public Filter {
 
 		void send( TUIOOutStream* tuio );
 
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
+
 	protected:
 
 		int getID( unsigned char value );

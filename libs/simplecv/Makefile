@@ -22,6 +22,11 @@ ifeq ($(ARCH),i686)
   ASFLAGS = -g -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
 endif
 
+ifeq ($(ARCH),i486)
+  OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o mmx_subtract_cs.o mmx_subtract_sc.o
+  ASFLAGS = -g -Dpax=eax -Dpbx=ebx -Dpcx=ecx -Dpdx=edx -Dpsi=esi -Dpdi=edi
+endif
+
 ifneq (,$(findstring dc1394,$(LDFLAGS)))
   OBJS += DCImageSource.o
 endif

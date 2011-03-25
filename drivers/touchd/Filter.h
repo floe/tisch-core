@@ -22,6 +22,9 @@ class Filter {
 			shmid(0), input(_input), result(0.0), config(_config), image(NULL)
 		{ 
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
+			// init switching variable for Configurator options
+			toggle = 0;
+			MAX_VALUE = 65535;
 		}
 
 		virtual ~Filter() { delete image; }
@@ -60,9 +63,10 @@ class Filter {
 		double result;
 		TiXmlElement* config;
 		IntensityImage* image;
-		// Configurator, need to be set in constructor of subclass!!
-		int toggle;
-		int countOfOptions;
+		// Configurator
+		int toggle; // initialized in basic Filter constructor
+		int MAX_VALUE; // initialized in basic Filter constructor
+		int countOfOptions; // Initialization required in each subfilter class !
 };
 
 
@@ -91,6 +95,14 @@ class FlipFilter: public Filter {
 	public:
 		FlipFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta);
+	protected:
+		// Options
+		int hflip;
+		int vflip;
 };
 
 class ThreshFilter: public Filter {
@@ -137,10 +149,6 @@ class SplitFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual IntensityImage* getImage();
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;
