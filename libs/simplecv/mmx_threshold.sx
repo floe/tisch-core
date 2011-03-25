@@ -34,11 +34,15 @@ punpcklbw mm2, mm2
 punpcklbw mm2, mm2
 
 pxor mm1, mm2 /* convert unsigned->signed by flipping each MSB */
+pxor mm3, mm2
 
 mmx_threshold_loop:
 	movq mm0, [psi+pax]  /* load 8 bytes to mm0 */
 	pxor mm0, mm2        /* convert unsigned->signed by flipping each MSB */
+	movq mm4, mm3        /* store copy of signed value for upper threshold comp. */
+	pcmpgtb mm4, mm0     /* signed compare of mm0 and mm4 */
 	pcmpgtb mm0, mm1     /* signed compare of mm1 and mm0 */
+	pand mm0, mm4        /* AND of result bytes in mm0 */
 	movq [pdi+pax], mm0  /* store 8 bytes from mm0  */
 	add pax,   8         /* FIXME: fixed step width */
 	cmp pax, pcx

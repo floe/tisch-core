@@ -29,7 +29,7 @@ void mmxsubtract( unsigned short* sub, unsigned char* in, unsigned char* out, AS
 void mmxsubtract( unsigned char* in, unsigned short* sub, unsigned char* out, ASMINT count );
 void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASMINT count );
 
-void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char thresh );
+void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char lower, unsigned char upper );
 void mmxdespeckle( unsigned char* in, unsigned char* out, ASMINT linecnt, ASMINT stride, unsigned char thresh );
 
 int mmxintensity( unsigned  char* in, ASMINT count );

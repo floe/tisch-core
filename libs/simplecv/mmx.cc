@@ -406,7 +406,7 @@ void mmxupdate( unsigned char* in, unsigned char* mask, unsigned short* out, ASM
 }
 
 
-void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char thresh ) {
+void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned char lower, unsigned char upper ) {
 
 	/* //warning: this is SSE2 code, so it requires a P4 or above
 
@@ -445,17 +445,17 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		  [inc] "d" (inc)
 	);*/
 
-	STORAGE ASMINT start = 0;
-	STORAGE ASMINT thr   = thresh;
+	STORAGE ASMINT lthr = lower;
+	STORAGE ASMINT uthr = upper;
 
 #ifdef _MSC_VER
 
 	__asm {
 		mov psi, in
 		mov pdi, out
-		mov pax, start
+		mov pax, uthr
 		mov pcx, count
-		mov pdx, thr
+		mov pdx, lthr
 		#include "mmx_threshold.sx"
 	}
 
@@ -491,8 +491,8 @@ void mmxthreshold( unsigned char* in, unsigned char* out, ASMINT count, unsigned
 		::[in]  "S" (in),
 		  [out] "D" (out),
 		  [cnt] "c" (count),
-		  [low] "a" (start),
-		  [thr] "d" (thr)
+		  [upp] "a" (uthr),
+		  [low] "d" (lthr)
 
 	);
 #endif

@@ -1,6 +1,4 @@
-- add upper threshold to MMX function
 - add fast highpass filter from ITS paper
-- include MMX in VC++
 
 - use TUIO 2.0 object types where possible
 - convert Feature/Region/Gesture << and >> operators to output JSON
