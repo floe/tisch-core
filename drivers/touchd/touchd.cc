@@ -27,6 +27,7 @@ int startup = 1;
 GLUTWindow* win = 0;
 Filter* tmp = 0;
 Configurator* configure = 0;
+int showHelp = 0;
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
@@ -77,9 +78,13 @@ void disp() {
 	win->print( std::string("showing filter: ") + name, 10, 10 );
 
 	// display data of configurator
-	if(configure != 0){
+	if(configure != 0) {
 
 		configure->showInfo();
+
+		if(showHelp == 1) {
+			configure->showHelp();
+		}
 	}
 
 	win->swap();
@@ -113,8 +118,13 @@ void keyb( unsigned char c, int, int ) {
 
 	// adjust values
 	if(configure != 0) {
+		// show/hide help
+		if(c == 'h') {
+			showHelp = (showHelp + 1) % 2; // boolean value
+		}
+
 		// increase
-		if(c == 'i'){
+		if(c == 'i') {
 			tmp->modifyOptionValue(1.0);
 		}
 
@@ -224,4 +234,5 @@ int main( int argc, char* argv[] ) {
 		win->run();
 	}
 }
+
 

@@ -6,6 +6,9 @@
 
 #include "Configurator.h"
 
+/*
+ * Constructor
+ */
 Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
 	win = targetWindow;
 
@@ -16,16 +19,22 @@ Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
 Configurator::~Configurator() {
 }
 
+/*
+ * updating the Configurator when switching the filter
+ */
 void Configurator::updateCurrentFilter(Filter* currentFilter) {
 	filter = currentFilter;
 }
 
+/*
+ * displaying the settings of the current selected filter
+ */
 void Configurator::showInfo() {
 	int xCoord = 10;
 	int yCoord = 40;
 
 	glColor4f(0.0, 1.0, 0.0, 1.0);
-	win->print(std::string("Configuration"), xCoord, yCoord);
+	win->print(std::string("Configuration: (h)elp"), xCoord, yCoord);
 
 	for (int i = 0; i < filter->getOptionCount(); i++) {
 		yCoord += 20;
@@ -45,3 +54,22 @@ void Configurator::showInfo() {
 
 	}
 }
+
+/*
+ * displaying additional help to work with the Configurator
+ */
+void Configurator::showHelp() {
+	int xCoord = 100;
+	int yCoord = 150;
+
+	glColor4f(1.0, 0.0, 0.0, 1.0);
+	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (i) to increase selected value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (d) to decrease selected value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
+
+}
+

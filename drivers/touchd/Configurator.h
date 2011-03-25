@@ -22,20 +22,13 @@ public:
 	virtual ~Configurator();
 	virtual void updateCurrentFilter(Filter* currentFilter);
 	virtual void showInfo();
-	//virtual void toggleOption();
-	//virtual void increaseValue();
-	//virtual void decreaseValue();
-	//virtual void activateFirstOption();
+	virtual void showHelp();
 
 protected:
 	GLUTWindow* win;
 	Filter* filter;
-	//ThreshFilter *myThreshFilter;
-	//int *p_currentOption;
-
-	//int toggle;
-	//int numberOfOptions;
 
 };
 
 #endif // _CONFIGURATOR_H_
+
