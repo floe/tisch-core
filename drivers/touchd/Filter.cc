@@ -76,7 +76,7 @@ double BGSubFilter::getOptionValue(int option) {
 	return OptionValue;
 }
 
-void BGSubFilter::modifyOptionValue(double delta) {
+void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
 		invert = (invert + 1) % 2; // boolean value
@@ -156,7 +156,7 @@ double FlipFilter::getOptionValue(int option) {
 		return OptionValue;
 }
 
-void FlipFilter::modifyOptionValue(double delta) {
+void FlipFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
 		hflip = (hflip + 1) % 2; // boolean value
@@ -223,15 +223,23 @@ double ThreshFilter::getOptionValue(int option) {
 	return OptionValue;
 }
 
-void ThreshFilter::modifyOptionValue(double delta) {
+void ThreshFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
-		threshold_min += delta;
-		threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 255) ? 255 : threshold_min;
+		if(overwrite) {
+			threshold_min = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+		} else {
+			threshold_min += delta;
+			threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 255) ? 255 : threshold_min;
+		}
 		break;
 	case 1:
-		threshold_max += delta;
-		threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 255) ? 255 : threshold_max;
+		if(overwrite) {
+			threshold_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+		} else {
+			threshold_max += delta;
+			threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 255) ? 255 : threshold_max;
+		}
 		break;
 	}
 }
@@ -272,14 +280,19 @@ double SpeckleFilter::getOptionValue(int option) {
 	return noiselevel;
 }
 
-void SpeckleFilter::modifyOptionValue(double delta) {
+void SpeckleFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
-		noiselevel += delta;
-		noiselevel = (noiselevel < 0) ? 0 : (noiselevel > 7) ? 7 : noiselevel;
+		if(overwrite) {
+			noiselevel = (delta < 0) ? 0 : (delta > 7) ? 7 : delta;
+		} else {
+			noiselevel += delta;
+			noiselevel = (noiselevel < 0) ? 0 : (noiselevel > 7) ? 7 : noiselevel;
+		}
 		break;
 	}
 }
+
 /*==============================================================================
  * LowpassFilter
 ==============================================================================*/
@@ -334,14 +347,18 @@ double LowpassFilter::getOptionValue(int option) {
 	return OptionValue;
 }
 
-void LowpassFilter::modifyOptionValue(double delta) {
+void LowpassFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0: // mode: 0,1,2
 		mode = (mode + 1) % 3;
 		break;
 	case 1: // range 0 ... MAX_VALUE
-		range += delta;
-		range = (range < 0) ? 0 : (range > MAX_VALUE) ? MAX_VALUE : range;
+		if(overwrite) {
+			range = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			range += delta;
+			range = (range < 0) ? 0 : (range > MAX_VALUE) ? MAX_VALUE : range;
+		}
 		break;
 	}
 }

@@ -60,10 +60,12 @@ void Configurator::showInfo() {
  */
 void Configurator::showHelp() {
 	int xCoord = 100;
-	int yCoord = 150;
+	int yCoord = 200;
 
 	glColor4f(1.0, 0.0, 0.0, 1.0);
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (e) to enter directly a numerical value"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (i) to increase selected value"), xCoord, yCoord);
 	yCoord += 20;
@@ -71,5 +73,19 @@ void Configurator::showHelp() {
 	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
 
+}
+
+void Configurator::showEditInfo() {
+	int xCoord = 100;
+	int yCoord = 200;
+
+	glColor4f(1.0, 0.0, 0.0, 1.0);
+	win->print(std::string("Your are now in editing mode."), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("Please enter a numerical value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("to overwrite the selected value."), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("Finish your input with enter"), xCoord, yCoord);
 }
 

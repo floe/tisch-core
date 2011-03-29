@@ -20,9 +20,10 @@ class Configurator {
 public:
 	Configurator(GLUTWindow* targetWindow, Filter* currentFilter);
 	virtual ~Configurator();
-	virtual void updateCurrentFilter(Filter* currentFilter);
-	virtual void showInfo();
-	virtual void showHelp();
+	void updateCurrentFilter(Filter* currentFilter);
+	void showInfo();
+	void showHelp();
+	void showEditInfo();
 
 protected:
 	GLUTWindow* win;

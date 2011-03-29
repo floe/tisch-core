@@ -302,7 +302,7 @@ double BlobList::getOptionValue(int option) {
 	return OptionValue;
 }
 
-void BlobList::modifyOptionValue(double delta) {
+void BlobList::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
 		hflip = (hflip + 1) % 2; // boolean value
@@ -311,12 +311,20 @@ void BlobList::modifyOptionValue(double delta) {
 		vflip = (vflip + 1) % 2; // boolean value
 		break;
 	case 2:
-		minsize += delta;
-		minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
+		if(overwrite) {
+			minsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			minsize += delta;
+			minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
+		}
 		break;
 	case 3:
-		maxsize += delta;
-		maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
+		if(overwrite) {
+			maxsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			maxsize += delta;
+			maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
+		}
 		break;
 	}
 }

@@ -28,6 +28,8 @@ GLUTWindow* win = 0;
 Filter* tmp = 0;
 Configurator* configure = 0;
 int showHelp = 0;
+int editvalue = 0;
+std::string userinput = "";
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
@@ -85,6 +87,10 @@ void disp() {
 		if(showHelp == 1) {
 			configure->showHelp();
 		}
+
+		if(editvalue == 1) {
+			configure->showEditInfo();
+		}
 	}
 
 	win->swap();
@@ -96,62 +102,84 @@ void keyb( unsigned char c, int, int ) {
 	if (c == 'q') cleanup( 0 );
 	if (c == ' ') mypipe->reset();
 
-	if ((c >= '0') && (c <= '9')) {
-		c = c - '0';
-		if (c < mypipe->size()){
-			tmp = (*mypipe)[c];
-			if(configure != 0) {
-				configure->updateCurrentFilter(tmp);
+	// switching to editing mode
+	if (editvalue == 1 && configure != 0) {
+
+		// Enter finishes Input
+		if (c == 0x0D) {
+			// parse input to double, 0.0 if a double couldn't be read
+			double result = atof(userinput.c_str());
+			tmp->modifyOptionValue(result, true);
+			std::cout << "input was: " << result << std::endl;
+			editvalue = 0; // close editing mode
+		} else {
+			userinput += c;
+		}
+
+	} else {
+	// processing keyboard entries as usual
+		if ((c >= '0') && (c <= '9')) {
+			c = c - '0';
+			if (c < mypipe->size()){
+				tmp = (*mypipe)[c];
+				if(configure != 0) {
+					configure->updateCurrentFilter(tmp);
+				}
 			}
 		}
-	}
 
-	// switch configurator on/off
-	if(c == 'c'){
-		if (configure == 0)
-			configure = new Configurator(win, tmp);
-		else{
-			delete configure; // free memory, also calls destructor
-			configure = 0;
-		}
-	}
-
-	// adjust values
-	if(configure != 0) {
-		// show/hide help
-		if(c == 'h') {
-			showHelp = (showHelp + 1) % 2; // boolean value
+		// switch configurator on/off
+		if(c == 'c'){
+			if (configure == 0)
+				configure = new Configurator(win, tmp);
+			else{
+				delete configure; // free memory, also calls destructor
+				configure = 0;
+			}
 		}
 
-		// increase
-		if(c == 'i') {
-			tmp->modifyOptionValue(1.0);
+		// adjust values
+		if(configure != 0) {
+			// show/hide help
+			if(c == 'h') {
+				showHelp = (showHelp + 1) % 2; // boolean value
+			}
+
+			// increase
+			if(c == 'i') {
+				tmp->modifyOptionValue(1.0, false);
+			}
+
+			// decrease
+			if(c == 'd') {
+				tmp->modifyOptionValue(-1.0, false);
+			}
+
+			// overwrite value with a directly provided user entry
+			if(c == 'e') {
+				userinput = "";
+				editvalue = (editvalue + 1) % 2; // boolean value
+			}
+
+			// toggle Option with Tab
+			if(c == 0x09) {
+				tmp->nextOption();
+			}
 		}
 
-		// decrease
-		if(c == 'd') {
-			tmp->modifyOptionValue(-1.0);
+		if (c == 'x') {
+			if( angle > -30 ) angle--;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
 		}
-
-		// toggle Option with Tab
-		if(c == 0x09) {
-			tmp->nextOption();
+		if (c == 'w') {
+			if( angle < 30 ) angle++;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+		}
+		if (c == 's') {
+			angle = 0;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
 		}
 	}
-
-	if (c == 'x') {
-		if( angle > -30 ) angle--; 
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	if (c == 'w') {
-		if( angle < 30 ) angle++;
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	if (c == 's') {
-		angle = 0;
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	
 	glutPostRedisplay();
 }
 

@@ -54,7 +54,7 @@ class Filter {
 		const int getOptionCount() { return countOfOptions; }
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
-		virtual void modifyOptionValue(double delta) { };
+		virtual void modifyOptionValue(double delta, bool overwrite) { };
 
 	protected:
 
@@ -83,7 +83,7 @@ class BGSubFilter: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		ShortImage* background;
 		Filter* mask;
@@ -98,7 +98,7 @@ class FlipFilter: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		// Options
 		int hflip;
@@ -112,7 +112,7 @@ class ThreshFilter: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		// Options
 		int threshold_min;
@@ -126,7 +126,7 @@ class SpeckleFilter: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		int noiselevel;
 };
@@ -138,7 +138,7 @@ class LowpassFilter: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		int mode, range;
 };
