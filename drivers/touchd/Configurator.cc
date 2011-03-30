@@ -65,7 +65,7 @@ void Configurator::showHelp() {
 	glColor4f(1.0, 0.0, 0.0, 1.0);
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("use (e) to enter directly a numerical value"), xCoord, yCoord);
+	win->print(std::string("use (e) to switch to editing mode"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (i) to increase selected value"), xCoord, yCoord);
 	yCoord += 20;
@@ -86,6 +86,8 @@ void Configurator::showEditInfo() {
 	yCoord += 20;
 	win->print(std::string("to overwrite the selected value."), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("Finish your input with enter"), xCoord, yCoord);
+	win->print(std::string("Finish your input with enter."), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("Leave editing mode without changes with (e)."), xCoord, yCoord);
 }
 

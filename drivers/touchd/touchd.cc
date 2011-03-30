@@ -105,10 +105,16 @@ void keyb( unsigned char c, int, int ) {
 	// switching to editing mode
 	if (editvalue == 1 && configure != 0) {
 
+		// quit edit mode without applying changes
+		if(c == 'e') {
+			editvalue = 0;
+		}
+
 		// Enter finishes Input
 		if (c == 0x0D) {
 			// parse input to double, 0.0 if a double couldn't be read
 			double result = atof(userinput.c_str());
+			// apply new value
 			tmp->modifyOptionValue(result, true);
 			std::cout << "input was: " << result << std::endl;
 			editvalue = 0; // close editing mode
@@ -116,8 +122,8 @@ void keyb( unsigned char c, int, int ) {
 			userinput += c;
 		}
 
-	} else {
-	// processing keyboard entries as usual
+	} else { // processing keyboard entries as usual
+	// switching filters
 		if ((c >= '0') && (c <= '9')) {
 			c = c - '0';
 			if (c < mypipe->size()){
@@ -134,6 +140,7 @@ void keyb( unsigned char c, int, int ) {
 				configure = new Configurator(win, tmp);
 			else{
 				delete configure; // free memory, also calls destructor
+				showHelp = 0;
 				configure = 0;
 			}
 		}
@@ -145,20 +152,21 @@ void keyb( unsigned char c, int, int ) {
 				showHelp = (showHelp + 1) % 2; // boolean value
 			}
 
-			// increase
+			// increase value
 			if(c == 'i') {
 				tmp->modifyOptionValue(1.0, false);
 			}
 
-			// decrease
+			// decrease value
 			if(c == 'd') {
 				tmp->modifyOptionValue(-1.0, false);
 			}
 
-			// overwrite value with a directly provided user entry
+			// activate editing mode: overwrite non bool variables with user input
 			if(c == 'e') {
+				showHelp = 0;
 				userinput = "";
-				editvalue = (editvalue + 1) % 2; // boolean value
+				editvalue = 1; // boolean value
 			}
 
 			// toggle Option with Tab
