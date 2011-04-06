@@ -151,14 +151,14 @@ void GLUTWindow::show( const IntensityImage& img, int x, int y ) const {
 }
 
 void GLUTWindow::show( const ShortImage& img, int x, int y ) const {
-#ifndef TISCH_IPHONE
-	typedef Texture<GL_TEXTURE_RECTANGLE_ARB,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_SHORT> ShortGreyTex;
-	static ShortGreyTex* mytex = new ShortGreyTex( img.getWidth(), img.getHeight() );
-	mytex->load( img.getData(), GL_LUMINANCE, GL_UNSIGNED_SHORT );
+//#ifndef TISCH_IPHONE
+//	typedef Texture<GL_TEXTURE_RECTANGLE_ARB,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_SHORT> ShortGreyTex;
+	static ShortGreyTexture* mytex = new ShortGreyTexture( img.getWidth(), img.getHeight() );
+	mytex->load( &img ); //img.getData(), GL_LUMINANCE, GL_UNSIGNED_SHORT );
 	mytex->bind();
 	mytex->render();
 	mytex->release();
-#endif
+//#endif
 }
 
 

@@ -19,15 +19,16 @@ class Filter {
 	public:
 
 		Filter( TiXmlElement* _config = 0, Filter* _input = 0 ):
-			shmid(0), input(_input), result(0.0), config(_config), image(NULL)
+			shmid(0), input(_input), result(0.0), config(_config), image(NULL), shortimage(NULL)
 		{ 
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
 			// init switching variable for Configurator options
 			toggle = 0;
 			MAX_VALUE = 65535;
+			useIntensityImage = false; //TODO needs to be set another way (xml config and/or configurator)
 		}
 
-		virtual ~Filter() { delete image; }
+		virtual ~Filter() { delete image; delete shortimage; }
 
 		void checkImage() {
 			if (!image) {
@@ -36,16 +37,23 @@ class Filter {
 				int h = inputimg->getHeight();
 				image = new IntensityImage( w, h, shmid, 1 );
 			}
+			if (/*TODO: do we have to add this? !useIntensityImage &&*/ !shortimage) {
+				ShortImage* inputimg = input->getShortImage();
+				int w = inputimg->getWidth();
+				int h = inputimg->getHeight();
+				shortimage = new ShortImage( w, h );
+			}
 		}
 
 		virtual int process() = 0;
 		virtual void reset() { }
 
 		// TODO: print filter information
-		virtual void draw( GLUTWindow* win ) { win->show( *image, 0, 0 ); }
+		virtual void draw( GLUTWindow* win ) { if(useIntensityImage) win->show( *image, 0, 0 ); else win->show( *shortimage, 0, 0 ); }
 		virtual void link( Filter* _link   ) { }
 
 		virtual IntensityImage* getImage() { return image; }
+		virtual ShortImage* getShortImage() { return shortimage; }
 		virtual double getResult() { return result; }
 
 		// Configurator functions
@@ -55,6 +63,7 @@ class Filter {
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
+		bool getUseIntensityImage() { return useIntensityImage; };
 
 	protected:
 
@@ -63,6 +72,8 @@ class Filter {
 		double result;
 		TiXmlElement* config;
 		IntensityImage* image;
+		ShortImage* shortimage;
+		bool useIntensityImage;
 		// Configurator
 		int toggle; // initialized in basic Filter constructor
 		int MAX_VALUE; // initialized in basic Filter constructor

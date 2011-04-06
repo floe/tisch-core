@@ -11,6 +11,7 @@
 
 #include "IntensityImage.h"
 #include "RGBImage.h"
+#include "ShortImage.h"
 #include "PicoPNG.h"
 
 #include <math.h>
@@ -147,6 +148,12 @@ template < int TEXTURE_TARGET, int TEXTURE_FORMAT, int DATA_FORMAT, int DATA_TYP
 			load( img->getData(), GL_LUMINANCE, GL_UNSIGNED_BYTE );
 		}
 
+		void load( const ShortImage* img ) {
+			m_width  = img->getWidth();
+			m_height = img->getHeight();
+			load( img->getData(), GL_LUMINANCE, GL_UNSIGNED_SHORT );
+		}
+
 		void load( const RGBImage* img ) {
 			m_width  = img->getWidth();
 			m_height = img->getHeight();
@@ -200,6 +207,7 @@ typedef Texture < DEFAULT_TEXTURE_TARGET, GL_DEPTH_COMPONENT32, GL_DEPTH_COMPONE
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_RGB8,       GL_RGB,       GL_UNSIGNED_BYTE > RGBTexture;
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_RGBA8,      GL_RGBA,      GL_UNSIGNED_BYTE > RGBATexture;
 typedef Texture < DEFAULT_TEXTURE_TARGET, GL_LUMINANCE8, GL_LUMINANCE, GL_UNSIGNED_BYTE > GreyTexture;
+typedef Texture < DEFAULT_TEXTURE_TARGET, GL_LUMINANCE16, GL_LUMINANCE, GL_UNSIGNED_SHORT > ShortGreyTexture;
 
 
 #endif // _TEXTURE_H_

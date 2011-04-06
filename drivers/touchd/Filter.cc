@@ -13,7 +13,8 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	checkImage();
 	invert = 0;
 	adaptive = 0;
-	background = new ShortImage( image->getWidth(), image->getHeight() );
+	if(useIntensityImage) background = new ShortImage( image->getWidth(), image->getHeight() );
+	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
 	// setting variables for Configurator
@@ -29,14 +30,25 @@ void BGSubFilter::link( Filter* _mask ) {
 }
 
 void BGSubFilter::reset() {
-	*background = *(input->getImage());
+	if(useIntensityImage) *background = *(input->getImage());
+	else *background = *(input->getShortImage());
 }
 
 int BGSubFilter::process() {
-	IntensityImage* inputimg = input->getImage();
-	background->subtract( *(inputimg), *image, invert );
-	if (adaptive) background->update( *(inputimg), *(mask->getImage()) );
-	result = background->intensity(); // FIXME: does 'invert' have to be factored in here?
+	if(useIntensityImage) 
+	{
+		IntensityImage* inputimg = input->getImage();
+		background->subtract( *(inputimg), *image, invert );
+		if (adaptive) background->update( *(inputimg), *(mask->getImage()) );
+		result = background->intensity(); // FIXME: does 'invert' have to be factored in here?
+	}
+	else
+	{
+		ShortImage* inputimg = input->getShortImage();
+		background->subtract( *(inputimg), *shortimage, invert );
+		if (adaptive) background->update( *(inputimg), *(mask->getImage()) );
+		result = background->intensity(); // FIXME: does 'invert' have to be factored in here?
+	}
 	return 0;
 }
 
@@ -101,20 +113,40 @@ FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 
 // TODO: should be MMX-accelerated
 int FlipFilter::process() {
+	
+	if(useIntensityImage) 
+	{
+		unsigned char* inbuf = input->getImage()->getData();
+		unsigned char* outbuf = image->getData();
+		
+		int width  = image->getWidth();
+		int height = image->getHeight();
 
-	unsigned char* inbuf  = input->getImage()->getData();
-	unsigned char* outbuf = image->getData();
+		int inoffset  = 0;
+		int outoffset = width-1;
+		
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
+			inoffset  += width;
+			outoffset += width;
+		}
+	} 
+	else 
+	{
+		unsigned short* inbuf  = input->getShortImage()->getSData();
+		unsigned short* outbuf = shortimage->getSData();
 
-	int width  = image->getWidth();
-	int height = image->getHeight();
+		int width  = shortimage->getWidth();
+		int height = shortimage->getHeight();
 
-	int inoffset  = 0;
-	int outoffset = width-1;
+		int inoffset  = 0;
+		int outoffset = width-1;
 
-	for (int y = 0; y < height; y++) {
-		for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
-		inoffset  += width;
-		outoffset += width;
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
+			inoffset  += width;
+			outoffset += width;
+		}
 	}
 
 	return 0;
@@ -183,7 +215,8 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 }
 
 int ThreshFilter::process() {
-	input->getImage()->threshold( threshold_min, *image, threshold_max );
+	if(useIntensityImage) input->getImage()->threshold( threshold_min, *image, threshold_max );
+	else input->getShortImage()->threshold( threshold_min << 5, *shortimage, threshold_max << 5 );
 	return 0;
 }
 
@@ -256,7 +289,8 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int SpeckleFilter::process() {
-	input->getImage()->despeckle( *image, noiselevel );
+	if(useIntensityImage) input->getImage()->despeckle( *image, noiselevel );
+	else input->getShortImage()->despeckle( *shortimage, noiselevel );
 	return 0;
 }
 
@@ -307,7 +341,8 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int LowpassFilter::process() {
-	input->getImage()->lowpass( *image, range, mode );
+	if(useIntensityImage) input->getImage()->lowpass( *image, range, mode );
+	else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;
 }
 

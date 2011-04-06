@@ -86,6 +86,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 
 	// create image buffer
 	image = new IntensityImage( width, height, shmid, 1 );
+	shortimage = new ShortImage( width, height );
 
 	#ifdef HAS_DIRECTSHOW
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
@@ -198,7 +199,8 @@ int Camera::process() {
 	if (!res) cam->acquire();
 
 	// retrieve image, release buffer and return
-	cam->getImage( *image );
+	if(useIntensityImage) cam->getImage( *image );
+	else ((KinectImageSource*)cam)->getImage( *shortimage );
 	cam->release();
 
 	return 0;

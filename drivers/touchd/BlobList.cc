@@ -82,6 +82,11 @@ int BlobList::process() {
 
 	// clone the input image
 	*image = *(input->getImage());
+	if(!useIntensityImage) 
+	{
+		*shortimage = *(input->getShortImage());
+		shortimage->convert(*image);
+	}
 
 	// frame-local blob counter to differentiate between blobs
 	unsigned char value = 254;
