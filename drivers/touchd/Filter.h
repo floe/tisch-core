@@ -25,7 +25,7 @@ class Filter {
 			// init switching variable for Configurator options
 			toggle = 0;
 			MAX_VALUE = 65535;
-			useIntensityImage = false; //TODO needs to be set another way (xml config and/or configurator)
+			useIntensityImage = input->getUseIntensityImage();
 		}
 
 		virtual ~Filter() { delete image; delete shortimage; }

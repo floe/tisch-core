@@ -58,6 +58,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	// generic low-end default settings
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
+	useIntensityImage = true;
 
 	#ifdef __linux
 		sourcetype = CAMERA_TYPE_V4L;
