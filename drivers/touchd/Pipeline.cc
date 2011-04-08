@@ -39,8 +39,6 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 
 	if (filter) push_back( filter );
 
-	std::cout << "useIntensityImage: " << filter->getUseIntensityImage() << std::endl;
-
 	for ( TiXmlElement* child = config->FirstChildElement(); child != 0; child = child->NextSiblingElement() )
 		createFilter( child, filter );
 }
