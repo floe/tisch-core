@@ -33,7 +33,7 @@ void Configurator::showInfo() {
 	int xCoord = 10;
 	int yCoord = 40;
 
-	glColor4f(0.0, 1.0, 0.0, 1.0);
+	glColor4f(0.0, 1.0, 0.0, 1.0); // green
 	win->print(std::string("Configuration: (h)elp"), xCoord, yCoord);
 
 	for (int i = 0; i < filter->getOptionCount(); i++) {
@@ -41,7 +41,7 @@ void Configurator::showInfo() {
 
 		// highlight the current selected option
 		if (i == filter->getCurrentOption()) {
-			glColor4f(0.0, 0.0, 1.0, 1.0); // blue
+			glColor4f(1.0, 0.5, 0.0, 1.0); // orange
 		} else {
 			glColor4f(0.0, 1.0, 0.0, 1.0); // green
 		}
