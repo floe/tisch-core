@@ -40,7 +40,6 @@ class Camera: public Filter {
 		int verbose;
 		int width, height, fps, sourcetype;
 		int gain, expo, bright, flashmode;
-		int useIntensityImage;
 		std::string sourcepath, flashpath;
 };
 

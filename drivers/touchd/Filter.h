@@ -25,8 +25,7 @@ class Filter {
 			// init switching variable for Configurator options
 			toggle = 0;
 			MAX_VALUE = 65535;
-			if(input != 0)
-				useIntensityImage = input->getUseIntensityImage();
+			if(input != 0) useIntensityImage = input->getUseIntensityImage();
 		}
 
 		virtual ~Filter() { delete image; delete shortimage; }
