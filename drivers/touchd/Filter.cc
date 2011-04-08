@@ -260,18 +260,18 @@ void ThreshFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
 		if(overwrite) {
-			threshold_min = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+			threshold_min = (delta < 0) ? 0 : (delta > 2047) ? 2047 : delta;
 		} else {
 			threshold_min += delta;
-			threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 255) ? 255 : threshold_min;
+			threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 2047) ? 2047 : threshold_min;
 		}
 		break;
 	case 1:
 		if(overwrite) {
-			threshold_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+			threshold_max = (delta < 0) ? 0 : (delta > 2047) ? 2047 : delta;
 		} else {
 			threshold_max += delta;
-			threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 255) ? 255 : threshold_max;
+			threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 2047) ? 2047 : threshold_max;
 		}
 		break;
 	}
