@@ -25,7 +25,8 @@ class Filter {
 			// init switching variable for Configurator options
 			toggle = 0;
 			MAX_VALUE = 65535;
-			useIntensityImage = input->getUseIntensityImage();
+			if(input != 0)
+				useIntensityImage = input->getUseIntensityImage();
 		}
 
 		virtual ~Filter() { delete image; delete shortimage; }
@@ -63,7 +64,7 @@ class Filter {
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
-		bool getUseIntensityImage() { return useIntensityImage; };
+		int getUseIntensityImage() { return useIntensityImage; };
 
 	protected:
 
@@ -73,7 +74,7 @@ class Filter {
 		TiXmlElement* config;
 		IntensityImage* image;
 		ShortImage* shortimage;
-		bool useIntensityImage;
+		int useIntensityImage;
 		// Configurator
 		int toggle; // initialized in basic Filter constructor
 		int MAX_VALUE; // initialized in basic Filter constructor

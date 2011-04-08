@@ -385,7 +385,12 @@ double LowpassFilter::getOptionValue(int option) {
 void LowpassFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0: // mode: 0,1,2
-		mode = (mode + 1) % 3;
+		if(overwrite) {
+			mode = (delta < 0) ? 0 : (delta > 2) ? 2 : delta;
+		} else {
+			mode += delta;
+			mode = (mode < 0) ? 0 : (mode > 2) ? 2 : mode;
+		}
 		break;
 	case 1: // range 0 ... MAX_VALUE
 		if(overwrite) {

@@ -1,5 +1,5 @@
 <!-- libTISCH 2.0 touchd example config file -->
-<Camera SourceType=5 Width=640 Height=480 FPS=30 Verbose=0>
+<Camera SourceType=5 UseIntensityImage=0 Width=640 Height=480 FPS=30 Verbose=0>
 	
 	<FlipFilter>
 		<BGSubFilter Invert=0 Adaptive=0>
