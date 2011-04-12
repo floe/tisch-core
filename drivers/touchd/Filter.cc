@@ -210,6 +210,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	config->QueryIntAttribute(      "Threshold", &threshold_min );
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
+	(useIntensityImage == 1) ? THRESH_MAX = 255 : THRESH_MAX = 2047;
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
@@ -260,18 +261,18 @@ void ThreshFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
 	case 0:
 		if(overwrite) {
-			threshold_min = (delta < 0) ? 0 : (delta > 2047) ? 2047 : delta;
+			threshold_min = (delta < 0) ? 0 : (delta > THRESH_MAX) ? THRESH_MAX : delta;
 		} else {
 			threshold_min += delta;
-			threshold_min = (threshold_min < 0) ? 0 : (threshold_min > 2047) ? 2047 : threshold_min;
+			threshold_min = (threshold_min < 0) ? 0 : (threshold_min > THRESH_MAX) ? THRESH_MAX : threshold_min;
 		}
 		break;
 	case 1:
 		if(overwrite) {
-			threshold_max = (delta < 0) ? 0 : (delta > 2047) ? 2047 : delta;
+			threshold_max = (delta < 0) ? 0 : (delta > THRESH_MAX) ? THRESH_MAX : delta;
 		} else {
 			threshold_max += delta;
-			threshold_max = (threshold_max < 0) ? 0 : (threshold_max > 2047) ? 2047 : threshold_max;
+			threshold_max = (threshold_max < 0) ? 0 : (threshold_max > THRESH_MAX) ? THRESH_MAX : threshold_max;
 		}
 		break;
 	}

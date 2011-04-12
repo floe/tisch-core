@@ -33,7 +33,10 @@ void Configurator::showInfo() {
 	int xCoord = 10;
 	int yCoord = 40;
 
-	glColor4f(0.0, 1.0, 0.0, 1.0); // green
+	glColor4f(1.0, 1.0, 1.0, 1.0); // white
+	win->drawRectangleBackground(xCoord, yCoord, 225, (filter->getOptionCount()+1)*20, 2);
+
+	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("Configuration: (h)elp"), xCoord, yCoord);
 
 	for (int i = 0; i < filter->getOptionCount(); i++) {
@@ -43,7 +46,7 @@ void Configurator::showInfo() {
 		if (i == filter->getCurrentOption()) {
 			glColor4f(1.0, 0.5, 0.0, 1.0); // orange
 		} else {
-			glColor4f(0.0, 1.0, 0.0, 1.0); // green
+			glColor4f(0.0, 0.0, 0.0, 1.0); // black
 		}
 		// display each option of filter in a line
 		std::ostringstream OptionValue;
@@ -62,7 +65,10 @@ void Configurator::showHelp() {
 	int xCoord = 100;
 	int yCoord = 200;
 
-	glColor4f(1.0, 0.0, 0.0, 1.0);
+	glColor4f(1.0, 1.0, 1.0, 1.0); // white
+	win->drawRectangleBackground(xCoord, yCoord, 350, 100, 2);
+
+	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (e) to switch to editing mode"), xCoord, yCoord);
@@ -79,7 +85,10 @@ void Configurator::showEditInfo() {
 	int xCoord = 100;
 	int yCoord = 200;
 
-	glColor4f(1.0, 0.0, 0.0, 1.0);
+	glColor4f(1.0, 1.0, 1.0, 1.0); // white
+	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
+
+	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("Your are now in editing mode."), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("Please enter a numerical value"), xCoord, yCoord);

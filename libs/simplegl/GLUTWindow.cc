@@ -194,6 +194,15 @@ void GLUTWindow::print( const std::string& text, int x, int y ) const {
 #endif
 }
 
+void GLUTWindow::drawRectangleBackground( int x, int y, int size_x, int size_y, int border) const {
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix();
+	// 0/0 is in upper left corner
+	glTranslatef( 0, 0, 500 ); // 500 = 0.5 in Texture::render()
+	glRecti(x-border, height-y+border, x + size_x+border, height - (y + size_y+border));
+	glPopMatrix();
+}
+
 void GLUTWindow::title( const std::string& text ) const {
 	glutSetWindowTitle( text.c_str() );
 }

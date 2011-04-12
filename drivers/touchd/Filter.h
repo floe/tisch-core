@@ -125,6 +125,7 @@ class ThreshFilter: public Filter {
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
+		int THRESH_MAX; // 255 if intensity image is used, else 2047
 		// Options
 		int threshold_min;
 		int threshold_max;

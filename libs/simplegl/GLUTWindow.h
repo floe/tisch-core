@@ -30,6 +30,7 @@ class TISCH_SHARED GLUTWindow {
 		void show( const IntensityImage& img, int x, int y ) const;
 
 		void print( const std::string& text, int x, int y ) const;
+		void drawRectangleBackground( int x, int y, int size_x, int size_y, int border) const;
 		void title( const std::string& text ) const;
 
 		void clear( float red = 0.0, float green = 0.0, float blue = 0.0, float alpha = 0.0 );
