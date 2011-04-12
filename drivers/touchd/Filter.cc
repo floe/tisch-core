@@ -436,3 +436,99 @@ IntensityImage* SplitFilter::getImage() {
 	if (outcount % 2) return image;
 	else return image2 ? image2 : image;
 }
+
+/*==============================================================================
+ * AreaFilter
+==============================================================================*/
+AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+	mode = 0;
+	config->QueryIntAttribute( "Mode", &mode);
+	// setting variables for Configurator
+	countOfOptions = 1; // quantity of variables that can be manipulated
+}
+
+int AreaFilter::process() {
+//	if(useIntensityImage) input->getImage()->areafilter( *image, edgepoints );
+	/*else*/ input->getShortImage()->areamask( *shortimage, edgepoints );
+	return 0;
+}
+
+void AreaFilter::processMouseButton( int button, int state, int x, int y )
+{
+	if(button == 0 && state == 0)
+	{
+		Point* a = new Point();
+		a->x = x;
+		a->y = y;
+		cornerpoints.push_back(a);
+	}
+
+	if(button == 2 && state == 0)
+	{
+	//	for(std::vector<Point*>::iterator i = cornerpoints.begin(); i != cornerpoints.end(); i++)
+		//	std::cout << "Eckpunkt: " << (*i)->x << " " << (*i)->y << std::endl;
+		if(cornerpoints.empty()) return;
+		cornerpoints.push_back(*cornerpoints.begin());
+		for(std::vector<Point*>::iterator it = cornerpoints.begin(); it != cornerpoints.end()-1; it++)
+		{
+			
+			int max = fabs((double)((*it)->y - (*(it + 1))->y));
+			if( max != 0)
+				for(int i = 0; i < max; i++)
+				{
+					double helpx = (*it)->x + ( i * ((*(it + 1))->x - (*it)->x) / max );
+					double helpy = (((*(it + 1))->y - (*it)->y) < 0 ? -1 : 1) * (i + 0.5) + (*it)->y;
+	//				std::cout << "Edgepunkt: " << helpx << " " << helpy << std::endl;
+					edgepoints.push_back((helpy-0.5)*image->getWidth() + helpx);
+				}
+		//	std::cout << std::endl;
+		}
+		std::sort(edgepoints.begin(), edgepoints.end());
+//		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it++)
+//			std::cout << "sorted Edgepoint: " << *it << std::endl; 
+	}
+}
+
+const char* AreaFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "Mode";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double AreaFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = mode;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
+	switch(toggle) {
+	case 0: // mode: 0,1
+		if(overwrite) {
+			mode = (delta < 0) ? 0 : (delta > 1) ? 1 : delta;
+		} else {
+			mode += delta;
+			mode = (mode < 0) ? 0 : (mode > 1) ? 1 : mode;
+		}
+		break;
+	}
+}

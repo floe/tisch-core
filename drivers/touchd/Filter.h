@@ -8,11 +8,11 @@
 #define _FILTER_H_
 
 #include <tinyxml.h>
+#include <algorithm>
 
 #include "GLUTWindow.h"
 #include "ShortImage.h"
 #include "IntensityImage.h"
-
 
 class Filter {
 
@@ -47,6 +47,7 @@ class Filter {
 
 		virtual int process() = 0;
 		virtual void reset() { }
+		virtual void processMouseButton(int button, int state, int x, int y) { }
 
 		// TODO: print filter information
 		virtual void draw( GLUTWindow* win ) { if(useIntensityImage) win->show( *image, 0, 0 ); else win->show( *shortimage, 0, 0 ); }
@@ -164,6 +165,22 @@ class SplitFilter: public Filter {
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;
+};
+
+class AreaFilter: public Filter {
+	public:
+		AreaFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+		virtual void processMouseButton(int button, int state, int x, int y);
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta, bool overwrite);
+	protected:
+		int mode;
+		std::vector<int> edgepoints;
+		std::vector<Point*> cornerpoints;
+		 
 };
 
 #endif // _FILTER_H_

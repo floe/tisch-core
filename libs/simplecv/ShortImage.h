@@ -40,6 +40,7 @@ class TISCH_SHARED ShortImage: public Image {
 		 int  threshold( unsigned short value, ShortImage& target , unsigned short minvalue = 65535 ) const;
 		 void despeckle( ShortImage& target, unsigned char threshold = 8 ) const;
 		 void lowpass( ShortImage& target, unsigned char range = 1, unsigned char mode = 0 ) const;
+		 void areamask( ShortImage& target, std::vector<int> edgepoints) const;
 
 	private:
 

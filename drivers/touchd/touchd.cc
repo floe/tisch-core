@@ -96,6 +96,13 @@ void disp() {
 	win->swap();
 }
 
+void mouse( int button, int state, int x, int y )
+{
+	double imagex = ((double)x / win->getWidth()) * (tmp->getImage())->getWidth();
+	double imagey = ((double)y / win->getHeight()) * (tmp->getImage())->getHeight();
+	tmp->processMouseButton( button, state, imagex, imagey );
+}
+
 // TODO: better keyboard functionality (adjust filter params)
 void keyb( unsigned char c, int, int ) {
 
@@ -267,6 +274,7 @@ int main( int argc, char* argv[] ) {
 		glutIdleFunc(idle);
 		glutDisplayFunc(disp);
 		glutKeyboardFunc(keyb);
+		glutMouseFunc(mouse);
 		win->run();
 	}
 }
