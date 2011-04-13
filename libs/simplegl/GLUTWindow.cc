@@ -203,6 +203,22 @@ void GLUTWindow::drawRectangleBackground( int x, int y, int size_x, int size_y, 
 	glPopMatrix();
 }
 
+void GLUTWindow::drawPolygon( std::vector<Point*> points, bool invert, int height) const
+{
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix();
+	glTranslatef( 0, 0, 500 ); // 500 = 0.5 in Texture::render()
+	glBegin(GL_LINE_STRIP);
+		if( invert )
+			for(std::vector<Point*>::iterator it = points.begin(); it != points.end(); it++)
+				glVertex2f( (*it)->x, height - (*it)->y );
+		else
+			for(std::vector<Point*>::iterator it = points.begin(); it != points.end(); it++)
+				glVertex2f( (*it)->x, (*it)->y );
+	glEnd();
+	glPopMatrix();
+}
+
 void GLUTWindow::title( const std::string& text ) const {
 	glutSetWindowTitle( text.c_str() );
 }

@@ -180,6 +180,11 @@ void keyb( unsigned char c, int, int ) {
 			if(c == 0x09) {
 				tmp->nextOption();
 			}
+
+			//reset filter
+			if(c == 'r') {
+				tmp->reset();
+			}
 		}
 
 		if (c == 'x') {

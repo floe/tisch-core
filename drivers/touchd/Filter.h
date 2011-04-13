@@ -171,15 +171,19 @@ class AreaFilter: public Filter {
 	public:
 		AreaFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
+		virtual void reset();
 		virtual void processMouseButton(int button, int state, int x, int y);
+		void generateEdgepoints( std::vector<Point*> cornerpoints );
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual void draw( GLUTWindow* win );
 	protected:
-		int mode;
+		int enabled;
+		bool updated;
 		std::vector<int> edgepoints;
-		std::vector<Point*> cornerpoints;
+		std::vector<std::vector<Point*>> cornerpointvector;
 		 
 };
 

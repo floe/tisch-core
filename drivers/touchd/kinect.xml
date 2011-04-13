@@ -2,7 +2,9 @@
 <Camera SourceType=5 UseIntensityImage=0 Width=640 Height=480 FPS=30 Verbose=0>
 	
 	<FlipFilter>
-		<BGSubFilter Invert=0 Adaptive=0>
+		<AreaFilter Enabled=1>
+		<BGSubFilter Invert=0 Adaptive=0>-->
+		
 			<ThreshFilter UpperThreshold=8 LowerThreshold=2>
 				<LowpassFilter Mode=2 Range=1>
 <!--					<SpeckleFilter NoiseLevel=7>-->
@@ -17,6 +19,7 @@
 				</SpeckleFilter>
 			</ThreshFilter>
 -->		</BGSubFilter>
+		</AreaFilter>
 	</FlipFilter>
 
 </Camera>

@@ -66,7 +66,7 @@ void Configurator::showHelp() {
 	int yCoord = 200;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 350, 100, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 380, 140, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
@@ -76,6 +76,10 @@ void Configurator::showHelp() {
 	win->print(std::string("use (i) to increase selected value"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (d) to decrease selected value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (r) to reset the current filter"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (space) to reset all filters"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
 

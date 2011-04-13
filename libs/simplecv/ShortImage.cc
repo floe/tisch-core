@@ -219,10 +219,6 @@ void ShortImage::areamask( ShortImage& target, std::vector<int> edgepoints) cons
 	else
 		memset(target.sdata, 0, width*height*sizeof(unsigned short));
 		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it = it + 2)
-		{
-		//	std::cout << "Paar: " << *it << " " << *(it + 1) << std::endl;
-		//	for(int i = *it; i <= *(it+1); i++)
-			//	target.sdata[i] = sdata[i];
 			memcpy((target.sdata +  (*it)), (sdata + (*it)), (*(it+1) - *it)*2); 
-		}
 }
+

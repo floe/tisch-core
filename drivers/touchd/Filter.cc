@@ -442,52 +442,78 @@ IntensityImage* SplitFilter::getImage() {
 ==============================================================================*/
 AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
-	mode = 0;
-	config->QueryIntAttribute( "Mode", &mode);
+	enabled = 0;
+	updated = true;
+	config->QueryIntAttribute( "Enabled", &enabled);
 	// setting variables for Configurator
 	countOfOptions = 1; // quantity of variables that can be manipulated
 }
 
 int AreaFilter::process() {
-//	if(useIntensityImage) input->getImage()->areafilter( *image, edgepoints );
-	/*else*/ input->getShortImage()->areamask( *shortimage, edgepoints );
+	if(enabled)
+		if(useIntensityImage) input->getImage()->areamask( *image, edgepoints );
+		else input->getShortImage()->areamask( *shortimage, edgepoints );
+	else
+		if(useIntensityImage) *image = *(input->getImage());
+		else *shortimage = *(input->getShortImage());
 	return 0;
 }
 
 void AreaFilter::processMouseButton( int button, int state, int x, int y )
 {
+	//add a cornerpoint to the newest polygon
 	if(button == 0 && state == 0)
 	{
+		if(updated) 
+		{
+			cornerpointvector.push_back(std::vector<Point*>());
+			updated = false;
+		}
 		Point* a = new Point();
 		a->x = x;
 		a->y = y;
-		cornerpoints.push_back(a);
+		(*(cornerpointvector.end() - 1)).push_back(a);
 	}
 
-	if(button == 2 && state == 0)
+	//update polygons
+	if(button == 2 && state == 0 && !updated)
 	{
-	//	for(std::vector<Point*>::iterator i = cornerpoints.begin(); i != cornerpoints.end(); i++)
-		//	std::cout << "Eckpunkt: " << (*i)->x << " " << (*i)->y << std::endl;
-		if(cornerpoints.empty()) return;
-		cornerpoints.push_back(*cornerpoints.begin());
-		for(std::vector<Point*>::iterator it = cornerpoints.begin(); it != cornerpoints.end()-1; it++)
+		updated = true;
+		edgepoints.clear();
+
+		if(cornerpointvector.empty()) return;
+
+		for(std::vector<std::vector<Point*>>::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		{
-			
-			int max = fabs((double)((*it)->y - (*(it + 1))->y));
-			if( max != 0)
-				for(int i = 0; i < max; i++)
-				{
-					double helpx = (*it)->x + ( i * ((*(it + 1))->x - (*it)->x) / max );
-					double helpy = (((*(it + 1))->y - (*it)->y) < 0 ? -1 : 1) * (i + 0.5) + (*it)->y;
-	//				std::cout << "Edgepunkt: " << helpx << " " << helpy << std::endl;
-					edgepoints.push_back((helpy-0.5)*image->getWidth() + helpx);
-				}
-		//	std::cout << std::endl;
+			if((*it).empty()) continue;
+			if(*((*it).begin()) != *((*it).end()-1)) (*it).push_back(*(*it).begin()); //copies the first point of a polygon to the end of its pointvector
+			generateEdgepoints(*it);
 		}
-		std::sort(edgepoints.begin(), edgepoints.end());
-//		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it++)
-//			std::cout << "sorted Edgepoint: " << *it << std::endl; 
+		std::sort(edgepoints.begin(), edgepoints.end()); //sort the list for later use
 	}
+}
+
+//generates all edgepoints between subsequent cornerpoints
+void AreaFilter::generateEdgepoints( std::vector<Point*> cornerpoints )
+{
+	for(std::vector<Point*>::iterator it = cornerpoints.begin(); it != cornerpoints.end()-1; it++)
+	{	
+		int max = fabs((double)((*it)->y - (*(it + 1))->y));
+		if( max != 0)
+			for(int i = 0; i < max; i++)
+			{
+				double helpx = (*it)->x + ( i * ((*(it + 1))->x - (*it)->x) / max );
+				double helpy = (((*(it + 1))->y - (*it)->y) < 0 ? -1 : 1) * (i + 0.5) + (*it)->y;
+				edgepoints.push_back((helpy-0.5)*image->getWidth() + helpx); //converts coordinates into data indices
+			}
+	}
+}
+
+void AreaFilter::reset()
+{
+	edgepoints.clear();
+	cornerpointvector.clear();
+	updated = true;
 }
 
 const char* AreaFilter::getOptionName(int option) {
@@ -495,7 +521,7 @@ const char* AreaFilter::getOptionName(int option) {
 
 	switch(option) {
 	case 0:
-		OptionName = "Mode";
+		OptionName = "Enabled";
 		break;
 	default:
 		// leave OptionName empty
@@ -510,7 +536,7 @@ double AreaFilter::getOptionValue(int option) {
 
 	switch(option) {
 	case 0:
-		OptionValue = mode;
+		OptionValue = enabled;
 		break;
 	default:
 		// leave OptionValue = -1.0
@@ -522,13 +548,17 @@ double AreaFilter::getOptionValue(int option) {
 
 void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0: // mode: 0,1
-		if(overwrite) {
-			mode = (delta < 0) ? 0 : (delta > 1) ? 1 : delta;
-		} else {
-			mode += delta;
-			mode = (mode < 0) ? 0 : (mode > 1) ? 1 : mode;
-		}
+	case 0: 
+		enabled = (enabled + 1) % 2; //boolean value 
 		break;
 	}
+}
+
+void AreaFilter::draw( GLUTWindow* win )
+{ 
+	if(useIntensityImage) win->show( *image, 0, 0 ); 
+	else win->show( *shortimage, 0, 0 );
+	glColor4f(1,0,0,1);
+	for(std::vector<std::vector<Point*>>::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
+		win->drawPolygon( *it, 1, image->getHeight() );
 }

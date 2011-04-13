@@ -31,6 +31,7 @@ class TISCH_SHARED GLUTWindow {
 
 		void print( const std::string& text, int x, int y ) const;
 		void drawRectangleBackground( int x, int y, int size_x, int size_y, int border) const;
+		void drawPolygon( std::vector<Point*> points, bool invert = 0, int height = 0) const;
 		void title( const std::string& text ) const;
 
 		void clear( float red = 0.0, float green = 0.0, float blue = 0.0, float alpha = 0.0 );
