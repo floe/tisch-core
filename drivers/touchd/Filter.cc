@@ -483,7 +483,7 @@ void AreaFilter::processMouseButton( int button, int state, int x, int y )
 
 		if(cornerpointvector.empty()) return;
 
-		for(std::vector<std::vector<Point*>>::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
+		for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		{
 			if((*it).empty()) continue;
 			if(*((*it).begin()) != *((*it).end()-1)) (*it).push_back(*(*it).begin()); //copies the first point of a polygon to the end of its pointvector
@@ -559,6 +559,6 @@ void AreaFilter::draw( GLUTWindow* win )
 	if(useIntensityImage) win->show( *image, 0, 0 ); 
 	else win->show( *shortimage, 0, 0 );
 	glColor4f(1,0,0,1);
-	for(std::vector<std::vector<Point*>>::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
+	for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		win->drawPolygon( *it, 1, image->getHeight() );
 }

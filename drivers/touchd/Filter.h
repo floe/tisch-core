@@ -183,7 +183,7 @@ class AreaFilter: public Filter {
 		int enabled;
 		bool updated;
 		std::vector<int> edgepoints;
-		std::vector<std::vector<Point*>> cornerpointvector;
+		std::vector<std::vector<Point*> > cornerpointvector;
 		 
 };
 
