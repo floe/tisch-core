@@ -171,9 +171,11 @@ void keyb( unsigned char c, int, int ) {
 
 			// activate editing mode: overwrite non bool variables with user input
 			if(c == 'e') {
-				showHelp = 0;
-				userinput = "";
-				editvalue = 1; // boolean value
+				if(tmp->getOptionCount() > 0) {
+					showHelp = 0;
+					userinput = "";
+					editvalue = 1; // boolean value
+				}
 			}
 
 			// toggle Option with Tab

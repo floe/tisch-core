@@ -59,6 +59,8 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
 	useIntensityImage = 1;
+	// setting variables for Configurator
+	countOfOptions = 0; // quantity of variables that can be manipulated
 
 	#ifdef __linux
 		sourcetype = CAMERA_TYPE_V4L;
