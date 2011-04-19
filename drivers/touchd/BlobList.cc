@@ -309,11 +309,21 @@ double BlobList::getOptionValue(int option) {
 
 void BlobList::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0:
-		hflip = (hflip + 1) % 2; // boolean value
+	case 0: // hflip is a boolean value
+		if(overwrite) {
+			hflip = (delta == 0 ? 0 : (delta == 1 ? 1 : hflip));
+		} else {
+			hflip += delta;
+			hflip = (hflip < 0) ? 0 : (hflip > 1) ? 1 : hflip;
+		}
 		break;
-	case 1:
-		vflip = (vflip + 1) % 2; // boolean value
+	case 1: // vflip is a boolean value
+		if(overwrite) {
+			vflip = (delta == 0 ? 0 : (delta == 1 ? 1 : vflip));
+		} else {
+			vflip += delta;
+			vflip = (vflip < 0) ? 0 : (vflip > 1) ? 1 : vflip;
+		}
 		break;
 	case 2:
 		if(overwrite) {

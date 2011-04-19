@@ -90,11 +90,21 @@ double BGSubFilter::getOptionValue(int option) {
 
 void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0:
-		invert = (invert + 1) % 2; // boolean value
+	case 0: // invert is a boolean value
+		if(overwrite) {
+			invert = (delta == 0 ? 0 : (delta == 1 ? 1 : invert));
+		} else {
+			invert += delta;
+			invert = (invert < 0) ? 0 : (invert > 1) ? 1 : invert;
+		}
 		break;
-	case 1:
-		adaptive = (adaptive + 1) % 2; // boolean value
+	case 1: // adaptive is a boolean value
+		if(overwrite) {
+			adaptive = (delta == 0 ? 0 : (delta == 1 ? 1 : adaptive));
+		} else {
+			adaptive += delta;
+			adaptive = (adaptive < 0) ? 0 : (adaptive > 1) ? 1 : adaptive;
+		}
 		break;
 	}
 }
@@ -190,11 +200,21 @@ double FlipFilter::getOptionValue(int option) {
 
 void FlipFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0:
-		hflip = (hflip + 1) % 2; // boolean value
+	case 0: // hflip is a boolean value
+		if(overwrite) {
+			hflip = (delta == 0 ? 0 : (delta == 1 ? 1 : hflip));
+		} else {
+			hflip += delta;
+			hflip = (hflip < 0) ? 0 : (hflip > 1) ? 1 : hflip;
+		}
 		break;
-	case 1:
-		vflip = (vflip + 1) % 2; // boolean value
+	case 1: // vflip is a boolean value
+		if(overwrite) {
+			vflip = (delta == 0 ? 0 : (delta == 1 ? 1 : vflip));
+		} else {
+			vflip += delta;
+			vflip = (vflip < 0) ? 0 : (vflip > 1) ? 1 : vflip;
+		}
 		break;
 	}
 }
@@ -548,8 +568,13 @@ double AreaFilter::getOptionValue(int option) {
 
 void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0: 
-		enabled = (enabled + 1) % 2; //boolean value 
+	case 0: // enabled is a boolean value
+		if(overwrite) {
+			enabled = (delta == 0 ? 0 : (delta == 1 ? 1 : enabled));
+		} else {
+			enabled += delta;
+			enabled = (enabled < 0) ? 0 : (enabled > 1) ? 1 : enabled;
+		}
 		break;
 	}
 }
