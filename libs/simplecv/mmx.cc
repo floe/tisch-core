@@ -32,7 +32,7 @@
  
 #ifdef __x86_64__
 
-	#define STORAGE static
+	#define STORAGE 
 	#define ASMINIT "	pushq %%rbx\n"
 	#define ASMEXIT "	popq  %%rbx\n	emms\n"
 
