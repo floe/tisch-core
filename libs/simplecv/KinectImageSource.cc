@@ -133,13 +133,13 @@ void KinectImageSource::getImage( IntensityImage& target ) const {
 }
 
 void KinectImageSource::getImage( ShortImage& target ) const {
-	target = *depthbuf;
-	/*uint16_t* srce = (uint16_t*)depthbuf->getData();
+//	target = *depthbuf;
+	uint16_t* srce = (uint16_t*)depthbuf->getData();
 	uint16_t* targ = (uint16_t*)target.getData();
 	for (int i = 0; i < width*height; i++) {
 		// the depth sensor is actually 11 bits - 2047 == too near/too far
-		targ[i] = srce[i] << 5;
-	}*/
+		targ[i] = (2047 - srce[i]) << 5;
+	}
 }
 
 void KinectImageSource::getImage( RGBImage& target ) const {

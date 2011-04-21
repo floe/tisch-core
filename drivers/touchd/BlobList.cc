@@ -53,7 +53,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	//config->QueryIntAttribute( "TrailColor", &trail);
 
 	// setting variables for Configurator
-	countOfOptions = 5; // quantity of variables that can be manipulated
+	countOfOptions = 4; // quantity of variables that can be manipulated
 }
 
 BlobList::~BlobList() {
@@ -82,6 +82,11 @@ int BlobList::process() {
 
 	// clone the input image
 	*image = *(input->getImage());
+	if(!useIntensityImage) 
+	{
+		*shortimage = *(input->getShortImage());
+		shortimage->convert(*image);
+	}
 
 	// frame-local blob counter to differentiate between blobs
 	unsigned char value = 254;
@@ -270,9 +275,6 @@ const char* BlobList::getOptionName(int option) {
 	case 3:
 		OptionName = "Maximum Size";
 		break;
-	case 4:
-		OptionName = "Ignore Orphans";
-		break;
 	default:
 		// leave OptionName empty
 		break;
@@ -297,9 +299,6 @@ double BlobList::getOptionValue(int option) {
 	case 3:
 		OptionValue = maxsize;
 		break;
-	case 4:
-		OptionValue = ignore_orphans;
-		break;
 	default:
 		// leave OptionValue = -1.0
 		break;
@@ -308,24 +307,39 @@ double BlobList::getOptionValue(int option) {
 	return OptionValue;
 }
 
-void BlobList::modifyOptionValue(double delta) {
+void BlobList::modifyOptionValue(double delta, bool overwrite) {
 	switch(toggle) {
-	case 0:
-		hflip = (hflip + 1) % 2; // boolean value
+	case 0: // hflip is a boolean value
+		if(overwrite) {
+			hflip = (delta == 0 ? 0 : (delta == 1 ? 1 : hflip));
+		} else {
+			hflip += delta;
+			hflip = (hflip < 0) ? 0 : (hflip > 1) ? 1 : hflip;
+		}
 		break;
-	case 1:
-		vflip = (vflip + 1) % 2; // boolean value
+	case 1: // vflip is a boolean value
+		if(overwrite) {
+			vflip = (delta == 0 ? 0 : (delta == 1 ? 1 : vflip));
+		} else {
+			vflip += delta;
+			vflip = (vflip < 0) ? 0 : (vflip > 1) ? 1 : vflip;
+		}
 		break;
 	case 2:
-		minsize += delta;
-		minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
+		if(overwrite) {
+			minsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			minsize += delta;
+			minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
+		}
 		break;
 	case 3:
-		maxsize += delta;
-		maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
-		break;
-	case 4:
-		ignore_orphans = (ignore_orphans + 1) % 2; // boolean value
+		if(overwrite) {
+			maxsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			maxsize += delta;
+			maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
+		}
 		break;
 	}
 }

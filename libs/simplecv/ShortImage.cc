@@ -51,6 +51,16 @@ void ShortImage::update( const IntensityImage& img, const IntensityImage& mask )
 	#endif
 }
 
+void ShortImage::update( const ShortImage& img, const ShortImage& mask ) {
+//	#ifdef NOMMX
+		unsigned short* imgdata = img.getSData();
+		unsigned short* maskdata = mask.getSData();
+		for (int i = 0; i < count; i++)
+			if (maskdata[i] == 0) sdata[i] = sdata[i] - (sdata[i] >> 1) + (imgdata[i] >> 1);
+//	#else
+//		mmxupdate( img.getData(), mask.getData(), sdata, count );
+//	#endif
+}
 
 void ShortImage::subtract( const IntensityImage& source, IntensityImage& target, int invert ) {
 	#ifdef NOMMX
@@ -73,6 +83,29 @@ void ShortImage::subtract( const IntensityImage& source, IntensityImage& target,
 		else
 			mmxsubtract( source.getData(), sdata, target.getData(), count );
 	#endif
+}
+
+void ShortImage::subtract( const ShortImage& source, ShortImage& target, int invert ) {
+//	#ifdef NOMMX
+		int tmp;
+		unsigned short* sourcedata = source.getSData();
+		unsigned short* targetdata = target.getSData();
+		if (invert) 
+			for (int i = 0; i < count; i++) {
+				tmp = sdata[i] - sourcedata[i];
+				targetdata[i] = (unsigned short)((tmp > 0) ? ((tmp < 65535) ? tmp : 65535 ) : 0);
+			}
+		else
+			for (int i = 0; i < count; i++) {
+				tmp = (int)sourcedata[i] - sdata[i];
+				targetdata[i] = (unsigned short)((tmp > 0) ? ((tmp < 65535) ? tmp : 65535 ) : 0);
+			}
+//	#else
+//		if (invert)
+//			mmxsubtract( sdata, source.getData(), target.getData(), count );
+//		else
+//			mmxsubtract( source.getData(), sdata, target.getData(), count );
+//	#endif
 }
 
 
@@ -108,5 +141,84 @@ void ShortImage::undistort( Vector scale, Vector delta, double coeff[5], ShortIm
 
 		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y ) );
 	}
+}
+
+int ShortImage::threshold( unsigned short value, ShortImage& target , unsigned short minvalue ) const {
+//	#ifndef NOMMX
+	//	mmxthreshold( data, target.data, size, value, minvalue );
+//		return 0;
+//	#else
+		unsigned short tmp;
+		int hits = 0;
+		for (int i = 0; i < count; i++) {
+			tmp = ((sdata[i] > value) && (sdata[i] <= minvalue)) ? 65535 : 0;
+			if (tmp) hits++;
+			target.sdata[i] = tmp;
+		}
+		return hits;
+//	#endif
+}
+
+void ShortImage::despeckle( ShortImage& target, unsigned char threshold ) const {
+/*	#ifndef NOMMX
+		memset( target.data, 0, width );
+		memset( target.data+(width*(height-1)), 0, width );
+		for (int j = 0; j < width-7; j+=6) mmxdespeckle( data+j, target.data+j, height, width, threshold );
+		mmxdespeckle( data+width-7, target.data+width-7, height, width, threshold );
+	#else*/
+		int neighbor[] = { -width-1, -width, -width+1, -1, 0, +1, width-1, width, width+1 };
+		int sum;
+		target.clear();
+		for (int i = width+1; i < count-width-1; i++) {
+			sum = 0;
+			for (int j = 0; j < 9; j++) if (sdata[i+neighbor[j]]) sum++;
+			target.sdata[i] = (sum >= threshold) ? 65535 : 0;
+		}
+//	#endif
+}
+
+void ShortImage::lowpass( ShortImage& target, unsigned char range, unsigned char mode ) const {
+	int sum;
+	target.clear();
+	if(mode == 0) //horizontal
+	{
+		for (int i = range; i < count-range; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) if (sdata[i+j]) sum++;
+			target.sdata[i] = (sum == 2*range + 1) ? 65535 : 0;
+		}
+	}
+	else if (mode == 1) //vertical
+	{
+		for (int i = range*width; i < count-range*width; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) if (sdata[i+j*width]) sum++;
+			target.sdata[i] = (sum == 2*range + 1) ? 65535 : 0;
+		}
+	}
+	else if (mode == 2) //horizontal + vertical
+	{
+		for (int i = range*width + range; i < count-range*width - range; i++) 
+		{
+			sum = 0;
+			for (int j = -range; j <= range; j++) {
+				if (sdata[i+j]) sum++; 
+				if (sdata[i+j*width]) sum++;
+			}
+			target.sdata[i] = (sum == 4*range + 2) ? 65535 : 0;
+		}
+	}
+}
+
+void ShortImage::areamask( ShortImage& target, std::vector<int> edgepoints) const
+{
+	if( edgepoints.empty() )
+		memcpy(target.sdata,sdata,width*height*sizeof(unsigned short));
+	else
+		memset(target.sdata, 0, width*height*sizeof(unsigned short));
+		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it = it + 2)
+			memcpy((target.sdata +  (*it)), (sdata + (*it)), (*(it+1) - *it)*2); 
 }
 

@@ -3,6 +3,7 @@
 #include <BasicBlob.h>
 #include <TUIOOutStream.h>
 #include <tisch.h>
+#include <vector>
 
 #include <linux/input.h>
 
@@ -22,9 +23,13 @@
 #define test_bit(bit, array)	((array[LONG(bit)] >> OFF(bit)) & 1)
 
 
-BasicBlob blobs[1024];
-int blobcount = 0;
-int framenum = 0;
+BasicBlob current;
+std::vector<BasicBlob> b1,b2;
+std::vector<BasicBlob>* blobs = &b1;
+std::vector<BasicBlob>* oldblobs = &b2;
+
+//int blobcount = 0;
+//int framenum = 0;
 int blobid = 0;
 
 TUIOOutStream output( TISCH_TUIO1 | TISCH_TUIO2 );
@@ -94,35 +99,42 @@ int main (int argc, char *argv[]) {
 				
 				if (ev[i].code) { // config sync
 
-					output << blobs[blobcount];
-					blobcount++;
+					double mindist = 0.05;
+					for (std::vector<BasicBlob>::iterator it = oldblobs->begin(); it != oldblobs->end(); it++) {
+						double dist = (it->pos - current.pos).length();
+						if (dist < mindist) { mindist = dist; current.id = it->id; }
+					}
+
+					blobs->push_back(current);
+					output << current;
 
 				} else { // report sync
 
 					output.send();
 					output.start();
-					blobcount = 0;
 
+					std::swap(blobs,oldblobs);
+					blobs->clear();
 				}
 
 			} else if (ev[i].type == EV_ABS) {
 
-				blobs[blobcount].id   = 2*blobcount+1;
-				blobs[blobcount].type = INPUT_TYPE_FINGER;
+				current.id   = blobid++;
+				current.type = INPUT_TYPE_FINGER;
 
 				if (ev[i].code == ABS_MT_POSITION_X) {
 					double tx = ev[i].value / maxx;
-					blobs[blobcount].pos.x  = tx;
-					blobs[blobcount].peak.x = tx;
+					current.pos.x  = tx;
+					current.peak.x = tx;
 				}
 
 				if (ev[i].code == ABS_MT_POSITION_Y) {
 					double ty = (1.0 - (ev[i].value / maxy));
-					blobs[blobcount].pos.y  = ty;
-					blobs[blobcount].peak.y = ty;
+					current.pos.y  = ty;
+					current.peak.y = ty;
 				}
 
-			}	
+			}
 
 		fflush(stdout);
 

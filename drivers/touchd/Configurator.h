@@ -20,22 +20,16 @@ class Configurator {
 public:
 	Configurator(GLUTWindow* targetWindow, Filter* currentFilter);
 	virtual ~Configurator();
-	virtual void updateCurrentFilter(Filter* currentFilter);
-	virtual void showInfo();
-	//virtual void toggleOption();
-	//virtual void increaseValue();
-	//virtual void decreaseValue();
-	//virtual void activateFirstOption();
+	void updateCurrentFilter(Filter* currentFilter);
+	void showInfo();
+	void showHelp();
+	void showEditInfo();
 
 protected:
 	GLUTWindow* win;
 	Filter* filter;
-	//ThreshFilter *myThreshFilter;
-	//int *p_currentOption;
-
-	//int toggle;
-	//int numberOfOptions;
 
 };
 
 #endif // _CONFIGURATOR_H_
+

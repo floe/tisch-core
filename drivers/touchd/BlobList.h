@@ -35,7 +35,7 @@ class BlobList: public Filter {
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta);
+		virtual void modifyOptionValue(double delta, bool overwrite);
 
 	protected:
 

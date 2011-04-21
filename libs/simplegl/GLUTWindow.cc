@@ -151,14 +151,14 @@ void GLUTWindow::show( const IntensityImage& img, int x, int y ) const {
 }
 
 void GLUTWindow::show( const ShortImage& img, int x, int y ) const {
-#ifndef TISCH_IPHONE
-	typedef Texture<GL_TEXTURE_RECTANGLE_ARB,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_SHORT> ShortGreyTex;
-	static ShortGreyTex* mytex = new ShortGreyTex( img.getWidth(), img.getHeight() );
-	mytex->load( img.getData(), GL_LUMINANCE, GL_UNSIGNED_SHORT );
+//#ifndef TISCH_IPHONE
+//	typedef Texture<GL_TEXTURE_RECTANGLE_ARB,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_SHORT> ShortGreyTex;
+	static ShortGreyTexture* mytex = new ShortGreyTexture( img.getWidth(), img.getHeight() );
+	mytex->load( &img ); //img.getData(), GL_LUMINANCE, GL_UNSIGNED_SHORT );
 	mytex->bind();
 	mytex->render();
 	mytex->release();
-#endif
+//#endif
 }
 
 
@@ -192,6 +192,31 @@ void GLUTWindow::print( const std::string& text, int x, int y ) const {
 	// restore zoom
 	glPixelZoom( zoom[0], zoom[1] );
 #endif
+}
+
+void GLUTWindow::drawRectangleBackground( int x, int y, int size_x, int size_y, int border) const {
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix();
+	// 0/0 is in upper left corner
+	glTranslatef( 0, 0, 500 ); // 500 = 0.5 in Texture::render()
+	glRecti(x-border, height-y+border, x + size_x+border, height - (y + size_y+border));
+	glPopMatrix();
+}
+
+void GLUTWindow::drawPolygon( std::vector<Point*> points, bool invert, int height) const
+{
+	glMatrixMode( GL_MODELVIEW );
+	glPushMatrix();
+	glTranslatef( 0, 0, 500 ); // 500 = 0.5 in Texture::render()
+	glBegin(GL_LINE_STRIP);
+		if( invert )
+			for(std::vector<Point*>::iterator it = points.begin(); it != points.end(); it++)
+				glVertex2f( (*it)->x, height - (*it)->y );
+		else
+			for(std::vector<Point*>::iterator it = points.begin(); it != points.end(); it++)
+				glVertex2f( (*it)->x, (*it)->y );
+	glEnd();
+	glPopMatrix();
 }
 
 void GLUTWindow::title( const std::string& text ) const {

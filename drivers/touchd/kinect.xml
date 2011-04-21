@@ -1,23 +1,26 @@
 <!-- libTISCH 2.0 touchd example config file -->
-<Camera SourceType=5 Width=640 Height=480 FPS=30 Verbose=0>
+<Camera SourceType=5 UseIntensityImage=0 Width=640 Height=480 FPS=30 Verbose=0>
 	
 	<FlipFilter>
-		<BGSubFilter Invert=0 Adaptive=0>
-			<ThreshFilter UpperThreshold=1 LowerThreshold=0>
+		<AreaFilter Enabled=1>
+		<BGSubFilter Invert=0 Adaptive=0>-->
+		
+			<ThreshFilter UpperThreshold=8 LowerThreshold=2>
 				<LowpassFilter Mode=2 Range=1>
-				<!--	<SpeckleFilter NoiseLevel=7>-->
-						<BlobFilter IgnoreOrphans=1 MinSize=50 MaxSize=200 PeakMode=-1 VFlip=1 Type=1/>
-				<!--	</SpeckleFilter>-->
+<!--					<SpeckleFilter NoiseLevel=7>-->
+						<BlobFilter IgnoreOrphans=1 MinSize=50 MaxSize=300 PeakMode=-1 VFlip=1 Type=1/>
+<!--					</SpeckleFilter>-->
 				</LowpassFilter>
 			</ThreshFilter>
-			
+<!--			
 			<ThreshFilter UpperThreshold=60 LowerThreshold=0>
 				<SpeckleFilter NoiseLevel=7>
 					<BlobFilter MinSize=1500 PeakMode=-1 VFlip=1 Type=100/>
 				</SpeckleFilter>
 			</ThreshFilter>
-		</BGSubFilter>
-	</FlipFilter> 
+-->		</BGSubFilter>
+		</AreaFilter>
+	</FlipFilter>
 
 </Camera>
 

@@ -27,6 +27,9 @@ int startup = 1;
 GLUTWindow* win = 0;
 Filter* tmp = 0;
 Configurator* configure = 0;
+int showHelp = 0;
+int editvalue = 0;
+std::string userinput = "";
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
@@ -77,12 +80,27 @@ void disp() {
 	win->print( std::string("showing filter: ") + name, 10, 10 );
 
 	// display data of configurator
-	if(configure != 0){
+	if(configure != 0) {
 
 		configure->showInfo();
+
+		if(showHelp == 1) {
+			configure->showHelp();
+		}
+
+		if(editvalue == 1) {
+			configure->showEditInfo();
+		}
 	}
 
 	win->swap();
+}
+
+void mouse( int button, int state, int x, int y )
+{
+	double imagex = ((double)x / win->getWidth()) * (tmp->getImage())->getWidth();
+	double imagey = ((double)y / win->getHeight()) * (tmp->getImage())->getHeight();
+	tmp->processMouseButton( button, state, imagex, imagey );
 }
 
 // TODO: better keyboard functionality (adjust filter params)
@@ -91,57 +109,99 @@ void keyb( unsigned char c, int, int ) {
 	if (c == 'q') cleanup( 0 );
 	if (c == ' ') mypipe->reset();
 
-	if ((c >= '0') && (c <= '9')) {
-		c = c - '0';
-		if (c < mypipe->size()){
-			tmp = (*mypipe)[c];
-			if(configure != 0) {
-				configure->updateCurrentFilter(tmp);
+	// switching to editing mode
+	if (editvalue == 1 && configure != 0) {
+
+		// quit edit mode without applying changes
+		if(c == 'e') {
+			editvalue = 0;
+		}
+
+		// Enter finishes Input
+		if (c == 0x0D) {
+			// parse input to double, 0.0 if a double couldn't be read
+			double result = atof(userinput.c_str());
+			// apply new value
+			tmp->modifyOptionValue(result, true);
+			std::cout << "input was: " << result << std::endl;
+			editvalue = 0; // close editing mode
+		} else {
+			userinput += c;
+		}
+
+	} else { // processing keyboard entries as usual
+	// switching filters
+		if ((c >= '0') && (c <= '9')) {
+			c = c - '0';
+			if (c < mypipe->size()){
+				tmp = (*mypipe)[c];
+				if(configure != 0) {
+					configure->updateCurrentFilter(tmp);
+				}
 			}
 		}
-	}
 
-	// switch configurator on/off
-	if(c == 'c'){
-		if (configure == 0)
-			configure = new Configurator(win, tmp);
-		else{
-			delete configure; // free memory, also calls destructor
-			configure = 0;
-		}
-	}
-
-	// adjust values
-	if(configure != 0) {
-		// increase
-		if(c == 'i'){
-			tmp->modifyOptionValue(1.0);
+		// switch configurator on/off
+		if(c == 'c'){
+			if (configure == 0)
+				configure = new Configurator(win, tmp);
+			else{
+				delete configure; // free memory, also calls destructor
+				showHelp = 0;
+				configure = 0;
+			}
 		}
 
-		// decrease
-		if(c == 'd') {
-			tmp->modifyOptionValue(-1.0);
+		// adjust values
+		if(configure != 0) {
+			// show/hide help
+			if(c == 'h') {
+				showHelp = (showHelp + 1) % 2; // boolean value
+			}
+
+			// increase value
+			if(c == 'i') {
+				tmp->modifyOptionValue(1.0, false);
+			}
+
+			// decrease value
+			if(c == 'd') {
+				tmp->modifyOptionValue(-1.0, false);
+			}
+
+			// activate editing mode: overwrite non bool variables with user input
+			if(c == 'e') {
+				if(tmp->getOptionCount() > 0) {
+					showHelp = 0;
+					userinput = "";
+					editvalue = 1; // boolean value
+				}
+			}
+
+			// toggle Option with Tab
+			if(c == 0x09) {
+				tmp->nextOption();
+			}
+
+			//reset filter
+			if(c == 'r') {
+				tmp->reset();
+			}
 		}
 
-		// toggle Option with Tab
-		if(c == 0x09) {
-			tmp->nextOption();
+		if (c == 'x') {
+			if( angle > -30 ) angle--;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+		}
+		if (c == 'w') {
+			if( angle < 30 ) angle++;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+		}
+		if (c == 's') {
+			angle = 0;
+			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
 		}
 	}
-
-	if (c == 'x') {
-		if( angle > -30 ) angle--; 
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	if (c == 'w') {
-		if( angle < 30 ) angle++;
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	if (c == 's') {
-		angle = 0;
-		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-	}
-	
 	glutPostRedisplay();
 }
 
@@ -221,7 +281,9 @@ int main( int argc, char* argv[] ) {
 		glutIdleFunc(idle);
 		glutDisplayFunc(disp);
 		glutKeyboardFunc(keyb);
+		glutMouseFunc(mouse);
 		win->run();
 	}
 }
+
 

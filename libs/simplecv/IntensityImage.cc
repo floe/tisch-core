@@ -350,6 +350,15 @@ void IntensityImage::houghLine( IntensityImage& target ) const {
 	delete[] accu;
 }
 
+void IntensityImage::areamask( IntensityImage& target, std::vector<int> edgepoints) const
+{
+	if( edgepoints.empty() )
+		memcpy(target.data,data,width*height*sizeof(unsigned short));
+	else
+		memset(target.data, 0, width*height*sizeof(unsigned short));
+		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it = it + 2)
+			memcpy((target.data +  (*it)), (data + (*it)), (*(it+1) - *it)*2); 
+}
 
 void IntensityImage::gradient( char* xgrad, char* ygrad ) {
 

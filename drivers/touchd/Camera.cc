@@ -58,6 +58,9 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	// generic low-end default settings
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
+	useIntensityImage = 1;
+	// setting variables for Configurator
+	countOfOptions = 0; // quantity of variables that can be manipulated
 
 	#ifdef __linux
 		sourcetype = CAMERA_TYPE_V4L;
@@ -70,6 +73,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	// try to read settings from XML
 	config->QueryIntAttribute   ( "SourceType", &sourcetype );
 	config->QueryStringAttribute( "SourcePath", &sourcepath );
+	config->QueryIntAttribute	( "UseIntensityImage", &useIntensityImage );
 
 	config->QueryIntAttribute   ( "FlashMode",  &flashmode );
 	config->QueryStringAttribute( "FlashPath",  &flashpath );
@@ -86,6 +90,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 
 	// create image buffer
 	image = new IntensityImage( width, height, shmid, 1 );
+	shortimage = new ShortImage( width, height );
 
 	#ifdef HAS_DIRECTSHOW
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
@@ -198,7 +203,10 @@ int Camera::process() {
 	if (!res) cam->acquire();
 
 	// retrieve image, release buffer and return
-	cam->getImage( *image );
+	if(useIntensityImage) cam->getImage( *image );
+#ifdef HAS_FREENECT
+	else ((KinectImageSource*)cam)->getImage( *shortimage );
+#endif
 	cam->release();
 
 	return 0;
