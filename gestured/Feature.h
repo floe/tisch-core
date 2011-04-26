@@ -54,9 +54,9 @@ template< class Value > class Feature: public FeatureBase {
 
 		Value result() { return m_result; }
 
-		void bounds( std::vector<Value>& _bounds ) { // load a feature template 
+		std::vector<Value>& bounds( ) { // load a feature template 
 			has_result = 0;
-			m_bounds = _bounds;
+			return m_bounds;
 		}
 
 		// if this is a multi-match feature, overwrite to advance to the next match
@@ -72,15 +72,21 @@ template< class Value > class Feature: public FeatureBase {
 		virtual const char* name() const = 0;
 
 		void serialize( std::ostream& s ) {
-			s << name() << " ";
-			s << has_result << " ";
-			s << typeflags << " ";
-			s << m_result << " ";
-			s << m_bounds.size() << " ";
+			s << "{\n\"type\":\"" << name() << "\",\n";
+			//s << has_result << " ";
+			s << "\"filters\":" << typeflags << ",\n";
+			s << "\"constraints\":[";
 			if (!has_result) {
-				typename std::vector<Value>::iterator it = m_bounds.begin();
-				for ( ; it != m_bounds.end(); it++ ) s << *it << " ";
+				int size = m_bounds.size();
+				for (int i = 0; i < size; i++ ) { 
+					s << m_bounds[i];
+					if (i < size-1) s << ",";
+				}
 			}
+			s << "],\n";
+			s << "\"result\":";
+			if (has_result) s << m_result; else s << "[]";
+			s << "\n}";
 		}
 
 		void unserialize( std::istream& s ) {

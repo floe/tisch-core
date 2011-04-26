@@ -30,7 +30,7 @@ class TISCH_SHARED Gesture: public std::vector< SmartPtr<FeatureBase> > {
 
 	public:
 
-		Gesture( ) { }
+		Gesture( ): m_flags( 0 ) { }
 		Gesture( std::string _name, int _flags = 0 ): m_name(_name), m_flags(_flags) { }
 
 		void load( InputState& state );

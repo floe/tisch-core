@@ -58,13 +58,17 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 }
 
 std::ostream& operator<< ( std::ostream& s, Gesture& g ) {
-	s << g.m_name << " " << g.m_flags << " " << g.size() << " ";
+	s << "{\n\"name\":\"" << g.m_name << "\",\n";
+	s << "\"flags\":" << g.m_flags << ",\n";
+	s << "\"features\":[\n";
 	std::vector< SmartPtr<FeatureBase> >::iterator pos = g.begin();
 	std::vector< SmartPtr<FeatureBase> >::iterator end = g.end();
-	for ( ; pos != end; pos++ ) { 
-		(*pos)->serialize( s );
-		s << " ";
+	int size = g.size();
+	for (int i = 0; i < size; i++) { 
+		g[i]->serialize( s );
+		if (i < size-1) s << ",";
 	}
+	s << "]}\n";
 	return s;
 }
 
