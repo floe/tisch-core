@@ -8,6 +8,7 @@
 #include "Factory.h"
 
 #include <sstream>
+#include <string.h>
 
 typedef std::map<std::string,std::string> DefaultMap;
 
@@ -22,29 +23,39 @@ DefaultMap& g_defaults() {
 
 std::istream& operator>> ( std::istream& s, Gesture& g ) {
 
-	int count = 0;
-
-	s >> g.m_name >> g.m_flags >> count;
-
+	char name[1024];
+	if (s.peek() != '{') throw std::runtime_error("{"); s.ignore(1); 
+	s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"name\"") != name) throw std::runtime_error(name);
+	s >> std::ws; s.getline(name,sizeof(name),','); g.m_name.assign(name+1,strlen(name)-2);
+	s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"flags\"") != name) throw std::runtime_error(name);
+	s >> g.m_flags; s.ignore(1);
+	s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"features\"") != name) throw std::runtime_error(name); s.ignore(1);
+	
 	// an empty gesture doesn't really make sense, so
 	// let's see if we can find a default definition..
-	if (count == 0) {
+	if (s.peek() == ']') {
 		DefaultMap::iterator it = g_defaults().find( g.m_name );
 		if (it != g_defaults().end()) {
 			std::istringstream tmp( it->second );
 			tmp >> g;
+			s.ignore(2);
 			return s;
 		}
 	}
 
 	// read features
-	while (count > 0) {
-		count--;
-		std::string name; s >> name;
-		FeatureBase* res = createFeature( name );
-		if (!res) continue;
-		res->unserialize( s );
-		g.push_back( res );
+	while (s.peek() != ']') {
+		std::string fname;
+		s >> std::ws; s.ignore(1);
+		s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"type\"") != name) throw std::runtime_error(std::string("\\")+name+std::string("\\"));
+		s >> std::ws; s.getline(name,sizeof(name),','); fname.assign(name+1,strlen(name)-2);
+		FeatureBase* res = createFeature( fname );
+		if (res) {
+			res->unserialize( s );
+			g.push_back( res );
+		} 
+		s >> std::ws;
+		if (s.peek() == ',') s.ignore(1);
 	}
 	
 	// if this gesture is a default definition, store it

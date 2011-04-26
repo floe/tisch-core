@@ -7,6 +7,7 @@
 #ifndef _FEATURE_H_
 #define _FEATURE_H_
 
+#include <stdexcept>
 #include <iostream>
 #include <typeinfo>
 #include <string>
@@ -90,16 +91,29 @@ template< class Value > class Feature: public FeatureBase {
 		}
 
 		void unserialize( std::istream& s ) {
-			int count = 0;
-			s >> has_result;
-			s >> typeflags;
-			s >> m_result;
-			s >> count;
-			if (!has_result) while (count > 0) {
+			char name[1024];
+			s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"filters\"")     != name) throw std::runtime_error(name);
+			s >> typeflags; s.ignore(1);
+			s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"constraints\"") != name) throw std::runtime_error(name);
+			s.ignore(1);
+			while (s.peek() != ']') {
 				Value tmp;
 				s >> tmp;
 				m_bounds.push_back(tmp);
-				count--;
+				if (s.peek() == ',') s.ignore(1);
+			}
+			s.ignore(2);
+			s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"result\"") != name) throw std::runtime_error(name);
+			if (s.peek() != '[') {
+				s >> m_result;
+				has_result = 1;
+				s >> std::ws;
+				s.ignore(1);
+			} else {
+				has_result = 0;
+				s.ignore(2);
+				s >> std::ws;
+				s.ignore(1);
 			}
 		}
 
