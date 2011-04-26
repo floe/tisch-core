@@ -89,7 +89,7 @@ namespace osc {
 
 %template(mapIntBlobHistory) std::map<int,BlobHistory>;
 %template(vectorBlobState) std::vector<BlobState>;
-%include ../../gestured/InputState.h
+%include ../../gispl/InputState.h
 
 /* very obscure snippet to make pointer containers play with Python */
 #ifdef SWIGPYTHON
@@ -105,18 +105,18 @@ namespace osc {
 /* enable directors (two-way cross-language polymorphism) for FeatureBase */
 %feature("director") FeatureBase;
 
-%include ../../gestured/Feature.h
+%include ../../gispl/Feature.h
 
 
-%include ../../gestured/Factory.h
+%include ../../gispl/Factory.h
 %template(mapStringFeatureBaseP) std::map<std::string,FeatureBase*>;
 %template(smartPtrFeatureBase) SmartPtr<FeatureBase>;
 %template(vectorSmartPtrFeatureBase) std::vector< SmartPtr< FeatureBase > >;
 
-%include ../../gestured/Gesture.h
+%include ../../gispl/Gesture.h
 %template(vectorGesture) std::vector<Gesture>;
 
-%include ../../gestured/Region.h
+%include ../../gispl/Region.h
 
 
 %template(FeatureInt) Feature<int>;
@@ -127,7 +127,7 @@ namespace osc {
 };
 
 %template(vectorInt) std::vector<int>;
-%include ../../gestured/features/BlobCount.h
+%include ../../gispl/features/BlobCount.h
 %extend BlobCount {
   static BlobCount* dynamic_cast(FeatureBase* base) {
     return dynamic_cast<BlobCount*>(base);
@@ -142,14 +142,14 @@ namespace osc {
 };
 
 %template(vectorDimensions) std::vector<Dimensions>;
-%include ../../gestured/features/BlobDim.h
+%include ../../gispl/features/BlobDim.h
 %extend BlobDim {
     static BlobDim* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<BlobDim*>(base);
     }
 };
 
-%include ../../gestured/features/BlobID.h
+%include ../../gispl/features/BlobID.h
 %extend BlobID {
     static BlobID* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<BlobID*>(base);
@@ -163,14 +163,14 @@ namespace osc {
   }
 };
 
-%include ../../gestured/features/BlobPos.h
+%include ../../gispl/features/BlobPos.h
 %extend BlobPos {
     static BlobPos* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<BlobPos*>(base);
     }
 };
 
-%include ../../gestured/features/BlobGroup.h
+%include ../../gispl/features/BlobGroup.h
 %extend BlobGroup {
     static BlobGroup* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<BlobGroup*>(base);
@@ -185,35 +185,35 @@ namespace osc {
 };
 
 %template(vectorDouble) std::vector<double>;
-%include ../../gestured/features/Motion.h
+%include ../../gispl/features/Motion.h
 %extend Motion {
     static Motion* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<Motion*>(base);
     }
 };
 
-%include ../../gestured/features/Rotation.h
+%include ../../gispl/features/Rotation.h
 %extend Rotation {
     static Rotation* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<Rotation*>(base);
     }
 };
 
-%include ../../gestured/features/MultiBlobRotation.h
+%include ../../gispl/features/MultiBlobRotation.h
 %extend MultiBlobRotation {
     static MultiBlobRotation* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<MultiBlobRotation*>(base);
     }
 };
 
-%include ../../gestured/features/Scale.h
+%include ../../gispl/features/Scale.h
 %extend Scale {
     static Scale* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<Scale*>(base);
     }
 };
 
-%include ../../gestured/features/MultiBlobScale.h
+%include ../../gispl/features/MultiBlobScale.h
 %extend MultiBlobScale {
     static MultiBlobScale* dynamic_cast(FeatureBase *base) {
         return dynamic_cast<MultiBlobScale*>(base);

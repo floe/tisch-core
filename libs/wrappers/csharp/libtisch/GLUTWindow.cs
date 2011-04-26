@@ -68,6 +68,26 @@ public class GLUTWindow : IDisposable {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void drawRectangleBackground(int x, int y, int size_x, int size_y, int border) {
+    libtischPINVOKE.GLUTWindow_drawRectangleBackground(swigCPtr, x, y, size_x, size_y, border);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points, bool invert, int height) {
+    libtischPINVOKE.GLUTWindow_drawPolygon__SWIG_0(swigCPtr, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points), invert, height);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points, bool invert) {
+    libtischPINVOKE.GLUTWindow_drawPolygon__SWIG_1(swigCPtr, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points), invert);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points) {
+    libtischPINVOKE.GLUTWindow_drawPolygon__SWIG_2(swigCPtr, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points));
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public void title(string text) {
     libtischPINVOKE.GLUTWindow_title(swigCPtr, text);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

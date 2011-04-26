@@ -39,8 +39,8 @@ public class FeatureInt extends FeatureBase {
     return libtischJNI.FeatureInt_result(swigCPtr, this);
   }
 
-  public void bounds(vectorInt _bounds) {
-    libtischJNI.FeatureInt_bounds(swigCPtr, this, vectorInt.getCPtr(_bounds), _bounds);
+  public vectorInt bounds() {
+    return new vectorInt(libtischJNI.FeatureInt_bounds(swigCPtr, this), false);
   }
 
   public int next() {

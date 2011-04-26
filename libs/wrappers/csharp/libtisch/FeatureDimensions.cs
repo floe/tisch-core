@@ -45,9 +45,10 @@ public class FeatureDimensions : FeatureBase {
     return ret;
   }
 
-  public void bounds(vectorDimensions _bounds) {
-    libtischPINVOKE.FeatureDimensions_bounds(swigCPtr, vectorDimensions.getCPtr(_bounds));
+  public vectorDimensions bounds() {
+    vectorDimensions ret = new vectorDimensions(libtischPINVOKE.FeatureDimensions_bounds(swigCPtr), false);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override int next() {

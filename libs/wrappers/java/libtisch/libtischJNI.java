@@ -263,7 +263,7 @@ class libtischJNI {
   public final static native void delete_StateRegion(long jarg1);
   public final static native void delete_FeatureInt(long jarg1);
   public final static native int FeatureInt_result(long jarg1, FeatureInt jarg1_);
-  public final static native void FeatureInt_bounds(long jarg1, FeatureInt jarg1_, long jarg2, vectorInt jarg2_);
+  public final static native long FeatureInt_bounds(long jarg1, FeatureInt jarg1_);
   public final static native int FeatureInt_next(long jarg1, FeatureInt jarg1_);
   public final static native void FeatureInt_load(long jarg1, FeatureInt jarg1_, long jarg2, InputState jarg2_);
   public final static native String FeatureInt_name(long jarg1, FeatureInt jarg1_);
@@ -289,7 +289,7 @@ class libtischJNI {
   public final static native long BlobCount_dynamic_cast(long jarg1, FeatureBase jarg1_);
   public final static native void delete_FeatureDimensions(long jarg1);
   public final static native long FeatureDimensions_result(long jarg1, FeatureDimensions jarg1_);
-  public final static native void FeatureDimensions_bounds(long jarg1, FeatureDimensions jarg1_, long jarg2, vectorDimensions jarg2_);
+  public final static native long FeatureDimensions_bounds(long jarg1, FeatureDimensions jarg1_);
   public final static native int FeatureDimensions_next(long jarg1, FeatureDimensions jarg1_);
   public final static native void FeatureDimensions_load(long jarg1, FeatureDimensions jarg1_, long jarg2, InputState jarg2_);
   public final static native String FeatureDimensions_name(long jarg1, FeatureDimensions jarg1_);
@@ -337,7 +337,7 @@ class libtischJNI {
   public final static native long BlobID_dynamic_cast(long jarg1, FeatureBase jarg1_);
   public final static native void delete_FeatureVector(long jarg1);
   public final static native long FeatureVector_result(long jarg1, FeatureVector jarg1_);
-  public final static native void FeatureVector_bounds(long jarg1, FeatureVector jarg1_, long jarg2, vectorVector jarg2_);
+  public final static native long FeatureVector_bounds(long jarg1, FeatureVector jarg1_);
   public final static native int FeatureVector_next(long jarg1, FeatureVector jarg1_);
   public final static native void FeatureVector_load(long jarg1, FeatureVector jarg1_, long jarg2, InputState jarg2_);
   public final static native String FeatureVector_name(long jarg1, FeatureVector jarg1_);
@@ -364,7 +364,7 @@ class libtischJNI {
   public final static native long BlobGroup_dynamic_cast(long jarg1, FeatureBase jarg1_);
   public final static native void delete_FeatureDouble(long jarg1);
   public final static native double FeatureDouble_result(long jarg1, FeatureDouble jarg1_);
-  public final static native void FeatureDouble_bounds(long jarg1, FeatureDouble jarg1_, long jarg2, vectorDouble jarg2_);
+  public final static native long FeatureDouble_bounds(long jarg1, FeatureDouble jarg1_);
   public final static native int FeatureDouble_next(long jarg1, FeatureDouble jarg1_);
   public final static native void FeatureDouble_load(long jarg1, FeatureDouble jarg1_, long jarg2, InputState jarg2_);
   public final static native String FeatureDouble_name(long jarg1, FeatureDouble jarg1_);
@@ -4114,6 +4114,10 @@ class libtischJNI {
   public final static native void GLUTWindow_show__SWIG_1(long jarg1, GLUTWindow jarg1_, long jarg2, int jarg3, int jarg4);
   public final static native void GLUTWindow_show__SWIG_2(long jarg1, GLUTWindow jarg1_, long jarg2, int jarg3, int jarg4);
   public final static native void GLUTWindow_print(long jarg1, GLUTWindow jarg1_, String jarg2, int jarg3, int jarg4);
+  public final static native void GLUTWindow_drawRectangleBackground(long jarg1, GLUTWindow jarg1_, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6);
+  public final static native void GLUTWindow_drawPolygon__SWIG_0(long jarg1, GLUTWindow jarg1_, long jarg2, boolean jarg3, int jarg4);
+  public final static native void GLUTWindow_drawPolygon__SWIG_1(long jarg1, GLUTWindow jarg1_, long jarg2, boolean jarg3);
+  public final static native void GLUTWindow_drawPolygon__SWIG_2(long jarg1, GLUTWindow jarg1_, long jarg2);
   public final static native void GLUTWindow_title(long jarg1, GLUTWindow jarg1_, String jarg2);
   public final static native void GLUTWindow_clear__SWIG_0(long jarg1, GLUTWindow jarg1_, float jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void GLUTWindow_clear__SWIG_1(long jarg1, GLUTWindow jarg1_, float jarg2, float jarg3, float jarg4);
@@ -4156,6 +4160,7 @@ class libtischJNI {
   public final static native void RGBATexture_load__SWIG_1(long jarg1, RGBATexture jarg1_, String jarg2);
   public final static native void RGBATexture_load__SWIG_2(long jarg1, RGBATexture jarg1_, long jarg2);
   public final static native void RGBATexture_load__SWIG_3(long jarg1, RGBATexture jarg1_, long jarg2);
+  public final static native void RGBATexture_load__SWIG_4(long jarg1, RGBATexture jarg1_, long jarg2);
   public final static native void RGBATexture_read(long jarg1, RGBATexture jarg1_, long jarg2);
 
   static java.util.HashSet<Object> refstore;

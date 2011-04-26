@@ -9091,29 +9091,26 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_FeatureInt_1result(JNIEnv *jen
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureInt_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureInt_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
-  std::vector< int > *arg2 = 0 ;
+  std::vector< int > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(Feature< int > **)&jarg1; 
-  arg2 = *(std::vector< int > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int > & reference is null");
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< int > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  *(std::vector< int > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -9691,29 +9688,26 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureDimensions_1result(JNI
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureDimensions_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureDimensions_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Feature< Dimensions > *arg1 = (Feature< Dimensions > *) 0 ;
-  std::vector< Dimensions > *arg2 = 0 ;
+  std::vector< Dimensions > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(Feature< Dimensions > **)&jarg1; 
-  arg2 = *(std::vector< Dimensions > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< Dimensions > & reference is null");
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< Dimensions > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  *(std::vector< Dimensions > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -10719,29 +10713,26 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureVector_1result(JNIEnv 
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureVector_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureVector_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Feature< Vector > *arg1 = (Feature< Vector > *) 0 ;
-  std::vector< _Vector< double > > *arg2 = 0 ;
+  std::vector< _Vector< double > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(Feature< Vector > **)&jarg1; 
-  arg2 = *(std::vector< _Vector< double > > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< _Vector< double > > & reference is null");
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< _Vector< double > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  *(std::vector< _Vector< double > > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -11298,29 +11289,26 @@ SWIGEXPORT jdouble JNICALL Java_libtisch_libtischJNI_FeatureDouble_1result(JNIEn
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureDouble_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureDouble_1bounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Feature< double > *arg1 = (Feature< double > *) 0 ;
-  std::vector< double > *arg2 = 0 ;
+  std::vector< double > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(Feature< double > **)&jarg1; 
-  arg2 = *(std::vector< double > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< double > & reference is null");
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< double > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  *(std::vector< double > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -56949,6 +56937,122 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1print(JNIEnv *jenv
 }
 
 
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1drawRectangleBackground(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(GLUTWindow **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  arg6 = (int)jarg6; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawRectangleBackground(arg2,arg3,arg4,arg5,arg6);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1drawPolygon_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jboolean jarg3, jint jarg4) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  int arg4 ;
+  std::vector< Point * > *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(GLUTWindow **)&jarg1; 
+  argp2 = *(std::vector< Point * > **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< Point * >");
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  arg4 = (int)jarg4; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1drawPolygon_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jboolean jarg3) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  std::vector< Point * > *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(GLUTWindow **)&jarg1; 
+  argp2 = *(std::vector< Point * > **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< Point * >");
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1drawPolygon_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  std::vector< Point * > *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(GLUTWindow **)&jarg1; 
+  argp2 = *(std::vector< Point * > **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< Point * >");
+    return ;
+  }
+  arg2 = *argp2; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_GLUTWindow_1title(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   GLUTWindow *arg1 = (GLUTWindow *) 0 ;
   std::string *arg2 = 0 ;
@@ -58032,6 +58136,27 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_12(J
 
 
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  ShortImage *arg2 = (ShortImage *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > **)&jarg1; 
+  arg2 = *(ShortImage **)&jarg2; 
+  {
+    try {
+      (arg1)->load((ShortImage const *)arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_RGBATexture_1load_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   

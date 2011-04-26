@@ -45,9 +45,10 @@ public class FeatureVector : FeatureBase {
     return ret;
   }
 
-  public void bounds(vectorVector _bounds) {
-    libtischPINVOKE.FeatureVector_bounds(swigCPtr, vectorVector.getCPtr(_bounds));
+  public vectorVector bounds() {
+    vectorVector ret = new vectorVector(libtischPINVOKE.FeatureVector_bounds(swigCPtr), false);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override int next() {

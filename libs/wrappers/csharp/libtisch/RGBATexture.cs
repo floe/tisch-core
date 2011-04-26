@@ -144,8 +144,13 @@ public class RGBATexture : IDisposable {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void load(SWIGTYPE_p_ShortImage img) {
+    libtischPINVOKE.RGBATexture_load__SWIG_3(swigCPtr, SWIGTYPE_p_ShortImage.getCPtr(img));
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public void load(SWIGTYPE_p_RGBImage img) {
-    libtischPINVOKE.RGBATexture_load__SWIG_3(swigCPtr, SWIGTYPE_p_RGBImage.getCPtr(img));
+    libtischPINVOKE.RGBATexture_load__SWIG_4(swigCPtr, SWIGTYPE_p_RGBImage.getCPtr(img));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

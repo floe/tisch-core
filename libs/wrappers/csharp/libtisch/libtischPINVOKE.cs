@@ -1094,7 +1094,7 @@ class libtischPINVOKE {
   public static extern int FeatureInt_result(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureInt_bounds")]
-  public static extern void FeatureInt_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureInt_bounds(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureInt_next")]
   public static extern int FeatureInt_next(HandleRef jarg1);
@@ -1217,7 +1217,7 @@ class libtischPINVOKE {
   public static extern IntPtr FeatureDimensions_result(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureDimensions_bounds")]
-  public static extern void FeatureDimensions_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureDimensions_bounds(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureDimensions_next")]
   public static extern int FeatureDimensions_next(HandleRef jarg1);
@@ -1394,7 +1394,7 @@ class libtischPINVOKE {
   public static extern IntPtr FeatureVector_result(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureVector_bounds")]
-  public static extern void FeatureVector_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureVector_bounds(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureVector_next")]
   public static extern int FeatureVector_next(HandleRef jarg1);
@@ -1475,7 +1475,7 @@ class libtischPINVOKE {
   public static extern double FeatureDouble_result(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureDouble_bounds")]
-  public static extern void FeatureDouble_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureDouble_bounds(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_FeatureDouble_next")]
   public static extern int FeatureDouble_next(HandleRef jarg1);
@@ -12769,6 +12769,18 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_print")]
   public static extern void GLUTWindow_print(HandleRef jarg1, string jarg2, int jarg3, int jarg4);
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawRectangleBackground")]
+  public static extern void GLUTWindow_drawRectangleBackground(HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_0")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_0(HandleRef jarg1, HandleRef jarg2, bool jarg3, int jarg4);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_1")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_1(HandleRef jarg1, HandleRef jarg2, bool jarg3);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_2")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_2(HandleRef jarg1, HandleRef jarg2);
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_title")]
   public static extern void GLUTWindow_title(HandleRef jarg1, string jarg2);
 
@@ -12894,6 +12906,9 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_load__SWIG_3")]
   public static extern void RGBATexture_load__SWIG_3(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_load__SWIG_4")]
+  public static extern void RGBATexture_load__SWIG_4(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_read")]
   public static extern void RGBATexture_read(HandleRef jarg1, HandleRef jarg2);

@@ -39,8 +39,8 @@ public class FeatureDimensions extends FeatureBase {
     return new Dimensions(libtischJNI.FeatureDimensions_result(swigCPtr, this), true);
   }
 
-  public void bounds(vectorDimensions _bounds) {
-    libtischJNI.FeatureDimensions_bounds(swigCPtr, this, vectorDimensions.getCPtr(_bounds), _bounds);
+  public vectorDimensions bounds() {
+    return new vectorDimensions(libtischJNI.FeatureDimensions_bounds(swigCPtr, this), false);
   }
 
   public int next() {

@@ -20,9 +20,9 @@ Dial::Dial( int _r, int _x, int _y, double _angle, RGBATexture* _tex ):
 
 	Gesture rotate( "rotate" ); region.gestures.push_back( rotate );
 
-	std::vector<int> limits; limits.push_back( 0 ); limits.push_back( 1 );
 	BlobCount* bcnt = new BlobCount(1<<INPUT_TYPE_FINGER);
-	bcnt->bounds( limits );
+	bcnt->bounds().push_back(0);
+	bcnt->bounds().push_back(1);
 
 	// TODO: put this into a new feature? would require centroid of region..
 	Gesture single( "single", GESTURE_FLAGS_STICKY );

@@ -3204,93 +3204,92 @@ namespace Swig {
 #define SWIGTYPE_p_SmartPtrT_FeatureBase_t swig_types[40]
 #define SWIGTYPE_p_StateRegion swig_types[41]
 #define SWIGTYPE_p_Textbox swig_types[42]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t swig_types[43]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t swig_types[44]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[45]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[46]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t swig_types[47]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[48]
-#define SWIGTYPE_p_Tile swig_types[49]
-#define SWIGTYPE_p_Type swig_types[50]
-#define SWIGTYPE_p_Widget swig_types[51]
-#define SWIGTYPE_p_Window swig_types[52]
-#define SWIGTYPE_p__QuaternionT_double_t swig_types[53]
-#define SWIGTYPE_p__VectorT_GLdouble_t swig_types[54]
-#define SWIGTYPE_p__VectorT_double_t swig_types[55]
-#define SWIGTYPE_p__VectorT_float_t swig_types[56]
-#define SWIGTYPE_p__VectorT_int_t swig_types[57]
-#define SWIGTYPE_p__VectorT_unsigned_char_t swig_types[58]
-#define SWIGTYPE_p__VectorT_unsigned_int_t swig_types[59]
-#define SWIGTYPE_p_allocator_type swig_types[60]
-#define SWIGTYPE_p_char swig_types[61]
-#define SWIGTYPE_p_difference_type swig_types[62]
-#define SWIGTYPE_p_int swig_types[63]
-#define SWIGTYPE_p_int64_t swig_types[64]
-#define SWIGTYPE_p_key_type swig_types[65]
-#define SWIGTYPE_p_mapped_type swig_types[66]
-#define SWIGTYPE_p_p_BlobCount swig_types[67]
-#define SWIGTYPE_p_p_BlobDim swig_types[68]
-#define SWIGTYPE_p_p_BlobGroup swig_types[69]
-#define SWIGTYPE_p_p_BlobID swig_types[70]
-#define SWIGTYPE_p_p_BlobPos swig_types[71]
-#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[72]
-#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[73]
-#define SWIGTYPE_p_p_FeatureT_double_t swig_types[74]
-#define SWIGTYPE_p_p_FeatureT_int_t swig_types[75]
-#define SWIGTYPE_p_p_Motion swig_types[76]
-#define SWIGTYPE_p_p_MultiBlobRotation swig_types[77]
-#define SWIGTYPE_p_p_MultiBlobScale swig_types[78]
-#define SWIGTYPE_p_p_PyObject swig_types[79]
-#define SWIGTYPE_p_p_Rotation swig_types[80]
-#define SWIGTYPE_p_p_Scale swig_types[81]
-#define SWIGTYPE_p_ptrdiff_t swig_types[82]
-#define SWIGTYPE_p_size_type swig_types[83]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t swig_types[84]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type swig_types[85]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type swig_types[86]
-#define SWIGTYPE_p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t swig_types[87]
-#define SWIGTYPE_p_std__invalid_argument swig_types[88]
-#define SWIGTYPE_p_std__istream swig_types[89]
-#define SWIGTYPE_p_std__lessT_int_t swig_types[90]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[91]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t swig_types[92]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__allocator_type swig_types[93]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type swig_types[94]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t swig_types[95]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__allocator_type swig_types[96]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[97]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_pfpFfF_t_t_t swig_types[98]
-#define SWIGTYPE_p_std__ostream swig_types[99]
-#define SWIGTYPE_p_std__setT_Widget_p_t swig_types[100]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t swig_types[101]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__allocator_type swig_types[102]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__value_type swig_types[103]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t swig_types[104]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__allocator_type swig_types[105]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__value_type swig_types[106]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__allocator_type swig_types[108]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__iterator swig_types[109]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__value_type swig_types[110]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t swig_types[111]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__allocator_type swig_types[112]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type swig_types[113]
-#define SWIGTYPE_p_std__vectorT_Vector_std__allocatorT_Vector_t_t__iterator swig_types[114]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t swig_types[115]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type swig_types[116]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type swig_types[117]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[118]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type swig_types[119]
-#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t swig_types[120]
-#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t__allocator_type swig_types[121]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[122]
-#define SWIGTYPE_p_uint64_t swig_types[123]
-#define SWIGTYPE_p_unsigned_int swig_types[124]
-#define SWIGTYPE_p_unsigned_short swig_types[125]
-#define SWIGTYPE_p_value_type swig_types[126]
-#define SWIGTYPE_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[127]
-static swig_type_info *swig_types[129];
-static swig_module_info swig_module = {swig_types, 128, 0, 0, 0, 0};
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t swig_types[43]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[44]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[45]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[46]
+#define SWIGTYPE_p_Tile swig_types[47]
+#define SWIGTYPE_p_Type swig_types[48]
+#define SWIGTYPE_p_Widget swig_types[49]
+#define SWIGTYPE_p_Window swig_types[50]
+#define SWIGTYPE_p__QuaternionT_double_t swig_types[51]
+#define SWIGTYPE_p__VectorT_GLdouble_t swig_types[52]
+#define SWIGTYPE_p__VectorT_double_t swig_types[53]
+#define SWIGTYPE_p__VectorT_float_t swig_types[54]
+#define SWIGTYPE_p__VectorT_int_t swig_types[55]
+#define SWIGTYPE_p__VectorT_unsigned_char_t swig_types[56]
+#define SWIGTYPE_p__VectorT_unsigned_int_t swig_types[57]
+#define SWIGTYPE_p_allocator_type swig_types[58]
+#define SWIGTYPE_p_char swig_types[59]
+#define SWIGTYPE_p_difference_type swig_types[60]
+#define SWIGTYPE_p_int swig_types[61]
+#define SWIGTYPE_p_int64_t swig_types[62]
+#define SWIGTYPE_p_key_type swig_types[63]
+#define SWIGTYPE_p_mapped_type swig_types[64]
+#define SWIGTYPE_p_p_BlobCount swig_types[65]
+#define SWIGTYPE_p_p_BlobDim swig_types[66]
+#define SWIGTYPE_p_p_BlobGroup swig_types[67]
+#define SWIGTYPE_p_p_BlobID swig_types[68]
+#define SWIGTYPE_p_p_BlobPos swig_types[69]
+#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[70]
+#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[71]
+#define SWIGTYPE_p_p_FeatureT_double_t swig_types[72]
+#define SWIGTYPE_p_p_FeatureT_int_t swig_types[73]
+#define SWIGTYPE_p_p_Motion swig_types[74]
+#define SWIGTYPE_p_p_MultiBlobRotation swig_types[75]
+#define SWIGTYPE_p_p_MultiBlobScale swig_types[76]
+#define SWIGTYPE_p_p_PyObject swig_types[77]
+#define SWIGTYPE_p_p_Rotation swig_types[78]
+#define SWIGTYPE_p_p_Scale swig_types[79]
+#define SWIGTYPE_p_ptrdiff_t swig_types[80]
+#define SWIGTYPE_p_size_type swig_types[81]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t swig_types[82]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type swig_types[83]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type swig_types[84]
+#define SWIGTYPE_p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t swig_types[85]
+#define SWIGTYPE_p_std__invalid_argument swig_types[86]
+#define SWIGTYPE_p_std__istream swig_types[87]
+#define SWIGTYPE_p_std__lessT_int_t swig_types[88]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[89]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t swig_types[90]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__allocator_type swig_types[91]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type swig_types[92]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t swig_types[93]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__allocator_type swig_types[94]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[95]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_pfpFfF_t_t_t swig_types[96]
+#define SWIGTYPE_p_std__ostream swig_types[97]
+#define SWIGTYPE_p_std__setT_Widget_p_t swig_types[98]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t swig_types[99]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__allocator_type swig_types[100]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__value_type swig_types[101]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t swig_types[102]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__allocator_type swig_types[103]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__value_type swig_types[104]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t swig_types[105]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__allocator_type swig_types[106]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__iterator swig_types[107]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__value_type swig_types[108]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t swig_types[109]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__allocator_type swig_types[110]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type swig_types[111]
+#define SWIGTYPE_p_std__vectorT_Vector_std__allocatorT_Vector_t_t__iterator swig_types[112]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t swig_types[113]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type swig_types[114]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type swig_types[115]
+#define SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t swig_types[116]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[117]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type swig_types[118]
+#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t swig_types[119]
+#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t__allocator_type swig_types[120]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[121]
+#define SWIGTYPE_p_uint64_t swig_types[122]
+#define SWIGTYPE_p_unsigned_int swig_types[123]
+#define SWIGTYPE_p_unsigned_short swig_types[124]
+#define SWIGTYPE_p_value_type swig_types[125]
+#define SWIGTYPE_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[126]
+static swig_type_info *swig_types[128];
+static swig_module_info swig_module = {swig_types, 127, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -6370,6 +6369,17 @@ SWIG_From_unsigned_SS_int  (unsigned int value)
 
 
 SWIGINTERN int
+SWIG_AsVal_bool (PyObject *obj, bool *val)
+{
+  int r = PyObject_IsTrue(obj);
+  if (r == -1)
+    return SWIG_ERROR;
+  if (val) *val = r ? true : false;
+  return SWIG_OK;
+}
+
+
+SWIGINTERN int
 SWIG_AsVal_float (PyObject * obj, float *val)
 {
   double v;
@@ -6382,17 +6392,6 @@ SWIG_AsVal_float (PyObject * obj, float *val)
     }
   }  
   return res;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_bool (PyObject *obj, bool *val)
-{
-  int r = PyObject_IsTrue(obj);
-  if (r == -1)
-    return SWIG_ERROR;
-  if (val) *val = r ? true : false;
-  return SWIG_OK;
 }
 
 
@@ -28417,36 +28416,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureInt_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
-  std::vector< int,std::allocator< int > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< int,std::allocator< int > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureInt_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureInt_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureInt_bounds" "', argument " "1"" of type '" "Feature< int > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< int > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< int,std::allocator< int > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< int,std::allocator< int > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -30894,36 +30882,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDimensions_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Dimensions > *arg1 = (Feature< Dimensions > *) 0 ;
-  std::vector< Dimensions,std::allocator< Dimensions > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< Dimensions,std::allocator< Dimensions > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDimensions_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDimensions_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_Dimensions_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDimensions_bounds" "', argument " "1"" of type '" "Feature< Dimensions > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Dimensions > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< Dimensions,std::allocator< Dimensions > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< Dimensions,std::allocator< Dimensions > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -34189,36 +34166,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureVector_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Vector > *arg1 = (Feature< Vector > *) 0 ;
-  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureVector_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureVector_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT__VectorT_double_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureVector_bounds" "', argument " "1"" of type '" "Feature< Vector > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Vector > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< _Vector< double >,std::allocator< _Vector< double > > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< _Vector< double >,std::allocator< _Vector< double > > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -35069,36 +35035,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDouble_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< double > *arg1 = (Feature< double > *) 0 ;
-  std::vector< double,std::allocator< double > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< double,std::allocator< double > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDouble_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDouble_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDouble_bounds" "', argument " "1"" of type '" "Feature< double > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< double > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< double,std::allocator< double > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< double,std::allocator< double > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -38860,6 +38815,315 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GLUTWindow_drawRectangleBackground(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:GLUTWindow_drawRectangleBackground",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GLUTWindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "1"" of type '" "GLUTWindow const *""'"); 
+  }
+  arg1 = reinterpret_cast< GLUTWindow * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GLUTWindow_drawRectangleBackground" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawRectangleBackground(arg2,arg3,arg4,arg5,arg6);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GLUTWindow_drawPolygon__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > *,std::allocator< _Vector< int > * > > > arg2 ;
+  bool arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:GLUTWindow_drawPolygon",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GLUTWindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GLUTWindow_drawPolygon" "', argument " "1"" of type '" "GLUTWindow const *""'"); 
+  }
+  arg1 = reinterpret_cast< GLUTWindow * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'");
+    } else {
+      std::vector< Point *,std::allocator< Point * > > * temp = reinterpret_cast< std::vector< Point *,std::allocator< Point * > > * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  ecode3 = SWIG_AsVal_bool(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GLUTWindow_drawPolygon" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GLUTWindow_drawPolygon" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GLUTWindow_drawPolygon__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > *,std::allocator< _Vector< int > * > > > arg2 ;
+  bool arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:GLUTWindow_drawPolygon",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GLUTWindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GLUTWindow_drawPolygon" "', argument " "1"" of type '" "GLUTWindow const *""'"); 
+  }
+  arg1 = reinterpret_cast< GLUTWindow * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'");
+    } else {
+      std::vector< Point *,std::allocator< Point * > > * temp = reinterpret_cast< std::vector< Point *,std::allocator< Point * > > * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  ecode3 = SWIG_AsVal_bool(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GLUTWindow_drawPolygon" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GLUTWindow_drawPolygon__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > *,std::allocator< _Vector< int > * > > > arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GLUTWindow_drawPolygon",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GLUTWindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GLUTWindow_drawPolygon" "', argument " "1"" of type '" "GLUTWindow const *""'"); 
+  }
+  arg1 = reinterpret_cast< GLUTWindow * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "GLUTWindow_drawPolygon" "', argument " "2"" of type '" "std::vector< Point *,std::allocator< Point * > >""'");
+    } else {
+      std::vector< Point *,std::allocator< Point * > > * temp = reinterpret_cast< std::vector< Point *,std::allocator< Point * > > * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GLUTWindow_drawPolygon(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[5];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_GLUTWindow, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_GLUTWindow_drawPolygon__SWIG_2(self, args);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_GLUTWindow, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_GLUTWindow_drawPolygon__SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_GLUTWindow, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_GLUTWindow_drawPolygon__SWIG_0(self, args);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'GLUTWindow_drawPolygon'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    drawPolygon(GLUTWindow const *,std::vector< Point *,std::allocator< Point * > >,bool,int)\n"
+    "    drawPolygon(GLUTWindow const *,std::vector< Point *,std::allocator< Point * > >,bool)\n"
+    "    drawPolygon(GLUTWindow const *,std::vector< Point *,std::allocator< Point * > >)\n");
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GLUTWindow_title(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   GLUTWindow *arg1 = (GLUTWindow *) 0 ;
@@ -41093,6 +41357,42 @@ fail:
 SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  ShortImage *arg2 = (ShortImage *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RGBATexture_load",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RGBATexture_load" "', argument " "1"" of type '" "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *""'"); 
+  }
+  arg1 = reinterpret_cast< Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_ShortImage, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RGBATexture_load" "', argument " "2"" of type '" "ShortImage const *""'"); 
+  }
+  arg2 = reinterpret_cast< ShortImage * >(argp2);
+  {
+    try {
+      (arg1)->load((ShortImage const *)arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_RGBATexture_load__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -41157,10 +41457,24 @@ SWIGINTERN PyObject *_wrap_RGBATexture_load(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_RGBImage, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_ShortImage, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_RGBATexture_load__SWIG_3(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_RGBImage, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_RGBATexture_load__SWIG_4(self, args);
       }
     }
   }
@@ -41206,6 +41520,7 @@ fail:
     "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,GLvoid const *,GLenum,GLenum)\n"
     "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,char const *)\n"
     "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,IntensityImage const *)\n"
+    "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,ShortImage const *)\n"
     "    load(Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *,RGBImage const *)\n");
   return NULL;
 }
@@ -55508,6 +55823,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_GLUTWindow", _wrap_delete_GLUTWindow, METH_VARARGS, NULL},
 	 { (char *)"GLUTWindow_show", _wrap_GLUTWindow_show, METH_VARARGS, NULL},
 	 { (char *)"GLUTWindow__print", _wrap_GLUTWindow__print, METH_VARARGS, NULL},
+	 { (char *)"GLUTWindow_drawRectangleBackground", _wrap_GLUTWindow_drawRectangleBackground, METH_VARARGS, NULL},
+	 { (char *)"GLUTWindow_drawPolygon", _wrap_GLUTWindow_drawPolygon, METH_VARARGS, NULL},
 	 { (char *)"GLUTWindow_title", _wrap_GLUTWindow_title, METH_VARARGS, NULL},
 	 { (char *)"GLUTWindow_clear", _wrap_GLUTWindow_clear, METH_VARARGS, NULL},
 	 { (char *)"GLUTWindow_mode2D", _wrap_GLUTWindow_mode2D, METH_VARARGS, NULL},
@@ -55980,11 +56297,9 @@ static swig_type_info _swigt__p_Slider = {"_p_Slider", "Slider *", 0, 0, (void*)
 static swig_type_info _swigt__p_SmartPtrT_FeatureBase_t = {"_p_SmartPtrT_FeatureBase_t", "SmartPtr< FeatureBase > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_StateRegion = {"_p_StateRegion", "StateRegion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Textbox = {"_p_Textbox", "Textbox *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t", "DepthTexture *|Texture< DEFAULT_TEXTURE_TARGET,0x81A7,GL_DEPTH_COMPONENT,GL_FLOAT > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t", "FloatTexture *|Texture< DEFAULT_TEXTURE_TARGET,0x8814,GL_RGBA,GL_FLOAT > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t", "ShortGreyTexture *|Texture< DEFAULT_TEXTURE_TARGET,GL_LUMINANCE16,GL_LUMINANCE,GL_UNSIGNED_SHORT > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_LUMINANCE8,GL_LUMINANCE,GL_UNSIGNED_BYTE > *|GreyTexture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t", "RGBTexture *|Texture< DEFAULT_TEXTURE_TARGET,GL_RGB8,GL_RGB,GL_UNSIGNED_BYTE > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA16,GL_RGBA,GL_UNSIGNED_SHORT > *|ShortTexture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t = {"_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t", "Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *|RGBATexture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Tile = {"_p_Tile", "Tile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
@@ -56055,6 +56370,7 @@ static swig_type_info _swigt__p_std__vectorT_Vector_std__allocatorT_Vector_t_t__
 static swig_type_info _swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t = {"_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t", "std::vector< _Vector< double > > *|std::vector< Vector,std::allocator< Vector > > *|std::vector< Vector > *|std::vector< _Vector< double >,std::allocator< _Vector< double > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type = {"_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type", "std::allocator< _Vector< double > > *|std::vector< _Vector< double > >::allocator_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type = {"_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type", "std::vector< _Vector< double > >::value_type *|_Vector< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t = {"_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t", "std::vector< Point *,std::allocator< Point * > > *|std::vector< _Vector< int > *,std::allocator< _Vector< int > * > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_double_std__allocatorT_double_t_t = {"_p_std__vectorT_double_std__allocatorT_double_t_t", "std::vector< double,std::allocator< double > > *|std::vector< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type = {"_p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type", "std::vector< double >::allocator_type *|std::allocator< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_int_std__allocatorT_int_t_t = {"_p_std__vectorT_int_std__allocatorT_int_t_t", "std::vector< int,std::allocator< int > > *|std::vector< int > *", 0, 0, (void*)0, 0};
@@ -56110,11 +56426,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SmartPtrT_FeatureBase_t,
   &_swigt__p_StateRegion,
   &_swigt__p_Textbox,
-  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
-  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t,
+  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t,
   &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
   &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
-  &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
   &_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
   &_swigt__p_Tile,
   &_swigt__p_Type,
@@ -56185,6 +56499,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t,
   &_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type,
   &_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type,
+  &_swigt__p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t,
   &_swigt__p_std__vectorT_double_std__allocatorT_double_t_t,
   &_swigt__p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type,
   &_swigt__p_std__vectorT_int_std__allocatorT_int_t_t,
@@ -56240,11 +56555,9 @@ static swig_cast_info _swigc__p_Slider[] = {  {&_swigt__p_Slider, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_SmartPtrT_FeatureBase_t[] = {  {&_swigt__p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type, 0, 0, 0},  {&_swigt__p_SmartPtrT_FeatureBase_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_StateRegion[] = {  {&_swigt__p_StateRegion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Textbox[] = {  {&_swigt__p_Textbox, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t[] = {  {&_swigt__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Tile[] = {  {&_swigt__p_Tile, 0, 0, 0},  {&_swigt__p_Window, _p_WindowTo_p_Tile, 0, 0},  {&_swigt__p_Container, _p_ContainerTo_p_Tile, 0, 0},  {&_swigt__p_MasterContainer, _p_MasterContainerTo_p_Tile, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -56315,6 +56628,7 @@ static swig_cast_info _swigc__p_std__vectorT_Vector_std__allocatorT_Vector_t_t__
 static swig_cast_info _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t[] = {  {&_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0, 0, 0},  {&_swigt__p_Region, _p_RegionTo_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0, 0},  {&_swigt__p_StateRegion, _p_StateRegionTo_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type[] = {  {&_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type[] = {  {&_swigt__p__VectorT_double_t, 0, 0, 0},  {&_swigt__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t[] = {  {&_swigt__p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_std__allocatorT_double_t_t[] = {  {&_swigt__p_std__vectorT_double_std__allocatorT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type[] = {  {&_swigt__p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_int_std__allocatorT_int_t_t[] = {  {&_swigt__p_std__vectorT_int_std__allocatorT_int_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -56370,11 +56684,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SmartPtrT_FeatureBase_t,
   _swigc__p_StateRegion,
   _swigc__p_Textbox,
-  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x81A7_GL_DEPTH_COMPONENT_GL_FLOAT_t,
-  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_0x8814_GL_RGBA_GL_FLOAT_t,
+  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t,
   _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t,
   _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t,
-  _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA16_GL_RGBA_GL_UNSIGNED_SHORT_t,
   _swigc__p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t,
   _swigc__p_Tile,
   _swigc__p_Type,
@@ -56445,6 +56757,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t,
   _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type,
   _swigc__p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type,
+  _swigc__p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t,
   _swigc__p_std__vectorT_double_std__allocatorT_double_t_t,
   _swigc__p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type,
   _swigc__p_std__vectorT_int_std__allocatorT_int_t_t,

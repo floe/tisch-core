@@ -39,8 +39,8 @@ public class FeatureDouble extends FeatureBase {
     return libtischJNI.FeatureDouble_result(swigCPtr, this);
   }
 
-  public void bounds(vectorDouble _bounds) {
-    libtischJNI.FeatureDouble_bounds(swigCPtr, this, vectorDouble.getCPtr(_bounds), _bounds);
+  public vectorDouble bounds() {
+    return new vectorDouble(libtischJNI.FeatureDouble_bounds(swigCPtr, this), false);
   }
 
   public int next() {

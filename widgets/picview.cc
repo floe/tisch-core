@@ -35,11 +35,9 @@ class MyContainer: public Container{
 			Gesture move( "move" , GESTURE_FLAGS_DEFAULT|GESTURE_FLAGS_STICKY);
 
 			move.push_back(new Motion());
-			std::vector<int> b2;
-			b2.push_back( 0 );
-			b2.push_back( 10000 );
 			BlobCount* bcnt = new BlobCount(1<<INPUT_TYPE_FINGER);
-			bcnt->bounds( b2 );
+			bcnt->bounds().push_back( 0 );
+			bcnt->bounds().push_back( 10000 );
 			move.push_back( bcnt );
 			region.gestures.push_back( move );	
 		}

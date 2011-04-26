@@ -45,9 +45,10 @@ public class FeatureInt : FeatureBase {
     return ret;
   }
 
-  public void bounds(vectorInt _bounds) {
-    libtischPINVOKE.FeatureInt_bounds(swigCPtr, vectorInt.getCPtr(_bounds));
+  public vectorInt bounds() {
+    vectorInt ret = new vectorInt(libtischPINVOKE.FeatureInt_bounds(swigCPtr), false);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override int next() {

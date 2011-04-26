@@ -8957,25 +8957,23 @@ SWIGEXPORT int SWIGSTDCALL CSharp_FeatureInt_result(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureInt_bounds(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureInt_bounds(void * jarg1) {
+  void * jresult ;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
-  std::vector< int > *arg2 = 0 ;
+  std::vector< int > *result = 0 ;
   
   arg1 = (Feature< int > *)jarg1; 
-  arg2 = (std::vector< int > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< int > & type is null", 0);
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< int > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -9901,25 +9899,23 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureDimensions_result(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureDimensions_bounds(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureDimensions_bounds(void * jarg1) {
+  void * jresult ;
   Feature< Dimensions > *arg1 = (Feature< Dimensions > *) 0 ;
-  std::vector< Dimensions > *arg2 = 0 ;
+  std::vector< Dimensions > *result = 0 ;
   
   arg1 = (Feature< Dimensions > *)jarg1; 
-  arg2 = (std::vector< Dimensions > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< Dimensions > & type is null", 0);
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< Dimensions > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -11117,25 +11113,23 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureVector_result(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureVector_bounds(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureVector_bounds(void * jarg1) {
+  void * jresult ;
   Feature< Vector > *arg1 = (Feature< Vector > *) 0 ;
-  std::vector< _Vector< double > > *arg2 = 0 ;
+  std::vector< _Vector< double > > *result = 0 ;
   
   arg1 = (Feature< Vector > *)jarg1; 
-  arg2 = (std::vector< _Vector< double > > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< _Vector< double > > & type is null", 0);
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< _Vector< double > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -11617,25 +11611,23 @@ SWIGEXPORT double SWIGSTDCALL CSharp_FeatureDouble_result(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureDouble_bounds(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureDouble_bounds(void * jarg1) {
+  void * jresult ;
   Feature< double > *arg1 = (Feature< double > *) 0 ;
-  std::vector< double > *arg2 = 0 ;
+  std::vector< double > *result = 0 ;
   
   arg1 = (Feature< double > *)jarg1; 
-  arg2 = (std::vector< double > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< double > & type is null", 0);
-    return ;
-  } 
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< double > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -50120,6 +50112,110 @@ SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_print(void * jarg1, char * jarg2, 
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawRectangleBackground(void * jarg1, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  arg6 = (int)jarg6; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawRectangleBackground(arg2,arg3,arg4,arg5,arg6);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3, int jarg4) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  int arg4 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  arg4 = (int)jarg4; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_1(void * jarg1, void * jarg2, unsigned int jarg3) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_2(void * jarg1, void * jarg2) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_title(void * jarg1, char * jarg2) {
   GLUTWindow *arg1 = (GLUTWindow *) 0 ;
   std::string *arg2 = 0 ;
@@ -51064,6 +51160,24 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_2(void * jarg1, void *
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_3(void * jarg1, void * jarg2) {
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  ShortImage *arg2 = (ShortImage *) 0 ;
+  
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg2 = (ShortImage *)jarg2; 
+  {
+    try {
+      (arg1)->load((ShortImage const *)arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_4(void * jarg1, void * jarg2) {
   Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   

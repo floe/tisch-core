@@ -798,7 +798,7 @@ class FeatureInt(FeatureBase):
     __swig_destroy__ = _libtisch.delete_FeatureInt
     __del__ = lambda self : None;
     def result(self): return _libtisch.FeatureInt_result(self)
-    def bounds(self, *args): return _libtisch.FeatureInt_bounds(self, *args)
+    def bounds(self): return _libtisch.FeatureInt_bounds(self)
     def next(self): return _libtisch.FeatureInt_next(self)
     def load(self, *args): return _libtisch.FeatureInt_load(self, *args)
     def name(self): return _libtisch.FeatureInt_name(self)
@@ -897,7 +897,7 @@ class FeatureDimensions(FeatureBase):
     __swig_destroy__ = _libtisch.delete_FeatureDimensions
     __del__ = lambda self : None;
     def result(self): return _libtisch.FeatureDimensions_result(self)
-    def bounds(self, *args): return _libtisch.FeatureDimensions_bounds(self, *args)
+    def bounds(self): return _libtisch.FeatureDimensions_bounds(self)
     def next(self): return _libtisch.FeatureDimensions_next(self)
     def load(self, *args): return _libtisch.FeatureDimensions_load(self, *args)
     def name(self): return _libtisch.FeatureDimensions_name(self)
@@ -1061,7 +1061,7 @@ class FeatureVector(FeatureBase):
     __swig_destroy__ = _libtisch.delete_FeatureVector
     __del__ = lambda self : None;
     def result(self): return _libtisch.FeatureVector_result(self)
-    def bounds(self, *args): return _libtisch.FeatureVector_bounds(self, *args)
+    def bounds(self): return _libtisch.FeatureVector_bounds(self)
     def next(self): return _libtisch.FeatureVector_next(self)
     def load(self, *args): return _libtisch.FeatureVector_load(self, *args)
     def name(self): return _libtisch.FeatureVector_name(self)
@@ -1146,7 +1146,7 @@ class FeatureDouble(FeatureBase):
     __swig_destroy__ = _libtisch.delete_FeatureDouble
     __del__ = lambda self : None;
     def result(self): return _libtisch.FeatureDouble_result(self)
-    def bounds(self, *args): return _libtisch.FeatureDouble_bounds(self, *args)
+    def bounds(self): return _libtisch.FeatureDouble_bounds(self)
     def next(self): return _libtisch.FeatureDouble_next(self)
     def load(self, *args): return _libtisch.FeatureDouble_load(self, *args)
     def name(self): return _libtisch.FeatureDouble_name(self)
@@ -5042,6 +5042,8 @@ class GLUTWindow(_object):
     __del__ = lambda self : None;
     def show(self, *args): return _libtisch.GLUTWindow_show(self, *args)
     def _print(self, *args): return _libtisch.GLUTWindow__print(self, *args)
+    def drawRectangleBackground(self, *args): return _libtisch.GLUTWindow_drawRectangleBackground(self, *args)
+    def drawPolygon(self, *args): return _libtisch.GLUTWindow_drawPolygon(self, *args)
     def title(self, *args): return _libtisch.GLUTWindow_title(self, *args)
     def clear(self, red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0): return _libtisch.GLUTWindow_clear(self, red, green, blue, alpha)
     def mode2D(self): return _libtisch.GLUTWindow_mode2D(self)
