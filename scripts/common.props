@@ -25,7 +25,7 @@
       <ForcedIncludeFiles>$(SolutionDir)\tisch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut);$(freeglut)\VisualStudio\2010\build\$(Configuration);$(freeglut)\VisualStudio\2008\build\$(Configuration);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut);$(freeglut)\VisualStudio\2010\build\$(Configuration);$(freeglut)\VisualStudio\2008\build\$(Configuration);$(flycapture);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
