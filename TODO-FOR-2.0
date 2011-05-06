@@ -1,8 +1,6 @@
 - add fast highpass filter from ITS paper
 
 - use TUIO 2.0 object types where possible
-- convert Feature/Region/Gesture << and >> operators to output JSON
-- create webgestured (using a WebSocket for connections)
 
-- optional: put Matcher directly into widgets/Window
-- add RadioButton widgets
+- put Matcher directly into widgets/Window
+- optional: add RadioButton widgets
