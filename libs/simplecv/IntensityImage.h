@@ -48,6 +48,7 @@ class TISCH_SHARED IntensityImage: public Image {
 
 		void despeckle( IntensityImage& target, unsigned char threshold = 8 ) const;
 		void lowpass( IntensityImage& target, unsigned char range = 1, unsigned char mode = 0 ) const;
+		void midpass( IntensityImage& target, int outer = 16, int inner = 8 ) const;
 		void houghLine( IntensityImage& target ) const;
 		void areamask( IntensityImage& target, std::vector<int> edgepoints) const;
 

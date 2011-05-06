@@ -353,9 +353,9 @@ void IntensityImage::houghLine( IntensityImage& target ) const {
 void IntensityImage::areamask( IntensityImage& target, std::vector<int> edgepoints) const
 {
 	if( edgepoints.empty() )
-		memcpy(target.data,data,width*height*sizeof(unsigned short));
+		memcpy(target.data,data,size);
 	else
-		memset(target.data, 0, width*height*sizeof(unsigned short));
+		memset(target.data, 0, size);
 		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it = it + 2)
 			memcpy((target.data +  (*it)), (data + (*it)), (*(it+1) - *it)*2); 
 }
@@ -525,5 +525,206 @@ std::ostream& operator<<( std::ostream& s, const IntensityImage& i ) {
 	s << "P5 " << i.width << " " << i.height << " 255 ";
 	s.write( (char*)i.data, i.size );
 	return s;	
+}
+
+
+// adapted from EquisFtir/touch/filter_band_mid.cpp
+
+#define clamp(v,l,u) (v<l?l:(v>u?u:v))
+
+struct BandMid {
+	int outer;
+	int inner;
+
+	int rows;
+	int cols;
+
+	int shift;
+	int inner_shift;
+
+	void apply_row(const uint8_t* src, uint16_t* dst);
+	void apply_col(const uint16_t* src, uint8_t* dst);
+};
+
+void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
+	
+	const int outer = 16;
+	const int inner = 8;
+	//const int inner_shift = 0;
+	const int shift = 8;
+
+	const int im = 8;
+
+	long a0 = 0;
+	long a1 = 0;
+	long a2 = 0;
+
+	for (int c = -outer; c < 0; ++c) {
+		a0 += a1; a1 += a2;
+
+		if (c >= -outer) a2 -= 1L * src[c + outer];
+		if (c >= -outer/2) a2 += 2L * src[c + outer/2];
+
+		if (c >= -inner) a2 += 1L * im * src[c + inner];
+		if (c >= -inner/2) a2 -= 2L * im * src[c + inner/2];
+	}
+
+	for (int c = 0; c < outer; ++c) {
+		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+
+		a0 += a1; a1 += a2;
+
+		if (c < cols - outer) a2 -= 1L * src[c + outer];
+		if (c < cols - outer/2) a2 += 2L * src[c + outer/2];
+		if (c >= outer/2) a2 -= 2L * src[c - outer/2];
+		if (c >= outer) a2 += 1L * src[c - outer];
+
+		if (c < cols - inner) a2 += 1L * im * src[c + inner];
+		if (c < cols - inner/2) a2 -= 2L * im * src[c + inner/2];
+		if (c >= inner/2) a2 += 2L * im * src[c - inner/2];
+		if (c >= inner) a2 -= 1L * im * src[c - inner];
+	}
+
+	for (int c = outer; c < cols - outer; ++c) {
+		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+
+		a0 += a1; a1 += a2;
+
+		a2 -= 1L * src[c + outer];
+		a2 += 2L * src[c + outer/2];
+		a2 -= 2L * src[c - outer/2];
+		a2 += 1L * src[c - outer];
+
+		a2 += 1L * im * src[c + inner];
+		a2 -= 2L * im * src[c + inner/2];
+		a2 += 2L * im * src[c - inner/2];
+		a2 -= 1L * im * src[c - inner];
+	}
+
+	for (int c = cols - outer; c < cols; ++c) {
+		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+
+		a0 += a1; a1 += a2;
+
+		if (c < cols - outer) a2 -= 1L * src[c + outer];
+		if (c < cols - outer/2) a2 += 2L * src[c + outer/2];
+		if (c >= outer/2) a2 -= 2L * src[c - outer/2];
+		if (c >= outer) a2 += 1L * src[c - outer];
+
+		if (c < cols - inner) a2 += 1L * im * src[c + inner];
+		if (c < cols - inner/2) a2 -= 2L * im * src[c + inner/2];
+		if (c >= inner/2) a2 += 2L * im * src[c - inner/2];
+		if (c >= inner) a2 -= 1L * im * src[c - inner];
+	}
+}
+
+void BandMid::apply_col(const uint16_t* src, uint8_t* dst) {
+
+	const int outer = 16;
+	const int inner = 8;
+	//const int inner_shift = 0;
+	const int shift = 8 + 8;
+
+	const int im = 8;
+
+	long a0 = 0;
+	long a1 = 0;
+	long a2 = 0;
+
+	//_ASSERT((DWORD_PTR)src % 16 == 0);
+	//_ASSERT((DWORD_PTR)dst % 16 == 0);
+
+	for (int r = -outer; r < 0; ++r) {
+		a0 += a1; a1 += a2;
+
+		if (r >= -outer) a2 -= 1L * src[(r + outer) * cols];
+		if (r >= -outer/2) a2 += 2L * src[(r + outer/2) * cols];
+
+		if (r >= -inner) a2 += 1L*im * src[(r + inner) * cols];
+		if (r >= -inner/2) a2 -= 2L*im * src[(r + inner/2) * cols];
+	}
+
+	for (int r = 0; r < outer; ++r) {
+		dst[r*cols] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
+
+		a0 += a1; a1 += a2;
+
+		if (r < rows - outer) a2 -= 1L * src[(r + outer) * cols];
+		if (r < rows - outer/2) a2 += 2L * src[(r + outer/2) * cols];
+		if (r >= outer/2) a2 -= 2L * src[(r - outer/2) * cols];
+		if (r >= outer) a2 += 1L * src[(r - outer) * cols];
+
+		if (r < rows - inner) a2 += 1L*im * src[(r + inner) * cols];
+		if (r < rows - inner/2) a2 -= 2L*im * src[(r + inner/2) * cols];
+		if (r >= inner/2) a2 += 2L*im * src[(r - inner/2) * cols];
+		if (r >= inner) a2 -= 1L*im * src[(r - inner) * cols];
+	}
+
+	for (int r = outer; r < rows - outer; ++r) {
+		dst[r*cols] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
+
+		a0 += a1; a1 += a2;
+
+		a2 -= 1L * src[(r + outer) * cols];
+		a2 += 2L * src[(r + outer/2) * cols];
+		a2 -= 2L * src[(r - outer/2) * cols];
+		a2 += 1L * src[(r - outer) * cols];
+
+		a2 += 1L * im * src[(r + inner) * cols];
+		a2 -= 2L * im * src[(r + inner/2) * cols];
+		a2 += 2L * im * src[(r - inner/2) * cols];
+		a2 -= 1L * im * src[(r - inner) * cols];
+	}
+
+	for (int r = rows - outer; r < rows; ++r) {
+		dst[r*cols] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
+
+		a0 += a1; a1 += a2;
+
+		if (r < rows - outer) a2 -= 1L * src[(r + outer) * cols];
+		if (r < rows - outer/2) a2 += 2L * src[(r + outer/2) * cols];
+		if (r >= outer/2) a2 -= 2L * src[(r - outer/2) * cols];
+		if (r >= outer) a2 += 1L * src[(r - outer) * cols];
+
+		if (r < rows - inner) a2 += 1L*im * src[(r + inner) * cols];
+		if (r < rows - inner/2) a2 -= 2L*im * src[(r + inner/2) * cols];
+		if (r >= inner/2) a2 += 2L*im * src[(r - inner/2) * cols];
+		if (r >= inner) a2 -= 1L*im * src[(r - inner) * cols];
+	}
+}
+
+
+void IntensityImage::midpass( IntensityImage& target, int outer, int inner ) const {
+
+	BandMid s;
+	s.outer = outer;
+	s.inner = inner;
+
+	s.rows = height;
+	s.cols = width;
+
+	// outer = 16, inner = 8, shift = 3, add 1
+	// outer = 16, inner = 4, shift = 6, add 4
+	s.inner_shift = 3;
+	s.shift = static_cast<int>(log(0.25 * inner * inner * inner) / log(2.0)) + 1;
+
+	uint16_t* tmp = new uint16_t[size];
+
+	for (int r = 0; r < s.rows; r++) 
+		s.apply_row( data+(r*width), tmp+(r*width*2) );
+
+	for (int c = 0; c < s.cols; c++)
+		s.apply_col( tmp+(2*c), target.data+c );
+
+	for (int r = 0; r < s.outer; r++) {
+		for (int c = 0; c < s.outer; c++) {
+			target.setPixel(r, c, 0);
+			target.setPixel(s.rows - 1 - r, c, 0);
+			target.setPixel(r, s.cols - 1 - c, 0);
+			target.setPixel(s.rows - 1 - r, s.cols - 1 - c, 0);
+		}
+	}
+
+	delete[] tmp;
 }
 
