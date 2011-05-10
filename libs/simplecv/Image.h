@@ -19,7 +19,7 @@
 		#include <sys/mman.h>
 	#endif
 
-	#include <linux/videodev.h>
+	#include <linux/videodev2.h>
 
 	#ifdef HAS_LIBV4L
 		#include <libv4l2.h>

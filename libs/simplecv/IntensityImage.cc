@@ -540,21 +540,14 @@ struct BandMid {
 	int cols;
 
 	int shift;
-	int inner_shift;
+	int im;
 
-	void apply_row(const uint8_t* src, uint16_t* dst);
-	void apply_col(const uint16_t* src, uint8_t* dst);
+	void apply_row(const uint8_t* src, uint8_t* dst);
+	void apply_col(const uint8_t* src, uint8_t* dst);
 };
 
-void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
+void BandMid::apply_row(const uint8_t* src, uint8_t* dst) {
 	
-	const int outer = 16;
-	const int inner = 8;
-	//const int inner_shift = 0;
-	const int shift = 8;
-
-	const int im = 8;
-
 	long a0 = 0;
 	long a1 = 0;
 	long a2 = 0;
@@ -570,7 +563,7 @@ void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
 	}
 
 	for (int c = 0; c < outer; ++c) {
-		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+		dst[c] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
 
 		a0 += a1; a1 += a2;
 
@@ -586,7 +579,7 @@ void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
 	}
 
 	for (int c = outer; c < cols - outer; ++c) {
-		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+		dst[c] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
 
 		a0 += a1; a1 += a2;
 
@@ -602,7 +595,7 @@ void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
 	}
 
 	for (int c = cols - outer; c < cols; ++c) {
-		dst[c] = static_cast<uint16_t>(clamp(a0 >> shift, 0L, 65535L));
+		dst[c] = static_cast<uint8_t>(clamp(a0 >> shift, 0L, 255L));
 
 		a0 += a1; a1 += a2;
 
@@ -618,21 +611,11 @@ void BandMid::apply_row(const uint8_t* src, uint16_t* dst) {
 	}
 }
 
-void BandMid::apply_col(const uint16_t* src, uint8_t* dst) {
-
-	const int outer = 16;
-	const int inner = 8;
-	//const int inner_shift = 0;
-	const int shift = 8 + 8;
-
-	const int im = 8;
+void BandMid::apply_col(const uint8_t* src, uint8_t* dst) {
 
 	long a0 = 0;
 	long a1 = 0;
 	long a2 = 0;
-
-	//_ASSERT((DWORD_PTR)src % 16 == 0);
-	//_ASSERT((DWORD_PTR)dst % 16 == 0);
 
 	for (int r = -outer; r < 0; ++r) {
 		a0 += a1; a1 += a2;
@@ -705,16 +688,16 @@ void IntensityImage::midpass( IntensityImage& target, int outer, int inner ) con
 
 	// outer = 16, inner = 8, shift = 3, add 1
 	// outer = 16, inner = 4, shift = 6, add 4
-	s.inner_shift = 3;
-	s.shift = static_cast<int>(log(0.25 * inner * inner * inner) / log(2.0)) + 1;
+	s.im = 8;
+	s.shift = static_cast<int>(log(0.25 * s.inner * s.inner * s.inner) / log(2.0)) + 1;
 
-	uint16_t* tmp = new uint16_t[size];
+	uint8_t* tmp = new uint8_t[size];
 
 	for (int r = 0; r < s.rows; r++) 
-		s.apply_row( data+(r*width), tmp+(r*width*2) );
+		s.apply_row( data+(r*width), tmp+(r*width) );
 
 	for (int c = 0; c < s.cols; c++)
-		s.apply_col( tmp+(2*c), target.data+c );
+		s.apply_col( tmp+c, target.data+c );
 
 	for (int r = 0; r < s.outer; r++) {
 		for (int c = 0; c < s.outer; c++) {
