@@ -702,10 +702,10 @@ void IntensityImage::bandpass( IntensityImage& target, int outer, int inner ) co
 
 	for (int r = 0; r < s.outer; r++) {
 		for (int c = 0; c < s.outer; c++) {
-			target.setPixel(r, c, 0);
-			target.setPixel(s.rows - 1 - r, c, 0);
-			target.setPixel(r, s.cols - 1 - c, 0);
-			target.setPixel(s.rows - 1 - r, s.cols - 1 - c, 0);
+			target.setPixel(c, r, 0);
+			target.setPixel(s.cols - 1 - c, r, 0);
+			target.setPixel(c, s.rows - 1 - r, 0);
+			target.setPixel(s.cols - 1 - c, s.rows - 1 - r, 0);
 		}
 	}
 
