@@ -7,6 +7,7 @@
 #include "IntensityImage.h"
 #include "mmx.h"
 
+#include <stdint.h>
 #include <string.h>
 #include <math.h>
 
@@ -677,7 +678,7 @@ void BandMid::apply_col(const uint8_t* src, uint8_t* dst) {
 }
 
 
-void IntensityImage::midpass( IntensityImage& target, int outer, int inner ) const {
+void IntensityImage::bandpass( IntensityImage& target, int outer, int inner ) const {
 
 	BandMid s;
 	s.outer = outer;

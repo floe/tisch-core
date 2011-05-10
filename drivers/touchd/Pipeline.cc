@@ -28,15 +28,16 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	std::string type = config->Value();
 	Filter* filter = 0;
 
-	if (type ==        "Camera") filter = new        Camera( config, parent );
-	if (type ==    "BlobFilter") filter = new      BlobList( config, parent );
-	if (type ==    "FlipFilter") filter = new    FlipFilter( config, parent );
-	if (type ==   "SplitFilter") filter = new   SplitFilter( config, parent );
-	if (type ==   "BGSubFilter") filter = new   BGSubFilter( config, parent );
-	if (type ==  "ThreshFilter") filter = new  ThreshFilter( config, parent );
-	if (type == "SpeckleFilter") filter = new SpeckleFilter( config, parent );
-	if (type == "LowpassFilter") filter = new LowpassFilter( config, parent );
-	if (type ==    "AreaFilter") filter = new    AreaFilter( config, parent );
+	if (type ==         "Camera") filter = new         Camera( config, parent );
+	if (type ==     "BlobFilter") filter = new       BlobList( config, parent );
+	if (type ==     "FlipFilter") filter = new     FlipFilter( config, parent );
+	if (type ==     "AreaFilter") filter = new     AreaFilter( config, parent );
+	if (type ==    "SplitFilter") filter = new    SplitFilter( config, parent );
+	if (type ==    "BGSubFilter") filter = new    BGSubFilter( config, parent );
+	if (type ==   "ThreshFilter") filter = new   ThreshFilter( config, parent );
+	if (type ==  "SpeckleFilter") filter = new  SpeckleFilter( config, parent );
+	if (type ==  "LowpassFilter") filter = new  LowpassFilter( config, parent );
+	if (type == "BandpassFilter") filter = new BandpassFilter( config, parent );
 
 	if (filter) push_back( filter );
 

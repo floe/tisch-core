@@ -82,9 +82,6 @@ class Filter {
 };
 
 
-// TODO add highpass filter from ITS paper
-
-
 class BGSubFilter: public Filter {
 	public:
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
@@ -154,6 +151,18 @@ class LowpassFilter: public Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite);
 	protected:
 		int mode, range;
+};
+
+class BandpassFilter: public Filter {
+	public:
+		BandpassFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta, bool overwrite);
+	protected:
+		int inner, outer;
 };
 
 class SplitFilter: public Filter {
