@@ -240,3 +240,15 @@ void Matcher::process_gestures() {
 	release();
 }
 
+
+
+MatcherTUIOInput::MatcherTUIOInput( Matcher* m ): TUIOInStream(), matcher(m) { }
+
+void MatcherTUIOInput::process_frame() {
+	matcher->process_gestures();
+}
+
+void MatcherTUIOInput::process_blob( BasicBlob& b ) {
+	matcher->process_blob( b );
+}
+

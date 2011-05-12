@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <sstream>
 
-#include <TUIOInStream.h>
 #include <nanolibc.h>
 #include <Socket.h>
 #include <tisch.h>
@@ -152,26 +151,10 @@ GestureThread gthr;
 
 
 
-struct MatcherTUIOInput: public TUIOInStream {
-
-	MatcherTUIOInput(): TUIOInStream() { }
-	
-	virtual void process_frame() {
-		matcher.process_gestures();
-	}
-
-	virtual void process_blob( BasicBlob& b ) {
-		matcher.process_blob( b );
-	}
-
-};
-
-
-
 int main( int argc, char* argv[] ) {
 
 	int defnum, defcount = (sizeof(default_gestures)/sizeof(const char*))-1;
-	MatcherTUIOInput input;
+	MatcherTUIOInput input( &matcher );
 
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;

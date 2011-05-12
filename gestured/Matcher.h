@@ -4,9 +4,13 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#ifndef _MATCHER_H_
+#define _MATCHER_H_
+
 #include <map>
 #include <set>
 
+#include <TUIOInStream.h>
 #include <BasicBlob.h>
 #include <Factory.h>
 #include <Region.h>
@@ -51,4 +55,21 @@ class TISCH_SHARED Matcher: public Thread {
 
 		std::set<StateRegion*> needs_update;
 };
+
+
+class MatcherTUIOInput: public TUIOInStream {
+
+	public:
+
+		MatcherTUIOInput( Matcher* m );
+	
+		void process_frame();
+		void process_blob( BasicBlob& b );
+
+	protected:
+
+		Matcher* matcher;
+};
+
+#endif // _MATCHER_H_
 
