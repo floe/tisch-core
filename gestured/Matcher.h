@@ -39,13 +39,14 @@ class TISCH_SHARED Matcher: public Thread {
 		void raise( unsigned int id );
 		void lower( unsigned int id );
 
+		void peakmode( int usepeak );
 		void clear();
 
 	protected:
 
 		RegionList::iterator find( unsigned int id );
 
-		int verbose, do_run;
+		int verbose, do_run, use_peak;
 
 		std::map<int,StateRegion*> stickies;
 		RegionList regions;

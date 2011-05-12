@@ -24,7 +24,7 @@
 //     - wenn geste sticky: in stickies einfügen
 
 
-Matcher::Matcher( int _v ): Thread(), verbose(_v), do_run(1) { }
+Matcher::Matcher( int _v ): Thread(), verbose(_v), do_run(1), use_peak(0) { }
 
 
 void* Matcher::run() {
@@ -96,11 +96,16 @@ void Matcher::lower( unsigned int id ) {
 	release();
 }
 
+void Matcher::peakmode( int usepeak ) {
+	use_peak = usepeak;
+}
+
 void Matcher::clear() {
 	lock();
 	regions.clear();
 	stickies.clear();
 	release();
+	use_peak = 0;
 }
 
 
@@ -110,8 +115,8 @@ void Matcher::process_blob( BasicBlob& blob ) {
 
 	cur_ids.insert( blob.id );
 
-	// TODO:if use_peak is set, use peak of blob instead of pos
-	//if (use_peak) blob.pos = blob.peak;
+	// if use_peak is set, use peak of blob instead of pos
+	if (use_peak) blob.pos = blob.peak;
 
 	// insert blob into correct region 
 	std::map<int,StateRegion*>::iterator target = stickies.find( blob.id );

@@ -89,8 +89,7 @@ struct GestureThread: public Thread {
 
 		// use blob peak instead of centroid
 		if (cmd == "use_peak") {
-			// TODO: move to Matcher class
-			//use_peak = true;
+			matcher.peakmode( 1 );
 			return 1;
 		}
 
