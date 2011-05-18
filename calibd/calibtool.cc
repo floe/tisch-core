@@ -53,7 +53,7 @@ int current = 0;
 std::string msg( "Please check corner markers and tap the cross.\nPress (f) for fullscreen, (q) to abort.\nNow sampling." );
 
 int delay = 0;
-int ttype = 1;
+int ttype = INPUT_TYPE_FINGER;
 
 
 void countdown( int signal ) {
@@ -65,8 +65,8 @@ void countdown( int signal ) {
 void disp() {
 
 	unsigned long int size, msglen = 0;
-	int lxr = xres-1;
-	int lyr = yres-1;
+	int lxr = xres-1; int mxr = xres/2;
+	int lyr = yres-1; int myr = yres/2;
 
 	win->clear();
 	glColor4f(1.0,1.0,1.0,1.0);
@@ -74,12 +74,19 @@ void disp() {
 
 	glBegin(GL_LINES);
 		
-		// corner markers
 		size = TARGET_SIZE;
+
+		// corner markers
 		glVertex2i(  0,  0); glVertex2i(  0,    size); glVertex2i(  0,  0); glVertex2i(    size,  0);
 		glVertex2i(  0,lyr); glVertex2i(  0,lyr-size); glVertex2i(  0,lyr); glVertex2i(    size,lyr);
 		glVertex2i(lxr,  0); glVertex2i(lxr,    size); glVertex2i(lxr,  0); glVertex2i(lxr-size,  0);
 		glVertex2i(lxr,lyr); glVertex2i(lxr,lyr-size); glVertex2i(lxr,lyr); glVertex2i(lxr-size,lyr);
+
+		// side markers
+		glVertex2i(   0, myr-size ); glVertex2i(   0, myr+size );
+		glVertex2i( lxr, myr-size ); glVertex2i( lxr, myr+size );
+		glVertex2i( mxr-size,   0 ); glVertex2i( mxr+size,   0 );
+		glVertex2i( mxr-size, lyr ); glVertex2i( mxr+size, lyr );
 
 		// calibration cross
 		if (!delay) {
@@ -206,18 +213,22 @@ void keyb( unsigned char key, int x, int y ) {
 
 int main( int argc, char* argv[] ) {
 
+	bool circle = false;
+
 	std::cout << "calibtool - libTISCH 2.0 calibration layer" << std::endl;
-	std::cout << "(c) 2011 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	signal( SIGALRM, countdown );
 
-	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "ht:" ) ) switch (opt) {
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "cht:" ) ) switch (opt) {
 
-		case 't': ttype = atoi(optarg);
-		          break;
+		case 'c': circle = true; break;
+
+		case 't': ttype = atoi(optarg); break;
 
 		case 'h':
 		case '?':	std::cout << "Usage: calibtool [options]\n";
+		          std::cout << "  -c      assume circular display (centered)\n";
 		          std::cout << "  -t num  use TUIO type #num for calibration, default = 1 (generic finger)\n";
 		          std::cout << "  -h      this\n";
 		          return 0; break;
@@ -240,10 +251,18 @@ int main( int argc, char* argv[] ) {
 	cal.backup();
 
 	// four corners: determine homography
-	screen_coords.push_back( Vector(      TARGET_OFFSET,      TARGET_OFFSET ) );
-	screen_coords.push_back( Vector( xres-TARGET_OFFSET,      TARGET_OFFSET ) );
-	screen_coords.push_back( Vector( xres-TARGET_OFFSET, yres-TARGET_OFFSET ) );
-	screen_coords.push_back( Vector(      TARGET_OFFSET, yres-TARGET_OFFSET ) );
+	if (!circle) {
+		screen_coords.push_back( Vector(      TARGET_OFFSET,      TARGET_OFFSET ) );
+		screen_coords.push_back( Vector( xres-TARGET_OFFSET,      TARGET_OFFSET ) );
+		screen_coords.push_back( Vector( xres-TARGET_OFFSET, yres-TARGET_OFFSET ) );
+		screen_coords.push_back( Vector(      TARGET_OFFSET, yres-TARGET_OFFSET ) );
+	} else {
+		int min = (xres < yres) ? xres : yres;
+		screen_coords.push_back( Vector( (xres-min)/2+TARGET_OFFSET, yres/2 ) );
+		screen_coords.push_back( Vector( xres/2, (yres+min)/2-TARGET_OFFSET ) );
+		screen_coords.push_back( Vector( (xres+min)/2-TARGET_OFFSET, yres/2 ) );
+		screen_coords.push_back( Vector( xres/2, (yres-min)/2+TARGET_OFFSET ) );
+	}
 
 	/*int offx[4] = { OFFSET, (xres-2*OFFSET)/3, (xres-2*OFFSET)*2/3, xres-OFFSET };
 	int offy[4] = { OFFSET, (yres-2*OFFSET)/3, (yres-2*OFFSET)*2/3, yres-OFFSET };
