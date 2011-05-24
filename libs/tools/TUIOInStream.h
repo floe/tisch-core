@@ -28,7 +28,7 @@ class TISCH_SHARED TUIOInStream {
 
 	protected:
 
-		struct ReceiverThread: public osc::OscPacketListener {
+		struct TISCH_SHARED ReceiverThread: public osc::OscPacketListener {
 
 			ReceiverThread( TUIOInStream* p );
 			

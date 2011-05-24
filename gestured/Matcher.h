@@ -58,7 +58,7 @@ class TISCH_SHARED Matcher: public Thread {
 };
 
 
-class MatcherTUIOInput: public TUIOInStream {
+class TISCH_SHARED MatcherTUIOInput: public TUIOInStream {
 
 	public:
 
