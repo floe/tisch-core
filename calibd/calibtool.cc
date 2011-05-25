@@ -155,6 +155,7 @@ struct CalibTUIOInput: public TUIOInStream {
 					image_coords.push_back(avg);
 					msg += "done.\nPlease remove your finger.";
 					glutPostRedisplay();
+					sleep(2000);
 					current++;
 					delay = 1;
 					alarm(3);
