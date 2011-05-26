@@ -107,7 +107,6 @@
     <ClCompile Include="..\libs\simplecv\Circle.cc" />
     <ClCompile Include="..\libs\simplecv\ColorLUT.cc" />
     <ClCompile Include="..\libs\simplecv\IntensityImage.cc" />
-	<ClCompile Include="..\libs\simplecv\KinectImageSource.cc" />
     <ClCompile Include="..\libs\simplecv\Line.cc" />
     <ClCompile Include="..\libs\simplecv\mmx.cc" />
     <ClCompile Include="..\libs\simplecv\PicoPNG.cc" />
@@ -135,7 +134,6 @@
     <ClInclude Include="..\libs\simplecv\Image.h" />
     <ClInclude Include="..\libs\simplecv\ImageSource.h" />
     <ClInclude Include="..\libs\simplecv\IntensityImage.h" />
-	<ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
     <ClInclude Include="..\libs\simplecv\Line.h" />
     <ClInclude Include="..\libs\simplecv\mmx.h" />
     <ClInclude Include="..\libs\simplecv\PicoPNG.h" />
