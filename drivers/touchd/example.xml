@@ -1,22 +1,24 @@
 <!-- libTISCH 2.0 touchd example config file -->
 <Camera SourceType=1 SourcePath="/dev/video0" UseIntensityImage=1 Width=640 Height=480 FPS=30 Verbose=0 FlashMode=0 FlashPath="/dev/ttyS0" Gain=123 Exposure=321 Brightness=255>
-	<SplitFilter>
-	<BGSubFilter Invert=0>
-		<LowpassFilter Mode=2 Range=1>
-			<BlobFilter IgnoreOrphans=1 MinSize=50 MaxSize=300 PeakMode=-1 VFlip=1 Type=1/>
-		</LowpassFilter>
-		<ThreshFilter Threshold=50>
-			<SpeckleFilter NoiseLevel=7>
-				<BlobFilter/>
-			</SpeckleFilter>
-		</ThreshFilter>
-	</BGSubFilter>
-	<BGSubFilter Invert=1>
-		<ThreshFilter Threshold=150>
-			<SpeckleFilter NoiseLevel=2>
-				<BlobFilter Type=1/> <!-- TUIO 2.0 object type -->
-			</SpeckleFilter>
-		</ThreshFilter>
-	</BGSubFilter>
-	</SplitFilter>
+	<FlipFilter VFlip=0 HFlip=1>
+		<SplitFilter>
+			<BGSubFilter Invert=0>
+				<LowpassFilter Mode=2 Range=1>
+					<BlobFilter IgnoreOrphans=1 MinSize=50 MaxSize=300 PeakMode=-1 VFlip=1 Type=1/>
+				</LowpassFilter>
+				<ThreshFilter Threshold=50>
+					<SpeckleFilter NoiseLevel=7>
+						<BlobFilter/>
+					</SpeckleFilter>
+				</ThreshFilter>
+			</BGSubFilter>
+			<BGSubFilter Invert=1>
+				<ThreshFilter Threshold=150>
+					<SpeckleFilter NoiseLevel=2>
+						<BlobFilter Type=1/> <!-- TUIO 2.0 object type -->
+					</SpeckleFilter>
+				</ThreshFilter>
+			</BGSubFilter>
+		</SplitFilter>
+	</FlipFilter>
 </Camera>

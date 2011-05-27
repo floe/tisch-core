@@ -112,11 +112,12 @@ void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 /*==============================================================================
  * FlipFilter
 ==============================================================================*/
-// TODO: make hflip/vflip configurable
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	hflip = 0;
 	vflip = 0;
+	config->QueryIntAttribute( "HFlip" , &hflip );
+	config->QueryIntAttribute( "VFlip" , &vflip );
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
@@ -124,38 +125,121 @@ FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 // TODO: should be MMX-accelerated
 int FlipFilter::process() {
 	
+	int width = 0;
+	int height = 0;
+
 	if(useIntensityImage) 
 	{
 		unsigned char* inbuf = input->getImage()->getData();
 		unsigned char* outbuf = image->getData();
-		
-		int width  = image->getWidth();
-		int height = image->getHeight();
 
-		int inoffset  = 0;
-		int outoffset = width-1;
-		
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
-			inoffset  += width;
-			outoffset += width;
+		width  = image->getWidth();
+		height = image->getHeight();
+
+		// no flipping
+		if (vflip == 0 && hflip == 0) {
+			int inoffset  = 0;
+			int outoffset = 0;
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
 		}
-	} 
+
+		// vertical flipping
+		if(vflip == 1 && hflip == 0){
+			int inoffset  = 0;
+			int outoffset = width - 1; // same line last index
+		
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// horizontal flipping
+		if(vflip == 0 && hflip == 1){
+			int inoffset  = 0;
+			int outoffset = (height * width) - (width + 2); // beginning of the last line
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+
+		// vertical && horizontal flipping
+		// reversing the order of the pixel
+		if(vflip == 1 && hflip == 1) {
+			int inoffset  = 0;
+			int outoffset = (height * width) - 1; // very last element of the array
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+	}
 	else 
 	{
 		unsigned short* inbuf  = input->getShortImage()->getSData();
 		unsigned short* outbuf = shortimage->getSData();
 
-		int width  = shortimage->getWidth();
-		int height = shortimage->getHeight();
+		width  = shortimage->getWidth();
+		height = shortimage->getHeight();
 
-		int inoffset  = 0;
-		int outoffset = width-1;
+		// no flipping
+		if (vflip == 0 && hflip == 0) {
+			int inoffset  = 0;
+			int outoffset = 0;
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
-			inoffset  += width;
-			outoffset += width;
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// vertical flipping
+		if(vflip == 1 && hflip == 0){
+			int inoffset  = 0;
+			int outoffset = width - 1; // same line last index
+		
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// horizontal flipping
+		if(vflip == 0 && hflip == 1){
+			int inoffset  = 0;
+			int outoffset = (height * width) - (width + 2); // beginning of the last line
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+
+		// vertical && horizontal flipping
+		// reversing the order of the pixel
+		if(vflip == 1 && hflip == 1) {
+			int inoffset  = 0;
+			int outoffset = (height * width) - 1; // very last element of the array
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
 		}
 	}
 
