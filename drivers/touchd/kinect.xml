@@ -3,7 +3,7 @@
 	
 	<FlipFilter>
 		<AreaFilter Enabled=1>
-		<BGSubFilter Invert=0 Adaptive=0>-->
+		<BGSubFilter Invert=0 Adaptive=0>
 		
 			<ThreshFilter UpperThreshold=8 LowerThreshold=2>
 				<LowpassFilter Mode=2 Range=1>

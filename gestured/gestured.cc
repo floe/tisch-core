@@ -24,14 +24,14 @@ TCPSocket* gstcon = 0;
 
 // default gestures as parseable string
 const char* default_gestures[] = {
-	"region 1 0 0 6 \
+	"region 1 1 0 6 \
 		move 5 1 Motion 0 31 0 0 0 0 \
 		scale 5 1 RelativeAxisScale 0 31 0 0 \
 		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
 		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
 		remove 6 1 BlobID 0 31 0 1 -1 \
 		release 6 1 BlobCount 0 31 0 2 0 0",
-	"region 1 0 0 6 \
+	"region 1 1 0 6 \
 		move 5 1 Motion 0 31 0 0 0 0 \
 		scale 5 1 MultiBlobScale 0 31 0 0 \
 		rotate 5 1 MultiBlobRotation 0 31 0 0 \

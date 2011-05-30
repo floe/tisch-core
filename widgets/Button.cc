@@ -21,7 +21,7 @@ Button::Button( int _w, int _h, int _x, int _y, double _angle, RGBATexture* _tex
 	Gesture remove ( "remove"  ); region.gestures.push_back( remove  );
 	Gesture release( "release" ); region.gestures.push_back( release );
 
-	region.flags( 1<<INPUT_TYPE_FINGER );
+	region.flags( 1<<INPUT_TYPE_HAND /*1<<INPUT_TYPE_FINGER*/ );
 
 	mycolor[0] = 0.5;
 	mycolor[1] = 0.5;
