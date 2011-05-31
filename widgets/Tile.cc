@@ -37,10 +37,20 @@ void Tile::apply( Vector delta ) {
 	if (parent && (mode & TISCH_TILE_BOUNCE)) {
 		int maxx = parent->w/2;
 		int maxy = parent->h/2;
-		if (x < -maxx) { x = -maxx; vel.x = -vel.x; }
-		if (x >  maxx) { x =  maxx; vel.x = -vel.x; }
-		if (y < -maxy) { y = -maxy; vel.y = -vel.y; }
-		if (y >  maxy) { y =  maxy; vel.y = -vel.y; }
+		if (parent->mode & TISCH_TILE_BBOX) {
+			if (x < -maxx) { x = -maxx; vel.x = -vel.x; }
+			if (x >  maxx) { x =  maxx; vel.x = -vel.x; }
+			if (y < -maxy) { y = -maxy; vel.y = -vel.y; }
+			if (y >  maxy) { y =  maxy; vel.y = -vel.y; }
+		} else if (parent->mode & TISCH_TILE_CIRCLE) {
+			int radius = (maxx>maxy?maxy:maxx);
+			double len = sqrt(x*x+y*y);
+			if (len > radius) {
+				vel = -vel;
+				x *= radius/len;
+				y *= radius/len;
+			}
+		}
 	}
 }
 

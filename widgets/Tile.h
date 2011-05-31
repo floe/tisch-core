@@ -16,6 +16,9 @@
 #define TISCH_TILE_SLIDE   8
 #define TISCH_TILE_BOUNCE 16
 
+#define TISCH_TILE_BBOX   32
+#define TISCH_TILE_CIRCLE 64
+
 class TISCH_SHARED Tile: public Button {
 
 	public:

@@ -16,7 +16,7 @@ class TISCH_SHARED Container: public Tile {
 
 	public:
 
-		 Container( int w, int h, int x, int y, double angle = 0.0, RGBATexture* tex = 0, int mode = 0 );
+		 Container( int w, int h, int x, int y, double angle = 0.0, RGBATexture* tex = 0, int mode = TISCH_TILE_BBOX );
 		~Container();
 
 		void add( Widget* widget, int back = 1 );
