@@ -148,8 +148,8 @@ int FlipFilter::process() {
 			}
 		}
 
-		// vertical flipping
-		if(vflip == 1 && hflip == 0){
+		// horizontal flipping - flipping along vertical axis
+		if(vflip == 0 && hflip == 1){
 			int inoffset  = 0;
 			int outoffset = width - 1; // same line last index
 		
@@ -160,8 +160,8 @@ int FlipFilter::process() {
 			}
 		}
 
-		// horizontal flipping
-		if(vflip == 0 && hflip == 1){
+		// vertical flipping - flipping along horzontal axis
+		if(vflip == 1 && hflip == 0){
 			int inoffset  = 0;
 			int outoffset = (height * width) - (width + 2); // beginning of the last line
 
@@ -205,8 +205,8 @@ int FlipFilter::process() {
 			}
 		}
 
-		// vertical flipping
-		if(vflip == 1 && hflip == 0){
+		// horizontal flipping - flipping along the vertical axis
+		if(vflip == 0 && hflip == 1){
 			int inoffset  = 0;
 			int outoffset = width - 1; // same line last index
 		
@@ -217,8 +217,8 @@ int FlipFilter::process() {
 			}
 		}
 
-		// horizontal flipping
-		if(vflip == 0 && hflip == 1){
+		// vertical flipping - flipping along the horizontal axis
+		if(vflip == 1 && hflip == 0){
 			int inoffset  = 0;
 			int outoffset = (height * width) - (width + 2); // beginning of the last line
 
