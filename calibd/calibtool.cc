@@ -111,7 +111,7 @@ void disp() {
 
 struct CalibTUIOInput: public TUIOInStream {
 
-	CalibTUIOInput(): TUIOInStream() { }
+	CalibTUIOInput(): TUIOInStream( TISCH_PORT_RAW ) { }
 	
 	virtual void process_frame() {
 

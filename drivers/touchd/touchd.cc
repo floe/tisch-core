@@ -226,7 +226,7 @@ void idle() {
 
 int main( int argc, char* argv[] ) {
 
-	int outport = TISCH_PORT_CALIB;
+	int outport = TISCH_PORT_RAW;
 
 	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
