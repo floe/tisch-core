@@ -53,7 +53,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	//config->QueryIntAttribute( "TrailColor", &trail);
 
 	// setting variables for Configurator
-	countOfOptions = 4; // quantity of variables that can be manipulated
+	countOfOptions = 5; // quantity of variables that can be manipulated
 }
 
 BlobList::~BlobList() {
@@ -275,6 +275,9 @@ const char* BlobList::getOptionName(int option) {
 	case 3:
 		OptionName = "Maximum Size";
 		break;
+	case 4:
+		OptionName = "Peakmode";
+		break;
 	default:
 		// leave OptionName empty
 		break;
@@ -298,6 +301,9 @@ double BlobList::getOptionValue(int option) {
 		break;
 	case 3:
 		OptionValue = maxsize;
+		break;
+	case 4:
+		OptionValue = peakmode;
 		break;
 	default:
 		// leave OptionValue = -1.0
@@ -341,5 +347,30 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 			maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
 		}
 		break;
+	case 4:
+		if(overwrite) {
+			peakmode = (delta < -MAX_VALUE) ? -MAX_VALUE : (delta > MAX_VALUE) ? MAX_VALUE : delta;
+		} else {
+			peakmode += delta;
+			peakmode = (peakmode < -MAX_VALUE) ? -MAX_VALUE : (peakmode > MAX_VALUE) ? MAX_VALUE : peakmode;
+		}
+		break;
 	}
 }
+/*
+TiXmlElement* BlobList::storeFilter() {
+	TiXmlElement* XMLNode = new TiXmlElement( "BlobFilter" );
+	
+	XMLNode->SetAttribute( "IgnoreOrphans", ignore_orphans );
+	XMLNode->SetAttribute( "MinSize",  minsize );
+	XMLNode->SetAttribute( "MaxSize",  maxsize );
+	XMLNode->SetAttribute( "PeakMode", peakmode );
+	XMLNode->SetAttribute( "HFlip", hflip );
+	XMLNode->SetAttribute( "VFlip", vflip );
+	XMLNode->SetAttribute( "Type",  type  );
+	XMLNode->SetAttribute( "TrackRadiusZ", radius );
+	XMLNode->SetAttribute( "PeakFactor", factor );
+	
+	return XMLNode;
+}
+*/
