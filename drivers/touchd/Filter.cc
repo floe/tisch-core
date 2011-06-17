@@ -109,6 +109,15 @@ void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* BGSubFilter::getXMLRepresentation() {
+	
+	TiXmlElement* XMLNode = new TiXmlElement( "BGSubFilter" );
+	
+	XMLNode->SetAttribute( "Invert" , invert );
+	XMLNode->SetAttribute( "Adaptive" , adaptive );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * FlipFilter
 ==============================================================================*/
@@ -303,6 +312,14 @@ void FlipFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* FlipFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "FlipFilter" );
+	
+	XMLNode->SetAttribute( "HFlip" , hflip );
+	XMLNode->SetAttribute( "VFlip" , vflip );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * ThreshFilter
 ==============================================================================*/
@@ -311,7 +328,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	checkImage();
 	threshold_min = 128;
 	threshold_max = 255;
-	config->QueryIntAttribute(      "Threshold", &threshold_min );
+	config->QueryIntAttribute(      "Threshold", &threshold_min ); // TODO remove this when storing xml works
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
 	(useIntensityImage == 1) ? THRESH_MAX = 255 : THRESH_MAX = 2047;
@@ -382,6 +399,14 @@ void ThreshFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* ThreshFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "ThreshFilter" );
+	
+	XMLNode->SetAttribute( "LowerThreshold", threshold_min );
+	XMLNode->SetAttribute( "UpperThreshold", threshold_max );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * SpeckleFilter
 ==============================================================================*/
@@ -432,6 +457,13 @@ void SpeckleFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* SpeckleFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "SpeckleFilter" );
+	
+	XMLNode->SetAttribute( "NoiseLevel", noiselevel );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * LowpassFilter
 ==============================================================================*/
@@ -439,8 +471,8 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 	checkImage();
 	mode = 0;
 	range = 1;
-	config->QueryIntAttribute( "Mode", &mode);
-	config->QueryIntAttribute( "Range", &range);
+	config->QueryIntAttribute( "Mode", &mode );
+	config->QueryIntAttribute( "Range", &range );
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
@@ -508,7 +540,14 @@ void LowpassFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
-
+TiXmlElement* LowpassFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "LowpassFilter" );
+	
+	XMLNode->SetAttribute( "Mode", mode );
+	XMLNode->SetAttribute( "Range", range );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * BandpassFilter
 ==============================================================================*/
@@ -585,6 +624,14 @@ void BandpassFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* BandpassFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "BandpassFilter" );
+	
+	XMLNode->SetAttribute( "InnerRadius", inner );
+	XMLNode->SetAttribute( "OuterRadius", outer );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * SplitFilter
 ==============================================================================*/
@@ -618,6 +665,13 @@ IntensityImage* SplitFilter::getImage() {
 	else return image2 ? image2 : image;
 }
 
+TiXmlElement* SplitFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "SplitFilter" );
+	
+	//XMLNode->SetAttribute( "name", value );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * AreaFilter
 ==============================================================================*/
@@ -625,7 +679,7 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 	checkImage();
 	enabled = 0;
 	updated = true;
-	config->QueryIntAttribute( "Enabled", &enabled);
+	config->QueryIntAttribute( "Enabled", &enabled );
 	// setting variables for Configurator
 	countOfOptions = 1; // quantity of variables that can be manipulated
 }
@@ -747,4 +801,12 @@ void AreaFilter::draw( GLUTWindow* win )
 	glColor4f(1,0,0,1);
 	for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		win->drawPolygon( *it, 1, image->getHeight() );
+}
+
+TiXmlElement* AreaFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "AreaFilter" );
+	
+	XMLNode->SetAttribute( "Enabled", enabled );
+	
+	return XMLNode;
 }

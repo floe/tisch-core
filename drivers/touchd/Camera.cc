@@ -155,7 +155,11 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 			dccam->setReg( HDR_GAIN3,    0x820002AB );*/
 		} else
 	#endif
-
+		/*
+		* If the program crashes while debugging at this position please
+		* check the specified SourceType in your configuration xml
+		* have a look in the wiki for possible options
+		*/
 		throw std::runtime_error( "Error: unknown camera type requested." );
 
 	// disable auto exposure, set other parameters
@@ -195,7 +199,6 @@ Camera::~Camera() {
 	delete cam;
 }
 
-
 int Camera::process() {
 
 	// get the image, retry on error
@@ -219,3 +222,26 @@ void Camera::tilt_kinect( int angle ) {
 #endif
 }
 
+TiXmlElement* Camera::getXMLRepresentation() {
+		
+	TiXmlElement* XMLNode = new TiXmlElement( "Camera" );
+
+	XMLNode->SetAttribute( "SourceType", sourcetype );
+	XMLNode->SetAttribute( "SourcePath", sourcepath );
+	XMLNode->SetAttribute( "UseIntensityImage", useIntensityImage );
+
+	XMLNode->SetAttribute( "Width", width );
+	XMLNode->SetAttribute( "Height", height );
+	XMLNode->SetAttribute( "FPS", fps );
+
+	XMLNode->SetAttribute( "Verbose", verbose );
+
+	XMLNode->SetAttribute( "FlashMode", flashmode );
+	XMLNode->SetAttribute( "FlashPath", flashpath );
+
+	XMLNode->SetAttribute( "Gain", gain );
+	XMLNode->SetAttribute( "Exposure", expo );
+	XMLNode->SetAttribute( "Brightness", bright);
+	
+	return XMLNode;
+}

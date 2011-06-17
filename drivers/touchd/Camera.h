@@ -32,6 +32,9 @@ class Camera: public Filter {
 
 		void tilt_kinect( int angle );
 
+		// Configurator
+		virtual TiXmlElement* getXMLRepresentation();
+
 	private:
 
 		FlashControl* flash;

@@ -104,3 +104,17 @@ void Configurator::showEditInfo() {
 	win->print(std::string("Leave editing mode without changes with (e)."), xCoord, yCoord);
 }
 
+void Configurator::showStoreInfo() {
+	int xCoord = 100;
+	int yCoord = 200;
+
+	glColor4f(1.0, 1.0, 1.0, 1.0); // white
+	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
+
+	glColor4f(0.0, 0.0, 0.0, 1.0); // black
+	win->print(std::string("Saving Mode"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("Press enter to save current settings"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("Use (e) to leave without saving."), xCoord, yCoord);
+}

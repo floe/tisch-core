@@ -65,6 +65,8 @@ class Filter {
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
 		int getUseIntensityImage() { return useIntensityImage; };
+		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "MyPlaceholder" );}; // TODO remove return so getXMLRepresentationOfFilter is required to be implemented!
+		Filter* getParent() {return input;};
 
 	protected:
 
@@ -93,6 +95,7 @@ class BGSubFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		ShortImage* background;
 		Filter* mask;
@@ -108,6 +111,7 @@ class FlipFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		// Options
 		int hflip;
@@ -122,6 +126,7 @@ class ThreshFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int THRESH_MAX; // 255 if intensity image is used, else 2047
 		// Options
@@ -137,6 +142,7 @@ class SpeckleFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int noiselevel;
 };
@@ -149,6 +155,7 @@ class LowpassFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int mode, range;
 };
@@ -161,6 +168,7 @@ class BandpassFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int inner, outer;
 };
@@ -171,6 +179,7 @@ class SplitFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual IntensityImage* getImage();
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;
@@ -188,6 +197,7 @@ class AreaFilter: public Filter {
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual void draw( GLUTWindow* win );
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int enabled;
 		bool updated;

@@ -29,10 +29,13 @@ Filter* tmp = 0;
 Configurator* configure = 0;
 int showHelp = 0;
 int editvalue = 0;
+int storeconfig = 0;
 std::string userinput = "";
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
+// TODO remove outputconfig
+std::string outputconfig = "../drivers/touchd/output.xml";
 
 int curframe = 0;
 int lasttime = 0;
@@ -56,6 +59,47 @@ void cleanup( int signal ) {
 	exit(0);
 }
 
+TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot) {
+	
+	TiXmlElement* rootOfCurrentSubtree = 0;
+
+	if(startIndex < mypipe->size()) {
+		// get XML Node for current root of subtree
+		rootOfCurrentSubtree = (*mypipe)[startIndex]->getXMLRepresentation();
+		
+		// check pipe for further children of current root
+		for(int i = startIndex + 1; i < mypipe->size(); i++) {
+
+			// get parent of current filter
+			Filter* parentOfCurrent = (*mypipe)[i]->getParent();
+
+			// if parent of current == rootOfCurrentSubtree
+			if(parentOfCurrent == (*mypipe)[startIndex]) {
+				// then current is child of root
+				rootOfCurrentSubtree->LinkEndChild(getXMLSubTree(i, (*mypipe)[i]));
+			}
+		}
+	}
+
+	return rootOfCurrentSubtree;
+}
+
+void storeXMLConfig() {
+	// store filter settings
+	std::cout << "storing XML Config" << std::endl;
+
+	TiXmlDocument doc;
+	//TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "utf-8", "");
+	//doc.LinkEndChild(decl);
+	
+	TiXmlElement* tree = getXMLSubTree(0, 0);
+	
+	// add tree to document
+	doc.LinkEndChild(tree);
+
+	// save document to file
+	doc.SaveFile(outputconfig); // cfgfile replace when outputconfig is removed
+}
 
 void disp() {
 
@@ -90,6 +134,10 @@ void disp() {
 
 		if(editvalue == 1) {
 			configure->showEditInfo();
+		}
+
+		if(storeconfig == 1) {
+			configure->showStoreInfo();
 		}
 	}
 
@@ -129,7 +177,23 @@ void keyb( unsigned char c, int, int ) {
 			userinput += c;
 		}
 
-	} else { // processing keyboard entries as usual
+	}
+	else if(storeconfig == 1 && configure != 0) {
+		// store current configuration
+
+		// quit store mode without saving
+		if(c == 'e') {
+			storeconfig = 0;
+		}
+
+		if(c = 0x0D){ // Enter
+			// save new xml
+			storeXMLConfig();
+			storeconfig = 0; // close storing mode
+		}
+
+	}
+	else { // processing keyboard entries as usual
 	// switching filters
 		if ((c >= '0') && (c <= '9')) {
 			c = c - '0';
@@ -178,6 +242,11 @@ void keyb( unsigned char c, int, int ) {
 				}
 			}
 
+			// activate saving mode
+			if(c == 's') {
+				storeconfig = 1;
+			}
+
 			// toggle Option with Tab
 			if(c == 0x09) {
 				tmp->nextOption();
@@ -189,18 +258,22 @@ void keyb( unsigned char c, int, int ) {
 			}
 		}
 
-		if (c == 'x') {
-			if( angle > -30 ) angle--;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+		if(configure == 0) {
+			// move Kinect only when configurator is closed
+			if (c == 'x') {
+				if( angle > -30 ) angle--;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
+			if (c == 'w') {
+				if( angle < 30 ) angle++;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
+			if (c == 's') {
+				angle = 0;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
 		}
-		if (c == 'w') {
-			if( angle < 30 ) angle++;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-		}
-		if (c == 's') {
-			angle = 0;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-		}
+
 	}
 	glutPostRedisplay();
 }

@@ -357,8 +357,8 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 		break;
 	}
 }
-/*
-TiXmlElement* BlobList::storeFilter() {
+
+TiXmlElement* BlobList::getXMLRepresentation() {
 	TiXmlElement* XMLNode = new TiXmlElement( "BlobFilter" );
 	
 	XMLNode->SetAttribute( "IgnoreOrphans", ignore_orphans );
@@ -373,4 +373,3 @@ TiXmlElement* BlobList::storeFilter() {
 	
 	return XMLNode;
 }
-*/
