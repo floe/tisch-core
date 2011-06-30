@@ -358,7 +358,7 @@ void IntensityImage::areamask( IntensityImage& target, std::vector<int> edgepoin
 	else
 		memset(target.data, 0, size);
 		for(std::vector<int>::iterator it = edgepoints.begin(); it != edgepoints.end(); it = it + 2)
-			memcpy((target.data +  (*it)), (data + (*it)), (*(it+1) - *it)*2); 
+			memcpy((target.data +  (*it)), (data + (*it)), (*(it+1) - *it)); 
 }
 
 void IntensityImage::gradient( char* xgrad, char* ygrad ) {
