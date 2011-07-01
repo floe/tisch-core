@@ -1,4 +1,5 @@
-- add fast highpass filter from ITS paper
+- cleanup touchd example files: sample DI, sample FTIR, sample Kinect...
+- make target offset for calibtool configurable
 
 - use TUIO 2.0 object types where possible
 
