@@ -84,6 +84,9 @@ void Tile::action( Gesture* gesture ) {
 		if (!r) return;
 		sx *= r->result();
 		sy *= r->result();
+		/* TODO: configurable scale limits
+		if (sx > 2.50) { sx = sy = 2.50; }
+		if (sx < 0.25) { sx = sy = 0.25; }*/
 	}
 
 	if ((mode & TISCH_TILE_ROTATE) && (gesture->name() == "rotate")) {
