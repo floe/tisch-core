@@ -65,7 +65,8 @@ class Filter {
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
 		int getUseIntensityImage() { return useIntensityImage; };
-		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "MyPlaceholder" );}; // TODO remove return so getXMLRepresentationOfFilter is required to be implemented!
+		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
+		virtual TiXmlElement* getXMLofAreas(int areafiltercounter) {return new TiXmlElement( "something_went_wrong" );};
 		Filter* getParent() {return input;};
 
 	protected:
@@ -198,6 +199,7 @@ class AreaFilter: public Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual void draw( GLUTWindow* win );
 		virtual TiXmlElement* getXMLRepresentation();
+		virtual TiXmlElement* getXMLofAreas(int areafiltercounter);
 	protected:
 		int enabled;
 		bool updated;

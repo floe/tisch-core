@@ -31,11 +31,10 @@ int showHelp = 0;
 int editvalue = 0;
 int storeconfig = 0;
 std::string userinput = "";
+std::vector<Filter*> Areafilter;
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
-// TODO remove outputconfig
-std::string outputconfig = "../drivers/touchd/output.xml";
 
 int curframe = 0;
 int lasttime = 0;
@@ -67,6 +66,11 @@ TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 		// get XML Node for current root of subtree
 		rootOfCurrentSubtree = (*mypipe)[startIndex]->getXMLRepresentation();
 		
+		// save a pointer to the area filter if there is one
+		if(strcmp(rootOfCurrentSubtree->Value(),"AreaFilter") == 0) {
+			Areafilter.push_back((*mypipe)[startIndex]);
+		}
+
 		// check pipe for further children of current root
 		for(int i = startIndex + 1; i < mypipe->size(); i++) {
 
@@ -86,19 +90,49 @@ TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 
 void storeXMLConfig() {
 	// store filter settings
-	std::cout << "storing XML Config" << std::endl;
+	std::cout << "storing XML Config ... " << std::flush;
 
 	TiXmlDocument doc;
-	//TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "utf-8", "");
-	//doc.LinkEndChild(decl);
-	
-	TiXmlElement* tree = getXMLSubTree(0, 0);
-	
-	// add tree to document
-	doc.LinkEndChild(tree);
+	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "utf-8", "yes");
+	doc.LinkEndChild(decl);
+
+	// create root node
+	TiXmlElement* root = new TiXmlElement( "libTISCH" );
+	root->SetAttribute("version", "2.0" );
+
+	// configuration of Filter
+	TiXmlElement* FilterSubtree = new TiXmlElement( "Filter" );
+	FilterSubtree->LinkEndChild(getXMLSubTree(0, 0));
+	root->LinkEndChild(FilterSubtree);
+
+	if(!Areafilter.empty()) {
+		// AreaFilter were definied in the Filterlist
+		
+		int areafiltercounter = 0;
+		// iterate through all AreaFilter
+		for(std::vector<Filter*>::iterator area = Areafilter.begin(); area != Areafilter.end(); area++) {
+			// and retrieve their Polygons
+			TiXmlElement* XMLarea = (*area)->getXMLofAreas(areafiltercounter);
+
+			// has the current AreaFilter any polygons?
+			if (XMLarea != 0) {
+				// yes? then store them
+				root->LinkEndChild(XMLarea);
+			}
+
+			areafiltercounter++;
+		}
+		// free memory
+		Areafilter.clear();
+	}
+
+	// add root to document
+	doc.LinkEndChild(root);
 
 	// save document to file
-	doc.SaveFile(outputconfig); // cfgfile replace when outputconfig is removed
+	doc.SaveFile(cfgfile);
+
+	std::cout << "done" << std::endl;
 }
 
 void disp() {
@@ -161,7 +195,7 @@ void keyb( unsigned char c, int, int ) {
 	if (editvalue == 1 && configure != 0) {
 
 		// quit edit mode without applying changes
-		if(c == 'e') {
+		if(c == 0x1B) { // ESC
 			editvalue = 0;
 		}
 
@@ -182,11 +216,11 @@ void keyb( unsigned char c, int, int ) {
 		// store current configuration
 
 		// quit store mode without saving
-		if(c == 'e') {
+		if(c == 0x1B) { // ESC
 			storeconfig = 0;
 		}
 
-		if(c = 0x0D){ // Enter
+		if(c == 0x0D){ // Enter
 			// save new xml
 			storeXMLConfig();
 			storeconfig = 0; // close storing mode
@@ -339,7 +373,13 @@ int main( int argc, char* argv[] ) {
 	TiXmlDocument doc( cfgfile );
 	doc.LoadFile();
 
-	mypipe = new Pipeline( doc.FirstChildElement() );
+	// get Filter subtree
+	TiXmlElement* root = doc.RootElement();
+	TiXmlElement* filtersubtree = root->FirstChildElement(); // access Filter Node
+	filtersubtree = filtersubtree->FirstChildElement(); // access Camera Node
+	
+	// pass subtree of Filter subtree
+	mypipe = new Pipeline( filtersubtree );
 	tmp = (*mypipe)[0];
 
 	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, address, outport );

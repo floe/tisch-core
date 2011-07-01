@@ -81,6 +81,8 @@ void Configurator::showHelp() {
 	yCoord += 20;
 	win->print(std::string("use (space) to reset all filters"), xCoord, yCoord);
 	yCoord += 20;
+	win->print(std::string("use (s) to store the current config of filters to xml"), xCoord, yCoord);
+	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
 
 }
@@ -101,7 +103,7 @@ void Configurator::showEditInfo() {
 	yCoord += 20;
 	win->print(std::string("Finish your input with enter."), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("Leave editing mode without changes with (e)."), xCoord, yCoord);
+	win->print(std::string("Leave editing mode without changes with ESC."), xCoord, yCoord);
 }
 
 void Configurator::showStoreInfo() {
@@ -116,5 +118,5 @@ void Configurator::showStoreInfo() {
 	yCoord += 20;
 	win->print(std::string("Press enter to save current settings"), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("Use (e) to leave without saving."), xCoord, yCoord);
+	win->print(std::string("Use ESC to leave without saving."), xCoord, yCoord);
 }

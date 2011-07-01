@@ -810,3 +810,41 @@ TiXmlElement* AreaFilter::getXMLRepresentation() {
 	
 	return XMLNode;
 }
+
+TiXmlElement* AreaFilter::getXMLofAreas(int areafiltercounter) {
+	
+	int polygoncounter = 0;
+
+	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "PolygonsOfAreaFilter" );
+	polygonsOfAreaFilter->SetAttribute( "AreaFilterNumber" , areafiltercounter );
+
+	// no areas are selected
+	if(cornerpointvector.empty())
+		return 0;
+
+	for(std::vector<std::vector<Point*> >::iterator iter_polygons = cornerpointvector.begin(); iter_polygons != cornerpointvector.end(); iter_polygons++) {
+		// iterate through all polygons
+
+		TiXmlElement* polygon = new TiXmlElement( "Polygon" );
+		polygon->SetAttribute("number", polygoncounter );
+
+		for(std::vector<Point*>::iterator iter_points = (*iter_polygons).begin(); iter_points != (*iter_polygons).end(); iter_points++) {
+			// iterate through all points of current polygon
+
+			// create XML Node and store point values
+			TiXmlElement* point = new TiXmlElement( "Point" );
+			point->SetAttribute("x", (*iter_points)->x);
+			point->SetAttribute("y", (*iter_points)->y);
+
+			// store XML Node in tree
+			polygon->LinkEndChild(point);
+
+		} // end iter_points
+
+		polygonsOfAreaFilter->LinkEndChild(polygon);
+		polygoncounter++;
+		
+	} // end iter_polygons
+
+	return polygonsOfAreaFilter;
+}
