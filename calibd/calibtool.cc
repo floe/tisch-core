@@ -31,7 +31,7 @@
 #define TARGET_OFFSET 20
 #define TARGET_SIZE   40
 
-#define MAX_VARIANCE 0.005
+#define MAX_VARIANCE 0.01
 #define MIN_SAMPLES  50
 
 
@@ -155,7 +155,6 @@ struct CalibTUIOInput: public TUIOInStream {
 					image_coords.push_back(avg);
 					msg += "done.\nPlease remove your finger.";
 					glutPostRedisplay();
-					sleep(2000);
 					current++;
 					delay = 1;
 					alarm(3);
@@ -228,7 +227,7 @@ int main( int argc, char* argv[] ) {
 		case 't': ttype = atoi(optarg); break;
 
 		case 'h':
-		case '?':	std::cout << "Usage: calibtool [options]\n";
+		case '?': std::cout << "Usage: calibtool [options]\n";
 		          std::cout << "  -c      assume circular display (centered)\n";
 		          std::cout << "  -t num  use TUIO type #num for calibration, default = 1 (generic finger)\n";
 		          std::cout << "  -h      this\n";
