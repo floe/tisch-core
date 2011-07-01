@@ -22,7 +22,7 @@ const char* address = "127.0.0.1";
 
 int vidout  = 0;
 int verbose = 0;
-int startup = 1;
+int startup = 5;
 
 GLUTWindow* win = 0;
 Filter* tmp = 0;
@@ -239,7 +239,7 @@ void keyb( unsigned char c, int, int ) {
 void idle() {
 
 	if (mypipe->process() == 0) curframe++;
-	if (startup) { mypipe->reset(); startup = 0; }
+	if (startup > 0) { mypipe->reset(); startup--; }
 
 	tuio->start();
 
