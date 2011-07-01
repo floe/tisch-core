@@ -65,3 +65,79 @@ void Pipeline::reset() {
 		(*filter)->reset();
 }
 
+TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
+	
+	TiXmlElement* rootOfCurrentSubtree = 0;
+
+	if(startIndex < this->size()) {
+		// get XML Node for current root of subtree
+		rootOfCurrentSubtree = (*this)[startIndex]->getXMLRepresentation();
+		
+		// save a pointer to the area filter if there is one
+		if(strcmp(rootOfCurrentSubtree->Value(),"AreaFilter") == 0) {
+			Areafilter.push_back((*this)[startIndex]);
+		}
+
+		// check pipe for further children of current root
+		for(int i = startIndex + 1; i < this->size(); i++) {
+
+			// get parent of current filter
+			Filter* parentOfCurrent = (*this)[i]->getParent();
+
+			// if parent of current == rootOfCurrentSubtree
+			if(parentOfCurrent == (*this)[startIndex]) {
+				// then current is child of root
+				rootOfCurrentSubtree->LinkEndChild(getXMLSubTree(i, (*this)[i]));
+			}
+		}
+	}
+
+	return rootOfCurrentSubtree;
+}
+
+void Pipeline::storeXMLConfig(std::string storingTarget) {
+	// store filter settings
+	std::cout << "storing XML Config ... " << std::flush;
+
+	TiXmlDocument doc;
+	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "utf-8", "yes");
+	doc.LinkEndChild(decl);
+
+	// create root node
+	TiXmlElement* root = new TiXmlElement( "libTISCH" );
+	root->SetAttribute("version", "2.0" );
+
+	// configuration of Filter
+	TiXmlElement* FilterSubtree = new TiXmlElement( "Filter" );
+	FilterSubtree->LinkEndChild(getXMLSubTree(0, 0));
+	root->LinkEndChild(FilterSubtree);
+
+	if(!Areafilter.empty()) {
+		// AreaFilter were definied in the Filterlist
+		
+		int areafiltercounter = 0;
+		// iterate through all AreaFilter
+		for(std::vector<Filter*>::iterator area = Areafilter.begin(); area != Areafilter.end(); area++) {
+			// and retrieve their Polygons
+			TiXmlElement* XMLarea = (*area)->getXMLofAreas(areafiltercounter);
+
+			// has the current AreaFilter any polygons?
+			if (XMLarea != 0) {
+				// yes? then store them
+				root->LinkEndChild(XMLarea);
+			}
+
+			areafiltercounter++;
+		}
+		// free memory
+		Areafilter.clear();
+	}
+
+	// add root to document
+	doc.LinkEndChild(root);
+
+	// save document to file
+	doc.SaveFile(storingTarget);
+
+	std::cout << "done" << std::endl;
+}

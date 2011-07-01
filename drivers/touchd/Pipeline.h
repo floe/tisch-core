@@ -22,7 +22,11 @@ class Pipeline: public std::vector<Filter*> {
 		int process();
 		void reset();
 
+		// storing configuration
+		std::vector<Filter*> Areafilter;
+		void storeXMLConfig(std::string storingTarget);
+		TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot);
+
 };
 
 #endif // _PIPELINE2_H_
-
