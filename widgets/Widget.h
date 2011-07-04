@@ -12,6 +12,7 @@
 
 #include <GLUTWrapper.h>
 #include <Texture.h>
+#include <Matcher.h>
 #include <Region.h>
 
 
@@ -27,6 +28,10 @@ extern TISCH_SHARED GLint    g_view[4];
 // list of all currently existing widgets, used
 // for sanity checking of incoming identifiers
 extern TISCH_SHARED std::set<Widget*> g_widgets;
+
+// the global gesture matcher object
+extern TISCH_SHARED Matcher* g_matcher;
+
 
 // call inside constructor if a default texture is desired
 // variant: memfun. template <class W> void getDefaultTex( const char* name ) { .. }
@@ -49,7 +54,7 @@ class TISCH_SHARED Widget {
 			region(_regflags), shadow(false), hide(false),
 			w(_w), h(_h), x(_x), y(_y), sx(1.0), sy(1.0), angle(_angle),
 			asx(1.0), asy(1.0), absangle(0.0), abspos(0,0,0),
-			mytex(_tex), parent(0), regstream(0)
+			mytex(_tex), parent(0)
 		{
 			if (angle > 2*M_PI) angle *= M_PI/180.0;
 			g_widgets.insert( this );
@@ -83,13 +88,10 @@ class TISCH_SHARED Widget {
 
 		virtual void update( Widget* target = 0 );
 
-		virtual void doUpdate( Widget* target = 0, std::ostream* ost = 0 ) {
+		virtual void doUpdate( Widget* target = 0 ) {
 			
 			bool do_register = true;
 			if ((target) && (target != this)) do_register = false;
-
-			if (ost) regstream = ost;
-			if (do_register && (!regstream)) return;
 
 			// retrieve the local modelview matrix
 			enter(); glGetDoublev( GL_MODELVIEW_MATRIX, m_model ); leave();
@@ -111,7 +113,7 @@ class TISCH_SHARED Widget {
 			if (do_register) {
 				region.clear();
 				if (!hide) outline();
-				*regstream << "region " << (unsigned long long)this << " " << region << std::endl;
+				g_matcher->update( (unsigned long long)this, &region );
 			}
 		}
 
@@ -205,14 +207,13 @@ class TISCH_SHARED Widget {
 	protected:
 
 		void unregister() {
-			*regstream << "region " << (unsigned long long)this << " 0 0 0" << std::endl;
+			g_matcher->remove( (unsigned long long)this );
 		}
 
 		RGBATexture* mytex;
 		GLdouble mycolor[4];
 
 		Container* parent;
-		std::ostream* regstream;
 
 		GLdouble m_model[16];    // modelview matrix
 };

@@ -26,7 +26,7 @@ class TISCH_SHARED Container: public Tile {
 
 		virtual void draw();
 		virtual void paint( bool update_stencil = false );
-		virtual void doUpdate( Widget* target = 0, std::ostream* ost = 0 );	
+		virtual void doUpdate( Widget* target = 0 );	
 
 		void tap( Vector vec, int id );
 

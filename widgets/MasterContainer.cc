@@ -9,39 +9,43 @@
 
 #include "MasterContainer.h"
 
-// This timeout should be shorter than 1/f of the fastest tracker.
-// This is the Wiimote at 200 Hz = 5000 uS -> timeout 4500 uS.
-struct timeval tv = { 0, 4500 };
-
 TISCH_SHARED GLdouble g_proj[16];
 TISCH_SHARED GLint    g_view[4];
 
 TISCH_SHARED std::set<Widget*> g_widgets;
 
+TISCH_SHARED Matcher* g_matcher;
+
+
+// wrapper thread for input socket
+struct TISCH_SHARED InputThread: public Thread {
+	InputThread( MatcherTUIOInput* _socket ): Thread(), socket(_socket) { }
+	virtual void* run() { socket->run(); return NULL; }
+	MatcherTUIOInput* socket;
+};
+
 
 MasterContainer::MasterContainer( int w, int h, const char* target ):
 	Container( w, h, w/2, h/2 ),
-	input( (in_addr_t)INADDR_ANY, 0, &tv )
+	matcher(), input( &matcher ), inthread( new InputThread(&input) )
 {
-	std::cout << "connecting to gestured..." << std::flush;
-	input.target( target, TISCH_PORT_EVENT );
-	std::cout << " connection successful." << std::endl;
 	//region.flags( (1<<INPUT_TYPE_COUNT)-1 );
 	//region.gestures.clear();
+	g_matcher = &matcher;
+	matcher.load_defaults();
+	inthread->start();
 }
 
-MasterContainer::~MasterContainer() {}
-
-void MasterContainer::signOff() {
-	input << "bye 0" << std::endl;
+MasterContainer::~MasterContainer() {
+	delete inthread;
 }
 
 void MasterContainer::usePeak() {
-	input << "use_peak 0" << std::endl;
+	matcher.peakmode( 1 );
 }
 
 
-void MasterContainer::doUpdate( Widget* target, std::ostream* ost ) {
+void MasterContainer::doUpdate( Widget* target ) {
 
 	glGetDoublev( GL_PROJECTION_MATRIX, g_proj );
 	glGetIntegerv( GL_VIEWPORT, g_view );
@@ -50,7 +54,7 @@ void MasterContainer::doUpdate( Widget* target, std::ostream* ost ) {
 	glPushMatrix();
 	glLoadIdentity();
 
-	Container::doUpdate( target, &input );
+	Container::doUpdate( target );
 
 	glPopMatrix();
 }
@@ -74,34 +78,35 @@ void MasterContainer::adjust( int width, int height ) {
 }
 
 
-int MasterContainer::process() {
+// matcher class for use with socket thread and OpenGL mainloop
+InternalMatcher::InternalMatcher(): Matcher(1) { do_run = 0; }
 
-	std::string type;
-	unsigned long long tmp;
+// called from socket context
+void InternalMatcher::process_gestures() { do_run = 1; }
 
-	input >> type >> tmp;
-
-	if (!input || !tmp) {
-		input.clear();
-		return 0;
+// called from OpenGL context
+int InternalMatcher::do_process_gestures() {
+	if (do_run) {
+		Matcher::process_gestures();
+		//std::cout << "calling process_gestures" << std::endl;
 	}
+	int res = do_run;
+	do_run = 0;
+	return res;
+}
+	
+// called from OpenGL context (via do_process_gestures)
+void InternalMatcher::request_update( int id ) { 
+	std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+	if (target == g_widgets.end()) return;
+	(*target)->update();
+}
 
-	if (type.compare("update") == 0) {
-		// update widget
-		Widget* target = (Widget*)tmp;
-		doUpdate( target );
-	}
-
-	if (type.compare("gesture") == 0) {
-		// parse gesture
-		Gesture gesture; input >> gesture;
-		if (!input) { input.flush(); return 0; }
-		// deliver to widget
-		std::set<Widget*>::iterator target = g_widgets.find((Widget*)tmp);
-		if (target == g_widgets.end()) return 0;
-		(*target)->action(&gesture);
-	}
-
-	return 1;
+// called from OpenGL context (via do_process_gestures)
+void InternalMatcher::trigger_gesture( int id, Gesture* g ) {
+	// deliver to widget
+	std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+	if (target == g_widgets.end()) return;
+	(*target)->action( g );
 }
 

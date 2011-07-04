@@ -39,7 +39,7 @@ Window::~Window() { }
 
 
 void Window::keyboard( int key, int x, int y ) {
-	if (key == 'q') { signOff(); exit(0); }
+	if (key == 'q') exit(0);
 	if (key == 'f') glutFullScreen();
 }
 
@@ -77,8 +77,8 @@ void Window::display() {
 }
 
 void Window::idle() {
-	if (!process()) {
-		if (mymouse) mymouse->send_blobs( width, height );
+	if (mymouse) mymouse->send_blobs( width, height );
+	if (matcher.do_process_gestures()) {
 		glutPostRedisplay();
 	}
 }
