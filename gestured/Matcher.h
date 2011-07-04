@@ -28,9 +28,10 @@ class TISCH_SHARED Matcher: public Thread {
 		virtual void request_update( int id ) = 0;
 		virtual void trigger_gesture( int id, Gesture* g ) = 0;
 
-		void process_blob( BasicBlob& blob );
-		void process_gestures();
-		
+		virtual void process_blob( BasicBlob& blob );
+		virtual void process_gestures();
+
+		void load_defaults( unsigned int set = 0 );
 		void* run();
 
 		void update( unsigned int id, Region* r );
@@ -39,14 +40,15 @@ class TISCH_SHARED Matcher: public Thread {
 		void raise( unsigned int id );
 		void lower( unsigned int id );
 
-		void peakmode( int usepeak );
+		void peakmode( bool _use_peak );
 		void clear();
 
 	protected:
 
 		RegionList::iterator find( unsigned int id );
 
-		int verbose, do_run, use_peak;
+		int verbose;
+		bool do_run, use_peak;
 
 		std::map<int,StateRegion*> stickies;
 		RegionList regions;

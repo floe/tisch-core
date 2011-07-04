@@ -6,7 +6,6 @@
 
 #include <signal.h>
 #include <algorithm>
-#include <sstream>
 
 #include <nanolibc.h>
 #include <Socket.h>
@@ -21,26 +20,6 @@ int verbose = 0;
 
 TCPSocket  gstsrc( (in_addr_t)INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
-
-// default gestures as parseable string
-const char* default_gestures[] = {
-	"region 1 1 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 RelativeAxisScale 0 31 0 0 \
-		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
-	"region 1 1 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 MultiBlobScale 0 31 0 0 \
-		rotate 5 1 MultiBlobRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
-};
-const char* defaults = default_gestures[0];
-
 
 
 struct DaemonMatcher: public Matcher {
@@ -121,9 +100,6 @@ struct GestureThread: public Thread {
 
 	void* run() {
 
-		std::istringstream defstream( defaults );
-		process( defstream );
-
 		while (1) {
 
 			if (!gstcon) { 
@@ -152,8 +128,8 @@ GestureThread gthr;
 
 int main( int argc, char* argv[] ) {
 
-	int defnum, defcount = (sizeof(default_gestures)/sizeof(const char*))-1;
 	MatcherTUIOInput input( &matcher );
+	int defnum = 0;
 
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
 	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
@@ -162,10 +138,8 @@ int main( int argc, char* argv[] ) {
 
 		case 'v': verbose += 1; break;
 		case 'd': defnum = atoi(optarg);
-		          defnum = (defnum < 0 ? 0 : (defnum > defcount ? defcount : defnum ) );
-		          defaults = default_gestures[defnum];
-							std::cout << "selected default gesture set #" << defnum << std::endl;
-							break;
+		          std::cout << "selected default gesture set #" << defnum << std::endl;
+		          break;
 
 		case 'h':
 		case '?': std::cout << "\nUsage: gestured [options]\n\n";
@@ -174,6 +148,8 @@ int main( int argc, char* argv[] ) {
 		          std::cout << "  -h      this\n\n";
 		          return 0; break;
 	}
+
+	matcher.load_defaults( defnum );
 
 	gthr.start();
 	input.run();
