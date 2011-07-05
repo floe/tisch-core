@@ -3254,6 +3254,8 @@ public interface libtischConstants {
   public final static int GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV = libtischJNI.GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public final static int GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV = libtischJNI.GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public final static int GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV = libtischJNI.GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get();
+  public final static int GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV = libtischJNI.GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
+  public final static int GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV = libtischJNI.GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
   public final static int GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV = libtischJNI.GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get();
   public final static int GL_MAX_PROGRAM_SUBROUTINE_NUM_NV = libtischJNI.GL_MAX_PROGRAM_SUBROUTINE_NUM_NV_get();
   public final static int GL_INT64_NV = libtischJNI.GL_INT64_NV_get();
@@ -3314,6 +3316,8 @@ public interface libtischConstants {
   public final static int GL_SURFACE_REGISTERED_NV = libtischJNI.GL_SURFACE_REGISTERED_NV_get();
   public final static int GL_SURFACE_MAPPED_NV = libtischJNI.GL_SURFACE_MAPPED_NV_get();
   public final static int GL_WRITE_DISCARD_NV = libtischJNI.GL_WRITE_DISCARD_NV_get();
+  public final static int GL_DEPTH_CLAMP_NEAR_AMD = libtischJNI.GL_DEPTH_CLAMP_NEAR_AMD_get();
+  public final static int GL_DEPTH_CLAMP_FAR_AMD = libtischJNI.GL_DEPTH_CLAMP_FAR_AMD_get();
   public final static int GL_VERSION_1_2 = libtischJNI.GL_VERSION_1_2_get();
   public final static int GL_VERSION_1_2_DEPRECATED = libtischJNI.GL_VERSION_1_2_DEPRECATED_get();
   public final static int GL_VERSION_1_3 = libtischJNI.GL_VERSION_1_3_get();
@@ -3707,9 +3711,12 @@ public interface libtischConstants {
   public final static int GL_AMD_debug_output = libtischJNI.GL_AMD_debug_output_get();
   public final static int GL_NV_vdpau_interop = libtischJNI.GL_NV_vdpau_interop_get();
   public final static int GL_AMD_transform_feedback3_lines_triangles = libtischJNI.GL_AMD_transform_feedback3_lines_triangles_get();
+  public final static int GL_AMD_depth_clamp_separate = libtischJNI.GL_AMD_depth_clamp_separate_get();
   public final static int TISCH_TILE_MOVE = libtischJNI.TISCH_TILE_MOVE_get();
   public final static int TISCH_TILE_SCALE = libtischJNI.TISCH_TILE_SCALE_get();
   public final static int TISCH_TILE_ROTATE = libtischJNI.TISCH_TILE_ROTATE_get();
   public final static int TISCH_TILE_SLIDE = libtischJNI.TISCH_TILE_SLIDE_get();
   public final static int TISCH_TILE_BOUNCE = libtischJNI.TISCH_TILE_BOUNCE_get();
+  public final static int TISCH_TILE_BBOX = libtischJNI.TISCH_TILE_BBOX_get();
+  public final static int TISCH_TILE_CIRCLE = libtischJNI.TISCH_TILE_CIRCLE_get();
 }

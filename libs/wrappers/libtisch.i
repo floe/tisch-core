@@ -118,6 +118,8 @@ namespace osc {
 
 %include ../../gestured/Region.h
 
+%include ../../gestured/Matcher.h
+
 
 %template(FeatureInt) Feature<int>;
 %extend Feature<int> {

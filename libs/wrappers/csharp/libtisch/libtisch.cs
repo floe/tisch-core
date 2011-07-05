@@ -75,6 +75,19 @@ public class libtisch {
     } 
   }
 
+  public static Matcher g_matcher {
+    set {
+      libtischPINVOKE.g_matcher_set(Matcher.getCPtr(value));
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    } 
+    get {
+      IntPtr cPtr = libtischPINVOKE.g_matcher_get();
+      Matcher ret = (cPtr == IntPtr.Zero) ? null : new Matcher(cPtr, false);
+      if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    } 
+  }
+
   public static readonly int GESTURE_FLAGS_STICKY = libtischPINVOKE.GESTURE_FLAGS_STICKY_get();
   public static readonly int GESTURE_FLAGS_ONESHOT = libtischPINVOKE.GESTURE_FLAGS_ONESHOT_get();
   public static readonly int GESTURE_FLAGS_DEFAULT = libtischPINVOKE.GESTURE_FLAGS_DEFAULT_get();
@@ -3320,6 +3333,8 @@ public class libtisch {
   public static readonly int GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV = libtischPINVOKE.GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public static readonly int GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV = libtischPINVOKE.GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public static readonly int GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV = libtischPINVOKE.GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get();
+  public static readonly int GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV = libtischPINVOKE.GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
+  public static readonly int GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV = libtischPINVOKE.GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
   public static readonly int GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV = libtischPINVOKE.GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get();
   public static readonly int GL_MAX_PROGRAM_SUBROUTINE_NUM_NV = libtischPINVOKE.GL_MAX_PROGRAM_SUBROUTINE_NUM_NV_get();
   public static readonly int GL_INT64_NV = libtischPINVOKE.GL_INT64_NV_get();
@@ -3380,6 +3395,8 @@ public class libtisch {
   public static readonly int GL_SURFACE_REGISTERED_NV = libtischPINVOKE.GL_SURFACE_REGISTERED_NV_get();
   public static readonly int GL_SURFACE_MAPPED_NV = libtischPINVOKE.GL_SURFACE_MAPPED_NV_get();
   public static readonly int GL_WRITE_DISCARD_NV = libtischPINVOKE.GL_WRITE_DISCARD_NV_get();
+  public static readonly int GL_DEPTH_CLAMP_NEAR_AMD = libtischPINVOKE.GL_DEPTH_CLAMP_NEAR_AMD_get();
+  public static readonly int GL_DEPTH_CLAMP_FAR_AMD = libtischPINVOKE.GL_DEPTH_CLAMP_FAR_AMD_get();
   public static readonly int GL_VERSION_1_2 = libtischPINVOKE.GL_VERSION_1_2_get();
   public static readonly int GL_VERSION_1_2_DEPRECATED = libtischPINVOKE.GL_VERSION_1_2_DEPRECATED_get();
   public static readonly int GL_VERSION_1_3 = libtischPINVOKE.GL_VERSION_1_3_get();
@@ -3773,9 +3790,12 @@ public class libtisch {
   public static readonly int GL_AMD_debug_output = libtischPINVOKE.GL_AMD_debug_output_get();
   public static readonly int GL_NV_vdpau_interop = libtischPINVOKE.GL_NV_vdpau_interop_get();
   public static readonly int GL_AMD_transform_feedback3_lines_triangles = libtischPINVOKE.GL_AMD_transform_feedback3_lines_triangles_get();
+  public static readonly int GL_AMD_depth_clamp_separate = libtischPINVOKE.GL_AMD_depth_clamp_separate_get();
   public static readonly int TISCH_TILE_MOVE = libtischPINVOKE.TISCH_TILE_MOVE_get();
   public static readonly int TISCH_TILE_SCALE = libtischPINVOKE.TISCH_TILE_SCALE_get();
   public static readonly int TISCH_TILE_ROTATE = libtischPINVOKE.TISCH_TILE_ROTATE_get();
   public static readonly int TISCH_TILE_SLIDE = libtischPINVOKE.TISCH_TILE_SLIDE_get();
   public static readonly int TISCH_TILE_BOUNCE = libtischPINVOKE.TISCH_TILE_BOUNCE_get();
+  public static readonly int TISCH_TILE_BBOX = libtischPINVOKE.TISCH_TILE_BBOX_get();
+  public static readonly int TISCH_TILE_CIRCLE = libtischPINVOKE.TISCH_TILE_CIRCLE_get();
 }

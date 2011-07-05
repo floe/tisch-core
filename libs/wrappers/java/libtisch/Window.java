@@ -125,16 +125,8 @@ public class Window extends GLUTWindow {
     libtischJNI.Window_adjust(swigCPtr, this, w, h);
   }
 
-  public void signOff() {
-    libtischJNI.Window_signOff(swigCPtr, this);
-  }
-
   public void usePeak() {
     libtischJNI.Window_usePeak(swigCPtr, this);
-  }
-
-  public int process() {
-    return libtischJNI.Window_process(swigCPtr, this);
   }
 
 }

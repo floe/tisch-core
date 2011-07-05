@@ -56,6 +56,12 @@ public class Gesture : vectorSmartPtrFeatureBase {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public bool check() {
+    bool ret = libtischPINVOKE.Gesture_check(swigCPtr);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public int next() {
     int ret = libtischPINVOKE.Gesture_next(swigCPtr);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

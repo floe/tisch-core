@@ -221,6 +221,7 @@ class libtischJNI {
   public final static native long new_Gesture__SWIG_1(String jarg1, int jarg2);
   public final static native long new_Gesture__SWIG_2(String jarg1);
   public final static native void Gesture_load(long jarg1, Gesture jarg1_, long jarg2, InputState jarg2_);
+  public final static native boolean Gesture_check(long jarg1, Gesture jarg1_);
   public final static native int Gesture_next(long jarg1, Gesture jarg1_);
   public final static native int Gesture_match(long jarg1, Gesture jarg1_);
   public final static native String Gesture_name(long jarg1, Gesture jarg1_);
@@ -261,6 +262,24 @@ class libtischJNI {
   public final static native void StateRegion_gst_set(long jarg1, StateRegion jarg1_, long jarg2);
   public final static native long StateRegion_gst_get(long jarg1, StateRegion jarg1_);
   public final static native void delete_StateRegion(long jarg1);
+  public final static native void Matcher_request_update(long jarg1, Matcher jarg1_, int jarg2);
+  public final static native void Matcher_trigger_gesture(long jarg1, Matcher jarg1_, int jarg2, long jarg3, Gesture jarg3_);
+  public final static native void Matcher_process_blob(long jarg1, Matcher jarg1_, long jarg2, BasicBlob jarg2_);
+  public final static native void Matcher_process_gestures(long jarg1, Matcher jarg1_);
+  public final static native void Matcher_load_defaults__SWIG_0(long jarg1, Matcher jarg1_, long jarg2);
+  public final static native void Matcher_load_defaults__SWIG_1(long jarg1, Matcher jarg1_);
+  public final static native long Matcher_run(long jarg1, Matcher jarg1_);
+  public final static native void Matcher_update(long jarg1, Matcher jarg1_, long jarg2, long jarg3, Region jarg3_);
+  public final static native void Matcher_remove(long jarg1, Matcher jarg1_, long jarg2);
+  public final static native void Matcher_raise(long jarg1, Matcher jarg1_, long jarg2);
+  public final static native void Matcher_lower(long jarg1, Matcher jarg1_, long jarg2);
+  public final static native void Matcher_peakmode(long jarg1, Matcher jarg1_, boolean jarg2);
+  public final static native void Matcher_clear(long jarg1, Matcher jarg1_);
+  public final static native void delete_Matcher(long jarg1);
+  public final static native long new_MatcherTUIOInput(long jarg1, Matcher jarg1_);
+  public final static native void MatcherTUIOInput_process_frame(long jarg1, MatcherTUIOInput jarg1_);
+  public final static native void MatcherTUIOInput_process_blob(long jarg1, MatcherTUIOInput jarg1_, long jarg2, BasicBlob jarg2_);
+  public final static native void delete_MatcherTUIOInput(long jarg1);
   public final static native void delete_FeatureInt(long jarg1);
   public final static native int FeatureInt_result(long jarg1, FeatureInt jarg1_);
   public final static native void FeatureInt_bounds(long jarg1, FeatureInt jarg1_, long jarg2, vectorInt jarg2_);
@@ -3654,6 +3673,8 @@ class libtischJNI {
   public final static native int GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public final static native int GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV_get();
   public final static native int GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get();
+  public final static native int GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
+  public final static native int GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
   public final static native int GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get();
   public final static native int GL_MAX_PROGRAM_SUBROUTINE_NUM_NV_get();
   public final static native int GL_INT64_NV_get();
@@ -3714,6 +3735,8 @@ class libtischJNI {
   public final static native int GL_SURFACE_REGISTERED_NV_get();
   public final static native int GL_SURFACE_MAPPED_NV_get();
   public final static native int GL_WRITE_DISCARD_NV_get();
+  public final static native int GL_DEPTH_CLAMP_NEAR_AMD_get();
+  public final static native int GL_DEPTH_CLAMP_FAR_AMD_get();
   public final static native int GL_VERSION_1_2_get();
   public final static native int GL_VERSION_1_2_DEPRECATED_get();
   public final static native int GL_VERSION_1_3_get();
@@ -4107,6 +4130,7 @@ class libtischJNI {
   public final static native int GL_AMD_debug_output_get();
   public final static native int GL_NV_vdpau_interop_get();
   public final static native int GL_AMD_transform_feedback3_lines_triangles_get();
+  public final static native int GL_AMD_depth_clamp_separate_get();
   public final static native long new_GLUTWindow__SWIG_0(int jarg1, int jarg2, String jarg3, int jarg4);
   public final static native long new_GLUTWindow__SWIG_1(int jarg1, int jarg2, String jarg3);
   public final static native void delete_GLUTWindow(long jarg1);
@@ -4114,6 +4138,10 @@ class libtischJNI {
   public final static native void GLUTWindow_show__SWIG_1(long jarg1, GLUTWindow jarg1_, long jarg2, int jarg3, int jarg4);
   public final static native void GLUTWindow_show__SWIG_2(long jarg1, GLUTWindow jarg1_, long jarg2, int jarg3, int jarg4);
   public final static native void GLUTWindow_print(long jarg1, GLUTWindow jarg1_, String jarg2, int jarg3, int jarg4);
+  public final static native void GLUTWindow_drawRectangleBackground(long jarg1, GLUTWindow jarg1_, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6);
+  public final static native void GLUTWindow_drawPolygon__SWIG_0(long jarg1, GLUTWindow jarg1_, long jarg2, boolean jarg3, int jarg4);
+  public final static native void GLUTWindow_drawPolygon__SWIG_1(long jarg1, GLUTWindow jarg1_, long jarg2, boolean jarg3);
+  public final static native void GLUTWindow_drawPolygon__SWIG_2(long jarg1, GLUTWindow jarg1_, long jarg2);
   public final static native void GLUTWindow_title(long jarg1, GLUTWindow jarg1_, String jarg2);
   public final static native void GLUTWindow_clear__SWIG_0(long jarg1, GLUTWindow jarg1_, float jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void GLUTWindow_clear__SWIG_1(long jarg1, GLUTWindow jarg1_, float jarg2, float jarg3, float jarg4);
@@ -4156,6 +4184,7 @@ class libtischJNI {
   public final static native void RGBATexture_load__SWIG_1(long jarg1, RGBATexture jarg1_, String jarg2);
   public final static native void RGBATexture_load__SWIG_2(long jarg1, RGBATexture jarg1_, long jarg2);
   public final static native void RGBATexture_load__SWIG_3(long jarg1, RGBATexture jarg1_, long jarg2);
+  public final static native void RGBATexture_load__SWIG_4(long jarg1, RGBATexture jarg1_, long jarg2);
   public final static native void RGBATexture_read(long jarg1, RGBATexture jarg1_, long jarg2);
 
   static java.util.HashSet<Object> refstore;
@@ -4173,6 +4202,8 @@ class libtischJNI {
   public final static native long g_view_get();
   public final static native void g_widgets_set(long jarg1);
   public final static native long g_widgets_get();
+  public final static native void g_matcher_set(long jarg1, Matcher jarg1_);
+  public final static native long g_matcher_get();
   public final static native long new_Widget__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, long jarg6, RGBATexture jarg6_, int jarg7);
   public final static native long new_Widget__SWIG_1(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, long jarg6, RGBATexture jarg6_);
   public final static native long new_Widget__SWIG_2(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5);
@@ -4188,12 +4219,10 @@ class libtischJNI {
   public final static native void Widget_updateSwigExplicitWidget__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
   public final static native void Widget_update__SWIG_1(long jarg1, Widget jarg1_);
   public final static native void Widget_updateSwigExplicitWidget__SWIG_1(long jarg1, Widget jarg1_);
-  public final static native void Widget_doUpdate__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void Widget_doUpdateSwigExplicitWidget__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void Widget_doUpdate__SWIG_1(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
-  public final static native void Widget_doUpdateSwigExplicitWidget__SWIG_1(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
-  public final static native void Widget_doUpdate__SWIG_2(long jarg1, Widget jarg1_);
-  public final static native void Widget_doUpdateSwigExplicitWidget__SWIG_2(long jarg1, Widget jarg1_);
+  public final static native void Widget_doUpdate__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
+  public final static native void Widget_doUpdateSwigExplicitWidget__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
+  public final static native void Widget_doUpdate__SWIG_1(long jarg1, Widget jarg1_);
+  public final static native void Widget_doUpdateSwigExplicitWidget__SWIG_1(long jarg1, Widget jarg1_);
   public final static native void Widget_raise__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
   public final static native void Widget_raiseSwigExplicitWidget__SWIG_0(long jarg1, Widget jarg1_, long jarg2, Widget jarg2_);
   public final static native void Widget_raise__SWIG_1(long jarg1, Widget jarg1_);
@@ -4257,8 +4286,6 @@ class libtischJNI {
   public final static native long Widget_mycolor_get(long jarg1, Widget jarg1_);
   public final static native void Widget_parent_set(long jarg1, Widget jarg1_, long jarg2, Container jarg2_);
   public final static native long Widget_parent_get(long jarg1, Widget jarg1_);
-  public final static native void Widget_regstream_set(long jarg1, Widget jarg1_, long jarg2);
-  public final static native long Widget_regstream_get(long jarg1, Widget jarg1_);
   public final static native void Widget_m_model_set(long jarg1, Widget jarg1_, long jarg2);
   public final static native long Widget_m_model_get(long jarg1, Widget jarg1_);
   public final static native void Widget_director_connect(Widget obj, long cptr, boolean mem_own, boolean weak_global);
@@ -4307,6 +4334,8 @@ class libtischJNI {
   public final static native int TISCH_TILE_ROTATE_get();
   public final static native int TISCH_TILE_SLIDE_get();
   public final static native int TISCH_TILE_BOUNCE_get();
+  public final static native int TISCH_TILE_BBOX_get();
+  public final static native int TISCH_TILE_CIRCLE_get();
   public final static native long new_Tile__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, long jarg6, RGBATexture jarg6_, int jarg7);
   public final static native long new_Tile__SWIG_1(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, long jarg6, RGBATexture jarg6_);
   public final static native long new_Tile__SWIG_2(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5);
@@ -4355,12 +4384,10 @@ class libtischJNI {
   public final static native void Container_paintSwigExplicitContainer__SWIG_0(long jarg1, Container jarg1_, boolean jarg2);
   public final static native void Container_paint__SWIG_1(long jarg1, Container jarg1_);
   public final static native void Container_paintSwigExplicitContainer__SWIG_1(long jarg1, Container jarg1_);
-  public final static native void Container_doUpdate__SWIG_0(long jarg1, Container jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void Container_doUpdateSwigExplicitContainer__SWIG_0(long jarg1, Container jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void Container_doUpdate__SWIG_1(long jarg1, Container jarg1_, long jarg2, Widget jarg2_);
-  public final static native void Container_doUpdateSwigExplicitContainer__SWIG_1(long jarg1, Container jarg1_, long jarg2, Widget jarg2_);
-  public final static native void Container_doUpdate__SWIG_2(long jarg1, Container jarg1_);
-  public final static native void Container_doUpdateSwigExplicitContainer__SWIG_2(long jarg1, Container jarg1_);
+  public final static native void Container_doUpdate__SWIG_0(long jarg1, Container jarg1_, long jarg2, Widget jarg2_);
+  public final static native void Container_doUpdateSwigExplicitContainer__SWIG_0(long jarg1, Container jarg1_, long jarg2, Widget jarg2_);
+  public final static native void Container_doUpdate__SWIG_1(long jarg1, Container jarg1_);
+  public final static native void Container_doUpdateSwigExplicitContainer__SWIG_1(long jarg1, Container jarg1_);
   public final static native void Container_tap(long jarg1, Container jarg1_, long jarg2, Vector jarg2_, int jarg3);
   public final static native void Container_tapSwigExplicitContainer(long jarg1, Container jarg1_, long jarg2, Vector jarg2_, int jarg3);
   public final static native int Container_totalHeight(long jarg1, Container jarg1_);
@@ -4429,19 +4456,27 @@ class libtischJNI {
   public final static native long Dial_oldpos_get(long jarg1, Dial jarg1_);
   public final static native void Dial_director_connect(Dial obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void Dial_change_ownership(Dial obj, long cptr, boolean take_or_release);
+  public final static native long new_InternalMatcher();
+  public final static native void InternalMatcher_process_gestures(long jarg1, InternalMatcher jarg1_);
+  public final static native int InternalMatcher_do_process_gestures(long jarg1, InternalMatcher jarg1_);
+  public final static native void InternalMatcher_request_update(long jarg1, InternalMatcher jarg1_, int jarg2);
+  public final static native void InternalMatcher_trigger_gesture(long jarg1, InternalMatcher jarg1_, int jarg2, long jarg3, Gesture jarg3_);
+  public final static native void delete_InternalMatcher(long jarg1);
   public final static native long new_MasterContainer__SWIG_0(int jarg1, int jarg2, String jarg3);
   public final static native long new_MasterContainer__SWIG_1(int jarg1, int jarg2);
   public final static native void delete_MasterContainer(long jarg1);
-  public final static native int MasterContainer_process(long jarg1, MasterContainer jarg1_);
-  public final static native void MasterContainer_doUpdate__SWIG_0(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_, long jarg3);
-  public final static native void MasterContainer_doUpdate__SWIG_1(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_);
-  public final static native void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_);
-  public final static native void MasterContainer_doUpdate__SWIG_2(long jarg1, MasterContainer jarg1_);
-  public final static native void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_2(long jarg1, MasterContainer jarg1_);
+  public final static native void MasterContainer_doUpdate__SWIG_0(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_);
+  public final static native void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(long jarg1, MasterContainer jarg1_, long jarg2, Widget jarg2_);
+  public final static native void MasterContainer_doUpdate__SWIG_1(long jarg1, MasterContainer jarg1_);
+  public final static native void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(long jarg1, MasterContainer jarg1_);
   public final static native void MasterContainer_adjust(long jarg1, MasterContainer jarg1_, int jarg2, int jarg3);
-  public final static native void MasterContainer_signOff(long jarg1, MasterContainer jarg1_);
   public final static native void MasterContainer_usePeak(long jarg1, MasterContainer jarg1_);
+  public final static native void MasterContainer_matcher_set(long jarg1, MasterContainer jarg1_, long jarg2, InternalMatcher jarg2_);
+  public final static native long MasterContainer_matcher_get(long jarg1, MasterContainer jarg1_);
+  public final static native void MasterContainer_input_set(long jarg1, MasterContainer jarg1_, long jarg2, MatcherTUIOInput jarg2_);
+  public final static native long MasterContainer_input_get(long jarg1, MasterContainer jarg1_);
+  public final static native void MasterContainer_inthread_set(long jarg1, MasterContainer jarg1_, long jarg2);
+  public final static native long MasterContainer_inthread_get(long jarg1, MasterContainer jarg1_);
   public final static native void MasterContainer_director_connect(MasterContainer obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void MasterContainer_change_ownership(MasterContainer obj, long cptr, boolean take_or_release);
   public final static native long new_Window__SWIG_0(int jarg1, int jarg2, String jarg3, int jarg4, String jarg5);
@@ -4473,9 +4508,7 @@ class libtischJNI {
   public final static native void Window_update__SWIG_1(long jarg1, Window jarg1_);
   public final static native void Window_updateSwigExplicitWindow__SWIG_1(long jarg1, Window jarg1_);
   public final static native void Window_adjust(long jarg1, Window jarg1_, int jarg2, int jarg3);
-  public final static native void Window_signOff(long jarg1, Window jarg1_);
   public final static native void Window_usePeak(long jarg1, Window jarg1_);
-  public final static native int Window_process(long jarg1, Window jarg1_);
   public final static native void Window_director_connect(Window obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void Window_change_ownership(Window obj, long cptr, boolean take_or_release);
   public final static native long new_Mouse__SWIG_0(String jarg1);
@@ -4514,6 +4547,7 @@ class libtischJNI {
   public final static native long SWIGTextboxUpcast(long jarg1);
   public final static native long SWIGSliderUpcast(long jarg1);
   public final static native long SWIGDialUpcast(long jarg1);
+  public final static native long SWIGInternalMatcherUpcast(long jarg1);
   public final static native long SWIGMasterContainerUpcast(long jarg1);
   public final static native long SWIGWindowUpcast(long jarg1);
 
@@ -4541,13 +4575,10 @@ class libtischJNI {
   public static void SwigDirector_Widget_update__SWIG_1(Widget self) {
     self.update();
   }
-  public static void SwigDirector_Widget_doUpdate__SWIG_0(Widget self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Widget_doUpdate__SWIG_1(Widget self, long target) {
+  public static void SwigDirector_Widget_doUpdate__SWIG_0(Widget self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Widget_doUpdate__SWIG_2(Widget self) {
+  public static void SwigDirector_Widget_doUpdate__SWIG_1(Widget self) {
     self.doUpdate();
   }
   public static void SwigDirector_Widget_raise__SWIG_0(Widget self, long widget) {
@@ -4589,13 +4620,10 @@ class libtischJNI {
   public static void SwigDirector_Label_update__SWIG_1(Label self) {
     self.update();
   }
-  public static void SwigDirector_Label_doUpdate__SWIG_0(Label self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Label_doUpdate__SWIG_1(Label self, long target) {
+  public static void SwigDirector_Label_doUpdate__SWIG_0(Label self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Label_doUpdate__SWIG_2(Label self) {
+  public static void SwigDirector_Label_doUpdate__SWIG_1(Label self) {
     self.doUpdate();
   }
   public static void SwigDirector_Label_raise__SWIG_0(Label self, long widget) {
@@ -4637,13 +4665,10 @@ class libtischJNI {
   public static void SwigDirector_Button_update__SWIG_1(Button self) {
     self.update();
   }
-  public static void SwigDirector_Button_doUpdate__SWIG_0(Button self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Button_doUpdate__SWIG_1(Button self, long target) {
+  public static void SwigDirector_Button_doUpdate__SWIG_0(Button self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Button_doUpdate__SWIG_2(Button self) {
+  public static void SwigDirector_Button_doUpdate__SWIG_1(Button self) {
     self.doUpdate();
   }
   public static void SwigDirector_Button_raise__SWIG_0(Button self, long widget) {
@@ -4691,13 +4716,10 @@ class libtischJNI {
   public static void SwigDirector_Tile_update__SWIG_1(Tile self) {
     self.update();
   }
-  public static void SwigDirector_Tile_doUpdate__SWIG_0(Tile self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Tile_doUpdate__SWIG_1(Tile self, long target) {
+  public static void SwigDirector_Tile_doUpdate__SWIG_0(Tile self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Tile_doUpdate__SWIG_2(Tile self) {
+  public static void SwigDirector_Tile_doUpdate__SWIG_1(Tile self) {
     self.doUpdate();
   }
   public static void SwigDirector_Tile_raise__SWIG_0(Tile self, long widget) {
@@ -4748,13 +4770,10 @@ class libtischJNI {
   public static void SwigDirector_Container_update__SWIG_1(Container self) {
     self.update();
   }
-  public static void SwigDirector_Container_doUpdate__SWIG_0(Container self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Container_doUpdate__SWIG_1(Container self, long target) {
+  public static void SwigDirector_Container_doUpdate__SWIG_0(Container self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Container_doUpdate__SWIG_2(Container self) {
+  public static void SwigDirector_Container_doUpdate__SWIG_1(Container self) {
     self.doUpdate();
   }
   public static void SwigDirector_Container_raise__SWIG_0(Container self, long widget) {
@@ -4805,13 +4824,10 @@ class libtischJNI {
   public static void SwigDirector_Slider_update__SWIG_1(Slider self) {
     self.update();
   }
-  public static void SwigDirector_Slider_doUpdate__SWIG_0(Slider self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Slider_doUpdate__SWIG_1(Slider self, long target) {
+  public static void SwigDirector_Slider_doUpdate__SWIG_0(Slider self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Slider_doUpdate__SWIG_2(Slider self) {
+  public static void SwigDirector_Slider_doUpdate__SWIG_1(Slider self) {
     self.doUpdate();
   }
   public static void SwigDirector_Slider_raise__SWIG_0(Slider self, long widget) {
@@ -4853,13 +4869,10 @@ class libtischJNI {
   public static void SwigDirector_Dial_update__SWIG_1(Dial self) {
     self.update();
   }
-  public static void SwigDirector_Dial_doUpdate__SWIG_0(Dial self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_Dial_doUpdate__SWIG_1(Dial self, long target) {
+  public static void SwigDirector_Dial_doUpdate__SWIG_0(Dial self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_Dial_doUpdate__SWIG_2(Dial self) {
+  public static void SwigDirector_Dial_doUpdate__SWIG_1(Dial self) {
     self.doUpdate();
   }
   public static void SwigDirector_Dial_raise__SWIG_0(Dial self, long widget) {
@@ -4901,13 +4914,10 @@ class libtischJNI {
   public static void SwigDirector_MasterContainer_update__SWIG_1(MasterContainer self) {
     self.update();
   }
-  public static void SwigDirector_MasterContainer_doUpdate__SWIG_0(MasterContainer self, long target, long ost) {
-    self.doUpdate((target == 0) ? null : new Widget(target, false), (ost == 0) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-  public static void SwigDirector_MasterContainer_doUpdate__SWIG_1(MasterContainer self, long target) {
+  public static void SwigDirector_MasterContainer_doUpdate__SWIG_0(MasterContainer self, long target) {
     self.doUpdate((target == 0) ? null : new Widget(target, false));
   }
-  public static void SwigDirector_MasterContainer_doUpdate__SWIG_2(MasterContainer self) {
+  public static void SwigDirector_MasterContainer_doUpdate__SWIG_1(MasterContainer self) {
     self.doUpdate();
   }
   public static void SwigDirector_MasterContainer_raise__SWIG_0(MasterContainer self, long widget) {

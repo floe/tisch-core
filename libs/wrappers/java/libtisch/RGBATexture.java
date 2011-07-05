@@ -119,8 +119,12 @@ public class RGBATexture {
     libtischJNI.RGBATexture_load__SWIG_2(swigCPtr, this, SWIGTYPE_p_IntensityImage.getCPtr(img));
   }
 
+  public void load(SWIGTYPE_p_ShortImage img) {
+    libtischJNI.RGBATexture_load__SWIG_3(swigCPtr, this, SWIGTYPE_p_ShortImage.getCPtr(img));
+  }
+
   public void load(SWIGTYPE_p_RGBImage img) {
-    libtischJNI.RGBATexture_load__SWIG_3(swigCPtr, this, SWIGTYPE_p_RGBImage.getCPtr(img));
+    libtischJNI.RGBATexture_load__SWIG_4(swigCPtr, this, SWIGTYPE_p_RGBImage.getCPtr(img));
   }
 
   public void read(SWIGTYPE_p_GLvoid data) {

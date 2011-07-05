@@ -51,6 +51,10 @@ public class Gesture extends vectorSmartPtrFeatureBase {
     libtischJNI.Gesture_load(swigCPtr, this, InputState.getCPtr(state), state);
   }
 
+  public boolean check() {
+    return libtischJNI.Gesture_check(swigCPtr, this);
+  }
+
   public int next() {
     return libtischJNI.Gesture_next(swigCPtr, this);
   }

@@ -60,32 +60,47 @@ public class MasterContainer extends Container {
     libtischJNI.MasterContainer_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
-  public int process() {
-    return libtischJNI.MasterContainer_process(swigCPtr, this);
-  }
-
-  public void doUpdate(Widget target, SWIGTYPE_p_std__ostream ost) {
-    if (getClass() == MasterContainer.class) libtischJNI.MasterContainer_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost)); else libtischJNI.MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost));
-  }
-
   public void doUpdate(Widget target) {
-    if (getClass() == MasterContainer.class) libtischJNI.MasterContainer_doUpdate__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
+    if (getClass() == MasterContainer.class) libtischJNI.MasterContainer_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
   }
 
   public void doUpdate() {
-    if (getClass() == MasterContainer.class) libtischJNI.MasterContainer_doUpdate__SWIG_2(swigCPtr, this); else libtischJNI.MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_2(swigCPtr, this);
+    if (getClass() == MasterContainer.class) libtischJNI.MasterContainer_doUpdate__SWIG_1(swigCPtr, this); else libtischJNI.MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(swigCPtr, this);
   }
 
   public void adjust(int w, int h) {
     libtischJNI.MasterContainer_adjust(swigCPtr, this, w, h);
   }
 
-  public void signOff() {
-    libtischJNI.MasterContainer_signOff(swigCPtr, this);
-  }
-
   public void usePeak() {
     libtischJNI.MasterContainer_usePeak(swigCPtr, this);
+  }
+
+  protected void setMatcher(InternalMatcher value) {
+    libtischJNI.MasterContainer_matcher_set(swigCPtr, this, InternalMatcher.getCPtr(value), value);
+  }
+
+  protected InternalMatcher getMatcher() {
+    long cPtr = libtischJNI.MasterContainer_matcher_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new InternalMatcher(cPtr, false);
+  }
+
+  protected void setInput(MatcherTUIOInput value) {
+    libtischJNI.MasterContainer_input_set(swigCPtr, this, MatcherTUIOInput.getCPtr(value), value);
+  }
+
+  protected MatcherTUIOInput getInput() {
+    long cPtr = libtischJNI.MasterContainer_input_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new MatcherTUIOInput(cPtr, false);
+  }
+
+  protected void setInthread(SWIGTYPE_p_InputThread value) {
+    libtischJNI.MasterContainer_inthread_set(swigCPtr, this, SWIGTYPE_p_InputThread.getCPtr(value));
+  }
+
+  protected SWIGTYPE_p_InputThread getInthread() {
+    long cPtr = libtischJNI.MasterContainer_inthread_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_InputThread(cPtr, false);
   }
 
 }

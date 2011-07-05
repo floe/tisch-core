@@ -934,6 +934,9 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Gesture_load")]
   public static extern void Gesture_load(HandleRef jarg1, HandleRef jarg2);
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Gesture_check")]
+  public static extern bool Gesture_check(HandleRef jarg1);
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Gesture_next")]
   public static extern int Gesture_next(HandleRef jarg1);
 
@@ -1086,6 +1089,60 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_StateRegion")]
   public static extern void delete_StateRegion(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_request_update")]
+  public static extern void Matcher_request_update(HandleRef jarg1, int jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_trigger_gesture")]
+  public static extern void Matcher_trigger_gesture(HandleRef jarg1, int jarg2, HandleRef jarg3);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_process_blob")]
+  public static extern void Matcher_process_blob(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_process_gestures")]
+  public static extern void Matcher_process_gestures(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_load_defaults__SWIG_0")]
+  public static extern void Matcher_load_defaults__SWIG_0(HandleRef jarg1, uint jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_load_defaults__SWIG_1")]
+  public static extern void Matcher_load_defaults__SWIG_1(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_run")]
+  public static extern IntPtr Matcher_run(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_update")]
+  public static extern void Matcher_update(HandleRef jarg1, uint jarg2, HandleRef jarg3);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_remove")]
+  public static extern void Matcher_remove(HandleRef jarg1, uint jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_raise")]
+  public static extern void Matcher_raise(HandleRef jarg1, uint jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_lower")]
+  public static extern void Matcher_lower(HandleRef jarg1, uint jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_peakmode")]
+  public static extern void Matcher_peakmode(HandleRef jarg1, bool jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_Matcher_clear")]
+  public static extern void Matcher_clear(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_Matcher")]
+  public static extern void delete_Matcher(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_new_MatcherTUIOInput")]
+  public static extern IntPtr new_MatcherTUIOInput(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MatcherTUIOInput_process_frame")]
+  public static extern void MatcherTUIOInput_process_frame(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MatcherTUIOInput_process_blob")]
+  public static extern void MatcherTUIOInput_process_blob(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_MatcherTUIOInput")]
+  public static extern void delete_MatcherTUIOInput(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_FeatureInt")]
   public static extern void delete_FeatureInt(HandleRef jarg1);
@@ -11389,6 +11446,12 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get")]
   public static extern int GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV_get();
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get")]
+  public static extern int GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get")]
+  public static extern int GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get();
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get")]
   public static extern int GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get();
 
@@ -11568,6 +11631,12 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_WRITE_DISCARD_NV_get")]
   public static extern int GL_WRITE_DISCARD_NV_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_DEPTH_CLAMP_NEAR_AMD_get")]
+  public static extern int GL_DEPTH_CLAMP_NEAR_AMD_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_DEPTH_CLAMP_FAR_AMD_get")]
+  public static extern int GL_DEPTH_CLAMP_FAR_AMD_get();
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_VERSION_1_2_get")]
   public static extern int GL_VERSION_1_2_get();
@@ -12748,6 +12817,9 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_transform_feedback3_lines_triangles_get")]
   public static extern int GL_AMD_transform_feedback3_lines_triangles_get();
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_depth_clamp_separate_get")]
+  public static extern int GL_AMD_depth_clamp_separate_get();
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_GLUTWindow__SWIG_0")]
   public static extern IntPtr new_GLUTWindow__SWIG_0(int jarg1, int jarg2, string jarg3, int jarg4);
 
@@ -12768,6 +12840,18 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_print")]
   public static extern void GLUTWindow_print(HandleRef jarg1, string jarg2, int jarg3, int jarg4);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawRectangleBackground")]
+  public static extern void GLUTWindow_drawRectangleBackground(HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_0")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_0(HandleRef jarg1, HandleRef jarg2, bool jarg3, int jarg4);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_1")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_1(HandleRef jarg1, HandleRef jarg2, bool jarg3);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_drawPolygon__SWIG_2")]
+  public static extern void GLUTWindow_drawPolygon__SWIG_2(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GLUTWindow_title")]
   public static extern void GLUTWindow_title(HandleRef jarg1, string jarg2);
@@ -12895,6 +12979,9 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_load__SWIG_3")]
   public static extern void RGBATexture_load__SWIG_3(HandleRef jarg1, HandleRef jarg2);
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_load__SWIG_4")]
+  public static extern void RGBATexture_load__SWIG_4(HandleRef jarg1, HandleRef jarg2);
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_RGBATexture_read")]
   public static extern void RGBATexture_read(HandleRef jarg1, HandleRef jarg2);
 
@@ -12920,6 +13007,12 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_g_widgets_get")]
   public static extern IntPtr g_widgets_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_g_matcher_set")]
+  public static extern void g_matcher_set(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_g_matcher_get")]
+  public static extern IntPtr g_matcher_get();
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Widget__SWIG_0")]
   public static extern IntPtr new_Widget__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, HandleRef jarg6, int jarg7);
@@ -12967,22 +13060,16 @@ class libtischPINVOKE {
   public static extern void Widget_updateSwigExplicitWidget__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdate__SWIG_0")]
-  public static extern void Widget_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void Widget_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_0")]
-  public static extern void Widget_doUpdateSwigExplicitWidget__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void Widget_doUpdateSwigExplicitWidget__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdate__SWIG_1")]
-  public static extern void Widget_doUpdate__SWIG_1(HandleRef jarg1, HandleRef jarg2);
+  public static extern void Widget_doUpdate__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_1")]
-  public static extern void Widget_doUpdateSwigExplicitWidget__SWIG_1(HandleRef jarg1, HandleRef jarg2);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdate__SWIG_2")]
-  public static extern void Widget_doUpdate__SWIG_2(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_2")]
-  public static extern void Widget_doUpdateSwigExplicitWidget__SWIG_2(HandleRef jarg1);
+  public static extern void Widget_doUpdateSwigExplicitWidget__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_raise__SWIG_0")]
   public static extern void Widget_raise__SWIG_0(HandleRef jarg1, HandleRef jarg2);
@@ -13173,12 +13260,6 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_parent_get")]
   public static extern IntPtr Widget_parent_get(HandleRef jarg1);
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_regstream_set")]
-  public static extern void Widget_regstream_set(HandleRef jarg1, HandleRef jarg2);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_regstream_get")]
-  public static extern IntPtr Widget_regstream_get(HandleRef jarg1);
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_m_model_set")]
   public static extern void Widget_m_model_set(HandleRef jarg1, HandleRef jarg2);
 
@@ -13186,7 +13267,7 @@ class libtischPINVOKE {
   public static extern IntPtr Widget_m_model_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Widget_director_connect")]
-  public static extern void Widget_director_connect(HandleRef jarg1, Widget.SwigDelegateWidget_0 delegate0, Widget.SwigDelegateWidget_1 delegate1, Widget.SwigDelegateWidget_2 delegate2, Widget.SwigDelegateWidget_3 delegate3, Widget.SwigDelegateWidget_4 delegate4, Widget.SwigDelegateWidget_5 delegate5, Widget.SwigDelegateWidget_6 delegate6, Widget.SwigDelegateWidget_7 delegate7, Widget.SwigDelegateWidget_8 delegate8, Widget.SwigDelegateWidget_9 delegate9, Widget.SwigDelegateWidget_10 delegate10, Widget.SwigDelegateWidget_11 delegate11, Widget.SwigDelegateWidget_12 delegate12, Widget.SwigDelegateWidget_13 delegate13, Widget.SwigDelegateWidget_14 delegate14, Widget.SwigDelegateWidget_15 delegate15);
+  public static extern void Widget_director_connect(HandleRef jarg1, Widget.SwigDelegateWidget_0 delegate0, Widget.SwigDelegateWidget_1 delegate1, Widget.SwigDelegateWidget_2 delegate2, Widget.SwigDelegateWidget_3 delegate3, Widget.SwigDelegateWidget_4 delegate4, Widget.SwigDelegateWidget_5 delegate5, Widget.SwigDelegateWidget_6 delegate6, Widget.SwigDelegateWidget_7 delegate7, Widget.SwigDelegateWidget_8 delegate8, Widget.SwigDelegateWidget_9 delegate9, Widget.SwigDelegateWidget_10 delegate10, Widget.SwigDelegateWidget_11 delegate11, Widget.SwigDelegateWidget_12 delegate12, Widget.SwigDelegateWidget_13 delegate13, Widget.SwigDelegateWidget_14 delegate14);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Label__SWIG_0")]
   public static extern IntPtr new_Label__SWIG_0(string jarg1, int jarg2, int jarg3, int jarg4, int jarg5, double jarg6, int jarg7, int jarg8, HandleRef jarg9);
@@ -13246,7 +13327,7 @@ class libtischPINVOKE {
   public static extern int Label_snip_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Label_director_connect")]
-  public static extern void Label_director_connect(HandleRef jarg1, Label.SwigDelegateLabel_0 delegate0, Label.SwigDelegateLabel_1 delegate1, Label.SwigDelegateLabel_2 delegate2, Label.SwigDelegateLabel_3 delegate3, Label.SwigDelegateLabel_4 delegate4, Label.SwigDelegateLabel_5 delegate5, Label.SwigDelegateLabel_6 delegate6, Label.SwigDelegateLabel_7 delegate7, Label.SwigDelegateLabel_8 delegate8, Label.SwigDelegateLabel_9 delegate9, Label.SwigDelegateLabel_10 delegate10, Label.SwigDelegateLabel_11 delegate11, Label.SwigDelegateLabel_12 delegate12, Label.SwigDelegateLabel_13 delegate13, Label.SwigDelegateLabel_14 delegate14, Label.SwigDelegateLabel_15 delegate15);
+  public static extern void Label_director_connect(HandleRef jarg1, Label.SwigDelegateLabel_0 delegate0, Label.SwigDelegateLabel_1 delegate1, Label.SwigDelegateLabel_2 delegate2, Label.SwigDelegateLabel_3 delegate3, Label.SwigDelegateLabel_4 delegate4, Label.SwigDelegateLabel_5 delegate5, Label.SwigDelegateLabel_6 delegate6, Label.SwigDelegateLabel_7 delegate7, Label.SwigDelegateLabel_8 delegate8, Label.SwigDelegateLabel_9 delegate9, Label.SwigDelegateLabel_10 delegate10, Label.SwigDelegateLabel_11 delegate11, Label.SwigDelegateLabel_12 delegate12, Label.SwigDelegateLabel_13 delegate13, Label.SwigDelegateLabel_14 delegate14);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Button__SWIG_0")]
   public static extern IntPtr new_Button__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, HandleRef jarg6);
@@ -13297,7 +13378,7 @@ class libtischPINVOKE {
   public static extern int Button_active_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Button_director_connect")]
-  public static extern void Button_director_connect(HandleRef jarg1, Button.SwigDelegateButton_0 delegate0, Button.SwigDelegateButton_1 delegate1, Button.SwigDelegateButton_2 delegate2, Button.SwigDelegateButton_3 delegate3, Button.SwigDelegateButton_4 delegate4, Button.SwigDelegateButton_5 delegate5, Button.SwigDelegateButton_6 delegate6, Button.SwigDelegateButton_7 delegate7, Button.SwigDelegateButton_8 delegate8, Button.SwigDelegateButton_9 delegate9, Button.SwigDelegateButton_10 delegate10, Button.SwigDelegateButton_11 delegate11, Button.SwigDelegateButton_12 delegate12, Button.SwigDelegateButton_13 delegate13, Button.SwigDelegateButton_14 delegate14, Button.SwigDelegateButton_15 delegate15, Button.SwigDelegateButton_16 delegate16, Button.SwigDelegateButton_17 delegate17);
+  public static extern void Button_director_connect(HandleRef jarg1, Button.SwigDelegateButton_0 delegate0, Button.SwigDelegateButton_1 delegate1, Button.SwigDelegateButton_2 delegate2, Button.SwigDelegateButton_3 delegate3, Button.SwigDelegateButton_4 delegate4, Button.SwigDelegateButton_5 delegate5, Button.SwigDelegateButton_6 delegate6, Button.SwigDelegateButton_7 delegate7, Button.SwigDelegateButton_8 delegate8, Button.SwigDelegateButton_9 delegate9, Button.SwigDelegateButton_10 delegate10, Button.SwigDelegateButton_11 delegate11, Button.SwigDelegateButton_12 delegate12, Button.SwigDelegateButton_13 delegate13, Button.SwigDelegateButton_14 delegate14, Button.SwigDelegateButton_15 delegate15, Button.SwigDelegateButton_16 delegate16);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_TISCH_TILE_MOVE_get")]
   public static extern int TISCH_TILE_MOVE_get();
@@ -13313,6 +13394,12 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_TISCH_TILE_BOUNCE_get")]
   public static extern int TISCH_TILE_BOUNCE_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_TISCH_TILE_BBOX_get")]
+  public static extern int TISCH_TILE_BBOX_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_TISCH_TILE_CIRCLE_get")]
+  public static extern int TISCH_TILE_CIRCLE_get();
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Tile__SWIG_0")]
   public static extern IntPtr new_Tile__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, HandleRef jarg6, int jarg7);
@@ -13384,7 +13471,7 @@ class libtischPINVOKE {
   public static extern IntPtr Tile_vel_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Tile_director_connect")]
-  public static extern void Tile_director_connect(HandleRef jarg1, Tile.SwigDelegateTile_0 delegate0, Tile.SwigDelegateTile_1 delegate1, Tile.SwigDelegateTile_2 delegate2, Tile.SwigDelegateTile_3 delegate3, Tile.SwigDelegateTile_4 delegate4, Tile.SwigDelegateTile_5 delegate5, Tile.SwigDelegateTile_6 delegate6, Tile.SwigDelegateTile_7 delegate7, Tile.SwigDelegateTile_8 delegate8, Tile.SwigDelegateTile_9 delegate9, Tile.SwigDelegateTile_10 delegate10, Tile.SwigDelegateTile_11 delegate11, Tile.SwigDelegateTile_12 delegate12, Tile.SwigDelegateTile_13 delegate13, Tile.SwigDelegateTile_14 delegate14, Tile.SwigDelegateTile_15 delegate15, Tile.SwigDelegateTile_16 delegate16, Tile.SwigDelegateTile_17 delegate17, Tile.SwigDelegateTile_18 delegate18);
+  public static extern void Tile_director_connect(HandleRef jarg1, Tile.SwigDelegateTile_0 delegate0, Tile.SwigDelegateTile_1 delegate1, Tile.SwigDelegateTile_2 delegate2, Tile.SwigDelegateTile_3 delegate3, Tile.SwigDelegateTile_4 delegate4, Tile.SwigDelegateTile_5 delegate5, Tile.SwigDelegateTile_6 delegate6, Tile.SwigDelegateTile_7 delegate7, Tile.SwigDelegateTile_8 delegate8, Tile.SwigDelegateTile_9 delegate9, Tile.SwigDelegateTile_10 delegate10, Tile.SwigDelegateTile_11 delegate11, Tile.SwigDelegateTile_12 delegate12, Tile.SwigDelegateTile_13 delegate13, Tile.SwigDelegateTile_14 delegate14, Tile.SwigDelegateTile_15 delegate15, Tile.SwigDelegateTile_16 delegate16, Tile.SwigDelegateTile_17 delegate17);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Container__SWIG_0")]
   public static extern IntPtr new_Container__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, HandleRef jarg6, int jarg7);
@@ -13456,22 +13543,16 @@ class libtischPINVOKE {
   public static extern void Container_paintSwigExplicitContainer__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdate__SWIG_0")]
-  public static extern void Container_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void Container_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdateSwigExplicitContainer__SWIG_0")]
-  public static extern void Container_doUpdateSwigExplicitContainer__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void Container_doUpdateSwigExplicitContainer__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdate__SWIG_1")]
-  public static extern void Container_doUpdate__SWIG_1(HandleRef jarg1, HandleRef jarg2);
+  public static extern void Container_doUpdate__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdateSwigExplicitContainer__SWIG_1")]
-  public static extern void Container_doUpdateSwigExplicitContainer__SWIG_1(HandleRef jarg1, HandleRef jarg2);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdate__SWIG_2")]
-  public static extern void Container_doUpdate__SWIG_2(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_doUpdateSwigExplicitContainer__SWIG_2")]
-  public static extern void Container_doUpdateSwigExplicitContainer__SWIG_2(HandleRef jarg1);
+  public static extern void Container_doUpdateSwigExplicitContainer__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_tap")]
   public static extern void Container_tap(HandleRef jarg1, HandleRef jarg2, int jarg3);
@@ -13495,7 +13576,7 @@ class libtischPINVOKE {
   public static extern int Container_locked_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Container_director_connect")]
-  public static extern void Container_director_connect(HandleRef jarg1, Container.SwigDelegateContainer_0 delegate0, Container.SwigDelegateContainer_1 delegate1, Container.SwigDelegateContainer_2 delegate2, Container.SwigDelegateContainer_3 delegate3, Container.SwigDelegateContainer_4 delegate4, Container.SwigDelegateContainer_5 delegate5, Container.SwigDelegateContainer_6 delegate6, Container.SwigDelegateContainer_7 delegate7, Container.SwigDelegateContainer_8 delegate8, Container.SwigDelegateContainer_9 delegate9, Container.SwigDelegateContainer_10 delegate10, Container.SwigDelegateContainer_11 delegate11, Container.SwigDelegateContainer_12 delegate12, Container.SwigDelegateContainer_13 delegate13, Container.SwigDelegateContainer_14 delegate14, Container.SwigDelegateContainer_15 delegate15, Container.SwigDelegateContainer_16 delegate16, Container.SwigDelegateContainer_17 delegate17, Container.SwigDelegateContainer_18 delegate18);
+  public static extern void Container_director_connect(HandleRef jarg1, Container.SwigDelegateContainer_0 delegate0, Container.SwigDelegateContainer_1 delegate1, Container.SwigDelegateContainer_2 delegate2, Container.SwigDelegateContainer_3 delegate3, Container.SwigDelegateContainer_4 delegate4, Container.SwigDelegateContainer_5 delegate5, Container.SwigDelegateContainer_6 delegate6, Container.SwigDelegateContainer_7 delegate7, Container.SwigDelegateContainer_8 delegate8, Container.SwigDelegateContainer_9 delegate9, Container.SwigDelegateContainer_10 delegate10, Container.SwigDelegateContainer_11 delegate11, Container.SwigDelegateContainer_12 delegate12, Container.SwigDelegateContainer_13 delegate13, Container.SwigDelegateContainer_14 delegate14, Container.SwigDelegateContainer_15 delegate15, Container.SwigDelegateContainer_16 delegate16, Container.SwigDelegateContainer_17 delegate17);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Checkbox__SWIG_0")]
   public static extern IntPtr new_Checkbox__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, HandleRef jarg6);
@@ -13597,7 +13678,7 @@ class libtischPINVOKE {
   public static extern double Slider_pos_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Slider_director_connect")]
-  public static extern void Slider_director_connect(HandleRef jarg1, Slider.SwigDelegateSlider_0 delegate0, Slider.SwigDelegateSlider_1 delegate1, Slider.SwigDelegateSlider_2 delegate2, Slider.SwigDelegateSlider_3 delegate3, Slider.SwigDelegateSlider_4 delegate4, Slider.SwigDelegateSlider_5 delegate5, Slider.SwigDelegateSlider_6 delegate6, Slider.SwigDelegateSlider_7 delegate7, Slider.SwigDelegateSlider_8 delegate8, Slider.SwigDelegateSlider_9 delegate9, Slider.SwigDelegateSlider_10 delegate10, Slider.SwigDelegateSlider_11 delegate11, Slider.SwigDelegateSlider_12 delegate12, Slider.SwigDelegateSlider_13 delegate13, Slider.SwigDelegateSlider_14 delegate14, Slider.SwigDelegateSlider_15 delegate15);
+  public static extern void Slider_director_connect(HandleRef jarg1, Slider.SwigDelegateSlider_0 delegate0, Slider.SwigDelegateSlider_1 delegate1, Slider.SwigDelegateSlider_2 delegate2, Slider.SwigDelegateSlider_3 delegate3, Slider.SwigDelegateSlider_4 delegate4, Slider.SwigDelegateSlider_5 delegate5, Slider.SwigDelegateSlider_6 delegate6, Slider.SwigDelegateSlider_7 delegate7, Slider.SwigDelegateSlider_8 delegate8, Slider.SwigDelegateSlider_9 delegate9, Slider.SwigDelegateSlider_10 delegate10, Slider.SwigDelegateSlider_11 delegate11, Slider.SwigDelegateSlider_12 delegate12, Slider.SwigDelegateSlider_13 delegate13, Slider.SwigDelegateSlider_14 delegate14);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Dial__SWIG_0")]
   public static extern IntPtr new_Dial__SWIG_0(int jarg1, int jarg2, int jarg3, double jarg4, HandleRef jarg5);
@@ -13666,7 +13747,25 @@ class libtischPINVOKE {
   public static extern IntPtr Dial_oldpos_get(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Dial_director_connect")]
-  public static extern void Dial_director_connect(HandleRef jarg1, Dial.SwigDelegateDial_0 delegate0, Dial.SwigDelegateDial_1 delegate1, Dial.SwigDelegateDial_2 delegate2, Dial.SwigDelegateDial_3 delegate3, Dial.SwigDelegateDial_4 delegate4, Dial.SwigDelegateDial_5 delegate5, Dial.SwigDelegateDial_6 delegate6, Dial.SwigDelegateDial_7 delegate7, Dial.SwigDelegateDial_8 delegate8, Dial.SwigDelegateDial_9 delegate9, Dial.SwigDelegateDial_10 delegate10, Dial.SwigDelegateDial_11 delegate11, Dial.SwigDelegateDial_12 delegate12, Dial.SwigDelegateDial_13 delegate13, Dial.SwigDelegateDial_14 delegate14, Dial.SwigDelegateDial_15 delegate15);
+  public static extern void Dial_director_connect(HandleRef jarg1, Dial.SwigDelegateDial_0 delegate0, Dial.SwigDelegateDial_1 delegate1, Dial.SwigDelegateDial_2 delegate2, Dial.SwigDelegateDial_3 delegate3, Dial.SwigDelegateDial_4 delegate4, Dial.SwigDelegateDial_5 delegate5, Dial.SwigDelegateDial_6 delegate6, Dial.SwigDelegateDial_7 delegate7, Dial.SwigDelegateDial_8 delegate8, Dial.SwigDelegateDial_9 delegate9, Dial.SwigDelegateDial_10 delegate10, Dial.SwigDelegateDial_11 delegate11, Dial.SwigDelegateDial_12 delegate12, Dial.SwigDelegateDial_13 delegate13, Dial.SwigDelegateDial_14 delegate14);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_new_InternalMatcher")]
+  public static extern IntPtr new_InternalMatcher();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_InternalMatcher_process_gestures")]
+  public static extern void InternalMatcher_process_gestures(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_InternalMatcher_do_process_gestures")]
+  public static extern int InternalMatcher_do_process_gestures(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_InternalMatcher_request_update")]
+  public static extern void InternalMatcher_request_update(HandleRef jarg1, int jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_InternalMatcher_trigger_gesture")]
+  public static extern void InternalMatcher_trigger_gesture(HandleRef jarg1, int jarg2, HandleRef jarg3);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_InternalMatcher")]
+  public static extern void delete_InternalMatcher(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_MasterContainer__SWIG_0")]
   public static extern IntPtr new_MasterContainer__SWIG_0(int jarg1, int jarg2, string jarg3);
@@ -13677,38 +13776,44 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_delete_MasterContainer")]
   public static extern void delete_MasterContainer(HandleRef jarg1);
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_process")]
-  public static extern int MasterContainer_process(HandleRef jarg1);
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdate__SWIG_0")]
-  public static extern void MasterContainer_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void MasterContainer_doUpdate__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0")]
-  public static extern void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3);
+  public static extern void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdate__SWIG_1")]
-  public static extern void MasterContainer_doUpdate__SWIG_1(HandleRef jarg1, HandleRef jarg2);
+  public static extern void MasterContainer_doUpdate__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1")]
-  public static extern void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(HandleRef jarg1, HandleRef jarg2);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdate__SWIG_2")]
-  public static extern void MasterContainer_doUpdate__SWIG_2(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_2")]
-  public static extern void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_2(HandleRef jarg1);
+  public static extern void MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_adjust")]
   public static extern void MasterContainer_adjust(HandleRef jarg1, int jarg2, int jarg3);
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_signOff")]
-  public static extern void MasterContainer_signOff(HandleRef jarg1);
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_usePeak")]
   public static extern void MasterContainer_usePeak(HandleRef jarg1);
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_matcher_set")]
+  public static extern void MasterContainer_matcher_set(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_matcher_get")]
+  public static extern IntPtr MasterContainer_matcher_get(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_input_set")]
+  public static extern void MasterContainer_input_set(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_input_get")]
+  public static extern IntPtr MasterContainer_input_get(HandleRef jarg1);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_inthread_set")]
+  public static extern void MasterContainer_inthread_set(HandleRef jarg1, HandleRef jarg2);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_inthread_get")]
+  public static extern IntPtr MasterContainer_inthread_get(HandleRef jarg1);
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainer_director_connect")]
-  public static extern void MasterContainer_director_connect(HandleRef jarg1, MasterContainer.SwigDelegateMasterContainer_0 delegate0, MasterContainer.SwigDelegateMasterContainer_1 delegate1, MasterContainer.SwigDelegateMasterContainer_2 delegate2, MasterContainer.SwigDelegateMasterContainer_3 delegate3, MasterContainer.SwigDelegateMasterContainer_4 delegate4, MasterContainer.SwigDelegateMasterContainer_5 delegate5, MasterContainer.SwigDelegateMasterContainer_6 delegate6, MasterContainer.SwigDelegateMasterContainer_7 delegate7, MasterContainer.SwigDelegateMasterContainer_8 delegate8, MasterContainer.SwigDelegateMasterContainer_9 delegate9, MasterContainer.SwigDelegateMasterContainer_10 delegate10, MasterContainer.SwigDelegateMasterContainer_11 delegate11, MasterContainer.SwigDelegateMasterContainer_12 delegate12, MasterContainer.SwigDelegateMasterContainer_13 delegate13, MasterContainer.SwigDelegateMasterContainer_14 delegate14, MasterContainer.SwigDelegateMasterContainer_15 delegate15, MasterContainer.SwigDelegateMasterContainer_16 delegate16, MasterContainer.SwigDelegateMasterContainer_17 delegate17, MasterContainer.SwigDelegateMasterContainer_18 delegate18);
+  public static extern void MasterContainer_director_connect(HandleRef jarg1, MasterContainer.SwigDelegateMasterContainer_0 delegate0, MasterContainer.SwigDelegateMasterContainer_1 delegate1, MasterContainer.SwigDelegateMasterContainer_2 delegate2, MasterContainer.SwigDelegateMasterContainer_3 delegate3, MasterContainer.SwigDelegateMasterContainer_4 delegate4, MasterContainer.SwigDelegateMasterContainer_5 delegate5, MasterContainer.SwigDelegateMasterContainer_6 delegate6, MasterContainer.SwigDelegateMasterContainer_7 delegate7, MasterContainer.SwigDelegateMasterContainer_8 delegate8, MasterContainer.SwigDelegateMasterContainer_9 delegate9, MasterContainer.SwigDelegateMasterContainer_10 delegate10, MasterContainer.SwigDelegateMasterContainer_11 delegate11, MasterContainer.SwigDelegateMasterContainer_12 delegate12, MasterContainer.SwigDelegateMasterContainer_13 delegate13, MasterContainer.SwigDelegateMasterContainer_14 delegate14, MasterContainer.SwigDelegateMasterContainer_15 delegate15, MasterContainer.SwigDelegateMasterContainer_16 delegate16, MasterContainer.SwigDelegateMasterContainer_17 delegate17);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_Window__SWIG_0")]
   public static extern IntPtr new_Window__SWIG_0(int jarg1, int jarg2, string jarg3, int jarg4, string jarg5);
@@ -13797,14 +13902,8 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Window_adjust")]
   public static extern void Window_adjust(HandleRef jarg1, int jarg2, int jarg3);
 
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Window_signOff")]
-  public static extern void Window_signOff(HandleRef jarg1);
-
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Window_usePeak")]
   public static extern void Window_usePeak(HandleRef jarg1);
-
-  [DllImport("libtisch_csharp", EntryPoint="CSharp_Window_process")]
-  public static extern int Window_process(HandleRef jarg1);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_Window_director_connect")]
   public static extern void Window_director_connect(HandleRef jarg1, Window.SwigDelegateWindow_0 delegate0, Window.SwigDelegateWindow_1 delegate1, Window.SwigDelegateWindow_2 delegate2, Window.SwigDelegateWindow_3 delegate3, Window.SwigDelegateWindow_4 delegate4, Window.SwigDelegateWindow_5 delegate5, Window.SwigDelegateWindow_6 delegate6, Window.SwigDelegateWindow_7 delegate7, Window.SwigDelegateWindow_8 delegate8, Window.SwigDelegateWindow_9 delegate9);
@@ -13916,6 +14015,9 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_DialUpcast")]
   public static extern IntPtr DialUpcast(IntPtr objectRef);
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_InternalMatcherUpcast")]
+  public static extern IntPtr InternalMatcherUpcast(IntPtr objectRef);
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_MasterContainerUpcast")]
   public static extern IntPtr MasterContainerUpcast(IntPtr objectRef);

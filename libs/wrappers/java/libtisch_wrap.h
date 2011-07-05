@@ -39,7 +39,7 @@ public:
     virtual ~SwigDirector_Widget();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -50,14 +50,13 @@ public:
     using Widget::mytex;
     using Widget::mycolor;
     using Widget::parent;
-    using Widget::regstream;
     using Widget::m_model;
 public:
     bool swig_overrides(int n) {
-      return (n < 16 ? swig_override[n] : false);
+      return (n < 15 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[16];
+    bool swig_override[15];
 };
 
 class SwigDirector_Label : public Label, public Swig::Director {
@@ -68,7 +67,7 @@ public:
     virtual ~SwigDirector_Label();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -80,10 +79,10 @@ public:
     using Label::snip;
 public:
     bool swig_overrides(int n) {
-      return (n < 16 ? swig_override[n] : false);
+      return (n < 15 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[16];
+    bool swig_override[15];
 };
 
 class SwigDirector_Button : public Button, public Swig::Director {
@@ -94,7 +93,7 @@ public:
     virtual ~SwigDirector_Button();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -106,10 +105,10 @@ public:
     using Button::active;
 public:
     bool swig_overrides(int n) {
-      return (n < 18 ? swig_override[n] : false);
+      return (n < 17 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[18];
+    bool swig_override[17];
 };
 
 class SwigDirector_Tile : public Tile, public Swig::Director {
@@ -120,7 +119,7 @@ public:
     virtual ~SwigDirector_Tile();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -135,21 +134,21 @@ public:
     using Tile::vel;
 public:
     bool swig_overrides(int n) {
-      return (n < 19 ? swig_override[n] : false);
+      return (n < 18 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[19];
+    bool swig_override[18];
 };
 
 class SwigDirector_Container : public Container, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_Container(JNIEnv *jenv, int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 0);
+    SwigDirector_Container(JNIEnv *jenv, int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 32);
     virtual ~SwigDirector_Container();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -164,10 +163,10 @@ public:
     using Container::locked;
 public:
     bool swig_overrides(int n) {
-      return (n < 19 ? swig_override[n] : false);
+      return (n < 18 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[19];
+    bool swig_override[18];
 };
 
 class SwigDirector_Slider : public Slider, public Swig::Director {
@@ -178,7 +177,7 @@ public:
     virtual ~SwigDirector_Slider();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -188,10 +187,10 @@ public:
     using Slider::pos;
 public:
     bool swig_overrides(int n) {
-      return (n < 16 ? swig_override[n] : false);
+      return (n < 15 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[16];
+    bool swig_override[15];
 };
 
 class SwigDirector_Dial : public Dial, public Swig::Director {
@@ -202,7 +201,7 @@ public:
     virtual ~SwigDirector_Dial();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -215,10 +214,10 @@ public:
     using Dial::oldpos;
 public:
     bool swig_overrides(int n) {
-      return (n < 16 ? swig_override[n] : false);
+      return (n < 15 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[16];
+    bool swig_override[15];
 };
 
 class SwigDirector_MasterContainer : public MasterContainer, public Swig::Director {
@@ -229,7 +228,7 @@ public:
     virtual ~SwigDirector_MasterContainer();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -239,12 +238,15 @@ public:
     virtual void tap(Vector vec, int id);
     virtual void release();
     virtual void apply(Vector delta);
+    using MasterContainer::matcher;
+    using MasterContainer::input;
+    using MasterContainer::inthread;
 public:
     bool swig_overrides(int n) {
-      return (n < 19 ? swig_override[n] : false);
+      return (n < 18 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[19];
+    bool swig_override[18];
 };
 
 class SwigDirector_Window : public Window, public Swig::Director {

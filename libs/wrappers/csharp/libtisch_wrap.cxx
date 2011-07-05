@@ -1434,17 +1434,15 @@ void SwigDirector_Widget::update(Widget *target) {
   }
 }
 
-void SwigDirector_Widget::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Widget::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -1516,13 +1514,12 @@ void SwigDirector_Widget::paint(bool update_stencil) {
   }
 }
 
-void SwigDirector_Widget::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1) {
+void SwigDirector_Widget::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -1541,7 +1538,6 @@ void SwigDirector_Widget::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -1584,17 +1580,15 @@ void SwigDirector_Label::update(Widget *target) {
   }
 }
 
-void SwigDirector_Label::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Label::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -1667,13 +1661,12 @@ void SwigDirector_Label::paint(bool update_stencil) {
   }
 }
 
-void SwigDirector_Label::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1) {
+void SwigDirector_Label::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -1692,7 +1685,6 @@ void SwigDirector_Label::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -1735,17 +1727,15 @@ void SwigDirector_Button::update(Widget *target) {
   }
 }
 
-void SwigDirector_Button::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Button::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -1841,13 +1831,12 @@ void SwigDirector_Button::release() {
   }
 }
 
-void SwigDirector_Button::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease) {
+void SwigDirector_Button::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -1868,7 +1857,6 @@ void SwigDirector_Button::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -1913,17 +1901,15 @@ void SwigDirector_Tile::update(Widget *target) {
   }
 }
 
-void SwigDirector_Tile::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Tile::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -2031,13 +2017,12 @@ void SwigDirector_Tile::apply(Vector delta) {
   }
 }
 
-void SwigDirector_Tile::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply) {
+void SwigDirector_Tile::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -2059,7 +2044,6 @@ void SwigDirector_Tile::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -2105,17 +2089,15 @@ void SwigDirector_Container::update(Widget *target) {
   }
 }
 
-void SwigDirector_Container::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Container::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Container::doUpdate(target,ost);
+    Container::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -2223,13 +2205,12 @@ void SwigDirector_Container::apply(Vector delta) {
   }
 }
 
-void SwigDirector_Container::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply) {
+void SwigDirector_Container::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -2251,7 +2232,6 @@ void SwigDirector_Container::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -2297,17 +2277,15 @@ void SwigDirector_Slider::update(Widget *target) {
   }
 }
 
-void SwigDirector_Slider::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Slider::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -2380,13 +2358,12 @@ void SwigDirector_Slider::paint(bool update_stencil) {
   }
 }
 
-void SwigDirector_Slider::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1) {
+void SwigDirector_Slider::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -2405,7 +2382,6 @@ void SwigDirector_Slider::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -2448,17 +2424,15 @@ void SwigDirector_Dial::update(Widget *target) {
   }
 }
 
-void SwigDirector_Dial::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Dial::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    Widget::doUpdate(target,ost);
+    Widget::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -2531,13 +2505,12 @@ void SwigDirector_Dial::paint(bool update_stencil) {
   }
 }
 
-void SwigDirector_Dial::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1) {
+void SwigDirector_Dial::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -2556,7 +2529,6 @@ void SwigDirector_Dial::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -2599,17 +2571,15 @@ void SwigDirector_MasterContainer::update(Widget *target) {
   }
 }
 
-void SwigDirector_MasterContainer::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_MasterContainer::doUpdate(Widget *target) {
   void * jtarget = 0 ;
-  void * jost = 0 ;
   
   if (!swig_callbackdoUpdate__SWIG_0) {
-    MasterContainer::doUpdate(target,ost);
+    MasterContainer::doUpdate(target);
     return;
   } else {
     jtarget = (void *) target; 
-    jost = (void *) ost; 
-    swig_callbackdoUpdate__SWIG_0(jtarget, jost);
+    swig_callbackdoUpdate__SWIG_0(jtarget);
   }
 }
 
@@ -2717,13 +2687,12 @@ void SwigDirector_MasterContainer::apply(Vector delta) {
   }
 }
 
-void SwigDirector_MasterContainer::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply) {
+void SwigDirector_MasterContainer::swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply) {
   swig_callbackoutline = callbackoutline;
   swig_callbackupdate__SWIG_0 = callbackupdate__SWIG_0;
   swig_callbackupdate__SWIG_1 = callbackupdate__SWIG_1;
   swig_callbackdoUpdate__SWIG_0 = callbackdoUpdate__SWIG_0;
   swig_callbackdoUpdate__SWIG_1 = callbackdoUpdate__SWIG_1;
-  swig_callbackdoUpdate__SWIG_2 = callbackdoUpdate__SWIG_2;
   swig_callbackraise__SWIG_0 = callbackraise__SWIG_0;
   swig_callbackraise__SWIG_1 = callbackraise__SWIG_1;
   swig_callbacklower__SWIG_0 = callbacklower__SWIG_0;
@@ -2745,7 +2714,6 @@ void SwigDirector_MasterContainer::swig_init_callbacks() {
   swig_callbackupdate__SWIG_1 = 0;
   swig_callbackdoUpdate__SWIG_0 = 0;
   swig_callbackdoUpdate__SWIG_1 = 0;
-  swig_callbackdoUpdate__SWIG_2 = 0;
   swig_callbackraise__SWIG_0 = 0;
   swig_callbackraise__SWIG_1 = 0;
   swig_callbacklower__SWIG_0 = 0;
@@ -7863,6 +7831,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Gesture_load(void * jarg1, void * jarg2) {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Gesture_check(void * jarg1) {
+  unsigned int jresult ;
+  Gesture *arg1 = (Gesture *) 0 ;
+  bool result;
+  
+  arg1 = (Gesture *)jarg1; 
+  {
+    try {
+      result = (bool)(arg1)->check();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_Gesture_next(void * jarg1) {
   int jresult ;
   Gesture *arg1 = (Gesture *) 0 ;
@@ -8909,6 +8897,334 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_StateRegion(void * jarg1) {
   StateRegion *arg1 = (StateRegion *) 0 ;
   
   arg1 = (StateRegion *)jarg1; 
+  {
+    try {
+      delete arg1;
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_request_update(void * jarg1, int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  int arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (int)jarg2; 
+  {
+    try {
+      (arg1)->request_update(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_trigger_gesture(void * jarg1, int jarg2, void * jarg3) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  int arg2 ;
+  Gesture *arg3 = (Gesture *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (Gesture *)jarg3; 
+  {
+    try {
+      (arg1)->trigger_gesture(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_process_blob(void * jarg1, void * jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  BasicBlob *arg2 = 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (BasicBlob *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "BasicBlob & type is null", 0);
+    return ;
+  } 
+  {
+    try {
+      (arg1)->process_blob(*arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_process_gestures(void * jarg1) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      (arg1)->process_gestures();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_load_defaults__SWIG_0(void * jarg1, unsigned int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  {
+    try {
+      (arg1)->load_defaults(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_load_defaults__SWIG_1(void * jarg1) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      (arg1)->load_defaults();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_Matcher_run(void * jarg1) {
+  void * jresult ;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *result = 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      result = (void *)(arg1)->run();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_update(void * jarg1, unsigned int jarg2, void * jarg3) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  Region *arg3 = (Region *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  arg3 = (Region *)jarg3; 
+  {
+    try {
+      (arg1)->update(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_remove(void * jarg1, unsigned int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  {
+    try {
+      (arg1)->remove(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_raise(void * jarg1, unsigned int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  {
+    try {
+      (arg1)->raise(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_lower(void * jarg1, unsigned int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  {
+    try {
+      (arg1)->lower(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_peakmode(void * jarg1, unsigned int jarg2) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  {
+    try {
+      (arg1)->peakmode(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_clear(void * jarg1) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      (arg1)->clear();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_Matcher(void * jarg1) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      delete arg1;
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MatcherTUIOInput(void * jarg1) {
+  void * jresult ;
+  Matcher *arg1 = (Matcher *) 0 ;
+  MatcherTUIOInput *result = 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  {
+    try {
+      result = (MatcherTUIOInput *)new MatcherTUIOInput(arg1);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MatcherTUIOInput_process_frame(void * jarg1) {
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  
+  arg1 = (MatcherTUIOInput *)jarg1; 
+  {
+    try {
+      (arg1)->process_frame();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MatcherTUIOInput_process_blob(void * jarg1, void * jarg2) {
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  BasicBlob *arg2 = 0 ;
+  
+  arg1 = (MatcherTUIOInput *)jarg1; 
+  arg2 = (BasicBlob *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "BasicBlob & type is null", 0);
+    return ;
+  } 
+  {
+    try {
+      (arg1)->process_blob(*arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_MatcherTUIOInput(void * jarg1) {
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  
+  arg1 = (MatcherTUIOInput *)jarg1; 
   {
     try {
       delete arg1;
@@ -12993,7 +13309,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_GLEXT_VERSION_get() {
   int jresult ;
   int result;
   
-  result = (int) 64;
+  result = (int) 66;
   jresult = result; 
   return jresult;
 }
@@ -45409,6 +45725,26 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_
 }
 
 
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x8E5F;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV_get() {
   int jresult ;
   int result;
@@ -46004,6 +46340,26 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_WRITE_DISCARD_NV_get() {
   int result;
   
   result = (int) 0x88BE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEPTH_CLAMP_NEAR_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x901E;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_DEPTH_CLAMP_FAR_AMD_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 0x901F;
   jresult = result; 
   return jresult;
 }
@@ -49939,6 +50295,16 @@ SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_transform_feedback3_lines_triangles_get
 }
 
 
+SWIGEXPORT int SWIGSTDCALL CSharp_GL_AMD_depth_clamp_separate_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 1;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_new_GLUTWindow__SWIG_0(int jarg1, int jarg2, char * jarg3, int jarg4) {
   void * jresult ;
   int arg1 ;
@@ -50111,6 +50477,110 @@ SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_print(void * jarg1, char * jarg2, 
   {
     try {
       ((GLUTWindow const *)arg1)->print((std::string const &)*arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawRectangleBackground(void * jarg1, int jarg2, int jarg3, int jarg4, int jarg5, int jarg6) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  arg6 = (int)jarg6; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawRectangleBackground(arg2,arg3,arg4,arg5,arg6);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3, int jarg4) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  int arg4 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  arg4 = (int)jarg4; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_1(void * jarg1, void * jarg2, unsigned int jarg3) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  bool arg3 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_GLUTWindow_drawPolygon__SWIG_2(void * jarg1, void * jarg2) {
+  GLUTWindow *arg1 = (GLUTWindow *) 0 ;
+  SwigValueWrapper< std::vector< _Vector< int > * > > arg2 ;
+  std::vector< Point * > *argp2 ;
+  
+  arg1 = (GLUTWindow *)jarg1; 
+  argp2 = (std::vector< Point * > *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< Point * >", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  {
+    try {
+      ((GLUTWindow const *)arg1)->drawPolygon(arg2);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
@@ -51065,6 +51535,24 @@ SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_2(void * jarg1, void *
 
 SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_3(void * jarg1, void * jarg2) {
   Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
+  ShortImage *arg2 = (ShortImage *) 0 ;
+  
+  arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
+  arg2 = (ShortImage *)jarg2; 
+  {
+    try {
+      (arg1)->load((ShortImage const *)arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_RGBATexture_load__SWIG_4(void * jarg1, void * jarg2) {
+  Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *) 0 ;
   RGBImage *arg2 = (RGBImage *) 0 ;
   
   arg1 = (Texture< DEFAULT_TEXTURE_TARGET,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE > *)jarg1; 
@@ -51156,6 +51644,24 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_g_widgets_get() {
   std::set< Widget * > *result = 0 ;
   
   result = (std::set< Widget * > *)&g_widgets;
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_g_matcher_set(void * jarg1) {
+  Matcher *arg1 = (Matcher *) 0 ;
+  
+  arg1 = (Matcher *)jarg1; 
+  g_matcher = arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_g_matcher_get() {
+  void * jresult ;
+  Matcher *result = 0 ;
+  
+  result = (Matcher *)g_matcher;
   jresult = (void *)result; 
   return jresult;
 }
@@ -51489,47 +51995,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Widget_updateSwigExplicitWidget__SWIG_1(void 
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  Widget *arg1 = (Widget *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (Widget *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  Widget *arg1 = (Widget *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (Widget *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->Widget::doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_0(void * jarg1, void * jarg2) {
   Widget *arg1 = (Widget *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -51547,7 +52013,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_1(void * jarg1, void * 
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_0(void * jarg1, void * jarg2) {
   Widget *arg1 = (Widget *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -51565,7 +52031,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_1(voi
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_1(void * jarg1) {
   Widget *arg1 = (Widget *) 0 ;
   
   arg1 = (Widget *)jarg1; 
@@ -51581,7 +52047,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdate__SWIG_2(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Widget_doUpdateSwigExplicitWidget__SWIG_1(void * jarg1) {
   Widget *arg1 = (Widget *) 0 ;
   
   arg1 = (Widget *)jarg1; 
@@ -52509,32 +52975,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Widget_parent_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_regstream_set(void * jarg1, void * jarg2) {
-  Widget *arg1 = (Widget *) 0 ;
-  std::ostream *arg2 = (std::ostream *) 0 ;
-  SwigDirector_Widget *darg = 0;
-  
-  arg1 = (Widget *)jarg1; 
-  arg2 = (std::ostream *)jarg2; 
-  darg = dynamic_cast<SwigDirector_Widget *>(arg1);
-  if (arg1) darg->regstream = arg2;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_Widget_regstream_get(void * jarg1) {
-  void * jresult ;
-  Widget *arg1 = (Widget *) 0 ;
-  SwigDirector_Widget *darg = 0;
-  std::ostream *result = 0 ;
-  
-  arg1 = (Widget *)jarg1; 
-  darg = dynamic_cast<SwigDirector_Widget *>(arg1);
-  result = (std::ostream *) (darg->regstream);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_Widget_m_model_set(void * jarg1, void * jarg2) {
   Widget *arg1 = (Widget *) 0 ;
   GLdouble *arg2 ;
@@ -52565,11 +53005,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Widget_m_model_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Widget_director_connect(void *objarg, SwigDirector_Widget::SWIG_Callback0_t callback0, SwigDirector_Widget::SWIG_Callback1_t callback1, SwigDirector_Widget::SWIG_Callback2_t callback2, SwigDirector_Widget::SWIG_Callback3_t callback3, SwigDirector_Widget::SWIG_Callback4_t callback4, SwigDirector_Widget::SWIG_Callback5_t callback5, SwigDirector_Widget::SWIG_Callback6_t callback6, SwigDirector_Widget::SWIG_Callback7_t callback7, SwigDirector_Widget::SWIG_Callback8_t callback8, SwigDirector_Widget::SWIG_Callback9_t callback9, SwigDirector_Widget::SWIG_Callback10_t callback10, SwigDirector_Widget::SWIG_Callback11_t callback11, SwigDirector_Widget::SWIG_Callback12_t callback12, SwigDirector_Widget::SWIG_Callback13_t callback13, SwigDirector_Widget::SWIG_Callback14_t callback14, SwigDirector_Widget::SWIG_Callback15_t callback15) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Widget_director_connect(void *objarg, SwigDirector_Widget::SWIG_Callback0_t callback0, SwigDirector_Widget::SWIG_Callback1_t callback1, SwigDirector_Widget::SWIG_Callback2_t callback2, SwigDirector_Widget::SWIG_Callback3_t callback3, SwigDirector_Widget::SWIG_Callback4_t callback4, SwigDirector_Widget::SWIG_Callback5_t callback5, SwigDirector_Widget::SWIG_Callback6_t callback6, SwigDirector_Widget::SWIG_Callback7_t callback7, SwigDirector_Widget::SWIG_Callback8_t callback8, SwigDirector_Widget::SWIG_Callback9_t callback9, SwigDirector_Widget::SWIG_Callback10_t callback10, SwigDirector_Widget::SWIG_Callback11_t callback11, SwigDirector_Widget::SWIG_Callback12_t callback12, SwigDirector_Widget::SWIG_Callback13_t callback13, SwigDirector_Widget::SWIG_Callback14_t callback14) {
   Widget *obj = (Widget *)objarg;
   SwigDirector_Widget *director = dynamic_cast<SwigDirector_Widget *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14);
   }
 }
 
@@ -52973,11 +53413,11 @@ SWIGEXPORT int SWIGSTDCALL CSharp_Label_snip_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Label_director_connect(void *objarg, SwigDirector_Label::SWIG_Callback0_t callback0, SwigDirector_Label::SWIG_Callback1_t callback1, SwigDirector_Label::SWIG_Callback2_t callback2, SwigDirector_Label::SWIG_Callback3_t callback3, SwigDirector_Label::SWIG_Callback4_t callback4, SwigDirector_Label::SWIG_Callback5_t callback5, SwigDirector_Label::SWIG_Callback6_t callback6, SwigDirector_Label::SWIG_Callback7_t callback7, SwigDirector_Label::SWIG_Callback8_t callback8, SwigDirector_Label::SWIG_Callback9_t callback9, SwigDirector_Label::SWIG_Callback10_t callback10, SwigDirector_Label::SWIG_Callback11_t callback11, SwigDirector_Label::SWIG_Callback12_t callback12, SwigDirector_Label::SWIG_Callback13_t callback13, SwigDirector_Label::SWIG_Callback14_t callback14, SwigDirector_Label::SWIG_Callback15_t callback15) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Label_director_connect(void *objarg, SwigDirector_Label::SWIG_Callback0_t callback0, SwigDirector_Label::SWIG_Callback1_t callback1, SwigDirector_Label::SWIG_Callback2_t callback2, SwigDirector_Label::SWIG_Callback3_t callback3, SwigDirector_Label::SWIG_Callback4_t callback4, SwigDirector_Label::SWIG_Callback5_t callback5, SwigDirector_Label::SWIG_Callback6_t callback6, SwigDirector_Label::SWIG_Callback7_t callback7, SwigDirector_Label::SWIG_Callback8_t callback8, SwigDirector_Label::SWIG_Callback9_t callback9, SwigDirector_Label::SWIG_Callback10_t callback10, SwigDirector_Label::SWIG_Callback11_t callback11, SwigDirector_Label::SWIG_Callback12_t callback12, SwigDirector_Label::SWIG_Callback13_t callback13, SwigDirector_Label::SWIG_Callback14_t callback14) {
   Label *obj = (Label *)objarg;
   SwigDirector_Label *director = dynamic_cast<SwigDirector_Label *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14);
   }
 }
 
@@ -53306,11 +53746,11 @@ SWIGEXPORT int SWIGSTDCALL CSharp_Button_active_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Button_director_connect(void *objarg, SwigDirector_Button::SWIG_Callback0_t callback0, SwigDirector_Button::SWIG_Callback1_t callback1, SwigDirector_Button::SWIG_Callback2_t callback2, SwigDirector_Button::SWIG_Callback3_t callback3, SwigDirector_Button::SWIG_Callback4_t callback4, SwigDirector_Button::SWIG_Callback5_t callback5, SwigDirector_Button::SWIG_Callback6_t callback6, SwigDirector_Button::SWIG_Callback7_t callback7, SwigDirector_Button::SWIG_Callback8_t callback8, SwigDirector_Button::SWIG_Callback9_t callback9, SwigDirector_Button::SWIG_Callback10_t callback10, SwigDirector_Button::SWIG_Callback11_t callback11, SwigDirector_Button::SWIG_Callback12_t callback12, SwigDirector_Button::SWIG_Callback13_t callback13, SwigDirector_Button::SWIG_Callback14_t callback14, SwigDirector_Button::SWIG_Callback15_t callback15, SwigDirector_Button::SWIG_Callback16_t callback16, SwigDirector_Button::SWIG_Callback17_t callback17) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Button_director_connect(void *objarg, SwigDirector_Button::SWIG_Callback0_t callback0, SwigDirector_Button::SWIG_Callback1_t callback1, SwigDirector_Button::SWIG_Callback2_t callback2, SwigDirector_Button::SWIG_Callback3_t callback3, SwigDirector_Button::SWIG_Callback4_t callback4, SwigDirector_Button::SWIG_Callback5_t callback5, SwigDirector_Button::SWIG_Callback6_t callback6, SwigDirector_Button::SWIG_Callback7_t callback7, SwigDirector_Button::SWIG_Callback8_t callback8, SwigDirector_Button::SWIG_Callback9_t callback9, SwigDirector_Button::SWIG_Callback10_t callback10, SwigDirector_Button::SWIG_Callback11_t callback11, SwigDirector_Button::SWIG_Callback12_t callback12, SwigDirector_Button::SWIG_Callback13_t callback13, SwigDirector_Button::SWIG_Callback14_t callback14, SwigDirector_Button::SWIG_Callback15_t callback15, SwigDirector_Button::SWIG_Callback16_t callback16) {
   Button *obj = (Button *)objarg;
   SwigDirector_Button *director = dynamic_cast<SwigDirector_Button *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16);
   }
 }
 
@@ -53360,6 +53800,26 @@ SWIGEXPORT int SWIGSTDCALL CSharp_TISCH_TILE_BOUNCE_get() {
   int result;
   
   result = (int) 16;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_TISCH_TILE_BBOX_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 32;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_TISCH_TILE_CIRCLE_get() {
+  int jresult ;
+  int result;
+  
+  result = (int) 64;
   jresult = result; 
   return jresult;
 }
@@ -53825,11 +54285,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Tile_vel_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Tile_director_connect(void *objarg, SwigDirector_Tile::SWIG_Callback0_t callback0, SwigDirector_Tile::SWIG_Callback1_t callback1, SwigDirector_Tile::SWIG_Callback2_t callback2, SwigDirector_Tile::SWIG_Callback3_t callback3, SwigDirector_Tile::SWIG_Callback4_t callback4, SwigDirector_Tile::SWIG_Callback5_t callback5, SwigDirector_Tile::SWIG_Callback6_t callback6, SwigDirector_Tile::SWIG_Callback7_t callback7, SwigDirector_Tile::SWIG_Callback8_t callback8, SwigDirector_Tile::SWIG_Callback9_t callback9, SwigDirector_Tile::SWIG_Callback10_t callback10, SwigDirector_Tile::SWIG_Callback11_t callback11, SwigDirector_Tile::SWIG_Callback12_t callback12, SwigDirector_Tile::SWIG_Callback13_t callback13, SwigDirector_Tile::SWIG_Callback14_t callback14, SwigDirector_Tile::SWIG_Callback15_t callback15, SwigDirector_Tile::SWIG_Callback16_t callback16, SwigDirector_Tile::SWIG_Callback17_t callback17, SwigDirector_Tile::SWIG_Callback18_t callback18) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Tile_director_connect(void *objarg, SwigDirector_Tile::SWIG_Callback0_t callback0, SwigDirector_Tile::SWIG_Callback1_t callback1, SwigDirector_Tile::SWIG_Callback2_t callback2, SwigDirector_Tile::SWIG_Callback3_t callback3, SwigDirector_Tile::SWIG_Callback4_t callback4, SwigDirector_Tile::SWIG_Callback5_t callback5, SwigDirector_Tile::SWIG_Callback6_t callback6, SwigDirector_Tile::SWIG_Callback7_t callback7, SwigDirector_Tile::SWIG_Callback8_t callback8, SwigDirector_Tile::SWIG_Callback9_t callback9, SwigDirector_Tile::SWIG_Callback10_t callback10, SwigDirector_Tile::SWIG_Callback11_t callback11, SwigDirector_Tile::SWIG_Callback12_t callback12, SwigDirector_Tile::SWIG_Callback13_t callback13, SwigDirector_Tile::SWIG_Callback14_t callback14, SwigDirector_Tile::SWIG_Callback15_t callback15, SwigDirector_Tile::SWIG_Callback16_t callback16, SwigDirector_Tile::SWIG_Callback17_t callback17) {
   Tile *obj = (Tile *)objarg;
   SwigDirector_Tile *director = dynamic_cast<SwigDirector_Tile *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17, callback18);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17);
   }
 }
 
@@ -54278,47 +54738,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Container_paintSwigExplicitContainer__SWIG_1(
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  Container *arg1 = (Container *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (Container *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  Container *arg1 = (Container *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (Container *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->Container::doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_0(void * jarg1, void * jarg2) {
   Container *arg1 = (Container *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -54336,7 +54756,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_1(void * jarg1, void
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG_0(void * jarg1, void * jarg2) {
   Container *arg1 = (Container *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -54354,7 +54774,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_1(void * jarg1) {
   Container *arg1 = (Container *) 0 ;
   
   arg1 = (Container *)jarg1; 
@@ -54370,7 +54790,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdate__SWIG_2(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Container_doUpdateSwigExplicitContainer__SWIG_1(void * jarg1) {
   Container *arg1 = (Container *) 0 ;
   
   arg1 = (Container *)jarg1; 
@@ -54512,11 +54932,11 @@ SWIGEXPORT int SWIGSTDCALL CSharp_Container_locked_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Container_director_connect(void *objarg, SwigDirector_Container::SWIG_Callback0_t callback0, SwigDirector_Container::SWIG_Callback1_t callback1, SwigDirector_Container::SWIG_Callback2_t callback2, SwigDirector_Container::SWIG_Callback3_t callback3, SwigDirector_Container::SWIG_Callback4_t callback4, SwigDirector_Container::SWIG_Callback5_t callback5, SwigDirector_Container::SWIG_Callback6_t callback6, SwigDirector_Container::SWIG_Callback7_t callback7, SwigDirector_Container::SWIG_Callback8_t callback8, SwigDirector_Container::SWIG_Callback9_t callback9, SwigDirector_Container::SWIG_Callback10_t callback10, SwigDirector_Container::SWIG_Callback11_t callback11, SwigDirector_Container::SWIG_Callback12_t callback12, SwigDirector_Container::SWIG_Callback13_t callback13, SwigDirector_Container::SWIG_Callback14_t callback14, SwigDirector_Container::SWIG_Callback15_t callback15, SwigDirector_Container::SWIG_Callback16_t callback16, SwigDirector_Container::SWIG_Callback17_t callback17, SwigDirector_Container::SWIG_Callback18_t callback18) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Container_director_connect(void *objarg, SwigDirector_Container::SWIG_Callback0_t callback0, SwigDirector_Container::SWIG_Callback1_t callback1, SwigDirector_Container::SWIG_Callback2_t callback2, SwigDirector_Container::SWIG_Callback3_t callback3, SwigDirector_Container::SWIG_Callback4_t callback4, SwigDirector_Container::SWIG_Callback5_t callback5, SwigDirector_Container::SWIG_Callback6_t callback6, SwigDirector_Container::SWIG_Callback7_t callback7, SwigDirector_Container::SWIG_Callback8_t callback8, SwigDirector_Container::SWIG_Callback9_t callback9, SwigDirector_Container::SWIG_Callback10_t callback10, SwigDirector_Container::SWIG_Callback11_t callback11, SwigDirector_Container::SWIG_Callback12_t callback12, SwigDirector_Container::SWIG_Callback13_t callback13, SwigDirector_Container::SWIG_Callback14_t callback14, SwigDirector_Container::SWIG_Callback15_t callback15, SwigDirector_Container::SWIG_Callback16_t callback16, SwigDirector_Container::SWIG_Callback17_t callback17) {
   Container *obj = (Container *)objarg;
   SwigDirector_Container *director = dynamic_cast<SwigDirector_Container *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17, callback18);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17);
   }
 }
 
@@ -55239,11 +55659,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_Slider_pos_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Slider_director_connect(void *objarg, SwigDirector_Slider::SWIG_Callback0_t callback0, SwigDirector_Slider::SWIG_Callback1_t callback1, SwigDirector_Slider::SWIG_Callback2_t callback2, SwigDirector_Slider::SWIG_Callback3_t callback3, SwigDirector_Slider::SWIG_Callback4_t callback4, SwigDirector_Slider::SWIG_Callback5_t callback5, SwigDirector_Slider::SWIG_Callback6_t callback6, SwigDirector_Slider::SWIG_Callback7_t callback7, SwigDirector_Slider::SWIG_Callback8_t callback8, SwigDirector_Slider::SWIG_Callback9_t callback9, SwigDirector_Slider::SWIG_Callback10_t callback10, SwigDirector_Slider::SWIG_Callback11_t callback11, SwigDirector_Slider::SWIG_Callback12_t callback12, SwigDirector_Slider::SWIG_Callback13_t callback13, SwigDirector_Slider::SWIG_Callback14_t callback14, SwigDirector_Slider::SWIG_Callback15_t callback15) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Slider_director_connect(void *objarg, SwigDirector_Slider::SWIG_Callback0_t callback0, SwigDirector_Slider::SWIG_Callback1_t callback1, SwigDirector_Slider::SWIG_Callback2_t callback2, SwigDirector_Slider::SWIG_Callback3_t callback3, SwigDirector_Slider::SWIG_Callback4_t callback4, SwigDirector_Slider::SWIG_Callback5_t callback5, SwigDirector_Slider::SWIG_Callback6_t callback6, SwigDirector_Slider::SWIG_Callback7_t callback7, SwigDirector_Slider::SWIG_Callback8_t callback8, SwigDirector_Slider::SWIG_Callback9_t callback9, SwigDirector_Slider::SWIG_Callback10_t callback10, SwigDirector_Slider::SWIG_Callback11_t callback11, SwigDirector_Slider::SWIG_Callback12_t callback12, SwigDirector_Slider::SWIG_Callback13_t callback13, SwigDirector_Slider::SWIG_Callback14_t callback14) {
   Slider *obj = (Slider *)objarg;
   SwigDirector_Slider *director = dynamic_cast<SwigDirector_Slider *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14);
   }
 }
 
@@ -55630,11 +56050,119 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Dial_oldpos_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Dial_director_connect(void *objarg, SwigDirector_Dial::SWIG_Callback0_t callback0, SwigDirector_Dial::SWIG_Callback1_t callback1, SwigDirector_Dial::SWIG_Callback2_t callback2, SwigDirector_Dial::SWIG_Callback3_t callback3, SwigDirector_Dial::SWIG_Callback4_t callback4, SwigDirector_Dial::SWIG_Callback5_t callback5, SwigDirector_Dial::SWIG_Callback6_t callback6, SwigDirector_Dial::SWIG_Callback7_t callback7, SwigDirector_Dial::SWIG_Callback8_t callback8, SwigDirector_Dial::SWIG_Callback9_t callback9, SwigDirector_Dial::SWIG_Callback10_t callback10, SwigDirector_Dial::SWIG_Callback11_t callback11, SwigDirector_Dial::SWIG_Callback12_t callback12, SwigDirector_Dial::SWIG_Callback13_t callback13, SwigDirector_Dial::SWIG_Callback14_t callback14, SwigDirector_Dial::SWIG_Callback15_t callback15) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Dial_director_connect(void *objarg, SwigDirector_Dial::SWIG_Callback0_t callback0, SwigDirector_Dial::SWIG_Callback1_t callback1, SwigDirector_Dial::SWIG_Callback2_t callback2, SwigDirector_Dial::SWIG_Callback3_t callback3, SwigDirector_Dial::SWIG_Callback4_t callback4, SwigDirector_Dial::SWIG_Callback5_t callback5, SwigDirector_Dial::SWIG_Callback6_t callback6, SwigDirector_Dial::SWIG_Callback7_t callback7, SwigDirector_Dial::SWIG_Callback8_t callback8, SwigDirector_Dial::SWIG_Callback9_t callback9, SwigDirector_Dial::SWIG_Callback10_t callback10, SwigDirector_Dial::SWIG_Callback11_t callback11, SwigDirector_Dial::SWIG_Callback12_t callback12, SwigDirector_Dial::SWIG_Callback13_t callback13, SwigDirector_Dial::SWIG_Callback14_t callback14) {
   Dial *obj = (Dial *)objarg;
   SwigDirector_Dial *director = dynamic_cast<SwigDirector_Dial *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14);
+  }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_InternalMatcher() {
+  void * jresult ;
+  InternalMatcher *result = 0 ;
+  
+  {
+    try {
+      result = (InternalMatcher *)new InternalMatcher();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_process_gestures(void * jarg1) {
+  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
+  
+  arg1 = (InternalMatcher *)jarg1; 
+  {
+    try {
+      (arg1)->process_gestures();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_InternalMatcher_do_process_gestures(void * jarg1) {
+  int jresult ;
+  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
+  int result;
+  
+  arg1 = (InternalMatcher *)jarg1; 
+  {
+    try {
+      result = (int)(arg1)->do_process_gestures();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_request_update(void * jarg1, int jarg2) {
+  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
+  int arg2 ;
+  
+  arg1 = (InternalMatcher *)jarg1; 
+  arg2 = (int)jarg2; 
+  {
+    try {
+      (arg1)->request_update(arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_trigger_gesture(void * jarg1, int jarg2, void * jarg3) {
+  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
+  int arg2 ;
+  Gesture *arg3 = (Gesture *) 0 ;
+  
+  arg1 = (InternalMatcher *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (Gesture *)jarg3; 
+  {
+    try {
+      (arg1)->trigger_gesture(arg2,arg3);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
+  }
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_InternalMatcher(void * jarg1) {
+  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
+  
+  arg1 = (InternalMatcher *)jarg1; 
+  {
+    try {
+      delete arg1;
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
+      };
+    }
   }
 }
 
@@ -55701,67 +56229,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_MasterContainer(void * jarg1) {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_MasterContainer_process(void * jarg1) {
-  int jresult ;
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  int result;
-  
-  arg1 = (MasterContainer *)jarg1; 
-  {
-    try {
-      result = (int)(arg1)->process();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (MasterContainer *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  
-  arg1 = (MasterContainer *)jarg1; 
-  arg2 = (Widget *)jarg2; 
-  arg3 = (std::ostream *)jarg3; 
-  {
-    try {
-      (arg1)->MasterContainer::doUpdate(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_0(void * jarg1, void * jarg2) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -55779,7 +56247,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_1(void * jarg1
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_0(void * jarg1, void * jarg2) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
   
@@ -55797,7 +56265,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterCon
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_1(void * jarg1) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   
   arg1 = (MasterContainer *)jarg1; 
@@ -55813,7 +56281,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdate__SWIG_2(void * jarg1
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_2(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_doUpdateSwigExplicitMasterContainer__SWIG_1(void * jarg1) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   
   arg1 = (MasterContainer *)jarg1; 
@@ -55849,22 +56317,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_adjust(void * jarg1, int jarg
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_signOff(void * jarg1) {
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  
-  arg1 = (MasterContainer *)jarg1; 
-  {
-    try {
-      (arg1)->signOff();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_usePeak(void * jarg1) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   
@@ -55881,11 +56333,89 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_usePeak(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_director_connect(void *objarg, SwigDirector_MasterContainer::SWIG_Callback0_t callback0, SwigDirector_MasterContainer::SWIG_Callback1_t callback1, SwigDirector_MasterContainer::SWIG_Callback2_t callback2, SwigDirector_MasterContainer::SWIG_Callback3_t callback3, SwigDirector_MasterContainer::SWIG_Callback4_t callback4, SwigDirector_MasterContainer::SWIG_Callback5_t callback5, SwigDirector_MasterContainer::SWIG_Callback6_t callback6, SwigDirector_MasterContainer::SWIG_Callback7_t callback7, SwigDirector_MasterContainer::SWIG_Callback8_t callback8, SwigDirector_MasterContainer::SWIG_Callback9_t callback9, SwigDirector_MasterContainer::SWIG_Callback10_t callback10, SwigDirector_MasterContainer::SWIG_Callback11_t callback11, SwigDirector_MasterContainer::SWIG_Callback12_t callback12, SwigDirector_MasterContainer::SWIG_Callback13_t callback13, SwigDirector_MasterContainer::SWIG_Callback14_t callback14, SwigDirector_MasterContainer::SWIG_Callback15_t callback15, SwigDirector_MasterContainer::SWIG_Callback16_t callback16, SwigDirector_MasterContainer::SWIG_Callback17_t callback17, SwigDirector_MasterContainer::SWIG_Callback18_t callback18) {
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_matcher_set(void * jarg1, void * jarg2) {
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  InternalMatcher *arg2 = (InternalMatcher *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  arg2 = (InternalMatcher *)jarg2; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->matcher = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_MasterContainer_matcher_get(void * jarg1) {
+  void * jresult ;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  InternalMatcher *result = 0 ;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (InternalMatcher *)& (darg->matcher);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_input_set(void * jarg1, void * jarg2) {
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  MatcherTUIOInput *arg2 = (MatcherTUIOInput *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  arg2 = (MatcherTUIOInput *)jarg2; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->input = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_MasterContainer_input_get(void * jarg1) {
+  void * jresult ;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  MatcherTUIOInput *result = 0 ;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (MatcherTUIOInput *)& (darg->input);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_inthread_set(void * jarg1, void * jarg2) {
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  InputThread *arg2 = (InputThread *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  arg2 = (InputThread *)jarg2; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->inthread = arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_MasterContainer_inthread_get(void * jarg1) {
+  void * jresult ;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  InputThread *result = 0 ;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (InputThread *) (darg->inthread);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_director_connect(void *objarg, SwigDirector_MasterContainer::SWIG_Callback0_t callback0, SwigDirector_MasterContainer::SWIG_Callback1_t callback1, SwigDirector_MasterContainer::SWIG_Callback2_t callback2, SwigDirector_MasterContainer::SWIG_Callback3_t callback3, SwigDirector_MasterContainer::SWIG_Callback4_t callback4, SwigDirector_MasterContainer::SWIG_Callback5_t callback5, SwigDirector_MasterContainer::SWIG_Callback6_t callback6, SwigDirector_MasterContainer::SWIG_Callback7_t callback7, SwigDirector_MasterContainer::SWIG_Callback8_t callback8, SwigDirector_MasterContainer::SWIG_Callback9_t callback9, SwigDirector_MasterContainer::SWIG_Callback10_t callback10, SwigDirector_MasterContainer::SWIG_Callback11_t callback11, SwigDirector_MasterContainer::SWIG_Callback12_t callback12, SwigDirector_MasterContainer::SWIG_Callback13_t callback13, SwigDirector_MasterContainer::SWIG_Callback14_t callback14, SwigDirector_MasterContainer::SWIG_Callback15_t callback15, SwigDirector_MasterContainer::SWIG_Callback16_t callback16, SwigDirector_MasterContainer::SWIG_Callback17_t callback17) {
   MasterContainer *obj = (MasterContainer *)objarg;
   SwigDirector_MasterContainer *director = dynamic_cast<SwigDirector_MasterContainer *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17, callback18);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5, callback6, callback7, callback8, callback9, callback10, callback11, callback12, callback13, callback14, callback15, callback16, callback17);
   }
 }
 
@@ -56488,22 +57018,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Window_adjust(void * jarg1, int jarg2, int ja
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Window_signOff(void * jarg1) {
-  Window *arg1 = (Window *) 0 ;
-  
-  arg1 = (Window *)jarg1; 
-  {
-    try {
-      (arg1)->signOff();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_Window_usePeak(void * jarg1) {
   Window *arg1 = (Window *) 0 ;
   
@@ -56517,26 +57031,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Window_usePeak(void * jarg1) {
       };
     }
   }
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_Window_process(void * jarg1) {
-  int jresult ;
-  Window *arg1 = (Window *) 0 ;
-  int result;
-  
-  arg1 = (Window *)jarg1; 
-  {
-    try {
-      result = (int)(arg1)->process();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -56823,6 +57317,10 @@ SWIGEXPORT Widget * SWIGSTDCALL CSharp_SliderUpcast(Slider *objectRef) {
 
 SWIGEXPORT Widget * SWIGSTDCALL CSharp_DialUpcast(Dial *objectRef) {
     return (Widget *)objectRef;
+}
+
+SWIGEXPORT Matcher * SWIGSTDCALL CSharp_InternalMatcherUpcast(InternalMatcher *objectRef) {
+    return (Matcher *)objectRef;
 }
 
 SWIGEXPORT Container * SWIGSTDCALL CSharp_MasterContainerUpcast(MasterContainer *objectRef) {

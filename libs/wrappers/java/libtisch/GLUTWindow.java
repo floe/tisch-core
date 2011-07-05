@@ -59,6 +59,22 @@ public class GLUTWindow {
     libtischJNI.GLUTWindow_print(swigCPtr, this, text, x, y);
   }
 
+  public void drawRectangleBackground(int x, int y, int size_x, int size_y, int border) {
+    libtischJNI.GLUTWindow_drawRectangleBackground(swigCPtr, this, x, y, size_x, size_y, border);
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points, boolean invert, int height) {
+    libtischJNI.GLUTWindow_drawPolygon__SWIG_0(swigCPtr, this, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points), invert, height);
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points, boolean invert) {
+    libtischJNI.GLUTWindow_drawPolygon__SWIG_1(swigCPtr, this, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points), invert);
+  }
+
+  public void drawPolygon(SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t points) {
+    libtischJNI.GLUTWindow_drawPolygon__SWIG_2(swigCPtr, this, SWIGTYPE_p_std__vectorT__VectorT_int_t_p_t.getCPtr(points));
+  }
+
   public void title(String text) {
     libtischJNI.GLUTWindow_title(swigCPtr, this, text);
   }

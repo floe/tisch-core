@@ -72,7 +72,7 @@ public:
     virtual ~SwigDirector_Widget();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -83,7 +83,6 @@ public:
     using Widget::mytex;
     using Widget::mycolor;
     using Widget::parent;
-    using Widget::regstream;
     using Widget::m_model;
 
 
@@ -118,7 +117,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[16];
+    mutable swig::SwigVar_PyObject vtable[15];
 #endif
 
 };
@@ -131,7 +130,7 @@ public:
     virtual ~SwigDirector_Label();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -174,7 +173,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[16];
+    mutable swig::SwigVar_PyObject vtable[15];
 #endif
 
 };
@@ -187,7 +186,7 @@ public:
     virtual ~SwigDirector_Button();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -230,7 +229,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[18];
+    mutable swig::SwigVar_PyObject vtable[17];
 #endif
 
 };
@@ -243,7 +242,7 @@ public:
     virtual ~SwigDirector_Tile();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -289,7 +288,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[19];
+    mutable swig::SwigVar_PyObject vtable[18];
 #endif
 
 };
@@ -298,11 +297,11 @@ private:
 class SwigDirector_Container : public Container, public Swig::Director {
 
 public:
-    SwigDirector_Container(PyObject *self, int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 0);
+    SwigDirector_Container(PyObject *self, int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 32);
     virtual ~SwigDirector_Container();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -348,7 +347,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[19];
+    mutable swig::SwigVar_PyObject vtable[18];
 #endif
 
 };
@@ -361,7 +360,7 @@ public:
     virtual ~SwigDirector_Slider();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -402,7 +401,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[16];
+    mutable swig::SwigVar_PyObject vtable[15];
 #endif
 
 };
@@ -415,7 +414,7 @@ public:
     virtual ~SwigDirector_Dial();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -459,7 +458,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[16];
+    mutable swig::SwigVar_PyObject vtable[15];
 #endif
 
 };
@@ -472,7 +471,7 @@ public:
     virtual ~SwigDirector_MasterContainer();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -482,6 +481,9 @@ public:
     virtual void tap(Vector vec, int id);
     virtual void release();
     virtual void apply(Vector delta);
+    using MasterContainer::matcher;
+    using MasterContainer::input;
+    using MasterContainer::inthread;
 
 
 /* Internal Director utilities */
@@ -515,7 +517,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[19];
+    mutable swig::SwigVar_PyObject vtable[18];
 #endif
 
 };
@@ -536,7 +538,7 @@ public:
     virtual void entry(int num, int state);
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -579,7 +581,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[27];
+    mutable swig::SwigVar_PyObject vtable[26];
 #endif
 
 };

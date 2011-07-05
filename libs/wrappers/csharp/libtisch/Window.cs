@@ -129,20 +129,9 @@ public class Window : GLUTWindow {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new void signOff() {
-    libtischPINVOKE.Window_signOff(swigCPtr);
-    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-  }
-
   public new void usePeak() {
     libtischPINVOKE.Window_usePeak(swigCPtr);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new int process() {
-    int ret = libtischPINVOKE.Window_process(swigCPtr);
-    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
   }
 
   private void SwigDirectorConnect() {
