@@ -41,9 +41,7 @@ class TISCH_SHARED Window: public GLUTWindow, public MasterContainer {
 
 		void adjust( int w, int h );
 
-		void signOff();
 		void usePeak();
-		int  process();
 
 	#endif
 
