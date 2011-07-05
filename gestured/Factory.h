@@ -23,7 +23,9 @@ template< class Product > class TISCH_SHARED FeatureMachine {
 
 };
 
-#define RegisterFeature(F) FeatureMachine< F > F##Factory( (new F)->name() )
+#define RegisterFeature(F) \
+	F* F::clone() const { return new F(*this); } \
+	FeatureMachine< F > F##Factory( (new F)->name() )
 
 TISCH_SHARED FeatureBase* createFeature( const std::string& name );
 

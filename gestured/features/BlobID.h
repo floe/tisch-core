@@ -17,6 +17,8 @@ class TISCH_SHARED BlobID: public Feature<int> {
 		 BlobID( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobID();
 
+		BlobID* clone() const;
+
 		void load( InputState& state );
 		int next();
 

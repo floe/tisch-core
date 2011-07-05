@@ -16,6 +16,8 @@ class TISCH_SHARED MultiBlobRotation: public Rotation {
 		 MultiBlobRotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~MultiBlobRotation();
 
+		MultiBlobRotation* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "MultiBlobRotation"; }

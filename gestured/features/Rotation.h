@@ -18,6 +18,8 @@ class TISCH_SHARED Rotation: public Feature<double> {
 		 Rotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~Rotation();
 
+		Rotation* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "Rotation"; }

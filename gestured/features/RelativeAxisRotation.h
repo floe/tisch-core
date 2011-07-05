@@ -16,6 +16,8 @@ class TISCH_SHARED RelativeAxisRotation: public Rotation {
 		 RelativeAxisRotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~RelativeAxisRotation();
 
+		RelativeAxisRotation* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "RelativeAxisRotation"; }

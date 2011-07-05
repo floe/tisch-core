@@ -18,6 +18,8 @@ class TISCH_SHARED MultiBlobScale: public Scale {
 		 MultiBlobScale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~MultiBlobScale();
 
+		MultiBlobScale* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "MultiBlobScale"; }

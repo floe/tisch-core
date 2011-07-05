@@ -25,6 +25,8 @@ class TISCH_SHARED BlobDim: public Feature<Dimensions> {
 		 BlobDim( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobDim();
 
+		BlobDim* clone() const;
+
 		void load( InputState& state );
 		int next();
 

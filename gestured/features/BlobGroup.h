@@ -17,6 +17,8 @@ class TISCH_SHARED BlobGroup: public Feature<Vector> {
 		 BlobGroup( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobGroup();
 
+		BlobGroup* clone() const;
+
 		void load( InputState& state );
 		int next();
 

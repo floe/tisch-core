@@ -17,6 +17,8 @@ class TISCH_SHARED BlobDelay: public Feature<int> {
 		 BlobDelay( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobDelay();
 
+		BlobDelay* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "BlobDelay"; }

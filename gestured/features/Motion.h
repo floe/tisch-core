@@ -18,6 +18,8 @@ class TISCH_SHARED Motion: public Feature<Vector> {
 		 Motion( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~Motion();
 
+		Motion* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "Motion"; }

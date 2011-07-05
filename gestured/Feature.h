@@ -25,6 +25,8 @@ class TISCH_SHARED FeatureBase {
 		virtual ~FeatureBase() { }
 
 		virtual const char* name() const = 0; 
+		virtual FeatureBase* clone() const = 0;
+
 		virtual void load( InputState& state ) = 0;
 		virtual int next() = 0;
 

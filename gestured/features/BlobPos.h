@@ -17,6 +17,8 @@ class TISCH_SHARED BlobPos: public Feature<Vector> {
 		 BlobPos( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobPos();
 
+		BlobPos* clone() const;
+
 		void load( InputState& state );
 		int next();
 

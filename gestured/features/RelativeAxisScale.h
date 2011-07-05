@@ -18,6 +18,8 @@ class TISCH_SHARED RelativeAxisScale: public Scale {
 		 RelativeAxisScale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~RelativeAxisScale();
 
+		RelativeAxisScale* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "RelativeAxisScale"; }

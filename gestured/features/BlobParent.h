@@ -17,6 +17,8 @@ class TISCH_SHARED BlobParent: public Feature<int> {
 		 BlobParent( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~BlobParent();
 
+		BlobParent* clone() const;
+
 		void load( InputState& state );
 		int next();
 

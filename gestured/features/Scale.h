@@ -18,6 +18,8 @@ class TISCH_SHARED Scale: public Feature<double> {
 		 Scale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
 		~Scale();
 
+		Scale* clone() const;
+
 		void load( InputState& state );
 
 		const char* name() const { return "Scale"; }
