@@ -85,6 +85,7 @@ class TISCH_SHARED FFMVImageSource: public ImageSource {
 
 		void printError(FlyCapture2::Error error);
 		void printCameraInfo(FlyCapture2::CameraInfo* pCamInfo);
+		void set_feature( FlyCapture2::PropertyType feature, int value );
 
 		// width & height of resulting image
 		int m_sampleWidth;

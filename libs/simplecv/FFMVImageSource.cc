@@ -5,6 +5,7 @@
 \*************************************************************************/
 
 #include "FFMVImageSource.h"
+#include "DCImageSource.h"
 
 #include <iostream>
 #include <iomanip>
@@ -69,6 +70,16 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
 		imgbuffer = new RGBImage(640,480);
 		intensityImgbuffer = new IntensityImage(640, 480);
 		running = 0;
+
+		// switch GPIO0-3 to output
+		unsigned int reg; error = camera->ReadRegister( PIO_DIRECTION, &reg );
+		camera->WriteRegister( PIO_DIRECTION, reg | 0xF0000000 );
+
+		// enable GPIO0-3 10us high strobe on exposure start
+		camera->WriteRegister( STROBE_0_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_1_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_2_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_3_CNT, 0x83000020 );
 }
 
 FFMVImageSource::~FFMVImageSource(){
@@ -180,10 +191,40 @@ void FFMVImageSource::printCameraInfo( FlyCapture2::CameraInfo* pCamInfo ){
 		pCamInfo->firmwareBuildTime );
 }
 
+void FFMVImageSource::set_feature( FlyCapture2::PropertyType feature, int value ) {
+
+	if (feature >= FlyCapture2::UNSPECIFIED_PROPERTY_TYPE) return;
+
+	Property prop( feature );
+	usleep( SAFETY_DELAY );
+
+	if (value == IMGSRC_OFF) {
+
+		prop.autoManualMode = false; 
+		prop.onOff = false;
+		camera->SetProperty( &prop );
+
+	} else if (value == IMGSRC_AUTO) {
+
+		prop.autoManualMode = true; 
+		prop.onOff = true;
+		camera->SetProperty( &prop );
+
+	} else {
+
+		prop.autoManualMode = false; 
+		prop.absControl = true;
+		prop.absValue = value;
+		camera->SetProperty( &prop );
+
+	}
+}
+
 // dummy functions for now
+void FFMVImageSource::setGain      ( int gain   ) { set_feature( FlyCapture2::GAIN,          gain   ); }
+void FFMVImageSource::setShutter   ( int speed  ) { set_feature( FlyCapture2::SHUTTER,       speed  ); }
+void FFMVImageSource::setExposure  ( int exp    ) { set_feature( FlyCapture2::AUTO_EXPOSURE, exp    ); }
+void FFMVImageSource::setBrightness( int bright ) { set_feature( FlyCapture2::BRIGHTNESS,    bright ); }
+
 void FFMVImageSource::setFPS( int fps ) {}
-void FFMVImageSource::setGain( int gain ) {}
-void FFMVImageSource::setExposure( int exp ) {}
-void FFMVImageSource::setShutter( int speed ) {}
-void FFMVImageSource::setBrightness( int bright ) {}
 void FFMVImageSource::printInfo( int feature ) {}
