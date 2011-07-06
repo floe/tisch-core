@@ -33,7 +33,11 @@ class TISCH_SHARED Gesture: public std::vector< SmartPtr<FeatureBase> > {
 		Gesture( ) { }
 		Gesture( std::string _name, int _flags = 0 ): m_name(_name), m_flags(_flags) { }
 
+		Gesture( const Gesture& g );
+		Gesture& operator=( const Gesture& g );
+
 		void load( InputState& state );
+		void check();
 
 		int next();  // return 0 if no further matches
 		int match();
@@ -42,6 +46,8 @@ class TISCH_SHARED Gesture: public std::vector< SmartPtr<FeatureBase> > {
 		const int flags() const { return m_flags; }
 
 	protected:
+
+		void clone( const Gesture& g );
 
 		std::string m_name;
 		int m_flags;

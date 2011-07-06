@@ -9,7 +9,7 @@
 
 #include <sstream>
 
-typedef std::map<std::string,std::string> DefaultMap;
+typedef std::map<std::string,Gesture> DefaultMap;
 
 DefaultMap& g_defaults() {
 	static DefaultMap* s_defaults = new DefaultMap();
@@ -17,24 +17,19 @@ DefaultMap& g_defaults() {
 }
 
 
-// TODO: implement proper copy semantics. as a Gesture is
-// a container of pointers, it can't be trivially copied
-
+// stream operators
 std::istream& operator>> ( std::istream& s, Gesture& g ) {
 
 	int count = 0;
+	g.clear();
 
 	s >> g.m_name >> g.m_flags >> count;
 
 	// an empty gesture doesn't really make sense, so
 	// let's see if we can find a default definition..
 	if (count == 0) {
-		DefaultMap::iterator it = g_defaults().find( g.m_name );
-		if (it != g_defaults().end()) {
-			std::istringstream tmp( it->second );
-			tmp >> g;
-			return s;
-		}
+		g.check();
+		return s;
 	}
 
 	// read features
@@ -48,10 +43,9 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 	}
 	
 	// if this gesture is a default definition, store it
-	if ((g.m_flags & GESTURE_FLAGS_DEFAULT) && (g.size() > 0)) {
+	if (g.m_flags & GESTURE_FLAGS_DEFAULT) {
 		g.m_flags &= ~GESTURE_FLAGS_DEFAULT;
-		std::ostringstream tmp; tmp << g;
-		g_defaults()[ g.m_name ] = tmp.str();
+		g_defaults()[ g.m_name ] = g;
 	}
 
 	return s;
@@ -66,6 +60,47 @@ std::ostream& operator<< ( std::ostream& s, Gesture& g ) {
 		s << " ";
 	}
 	return s;
+}
+
+
+// destructor not necessary due to use of smart pointers
+
+// copy constructor
+Gesture::Gesture( const Gesture& g ):
+	m_name ( g.m_name  ),
+	m_flags( g.m_flags )
+{
+	clone( g );
+}
+
+// assignment operator
+Gesture& Gesture::operator=( const Gesture& g ) {
+	if (this == &g) return *this;
+	m_name  = g.m_name;
+	m_flags = g.m_flags;
+	clear();
+	clone( g );
+	return *this;
+}
+
+// clone helper function (for copy con. & assignment op.)
+void Gesture::clone( const Gesture& g ) {
+	std::vector< SmartPtr<FeatureBase> >::const_iterator fpos = g.begin();
+	std::vector< SmartPtr<FeatureBase> >::const_iterator fend = g.end();
+	for ( ; fpos != fend; fpos++ ) 
+		push_back( (*fpos)->clone() );
+}
+
+
+// check size & potentially replace by default definition
+void Gesture::check() {
+	if (size() == 0) {
+		DefaultMap::iterator it = g_defaults().find( m_name );
+		if (it != g_defaults().end()) {
+			m_flags = it->second.m_flags;
+			clone( it->second );
+		}
+	}
 }
 
 

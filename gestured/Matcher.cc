@@ -77,8 +77,10 @@ void Matcher::update( unsigned int id, Region* r ) {
 	} else {
 		StateRegion* tmp = new StateRegion( id );
 		*tmp = *r;
-		regions.push_back( tmp );
+		reg = regions.insert( regions.end(), tmp );
 	}
+	for (std::vector<Gesture>::iterator g = (*reg)->gestures.begin(); g != (*reg)->gestures.end(); g++) g->check();
+	if (verbose > 1) std::cout << "region: " << id << " = " << **reg << std::endl;
 	release();
 }
 
