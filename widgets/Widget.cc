@@ -8,11 +8,13 @@
 #include <Container.h>
 
 void Widget::update( Widget* target ) {
-	if( this->parent == 0 )
+	if (target == 0) target = this;
+	std::cout << "update " << (unsigned long long int)target << std::endl;
+	if (parent == 0)
 		//Problem: hier wird doUpdate von Container, anstatt von MasterContainer aufgerufen.
 		doUpdate( target );
 	else
-		(this->parent)->update( target );
+		parent->update( target );
 }
 
 void Widget::raise( Widget* widget ) { if (parent) parent->raise( this ); }

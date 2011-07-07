@@ -12,17 +12,7 @@
 
 
 class InputThread;
-
-struct TISCH_SHARED InternalMatcher: public Matcher {
-
-		InternalMatcher();
-
-		void process_gestures();
-		int do_process_gestures();
-
-		void request_update( int id );
-		void trigger_gesture( int id, Gesture* g );
-};
+class InternalMatcher;
 
 
 class TISCH_SHARED MasterContainer: public Container {
@@ -35,10 +25,11 @@ class TISCH_SHARED MasterContainer: public Container {
 		void doUpdate( Widget* target = 0 );
 		void adjust( int w, int h );
 		void usePeak();
+		int process_gestures();
 
 	protected:
 
-		InternalMatcher matcher;
+		InternalMatcher* matcher;
 		MatcherTUIOInput input;
 		InputThread* inthread;
 

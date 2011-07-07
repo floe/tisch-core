@@ -78,7 +78,7 @@ void Window::display() {
 
 void Window::idle() {
 	if (mymouse) mymouse->send_blobs( width, height );
-	if (matcher.do_process_gestures()) {
+	if (process_gestures()) {
 		glutPostRedisplay();
 	}
 }

@@ -25,28 +25,81 @@ struct TISCH_SHARED InputThread: public Thread {
 };
 
 
+typedef std::pair<Widget*,Gesture> Action;
+typedef std::deque<Action> ActionQueue;
+
+// matcher class for use with socket thread and OpenGL mainloop
+struct TISCH_SHARED InternalMatcher: public Matcher {
+
+	InternalMatcher(): Matcher(1), queue() { do_run = 0; }
+
+	// called from socket context
+	void process_gestures() { do_run = 1; }
+
+	// called from OpenGL context
+	int do_process_gestures() {
+		if (do_run) {
+			Matcher::process_gestures();
+			while (!queue.empty()) {
+				Action& a = queue.front();
+				a.first->action( &a.second );
+				queue.pop_front();
+			}
+		}
+		int res = do_run;
+		do_run = 0;
+		return res;
+	}
+		
+	// called from OpenGL context (via do_process_gestures)
+	void request_update( int id ) { 
+		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+		if (target == g_widgets.end()) return;
+		(*target)->update();
+	}
+
+	// called from OpenGL context (via do_process_gestures)
+	void trigger_gesture( int id, Gesture* g ) {
+		// deliver to widget
+		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+		if (target == g_widgets.end()) return;
+		//(*target)->action( g );
+		queue.push_back( Action( *target, *g ) );
+	}
+
+	ActionQueue queue;
+
+};
+
+
 MasterContainer::MasterContainer( int w, int h, const char* target ):
 	Container( w, h, w/2, h/2 ),
-	matcher(), input( &matcher ), inthread( new InputThread(&input) )
+	matcher( new InternalMatcher() ), input( matcher ), inthread( new InputThread(&input) )
 {
 	//region.flags( (1<<INPUT_TYPE_COUNT)-1 );
 	//region.gestures.clear();
-	g_matcher = &matcher;
-	matcher.load_defaults();
+	g_matcher = matcher;
+	matcher->load_defaults();
 	inthread->start();
 }
 
 MasterContainer::~MasterContainer() {
 	delete inthread;
+	delete matcher;
 }
 
 void MasterContainer::usePeak() {
-	matcher.peakmode( 1 );
+	matcher->peakmode( 1 );
+}
+
+int MasterContainer::process_gestures() {
+	return matcher->do_process_gestures();
 }
 
 
 void MasterContainer::doUpdate( Widget* target ) {
 
+	std::cout << "MC::doUpdate " << (unsigned long long) target << std::endl;
 	glGetDoublev( GL_PROJECTION_MATRIX, g_proj );
 	glGetIntegerv( GL_VIEWPORT, g_view );
 
@@ -78,35 +131,4 @@ void MasterContainer::adjust( int width, int height ) {
 }
 
 
-// matcher class for use with socket thread and OpenGL mainloop
-InternalMatcher::InternalMatcher(): Matcher(1) { do_run = 0; }
-
-// called from socket context
-void InternalMatcher::process_gestures() { do_run = 1; }
-
-// called from OpenGL context
-int InternalMatcher::do_process_gestures() {
-	if (do_run) {
-		Matcher::process_gestures();
-		//std::cout << "calling process_gestures" << std::endl;
-	}
-	int res = do_run;
-	do_run = 0;
-	return res;
-}
-	
-// called from OpenGL context (via do_process_gestures)
-void InternalMatcher::request_update( int id ) { 
-	std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
-	if (target == g_widgets.end()) return;
-	(*target)->update();
-}
-
-// called from OpenGL context (via do_process_gestures)
-void InternalMatcher::trigger_gesture( int id, Gesture* g ) {
-	// deliver to widget
-	std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
-	if (target == g_widgets.end()) return;
-	(*target)->action( g );
-}
 

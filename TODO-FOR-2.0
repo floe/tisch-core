@@ -1,5 +1,6 @@
 - cleanup touchd example files: sample DI, sample FTIR, sample Kinect...
 - make target offset for calibtool configurable
+- move action queue directly into Matcher class
 
 - use TUIO 2.0 object types where possible
 
