@@ -1,29 +1,46 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-Log& g_log() {
-	static Log* g_logger = new Log();
-	return *Log;
+#include <iostream>
+#include <fstream>
+
+#include "Log.h"
+
+
+// static global logger with wrapper function
+Logger& Log() {
+	static Logger* g_logger = new Logger();
+	return *g_logger;
 }
 
-class TISCH_SHARED nstream: public std::ostream {
-	nstream(): std::ostream() { }
-	std::ostream& put( char c ) { return *this; }
-	std::ostream& write( const char* s, std::streamsize n ) { return *this; }
+// null stream w/o streambuffer, badbit always set
+struct TISCH_SHARED nullstream: public std::ostream {
+	nullstream(): std::ios(0), std::ostream(NULL) { }
+	void clear( std::ios::iostate ) { }
 };
 
-nstream g_nstream();
 
-
-Log::Log() { }
-Log::~Log() { }
-
-std::ostream& Log::get( LogLevel level = LOG_INFO ) {
-	if (level >= m_level) return m_stream;
-	else return g_nstream;
+// main class
+Logger::Logger() {
+	m_ostream = &(std::cerr);
+	m_nstream = new nullstream();
+	m_level = LOG_INFO;
 }
 
-void Log::set( std::ostream& stream ) { m_stream = stream; }
+Logger::~Logger() {
+	delete m_nstream;
+}
+
+std::ostream& Logger::get( LogLevel level ) {
+	if (level <= m_level) return *m_ostream;
+	return *m_nstream;
+}
+
+void Logger::set( std::ostream& stream ) { m_ostream = &stream; }
+void Logger::set( std::string file ) { m_ostream = new std::ofstream( file.c_str(), std::ios::app | std::ios::out ); }
+
+void Logger::level( LogLevel level ) { m_level = level; }
+

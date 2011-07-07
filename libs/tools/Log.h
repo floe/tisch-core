@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -8,7 +8,10 @@
 #define _LOG_H_
 
 #include <ostream>
+#include <string>
 
+
+// log levels
 enum LogLevel {
 	LOG_ERROR,
 	LOG_WARN,
@@ -16,24 +19,37 @@ enum LogLevel {
 	LOG_DEBUG
 };
 
+// convenience macros
+#define LogError(x) Log().get(LOG_ERROR) << x << std::endl
+#define LogWarn(x)  Log().get(LOG_WARN)  << x << std::endl
+#define LogInfo(x)  Log().get(LOG_INFO)  << x << std::endl
+#define LogDebug(x) Log().get(LOG_DEBUG) << x << std::endl
 
-class TISCH_SHARED Log {
 
-  public:
+// main logger class
+class TISCH_SHARED Logger {
 
-     Log();
-    ~Log();
+	public:
 
-    std::ostream& get( LogLevel level = LOG_INFO );
+		 Logger();
+		~Logger();
+
+		std::ostream& get( LogLevel level = LOG_INFO );
 
 		void set( std::ostream& stream );
+		void set( std::string file );
 
-  private:
+		void level( LogLevel level );
 
-    std::ostream* m_stream;
+	private:
+
+		std::ostream* m_ostream;
+		std::ostream* m_nstream;
+
 		LogLevel m_level;
 };
 
-Log& g_log();
+Logger& Log();
 
 #endif // _LOG_H_
+
