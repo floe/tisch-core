@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <time.h>
+
 #include "Log.h"
 
 
@@ -35,8 +37,12 @@ Logger::~Logger() {
 }
 
 std::ostream& Logger::get( LogLevel level ) {
-	if (level <= m_level) return *m_ostream;
-	return *m_nstream;
+	std::ostream* res = m_nstream;
+	if (level <= m_level) { 
+		res = m_ostream;
+		*res << time(NULL) << " ";
+	}
+	return *res;
 }
 
 void Logger::set( std::ostream& stream ) { m_ostream = &stream; }

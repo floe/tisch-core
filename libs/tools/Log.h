@@ -19,11 +19,17 @@ enum LogLevel {
 	LOG_DEBUG
 };
 
+
+// nasty hack to generate call location string
+#define LOG_STRINGIFY(x) #x
+#define LOG_STRING(x) LOG_STRINGIFY(x)
+#define LOG_LOCATION "\t\t(" << __FUNCTION__ << " @ " __FILE__ ":" LOG_STRING(__LINE__) ")"
+
 // convenience macros
-#define LogError(x) Log().get(LOG_ERROR) << x << std::endl
-#define LogWarn(x)  Log().get(LOG_WARN)  << x << std::endl
-#define LogInfo(x)  Log().get(LOG_INFO)  << x << std::endl
-#define LogDebug(x) Log().get(LOG_DEBUG) << x << std::endl
+#define LogError(x) Log().get(LOG_ERROR) << "Error: " << x << LOG_LOCATION << std::endl
+#define LogWarn(x)  Log().get(LOG_WARN)  << "Warn:  " << x << LOG_LOCATION << std::endl
+#define LogInfo(x)  Log().get(LOG_INFO)  << "Info:  " << x << LOG_LOCATION << std::endl
+#define LogDebug(x) Log().get(LOG_DEBUG) << "Debug: " << x << LOG_LOCATION << std::endl
 
 
 // main logger class
