@@ -18,14 +18,14 @@
 
 Calibration::Calibration( int v ): verbose(v) {
 
+#ifndef _MSC_VER
 	char* homedir = getenv( "HOME" );
 	if (!homedir) homedir = "/tmp";
-
 	name = std::string( homedir ) + "/.tisch.calib";
-
-#ifdef _MSC_VER
-	homedir = "C:\\Users\\fardemo\\";
-	name = std::string( homedir ) + ".tisch.calib";
+#else
+	char* homedir = getenv( "TEMP" );
+	if (!homedir) homedir = "c:\\windows\\temp";
+	name = std::string( homedir ) + "\\.tisch.calib";
 #endif
 
 	reset();
