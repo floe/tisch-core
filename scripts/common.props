@@ -13,10 +13,10 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>..\calibd;$(WindowsSdkDir)\Include;$(freeglut)\include;..\libs\tools;..\libs\simplecv;..\libs\simplegl;..\gestured;..\gestured\features;..\widgets;..\;..\libs\math\jama;..\libs\math\tnt;..\libs\math;..\libs\osc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="Exists('$(flycapture)\FlyCapture2.h')">$(flycapture);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="Exists('$(flycapture)\include\FlyCapture2.h')">$(flycapture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;TIXML_USE_STL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="Exists('$(flycapture)\FlyCapture2.h')">HAS_FLYCAPTURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="Exists('$(flycapture)\include\FlyCapture2.h')">HAS_FLYCAPTURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(freenect)\libfreenect.h')">HAS_FREENECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="Exists('$(winsdk)\include\dshow.h')">HAS_DIRECTSHOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>

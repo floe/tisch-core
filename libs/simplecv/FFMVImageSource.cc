@@ -4,14 +4,25 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#include <Windows.h>
 #include "FFMVImageSource.h"
-#include "DCImageSource.h"
 
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <stdexcept>
+
+
+// some useful IIDC registers
+#define FRAME_INFO    0x12F8
+#define PIO_DIRECTION 0x11F8
+
+#define STROBE_0_CNT  0x1500
+#define STROBE_1_CNT  0x1504
+#define STROBE_2_CNT  0x1508
+#define STROBE_3_CNT  0x150C
+
 
 #define LOG4CPP_INFO(x,y) x << y << std::endl;
 #define LOG4CPP_WARN(x,y) x << y << std::endl;
@@ -62,7 +73,18 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
     imgset.height = dheight;
     imgset.pixelFormat = FlyCapture2::PIXEL_FORMAT_MONO8;
 
-		error = camera->SetFormat7Configuration( &imgset, 3020 );
+/*    bool valid;
+    FlyCapture2::Format7PacketInfo fmt7PacketInfo;
+
+    // Validate the settings to make sure that they are valid
+    error = camera->ValidateFormat7Settings( &imgset, &valid, &fmt7PacketInfo );
+    if (error != FlyCapture2::PGRERROR_OK) printError( error );
+
+    if ( !valid )printf("Format7 settings are not valid\n");
+        
+	error = camera->SetFormat7Configuration( &imgset, fmt7PacketInfo.recommendedBytesPerPacket ); */
+
+		error = camera->SetFormat7Configuration( &imgset, 100.0f );
 		if( error != FlyCapture2::PGRERROR_OK )
 			printError( error );
 
@@ -207,8 +229,8 @@ void FFMVImageSource::set_feature( FlyCapture2::PropertyType feature, int value 
 
 	if (feature >= FlyCapture2::UNSPECIFIED_PROPERTY_TYPE) return;
 
-	Property prop( feature );
-	usleep( SAFETY_DELAY );
+	FlyCapture2::Property prop( feature );
+	usleep( 500 );
 
 	if (value == IMGSRC_OFF) {
 

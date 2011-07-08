@@ -66,10 +66,10 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="Exists('$(flycapture)\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(flycapture)\include\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(flycapture)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -89,10 +89,10 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="Exists('$(flycapture)\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(flycapture)\include\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(flycapture)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -115,7 +115,7 @@
     <ClCompile Include="..\libs\simplecv\YUV420Image.cc" />
     <ClCompile Include="..\libs\simplecv\YUYVImage.cc" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(flycapture)\FlyCapture2.h')">
+  <ItemGroup Condition="Exists('$(flycapture)\include\FlyCapture2.h')">
     <ClInclude Include="..\libs\simplecv\FFMVImageSource.h" />
     <ClCompile Include="..\libs\simplecv\FFMVImageSource.cc" />
   </ItemGroup>
