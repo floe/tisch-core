@@ -57,8 +57,6 @@ void cleanup( int signal ) {
 	exit(0);
 }
 
-
-
 void disp() {
 
 	int curtime = glutGet( GLUT_ELAPSED_TIME );
@@ -113,7 +111,7 @@ void mouse( int button, int state, int x, int y )
 void keyb( unsigned char c, int, int ) {
 
 	if (c == 'q') cleanup( 0 );
-	if (c == ' ') mypipe->reset();
+	if (c == ' ') mypipe->reset( 0 ); // reset all filter
 
 	// switching to editing mode
 	if (editvalue == 1 && configure != 0) {
@@ -210,9 +208,9 @@ void keyb( unsigned char c, int, int ) {
 				tmp->nextOption();
 			}
 
-			//reset filter
+			// reset only this filter
 			if(c == 'r') {
-				tmp->reset();
+				tmp->reset( 0 );
 			}
 		}
 
@@ -239,7 +237,10 @@ void keyb( unsigned char c, int, int ) {
 void idle() {
 
 	if (mypipe->process() == 0) curframe++;
-	if (startup > 0) { mypipe->reset(); startup--; }
+	if (startup > 0) {
+		mypipe->reset( 1 ); // initial Reset: yes!
+		startup--;
+	}
 
 	tuio->start();
 
@@ -253,7 +254,6 @@ void idle() {
 
 	if (win) glutPostRedisplay();
 }
-
 
 int main( int argc, char* argv[] ) {
 
@@ -299,12 +299,10 @@ int main( int argc, char* argv[] ) {
 
 	// get Filter subtree
 	TiXmlElement* root = doc.RootElement();
-	TiXmlElement* filtersubtree = root->FirstChildElement(); // access Filter Node
-	filtersubtree = filtersubtree->FirstChildElement(); // access Camera Node
 	
 	// pass subtree of Filter subtree
-	mypipe = new Pipeline( filtersubtree );
-	tmp = (*mypipe)[0];
+	mypipe = new Pipeline( root );
+	tmp = (*mypipe)[0]; // CameraFilter
 
 	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, address, outport );
 

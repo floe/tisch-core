@@ -11,8 +11,13 @@
 
 
 Pipeline::Pipeline( TiXmlElement* _config ) {
+	// _config = root node of XML
+	TiXmlElement* filterSubtree = _config->FirstChildElement(); // access Filter Node
+	_config = filterSubtree->FirstChildElement(); // access Camera Node
+	TiXmlElement* optionSubtree = filterSubtree->NextSiblingElement(); // access FilterOption subtree
+
 	if (!_config) throw std::runtime_error( "Configuration file empty or not found." );
-	createFilter( _config, 0 );
+	createFilter( _config, 0, optionSubtree );
 	Filter* last = 0;
 	// FIXME: this is rather ugly...
 	for (std::vector<Filter*>::reverse_iterator filter = rbegin(); filter != rend(); filter++) {
@@ -23,7 +28,7 @@ Pipeline::Pipeline( TiXmlElement* _config ) {
 	}
 }
 
-void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
+void Pipeline::createFilter( TiXmlElement* config, Filter* parent, TiXmlElement* OptionSubtree) {
 
 	std::string type = config->Value();
 	Filter* filter = 0;
@@ -31,7 +36,11 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	if (type ==         "Camera") filter = new         Camera( config, parent );
 	if (type ==     "BlobFilter") filter = new       BlobList( config, parent );
 	if (type ==     "FlipFilter") filter = new     FlipFilter( config, parent );
-	if (type ==     "AreaFilter") filter = new     AreaFilter( config, parent );
+	if (type ==     "AreaFilter") {
+		filter = new AreaFilter( config, parent );
+		if(OptionSubtree != 0)
+			dynamic_cast<AreaFilter*>(filter)->loadFilterOptions(OptionSubtree, false);
+	}
 	if (type ==    "SplitFilter") filter = new    SplitFilter( config, parent );
 	if (type ==    "BGSubFilter") filter = new    BGSubFilter( config, parent );
 	if (type ==   "ThreshFilter") filter = new   ThreshFilter( config, parent );
@@ -42,7 +51,7 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	if (filter) push_back( filter );
 
 	for ( TiXmlElement* child = config->FirstChildElement(); child != 0; child = child->NextSiblingElement() )
-		createFilter( child, filter );
+		createFilter( child, filter, OptionSubtree );
 }
 
 
@@ -60,9 +69,9 @@ int Pipeline::process() {
 	return 0;
 }
 
-void Pipeline::reset() {
+void Pipeline::reset(int initialReset) {
 	for (std::vector<Filter*>::iterator filter = begin(); filter != end(); filter++)
-		(*filter)->reset();
+		(*filter)->reset(initialReset);
 }
 
 TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
@@ -70,14 +79,22 @@ TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 	TiXmlElement* rootOfCurrentSubtree = 0;
 
 	if(startIndex < this->size()) {
+		
 		// get XML Node for current root of subtree
 		rootOfCurrentSubtree = (*this)[startIndex]->getXMLRepresentation();
 		
-		// save a pointer to the area filter if there is one
+		//
+		// save a pointer to each filter that probably has options to store
+		// AreaFilter
 		if(strcmp(rootOfCurrentSubtree->Value(),"AreaFilter") == 0) {
-			Areafilter.push_back((*this)[startIndex]);
+			AreaFilterVec.push_back(static_cast<AreaFilter*>((*this)[startIndex]));
+		}
+		// BGSubFilter
+		if(strcmp(rootOfCurrentSubtree->Value(),"BGSubFilterID") == 0) {
+			BGSubFilterVec.push_back(static_cast<BGSubFilter*>((*this)[startIndex]));
 		}
 
+		
 		// check pipe for further children of current root
 		for(int i = startIndex + 1; i < this->size(); i++) {
 
@@ -112,26 +129,34 @@ void Pipeline::storeXMLConfig(std::string storingTarget) {
 	FilterSubtree->LinkEndChild(getXMLSubTree(0, 0));
 	root->LinkEndChild(FilterSubtree);
 
-	if(!Areafilter.empty()) {
-		// AreaFilter were definied in the Filterlist
-		
-		int areafiltercounter = 0;
+	TiXmlElement* OptionSubtree = new TiXmlElement( "Option" );
+
+	if( !AreaFilterVec.empty() ) {
 		// iterate through all AreaFilter
-		for(std::vector<Filter*>::iterator area = Areafilter.begin(); area != Areafilter.end(); area++) {
+		for(std::vector<AreaFilter*>::iterator area = AreaFilterVec.begin(); area != AreaFilterVec.end(); area++) {
 			// and retrieve their Polygons
-			TiXmlElement* XMLarea = (*area)->getXMLofAreas(areafiltercounter);
+			TiXmlElement* XMLarea = (*area)->getXMLofAreas((*area)->getAreaFilterID());
 
 			// has the current AreaFilter any polygons?
 			if (XMLarea != 0) {
 				// yes? then store them
-				root->LinkEndChild(XMLarea);
+				OptionSubtree->LinkEndChild(XMLarea);
 			}
-
-			areafiltercounter++;
 		}
+
 		// free memory
-		Areafilter.clear();
+		AreaFilterVec.clear();
 	}
+
+	if( !BGSubFilterVec.empty() ) {
+		// iterate through all BGSubFilter
+
+		// free memory
+		BGSubFilterVec.clear();
+	}
+
+	if(OptionSubtree->FirstChildElement() != 0)
+		root->LinkEndChild(OptionSubtree);
 
 	// add root to document
 	doc.LinkEndChild(root);

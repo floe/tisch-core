@@ -13,8 +13,11 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	checkImage();
 	invert = 0;
 	adaptive = 0;
+	resetOnInit = 1;
+	BGSubFilterID = -1; // -1 is invalid
 	if(useIntensityImage) background = new ShortImage( image->getWidth(), image->getHeight() );
 	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
+	config->QueryIntAttribute( "BGSubFilterID", &BGSubFilterID );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
 	// setting variables for Configurator
@@ -29,9 +32,11 @@ void BGSubFilter::link( Filter* _mask ) {
 	mask = _mask;
 }
 
-void BGSubFilter::reset() {
-	if(useIntensityImage) *background = *(input->getImage());
-	else *background = *(input->getShortImage());
+void BGSubFilter::reset(int initialReset) {
+	if( (initialReset == 1 && resetOnInit == 1) || initialReset == 0 ) {
+		if(useIntensityImage) *background = *(input->getImage());
+		else *background = *(input->getShortImage());
+	}
 }
 
 int BGSubFilter::process() {
@@ -113,6 +118,7 @@ TiXmlElement* BGSubFilter::getXMLRepresentation() {
 	
 	TiXmlElement* XMLNode = new TiXmlElement( "BGSubFilter" );
 	
+	XMLNode->SetAttribute( "BGSubFilterID" , BGSubFilterID );
 	XMLNode->SetAttribute( "Invert" , invert );
 	XMLNode->SetAttribute( "Adaptive" , adaptive );
 	
@@ -679,6 +685,9 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 	checkImage();
 	enabled = 0;
 	updated = true;
+	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
+	AreaFilterID = -1;
+	config->QueryIntAttribute( "AreaFilterID", &AreaFilterID );
 	config->QueryIntAttribute( "Enabled", &enabled );
 	// setting variables for Configurator
 	countOfOptions = 1; // quantity of variables that can be manipulated
@@ -724,7 +733,7 @@ void AreaFilter::processMouseButton( int button, int state, int x, int y )
 			if(*((*it).begin()) != *((*it).end()-1)) (*it).push_back(*(*it).begin()); //copies the first point of a polygon to the end of its pointvector
 			generateEdgepoints(*it);
 		}
-		std::sort(edgepoints.begin(), edgepoints.end()); //sort the list for later use
+		std::sort(edgepoints.begin(), edgepoints.end()); // sort the list so that the areamask is applied to the right pixelareas
 	}
 }
 
@@ -744,11 +753,13 @@ void AreaFilter::generateEdgepoints( std::vector<Point*> cornerpoints )
 	}
 }
 
-void AreaFilter::reset()
+void AreaFilter::reset(int initialReset)
 {
-	edgepoints.clear();
-	cornerpointvector.clear();
-	updated = true;
+	if( (initialReset == 1 && resetOnInit == 1) || initialReset == 0 ) {
+		edgepoints.clear();
+		cornerpointvector.clear();
+		updated = true;
+	}
 }
 
 const char* AreaFilter::getOptionName(int option) {
@@ -806,17 +817,18 @@ void AreaFilter::draw( GLUTWindow* win )
 TiXmlElement* AreaFilter::getXMLRepresentation() {
 	TiXmlElement* XMLNode = new TiXmlElement( "AreaFilter" );
 	
-	XMLNode->SetAttribute( "Enabled", enabled );
+	XMLNode->SetAttribute( "AreaFilterID" , AreaFilterID );
+	XMLNode->SetAttribute( "Enabled" , enabled );
 	
 	return XMLNode;
 }
 
-TiXmlElement* AreaFilter::getXMLofAreas(int areafiltercounter) {
+TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 	
 	int polygoncounter = 0;
 
-	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "PolygonsOfAreaFilter" );
-	polygonsOfAreaFilter->SetAttribute( "AreaFilterNumber" , areafiltercounter );
+	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "AreaFilter" );
+	polygonsOfAreaFilter->SetAttribute( "AreaFilterID" , AreaFilterID );
 
 	// no areas are selected
 	if(cornerpointvector.empty())
@@ -847,4 +859,102 @@ TiXmlElement* AreaFilter::getXMLofAreas(int areafiltercounter) {
 	} // end iter_polygons
 
 	return polygonsOfAreaFilter;
+}
+
+int AreaFilter::getAreaFilterID() {
+	return AreaFilterID;
+}
+
+void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
+	
+	// check OptionSubtree to find settings for current AreaFilter ...
+	std::cout << "reading stored areas for AreaFilter from config ... ";
+	if(debug)
+		 std::cout << std::endl;
+
+	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
+	do {
+		std::string type = filterOption->Value();
+		if(type == "AreaFilter") {
+			// current Options are for an AreaFilter
+			int filterID = -1;
+			filterOption->QueryIntAttribute( "AreaFilterID" , &filterID);
+			if( filterID == AreaFilterID && filterID != -1) {
+				// settings are for current AreaFilter
+
+				// filterOption has AreaFilter Subtree -> children are Polygons
+				if(debug)
+					std::cout << "AreaFilterID: " << AreaFilterID << std::endl;
+				
+				resetOnInit = createFilterAreaFromConfig(filterOption, debug);
+				break;
+			}
+		}
+	} while(filterOption = filterOption->NextSiblingElement());
+	
+	std::cout << "done" << std::endl;
+
+}
+
+/*
+* returns 0 if edgepoint vector was filled with polygons from config
+* else returns 1;
+*/
+int AreaFilter::createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug) {
+	
+	// reset cornerpointvector for this areafilter
+	cornerpointvector.clear();
+	edgepoints.clear();
+
+	// first polygon
+	TiXmlElement* Polygon = PolygonsOfAreaFilter->FirstChildElement();
+
+	do {
+		// process polygon
+		TiXmlElement* Coords = Polygon->FirstChildElement();
+		int polygonNr;
+		Polygon->QueryIntAttribute("number", &polygonNr);
+		
+		if(debug)
+			std::cout << "Polygon: " << polygonNr << std::endl;
+		
+		cornerpointvector.push_back(std::vector<Point*>());
+					
+		do {
+			// process Points
+			int x_coord;
+			int y_coord;
+
+			Coords->QueryIntAttribute("x", &x_coord);
+			Coords->QueryIntAttribute("y", &y_coord);
+			
+			if(debug)
+				std::cout << "Point: " << "x: " << x_coord << " / " << "y: " << y_coord << std::endl;
+		
+			Point* p = new Point();
+			p->x = x_coord;
+			p->y = y_coord;
+
+			(*(cornerpointvector.end() - 1)).push_back(p);
+
+			// get next point
+		} while (Coords = Coords->NextSiblingElement() );
+		
+		generateEdgepoints(*(cornerpointvector.end() - 1));
+		std::sort(edgepoints.begin(), edgepoints.end());
+		
+		// get next polygon
+	} while(Polygon = Polygon->NextSiblingElement() );
+
+	if(debug) {
+		for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++) {
+			for(std::vector<Point*>::iterator it2 = (*it).begin(); it2 != (*it).end(); it2++) {
+				std::cout << "x: " << (*it2)->x << " y: " << (*it2)->y << std::endl;
+			}
+		}
+	}
+
+	if(edgepoints.size() > 0)
+		return 0;
+	return 1;
 }

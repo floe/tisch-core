@@ -46,7 +46,7 @@ class Filter {
 		}
 
 		virtual int process() = 0;
-		virtual void reset() { }
+		virtual void reset(int initialReset) { }
 		virtual void processMouseButton(int button, int state, int x, int y) { }
 
 		// TODO: print filter information
@@ -66,7 +66,6 @@ class Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
 		int getUseIntensityImage() { return useIntensityImage; };
 		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
-		virtual TiXmlElement* getXMLofAreas(int areafiltercounter) {return new TiXmlElement( "something_went_wrong" );};
 		Filter* getParent() {return input;};
 
 	protected:
@@ -82,6 +81,7 @@ class Filter {
 		int toggle; // initialized in basic Filter constructor
 		int MAX_VALUE; // initialized in basic Filter constructor
 		int countOfOptions; // Initialization required in each subfilter class !
+		int resetOnInit;
 };
 
 
@@ -90,7 +90,7 @@ class BGSubFilter: public Filter {
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual ~BGSubFilter();
 		virtual int process();
-		virtual void reset();
+		virtual void reset(int initialReset);
 		virtual void link( Filter* _mask );
 		// Configurator
 		virtual const char* getOptionName(int option);
@@ -101,6 +101,7 @@ class BGSubFilter: public Filter {
 		ShortImage* background;
 		Filter* mask;
 		int invert, adaptive;
+		int BGSubFilterID; 
 
 };
 
@@ -190,7 +191,7 @@ class AreaFilter: public Filter {
 	public:
 		AreaFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
-		virtual void reset();
+		virtual void reset(int initialReset);
 		virtual void processMouseButton(int button, int state, int x, int y);
 		void generateEdgepoints( std::vector<Point*> cornerpoints );
 		// Configurator
@@ -199,9 +200,13 @@ class AreaFilter: public Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual void draw( GLUTWindow* win );
 		virtual TiXmlElement* getXMLRepresentation();
-		virtual TiXmlElement* getXMLofAreas(int areafiltercounter);
+		TiXmlElement* getXMLofAreas(int AreaFilterID);
+		int getAreaFilterID();
+		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
+		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);
 	protected:
 		int enabled;
+		int AreaFilterID;
 		bool updated;
 		std::vector<int> edgepoints;
 		std::vector<std::vector<Point*> > cornerpointvector;

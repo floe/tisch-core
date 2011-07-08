@@ -63,10 +63,10 @@ void Configurator::showInfo() {
  */
 void Configurator::showHelp() {
 	int xCoord = 100;
-	int yCoord = 200;
+	int yCoord = 140;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 380, 140, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 380, 160, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
@@ -81,7 +81,7 @@ void Configurator::showHelp() {
 	yCoord += 20;
 	win->print(std::string("use (space) to reset all filters"), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("use (s) to store the current config of filters to xml"), xCoord, yCoord);
+	win->print(std::string("use (s) to store the current config"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
 
@@ -89,7 +89,7 @@ void Configurator::showHelp() {
 
 void Configurator::showEditInfo() {
 	int xCoord = 100;
-	int yCoord = 200;
+	int yCoord = 140;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
 	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
@@ -108,10 +108,10 @@ void Configurator::showEditInfo() {
 
 void Configurator::showStoreInfo() {
 	int xCoord = 100;
-	int yCoord = 200;
+	int yCoord = 140;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 450, 60, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("Saving Mode"), xCoord, yCoord);
