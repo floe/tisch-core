@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -20,6 +20,9 @@
 FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev, int verbose ) {
 		
 		camera = new FlyCapture2::Camera();
+
+		m_sampleWidth  = dwidth;
+		m_sampleHeight = dheight;
 
 		std::stringstream stream;
 		stream << videodev;
@@ -47,10 +50,19 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
 			printError( error );
 		//printCameraInfo( &camInfo ); 
 
-		error = camera->SetVideoModeAndFrameRate(
+		/*error = camera->SetVideoModeAndFrameRate(
 			FlyCapture2::VIDEOMODE_640x480Y8, 
-			FlyCapture2::FRAMERATE_30);
+			FlyCapture2::FRAMERATE_30);*/
 
+    FlyCapture2::Format7ImageSettings imgset;
+    imgset.mode = FlyCapture2::MODE_0;
+    imgset.offsetX = 0;
+    imgset.offsetY = 0;
+    imgset.width = dwidth;
+    imgset.height = dheight;
+    imgset.pixelFormat = FlyCapture2::PIXEL_FORMAT_MONO8;
+
+		error = camera->SetFormat7Configuration( &imgset, 3020 );
 		if( error != FlyCapture2::PGRERROR_OK )
 			printError( error );
 
@@ -67,8 +79,8 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
 			printError( error );
 		*/
 		
-		imgbuffer = new RGBImage(640,480);
-		intensityImgbuffer = new IntensityImage(640, 480);
+		imgbuffer = new RGBImage(dwidth,dheight);
+		intensityImgbuffer = new IntensityImage(dwidth, dheight);
 		running = 0;
 
 		// switch GPIO0-3 to output
