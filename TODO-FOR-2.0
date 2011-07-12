@@ -1,8 +1,7 @@
+- use TUIO 2.0 object types where possible
+
 - cleanup touchd example files: sample DI, sample FTIR, sample Kinect...
 - make target offset for calibtool configurable
 - move action queue directly into Matcher class
 
-- use TUIO 2.0 object types where possible
-
-- put Matcher directly into widgets/Window
 - optional: add RadioButton widgets
