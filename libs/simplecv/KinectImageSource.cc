@@ -87,13 +87,15 @@ void rgb_cb( freenect_device* dev, void* rgb, uint32_t timestamp ) {
 
 void* kinecthandler( void* arg ) {
 
+	freenect_frame_mode mode;
+
 	src = (KinectImageSource*)arg;
 
 	freenect_set_depth_callback( src->f_dev, depth_cb );
 	freenect_set_video_callback( src->f_dev, rgb_cb );
 
-	freenect_set_depth_mode( src->f_dev, freenect_get_depth_mode( FREENECT_DEPTH_11BIT ) );
-	freenect_set_video_mode( src->f_dev, freenect_get_video_mode( FREENECT_VIDEO_RGB ) );
+	mode = freenect_get_depth_mode( FREENECT_DEPTH_11BIT );	depth_size = mode.bytes; freenect_set_depth_mode( src->f_dev, mode );
+	mode = freenect_get_video_mode( FREENECT_VIDEO_RGB   ); video_size = mode.bytes; freenect_set_video_mode( src->f_dev, mode );
 
 	freenect_start_depth( src->f_dev );
 	freenect_start_video( src->f_dev );
