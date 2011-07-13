@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -51,14 +51,13 @@ class TISCH_SHARED KinectImageSource: public ImageSource {
 
 		// thread control
 		int run;
-
-		// buffer management
-		int bufcount, current;
-		ShortImage* depthbuf;
-		RGBImage* rgbbuf;
-
 		pthread_mutex_t kinect_lock;
 		pthread_cond_t  kinect_cond;
+
+		// buffer management
+		int curdb, curvb;
+		ShortImage* depthbuf[2];
+		RGBImage*   videobuf[2];
 };
 
 #endif // _KINECTIMAGESOURCE_H_
