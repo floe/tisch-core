@@ -113,7 +113,7 @@ default:
 	@echo installation target, set the DESTDIR variable. To change the 
 	@echo runtime prefix separately, set the PREFIX variable. Example:
 	@echo
-	@echo "  make CFLAGS=-I/opt/include PREFIX=/usr/local/ install"
+	@echo "  CFLAGS=-I/opt/include PREFIX=/usr/local/ make install"
 	@echo
 	@echo "current install target (DESTDIR): $(DESTDIR)"
 	@echo "current runtime prefix (PREFIX):  $(PREFIX)"
