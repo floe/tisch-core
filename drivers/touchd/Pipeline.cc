@@ -90,7 +90,7 @@ TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 			AreaFilterVec.push_back(static_cast<AreaFilter*>((*this)[startIndex]));
 		}
 		// BGSubFilter
-		if(strcmp(rootOfCurrentSubtree->Value(),"BGSubFilterID") == 0) {
+		if(strcmp(rootOfCurrentSubtree->Value(),"BGSubFilter") == 0) {
 			BGSubFilterVec.push_back(static_cast<BGSubFilter*>((*this)[startIndex]));
 		}
 
@@ -150,6 +150,13 @@ void Pipeline::storeXMLConfig(std::string storingTarget) {
 
 	if( !BGSubFilterVec.empty() ) {
 		// iterate through all BGSubFilter
+		for(std::vector<BGSubFilter*>::iterator bgsub = BGSubFilterVec.begin(); bgsub != BGSubFilterVec.end(); bgsub++) {
+			TiXmlElement* XMLBackground = (*bgsub)->getXMLofBackground((*bgsub)->getBGSubFilterID());
+
+			if(XMLBackground != 0) {
+				OptionSubtree->LinkEndChild(XMLBackground);
+			}
+		}
 
 		// free memory
 		BGSubFilterVec.clear();

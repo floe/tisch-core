@@ -97,6 +97,8 @@ class BGSubFilter: public Filter {
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual TiXmlElement* getXMLRepresentation();
+		int getBGSubFilterID();
+		TiXmlElement* getXMLofBackground(int BGSubFilterID);
 	protected:
 		ShortImage* background;
 		Filter* mask;
@@ -200,8 +202,8 @@ class AreaFilter: public Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual void draw( GLUTWindow* win );
 		virtual TiXmlElement* getXMLRepresentation();
-		TiXmlElement* getXMLofAreas(int AreaFilterID);
 		int getAreaFilterID();
+		TiXmlElement* getXMLofAreas(int AreaFilterID);
 		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
 		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);
 	protected:

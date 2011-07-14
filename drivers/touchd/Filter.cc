@@ -124,6 +124,32 @@ TiXmlElement* BGSubFilter::getXMLRepresentation() {
 	
 	return XMLNode;
 }
+
+int BGSubFilter::getBGSubFilterID() {
+	return BGSubFilterID;
+}
+
+TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID) {
+	TiXmlElement* XMLNodeBG = new TiXmlElement( "BGSubFilter" );
+	XMLNodeBG->SetAttribute( "BGSubFilterID" , BGSubFilterID );
+
+	// TODO: fill this function with code!
+	// idea: not storing the ShortImage pixel value by pixel value in xml file
+	// instead: write ShortImage as *.ppm, *.bmp, *.png what ever and store path to
+	// background image in XML file
+	// background is a ShortImage containing pixels as unsigned shorts, so 
+	// values should be between 0 and 65.535
+
+	/*
+	for(int x = 0; x < 10; x++) {
+		for( int y = 0; y < 10; y++) {
+			std::cout << background->getPixel(x,y) << std::endl;
+		}
+	}
+	*/
+
+	return XMLNodeBG;
+}
 /*==============================================================================
  * FlipFilter
 ==============================================================================*/
@@ -823,6 +849,10 @@ TiXmlElement* AreaFilter::getXMLRepresentation() {
 	return XMLNode;
 }
 
+int AreaFilter::getAreaFilterID() {
+	return AreaFilterID;
+}
+
 TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 	
 	int polygoncounter = 0;
@@ -859,10 +889,6 @@ TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 	} // end iter_polygons
 
 	return polygonsOfAreaFilter;
-}
-
-int AreaFilter::getAreaFilterID() {
-	return AreaFilterID;
 }
 
 void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {

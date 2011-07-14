@@ -29,7 +29,8 @@ Filter* tmp = 0;
 Configurator* configure = 0;
 int showHelp = 0;
 int editvalue = 0;
-int storeconfig = 0;
+int storeSettingsAllFilter = 0;
+int storeSettingsCurrentFilter = 0;
 std::string userinput = "";
 
 Pipeline* mypipe = 0;
@@ -92,8 +93,11 @@ void disp() {
 			configure->showEditInfo();
 		}
 
-		if(storeconfig == 1) {
-			configure->showStoreInfo();
+		if(storeSettingsAllFilter == 1) {
+			configure->showStoreInfo(0);
+		}
+		else if(storeSettingsCurrentFilter == 1) {
+			configure->showStoreInfo(1);
 		}
 	}
 
@@ -134,20 +138,33 @@ void keyb( unsigned char c, int, int ) {
 		}
 
 	}
-	else if(storeconfig == 1 && configure != 0) {
-		// store current configuration
+	else if(storeSettingsAllFilter == 1 && configure != 0) {
+		// save configuration of ALL filters
 
-		// quit store mode without saving
+		// quit storing mode without saving
 		if(c == 0x1B) { // ESC
-			storeconfig = 0;
+			storeSettingsAllFilter = 0;
 		}
 
 		if(c == 0x0D){ // Enter
 			// save new xml
 			mypipe->storeXMLConfig(cfgfile);
-			storeconfig = 0; // close storing mode
+			storeSettingsAllFilter = 0; // close storing mode
 		}
 
+	}
+	else if(storeSettingsCurrentFilter == 1 && configure != 0) {
+		// save configuration of CURRENT filter, keep all other settings
+
+		// quit storing mode without saving
+		if(c == 0x1B) { // ESC
+			storeSettingsCurrentFilter = 0;
+		}
+
+		if(c == 0x0D) { // ENTER
+			//(mypipe->storeXMLConfig(cfgfile); // TODO
+			storeSettingsCurrentFilter = 0;
+		}
 	}
 	else { // processing keyboard entries as usual
 	// switching filters
@@ -199,8 +216,12 @@ void keyb( unsigned char c, int, int ) {
 			}
 
 			// activate saving mode
-			if(c == 's') {
-				storeconfig = 1;
+			if(c == 's') { // store settings of CURRENT filter
+				storeSettingsCurrentFilter = 1;
+			}
+
+			if(c == 'S') { // store settings of ALL filters
+				storeSettingsAllFilter = 1;
 			}
 
 			// toggle Option with Tab

@@ -24,7 +24,7 @@ public:
 	void showInfo();
 	void showHelp();
 	void showEditInfo();
-	void showStoreInfo();
+	void showStoreInfo(int mode);
 
 protected:
 	GLUTWindow* win;
