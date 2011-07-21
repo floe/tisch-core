@@ -9,8 +9,6 @@
 #include "BlobList.h"
 #include "Camera.h"
 
-#include <fstream>
-
 Pipeline::Pipeline( TiXmlElement* _config ) {
 	// _config = root node of XML
 	TiXmlElement* filterSubtree = _config->FirstChildElement(); // access Filter Node
@@ -43,7 +41,11 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent, TiXmlElement*
 			dynamic_cast<AreaFilter*>(filter)->loadFilterOptions(OptionSubtree, false);
 	}
 	if (type ==    "SplitFilter") filter = new    SplitFilter( config, parent );
-	if (type ==    "BGSubFilter") filter = new    BGSubFilter( config, parent );
+	if (type ==    "BGSubFilter") {
+		filter = new    BGSubFilter( config, parent );
+		if(OptionSubtree != 0)
+			dynamic_cast<BGSubFilter*>(filter)->loadFilterOptions(OptionSubtree, false);
+	}
 	if (type ==   "ThreshFilter") filter = new   ThreshFilter( config, parent );
 	if (type ==  "SpeckleFilter") filter = new  SpeckleFilter( config, parent );
 	if (type ==  "LowpassFilter") filter = new  LowpassFilter( config, parent );
@@ -150,39 +152,17 @@ void Pipeline::storeXMLConfig(std::string storingTarget) {
 	}
 
 	if( !BGSubFilterVec.empty() ) {
+		// determine the location to store BGSubFilter Images, same folder as config
+		size_t found;
+		found = storingTarget.find_last_of("/\\");
+		std::string path = storingTarget.substr(0,found+1);
+
 		// iterate through all BGSubFilter
 		for(std::vector<BGSubFilter*>::iterator bgsub = BGSubFilterVec.begin(); bgsub != BGSubFilterVec.end(); bgsub++) {
-			TiXmlElement* XMLBackground = (*bgsub)->getXMLofBackground((*bgsub)->getBGSubFilterID());
+
+			TiXmlElement* XMLBackground = (*bgsub)->getXMLofBackground((*bgsub)->getBGSubFilterID(), path);
 
 			if(XMLBackground != 0) {
-
-				ShortImage* background = (*bgsub)->getBGImage();
-				
-				std::ostringstream filename;
-				filename.str("");
-				filename << "BGSubFilter_ID_" << (*bgsub)->getBGSubFilterID() << "_Background.pgm";
-
-				size_t found;
-				found = storingTarget.find_last_of("/\\");
-				std::string path = storingTarget.substr(0,found+1);
-				std::string BGImg = path.append(filename.str());
-				
-				std::ofstream bgimage(BGImg, std::ios::out);
-				
-				bgimage << "P2\n";
-				bgimage << "# CREATOR: libTISCH version 2.0\n";
-				bgimage << background->getWidth() << " " << background->getHeight() << "\n";
-				bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
-		
-				for( int y = 0; y < background->getHeight(); y++) {
-					for (int x = 0; x < background->getWidth(); x++) {
-						bgimage << background->getPixel(x,y) << "\n";
-					}
-				}
-				
-				
-				XMLBackground->SetAttribute( "BGImgPath" , "./"+filename.str() );
-
 				OptionSubtree->LinkEndChild(XMLBackground);
 			}
 		}

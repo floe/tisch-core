@@ -10,6 +10,8 @@
 #include <tinyxml.h>
 #include <algorithm>
 
+#include <fstream>
+
 #include "GLUTWindow.h"
 #include "ShortImage.h"
 #include "IntensityImage.h"
@@ -98,8 +100,9 @@ class BGSubFilter: public Filter {
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual TiXmlElement* getXMLRepresentation();
 		int getBGSubFilterID();
-		TiXmlElement* getXMLofBackground(int BGSubFilterID);
-		ShortImage* getBGImage();
+		TiXmlElement* getXMLofBackground(int BGSubFilterID, std::string pathToSaveBackgroundIMG);
+		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
+		int loadPGMImageFromFile(std::string filename, bool debug);
 	protected:
 		ShortImage* background;
 		Filter* mask;
