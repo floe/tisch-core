@@ -99,6 +99,7 @@ class BGSubFilter: public Filter {
 		virtual TiXmlElement* getXMLRepresentation();
 		int getBGSubFilterID();
 		TiXmlElement* getXMLofBackground(int BGSubFilterID);
+		ShortImage* getBGImage();
 	protected:
 		ShortImage* background;
 		Filter* mask;

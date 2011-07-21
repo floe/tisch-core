@@ -9,6 +9,7 @@
 #include "BlobList.h"
 #include "Camera.h"
 
+#include <fstream>
 
 Pipeline::Pipeline( TiXmlElement* _config ) {
 	// _config = root node of XML
@@ -154,6 +155,34 @@ void Pipeline::storeXMLConfig(std::string storingTarget) {
 			TiXmlElement* XMLBackground = (*bgsub)->getXMLofBackground((*bgsub)->getBGSubFilterID());
 
 			if(XMLBackground != 0) {
+
+				ShortImage* background = (*bgsub)->getBGImage();
+				
+				std::ostringstream filename;
+				filename.str("");
+				filename << "BGSubFilter_ID_" << (*bgsub)->getBGSubFilterID() << "_Background.pgm";
+
+				size_t found;
+				found = storingTarget.find_last_of("/\\");
+				std::string path = storingTarget.substr(0,found+1);
+				std::string BGImg = path.append(filename.str());
+				
+				std::ofstream bgimage(BGImg, std::ios::out);
+				
+				bgimage << "P2\n";
+				bgimage << "# CREATOR: libTISCH version 2.0\n";
+				bgimage << background->getWidth() << " " << background->getHeight() << "\n";
+				bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
+		
+				for( int y = 0; y < background->getHeight(); y++) {
+					for (int x = 0; x < background->getWidth(); x++) {
+						bgimage << background->getPixel(x,y) << "\n";
+					}
+				}
+				
+				
+				XMLBackground->SetAttribute( "BGImgPath" , "./"+filename.str() );
+
 				OptionSubtree->LinkEndChild(XMLBackground);
 			}
 		}

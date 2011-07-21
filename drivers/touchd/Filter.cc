@@ -133,22 +133,11 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID) {
 	TiXmlElement* XMLNodeBG = new TiXmlElement( "BGSubFilter" );
 	XMLNodeBG->SetAttribute( "BGSubFilterID" , BGSubFilterID );
 
-	// TODO: fill this function with code!
-	// idea: not storing the ShortImage pixel value by pixel value in xml file
-	// instead: write ShortImage as *.ppm, *.bmp, *.png what ever and store path to
-	// background image in XML file
-	// background is a ShortImage containing pixels as unsigned shorts, so 
-	// values should be between 0 and 65.535
-
-	/*
-	for(int x = 0; x < 10; x++) {
-		for( int y = 0; y < 10; y++) {
-			std::cout << background->getPixel(x,y) << std::endl;
-		}
-	}
-	*/
-
 	return XMLNodeBG;
+}
+
+ShortImage* BGSubFilter::getBGImage() {
+	return this->background;
 }
 /*==============================================================================
  * FlipFilter
@@ -867,6 +856,11 @@ TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 	for(std::vector<std::vector<Point*> >::iterator iter_polygons = cornerpointvector.begin(); iter_polygons != cornerpointvector.end(); iter_polygons++) {
 		// iterate through all polygons
 
+		// ignore polygons with less than 3 edges
+		if((*iter_polygons).size() < 3) {
+			continue;
+		}
+
 		TiXmlElement* polygon = new TiXmlElement( "Polygon" );
 		polygon->SetAttribute("number", polygoncounter );
 
@@ -888,6 +882,8 @@ TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 		
 	} // end iter_polygons
 
+	if(polygonsOfAreaFilter->NoChildren())
+		return 0;
 	return polygonsOfAreaFilter;
 }
 
