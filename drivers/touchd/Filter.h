@@ -106,7 +106,7 @@ class BGSubFilter: public Filter {
 	protected:
 		ShortImage* background;
 		Filter* mask;
-		int invert, adaptive;
+		int invert, adaptive, storeBGImg;
 		int BGSubFilterID; 
 
 };

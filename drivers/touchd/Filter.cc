@@ -15,13 +15,15 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	adaptive = 0;
 	resetOnInit = 1;
 	BGSubFilterID = -1; // -1 is invalid
+	storeBGImg = 0;
 	if(useIntensityImage) background = new ShortImage( image->getWidth(), image->getHeight() );
 	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
 	config->QueryIntAttribute( "BGSubFilterID", &BGSubFilterID );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
+	config->QueryIntAttribute( "storeBGImg", &storeBGImg );
 	// setting variables for Configurator
-	countOfOptions = 2; // quantity of variables that can be manipulated
+	countOfOptions = 3; // quantity of variables that can be manipulated
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -67,6 +69,9 @@ const char* BGSubFilter::getOptionName(int option) {
 	case 1:
 		OptionName = "Adaptive";
 		break;
+	case 2:
+		OptionName = "store BGImg";
+		break;
 	default:
 		// leave OptionName empty
 		break;
@@ -84,6 +89,9 @@ double BGSubFilter::getOptionValue(int option) {
 		break;
 	case 1:
 		OptionValue = adaptive;
+		break;
+	case 2:
+		OptionValue = storeBGImg;
 		break;
 	default:
 		// leave OptionValue = -1.0
@@ -111,6 +119,14 @@ void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 			adaptive = (adaptive < 0) ? 0 : (adaptive > 1) ? 1 : adaptive;
 		}
 		break;
+	case 2: // overwrite is boolean value
+		if(overwrite) {
+			storeBGImg = (delta == 0 ? 0 : (delta == 1 ? 1 : storeBGImg));
+		}
+		else {
+			storeBGImg += delta;
+			storeBGImg = (storeBGImg < 0) ? 0 : (storeBGImg > 1) ? 1 : storeBGImg;
+		}
 	}
 }
 
@@ -121,6 +137,7 @@ TiXmlElement* BGSubFilter::getXMLRepresentation() {
 	XMLNode->SetAttribute( "BGSubFilterID" , BGSubFilterID );
 	XMLNode->SetAttribute( "Invert" , invert );
 	XMLNode->SetAttribute( "Adaptive" , adaptive );
+	XMLNode->SetAttribute( "storeBGImg" , storeBGImg );
 	
 	return XMLNode;
 }
@@ -140,28 +157,54 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 
 	// store location
 	std::string BGImg = path.append(filename.str());
-				
-	std::ofstream bgimage(BGImg, std::ios::out);
-	
-	// filecontent
-	bgimage << "P2\n";
-	bgimage << "# CREATOR: libTISCH version 2.0\n";
-	bgimage << background->getWidth() << " " << background->getHeight() << "\n";
-	bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
-	
-	// write background image pixel by pixel, for each one line
-	for( int y = 0; y < background->getHeight(); y++) {
-		for (int x = 0; x < background->getWidth(); x++) {
-			bgimage << background->getPixel(x,y) << "\n";
+
+	// check whether file already exists
+    std::fstream testExistance(BGImg, std::ios::in);
+    if (testExistance.good()) {
+		// file already exists
+        testExistance.close();
+        if( storeBGImg == 0 ) {
+			// don't overwrite BGImg
+			XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
+			return XMLNodeBG;
 		}
-	}
+    }
+	else {
+		// doesnt exist
+		if( storeBGImg == 0 ) {
+			// don't store
+			return 0;
+		}
+    } 
+
+	// store/overwrite BG Image only if storing for this BGSubfilter is enabled
+	if(storeBGImg == 1) {
+				
+		std::ofstream bgimage(BGImg, std::ios::out);
 	
-	// be polite and tidy up ;)
-	bgimage.close();
+		// filecontent
+		bgimage << "P2\n";
+		bgimage << "# CREATOR: libTISCH version 2.0\n";
+		bgimage << background->getWidth() << " " << background->getHeight() << "\n";
+		bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
+	
+		// write background image pixel by pixel, for each one line
+		for( int y = 0; y < background->getHeight(); y++) {
+			for (int x = 0; x < background->getWidth(); x++) {
+				bgimage << background->getPixel(x,y) << "\n";
+			}
+		}
+	
+		// be polite and tidy up ;)
+		bgimage.close();
 
-	XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
+		XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
+		return XMLNodeBG;
+	}
 
+	XMLNodeBG->SetAttribute( "something went wrong" , -1 );
 	return XMLNodeBG;
+
 }
 
 void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
