@@ -109,7 +109,7 @@
 
 #elif _MSC_VER
 
-	//#include <winsock2.h> //must be included before windows.h
+	#include <winsock2.h> //must be included before windows.h
 	#include <windows.h> //must be included before gl.h
 	#include <GL/gl.h>
 	#include <GL/glut.h>

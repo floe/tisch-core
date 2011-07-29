@@ -7,9 +7,8 @@
 #ifndef _MASTERCONTAINER_H_
 #define _MASTERCONTAINER_H_
 
-#include <Matcher.h>
 #include "Container.h"
-
+#include <Matcher.h>
 
 class InputThread;
 class InternalMatcher;
