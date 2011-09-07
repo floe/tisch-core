@@ -160,7 +160,8 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 		* check the specified SourceType in your configuration xml
 		* have a look in the wiki for possible options
 		*/
-		throw std::runtime_error( "Error: unknown camera type requested." );
+		throw std::runtime_error( "Error: unknown camera type requested. Linux"
+				"needs SourceType=1, for Windows use SourceType=3" );
 
 	// disable auto exposure, set other parameters
 	cam->setExposure( IMGSRC_OFF );

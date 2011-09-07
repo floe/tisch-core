@@ -159,7 +159,7 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 	std::string BGImg = path.append(filename.str());
 
 	// check whether file already exists
-    std::fstream testExistance(BGImg, std::ios::in);
+    std::fstream testExistance(BGImg.c_str(), std::ios::in);
     if (testExistance.good()) {
 		// file already exists
         testExistance.close();
@@ -179,9 +179,9 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 
 	// store/overwrite BG Image only if storing for this BGSubfilter is enabled
 	if(storeBGImg == 1) {
-				
-		std::ofstream bgimage(BGImg, std::ios::out);
-	
+
+		std::ofstream bgimage(BGImg.c_str(), std::ios::out);
+
 		// filecontent
 		bgimage << "P2\n";
 		bgimage << "# CREATOR: libTISCH version 2.0\n";
@@ -219,7 +219,7 @@ void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
 		if(type == "BGSubFilter") {
 			int filterID = -1;
 			filterOption->QueryIntAttribute( "BGSubFilterID" , &filterID );
-			if( filterID == BGSubFilterID && filterID != -1 ) {
+			if( (filterID == BGSubFilterID) && (filterID != -1) ) {
 				// settings are for the current BGSubFilter
 
 				if(debug)
@@ -231,7 +231,7 @@ void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
 				break;
 			}
 		}
-	} while(filterOption = filterOption->NextSiblingElement());
+	} while((filterOption = filterOption->NextSiblingElement()));
 
 	// TODO: read Background Image here and store it to background
 
@@ -243,7 +243,7 @@ int BGSubFilter::loadPGMImageFromFile(std::string filename, bool debug) {
 		std::cout << "reading pixel values from " << filename << std::endl;
 
 	std::ifstream inputFile;
-	inputFile.open(filename);
+	inputFile.open(filename.c_str());
 
 	if(!inputFile) {
 		std::cout << " something went wrong reading pgm file! check format!" << std::endl;
@@ -1075,7 +1075,7 @@ void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
 				break;
 			}
 		}
-	} while(filterOption = filterOption->NextSiblingElement());
+	} while((filterOption = filterOption->NextSiblingElement()));
 	
 	std::cout << "done" << std::endl;
 
@@ -1123,18 +1123,18 @@ int AreaFilter::createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, b
 			(*(cornerpointvector.end() - 1)).push_back(p);
 
 			// get next point
-		} while (Coords = Coords->NextSiblingElement() );
+		} while ((Coords = Coords->NextSiblingElement()));
 		
 		generateEdgepoints(*(cornerpointvector.end() - 1));
 		std::sort(edgepoints.begin(), edgepoints.end());
 		
 		// get next polygon
-	} while(Polygon = Polygon->NextSiblingElement() );
+	} while((Polygon = Polygon->NextSiblingElement()));
 
 	if(debug) {
 		for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++) {
 			for(std::vector<Point*>::iterator it2 = (*it).begin(); it2 != (*it).end(); it2++) {
-				std::cout << "x: " << (*it2)->x << " y: " << (*it2)->y << std::endl;
+				std::cout << "x: " << (*(*it2)).x << " y: " << (*it2)->y << std::endl;
 			}
 		}
 	}
