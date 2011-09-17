@@ -31,7 +31,7 @@ typedef std::deque<Action> ActionQueue;
 // matcher class for use with socket thread and OpenGL mainloop
 struct TISCH_SHARED InternalMatcher: public Matcher {
 
-	InternalMatcher(): Matcher(1), queue() { do_run = 0; }
+	InternalMatcher(): Matcher(), queue() { do_run = 0; }
 
 	// called from socket context
 	void process_gestures() { do_run = 1; }
@@ -99,7 +99,7 @@ int MasterContainer::process_gestures() {
 
 void MasterContainer::doUpdate( Widget* target ) {
 
-	std::cout << "MC::doUpdate " << (unsigned long long) target << std::endl;
+	//std::cout << "MC::doUpdate " << (unsigned long long) target << std::endl;
 	glGetDoublev( GL_PROJECTION_MATRIX, g_proj );
 	glGetIntegerv( GL_VIEWPORT, g_view );
 

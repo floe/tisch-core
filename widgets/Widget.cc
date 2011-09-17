@@ -9,7 +9,7 @@
 
 void Widget::update( Widget* target ) {
 	if (target == 0) target = this;
-	std::cout << "update " << (unsigned long long int)target << std::endl;
+	//std::cout << "update " << (unsigned long long int)target << std::endl;
 	if (parent == 0)
 		//Problem: hier wird doUpdate von Container, anstatt von MasterContainer aufgerufen.
 		doUpdate( target );
