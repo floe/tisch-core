@@ -29,15 +29,15 @@
 TISCH_SHARED const char* default_gesture_set[] = {
 	"0 0 6 \
 		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 RelativeAxisScale 0 31 0 0 \
-		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
+		scale 5 1 MultiBlobScale 0 31 0 0 \
+		rotate 5 1 MultiBlobRotation 0 31 0 0 \
 		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
 		remove 6 1 BlobID 0 31 0 1 -1 \
 		release 6 1 BlobCount 0 31 0 2 0 0",
 	"0 0 6 \
 		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 MultiBlobScale 0 31 0 0 \
-		rotate 5 1 MultiBlobRotation 0 31 0 0 \
+		scale 5 1 RelativeAxisScale 0 31 0 0 \
+		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
 		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
 		remove 6 1 BlobID 0 31 0 1 -1 \
 		release 6 1 BlobCount 0 31 0 2 0 0",
