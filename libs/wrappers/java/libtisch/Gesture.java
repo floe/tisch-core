@@ -47,12 +47,20 @@ public class Gesture extends vectorSmartPtrFeatureBase {
     this(libtischJNI.new_Gesture__SWIG_2(_name), true);
   }
 
+  public Gesture(Gesture g) {
+    this(libtischJNI.new_Gesture__SWIG_3(Gesture.getCPtr(g), g), true);
+  }
+
+  public Gesture assign(Gesture g) {
+    return new Gesture(libtischJNI.Gesture_assign(swigCPtr, this, Gesture.getCPtr(g), g), false);
+  }
+
   public void load(InputState state) {
     libtischJNI.Gesture_load(swigCPtr, this, InputState.getCPtr(state), state);
   }
 
-  public boolean check() {
-    return libtischJNI.Gesture_check(swigCPtr, this);
+  public void check() {
+    libtischJNI.Gesture_check(swigCPtr, this);
   }
 
   public int next() {

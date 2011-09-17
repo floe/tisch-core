@@ -43,6 +43,11 @@ public class BlobCount extends FeatureInt {
     this(libtischJNI.new_BlobCount__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobCount_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobCount(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.BlobCount_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

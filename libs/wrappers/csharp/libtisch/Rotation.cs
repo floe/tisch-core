@@ -47,6 +47,13 @@ public class Rotation : FeatureDouble {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.Rotation_clone(swigCPtr);
+    Rotation ret = (cPtr == IntPtr.Zero) ? null : new Rotation(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public override void load(InputState state) {
     libtischPINVOKE.Rotation_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

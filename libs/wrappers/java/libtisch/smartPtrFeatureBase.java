@@ -73,6 +73,11 @@ public class smartPtrFeatureBase {
     return libtischJNI.smartPtrFeatureBase_name(swigCPtr, this);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.smartPtrFeatureBase_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new FeatureBase(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.smartPtrFeatureBase_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

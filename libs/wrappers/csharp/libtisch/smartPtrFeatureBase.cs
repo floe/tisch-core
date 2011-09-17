@@ -90,6 +90,13 @@ public class smartPtrFeatureBase : IDisposable {
     return ret;
   }
 
+  public FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.smartPtrFeatureBase_clone(swigCPtr);
+    FeatureBase ret = (cPtr == IntPtr.Zero) ? null : new FeatureBase(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public void load(InputState state) {
     libtischPINVOKE.smartPtrFeatureBase_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

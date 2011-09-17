@@ -43,6 +43,11 @@ public class BlobGroup extends FeatureVector {
     this(libtischJNI.new_BlobGroup__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobGroup_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobGroup(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.BlobGroup_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

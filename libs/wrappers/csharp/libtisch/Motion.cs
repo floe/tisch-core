@@ -47,6 +47,13 @@ public class Motion : FeatureVector {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.Motion_clone(swigCPtr);
+    Motion ret = (cPtr == IntPtr.Zero) ? null : new Motion(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public override void load(InputState state) {
     libtischPINVOKE.Motion_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

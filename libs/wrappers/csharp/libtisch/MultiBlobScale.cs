@@ -47,6 +47,13 @@ public class MultiBlobScale : Scale {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.MultiBlobScale_clone(swigCPtr);
+    MultiBlobScale ret = (cPtr == IntPtr.Zero) ? null : new MultiBlobScale(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public override void load(InputState state) {
     libtischPINVOKE.MultiBlobScale_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

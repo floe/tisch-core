@@ -43,6 +43,11 @@ public class BlobDim extends FeatureDimensions {
     this(libtischJNI.new_BlobDim__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobDim_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobDim(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.BlobDim_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

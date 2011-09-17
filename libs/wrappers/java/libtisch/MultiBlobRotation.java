@@ -43,6 +43,11 @@ public class MultiBlobRotation extends Rotation {
     this(libtischJNI.new_MultiBlobRotation__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.MultiBlobRotation_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new MultiBlobRotation(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.MultiBlobRotation_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

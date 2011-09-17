@@ -47,6 +47,13 @@ public class BlobDim : FeatureDimensions {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobDim_clone(swigCPtr);
+    BlobDim ret = (cPtr == IntPtr.Zero) ? null : new BlobDim(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public override void load(InputState state) {
     libtischPINVOKE.BlobDim_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

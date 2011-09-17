@@ -43,6 +43,11 @@ public class BlobPos extends FeatureVector {
     this(libtischJNI.new_BlobPos__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobPos_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobPos(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.BlobPos_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

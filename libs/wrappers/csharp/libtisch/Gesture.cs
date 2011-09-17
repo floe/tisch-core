@@ -51,15 +51,24 @@ public class Gesture : vectorSmartPtrFeatureBase {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public Gesture(Gesture g) : this(libtischPINVOKE.new_Gesture__SWIG_3(Gesture.getCPtr(g)), true) {
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public Gesture assign(Gesture g) {
+    Gesture ret = new Gesture(libtischPINVOKE.Gesture_assign(swigCPtr, Gesture.getCPtr(g)), false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public void load(InputState state) {
     libtischPINVOKE.Gesture_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public bool check() {
-    bool ret = libtischPINVOKE.Gesture_check(swigCPtr);
+  public void check() {
+    libtischPINVOKE.Gesture_check(swigCPtr);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
   }
 
   public int next() {

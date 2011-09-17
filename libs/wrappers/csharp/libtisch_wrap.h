@@ -17,6 +17,7 @@ public:
     SwigDirector_FeatureBase(int _tf = 0);
     virtual ~SwigDirector_FeatureBase();
     virtual char const *name() const;
+    virtual FeatureBase *clone() const;
     virtual void load(InputState &state);
     virtual int next();
     virtual void serialize(std::ostream &s);
@@ -24,18 +25,20 @@ public:
     using FeatureBase::typeflags;
 
     typedef char * (SWIGSTDCALL* SWIG_Callback0_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
-    typedef int (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void * (SWIGSTDCALL* SWIG_Callback1_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback2_t)(void *);
+    typedef int (SWIGSTDCALL* SWIG_Callback3_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    void swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackload, SWIG_Callback2_t callbacknext, SWIG_Callback3_t callbackserialize, SWIG_Callback4_t callbackunserialize);
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    void swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackclone, SWIG_Callback2_t callbackload, SWIG_Callback3_t callbacknext, SWIG_Callback4_t callbackserialize, SWIG_Callback5_t callbackunserialize);
 
 private:
     SWIG_Callback0_t swig_callbackname;
-    SWIG_Callback1_t swig_callbackload;
-    SWIG_Callback2_t swig_callbacknext;
-    SWIG_Callback3_t swig_callbackserialize;
-    SWIG_Callback4_t swig_callbackunserialize;
+    SWIG_Callback1_t swig_callbackclone;
+    SWIG_Callback2_t swig_callbackload;
+    SWIG_Callback3_t swig_callbacknext;
+    SWIG_Callback4_t swig_callbackserialize;
+    SWIG_Callback5_t swig_callbackunserialize;
     void swig_init_callbacks();
 };
 

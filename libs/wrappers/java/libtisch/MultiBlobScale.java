@@ -43,6 +43,11 @@ public class MultiBlobScale extends Scale {
     this(libtischJNI.new_MultiBlobScale__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.MultiBlobScale_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new MultiBlobScale(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.MultiBlobScale_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

@@ -47,6 +47,13 @@ public class BlobCount : FeatureInt {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobCount_clone(swigCPtr);
+    BlobCount ret = (cPtr == IntPtr.Zero) ? null : new BlobCount(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public override void load(InputState state) {
     libtischPINVOKE.BlobCount_load(swigCPtr, InputState.getCPtr(state));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();

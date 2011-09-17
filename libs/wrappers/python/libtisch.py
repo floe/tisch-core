@@ -514,6 +514,7 @@ class FeatureBase(_object):
     __swig_destroy__ = _libtisch.delete_FeatureBase
     __del__ = lambda self : None;
     def name(self): return _libtisch.FeatureBase_name(self)
+    def clone(self): return _libtisch.FeatureBase_clone(self)
     def load(self, *args): return _libtisch.FeatureBase_load(self, *args)
     def next(self): return _libtisch.FeatureBase_next(self)
     def serialize(self, *args): return _libtisch.FeatureBase_serialize(self, *args)
@@ -604,6 +605,7 @@ class smartPtrFeatureBase(_object):
     def get(self): return _libtisch.smartPtrFeatureBase_get(self)
     def unique(self): return _libtisch.smartPtrFeatureBase_unique(self)
     def name(self): return _libtisch.smartPtrFeatureBase_name(self)
+    def clone(self): return _libtisch.smartPtrFeatureBase_clone(self)
     def load(self, *args): return _libtisch.smartPtrFeatureBase_load(self, *args)
     def next(self): return _libtisch.smartPtrFeatureBase_next(self)
     def serialize(self, *args): return _libtisch.smartPtrFeatureBase_serialize(self, *args)
@@ -916,6 +918,7 @@ class BlobCount(FeatureInt):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobCount
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobCount_clone(self)
     def load(self, *args): return _libtisch.BlobCount_load(self, *args)
     def name(self): return _libtisch.BlobCount_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.BlobCount_dynamic_cast
@@ -1045,6 +1048,7 @@ class BlobDim(FeatureDimensions):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobDim
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobDim_clone(self)
     def load(self, *args): return _libtisch.BlobDim_load(self, *args)
     def next(self): return _libtisch.BlobDim_next(self)
     def name(self): return _libtisch.BlobDim_name(self)
@@ -1079,6 +1083,7 @@ class BlobID(FeatureInt):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobID
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobID_clone(self)
     def load(self, *args): return _libtisch.BlobID_load(self, *args)
     def next(self): return _libtisch.BlobID_next(self)
     def name(self): return _libtisch.BlobID_name(self)
@@ -1132,6 +1137,7 @@ class BlobPos(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobPos
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobPos_clone(self)
     def load(self, *args): return _libtisch.BlobPos_load(self, *args)
     def next(self): return _libtisch.BlobPos_next(self)
     def name(self): return _libtisch.BlobPos_name(self)
@@ -1164,6 +1170,7 @@ class BlobGroup(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobGroup
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobGroup_clone(self)
     def load(self, *args): return _libtisch.BlobGroup_load(self, *args)
     def next(self): return _libtisch.BlobGroup_next(self)
     def name(self): return _libtisch.BlobGroup_name(self)
@@ -1264,6 +1271,7 @@ class Motion(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Motion
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Motion_clone(self)
     def load(self, *args): return _libtisch.Motion_load(self, *args)
     def name(self): return _libtisch.Motion_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Motion_dynamic_cast
@@ -1289,6 +1297,7 @@ class Rotation(FeatureDouble):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Rotation
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Rotation_clone(self)
     def load(self, *args): return _libtisch.Rotation_load(self, *args)
     def name(self): return _libtisch.Rotation_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Rotation_dynamic_cast
@@ -1314,6 +1323,7 @@ class MultiBlobRotation(Rotation):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_MultiBlobRotation
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.MultiBlobRotation_clone(self)
     def load(self, *args): return _libtisch.MultiBlobRotation_load(self, *args)
     def name(self): return _libtisch.MultiBlobRotation_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.MultiBlobRotation_dynamic_cast
@@ -1339,6 +1349,7 @@ class Scale(FeatureDouble):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Scale
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Scale_clone(self)
     def load(self, *args): return _libtisch.Scale_load(self, *args)
     def name(self): return _libtisch.Scale_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Scale_dynamic_cast
@@ -1364,6 +1375,7 @@ class MultiBlobScale(Scale):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_MultiBlobScale
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.MultiBlobScale_clone(self)
     def load(self, *args): return _libtisch.MultiBlobScale_load(self, *args)
     def name(self): return _libtisch.MultiBlobScale_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.MultiBlobScale_dynamic_cast
@@ -5496,27 +5508,6 @@ class Dial(Widget):
 Dial_swigregister = _libtisch.Dial_swigregister
 Dial_swigregister(Dial)
 
-class InternalMatcher(Matcher):
-    __swig_setmethods__ = {}
-    for _s in [Matcher]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, InternalMatcher, name, value)
-    __swig_getmethods__ = {}
-    for _s in [Matcher]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
-    __getattr__ = lambda self, name: _swig_getattr(self, InternalMatcher, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        this = _libtisch.new_InternalMatcher()
-        try: self.this.append(this)
-        except: self.this = this
-    def process_gestures(self): return _libtisch.InternalMatcher_process_gestures(self)
-    def do_process_gestures(self): return _libtisch.InternalMatcher_do_process_gestures(self)
-    def request_update(self, *args): return _libtisch.InternalMatcher_request_update(self, *args)
-    def trigger_gesture(self, *args): return _libtisch.InternalMatcher_trigger_gesture(self, *args)
-    __swig_destroy__ = _libtisch.delete_InternalMatcher
-    __del__ = lambda self : None;
-InternalMatcher_swigregister = _libtisch.InternalMatcher_swigregister
-InternalMatcher_swigregister(InternalMatcher)
-
 class MasterContainer(Container):
     __swig_setmethods__ = {}
     for _s in [Container]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -5538,6 +5529,7 @@ class MasterContainer(Container):
     def doUpdate(self, target = None): return _libtisch.MasterContainer_doUpdate(self, target)
     def adjust(self, *args): return _libtisch.MasterContainer_adjust(self, *args)
     def usePeak(self): return _libtisch.MasterContainer_usePeak(self)
+    def process_gestures(self): return _libtisch.MasterContainer_process_gestures(self)
     __swig_setmethods__["matcher"] = _libtisch.MasterContainer_matcher_set
     __swig_getmethods__["matcher"] = _libtisch.MasterContainer_matcher_get
     if _newclass:matcher = _swig_property(_libtisch.MasterContainer_matcher_get, _libtisch.MasterContainer_matcher_set)

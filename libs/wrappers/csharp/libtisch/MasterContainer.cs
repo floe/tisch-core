@@ -69,14 +69,20 @@ public class MasterContainer : Container {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  protected InternalMatcher matcher {
+  public int process_gestures() {
+    int ret = libtischPINVOKE.MasterContainer_process_gestures(swigCPtr);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  protected SWIGTYPE_p_InternalMatcher matcher {
     set {
-      libtischPINVOKE.MasterContainer_matcher_set(swigCPtr, InternalMatcher.getCPtr(value));
+      libtischPINVOKE.MasterContainer_matcher_set(swigCPtr, SWIGTYPE_p_InternalMatcher.getCPtr(value));
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     } 
     get {
       IntPtr cPtr = libtischPINVOKE.MasterContainer_matcher_get(swigCPtr);
-      InternalMatcher ret = (cPtr == IntPtr.Zero) ? null : new InternalMatcher(cPtr, false);
+      SWIGTYPE_p_InternalMatcher ret = (cPtr == IntPtr.Zero) ? null : new SWIGTYPE_p_InternalMatcher(cPtr, false);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 

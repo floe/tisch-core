@@ -76,13 +76,17 @@ public class MasterContainer extends Container {
     libtischJNI.MasterContainer_usePeak(swigCPtr, this);
   }
 
-  protected void setMatcher(InternalMatcher value) {
-    libtischJNI.MasterContainer_matcher_set(swigCPtr, this, InternalMatcher.getCPtr(value), value);
+  public int process_gestures() {
+    return libtischJNI.MasterContainer_process_gestures(swigCPtr, this);
   }
 
-  protected InternalMatcher getMatcher() {
+  protected void setMatcher(SWIGTYPE_p_InternalMatcher value) {
+    libtischJNI.MasterContainer_matcher_set(swigCPtr, this, SWIGTYPE_p_InternalMatcher.getCPtr(value));
+  }
+
+  protected SWIGTYPE_p_InternalMatcher getMatcher() {
     long cPtr = libtischJNI.MasterContainer_matcher_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new InternalMatcher(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_InternalMatcher(cPtr, false);
   }
 
   protected void setInput(MatcherTUIOInput value) {

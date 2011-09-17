@@ -421,7 +421,7 @@ namespace Swig {
 
 namespace Swig {
   static jclass jclass_libtischJNI = NULL;
-  static jmethodID director_methids[146];
+  static jmethodID director_methids[147];
 }
 
 SWIGINTERN void SWIG_JavaException(JNIEnv *jenv, int code, const char *msg) {
@@ -801,20 +801,43 @@ char const *SwigDirector_FeatureBase::name() const {
   return (char const *)c_result;
 }
 
+FeatureBase *SwigDirector_FeatureBase::clone() const {
+  FeatureBase *c_result = 0 ;
+  jlong jresult = 0 ;
+  JNIEnvWrapper swigjnienv(this) ;
+  JNIEnv * jenv = swigjnienv.getJNIEnv() ;
+  jobject swigjobj = (jobject) NULL ;
+  
+  if (!swig_override[1]) {
+    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method FeatureBase::clone.");
+    return c_result;
+  }
+  swigjobj = swig_get_self(jenv);
+  if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
+    jresult = (jlong) jenv->CallStaticLongMethod(Swig::jclass_libtischJNI, Swig::director_methids[1], swigjobj);
+    if (jenv->ExceptionOccurred()) return c_result;
+    c_result = *(FeatureBase **)&jresult; 
+  } else {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
+  }
+  if (swigjobj) jenv->DeleteLocalRef(swigjobj);
+  return c_result;
+}
+
 void SwigDirector_FeatureBase::load(InputState &state) {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   jlong jstate = 0 ;
   
-  if (!swig_override[1]) {
+  if (!swig_override[2]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method FeatureBase::load.");
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *(InputState **)&jstate = (InputState *) &state; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[1], swigjobj, jstate);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[2], swigjobj, jstate);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -829,13 +852,13 @@ int SwigDirector_FeatureBase::next() {
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   
-  if (!swig_override[2]) {
+  if (!swig_override[3]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method FeatureBase::next.");
     return c_result;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jresult = (jint) jenv->CallStaticIntMethod(Swig::jclass_libtischJNI, Swig::director_methids[2], swigjobj);
+    jresult = (jint) jenv->CallStaticIntMethod(Swig::jclass_libtischJNI, Swig::director_methids[3], swigjobj);
     if (jenv->ExceptionOccurred()) return c_result;
     c_result = (int)jresult; 
   } else {
@@ -851,14 +874,14 @@ void SwigDirector_FeatureBase::serialize(std::ostream &s) {
   jobject swigjobj = (jobject) NULL ;
   jlong js = 0 ;
   
-  if (!swig_override[3]) {
+  if (!swig_override[4]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method FeatureBase::serialize.");
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *(std::ostream **)&js = (std::ostream *) &s; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[3], swigjobj, js);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[4], swigjobj, js);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -872,14 +895,14 @@ void SwigDirector_FeatureBase::unserialize(std::istream &s) {
   jobject swigjobj = (jobject) NULL ;
   jlong js = 0 ;
   
-  if (!swig_override[4]) {
+  if (!swig_override[5]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method FeatureBase::unserialize.");
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *(std::istream **)&js = (std::istream *) &s; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[4], swigjobj, js);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[5], swigjobj, js);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -895,6 +918,9 @@ void SwigDirector_FeatureBase::swig_connect_director(JNIEnv *jenv, jobject jself
   } methods[] = {
     {
       "name", "()Ljava/lang/String;", NULL 
+    },
+    {
+      "clone", "()Llibtisch/FeatureBase;", NULL 
     },
     {
       "load", "(Llibtisch/InputState;)V", NULL 
@@ -919,7 +945,7 @@ void SwigDirector_FeatureBase::swig_connect_director(JNIEnv *jenv, jobject jself
       baseclass = (jclass) jenv->NewGlobalRef(baseclass);
     }
     bool derived = (jenv->IsSameObject(baseclass, jcls) ? false : true);
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 6; ++i) {
       if (!methods[i].base_methid) {
         methods[i].base_methid = jenv->GetMethodID(baseclass, methods[i].mname, methods[i].mdesc);
         if (!methods[i].base_methid) return;
@@ -954,7 +980,7 @@ void SwigDirector_Widget::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[5], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[6], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -975,7 +1001,7 @@ void SwigDirector_Widget::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[6], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[7], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -996,7 +1022,7 @@ void SwigDirector_Widget::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[8], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[9], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1017,7 +1043,7 @@ void SwigDirector_Widget::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[10], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[11], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1038,7 +1064,7 @@ void SwigDirector_Widget::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[12], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[13], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1057,7 +1083,7 @@ void SwigDirector_Widget::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[14], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[15], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1078,7 +1104,7 @@ void SwigDirector_Widget::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[15], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[16], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1099,7 +1125,7 @@ void SwigDirector_Widget::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[16], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[17], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1120,7 +1146,7 @@ void SwigDirector_Widget::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[18], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[19], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1225,7 +1251,7 @@ void SwigDirector_Label::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[20], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[21], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1246,7 +1272,7 @@ void SwigDirector_Label::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[21], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[22], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1267,7 +1293,7 @@ void SwigDirector_Label::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[23], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[24], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1288,7 +1314,7 @@ void SwigDirector_Label::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[25], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[26], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1309,7 +1335,7 @@ void SwigDirector_Label::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[27], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[28], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1328,7 +1354,7 @@ void SwigDirector_Label::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[29], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[30], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1349,7 +1375,7 @@ void SwigDirector_Label::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[30], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[31], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1370,7 +1396,7 @@ void SwigDirector_Label::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[31], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[32], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1391,7 +1417,7 @@ void SwigDirector_Label::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[33], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[34], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1496,7 +1522,7 @@ void SwigDirector_Button::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[35], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[36], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1517,7 +1543,7 @@ void SwigDirector_Button::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[36], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[37], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1538,7 +1564,7 @@ void SwigDirector_Button::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[38], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[39], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1559,7 +1585,7 @@ void SwigDirector_Button::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[40], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[41], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1580,7 +1606,7 @@ void SwigDirector_Button::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[42], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[43], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1599,7 +1625,7 @@ void SwigDirector_Button::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[44], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[45], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1620,7 +1646,7 @@ void SwigDirector_Button::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[45], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[46], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1641,7 +1667,7 @@ void SwigDirector_Button::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[46], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[47], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1662,7 +1688,7 @@ void SwigDirector_Button::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[48], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[49], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1686,7 +1712,7 @@ void SwigDirector_Button::tap(Vector pos, int id) {
     jpos = 0;
     *((Vector **)&jpos) = &pos; 
     jid = (jint) id;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[50], swigjobj, jpos, jid);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[51], swigjobj, jpos, jid);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1705,7 +1731,7 @@ void SwigDirector_Button::release() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[51], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[52], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1816,7 +1842,7 @@ void SwigDirector_Tile::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[52], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[53], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1837,7 +1863,7 @@ void SwigDirector_Tile::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[53], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[54], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1858,7 +1884,7 @@ void SwigDirector_Tile::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[55], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[56], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1879,7 +1905,7 @@ void SwigDirector_Tile::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[57], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[58], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1900,7 +1926,7 @@ void SwigDirector_Tile::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[59], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[60], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1919,7 +1945,7 @@ void SwigDirector_Tile::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[61], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[62], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1940,7 +1966,7 @@ void SwigDirector_Tile::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[62], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[63], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1961,7 +1987,7 @@ void SwigDirector_Tile::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[63], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[64], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -1982,7 +2008,7 @@ void SwigDirector_Tile::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[65], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[66], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2006,7 +2032,7 @@ void SwigDirector_Tile::tap(Vector pos, int id) {
     jpos = 0;
     *((Vector **)&jpos) = &pos; 
     jid = (jint) id;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[67], swigjobj, jpos, jid);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[68], swigjobj, jpos, jid);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2025,7 +2051,7 @@ void SwigDirector_Tile::release() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[68], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[69], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2047,7 +2073,7 @@ void SwigDirector_Tile::apply(Vector delta) {
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jdelta = 0;
     *((Vector **)&jdelta) = &delta; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[69], swigjobj, jdelta);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[70], swigjobj, jdelta);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2161,7 +2187,7 @@ void SwigDirector_Container::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[70], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[71], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2182,7 +2208,7 @@ void SwigDirector_Container::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[71], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[72], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2203,7 +2229,7 @@ void SwigDirector_Container::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[73], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[74], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2224,7 +2250,7 @@ void SwigDirector_Container::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[75], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[76], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2245,7 +2271,7 @@ void SwigDirector_Container::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[77], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[78], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2264,7 +2290,7 @@ void SwigDirector_Container::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[79], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[80], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2285,7 +2311,7 @@ void SwigDirector_Container::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[80], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[81], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2306,7 +2332,7 @@ void SwigDirector_Container::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[81], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[82], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2327,7 +2353,7 @@ void SwigDirector_Container::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[83], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[84], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2351,7 +2377,7 @@ void SwigDirector_Container::tap(Vector vec, int id) {
     jvec = 0;
     *((Vector **)&jvec) = &vec; 
     jid = (jint) id;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[85], swigjobj, jvec, jid);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[86], swigjobj, jvec, jid);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2370,7 +2396,7 @@ void SwigDirector_Container::release() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[86], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[87], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2392,7 +2418,7 @@ void SwigDirector_Container::apply(Vector delta) {
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jdelta = 0;
     *((Vector **)&jdelta) = &delta; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[87], swigjobj, jdelta);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[88], swigjobj, jdelta);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2506,7 +2532,7 @@ void SwigDirector_Slider::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[88], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[89], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2527,7 +2553,7 @@ void SwigDirector_Slider::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[89], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[90], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2548,7 +2574,7 @@ void SwigDirector_Slider::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[91], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[92], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2569,7 +2595,7 @@ void SwigDirector_Slider::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[93], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[94], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2590,7 +2616,7 @@ void SwigDirector_Slider::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[95], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[96], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2609,7 +2635,7 @@ void SwigDirector_Slider::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[97], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[98], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2630,7 +2656,7 @@ void SwigDirector_Slider::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[98], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[99], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2651,7 +2677,7 @@ void SwigDirector_Slider::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[99], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[100], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2672,7 +2698,7 @@ void SwigDirector_Slider::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[101], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[102], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2777,7 +2803,7 @@ void SwigDirector_Dial::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[103], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[104], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2798,7 +2824,7 @@ void SwigDirector_Dial::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[104], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[105], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2819,7 +2845,7 @@ void SwigDirector_Dial::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[106], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[107], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2840,7 +2866,7 @@ void SwigDirector_Dial::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[108], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[109], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2861,7 +2887,7 @@ void SwigDirector_Dial::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[110], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[111], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2880,7 +2906,7 @@ void SwigDirector_Dial::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[112], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[113], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2901,7 +2927,7 @@ void SwigDirector_Dial::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[113], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[114], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2922,7 +2948,7 @@ void SwigDirector_Dial::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[114], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[115], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -2943,7 +2969,7 @@ void SwigDirector_Dial::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[116], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[117], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3048,7 +3074,7 @@ void SwigDirector_MasterContainer::outline() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[118], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[119], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3069,7 +3095,7 @@ void SwigDirector_MasterContainer::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[119], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[120], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3090,7 +3116,7 @@ void SwigDirector_MasterContainer::doUpdate(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[121], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[122], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3111,7 +3137,7 @@ void SwigDirector_MasterContainer::raise(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[123], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[124], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3132,7 +3158,7 @@ void SwigDirector_MasterContainer::lower(Widget *widget) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jwidget) = (Widget *) widget; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[125], swigjobj, jwidget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[126], swigjobj, jwidget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3151,7 +3177,7 @@ void SwigDirector_MasterContainer::draw() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[127], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[128], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3172,7 +3198,7 @@ void SwigDirector_MasterContainer::action(Gesture *gesture) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Gesture **)&jgesture) = (Gesture *) gesture; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[128], swigjobj, jgesture);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[129], swigjobj, jgesture);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3193,7 +3219,7 @@ void SwigDirector_MasterContainer::enter(double z) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jz = (jdouble) z;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[129], swigjobj, jz);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[130], swigjobj, jz);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3214,7 +3240,7 @@ void SwigDirector_MasterContainer::paint(bool update_stencil) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jupdate_stencil = (jboolean) update_stencil;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[131], swigjobj, jupdate_stencil);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[132], swigjobj, jupdate_stencil);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3238,7 +3264,7 @@ void SwigDirector_MasterContainer::tap(Vector vec, int id) {
     jvec = 0;
     *((Vector **)&jvec) = &vec; 
     jid = (jint) id;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[133], swigjobj, jvec, jid);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[134], swigjobj, jvec, jid);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3257,7 +3283,7 @@ void SwigDirector_MasterContainer::release() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[134], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[135], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3279,7 +3305,7 @@ void SwigDirector_MasterContainer::apply(Vector delta) {
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jdelta = 0;
     *((Vector **)&jdelta) = &delta; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[135], swigjobj, jdelta);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[136], swigjobj, jdelta);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3393,7 +3419,7 @@ void SwigDirector_Window::idle() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[136], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[137], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3412,7 +3438,7 @@ void SwigDirector_Window::display() {
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[137], swigjobj);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[138], swigjobj);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3435,7 +3461,7 @@ void SwigDirector_Window::reshape(int w, int h) {
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jw = (jint) w;
     jh = (jint) h;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[138], swigjobj, jw, jh);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[139], swigjobj, jw, jh);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3460,7 +3486,7 @@ void SwigDirector_Window::keyboard(int key, int x, int y) {
     jkey = (jint) key;
     jx = (jint) x;
     jy = (jint) y;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[139], swigjobj, jkey, jx, jy);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[140], swigjobj, jkey, jx, jy);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3489,7 +3515,7 @@ void SwigDirector_Window::mouse(int num, int button, int state, int x, int y) {
     jstate = (jint) state;
     jx = (jint) x;
     jy = (jint) y;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[140], swigjobj, jnum, jbutton, jstate, jx, jy);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[141], swigjobj, jnum, jbutton, jstate, jx, jy);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3514,7 +3540,7 @@ void SwigDirector_Window::passive(int num, int x, int y) {
     jnum = (jint) num;
     jx = (jint) x;
     jy = (jint) y;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[141], swigjobj, jnum, jx, jy);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[142], swigjobj, jnum, jx, jy);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3539,7 +3565,7 @@ void SwigDirector_Window::motion(int num, int x, int y) {
     jnum = (jint) num;
     jx = (jint) x;
     jy = (jint) y;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[142], swigjobj, jnum, jx, jy);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[143], swigjobj, jnum, jx, jy);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3562,7 +3588,7 @@ void SwigDirector_Window::entry(int num, int state) {
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jnum = (jint) num;
     jstate = (jint) state;
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[143], swigjobj, jnum, jstate);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[144], swigjobj, jnum, jstate);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -3583,7 +3609,7 @@ void SwigDirector_Window::update(Widget *target) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     *((Widget **)&jtarget) = (Widget *) target; 
-    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[144], swigjobj, jtarget);
+    jenv->CallStaticVoidMethod(Swig::jclass_libtischJNI, Swig::director_methids[145], swigjobj, jtarget);
     if (jenv->ExceptionOccurred()) return ;
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object");
@@ -6770,6 +6796,29 @@ SWIGEXPORT jstring JNICALL Java_libtisch_libtischJNI_FeatureBase_1name(JNIEnv *j
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureBase_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  FeatureBase *arg1 = (FeatureBase *) 0 ;
+  FeatureBase *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(FeatureBase **)&jarg1; 
+  {
+    try {
+      result = (FeatureBase *)((FeatureBase const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(FeatureBase **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureBase_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   FeatureBase *arg1 = (FeatureBase *) 0 ;
   InputState *arg2 = 0 ;
@@ -7505,6 +7554,29 @@ SWIGEXPORT jstring JNICALL Java_libtisch_libtischJNI_smartPtrFeatureBase_1name(J
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_smartPtrFeatureBase_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  SmartPtr< FeatureBase > *arg1 = (SmartPtr< FeatureBase > *) 0 ;
+  FeatureBase *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(SmartPtr< FeatureBase > **)&jarg1; 
+  {
+    try {
+      result = (FeatureBase *)(*arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(FeatureBase **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_smartPtrFeatureBase_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   SmartPtr< FeatureBase > *arg1 = (SmartPtr< FeatureBase > *) 0 ;
   InputState *arg2 = 0 ;
@@ -8076,6 +8148,63 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Gesture_1_1SWIG_12(JNIEn
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Gesture_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Gesture *arg1 = 0 ;
+  Gesture *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Gesture **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Gesture const & reference is null");
+    return 0;
+  } 
+  {
+    try {
+      result = (Gesture *)new Gesture((Gesture const &)*arg1);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(Gesture **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Gesture_1assign(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  Gesture *arg1 = (Gesture *) 0 ;
+  Gesture *arg2 = 0 ;
+  Gesture *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Gesture **)&jarg1; 
+  arg2 = *(Gesture **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Gesture const & reference is null");
+    return 0;
+  } 
+  {
+    try {
+      result = (Gesture *) &(arg1)->operator =((Gesture const &)*arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(Gesture **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Gesture_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Gesture *arg1 = (Gesture *) 0 ;
   InputState *arg2 = 0 ;
@@ -8102,10 +8231,8 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Gesture_1load(JNIEnv *jenv, jc
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_libtisch_libtischJNI_Gesture_1check(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jboolean jresult = 0 ;
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Gesture_1check(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   Gesture *arg1 = (Gesture *) 0 ;
-  bool result;
   
   (void)jenv;
   (void)jcls;
@@ -8113,15 +8240,13 @@ SWIGEXPORT jboolean JNICALL Java_libtisch_libtischJNI_Gesture_1check(JNIEnv *jen
   arg1 = *(Gesture **)&jarg1; 
   {
     try {
-      result = (bool)(arg1)->check();
+      (arg1)->check();
     } catch (std::exception& e) {
       {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
       };
     }
   }
-  jresult = (jboolean)result; 
-  return jresult;
 }
 
 
@@ -9945,6 +10070,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1BlobCount(JNIEnv *jenv
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobCount_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  BlobCount *arg1 = (BlobCount *) 0 ;
+  BlobCount *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BlobCount **)&jarg1; 
+  {
+    try {
+      result = (BlobCount *)((BlobCount const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(BlobCount **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BlobCount_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   BlobCount *arg1 = (BlobCount *) 0 ;
   InputState *arg2 = 0 ;
@@ -10795,6 +10943,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1BlobDim(JNIEnv *jenv, 
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobDim_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  BlobDim *arg1 = (BlobDim *) 0 ;
+  BlobDim *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BlobDim **)&jarg1; 
+  {
+    try {
+      result = (BlobDim *)((BlobDim const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(BlobDim **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BlobDim_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   BlobDim *arg1 = (BlobDim *) 0 ;
   InputState *arg2 = 0 ;
@@ -10947,6 +11118,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1BlobID(JNIEnv *jenv, j
       };
     }
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobID_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  BlobID *arg1 = (BlobID *) 0 ;
+  BlobID *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BlobID **)&jarg1; 
+  {
+    try {
+      result = (BlobID *)((BlobID const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(BlobID **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -11317,6 +11511,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1BlobPos(JNIEnv *jenv, 
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobPos_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  BlobPos *arg1 = (BlobPos *) 0 ;
+  BlobPos *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BlobPos **)&jarg1; 
+  {
+    try {
+      result = (BlobPos *)((BlobPos const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(BlobPos **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_BlobPos_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   BlobPos *arg1 = (BlobPos *) 0 ;
   InputState *arg2 = 0 ;
@@ -11526,6 +11743,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1BlobGroup(JNIEnv *jenv
       };
     }
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobGroup_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  BlobGroup *arg1 = (BlobGroup *) 0 ;
+  BlobGroup *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(BlobGroup **)&jarg1; 
+  {
+    try {
+      result = (BlobGroup *)((BlobGroup const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(BlobGroup **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -12152,6 +12392,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1Motion(JNIEnv *jenv, j
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Motion_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Motion *arg1 = (Motion *) 0 ;
+  Motion *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Motion **)&jarg1; 
+  {
+    try {
+      result = (Motion *)((Motion const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(Motion **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Motion_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Motion *arg1 = (Motion *) 0 ;
   InputState *arg2 = 0 ;
@@ -12281,6 +12544,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1Rotation(JNIEnv *jenv,
       };
     }
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Rotation_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Rotation *arg1 = (Rotation *) 0 ;
+  Rotation *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Rotation **)&jarg1; 
+  {
+    try {
+      result = (Rotation *)((Rotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(Rotation **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -12416,6 +12702,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1MultiBlobRotation(JNIE
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_MultiBlobRotation_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  MultiBlobRotation *arg1 = (MultiBlobRotation *) 0 ;
+  MultiBlobRotation *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(MultiBlobRotation **)&jarg1; 
+  {
+    try {
+      result = (MultiBlobRotation *)((MultiBlobRotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(MultiBlobRotation **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MultiBlobRotation_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   MultiBlobRotation *arg1 = (MultiBlobRotation *) 0 ;
   InputState *arg2 = 0 ;
@@ -12548,6 +12857,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1Scale(JNIEnv *jenv, jc
 }
 
 
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Scale_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Scale *arg1 = (Scale *) 0 ;
+  Scale *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Scale **)&jarg1; 
+  {
+    try {
+      result = (Scale *)((Scale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(Scale **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Scale_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Scale *arg1 = (Scale *) 0 ;
   InputState *arg2 = 0 ;
@@ -12677,6 +13009,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1MultiBlobScale(JNIEnv 
       };
     }
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_MultiBlobScale_1clone(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  MultiBlobScale *arg1 = (MultiBlobScale *) 0 ;
+  MultiBlobScale *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(MultiBlobScale **)&jarg1; 
+  {
+    try {
+      result = (MultiBlobScale *)((MultiBlobScale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  *(MultiBlobScale **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -63963,131 +64318,6 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Dial_1change_1ownership(JNIEnv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1InternalMatcher(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  InternalMatcher *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  {
-    try {
-      result = (InternalMatcher *)new InternalMatcher();
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  *(InternalMatcher **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_InternalMatcher_1process_1gestures(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(InternalMatcher **)&jarg1; 
-  {
-    try {
-      (arg1)->process_gestures();
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_InternalMatcher_1do_1process_1gestures(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(InternalMatcher **)&jarg1; 
-  {
-    try {
-      result = (int)(arg1)->do_process_gestures();
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_InternalMatcher_1request_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(InternalMatcher **)&jarg1; 
-  arg2 = (int)jarg2; 
-  {
-    try {
-      (arg1)->request_update(arg2);
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_InternalMatcher_1trigger_1gesture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int arg2 ;
-  Gesture *arg3 = (Gesture *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg3_;
-  arg1 = *(InternalMatcher **)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = *(Gesture **)&jarg3; 
-  {
-    try {
-      (arg1)->trigger_gesture(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1InternalMatcher(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(InternalMatcher **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MasterContainer_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3) {
   jlong jresult = 0 ;
   int arg1 ;
@@ -64285,7 +64515,30 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MasterContainer_1usePeak(JNIEn
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MasterContainer_1matcher_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_MasterContainer_1process_1gestures(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(MasterContainer **)&jarg1; 
+  {
+    try {
+      result = (int)(arg1)->process_gestures();
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MasterContainer_1matcher_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   InternalMatcher *arg2 = (InternalMatcher *) 0 ;
   SwigDirector_MasterContainer *darg = 0;
@@ -64293,11 +64546,10 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MasterContainer_1matcher_1set(
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(MasterContainer **)&jarg1; 
   arg2 = *(InternalMatcher **)&jarg2; 
   darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
-  if (arg1) darg->matcher = *arg2;
+  if (arg1) darg->matcher = arg2;
 }
 
 
@@ -64312,7 +64564,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_MasterContainer_1matcher_1get
   (void)jarg1_;
   arg1 = *(MasterContainer **)&jarg1; 
   darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
-  result = (InternalMatcher *)& (darg->matcher);
+  result = (InternalMatcher *) (darg->matcher);
   *(InternalMatcher **)&jresult = result; 
   return jresult;
 }
@@ -65557,14 +65809,6 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_SWIGDialUpcast(JNIEnv *jenv, 
     return baseptr;
 }
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_SWIGInternalMatcherUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-    jlong baseptr = 0;
-    (void)jenv;
-    (void)jcls;
-    *(Matcher **)&baseptr = *(InternalMatcher **)&jarg1;
-    return baseptr;
-}
-
 SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_SWIGMasterContainerUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
     jlong baseptr = 0;
     (void)jenv;
@@ -65587,9 +65831,12 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_swig_1module_1init(JNIEnv *jen
   static struct {
     const char *method;
     const char *signature;
-  } methods[146] = {
+  } methods[147] = {
     {
       "SwigDirector_FeatureBase_name", "(Llibtisch/FeatureBase;)Ljava/lang/String;" 
+    },
+    {
+      "SwigDirector_FeatureBase_clone", "(Llibtisch/FeatureBase;)J" 
     },
     {
       "SwigDirector_FeatureBase_load", "(Llibtisch/FeatureBase;J)V" 

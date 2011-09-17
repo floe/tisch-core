@@ -43,6 +43,11 @@ public class Motion extends FeatureVector {
     this(libtischJNI.new_Motion__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.Motion_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new Motion(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.Motion_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

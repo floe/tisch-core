@@ -43,6 +43,11 @@ public class BlobID extends FeatureInt {
     this(libtischJNI.new_BlobID__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobID_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobID(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.BlobID_load(swigCPtr, this, InputState.getCPtr(state), state);
   }

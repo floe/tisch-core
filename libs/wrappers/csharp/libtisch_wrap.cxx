@@ -1342,6 +1342,19 @@ char const *SwigDirector_FeatureBase::name() const {
   return (char const *)c_result;
 }
 
+FeatureBase *SwigDirector_FeatureBase::clone() const {
+  FeatureBase *c_result = 0 ;
+  void * jresult = 0 ;
+  
+  if (!swig_callbackclone) {
+    throw Swig::DirectorPureVirtualException("FeatureBase::clone");
+  } else {
+    jresult = (void *) swig_callbackclone();
+    c_result = (FeatureBase *)jresult; 
+  }
+  return c_result;
+}
+
 void SwigDirector_FeatureBase::load(InputState &state) {
   void * jstate = 0 ;
   
@@ -1388,8 +1401,9 @@ void SwigDirector_FeatureBase::unserialize(std::istream &s) {
   }
 }
 
-void SwigDirector_FeatureBase::swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackload, SWIG_Callback2_t callbacknext, SWIG_Callback3_t callbackserialize, SWIG_Callback4_t callbackunserialize) {
+void SwigDirector_FeatureBase::swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackclone, SWIG_Callback2_t callbackload, SWIG_Callback3_t callbacknext, SWIG_Callback4_t callbackserialize, SWIG_Callback5_t callbackunserialize) {
   swig_callbackname = callbackname;
+  swig_callbackclone = callbackclone;
   swig_callbackload = callbackload;
   swig_callbacknext = callbacknext;
   swig_callbackserialize = callbackserialize;
@@ -1398,6 +1412,7 @@ void SwigDirector_FeatureBase::swig_connect_director(SWIG_Callback0_t callbackna
 
 void SwigDirector_FeatureBase::swig_init_callbacks() {
   swig_callbackname = 0;
+  swig_callbackclone = 0;
   swig_callbackload = 0;
   swig_callbacknext = 0;
   swig_callbackserialize = 0;
@@ -6285,6 +6300,26 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_FeatureBase_name(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureBase_clone(void * jarg1) {
+  void * jresult ;
+  FeatureBase *arg1 = (FeatureBase *) 0 ;
+  FeatureBase *result = 0 ;
+  
+  arg1 = (FeatureBase *)jarg1; 
+  {
+    try {
+      result = (FeatureBase *)((FeatureBase const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_FeatureBase_load(void * jarg1, void * jarg2) {
   FeatureBase *arg1 = (FeatureBase *) 0 ;
   InputState *arg2 = 0 ;
@@ -6419,11 +6454,11 @@ SWIGEXPORT int SWIGSTDCALL CSharp_FeatureBase_typeflags_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureBase_director_connect(void *objarg, SwigDirector_FeatureBase::SWIG_Callback0_t callback0, SwigDirector_FeatureBase::SWIG_Callback1_t callback1, SwigDirector_FeatureBase::SWIG_Callback2_t callback2, SwigDirector_FeatureBase::SWIG_Callback3_t callback3, SwigDirector_FeatureBase::SWIG_Callback4_t callback4) {
+SWIGEXPORT void SWIGSTDCALL CSharp_FeatureBase_director_connect(void *objarg, SwigDirector_FeatureBase::SWIG_Callback0_t callback0, SwigDirector_FeatureBase::SWIG_Callback1_t callback1, SwigDirector_FeatureBase::SWIG_Callback2_t callback2, SwigDirector_FeatureBase::SWIG_Callback3_t callback3, SwigDirector_FeatureBase::SWIG_Callback4_t callback4, SwigDirector_FeatureBase::SWIG_Callback5_t callback5) {
   FeatureBase *obj = (FeatureBase *)objarg;
   SwigDirector_FeatureBase *director = dynamic_cast<SwigDirector_FeatureBase *>(obj);
   if (director) {
-    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4);
+    director->swig_connect_director(callback0, callback1, callback2, callback3, callback4, callback5);
   }
 }
 
@@ -6983,6 +7018,26 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_smartPtrFeatureBase_name(void * jarg1) {
     }
   }
   jresult = SWIG_csharp_string_callback((const char *)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_smartPtrFeatureBase_clone(void * jarg1) {
+  void * jresult ;
+  SmartPtr< FeatureBase > *arg1 = (SmartPtr< FeatureBase > *) 0 ;
+  FeatureBase *result = 0 ;
+  
+  arg1 = (SmartPtr< FeatureBase > *)jarg1; 
+  {
+    try {
+      result = (FeatureBase *)(*arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -7809,6 +7864,56 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_Gesture__SWIG_2(char * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Gesture__SWIG_3(void * jarg1) {
+  void * jresult ;
+  Gesture *arg1 = 0 ;
+  Gesture *result = 0 ;
+  
+  arg1 = (Gesture *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Gesture const & type is null", 0);
+    return 0;
+  } 
+  {
+    try {
+      result = (Gesture *)new Gesture((Gesture const &)*arg1);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_Gesture_assign(void * jarg1, void * jarg2) {
+  void * jresult ;
+  Gesture *arg1 = (Gesture *) 0 ;
+  Gesture *arg2 = 0 ;
+  Gesture *result = 0 ;
+  
+  arg1 = (Gesture *)jarg1; 
+  arg2 = (Gesture *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Gesture const & type is null", 0);
+    return 0;
+  } 
+  {
+    try {
+      result = (Gesture *) &(arg1)->operator =((Gesture const &)*arg2);
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_Gesture_load(void * jarg1, void * jarg2) {
   Gesture *arg1 = (Gesture *) 0 ;
   InputState *arg2 = 0 ;
@@ -7831,23 +7936,19 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Gesture_load(void * jarg1, void * jarg2) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Gesture_check(void * jarg1) {
-  unsigned int jresult ;
+SWIGEXPORT void SWIGSTDCALL CSharp_Gesture_check(void * jarg1) {
   Gesture *arg1 = (Gesture *) 0 ;
-  bool result;
   
   arg1 = (Gesture *)jarg1; 
   {
     try {
-      result = (bool)(arg1)->check();
+      (arg1)->check();
     } catch (std::exception& e) {
       {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
       };
     }
   }
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -10119,6 +10220,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_BlobCount(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_BlobCount_clone(void * jarg1) {
+  void * jresult ;
+  BlobCount *arg1 = (BlobCount *) 0 ;
+  BlobCount *result = 0 ;
+  
+  arg1 = (BlobCount *)jarg1; 
+  {
+    try {
+      result = (BlobCount *)((BlobCount const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_BlobCount_load(void * jarg1, void * jarg2) {
   BlobCount *arg1 = (BlobCount *) 0 ;
   InputState *arg2 = 0 ;
@@ -11179,6 +11300,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_BlobDim(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_BlobDim_clone(void * jarg1) {
+  void * jresult ;
+  BlobDim *arg1 = (BlobDim *) 0 ;
+  BlobDim *result = 0 ;
+  
+  arg1 = (BlobDim *)jarg1; 
+  {
+    try {
+      result = (BlobDim *)((BlobDim const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_BlobDim_load(void * jarg1, void * jarg2) {
   BlobDim *arg1 = (BlobDim *) 0 ;
   InputState *arg2 = 0 ;
@@ -11312,6 +11453,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_BlobID(void * jarg1) {
       };
     }
   }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_BlobID_clone(void * jarg1) {
+  void * jresult ;
+  BlobID *arg1 = (BlobID *) 0 ;
+  BlobID *result = 0 ;
+  
+  arg1 = (BlobID *)jarg1; 
+  {
+    try {
+      result = (BlobID *)((BlobID const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -11635,6 +11796,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_BlobPos(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_BlobPos_clone(void * jarg1) {
+  void * jresult ;
+  BlobPos *arg1 = (BlobPos *) 0 ;
+  BlobPos *result = 0 ;
+  
+  arg1 = (BlobPos *)jarg1; 
+  {
+    try {
+      result = (BlobPos *)((BlobPos const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_BlobPos_load(void * jarg1, void * jarg2) {
   BlobPos *arg1 = (BlobPos *) 0 ;
   InputState *arg2 = 0 ;
@@ -11812,6 +11993,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_BlobGroup(void * jarg1) {
       };
     }
   }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_BlobGroup_clone(void * jarg1) {
+  void * jresult ;
+  BlobGroup *arg1 = (BlobGroup *) 0 ;
+  BlobGroup *result = 0 ;
+  
+  arg1 = (BlobGroup *)jarg1; 
+  {
+    try {
+      result = (BlobGroup *)((BlobGroup const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -12779,6 +12980,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_Motion(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_Motion_clone(void * jarg1) {
+  void * jresult ;
+  Motion *arg1 = (Motion *) 0 ;
+  Motion *result = 0 ;
+  
+  arg1 = (Motion *)jarg1; 
+  {
+    try {
+      result = (Motion *)((Motion const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_Motion_load(void * jarg1, void * jarg2) {
   Motion *arg1 = (Motion *) 0 ;
   InputState *arg2 = 0 ;
@@ -12892,6 +13113,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_Rotation(void * jarg1) {
       };
     }
   }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_Rotation_clone(void * jarg1) {
+  void * jresult ;
+  Rotation *arg1 = (Rotation *) 0 ;
+  Rotation *result = 0 ;
+  
+  arg1 = (Rotation *)jarg1; 
+  {
+    try {
+      result = (Rotation *)((Rotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -13011,6 +13252,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_MultiBlobRotation(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_MultiBlobRotation_clone(void * jarg1) {
+  void * jresult ;
+  MultiBlobRotation *arg1 = (MultiBlobRotation *) 0 ;
+  MultiBlobRotation *result = 0 ;
+  
+  arg1 = (MultiBlobRotation *)jarg1; 
+  {
+    try {
+      result = (MultiBlobRotation *)((MultiBlobRotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_MultiBlobRotation_load(void * jarg1, void * jarg2) {
   MultiBlobRotation *arg1 = (MultiBlobRotation *) 0 ;
   InputState *arg2 = 0 ;
@@ -13127,6 +13388,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_Scale(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_Scale_clone(void * jarg1) {
+  void * jresult ;
+  Scale *arg1 = (Scale *) 0 ;
+  Scale *result = 0 ;
+  
+  arg1 = (Scale *)jarg1; 
+  {
+    try {
+      result = (Scale *)((Scale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_Scale_load(void * jarg1, void * jarg2) {
   Scale *arg1 = (Scale *) 0 ;
   InputState *arg2 = 0 ;
@@ -13240,6 +13521,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_MultiBlobScale(void * jarg1) {
       };
     }
   }
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_MultiBlobScale_clone(void * jarg1) {
+  void * jresult ;
+  MultiBlobScale *arg1 = (MultiBlobScale *) 0 ;
+  MultiBlobScale *result = 0 ;
+  
+  arg1 = (MultiBlobScale *)jarg1; 
+  {
+    try {
+      result = (MultiBlobScale *)((MultiBlobScale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
 }
 
 
@@ -56059,114 +56360,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Dial_director_connect(void *objarg, SwigDirec
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_InternalMatcher() {
-  void * jresult ;
-  InternalMatcher *result = 0 ;
-  
-  {
-    try {
-      result = (InternalMatcher *)new InternalMatcher();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_process_gestures(void * jarg1) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  
-  arg1 = (InternalMatcher *)jarg1; 
-  {
-    try {
-      (arg1)->process_gestures();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_InternalMatcher_do_process_gestures(void * jarg1) {
-  int jresult ;
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int result;
-  
-  arg1 = (InternalMatcher *)jarg1; 
-  {
-    try {
-      result = (int)(arg1)->do_process_gestures();
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_request_update(void * jarg1, int jarg2) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int arg2 ;
-  
-  arg1 = (InternalMatcher *)jarg1; 
-  arg2 = (int)jarg2; 
-  {
-    try {
-      (arg1)->request_update(arg2);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_InternalMatcher_trigger_gesture(void * jarg1, int jarg2, void * jarg3) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  int arg2 ;
-  Gesture *arg3 = (Gesture *) 0 ;
-  
-  arg1 = (InternalMatcher *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (Gesture *)jarg3; 
-  {
-    try {
-      (arg1)->trigger_gesture(arg2,arg3);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_delete_InternalMatcher(void * jarg1) {
-  InternalMatcher *arg1 = (InternalMatcher *) 0 ;
-  
-  arg1 = (InternalMatcher *)jarg1; 
-  {
-    try {
-      delete arg1;
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return ; 
-      };
-    }
-  }
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_new_MasterContainer__SWIG_0(int jarg1, int jarg2, char * jarg3) {
   void * jresult ;
   int arg1 ;
@@ -56333,6 +56526,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_usePeak(void * jarg1) {
 }
 
 
+SWIGEXPORT int SWIGSTDCALL CSharp_MasterContainer_process_gestures(void * jarg1) {
+  int jresult ;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  int result;
+  
+  arg1 = (MasterContainer *)jarg1; 
+  {
+    try {
+      result = (int)(arg1)->process_gestures();
+    } catch (std::exception& e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_matcher_set(void * jarg1, void * jarg2) {
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   InternalMatcher *arg2 = (InternalMatcher *) 0 ;
@@ -56341,7 +56554,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_matcher_set(void * jarg1, voi
   arg1 = (MasterContainer *)jarg1; 
   arg2 = (InternalMatcher *)jarg2; 
   darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
-  if (arg1) darg->matcher = *arg2;
+  if (arg1) darg->matcher = arg2;
 }
 
 
@@ -56353,7 +56566,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_MasterContainer_matcher_get(void * jarg1) {
   
   arg1 = (MasterContainer *)jarg1; 
   darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
-  result = (InternalMatcher *)& (darg->matcher);
+  result = (InternalMatcher *) (darg->matcher);
   jresult = (void *)result; 
   return jresult;
 }
@@ -57317,10 +57530,6 @@ SWIGEXPORT Widget * SWIGSTDCALL CSharp_SliderUpcast(Slider *objectRef) {
 
 SWIGEXPORT Widget * SWIGSTDCALL CSharp_DialUpcast(Dial *objectRef) {
     return (Widget *)objectRef;
-}
-
-SWIGEXPORT Matcher * SWIGSTDCALL CSharp_InternalMatcherUpcast(InternalMatcher *objectRef) {
-    return (Matcher *)objectRef;
 }
 
 SWIGEXPORT Container * SWIGSTDCALL CSharp_MasterContainerUpcast(MasterContainer *objectRef) {

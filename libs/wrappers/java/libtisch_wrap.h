@@ -18,6 +18,7 @@ public:
     SwigDirector_FeatureBase(JNIEnv *jenv, int _tf = 0);
     virtual ~SwigDirector_FeatureBase();
     virtual char const *name() const;
+    virtual FeatureBase *clone() const;
     virtual void load(InputState &state);
     virtual int next();
     virtual void serialize(std::ostream &s);
@@ -25,10 +26,10 @@ public:
     using FeatureBase::typeflags;
 public:
     bool swig_overrides(int n) {
-      return (n < 5 ? swig_override[n] : false);
+      return (n < 6 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[5];
+    bool swig_override[6];
 };
 
 class SwigDirector_Widget : public Widget, public Swig::Director {

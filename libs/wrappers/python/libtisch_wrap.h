@@ -21,6 +21,7 @@ public:
     SwigDirector_FeatureBase(PyObject *self, int _tf = 0);
     virtual ~SwigDirector_FeatureBase();
     virtual char const *name() const;
+    virtual FeatureBase *clone() const;
     virtual void load(InputState &state);
     virtual int next();
     virtual void serialize(std::ostream &s);
@@ -59,7 +60,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[5];
+    mutable swig::SwigVar_PyObject vtable[6];
 #endif
 
 };

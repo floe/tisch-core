@@ -43,6 +43,11 @@ public class Rotation extends FeatureDouble {
     this(libtischJNI.new_Rotation__SWIG_1(), true);
   }
 
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.Rotation_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new Rotation(cPtr, false);
+  }
+
   public void load(InputState state) {
     libtischJNI.Rotation_load(swigCPtr, this, InputState.getCPtr(state), state);
   }
