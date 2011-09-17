@@ -28,8 +28,8 @@
 #define MAX_CORR 4 // 8
 #define HOM_CORR 4
 
-#define TARGET_OFFSET 20
-#define TARGET_SIZE   40
+int     TARGET_OFFSET = 20;
+#define TARGET_SIZE     40
 
 #define MAX_VARIANCE 0.01
 #define MIN_SAMPLES  50
@@ -40,7 +40,7 @@ GLUTWindow* win = 0;
 Calibration cal;
 
 // total screen size
-int xres = 800, yres = 600;
+int xres = 0, yres = 0;
 
 // current input candidates
 std::map < int, std::vector < Vector > > blobs;
@@ -220,14 +220,21 @@ int main( int argc, char* argv[] ) {
 
 	signal( SIGALRM, countdown );
 
-	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "cht:" ) ) switch (opt) {
+	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "chx:y:t:o:" ) ) switch (opt) {
 
 		case 'c': circle = true; break;
 
+		case 'x': xres = atoi(optarg); break;
+		case 'y': yres = atoi(optarg); break;
+
 		case 't': ttype = atoi(optarg); break;
+		case 'o': TARGET_OFFSET = atoi(optarg); break;
 
 		case 'h':
 		case '?': std::cout << "Usage: calibtool [options]\n";
+		          std::cout << "  -x res  force x screen resolution\n";
+		          std::cout << "  -y res  force y screen resolution\n";
+		          std::cout << "  -o px   calibration point offset from screen border in pixels (default 20)\n";
 		          std::cout << "  -c      assume circular display (centered)\n";
 		          std::cout << "  -t num  use TUIO type #num for calibration, default = 1 (generic finger)\n";
 		          std::cout << "  -h      this\n";
@@ -240,8 +247,8 @@ int main( int argc, char* argv[] ) {
 	glutDisplayFunc(disp);
 	glutKeyboardFunc(keyb);
 
-	xres = glutGet( GLUT_SCREEN_WIDTH  );
-	yres = glutGet( GLUT_SCREEN_HEIGHT );
+	xres = xres ? xres : glutGet( GLUT_SCREEN_WIDTH  );
+	yres = yres ? yres : glutGet( GLUT_SCREEN_HEIGHT );
 	glutReshapeWindow( xres, yres );
 
 	std::cout << "Using resolution: " << xres << "x" << yres << std::endl;
