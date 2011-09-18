@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -72,14 +72,14 @@ struct TISCH_SHARED InternalMatcher: public Matcher {
 };
 
 
-MasterContainer::MasterContainer( int w, int h, const char* target ):
+MasterContainer::MasterContainer( int w, int h, int defaults ):
 	Container( w, h, w/2, h/2 ),
 	matcher( new InternalMatcher() ), input( matcher ), inthread( new InputThread(&input) )
 {
 	//region.flags( (1<<INPUT_TYPE_COUNT)-1 );
 	//region.gestures.clear();
 	g_matcher = matcher;
-	matcher->load_defaults();
+	matcher->load_defaults(defaults);
 	inthread->start();
 }
 

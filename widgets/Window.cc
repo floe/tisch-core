@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -15,9 +15,9 @@
 // unsigned long long us1;
 
 
-Window::Window( int w, int h, std::string title, int use_mouse , const char* target ):
+Window::Window( int w, int h, std::string title, int use_mouse ):
 	GLUTWindow( w, h, title ),
-	MasterContainer( w, h, target )
+	MasterContainer( w, h, use_mouse ? 1 : 0 )
 {
 	mymouse = use_mouse ? new Mouse() : NULL;
 
