@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -132,7 +132,7 @@ int main( int argc, char* argv[] ) {
 	int defnum = 0;
 
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
-	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vhd:" ) ) switch (opt) {
 

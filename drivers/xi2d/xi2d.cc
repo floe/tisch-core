@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -75,8 +75,8 @@ OutputThread outthr;
 
 int main( int argc, char* argv[] ) {
 
-	std::cout << "xi2d - libTISCH 1.1 XInput2 adapter" << std::endl;
-	std::cout << "(c) 2009 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "xi2d - libTISCH 2.0 XInput2 adapter" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	Display* display = XOpenDisplay( NULL );
 
