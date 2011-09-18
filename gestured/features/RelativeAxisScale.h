@@ -15,7 +15,7 @@ class TISCH_SHARED RelativeAxisScale: public Scale {
 
 	public:
 
-		 RelativeAxisScale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 RelativeAxisScale( unsigned int tf = INPUT_TYPE_ANY );
 		~RelativeAxisScale();
 
 		RelativeAxisScale* clone() const;

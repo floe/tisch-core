@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -59,7 +59,7 @@ void Mouse::send_blobs( double w, double h ) {
 
 void Mouse::entry( int num, int state ) {
 	if (state == GLUT_LEFT) blobs.erase( num );
-	else blobs[num].type = INPUT_TYPE_SHADOW;
+	else blobs[num].type = INPUT_TYPE_HAND;
 }
 
 void Mouse::motion( int num, int x, int y ) {
@@ -98,7 +98,7 @@ void Mouse::button( int num, int button, int state, int x, int y ) {
 
 	// handle normal mouse clicks
 	if (state == GLUT_DOWN) blobs[num].type = INPUT_TYPE_FINGER;
-	if (state == GLUT_UP  ) blobs[num].type = INPUT_TYPE_SHADOW;
+	if (state == GLUT_UP  ) blobs[num].type = INPUT_TYPE_HAND;
 
 	#ifdef TISCH_LATENCY
 		if (state == GLUT_DOWN) {

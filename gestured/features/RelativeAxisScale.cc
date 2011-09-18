@@ -7,7 +7,7 @@
 #include "RelativeAxisScale.h"
 #include "Factory.h"
 
-RelativeAxisScale::RelativeAxisScale( int tf ): Scale( tf ) { }
+RelativeAxisScale::RelativeAxisScale( unsigned int tf ): Scale( tf ) { }
 RelativeAxisScale::~RelativeAxisScale() { }
 
 void RelativeAxisScale::load( InputState& state ) {

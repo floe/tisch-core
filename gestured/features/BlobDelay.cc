@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobDelay::BlobDelay( int tf ): Feature<int>( tf ) { }
+BlobDelay::BlobDelay( unsigned int tf ): Feature<int>( tf ) { }
 BlobDelay::~BlobDelay() { }
 
 void BlobDelay::load( InputState& state ) {

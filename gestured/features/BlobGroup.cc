@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobGroup::BlobGroup( int tf ): Feature<Vector>( tf ) { }
+BlobGroup::BlobGroup( unsigned int tf ): Feature<Vector>( tf ) { }
 BlobGroup::~BlobGroup() { }
 
 

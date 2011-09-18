@@ -13,7 +13,7 @@ class TISCH_SHARED RelativeAxisRotation: public Rotation {
 
 	public:
 
-		 RelativeAxisRotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 RelativeAxisRotation( unsigned int tf = INPUT_TYPE_ANY );
 		~RelativeAxisRotation();
 
 		RelativeAxisRotation* clone() const;

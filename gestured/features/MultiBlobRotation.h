@@ -13,7 +13,7 @@ class TISCH_SHARED MultiBlobRotation: public Rotation {
 
 	public:
 
-		 MultiBlobRotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 MultiBlobRotation( unsigned int tf = INPUT_TYPE_ANY );
 		~MultiBlobRotation();
 
 		MultiBlobRotation* clone() const;

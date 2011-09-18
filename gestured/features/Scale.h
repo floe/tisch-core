@@ -15,7 +15,7 @@ class TISCH_SHARED Scale: public Feature<double> {
 
 	public:
 
-		 Scale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 Scale( unsigned int tf = INPUT_TYPE_ANY );
 		~Scale();
 
 		Scale* clone() const;

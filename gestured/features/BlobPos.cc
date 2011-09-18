@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobPos::BlobPos( int tf ): Feature<Vector>( tf ) { }
+BlobPos::BlobPos( unsigned int tf ): Feature<Vector>( tf ) { }
 BlobPos::~BlobPos() { }
 
 void BlobPos::load( InputState& state ) {

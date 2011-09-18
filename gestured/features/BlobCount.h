@@ -14,7 +14,7 @@ class TISCH_SHARED BlobCount: public Feature<int> {
 
 	public:
 
-		 BlobCount( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobCount( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobCount();
 
 		BlobCount* clone() const;

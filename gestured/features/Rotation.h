@@ -15,7 +15,7 @@ class TISCH_SHARED Rotation: public Feature<double> {
 
 	public:
 
-		 Rotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 Rotation( unsigned int tf = INPUT_TYPE_ANY );
 		~Rotation();
 
 		Rotation* clone() const;

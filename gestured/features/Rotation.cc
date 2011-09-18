@@ -7,7 +7,7 @@
 #include "Rotation.h"
 #include "Factory.h"
 
-Rotation::Rotation( int tf ): Feature<double>( tf ) { }
+Rotation::Rotation( unsigned int tf ): Feature<double>( tf ) { }
 Rotation::~Rotation() { }
 
 void Rotation::load( InputState& state ) { }

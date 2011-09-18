@@ -15,7 +15,7 @@ class TISCH_SHARED MultiBlobScale: public Scale {
 
 	public:
 
-		 MultiBlobScale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 MultiBlobScale( unsigned int tf = INPUT_TYPE_ANY );
 		~MultiBlobScale();
 
 		MultiBlobScale* clone() const;

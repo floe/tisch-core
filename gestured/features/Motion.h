@@ -15,7 +15,7 @@ class TISCH_SHARED Motion: public Feature<Vector> {
 
 	public:
 
-		 Motion( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 Motion( unsigned int tf = INPUT_TYPE_ANY );
 		~Motion();
 
 		Motion* clone() const;

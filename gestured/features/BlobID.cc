@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobID::BlobID( int tf ): Feature<int>( tf ) { mode = 0; }
+BlobID::BlobID( unsigned int tf ): Feature<int>( tf ) { mode = 0; }
 BlobID::~BlobID() { }
 
 void BlobID::load( InputState& state ) {

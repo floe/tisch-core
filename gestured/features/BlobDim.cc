@@ -24,7 +24,7 @@ std::istream& operator>>( std::istream& s, Dimensions& d ) {
 
 
 
-BlobDim::BlobDim( int tf ): Feature<Dimensions>( tf ) { }
+BlobDim::BlobDim( unsigned int tf ): Feature<Dimensions>( tf ) { }
 BlobDim::~BlobDim() { }
 
 int BlobDim::check() {

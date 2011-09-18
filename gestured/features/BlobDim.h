@@ -22,7 +22,7 @@ class TISCH_SHARED BlobDim: public Feature<Dimensions> {
 
 	public:
 
-		 BlobDim( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobDim( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobDim();
 
 		BlobDim* clone() const;

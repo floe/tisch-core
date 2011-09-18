@@ -7,7 +7,7 @@
 #include "MultiBlobRotation.h"
 #include "Factory.h"
 
-MultiBlobRotation::MultiBlobRotation( int tf ): Rotation( tf ) { }
+MultiBlobRotation::MultiBlobRotation( unsigned int tf ): Rotation( tf ) { }
 MultiBlobRotation::~MultiBlobRotation() { }
 
 void MultiBlobRotation::load( InputState& state ) {

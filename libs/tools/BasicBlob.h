@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -12,24 +12,11 @@
 #include "Vector.h"
 
 
-// TODO: these should be TUIO 2.0 types
-enum InputType {
-	INPUT_TYPE_FINGER,
-	INPUT_TYPE_HAND,
-	INPUT_TYPE_SHADOW,
-	INPUT_TYPE_OBJECT,
-	INPUT_TYPE_OTHER,
-	// always keep as last 
-	INPUT_TYPE_COUNT
-};
-
-/* same list with proper TUIO 2.0 types (not yet enabled):
-
 // generic names
 #define INPUT_TYPE_FINGER INPUT_TYPE_FINGER_RI
 #define INPUT_TYPE_HAND   INPUT_TYPE_HAND_RP
 #define INPUT_TYPE_FOOT   INPUT_TYPE_FOOT_R
-#define INPUT_TYPE_ANY    0xFFFFFFFF
+#define INPUT_TYPE_ANY    (((unsigned int)1<<INPUT_TYPE_COUNT)-1)
 
 enum InputType {
 
@@ -52,8 +39,9 @@ enum InputType {
 	INPUT_TYPE_MOUSE,
 	INPUT_TYPE_TRACKBALL,
 	INPUT_TYPE_JOYSTICK,
-
 	INPUT_TYPE_WIIMOTE,
+	INPUT_TYPE_EYETRACKER,
+
 	INPUT_TYPE_OBJECT,
 	INPUT_TYPE_TOKEN,
 
@@ -74,8 +62,6 @@ enum InputType {
 	// always keep as last - must be <= 31
 	INPUT_TYPE_COUNT 
 };
-
-*/
 
 
 class TISCH_SHARED BasicBlob {

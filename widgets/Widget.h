@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -50,7 +50,7 @@ class TISCH_SHARED Widget {
 
 	public:
 
-		Widget( int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture* _tex = 0, int _regflags = (1<<INPUT_TYPE_COUNT)-1 ):
+		Widget( int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture* _tex = 0, unsigned int _regflags = INPUT_TYPE_ANY ):
 			region(_regflags), shadow(false), hide(false),
 			w(_w), h(_h), x(_x), y(_y), sx(1.0), sy(1.0), angle(_angle),
 			asx(1.0), asy(1.0), absangle(0.0), abspos(0,0,0),

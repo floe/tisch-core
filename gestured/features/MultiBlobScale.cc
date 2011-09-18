@@ -7,7 +7,7 @@
 #include "MultiBlobScale.h"
 #include "Factory.h"
 
-MultiBlobScale::MultiBlobScale( int tf ): Scale( tf ) { }
+MultiBlobScale::MultiBlobScale( unsigned int tf ): Scale( tf ) { }
 MultiBlobScale::~MultiBlobScale() { }
 
 void MultiBlobScale::load( InputState& state ) {

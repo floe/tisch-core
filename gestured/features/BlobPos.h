@@ -14,7 +14,7 @@ class TISCH_SHARED BlobPos: public Feature<Vector> {
 
 	public:
 
-		 BlobPos( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobPos( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobPos();
 
 		BlobPos* clone() const;

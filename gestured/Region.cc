@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -58,7 +58,7 @@ std::ostream& operator<< ( std::ostream& s, Region& r ) {
 }
 
 
-Region::Region( int _flags ): std::vector<Vector>(), gestures(), m_flags(_flags) { }
+Region::Region( unsigned int _flags ): std::vector<Vector>(), gestures(), m_flags(_flags) { }
 
 int Region::contains( Vector v ) {
 

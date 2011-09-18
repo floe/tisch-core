@@ -7,7 +7,7 @@
 #include "Scale.h"
 #include "Factory.h"
 
-Scale::Scale( int tf ): Feature<double>( tf ) { }
+Scale::Scale( unsigned int tf ): Feature<double>( tf ) { }
 Scale::~Scale() { }
 
 void Scale::load( InputState& state ) { }

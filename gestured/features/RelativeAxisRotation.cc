@@ -7,7 +7,7 @@
 #include "RelativeAxisRotation.h"
 #include "Factory.h"
 
-RelativeAxisRotation::RelativeAxisRotation( int tf ): Rotation( tf ) { }
+RelativeAxisRotation::RelativeAxisRotation( unsigned int tf ): Rotation( tf ) { }
 RelativeAxisRotation::~RelativeAxisRotation() { }
 
 void RelativeAxisRotation::load( InputState& state ) {

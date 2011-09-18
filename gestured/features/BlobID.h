@@ -14,7 +14,7 @@ class TISCH_SHARED BlobID: public Feature<int> {
 
 	public:
 
-		 BlobID( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobID( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobID();
 
 		BlobID* clone() const;

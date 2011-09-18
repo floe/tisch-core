@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobCount::BlobCount( int tf ): Feature<int>( tf ) { }
+BlobCount::BlobCount( unsigned int tf ): Feature<int>( tf ) { }
 BlobCount::~BlobCount() { }
 
 void BlobCount::load( InputState& state ) {

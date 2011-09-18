@@ -7,7 +7,7 @@
 #include "Motion.h"
 #include "Factory.h"
 
-Motion::Motion( int tf ): Feature<Vector>( tf ) { }
+Motion::Motion( unsigned int tf ): Feature<Vector>( tf ) { }
 Motion::~Motion() { }
 
 void Motion::load( InputState& state ) {

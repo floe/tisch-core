@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -21,7 +21,7 @@ class TISCH_SHARED FeatureBase {
 
 	public:
 
-		FeatureBase( int _tf = 0 ): has_result( 0 ), typeflags( _tf ) { } 
+		FeatureBase( unsigned int _tf = 0 ): has_result( 0 ), typeflags( _tf ) { } 
 		virtual ~FeatureBase() { }
 
 		virtual const char* name() const = 0; 
@@ -37,7 +37,7 @@ class TISCH_SHARED FeatureBase {
 
 	protected:
 
-		int typeflags;
+		unsigned int typeflags;
 };
 
 
@@ -45,7 +45,7 @@ template< class Value > class Feature: public FeatureBase {
 
 	public:
 
-		Feature( int _tf = (1<<INPUT_TYPE_COUNT)-1 ):
+		Feature( unsigned int _tf = INPUT_TYPE_ANY ):
 			FeatureBase( _tf ),
 			m_result(),
 			m_bounds()

@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobParent::BlobParent( int tf ): Feature<int>( tf ) { }
+BlobParent::BlobParent( unsigned int tf ): Feature<int>( tf ) { }
 BlobParent::~BlobParent() { }
 
 void BlobParent::load( InputState& state ) {
