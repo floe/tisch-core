@@ -9,7 +9,7 @@
 *                                                                         *
 *                      http://tisch.sourceforge.net/                      *
 *                                                                         *
-*   Copyright (c) 2006 - 2010 by Florian Echtler <floe@butterbrot.org>    *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *                                                                         *
 *  This program is free software: you can redistribute it and/or modify   *
 *  it under the terms of the GNU Lesser General Public License (LGPL) as  *
