@@ -1,3 +1,9 @@
+libtisch2 (2.0-0ubuntu1~natty) natty; urgency=low
+
+  * update to 2.0 release from Sourceforge SVN rev. 354
+
+ -- Florian Echtler <floe@butterbrot.org>  Sun, 18 Sep 2011 12:22:03 +0200
+
 libtisch2 (0.1-0ubuntu4~maverick) maverick; urgency=low
 
   * support three ghost overlay images in GUI frontend (one each for RGB)

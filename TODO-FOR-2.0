@@ -1,6 +1,0 @@
-- use TUIO 2.0 object types where possible
-
-- cleanup touchd example files: sample DI, sample FTIR, sample Kinect...
-- move action queue directly into Matcher class
-
-- optional: add RadioButton widgets

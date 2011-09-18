@@ -94,7 +94,7 @@ default:
 	@echo
 	@echo TISCH Framework - http://tisch.sourceforge.net/
 	@echo
-	@echo Copyright '(c)' 2006-2010 by Florian Echtler, TUM '<echtler@in.tum.de>'
+	@echo Copyright '(c)' 2006 - 2011 by Florian Echtler '<floe@butterbrot.org>'
 	@echo Licensed under GNU Lesser General Public License '(LGPL)' 3 or later  
 	@echo
 	@echo Please choose one of the following targets:

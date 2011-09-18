@@ -1,5 +1,5 @@
-TISCH Framework - Release 2.0 Alpha 1 "Ice Age"
-===============================================
+TISCH Framework - Release 2.0 "Better Late Than Never"
+======================================================
 
 "Tangible Interactive Surfaces for Collaboration between Humans"
 
@@ -27,7 +27,7 @@ Highlights
 Directory Layout
 ----------------
 
-libtisch2-0.1/
+libtisch2-2.0/
 	calibd/      Calibration Layer
 	drivers/     Hardware Abstraction Layer (HAL)
 	gestured/    Generic Gesture Recognition Layer
@@ -41,16 +41,14 @@ Quick Start
 
 If you only have a mouse and want to give it a try:
 
-	1. run "gestured"
-	2. run "demo -m" (enables mouse emulation mode)
+	1. run "demo -m" (enables mouse emulation mode)
 
 If you have a camera-based input device, e.g. an FTIR table or a Kinect:
 
 	1. run "touchd -V -c example.xml" (this is the most basic mode, just tracks bright blobs)
 	2. run "calibtool -f" and follow the instructions (this is necessary only once)
 	3. run "calibd", if not already running
-	4. run "gestured"
-	5. run "demo"
+	4. run "demo"
 
 
 Notes about demo programs
@@ -65,9 +63,7 @@ by clicking any mouse button and scrolling the mouse wheel. Scale them by
 additionally pressing CTRL while using the wheel.
 
 NOTE: if you are running an X server with XInput2 support (commonly known as MPX),
-you can actually use multiple mice to emulate multitouch fairly well. See tisch.sh
-for how to start "gestured" in this case (you will need to send a configuration 
-message after startup).
+you can actually use multiple mice to emulate multitouch fairly well.
 
 
 Building & Requirements
@@ -97,7 +93,7 @@ Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
 	Then, just select the Debug or Release config and build the solution. All libs 
 	and binaries should be created in the appropriate output directory.
 
-Linux   (tested with gcc 4.4.3 on Ubuntu 10.04 and gcc 4.4.4 on Ubuntu 10.10)
+Linux   (tested with gcc 4.4.4 on Ubuntu 10.10 and gcc 4.5.2 on Ubuntu 11.04)
 MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
 
 	Requirements:
@@ -122,4 +118,13 @@ MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
 	fallback. Note that camera access has been tested with several different types
 	of Logitech QuickCams (both PWC- and UVC-based USB types) and with Pointgrey
 	FireflyMV Firewire cameras.
+
+
+Known Issues
+------------
+
+- Documentation is lacking - check the Sourceforge Wiki for more information.
+- The example configuration files are rather convoluted.
+- The graphical frontends also accept TUIO 1.0 data, but the object types may
+  or may not match. Check the Wiki at www.tuio.org for details.
 
