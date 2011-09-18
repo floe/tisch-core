@@ -1,7 +1,7 @@
 Source: libtisch2
 Priority: extra
 Maintainer: Florian Echtler <floe@butterbrot.org>
-Build-Depends: debhelper (>= 7.0.50~), freeglut3-dev (>= 2.6.0-0ubuntu2ppa1), libv4l-dev (>= 0.6.0), libdc1394-22-dev (>= 2.1.2), python-dev (>= 2.6.4), default-jdk (>= 1.6), mono-gmcs (>= 2.4.2), python-central (>= 0.6), cli-common-dev (>= 0.7), libfreenect-dev (>= 0.0.1+20101211-2ubuntu2~maverick), libfreenect (>= 0.0.1+20101211-2ubuntu2~maverick)
+Build-Depends: debhelper (>= 7.0.50~), freeglut3-dev (>= 2.6.0-0ubuntu2ppa1), libv4l-dev (>= 0.6.0), libdc1394-22-dev (>= 2.1.2), python-dev (>= 2.6.4), default-jdk (>= 1.6), mono-gmcs (>= 2.4.2), python-central (>= 0.6), cli-common-dev (>= 0.7), libfreenect-dev (>= 0.1), libfreenect (>= 0.1)
 XS-Python-Version: >= 2.6
 Standards-Version: 3.9.1
 Section: libs
@@ -12,7 +12,7 @@ Section: libs
 Architecture: any
 Conflicts: libtisch
 Replaces: libtisch
-Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3 (>= 2.6.0-0ubuntu2ppa1), libv4l-0 (>= 0.6.0), libdc1394-22 (>= 2.1.2), libfreenect (>= 0.0.1+20101211-2ubuntu2~maverick)
+Depends: ${shlibs:Depends}, ${misc:Depends}, freeglut3 (>= 2.6.0-0ubuntu2ppa1), libv4l-0 (>= 0.6.0), libdc1394-22 (>= 2.1.2), libfreenect (>= 0.1)
 Description: multitouch development platform - library files + demo binaries
 
 Package: libtisch2-dev
