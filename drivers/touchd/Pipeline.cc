@@ -81,7 +81,7 @@ TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 	
 	TiXmlElement* rootOfCurrentSubtree = 0;
 
-	if(startIndex < this->size()) {
+	if(startIndex < (int)this->size()) {
 		
 		// get XML Node for current root of subtree
 		rootOfCurrentSubtree = (*this)[startIndex]->getXMLRepresentation();
@@ -99,7 +99,7 @@ TiXmlElement* Pipeline::getXMLSubTree(int startIndex, Filter* parentOfRoot) {
 
 		
 		// check pipe for further children of current root
-		for(int i = startIndex + 1; i < this->size(); i++) {
+		for(unsigned int i = startIndex + 1; i < this->size(); i++) {
 
 			// get parent of current filter
 			Filter* parentOfCurrent = (*this)[i]->getParent();

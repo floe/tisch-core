@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -36,7 +36,7 @@ void Container::add( Widget* widget, int back ) {
 
 	// if this container can move, then its child widgets are implicitly volatile
 	if (mode != 0) {
-		int tmp = widget->region.flags();
+		unsigned int tmp = widget->region.flags();
 		widget->region.flags( tmp | REGION_FLAGS_VOLATILE );
 	}
 

@@ -76,8 +76,6 @@ MasterContainer::MasterContainer( int w, int h, int defaults ):
 	Container( w, h, w/2, h/2 ),
 	matcher( new InternalMatcher() ), input( matcher ), inthread( new InputThread(&input) )
 {
-	//region.flags( (1<<INPUT_TYPE_COUNT)-1 );
-	//region.gestures.clear();
 	g_matcher = matcher;
 	matcher->load_defaults(defaults);
 	inthread->start();

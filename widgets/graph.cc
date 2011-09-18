@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -54,8 +54,8 @@ public:
 
 int main( int argc, char* argv[] ) {
 
-	std::cout << "graph - libTISCH 1.1 widget layer demo" << std::endl;
-	std::cout << "(c) 2010 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+	std::cout << "graph - libTISCH 2.0 widget layer demo" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	int mouse = ((argc > 1) && (std::string("-m") == argv[1]));
 	GraphWin* win = new GraphWin( 800, 480, "Graph", mouse );
