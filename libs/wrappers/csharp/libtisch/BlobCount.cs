@@ -39,7 +39,7 @@ public class BlobCount : FeatureInt {
     }
   }
 
-  public BlobCount(int tf) : this(libtischPINVOKE.new_BlobCount__SWIG_0(tf), true) {
+  public BlobCount(uint tf) : this(libtischPINVOKE.new_BlobCount__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

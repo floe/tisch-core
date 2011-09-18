@@ -35,7 +35,7 @@ public class Region extends vectorVector {
     super.delete();
   }
 
-  public Region(int _flags) {
+  public Region(long _flags) {
     this(libtischJNI.new_Region__SWIG_0(_flags), true);
   }
 
@@ -47,11 +47,11 @@ public class Region extends vectorVector {
     return libtischJNI.Region_contains(swigCPtr, this, Vector.getCPtr(v), v);
   }
 
-  public int flags() {
+  public long flags() {
     return libtischJNI.Region_flags__SWIG_0(swigCPtr, this);
   }
 
-  public void flags(int _flags) {
+  public void flags(long _flags) {
     libtischJNI.Region_flags__SWIG_1(swigCPtr, this, _flags);
   }
 

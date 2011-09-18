@@ -39,7 +39,7 @@ public class BlobID : FeatureInt {
     }
   }
 
-  public BlobID(int tf) : this(libtischPINVOKE.new_BlobID__SWIG_0(tf), true) {
+  public BlobID(uint tf) : this(libtischPINVOKE.new_BlobID__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

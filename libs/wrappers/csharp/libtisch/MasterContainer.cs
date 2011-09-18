@@ -39,7 +39,7 @@ public class MasterContainer : Container {
     }
   }
 
-  public MasterContainer(int w, int h, string target) : this(libtischPINVOKE.new_MasterContainer__SWIG_0(w, h, target), true) {
+  public MasterContainer(int w, int h, int defaults) : this(libtischPINVOKE.new_MasterContainer__SWIG_0(w, h, defaults), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }

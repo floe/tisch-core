@@ -35,7 +35,7 @@ public class Scale extends FeatureDouble {
     super.delete();
   }
 
-  public Scale(int tf) {
+  public Scale(long tf) {
     this(libtischJNI.new_Scale__SWIG_0(tf), true);
   }
 

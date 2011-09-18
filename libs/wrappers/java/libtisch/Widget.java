@@ -50,7 +50,7 @@ public class Widget {
     libtischJNI.Widget_change_ownership(this, swigCPtr, true);
   }
 
-  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, int _regflags) {
+  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, long _regflags) {
     this(libtischJNI.new_Widget__SWIG_0(_w, _h, _x, _y, _angle, libtischJNI.getCPtrAddRef(_tex), _tex, _regflags), true);
     libtischJNI.Widget_director_connect(this, swigCPtr, swigCMemOwn, true);
   }

@@ -39,7 +39,7 @@ public class BlobPos : FeatureVector {
     }
   }
 
-  public BlobPos(int tf) : this(libtischPINVOKE.new_BlobPos__SWIG_0(tf), true) {
+  public BlobPos(uint tf) : this(libtischPINVOKE.new_BlobPos__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

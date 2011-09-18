@@ -35,7 +35,7 @@ public class Motion extends FeatureVector {
     super.delete();
   }
 
-  public Motion(int tf) {
+  public Motion(long tf) {
     this(libtischJNI.new_Motion__SWIG_0(tf), true);
   }
 

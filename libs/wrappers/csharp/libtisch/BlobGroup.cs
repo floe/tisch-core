@@ -39,7 +39,7 @@ public class BlobGroup : FeatureVector {
     }
   }
 
-  public BlobGroup(int tf) : this(libtischPINVOKE.new_BlobGroup__SWIG_0(tf), true) {
+  public BlobGroup(uint tf) : this(libtischPINVOKE.new_BlobGroup__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

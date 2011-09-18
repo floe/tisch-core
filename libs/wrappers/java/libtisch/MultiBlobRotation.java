@@ -35,7 +35,7 @@ public class MultiBlobRotation extends Rotation {
     super.delete();
   }
 
-  public MultiBlobRotation(int tf) {
+  public MultiBlobRotation(long tf) {
     this(libtischJNI.new_MultiBlobRotation__SWIG_0(tf), true);
   }
 

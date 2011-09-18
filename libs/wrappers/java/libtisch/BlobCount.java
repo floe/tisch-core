@@ -35,7 +35,7 @@ public class BlobCount extends FeatureInt {
     super.delete();
   }
 
-  public BlobCount(int tf) {
+  public BlobCount(long tf) {
     this(libtischJNI.new_BlobCount__SWIG_0(tf), true);
   }
 

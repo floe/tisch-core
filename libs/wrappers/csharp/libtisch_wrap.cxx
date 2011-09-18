@@ -1320,7 +1320,7 @@ SWIGINTERN MultiBlobScale *MultiBlobScale_dynamic_cast(FeatureBase *base){
 
 #include "libtisch_wrap.h"
 
-SwigDirector_FeatureBase::SwigDirector_FeatureBase(int _tf) : FeatureBase(_tf), Swig::Director() {
+SwigDirector_FeatureBase::SwigDirector_FeatureBase(unsigned int _tf) : FeatureBase(_tf), Swig::Director() {
   swig_init_callbacks();
 }
 
@@ -1419,7 +1419,7 @@ void SwigDirector_FeatureBase::swig_init_callbacks() {
   swig_callbackunserialize = 0;
 }
 
-SwigDirector_Widget::SwigDirector_Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, int _regflags) : Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director() {
+SwigDirector_Widget::SwigDirector_Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, unsigned int _regflags) : Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director() {
   swig_init_callbacks();
 }
 
@@ -2556,7 +2556,7 @@ void SwigDirector_Dial::swig_init_callbacks() {
   swig_callbackpaint__SWIG_1 = 0;
 }
 
-SwigDirector_MasterContainer::SwigDirector_MasterContainer(int w, int h, char const *target) : MasterContainer(w, h, target), Swig::Director() {
+SwigDirector_MasterContainer::SwigDirector_MasterContainer(int w, int h, int defaults) : MasterContainer(w, h, defaults), Swig::Director() {
   swig_init_callbacks();
 }
 
@@ -2744,7 +2744,7 @@ void SwigDirector_MasterContainer::swig_init_callbacks() {
   swig_callbackapply = 0;
 }
 
-SwigDirector_Window::SwigDirector_Window(int w, int h, std::string title, int use_mouse, char const *target) : Window(w, h, title, use_mouse, target), Swig::Director() {
+SwigDirector_Window::SwigDirector_Window(int w, int h, std::string title, int use_mouse) : Window(w, h, title, use_mouse), Swig::Director() {
   swig_init_callbacks();
 }
 
@@ -6226,12 +6226,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_InputState(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_FeatureBase__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_FeatureBase__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   FeatureBase *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (FeatureBase *)new SwigDirector_FeatureBase(arg1);
@@ -6428,27 +6428,27 @@ SWIGEXPORT int SWIGSTDCALL CSharp_FeatureBase_has_result_get(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_FeatureBase_typeflags_set(void * jarg1, int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_FeatureBase_typeflags_set(void * jarg1, unsigned int jarg2) {
   FeatureBase *arg1 = (FeatureBase *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   SwigDirector_FeatureBase *darg = 0;
   
   arg1 = (FeatureBase *)jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned int)jarg2; 
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
   if (arg1) darg->typeflags = arg2;
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_FeatureBase_typeflags_get(void * jarg1) {
-  int jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_FeatureBase_typeflags_get(void * jarg1) {
+  unsigned int jresult ;
   FeatureBase *arg1 = (FeatureBase *) 0 ;
   SwigDirector_FeatureBase *darg = 0;
-  int result;
+  unsigned int result;
   
   arg1 = (FeatureBase *)jarg1; 
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
-  result = (int) (darg->typeflags);
+  result = (unsigned int) (darg->typeflags);
   jresult = result; 
   return jresult;
 }
@@ -8664,12 +8664,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_write_to__SWIG_5(void * jarg1, void * jarg2
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Region__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Region__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   Region *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Region *)new Region(arg1);
@@ -8730,15 +8730,15 @@ SWIGEXPORT int SWIGSTDCALL CSharp_Region_contains(void * jarg1, void * jarg2) {
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_Region_flags__SWIG_0(void * jarg1) {
-  int jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Region_flags__SWIG_0(void * jarg1) {
+  unsigned int jresult ;
   Region *arg1 = (Region *) 0 ;
-  int result;
+  unsigned int result;
   
   arg1 = (Region *)jarg1; 
   {
     try {
-      result = (int)((Region const *)arg1)->flags();
+      result = (unsigned int)((Region const *)arg1)->flags();
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -8750,12 +8750,12 @@ SWIGEXPORT int SWIGSTDCALL CSharp_Region_flags__SWIG_0(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Region_flags__SWIG_1(void * jarg1, int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Region_flags__SWIG_1(void * jarg1, unsigned int jarg2) {
   Region *arg1 = (Region *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   
   arg1 = (Region *)jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned int)jarg2; 
   {
     try {
       (arg1)->flags(arg2);
@@ -10166,12 +10166,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_vectorInt(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobCount__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobCount__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobCount *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobCount *)new BlobCount(arg1);
@@ -11246,12 +11246,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_write_to__SWIG_6(void * jarg1, void * jarg2
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobDim__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobDim__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobDim *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobDim *)new BlobDim(arg1);
@@ -11402,12 +11402,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_BlobDim_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobID__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobID__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobID *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobID *)new BlobID(arg1);
@@ -11742,12 +11742,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_FeatureVector_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobPos__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobPos__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobPos *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobPos *)new BlobPos(arg1);
@@ -11942,12 +11942,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_BlobPos_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobGroup__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_BlobGroup__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobGroup *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobGroup *)new BlobGroup(arg1);
@@ -12926,12 +12926,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_vectorDouble(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Motion__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Motion__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   Motion *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Motion *)new Motion(arg1);
@@ -13062,12 +13062,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Motion_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Rotation__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Rotation__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   Rotation *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Rotation *)new Rotation(arg1);
@@ -13198,12 +13198,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Rotation_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_MultiBlobRotation__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MultiBlobRotation__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   MultiBlobRotation *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (MultiBlobRotation *)new MultiBlobRotation(arg1);
@@ -13334,12 +13334,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_MultiBlobRotation_dynamic_cast(void * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Scale__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Scale__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   Scale *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Scale *)new Scale(arg1);
@@ -13470,12 +13470,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Scale_dynamic_cast(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_MultiBlobScale__SWIG_0(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MultiBlobScale__SWIG_0(unsigned int jarg1) {
   void * jresult ;
-  int arg1 ;
+  unsigned int arg1 ;
   MultiBlobScale *result = 0 ;
   
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (MultiBlobScale *)new MultiBlobScale(arg1);
@@ -51968,7 +51968,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_g_matcher_get() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Widget__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, void * jarg6, int jarg7) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Widget__SWIG_0(int jarg1, int jarg2, int jarg3, int jarg4, double jarg5, void * jarg6, unsigned int jarg7) {
   void * jresult ;
   int arg1 ;
   int arg2 ;
@@ -51976,7 +51976,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_Widget__SWIG_0(int jarg1, int jarg2, in
   int arg4 ;
   double arg5 ;
   RGBATexture *arg6 = (RGBATexture *) 0 ;
-  int arg7 ;
+  unsigned int arg7 ;
   Widget *result = 0 ;
   
   arg1 = (int)jarg1; 
@@ -51985,7 +51985,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_Widget__SWIG_0(int jarg1, int jarg2, in
   arg4 = (int)jarg4; 
   arg5 = (double)jarg5; 
   arg6 = (RGBATexture *)jarg6; 
-  arg7 = (int)jarg7; 
+  arg7 = (unsigned int)jarg7; 
   {
     try {
       result = (Widget *)new SwigDirector_Widget(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
@@ -56360,19 +56360,19 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Dial_director_connect(void *objarg, SwigDirec
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_MasterContainer__SWIG_0(int jarg1, int jarg2, char * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MasterContainer__SWIG_0(int jarg1, int jarg2, int jarg3) {
   void * jresult ;
   int arg1 ;
   int arg2 ;
-  char *arg3 = (char *) 0 ;
+  int arg3 ;
   MasterContainer *result = 0 ;
   
   arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
-  arg3 = (char *)jarg3; 
+  arg3 = (int)jarg3; 
   {
     try {
-      result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,(char const *)arg3);
+      result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
@@ -56633,39 +56633,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_MasterContainer_director_connect(void *objarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_0(int jarg1, int jarg2, char * jarg3, int jarg4, char * jarg5) {
-  void * jresult ;
-  int arg1 ;
-  int arg2 ;
-  std::string arg3 ;
-  int arg4 ;
-  char *arg5 = (char *) 0 ;
-  Window *result = 0 ;
-  
-  arg1 = (int)jarg1; 
-  arg2 = (int)jarg2; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  (&arg3)->assign(jarg3); 
-  arg4 = (int)jarg4; 
-  arg5 = (char *)jarg5; 
-  {
-    try {
-      result = (Window *)new SwigDirector_Window(arg1,arg2,arg3,arg4,(char const *)arg5);
-    } catch (std::exception& e) {
-      {
-        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_1(int jarg1, int jarg2, char * jarg3, int jarg4) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_0(int jarg1, int jarg2, char * jarg3, int jarg4) {
   void * jresult ;
   int arg1 ;
   int arg2 ;
@@ -56695,7 +56663,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_1(int jarg1, int jarg2, ch
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_2(int jarg1, int jarg2, char * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Window__SWIG_1(int jarg1, int jarg2, char * jarg3) {
   void * jresult ;
   int arg1 ;
   int arg2 ;

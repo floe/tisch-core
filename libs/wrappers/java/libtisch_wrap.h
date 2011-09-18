@@ -15,7 +15,7 @@ class SwigDirector_FeatureBase : public FeatureBase, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_FeatureBase(JNIEnv *jenv, int _tf = 0);
+    SwigDirector_FeatureBase(JNIEnv *jenv, unsigned int _tf = 0);
     virtual ~SwigDirector_FeatureBase();
     virtual char const *name() const;
     virtual FeatureBase *clone() const;
@@ -36,7 +36,7 @@ class SwigDirector_Widget : public Widget, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_Widget(JNIEnv *jenv, int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture *_tex = 0, int _regflags = (1 << INPUT_TYPE_COUNT) -1);
+    SwigDirector_Widget(JNIEnv *jenv, int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture *_tex = 0, unsigned int _regflags = (((unsigned int) 1 << INPUT_TYPE_COUNT) -1));
     virtual ~SwigDirector_Widget();
     virtual void outline();
     virtual void update(Widget *target = 0);
@@ -225,7 +225,7 @@ class SwigDirector_MasterContainer : public MasterContainer, public Swig::Direct
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_MasterContainer(JNIEnv *jenv, int w, int h, char const *target = "127.0.0.1");
+    SwigDirector_MasterContainer(JNIEnv *jenv, int w, int h, int defaults = 1);
     virtual ~SwigDirector_MasterContainer();
     virtual void outline();
     virtual void update(Widget *target = 0);
@@ -254,7 +254,7 @@ class SwigDirector_Window : public Window, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_Window(JNIEnv *jenv, int w, int h, std::string title, int use_mouse = 0, char const *target = "127.0.0.1");
+    SwigDirector_Window(JNIEnv *jenv, int w, int h, std::string title, int use_mouse = 0);
     virtual ~SwigDirector_Window();
     virtual void idle();
     virtual void display();

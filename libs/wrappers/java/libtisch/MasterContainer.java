@@ -50,8 +50,8 @@ public class MasterContainer extends Container {
     libtischJNI.MasterContainer_change_ownership(this, swigCPtr, true);
   }
 
-  public MasterContainer(int w, int h, String target) {
-    this(libtischJNI.new_MasterContainer__SWIG_0(w, h, target), true);
+  public MasterContainer(int w, int h, int defaults) {
+    this(libtischJNI.new_MasterContainer__SWIG_0(w, h, defaults), true);
     libtischJNI.MasterContainer_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 

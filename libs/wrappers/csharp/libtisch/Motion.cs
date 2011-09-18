@@ -39,7 +39,7 @@ public class Motion : FeatureVector {
     }
   }
 
-  public Motion(int tf) : this(libtischPINVOKE.new_Motion__SWIG_0(tf), true) {
+  public Motion(uint tf) : this(libtischPINVOKE.new_Motion__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

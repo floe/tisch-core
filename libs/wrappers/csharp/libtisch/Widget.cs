@@ -40,7 +40,7 @@ public class Widget : IDisposable {
     }
   }
 
-  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, int _regflags) : this(libtischPINVOKE.new_Widget__SWIG_0(_w, _h, _x, _y, _angle, libtischPINVOKE.getCPtrAddRef(_tex), _regflags), true) {
+  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, uint _regflags) : this(libtischPINVOKE.new_Widget__SWIG_0(_w, _h, _x, _y, _angle, libtischPINVOKE.getCPtrAddRef(_tex), _regflags), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }

@@ -39,7 +39,7 @@ public class MultiBlobRotation : Rotation {
     }
   }
 
-  public MultiBlobRotation(int tf) : this(libtischPINVOKE.new_MultiBlobRotation__SWIG_0(tf), true) {
+  public MultiBlobRotation(uint tf) : this(libtischPINVOKE.new_MultiBlobRotation__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

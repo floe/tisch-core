@@ -35,7 +35,7 @@ public class MultiBlobScale extends Scale {
     super.delete();
   }
 
-  public MultiBlobScale(int tf) {
+  public MultiBlobScale(long tf) {
     this(libtischJNI.new_MultiBlobScale__SWIG_0(tf), true);
   }
 

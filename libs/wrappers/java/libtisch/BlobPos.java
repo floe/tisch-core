@@ -35,7 +35,7 @@ public class BlobPos extends FeatureVector {
     super.delete();
   }
 
-  public BlobPos(int tf) {
+  public BlobPos(long tf) {
     this(libtischJNI.new_BlobPos__SWIG_0(tf), true);
   }
 

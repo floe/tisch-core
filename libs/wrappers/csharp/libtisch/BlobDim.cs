@@ -39,7 +39,7 @@ public class BlobDim : FeatureDimensions {
     }
   }
 
-  public BlobDim(int tf) : this(libtischPINVOKE.new_BlobDim__SWIG_0(tf), true) {
+  public BlobDim(uint tf) : this(libtischPINVOKE.new_BlobDim__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

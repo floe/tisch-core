@@ -35,7 +35,7 @@ public class BlobDim extends FeatureDimensions {
     super.delete();
   }
 
-  public BlobDim(int tf) {
+  public BlobDim(long tf) {
     this(libtischJNI.new_BlobDim__SWIG_0(tf), true);
   }
 

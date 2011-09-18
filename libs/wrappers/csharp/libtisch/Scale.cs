@@ -39,7 +39,7 @@ public class Scale : FeatureDouble {
     }
   }
 
-  public Scale(int tf) : this(libtischPINVOKE.new_Scale__SWIG_0(tf), true) {
+  public Scale(uint tf) : this(libtischPINVOKE.new_Scale__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

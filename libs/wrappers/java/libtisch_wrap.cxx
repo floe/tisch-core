@@ -766,7 +766,7 @@ SWIGINTERN MultiBlobScale *MultiBlobScale_dynamic_cast(FeatureBase *base){
 
 #include "libtisch_wrap.h"
 
-SwigDirector_FeatureBase::SwigDirector_FeatureBase(JNIEnv *jenv, int _tf) : FeatureBase(_tf), Swig::Director(jenv) {
+SwigDirector_FeatureBase::SwigDirector_FeatureBase(JNIEnv *jenv, unsigned int _tf) : FeatureBase(_tf), Swig::Director(jenv) {
 }
 
 SwigDirector_FeatureBase::~SwigDirector_FeatureBase() {
@@ -961,7 +961,7 @@ void SwigDirector_FeatureBase::swig_connect_director(JNIEnv *jenv, jobject jself
 }
 
 
-SwigDirector_Widget::SwigDirector_Widget(JNIEnv *jenv, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, int _regflags) : Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(jenv) {
+SwigDirector_Widget::SwigDirector_Widget(JNIEnv *jenv, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, unsigned int _regflags) : Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(jenv) {
 }
 
 SwigDirector_Widget::~SwigDirector_Widget() {
@@ -3055,7 +3055,7 @@ void SwigDirector_Dial::swig_connect_director(JNIEnv *jenv, jobject jself, jclas
 }
 
 
-SwigDirector_MasterContainer::SwigDirector_MasterContainer(JNIEnv *jenv, int w, int h, char const *target) : MasterContainer(w, h, target), Swig::Director(jenv) {
+SwigDirector_MasterContainer::SwigDirector_MasterContainer(JNIEnv *jenv, int w, int h, int defaults) : MasterContainer(w, h, defaults), Swig::Director(jenv) {
 }
 
 SwigDirector_MasterContainer::~SwigDirector_MasterContainer() {
@@ -3400,7 +3400,7 @@ void SwigDirector_MasterContainer::swig_connect_director(JNIEnv *jenv, jobject j
 }
 
 
-SwigDirector_Window::SwigDirector_Window(JNIEnv *jenv, int w, int h, std::string title, int use_mouse, char const *target) : Window(w, h, title, use_mouse, target), Swig::Director(jenv) {
+SwigDirector_Window::SwigDirector_Window(JNIEnv *jenv, int w, int h, std::string title, int use_mouse) : Window(w, h, title, use_mouse), Swig::Director(jenv) {
 }
 
 SwigDirector_Window::~SwigDirector_Window() {
@@ -4680,6 +4680,26 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1vectorVector(JNIEnv *j
       };
     }
   }
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_INPUT_1TYPE_1HAND_1RP_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  InputType result;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    try {
+      result = (InputType)INPUT_TYPE_HAND_RP;
+    } catch (std::exception& e) {
+      {
+        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
+      };
+    }
+  }
+  jresult = (jint)result; 
+  return jresult;
 }
 
 
@@ -6713,14 +6733,14 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1InputState(JNIEnv *jen
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1FeatureBase_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1FeatureBase_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   FeatureBase *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (FeatureBase *)new SwigDirector_FeatureBase(jenv,arg1);
@@ -6946,34 +6966,34 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_FeatureBase_1has_1result_1get(
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureBase_1typeflags_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_FeatureBase_1typeflags_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   FeatureBase *arg1 = (FeatureBase *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   SwigDirector_FeatureBase *darg = 0;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(FeatureBase **)&jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned int)jarg2; 
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
   if (arg1) darg->typeflags = arg2;
 }
 
 
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_FeatureBase_1typeflags_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureBase_1typeflags_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   FeatureBase *arg1 = (FeatureBase *) 0 ;
   SwigDirector_FeatureBase *darg = 0;
-  int result;
+  unsigned int result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(FeatureBase **)&jarg1; 
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
-  result = (int) (darg->typeflags);
-  jresult = (jint)result; 
+  result = (unsigned int) (darg->typeflags);
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -8688,14 +8708,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_write_1to_1_1SWIG_15(JNIEnv *
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Region_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Region_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   Region *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Region *)new Region(arg1);
@@ -8762,10 +8782,10 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_Region_1contains(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_Region_1flags_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Region_1flags_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Region *arg1 = (Region *) 0 ;
-  int result;
+  unsigned int result;
   
   (void)jenv;
   (void)jcls;
@@ -8773,27 +8793,27 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_Region_1flags_1_1SWIG_10(JNIEn
   arg1 = *(Region **)&jarg1; 
   {
     try {
-      result = (int)((Region const *)arg1)->flags();
+      result = (unsigned int)((Region const *)arg1)->flags();
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
       };
     }
   }
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Region_1flags_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Region_1flags_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   Region *arg1 = (Region *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Region **)&jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned int)jarg2; 
   {
     try {
       (arg1)->flags(arg2);
@@ -10010,14 +10030,14 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1vectorInt(JNIEnv *jenv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobCount_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobCount_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobCount *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobCount *)new BlobCount(arg1);
@@ -10883,14 +10903,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_write_1to_1_1SWIG_16(JNIEnv *
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobDim_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobDim_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobDim *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobDim *)new BlobDim(arg1);
@@ -11061,14 +11081,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobDim_1dynamic_1cast(JNIEnv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobID_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobID_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobID *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobID *)new BlobID(arg1);
@@ -11451,14 +11471,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_FeatureVector_1dynamic_1cast(
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobPos_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobPos_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobPos *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobPos *)new BlobPos(arg1);
@@ -11686,14 +11706,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_BlobPos_1dynamic_1cast(JNIEnv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobGroup_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1BlobGroup_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   BlobGroup *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (BlobGroup *)new BlobGroup(arg1);
@@ -12332,14 +12352,14 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1vectorDouble(JNIEnv *j
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Motion_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Motion_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   Motion *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Motion *)new Motion(arg1);
@@ -12487,14 +12507,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Motion_1dynamic_1cast(JNIEnv 
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Rotation_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Rotation_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   Rotation *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Rotation *)new Rotation(arg1);
@@ -12642,14 +12662,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Rotation_1dynamic_1cast(JNIEn
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MultiBlobRotation_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MultiBlobRotation_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   MultiBlobRotation *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (MultiBlobRotation *)new MultiBlobRotation(arg1);
@@ -12797,14 +12817,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_MultiBlobRotation_1dynamic_1c
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Scale_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Scale_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   Scale *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (Scale *)new Scale(arg1);
@@ -12952,14 +12972,14 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Scale_1dynamic_1cast(JNIEnv *
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MultiBlobScale_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MultiBlobScale_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
-  int arg1 ;
+  unsigned int arg1 ;
   MultiBlobScale *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1; 
+  arg1 = (unsigned int)jarg1; 
   {
     try {
       result = (MultiBlobScale *)new MultiBlobScale(arg1);
@@ -59091,7 +59111,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_g_1matcher_1get(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Widget_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jint jarg3, jint jarg4, jdouble jarg5, jlong jarg6, jobject jarg6_, jint jarg7) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Widget_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jint jarg3, jint jarg4, jdouble jarg5, jlong jarg6, jobject jarg6_, jlong jarg7) {
   jlong jresult = 0 ;
   int arg1 ;
   int arg2 ;
@@ -59099,7 +59119,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Widget_1_1SWIG_10(JNIEnv
   int arg4 ;
   double arg5 ;
   RGBATexture *arg6 = (RGBATexture *) 0 ;
-  int arg7 ;
+  unsigned int arg7 ;
   Widget *result = 0 ;
   
   (void)jenv;
@@ -59111,7 +59131,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Widget_1_1SWIG_10(JNIEnv
   arg4 = (int)jarg4; 
   arg5 = (double)jarg5; 
   arg6 = *(RGBATexture **)&jarg6; 
-  arg7 = (int)jarg7; 
+  arg7 = (unsigned int)jarg7; 
   {
     try {
       result = (Widget *)new SwigDirector_Widget(jenv,arg1,arg2,arg3,arg4,arg5,arg6,arg7);
@@ -64318,25 +64338,21 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Dial_1change_1ownership(JNIEnv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MasterContainer_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MasterContainer_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jint jarg3) {
   jlong jresult = 0 ;
   int arg1 ;
   int arg2 ;
-  char *arg3 = (char *) 0 ;
+  int arg3 ;
   MasterContainer *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
-  arg3 = 0;
-  if (jarg3) {
-    arg3 = (char *)jenv->GetStringUTFChars(jarg3, 0);
-    if (!arg3) return 0;
-  }
+  arg3 = (int)jarg3; 
   {
     try {
-      result = (MasterContainer *)new SwigDirector_MasterContainer(jenv,arg1,arg2,(char const *)arg3);
+      result = (MasterContainer *)new SwigDirector_MasterContainer(jenv,arg1,arg2,arg3);
     } catch (std::exception& e) {
       {
         SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
@@ -64344,7 +64360,6 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1MasterContainer_1_1SWIG_
     }
   }
   *(MasterContainer **)&jresult = result; 
-  if (arg3) jenv->ReleaseStringUTFChars(jarg3, (const char *)arg3);
   return jresult;
 }
 
@@ -64655,49 +64670,7 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_MasterContainer_1change_1owner
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3, jint jarg4, jstring jarg5) {
-  jlong jresult = 0 ;
-  int arg1 ;
-  int arg2 ;
-  std::string arg3 ;
-  int arg4 ;
-  char *arg5 = (char *) 0 ;
-  Window *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = (int)jarg1; 
-  arg2 = (int)jarg2; 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null std::string");
-    return 0;
-  } 
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  (&arg3)->assign(arg3_pstr);
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  arg4 = (int)jarg4; 
-  arg5 = 0;
-  if (jarg5) {
-    arg5 = (char *)jenv->GetStringUTFChars(jarg5, 0);
-    if (!arg5) return 0;
-  }
-  {
-    try {
-      result = (Window *)new SwigDirector_Window(jenv,arg1,arg2,arg3,arg4,(char const *)arg5);
-    } catch (std::exception& e) {
-      {
-        SWIG_JavaException(jenv, SWIG_RuntimeError, e.what()); return 0; 
-      };
-    }
-  }
-  *(Window **)&jresult = result; 
-  if (arg5) jenv->ReleaseStringUTFChars(jarg5, (const char *)arg5);
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3, jint jarg4) {
   jlong jresult = 0 ;
   int arg1 ;
   int arg2 ;
@@ -64732,7 +64705,7 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_11(JNIEnv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3) {
+SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_new_1Window_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2, jstring jarg3) {
   jlong jresult = 0 ;
   int arg1 ;
   int arg2 ;

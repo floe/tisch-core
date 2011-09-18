@@ -39,17 +39,12 @@ public class Window : GLUTWindow {
     }
   }
 
-  public Window(int w, int h, string title, int use_mouse, string target) : this(libtischPINVOKE.new_Window__SWIG_0(w, h, title, use_mouse, target), true) {
+  public Window(int w, int h, string title, int use_mouse) : this(libtischPINVOKE.new_Window__SWIG_0(w, h, title, use_mouse), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }
 
-  public Window(int w, int h, string title, int use_mouse) : this(libtischPINVOKE.new_Window__SWIG_1(w, h, title, use_mouse), true) {
-    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
-    SwigDirectorConnect();
-  }
-
-  public Window(int w, int h, string title) : this(libtischPINVOKE.new_Window__SWIG_2(w, h, title), true) {
+  public Window(int w, int h, string title) : this(libtischPINVOKE.new_Window__SWIG_1(w, h, title), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }

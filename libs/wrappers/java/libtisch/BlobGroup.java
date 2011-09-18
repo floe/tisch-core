@@ -35,7 +35,7 @@ public class BlobGroup extends FeatureVector {
     super.delete();
   }
 
-  public BlobGroup(int tf) {
+  public BlobGroup(long tf) {
     this(libtischJNI.new_BlobGroup__SWIG_0(tf), true);
   }
 

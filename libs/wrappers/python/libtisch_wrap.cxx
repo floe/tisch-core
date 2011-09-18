@@ -5612,6 +5612,22 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_int (PyObject * obj, unsigned int *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UINT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< unsigned int >(v);
+    }
+  }  
+  return res;
+}
+
+
 SWIGINTERNINLINE PyObject *
 SWIG_FromCharPtrAndSize(const char* carray, size_t size)
 {
@@ -5637,6 +5653,13 @@ SWIGINTERNINLINE PyObject *
 SWIG_FromCharPtr(const char *cptr)
 { 
   return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_unsigned_SS_int  (unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
 }
 
 
@@ -6067,22 +6090,6 @@ SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
 
 
 SWIGINTERN int
-SWIG_AsVal_unsigned_SS_int (PyObject * obj, unsigned int *val)
-{
-  unsigned long v;
-  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v > UINT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< unsigned int >(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERN int
 SWIG_AsVal_bool (PyObject *obj, bool *val)
 {
   int r = PyObject_IsTrue(obj);
@@ -6394,13 +6401,6 @@ SWIGINTERN MultiBlobScale *MultiBlobScale_dynamic_cast(FeatureBase *base){
         return dynamic_cast<MultiBlobScale*>(base);
     }
 
-SWIGINTERNINLINE PyObject *
-SWIG_From_unsigned_SS_int  (unsigned int value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
-
-
 SWIGINTERN int
 SWIG_AsVal_float (PyObject * obj, float *val)
 {
@@ -6424,7 +6424,7 @@ SWIG_AsVal_float (PyObject * obj, float *val)
 
 #include "libtisch_wrap.h"
 
-SwigDirector_FeatureBase::SwigDirector_FeatureBase(PyObject *self, int _tf): FeatureBase(_tf), Swig::Director(self) {
+SwigDirector_FeatureBase::SwigDirector_FeatureBase(PyObject *self, unsigned int _tf): FeatureBase(_tf), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((FeatureBase *)this, this); 
 }
 
@@ -6600,7 +6600,7 @@ void SwigDirector_FeatureBase::unserialize(std::istream &s) {
 }
 
 
-SwigDirector_Widget::SwigDirector_Widget(PyObject *self, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, int _regflags): Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(self) {
+SwigDirector_Widget::SwigDirector_Widget(PyObject *self, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, unsigned int _regflags): Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((Widget *)this, this); 
 }
 
@@ -8275,7 +8275,7 @@ void SwigDirector_Dial::paint(bool update_stencil) {
 }
 
 
-SwigDirector_MasterContainer::SwigDirector_MasterContainer(PyObject *self, int w, int h, char const *target): MasterContainer(w, h, target), Swig::Director(self) {
+SwigDirector_MasterContainer::SwigDirector_MasterContainer(PyObject *self, int w, int h, int defaults): MasterContainer(w, h, defaults), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((MasterContainer *)this, this); 
 }
 
@@ -8557,7 +8557,7 @@ void SwigDirector_MasterContainer::apply(Vector delta) {
 }
 
 
-SwigDirector_Window::SwigDirector_Window(PyObject *self, int w, int h, std::string title, int use_mouse, char const *target): Window(w, h, title, use_mouse, target), Swig::Director(self) {
+SwigDirector_Window::SwigDirector_Window(PyObject *self, int w, int h, std::string title, int use_mouse): Window(w, h, title, use_mouse), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((Window *)this, this); 
 }
 
@@ -20892,8 +20892,8 @@ SWIGINTERN PyObject *InputState_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
 SWIGINTERN PyObject *_wrap_new_FeatureBase__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
-  int arg2 ;
-  int val2 ;
+  unsigned int arg2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -20901,11 +20901,11 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   
   if (!PyArg_ParseTuple(args,(char *)"OO:new_FeatureBase",&obj0,&obj1)) SWIG_fail;
   arg1 = obj0;
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_FeatureBase" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_FeatureBase" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   {
     try {
       if ( arg1 != Py_None ) {
@@ -20978,7 +20978,7 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase(PyObject *self, PyObject *args) {
     _v = (argv[0] != 0);
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -20990,7 +20990,7 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_FeatureBase'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    FeatureBase(PyObject *,int)\n"
+    "    FeatureBase(PyObject *,unsigned int)\n"
     "    FeatureBase(PyObject *)\n");
   return NULL;
 }
@@ -21363,10 +21363,10 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   FeatureBase *arg1 = (FeatureBase *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -21378,11 +21378,11 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_set(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureBase_typeflags_set" "', argument " "1"" of type '" "FeatureBase *""'"); 
   }
   arg1 = reinterpret_cast< FeatureBase * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "FeatureBase_typeflags_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "FeatureBase_typeflags_set" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
   if (arg1) darg->typeflags = arg2;
   resultobj = SWIG_Py_Void();
@@ -21399,7 +21399,7 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_get(PyObject *SWIGUNUSEDPARM(se
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   SwigDirector_FeatureBase *darg = 0;
-  int result;
+  unsigned int result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:FeatureBase_typeflags_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureBase, 0 |  0 );
@@ -21408,8 +21408,8 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_get(PyObject *SWIGUNUSEDPARM(se
   }
   arg1 = reinterpret_cast< FeatureBase * >(argp1);
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
-  result = (int) (darg->typeflags);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (unsigned int) (darg->typeflags);
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -27852,18 +27852,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Region__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Region *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Region",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Region" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Region" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Region *)new Region(arg1);
@@ -27913,7 +27913,7 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -27924,7 +27924,7 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Region'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Region(int)\n"
+    "    Region(unsigned int)\n"
     "    Region()\n");
   return NULL;
 }
@@ -27981,7 +27981,7 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int result;
+  unsigned int result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Region_flags",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
@@ -27991,12 +27991,12 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
   arg1 = reinterpret_cast< Region * >(argp1);
   {
     try {
-      result = (int)((Region const *)arg1)->flags();
+      result = (unsigned int)((Region const *)arg1)->flags();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -28006,10 +28006,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Region_flags__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -28020,11 +28020,11 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_1(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_flags" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_flags" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_flags" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   {
     try {
       (arg1)->flags(arg2);
@@ -28065,7 +28065,7 @@ SWIGINTERN PyObject *_wrap_Region_flags(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -28078,7 +28078,7 @@ fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Region_flags'.\n"
     "  Possible C/C++ prototypes are:\n"
     "    flags(Region const *)\n"
-    "    flags(Region *,int)\n");
+    "    flags(Region *,unsigned int)\n");
   return NULL;
 }
 
@@ -31476,18 +31476,18 @@ SWIGINTERN PyObject *vectorInt_swigregister(PyObject *SWIGUNUSEDPARM(self), PyOb
 
 SWIGINTERN PyObject *_wrap_new_BlobCount__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobCount *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobCount",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobCount" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobCount" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobCount *)new BlobCount(arg1);
@@ -31537,7 +31537,7 @@ SWIGINTERN PyObject *_wrap_new_BlobCount(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -31548,7 +31548,7 @@ SWIGINTERN PyObject *_wrap_new_BlobCount(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobCount'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobCount(int)\n"
+    "    BlobCount(unsigned int)\n"
     "    BlobCount()\n");
   return NULL;
 }
@@ -34534,18 +34534,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_BlobDim__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobDim *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobDim",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobDim" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobDim" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobDim *)new BlobDim(arg1);
@@ -34595,7 +34595,7 @@ SWIGINTERN PyObject *_wrap_new_BlobDim(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -34606,7 +34606,7 @@ SWIGINTERN PyObject *_wrap_new_BlobDim(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobDim'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobDim(int)\n"
+    "    BlobDim(unsigned int)\n"
     "    BlobDim()\n");
   return NULL;
 }
@@ -34799,18 +34799,18 @@ SWIGINTERN PyObject *BlobDim_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 SWIGINTERN PyObject *_wrap_new_BlobID__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobID *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobID",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobID" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobID" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobID *)new BlobID(arg1);
@@ -34860,7 +34860,7 @@ SWIGINTERN PyObject *_wrap_new_BlobID(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -34871,7 +34871,7 @@ SWIGINTERN PyObject *_wrap_new_BlobID(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobID'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobID(int)\n"
+    "    BlobID(unsigned int)\n"
     "    BlobID()\n");
   return NULL;
 }
@@ -35366,18 +35366,18 @@ SWIGINTERN PyObject *FeatureVector_swigregister(PyObject *SWIGUNUSEDPARM(self), 
 
 SWIGINTERN PyObject *_wrap_new_BlobPos__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobPos *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobPos",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobPos" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobPos" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobPos *)new BlobPos(arg1);
@@ -35427,7 +35427,7 @@ SWIGINTERN PyObject *_wrap_new_BlobPos(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -35438,7 +35438,7 @@ SWIGINTERN PyObject *_wrap_new_BlobPos(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobPos'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobPos(int)\n"
+    "    BlobPos(unsigned int)\n"
     "    BlobPos()\n");
   return NULL;
 }
@@ -35735,18 +35735,18 @@ SWIGINTERN PyObject *BlobPos_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 SWIGINTERN PyObject *_wrap_new_BlobGroup__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobGroup *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobGroup",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobGroup" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobGroup" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobGroup *)new BlobGroup(arg1);
@@ -35796,7 +35796,7 @@ SWIGINTERN PyObject *_wrap_new_BlobGroup(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -35807,7 +35807,7 @@ SWIGINTERN PyObject *_wrap_new_BlobGroup(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobGroup'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobGroup(int)\n"
+    "    BlobGroup(unsigned int)\n"
     "    BlobGroup()\n");
   return NULL;
 }
@@ -38268,18 +38268,18 @@ SWIGINTERN PyObject *vectorDouble_swigregister(PyObject *SWIGUNUSEDPARM(self), P
 
 SWIGINTERN PyObject *_wrap_new_Motion__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Motion *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Motion",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Motion" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Motion" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Motion *)new Motion(arg1);
@@ -38329,7 +38329,7 @@ SWIGINTERN PyObject *_wrap_new_Motion(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -38340,7 +38340,7 @@ SWIGINTERN PyObject *_wrap_new_Motion(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Motion'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Motion(int)\n"
+    "    Motion(unsigned int)\n"
     "    Motion()\n");
   return NULL;
 }
@@ -38505,18 +38505,18 @@ SWIGINTERN PyObject *Motion_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
 
 SWIGINTERN PyObject *_wrap_new_Rotation__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Rotation *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Rotation",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Rotation" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Rotation" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Rotation *)new Rotation(arg1);
@@ -38566,7 +38566,7 @@ SWIGINTERN PyObject *_wrap_new_Rotation(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -38577,7 +38577,7 @@ SWIGINTERN PyObject *_wrap_new_Rotation(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Rotation'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Rotation(int)\n"
+    "    Rotation(unsigned int)\n"
     "    Rotation()\n");
   return NULL;
 }
@@ -38742,18 +38742,18 @@ SWIGINTERN PyObject *Rotation_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObj
 
 SWIGINTERN PyObject *_wrap_new_MultiBlobRotation__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   MultiBlobRotation *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_MultiBlobRotation",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobRotation" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobRotation" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (MultiBlobRotation *)new MultiBlobRotation(arg1);
@@ -38803,7 +38803,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobRotation(PyObject *self, PyObject *args)
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -38814,7 +38814,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobRotation(PyObject *self, PyObject *args)
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MultiBlobRotation'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MultiBlobRotation(int)\n"
+    "    MultiBlobRotation(unsigned int)\n"
     "    MultiBlobRotation()\n");
   return NULL;
 }
@@ -38979,18 +38979,18 @@ SWIGINTERN PyObject *MultiBlobRotation_swigregister(PyObject *SWIGUNUSEDPARM(sel
 
 SWIGINTERN PyObject *_wrap_new_Scale__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Scale *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Scale",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Scale" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Scale" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Scale *)new Scale(arg1);
@@ -39040,7 +39040,7 @@ SWIGINTERN PyObject *_wrap_new_Scale(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -39051,7 +39051,7 @@ SWIGINTERN PyObject *_wrap_new_Scale(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Scale'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Scale(int)\n"
+    "    Scale(unsigned int)\n"
     "    Scale()\n");
   return NULL;
 }
@@ -39216,18 +39216,18 @@ SWIGINTERN PyObject *Scale_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
 
 SWIGINTERN PyObject *_wrap_new_MultiBlobScale__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   MultiBlobScale *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_MultiBlobScale",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobScale" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobScale" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (MultiBlobScale *)new MultiBlobScale(arg1);
@@ -39277,7 +39277,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobScale(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -39288,7 +39288,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobScale(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MultiBlobScale'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MultiBlobScale(int)\n"
+    "    MultiBlobScale(unsigned int)\n"
     "    MultiBlobScale()\n");
   return NULL;
 }
@@ -42857,7 +42857,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
   int arg5 ;
   double arg6 ;
   RGBATexture *arg7 = (RGBATexture *) 0 ;
-  int arg8 ;
+  unsigned int arg8 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
@@ -42870,7 +42870,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
   int ecode6 = 0 ;
   void *argp7 = 0 ;
   int res7 = 0 ;
-  int val8 ;
+  unsigned int val8 ;
   int ecode8 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -42914,11 +42914,11 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Widget" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
   arg7 = reinterpret_cast< RGBATexture * >(argp7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
+  ecode8 = SWIG_AsVal_unsigned_SS_int(obj7, &val8);
   if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_Widget" "', argument " "8"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_Widget" "', argument " "8"" of type '" "unsigned int""'");
   } 
-  arg8 = static_cast< int >(val8);
+  arg8 = static_cast< unsigned int >(val8);
   {
     try {
       if ( arg1 != Py_None ) {
@@ -43463,7 +43463,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   {
-                    int res = SWIG_AsVal_int(argv[7], NULL);
+                    int res = SWIG_AsVal_unsigned_SS_int(argv[7], NULL);
                     _v = SWIG_CheckState(res);
                   }
                   if (_v) {
@@ -43481,7 +43481,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Widget'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Widget(PyObject *,int,int,int,int,double,RGBATexture *,int)\n"
+    "    Widget(PyObject *,int,int,int,int,double,RGBATexture *,unsigned int)\n"
     "    Widget(PyObject *,int,int,int,int,double,RGBATexture *)\n"
     "    Widget(PyObject *,int,int,int,int,double)\n"
     "    Widget(PyObject *,int,int,int,int)\n"
@@ -53868,14 +53868,13 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
   PyObject *arg1 = (PyObject *) 0 ;
   int arg2 ;
   int arg3 ;
-  char *arg4 = (char *) 0 ;
+  int arg4 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -53894,18 +53893,18 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MasterContainer" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_MasterContainer" "', argument " "4"" of type '" "char const *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MasterContainer" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
   {
     try {
       if ( arg1 != Py_None ) {
         /* subclassed */
-        result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,arg3,(char const *)arg4); 
+        result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,arg3,arg4); 
       } else {
-        result = (MasterContainer *)new MasterContainer(arg2,arg3,(char const *)arg4); 
+        result = (MasterContainer *)new MasterContainer(arg2,arg3,arg4); 
       }
       
     } catch (std::exception& e) {
@@ -53913,10 +53912,8 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
     }
   }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MasterContainer, SWIG_POINTER_NEW |  0 );
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -54010,8 +54007,10 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
-          _v = SWIG_CheckState(res);
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
           if (_v) {
             return _wrap_new_MasterContainer__SWIG_0(self, args);
           }
@@ -54023,7 +54022,7 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MasterContainer'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MasterContainer(PyObject *,int,int,char const *)\n"
+    "    MasterContainer(PyObject *,int,int,int)\n"
     "    MasterContainer(PyObject *,int,int)\n");
   return NULL;
 }
@@ -54493,84 +54492,6 @@ SWIGINTERN PyObject *_wrap_new_Window__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
   int arg3 ;
   std::string arg4 ;
   int arg5 ;
-  char *arg6 = (char *) 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
-  int res6 ;
-  char *buf6 = 0 ;
-  int alloc6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Window *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:new_Window",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  arg1 = obj0;
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Window" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Window" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(obj3, &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Window" "', argument " "4"" of type '" "std::string""'"); 
-    }
-    arg4 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_Window" "', argument " "5"" of type '" "int""'");
-  } 
-  arg5 = static_cast< int >(val5);
-  res6 = SWIG_AsCharPtrAndSize(obj5, &buf6, NULL, &alloc6);
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Window" "', argument " "6"" of type '" "char const *""'");
-  }
-  arg6 = reinterpret_cast< char * >(buf6);
-  {
-    try {
-      if ( arg1 != Py_None ) {
-        /* subclassed */
-        result = (Window *)new SwigDirector_Window(arg1,arg2,arg3,arg4,arg5,(char const *)arg6); 
-      } else {
-        result = (Window *)new Window(arg2,arg3,arg4,arg5,(char const *)arg6); 
-      }
-      
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Window, SWIG_POINTER_NEW |  0 );
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
-  return resultobj;
-fail:
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Window__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PyObject *arg1 = (PyObject *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  std::string arg4 ;
-  int arg5 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
@@ -54630,7 +54551,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Window__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Window__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
   int arg2 ;
@@ -54689,12 +54610,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[7];
+  PyObject *argv[6];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 6); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 4) {
@@ -54714,7 +54635,7 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
           int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_new_Window__SWIG_2(self, args);
+            return _wrap_new_Window__SWIG_1(self, args);
           }
         }
       }
@@ -54742,40 +54663,7 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_new_Window__SWIG_1(self, args);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    _v = (argv[0] != 0);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            {
-              int res = SWIG_AsVal_int(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              int res = SWIG_AsCharPtrAndSize(argv[5], 0, NULL, 0);
-              _v = SWIG_CheckState(res);
-              if (_v) {
-                return _wrap_new_Window__SWIG_0(self, args);
-              }
+              return _wrap_new_Window__SWIG_0(self, args);
             }
           }
         }
@@ -54786,7 +54674,6 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Window'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Window(PyObject *,int,int,std::string,int,char const *)\n"
     "    Window(PyObject *,int,int,std::string,int)\n"
     "    Window(PyObject *,int,int,std::string)\n");
   return NULL;
@@ -58412,11 +58299,36 @@ SWIG_init(void) {
   SWIG_InstallConstants(d,swig_const_table);
   
   
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_SHADOW",SWIG_From_int(static_cast< int >(INPUT_TYPE_SHADOW)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_UNKNOWN",SWIG_From_int(static_cast< int >(INPUT_TYPE_UNKNOWN)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RI",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RI)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RM",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RM)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RR",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RR)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RL",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RT",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RT)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LI",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LI)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LM",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LM)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LR",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LR)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LL",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LT",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LT)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_STYLUS",SWIG_From_int(static_cast< int >(INPUT_TYPE_STYLUS)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_LASER",SWIG_From_int(static_cast< int >(INPUT_TYPE_LASER)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_MOUSE",SWIG_From_int(static_cast< int >(INPUT_TYPE_MOUSE)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_TRACKBALL",SWIG_From_int(static_cast< int >(INPUT_TYPE_TRACKBALL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_JOYSTICK",SWIG_From_int(static_cast< int >(INPUT_TYPE_JOYSTICK)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_WIIMOTE",SWIG_From_int(static_cast< int >(INPUT_TYPE_WIIMOTE)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_EYETRACKER",SWIG_From_int(static_cast< int >(INPUT_TYPE_EYETRACKER)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_OBJECT",SWIG_From_int(static_cast< int >(INPUT_TYPE_OBJECT)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_OTHER",SWIG_From_int(static_cast< int >(INPUT_TYPE_OTHER)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_TOKEN",SWIG_From_int(static_cast< int >(INPUT_TYPE_TOKEN)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RP",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RP)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RO",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RO)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RC",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RC)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LP",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LP)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LO",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LO)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LC",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LC)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FOOT_R",SWIG_From_int(static_cast< int >(INPUT_TYPE_FOOT_R)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FOOT_L",SWIG_From_int(static_cast< int >(INPUT_TYPE_FOOT_L)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HEAD",SWIG_From_int(static_cast< int >(INPUT_TYPE_HEAD)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_PERSON",SWIG_From_int(static_cast< int >(INPUT_TYPE_PERSON)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_COUNT",SWIG_From_int(static_cast< int >(INPUT_TYPE_COUNT)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_STICKY",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_ONESHOT",SWIG_From_int(static_cast< int >(2)));

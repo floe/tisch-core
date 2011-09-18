@@ -40,7 +40,7 @@ public class FeatureBase : IDisposable {
     }
   }
 
-  public FeatureBase(int _tf) : this(libtischPINVOKE.new_FeatureBase__SWIG_0(_tf), true) {
+  public FeatureBase(uint _tf) : this(libtischPINVOKE.new_FeatureBase__SWIG_0(_tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }
@@ -96,13 +96,13 @@ public class FeatureBase : IDisposable {
     } 
   }
 
-  protected int typeflags {
+  protected uint typeflags {
     set {
       libtischPINVOKE.FeatureBase_typeflags_set(swigCPtr, value);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     } 
     get {
-      int ret = libtischPINVOKE.FeatureBase_typeflags_get(swigCPtr);
+      uint ret = libtischPINVOKE.FeatureBase_typeflags_get(swigCPtr);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 

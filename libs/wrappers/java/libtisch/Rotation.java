@@ -35,7 +35,7 @@ public class Rotation extends FeatureDouble {
     super.delete();
   }
 
-  public Rotation(int tf) {
+  public Rotation(long tf) {
     this(libtischJNI.new_Rotation__SWIG_0(tf), true);
   }
 

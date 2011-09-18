@@ -39,7 +39,7 @@ public class MultiBlobScale : Scale {
     }
   }
 
-  public MultiBlobScale(int tf) : this(libtischPINVOKE.new_MultiBlobScale__SWIG_0(tf), true) {
+  public MultiBlobScale(uint tf) : this(libtischPINVOKE.new_MultiBlobScale__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 

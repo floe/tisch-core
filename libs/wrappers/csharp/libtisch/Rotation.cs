@@ -39,7 +39,7 @@ public class Rotation : FeatureDouble {
     }
   }
 
-  public Rotation(int tf) : this(libtischPINVOKE.new_Rotation__SWIG_0(tf), true) {
+  public Rotation(uint tf) : this(libtischPINVOKE.new_Rotation__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
