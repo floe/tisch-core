@@ -148,6 +148,7 @@ template <typename T> T SwigValueInit() {
 
 /* Python.h has to appear first */
 #include <Python.h>
+#include <stddef.h>
 
 /* -----------------------------------------------------------------------------
  * swigrun.swg
@@ -58333,7 +58334,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_STICKY",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_ONESHOT",SWIG_From_int(static_cast< int >(2)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_DEFAULT",SWIG_From_int(static_cast< int >(4)));
-  SWIG_Python_SetConstant(d, "GL_GLEXT_VERSION",SWIG_From_int(static_cast< int >(66)));
+  SWIG_Python_SetConstant(d, "GL_GLEXT_VERSION",SWIG_From_int(static_cast< int >(71)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_BYTE_3_3_2",SWIG_From_int(static_cast< int >(0x8032)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_SHORT_4_4_4_4",SWIG_From_int(static_cast< int >(0x8033)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_SHORT_5_5_5_1",SWIG_From_int(static_cast< int >(0x8034)));
@@ -61639,6 +61640,17 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_WRITE_DISCARD_NV",SWIG_From_int(static_cast< int >(0x88BE)));
   SWIG_Python_SetConstant(d, "GL_DEPTH_CLAMP_NEAR_AMD",SWIG_From_int(static_cast< int >(0x901E)));
   SWIG_Python_SetConstant(d, "GL_DEPTH_CLAMP_FAR_AMD",SWIG_From_int(static_cast< int >(0x901F)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_SRGB_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A48)));
+  SWIG_Python_SetConstant(d, "GL_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A49)));
+  SWIG_Python_SetConstant(d, "GL_SKIP_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A4A)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_COVERAGE_SAMPLES_NV",SWIG_From_int(static_cast< int >(0x9045)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_COLOR_SAMPLES_NV",SWIG_From_int(static_cast< int >(0x9046)));
+  SWIG_Python_SetConstant(d, "GL_FACTOR_MIN_AMD",SWIG_From_int(static_cast< int >(0x901C)));
+  SWIG_Python_SetConstant(d, "GL_FACTOR_MAX_AMD",SWIG_From_int(static_cast< int >(0x901D)));
+  SWIG_Python_SetConstant(d, "GL_SUBSAMPLE_DISTANCE_AMD",SWIG_From_int(static_cast< int >(0x883F)));
+  SWIG_Python_SetConstant(d, "GL_SYNC_X11_FENCE_EXT",SWIG_From_int(static_cast< int >(0x90E1)));
+  SWIG_Python_SetConstant(d, "GL_SCALED_RESOLVE_FASTEST_EXT",SWIG_From_int(static_cast< int >(0x90BA)));
+  SWIG_Python_SetConstant(d, "GL_SCALED_RESOLVE_NICEST_EXT",SWIG_From_int(static_cast< int >(0x90BB)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_2",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_2_DEPRECATED",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_3",SWIG_From_int(static_cast< int >(1)));
@@ -62033,6 +62045,13 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_NV_vdpau_interop",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_AMD_transform_feedback3_lines_triangles",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_AMD_depth_clamp_separate",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_texture_sRGB_decode",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_NV_texture_multisample",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_blend_minmax_factor",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_sample_positions",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_x11_sync_object",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_multi_draw_indirect",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_framebuffer_multisample_blit_scaled",SWIG_From_int(static_cast< int >(1)));
   PyDict_SetItemString(d,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"g_proj",Swig_var_g_proj_get, Swig_var_g_proj_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_view",Swig_var_g_view_get, Swig_var_g_view_set);

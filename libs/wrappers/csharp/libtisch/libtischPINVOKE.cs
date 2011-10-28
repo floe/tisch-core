@@ -11680,6 +11680,39 @@ class libtischPINVOKE {
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_DEPTH_CLAMP_FAR_AMD_get")]
   public static extern int GL_DEPTH_CLAMP_FAR_AMD_get();
 
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_TEXTURE_SRGB_DECODE_EXT_get")]
+  public static extern int GL_TEXTURE_SRGB_DECODE_EXT_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_DECODE_EXT_get")]
+  public static extern int GL_DECODE_EXT_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_SKIP_DECODE_EXT_get")]
+  public static extern int GL_SKIP_DECODE_EXT_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_TEXTURE_COVERAGE_SAMPLES_NV_get")]
+  public static extern int GL_TEXTURE_COVERAGE_SAMPLES_NV_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_TEXTURE_COLOR_SAMPLES_NV_get")]
+  public static extern int GL_TEXTURE_COLOR_SAMPLES_NV_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_FACTOR_MIN_AMD_get")]
+  public static extern int GL_FACTOR_MIN_AMD_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_FACTOR_MAX_AMD_get")]
+  public static extern int GL_FACTOR_MAX_AMD_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_SUBSAMPLE_DISTANCE_AMD_get")]
+  public static extern int GL_SUBSAMPLE_DISTANCE_AMD_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_SYNC_X11_FENCE_EXT_get")]
+  public static extern int GL_SYNC_X11_FENCE_EXT_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_SCALED_RESOLVE_FASTEST_EXT_get")]
+  public static extern int GL_SCALED_RESOLVE_FASTEST_EXT_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_SCALED_RESOLVE_NICEST_EXT_get")]
+  public static extern int GL_SCALED_RESOLVE_NICEST_EXT_get();
+
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_VERSION_1_2_get")]
   public static extern int GL_VERSION_1_2_get();
 
@@ -12861,6 +12894,27 @@ class libtischPINVOKE {
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_depth_clamp_separate_get")]
   public static extern int GL_AMD_depth_clamp_separate_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_EXT_texture_sRGB_decode_get")]
+  public static extern int GL_EXT_texture_sRGB_decode_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_NV_texture_multisample_get")]
+  public static extern int GL_NV_texture_multisample_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_blend_minmax_factor_get")]
+  public static extern int GL_AMD_blend_minmax_factor_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_sample_positions_get")]
+  public static extern int GL_AMD_sample_positions_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_EXT_x11_sync_object_get")]
+  public static extern int GL_EXT_x11_sync_object_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_AMD_multi_draw_indirect_get")]
+  public static extern int GL_AMD_multi_draw_indirect_get();
+
+  [DllImport("libtisch_csharp", EntryPoint="CSharp_GL_EXT_framebuffer_multisample_blit_scaled_get")]
+  public static extern int GL_EXT_framebuffer_multisample_blit_scaled_get();
 
   [DllImport("libtisch_csharp", EntryPoint="CSharp_new_GLUTWindow__SWIG_0")]
   public static extern IntPtr new_GLUTWindow__SWIG_0(int jarg1, int jarg2, string jarg3, int jarg4);

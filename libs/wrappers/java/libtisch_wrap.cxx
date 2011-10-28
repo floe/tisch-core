@@ -13133,7 +13133,7 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1GLEXT_1VERSION_1get(JNIEnv
   
   (void)jenv;
   (void)jcls;
-  result = (int) 66;
+  result = (int) 71;
   jresult = (jint)result; 
   return jresult;
 }
@@ -52815,6 +52815,138 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1DEPTH_1CLAMP_1FAR_1AMD_1ge
 }
 
 
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1TEXTURE_1SRGB_1DECODE_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x8A48;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1DECODE_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x8A49;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1SKIP_1DECODE_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x8A4A;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1TEXTURE_1COVERAGE_1SAMPLES_1NV_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x9045;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1TEXTURE_1COLOR_1SAMPLES_1NV_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x9046;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1FACTOR_1MIN_1AMD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x901C;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1FACTOR_1MAX_1AMD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x901D;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1SUBSAMPLE_1DISTANCE_1AMD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x883F;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1SYNC_1X11_1FENCE_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x90E1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1SCALED_1RESOLVE_1FASTEST_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x90BA;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1SCALED_1RESOLVE_1NICEST_1EXT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 0x90BB;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1VERSION_11_12_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
@@ -57532,6 +57664,90 @@ SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1AMD_1transform_1feedback3_
 
 
 SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1AMD_1depth_1clamp_1separate_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1EXT_1texture_1sRGB_1decode_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1NV_1texture_1multisample_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1AMD_1blend_1minmax_1factor_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1AMD_1sample_1positions_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1EXT_1x11_1sync_1object_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1AMD_1multi_1draw_1indirect_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int) 1;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_libtisch_libtischJNI_GL_1EXT_1framebuffer_1multisample_1blit_1scaled_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
   
