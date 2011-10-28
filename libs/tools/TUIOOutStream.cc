@@ -41,7 +41,10 @@ TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 
 	float w = b.axis1.length();
 	float h = b.axis2.length();
-	float angle = acos((b.axis1*(1.0/w))*Vector(1,0,0));
+	float inner = (b.axis1*(1.0/w))*Vector(1,0,0);
+	if (inner >  1.0) inner =  1.0;
+	if (inner < -1.0) inner = -1.0;
+	float angle = acos(inner);
 	if (b.axis1.y < 0) angle = 2*M_PI - angle;
 
 	if (s.mode & TISCH_TUIO2) {
