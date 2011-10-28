@@ -60,7 +60,7 @@ void* Matcher::run() {
 }
 
 
-RegionList::iterator Matcher::find( unsigned int id ) {
+RegionList::iterator Matcher::find( unsigned long long id ) {
 	RegionList::iterator reg = regions.begin();
 	for ( ; reg != regions.end(); reg++ )
 		if ((*reg)->id == id)
@@ -69,7 +69,7 @@ RegionList::iterator Matcher::find( unsigned int id ) {
 }
 
 
-void Matcher::update( unsigned int id, Region* r ) {
+void Matcher::update( unsigned long long id, Region* r ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -84,7 +84,7 @@ void Matcher::update( unsigned int id, Region* r ) {
 	release();
 }
 
-void Matcher::remove( unsigned int id ) {
+void Matcher::remove( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -101,7 +101,7 @@ void Matcher::remove( unsigned int id ) {
 	release();
 }
 
-void Matcher::raise( unsigned int id ) {
+void Matcher::raise( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -113,7 +113,7 @@ void Matcher::raise( unsigned int id ) {
 	release();
 }
 
-void Matcher::lower( unsigned int id ) {
+void Matcher::lower( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {

@@ -25,8 +25,8 @@ class TISCH_SHARED Matcher: public Thread {
 		
 		Matcher( int _verbose = 0 );
 
-		virtual void request_update( int id ) = 0;
-		virtual void trigger_gesture( int id, Gesture* g ) = 0;
+		virtual void request_update( unsigned long long id ) = 0;
+		virtual void trigger_gesture( unsigned long long id, Gesture* g ) = 0;
 
 		virtual void process_blob( BasicBlob& blob );
 		virtual void process_gestures();
@@ -34,18 +34,18 @@ class TISCH_SHARED Matcher: public Thread {
 		void load_defaults( unsigned int set = 0 );
 		void* run();
 
-		void update( unsigned int id, Region* r );
-		void remove( unsigned int id );
+		void update( unsigned long long id, Region* r );
+		void remove( unsigned long long id );
 
-		void raise( unsigned int id );
-		void lower( unsigned int id );
+		void raise( unsigned long long id );
+		void lower( unsigned long long id );
 
 		void peakmode( bool _use_peak );
 		void clear();
 
 	protected:
 
-		RegionList::iterator find( unsigned int id );
+		RegionList::iterator find( unsigned long long id );
 
 		int verbose;
 		bool do_run, use_peak;

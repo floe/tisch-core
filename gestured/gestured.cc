@@ -26,11 +26,11 @@ struct DaemonMatcher: public Matcher {
 
 	DaemonMatcher(): Matcher() { }
 
-	void request_update( int id ) {
+	void request_update( unsigned long long id ) {
 		if (gstcon) *gstcon << "update " << id << std::endl;
 	}
 
-	void trigger_gesture( int id, Gesture* g ) {
+	void trigger_gesture( unsigned long long id, Gesture* g ) {
 		if (gstcon) *gstcon << "gesture " << id << " " << *g << std::endl;
 	}
 };

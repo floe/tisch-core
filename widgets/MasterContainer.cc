@@ -52,14 +52,14 @@ struct TISCH_SHARED InternalMatcher: public Matcher {
 	}
 		
 	// called from OpenGL context (via do_process_gestures)
-	void request_update( int id ) { 
+	void request_update( unsigned long long id ) { 
 		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
 		if (target == g_widgets.end()) return;
 		(*target)->update();
 	}
 
 	// called from OpenGL context (via do_process_gestures)
-	void trigger_gesture( int id, Gesture* g ) {
+	void trigger_gesture( unsigned long long id, Gesture* g ) {
 		// deliver to widget
 		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
 		if (target == g_widgets.end()) return;
