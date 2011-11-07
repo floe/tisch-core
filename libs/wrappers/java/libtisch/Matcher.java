@@ -35,11 +35,11 @@ public class Matcher {
     }
   }
 
-  public void request_update(int id) {
+  public void request_update(java.math.BigInteger id) {
     libtischJNI.Matcher_request_update(swigCPtr, this, id);
   }
 
-  public void trigger_gesture(int id, Gesture g) {
+  public void trigger_gesture(java.math.BigInteger id, Gesture g) {
     libtischJNI.Matcher_trigger_gesture(swigCPtr, this, id, Gesture.getCPtr(g), g);
   }
 
@@ -64,19 +64,19 @@ public class Matcher {
     return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
   }
 
-  public void update(long id, Region r) {
+  public void update(java.math.BigInteger id, Region r) {
     libtischJNI.Matcher_update(swigCPtr, this, id, Region.getCPtr(r), r);
   }
 
-  public void remove(long id) {
+  public void remove(java.math.BigInteger id) {
     libtischJNI.Matcher_remove(swigCPtr, this, id);
   }
 
-  public void raise(long id) {
+  public void raise(java.math.BigInteger id) {
     libtischJNI.Matcher_raise(swigCPtr, this, id);
   }
 
-  public void lower(long id) {
+  public void lower(java.math.BigInteger id) {
     libtischJNI.Matcher_lower(swigCPtr, this, id);
   }
 

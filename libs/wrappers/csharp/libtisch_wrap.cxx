@@ -9010,12 +9010,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_StateRegion(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_request_update(void * jarg1, int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_request_update(void * jarg1, unsigned long long jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   {
     try {
       (arg1)->request_update(arg2);
@@ -9028,13 +9028,13 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_request_update(void * jarg1, int jarg
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_trigger_gesture(void * jarg1, int jarg2, void * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_trigger_gesture(void * jarg1, unsigned long long jarg2, void * jarg3) {
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   Gesture *arg3 = (Gesture *) 0 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   arg3 = (Gesture *)jarg3; 
   {
     try {
@@ -9140,13 +9140,13 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_Matcher_run(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_update(void * jarg1, unsigned int jarg2, void * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_update(void * jarg1, unsigned long long jarg2, void * jarg3) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   Region *arg3 = (Region *) 0 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   arg3 = (Region *)jarg3; 
   {
     try {
@@ -9160,12 +9160,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_update(void * jarg1, unsigned int jar
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_remove(void * jarg1, unsigned int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_remove(void * jarg1, unsigned long long jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   {
     try {
       (arg1)->remove(arg2);
@@ -9178,12 +9178,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_remove(void * jarg1, unsigned int jar
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_raise(void * jarg1, unsigned int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_raise(void * jarg1, unsigned long long jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   {
     try {
       (arg1)->raise(arg2);
@@ -9196,12 +9196,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_raise(void * jarg1, unsigned int jarg
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_lower(void * jarg1, unsigned int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Matcher_lower(void * jarg1, unsigned long long jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   arg1 = (Matcher *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  arg2 = (unsigned long long)jarg2; 
   {
     try {
       (arg1)->lower(arg2);

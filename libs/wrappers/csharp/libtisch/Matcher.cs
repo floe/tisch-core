@@ -40,12 +40,12 @@ public class Matcher : IDisposable {
     }
   }
 
-  public virtual void request_update(int id) {
+  public virtual void request_update(ulong id) {
     libtischPINVOKE.Matcher_request_update(swigCPtr, id);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void trigger_gesture(int id, Gesture g) {
+  public virtual void trigger_gesture(ulong id, Gesture g) {
     libtischPINVOKE.Matcher_trigger_gesture(swigCPtr, id, Gesture.getCPtr(g));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -77,22 +77,22 @@ public class Matcher : IDisposable {
     return ret;
   }
 
-  public void update(uint id, Region r) {
+  public void update(ulong id, Region r) {
     libtischPINVOKE.Matcher_update(swigCPtr, id, Region.getCPtr(r));
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void remove(uint id) {
+  public void remove(ulong id) {
     libtischPINVOKE.Matcher_remove(swigCPtr, id);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void raise(uint id) {
+  public void raise(ulong id) {
     libtischPINVOKE.Matcher_raise(swigCPtr, id);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void lower(uint id) {
+  public void lower(ulong id) {
     libtischPINVOKE.Matcher_lower(swigCPtr, id);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }

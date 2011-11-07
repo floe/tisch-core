@@ -28550,10 +28550,10 @@ SWIGINTERN PyObject *StateRegion_swigregister(PyObject *SWIGUNUSEDPARM(self), Py
 SWIGINTERN PyObject *_wrap_Matcher_request_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -28564,11 +28564,11 @@ SWIGINTERN PyObject *_wrap_Matcher_request_update(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_request_update" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_request_update" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_request_update" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   {
     try {
       (arg1)->request_update(arg2);
@@ -28586,11 +28586,11 @@ fail:
 SWIGINTERN PyObject *_wrap_Matcher_trigger_gesture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   Gesture *arg3 = (Gesture *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
@@ -28604,11 +28604,11 @@ SWIGINTERN PyObject *_wrap_Matcher_trigger_gesture(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_trigger_gesture" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_trigger_gesture" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_trigger_gesture" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Gesture, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Matcher_trigger_gesture" "', argument " "3"" of type '" "Gesture *""'"); 
@@ -28832,11 +28832,11 @@ fail:
 SWIGINTERN PyObject *_wrap_Matcher_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   Region *arg3 = (Region *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
@@ -28850,11 +28850,11 @@ SWIGINTERN PyObject *_wrap_Matcher_update(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_update" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_update" "', argument " "2"" of type '" "unsigned int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_update" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< unsigned int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Region, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Matcher_update" "', argument " "3"" of type '" "Region *""'"); 
@@ -28877,10 +28877,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Matcher_remove(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -28891,11 +28891,11 @@ SWIGINTERN PyObject *_wrap_Matcher_remove(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_remove" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_remove" "', argument " "2"" of type '" "unsigned int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_remove" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< unsigned int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   {
     try {
       (arg1)->remove(arg2);
@@ -28913,10 +28913,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Matcher__raise(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -28927,11 +28927,11 @@ SWIGINTERN PyObject *_wrap_Matcher__raise(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher__raise" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher__raise" "', argument " "2"" of type '" "unsigned int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher__raise" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< unsigned int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   {
     try {
       (arg1)->raise(arg2);
@@ -28949,10 +28949,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Matcher_lower(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned int val2 ;
+  unsigned long long val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -28963,11 +28963,11 @@ SWIGINTERN PyObject *_wrap_Matcher_lower(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_lower" "', argument " "1"" of type '" "Matcher *""'"); 
   }
   arg1 = reinterpret_cast< Matcher * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_lower" "', argument " "2"" of type '" "unsigned int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_lower" "', argument " "2"" of type '" "unsigned long long""'");
   } 
-  arg2 = static_cast< unsigned int >(val2);
+  arg2 = static_cast< unsigned long long >(val2);
   {
     try {
       (arg1)->lower(arg2);

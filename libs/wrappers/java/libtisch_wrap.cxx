@@ -9178,15 +9178,37 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_delete_1StateRegion(JNIEnv *je
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1request_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1request_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   {
     try {
       (arg1)->request_update(arg2);
@@ -9199,9 +9221,9 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1request_1update(JNIEn
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1trigger_1gesture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1trigger_1gesture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2, jlong jarg3, jobject jarg3_) {
   Matcher *arg1 = (Matcher *) 0 ;
-  int arg2 ;
+  unsigned long long arg2 ;
   Gesture *arg3 = (Gesture *) 0 ;
   
   (void)jenv;
@@ -9209,7 +9231,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1trigger_1gesture(JNIE
   (void)jarg1_;
   (void)jarg3_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   arg3 = *(Gesture **)&jarg3; 
   {
     try {
@@ -9331,9 +9375,9 @@ SWIGEXPORT jlong JNICALL Java_libtisch_libtischJNI_Matcher_1run(JNIEnv *jenv, jc
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2, jlong jarg3, jobject jarg3_) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   Region *arg3 = (Region *) 0 ;
   
   (void)jenv;
@@ -9341,7 +9385,29 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1update(JNIEnv *jenv, 
   (void)jarg1_;
   (void)jarg3_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   arg3 = *(Region **)&jarg3; 
   {
     try {
@@ -9355,15 +9421,37 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1update(JNIEnv *jenv, 
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1remove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1remove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   {
     try {
       (arg1)->remove(arg2);
@@ -9376,15 +9464,37 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1remove(JNIEnv *jenv, 
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1raise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1raise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   {
     try {
       (arg1)->raise(arg2);
@@ -9397,15 +9507,37 @@ SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1raise(JNIEnv *jenv, j
 }
 
 
-SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_libtisch_libtischJNI_Matcher_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   Matcher *arg1 = (Matcher *) 0 ;
-  unsigned int arg2 ;
+  unsigned long long arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Matcher **)&jarg1; 
-  arg2 = (unsigned int)jarg2; 
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return ;
+    }
+    clazz = jenv->GetObjectClass(jarg2);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg2, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg2 = 0;
+    for(i=0; i<sz; i++) {
+      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
   {
     try {
       (arg1)->lower(arg2);
