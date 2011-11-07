@@ -1,3 +1,10 @@
+libtisch2 (2.0.2-0ubuntu1~oneiric) oneiric; urgency=low
+
+  * fix obscure C# build issue on Oneiric Ocelot
+  * bump version to 2.0.2 due to forgotten wrapper update
+
+ -- Florian Echtler <floe@butterbrot.org>  Mon, 07 Nov 2011 16:07:04 +0100
+
 libtisch2 (2.0.1-0ubuntu1~oneiric) oneiric; urgency=low
 
   * update to 2.0.1 from Sourceforge SVN rev. 367
