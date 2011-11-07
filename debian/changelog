@@ -1,3 +1,9 @@
+libtisch2 (2.0.1-0ubuntu1~oneiric) oneiric; urgency=low
+
+  * update to 2.0.1 from Sourceforge SVN rev. 367
+
+ -- Florian Echtler <floe@butterbrot.org>  Mon, 07 Nov 2011 14:39:08 +0100
+
 libtisch2 (2.0-0ubuntu1~natty) natty; urgency=low
 
   * update to 2.0 release from Sourceforge SVN rev. 361
