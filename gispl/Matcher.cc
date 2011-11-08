@@ -1,10 +1,11 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*   Copyright (c) 2006 - 2010 by Florian Echtler <floe@butterbrot.org>    *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
 #include "Matcher.h"
+#include <sstream>
 
 
 // prinzipielles vorgehen:
@@ -24,8 +25,34 @@
 //     - wenn geste sticky: in stickies einfügen
 
 
-Matcher::Matcher( int _v ): Thread(), verbose(_v), do_run(1) { }
+// default gesture sets as parseable strings
+TISCH_SHARED const char* default_gesture_set[] = {
+	"0 0 6 \
+		move 5 1 Motion 0 31 0 0 0 0 \
+		scale 5 1 MultiBlobScale 0 31 0 0 \
+		rotate 5 1 MultiBlobRotation 0 31 0 0 \
+		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
+		remove 6 1 BlobID 0 31 0 1 -1 \
+		release 6 1 BlobCount 0 31 0 2 0 0",
+	"0 0 6 \
+		move 5 1 Motion 0 31 0 0 0 0 \
+		scale 5 1 RelativeAxisScale 0 31 0 0 \
+		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
+		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
+		remove 6 1 BlobID 0 31 0 1 -1 \
+		release 6 1 BlobCount 0 31 0 2 0 0",
+};
 
+
+Matcher::Matcher( int _v ): Thread(), verbose(_v), do_run(1), use_peak(0) { }
+
+
+void Matcher::load_defaults( unsigned int set ) {
+	if (set > (sizeof(default_gesture_set)/sizeof(const char*))-1) set = 0;
+	std::istringstream defstream( default_gesture_set[set] );
+	Region tmp; defstream >> tmp;
+	update( 0, &tmp );
+}
 
 void* Matcher::run() {
 	while (do_run) process_gestures();
@@ -33,7 +60,7 @@ void* Matcher::run() {
 }
 
 
-RegionList::iterator Matcher::find( unsigned int id ) {
+RegionList::iterator Matcher::find( unsigned long long id ) {
 	RegionList::iterator reg = regions.begin();
 	for ( ; reg != regions.end(); reg++ )
 		if ((*reg)->id == id)
@@ -42,7 +69,7 @@ RegionList::iterator Matcher::find( unsigned int id ) {
 }
 
 
-void Matcher::update( unsigned int id, Region* r ) {
+void Matcher::update( unsigned long long id, Region* r ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -50,12 +77,14 @@ void Matcher::update( unsigned int id, Region* r ) {
 	} else {
 		StateRegion* tmp = new StateRegion( id );
 		*tmp = *r;
-		regions.push_back( tmp );
+		reg = regions.insert( regions.end(), tmp );
 	}
+	for (std::vector<Gesture>::iterator g = (*reg)->gestures.begin(); g != (*reg)->gestures.end(); g++) g->check();
+	if (verbose > 1) std::cout << "region: " << id << " = " << **reg << std::endl;
 	release();
 }
 
-void Matcher::remove( unsigned int id ) {
+void Matcher::remove( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -72,7 +101,7 @@ void Matcher::remove( unsigned int id ) {
 	release();
 }
 
-void Matcher::raise( unsigned int id ) {
+void Matcher::raise( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -84,7 +113,7 @@ void Matcher::raise( unsigned int id ) {
 	release();
 }
 
-void Matcher::lower( unsigned int id ) {
+void Matcher::lower( unsigned long long id ) {
 	lock();
 	RegionList::iterator reg = find( id );
 	if (reg != regions.end()) {
@@ -96,11 +125,16 @@ void Matcher::lower( unsigned int id ) {
 	release();
 }
 
+void Matcher::peakmode( bool _use_peak ) {
+	use_peak = _use_peak;
+}
+
 void Matcher::clear() {
 	lock();
 	regions.clear();
 	stickies.clear();
 	release();
+	use_peak = 0;
 }
 
 
@@ -110,8 +144,8 @@ void Matcher::process_blob( BasicBlob& blob ) {
 
 	cur_ids.insert( blob.id );
 
-	// TODO:if use_peak is set, use peak of blob instead of pos
-	//if (use_peak) blob.pos = blob.peak;
+	// if use_peak is set, use peak of blob instead of pos
+	if (use_peak) blob.pos = blob.peak;
 
 	// insert blob into correct region 
 	std::map<int,StateRegion*>::iterator target = stickies.find( blob.id );
@@ -238,5 +272,17 @@ void Matcher::process_gestures() {
 	if (verbose > 2) std::cout << "finished processing gestures." << std::endl;
 
 	release();
+}
+
+
+
+MatcherTUIOInput::MatcherTUIOInput( Matcher* m ): TUIOInStream(), matcher(m) { }
+
+void MatcherTUIOInput::process_frame() {
+	matcher->process_gestures();
+}
+
+void MatcherTUIOInput::process_blob( BasicBlob& b ) {
+	matcher->process_blob( b );
 }
 

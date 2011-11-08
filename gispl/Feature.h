@@ -22,10 +22,12 @@ class TISCH_SHARED FeatureBase {
 
 	public:
 
-		FeatureBase( int _tf = 0 ): has_result( 0 ), typeflags( _tf ) { } 
+		FeatureBase( unsigned int _tf = 0 ): has_result( 0 ), typeflags( _tf ) { } 
 		virtual ~FeatureBase() { }
 
 		virtual const char* name() const = 0; 
+		virtual FeatureBase* clone() const = 0;
+
 		virtual void load( InputState& state ) = 0;
 		virtual int next() = 0;
 
@@ -36,7 +38,7 @@ class TISCH_SHARED FeatureBase {
 
 	protected:
 
-		int typeflags;
+		unsigned int typeflags;
 };
 
 
@@ -44,7 +46,7 @@ template< class Value > class Feature: public FeatureBase {
 
 	public:
 
-		Feature( int _tf = (1<<INPUT_TYPE_COUNT)-1 ):
+		Feature( unsigned int _tf = INPUT_TYPE_ANY ):
 			FeatureBase( _tf ),
 			m_result(),
 			m_bounds()

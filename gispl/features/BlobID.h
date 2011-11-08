@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -14,8 +14,10 @@ class TISCH_SHARED BlobID: public Feature<int> {
 
 	public:
 
-		 BlobID( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobID( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobID();
+
+		BlobID* clone() const;
 
 		void load( InputState& state );
 		int next();

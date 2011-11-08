@@ -1,13 +1,13 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
 #include "MultiBlobRotation.h"
 #include "Factory.h"
 
-MultiBlobRotation::MultiBlobRotation( int tf ): Rotation( tf ) { }
+MultiBlobRotation::MultiBlobRotation( unsigned int tf ): Rotation( tf ) { }
 MultiBlobRotation::~MultiBlobRotation() { }
 
 void MultiBlobRotation::load( InputState& state ) {

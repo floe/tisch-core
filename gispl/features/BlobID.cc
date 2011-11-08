@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -8,7 +8,7 @@
 #include "Factory.h"
 
 
-BlobID::BlobID( int tf ): Feature<int>( tf ) { mode = 0; }
+BlobID::BlobID( unsigned int tf ): Feature<int>( tf ) { mode = 0; }
 BlobID::~BlobID() { }
 
 void BlobID::load( InputState& state ) {

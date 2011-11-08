@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -15,8 +15,10 @@ class TISCH_SHARED Rotation: public Feature<double> {
 
 	public:
 
-		 Rotation( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 Rotation( unsigned int tf = INPUT_TYPE_ANY );
 		~Rotation();
+
+		Rotation* clone() const;
 
 		void load( InputState& state );
 

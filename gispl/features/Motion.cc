@@ -1,13 +1,13 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
 #include "Motion.h"
 #include "Factory.h"
 
-Motion::Motion( int tf ): Feature<Vector>( tf ) { }
+Motion::Motion( unsigned int tf ): Feature<Vector>( tf ) { }
 Motion::~Motion() { }
 
 void Motion::load( InputState& state ) {

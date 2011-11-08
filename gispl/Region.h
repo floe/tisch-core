@@ -24,17 +24,17 @@ class TISCH_SHARED Region: public std::vector<Vector> {
 
 	public:
 
-		Region( int _flags = (1<<INPUT_TYPE_COUNT)-1 );
+		Region( unsigned int _flags = INPUT_TYPE_ANY );
 
 		int contains( Vector v );
-		const int flags() const { return m_flags; }
-		void flags( int _flags ) { m_flags = _flags; }
+		const unsigned int flags() const { return m_flags; }
+		void flags( unsigned int _flags ) { m_flags = _flags; }
 
 		std::vector<Gesture> gestures;
 
 	protected:
 
-		int m_flags;
+		unsigned int m_flags;
 };
 
 // TODO: id should be read & written by StateRegion

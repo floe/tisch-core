@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -24,7 +24,7 @@ std::istream& operator>>( std::istream& s, Dimensions& d ) {
 
 
 
-BlobDim::BlobDim( int tf ): Feature<Dimensions>( tf ) { }
+BlobDim::BlobDim( unsigned int tf ): Feature<Dimensions>( tf ) { }
 BlobDim::~BlobDim() { }
 
 int BlobDim::check() {

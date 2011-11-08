@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -15,8 +15,10 @@ class TISCH_SHARED MultiBlobScale: public Scale {
 
 	public:
 
-		 MultiBlobScale( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 MultiBlobScale( unsigned int tf = INPUT_TYPE_ANY );
 		~MultiBlobScale();
+
+		MultiBlobScale* clone() const;
 
 		void load( InputState& state );
 

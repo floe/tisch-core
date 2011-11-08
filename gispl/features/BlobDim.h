@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -22,8 +22,10 @@ class TISCH_SHARED BlobDim: public Feature<Dimensions> {
 
 	public:
 
-		 BlobDim( int tf = (1<<INPUT_TYPE_COUNT)-1 );
+		 BlobDim( unsigned int tf = INPUT_TYPE_ANY );
 		~BlobDim();
+
+		BlobDim* clone() const;
 
 		void load( InputState& state );
 		int next();

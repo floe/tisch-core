@@ -6,9 +6,7 @@
 
 #include <signal.h>
 #include <algorithm>
-#include <sstream>
 
-#include <TUIOInStream.h>
 #include <nanolibc.h>
 #include <Socket.h>
 #include <tisch.h>
@@ -23,36 +21,16 @@ int verbose = 0;
 TCPSocket  gstsrc( (in_addr_t)INADDR_ANY, TISCH_PORT_EVENT, &tv );
 TCPSocket* gstcon = 0;
 
-// default gestures as parseable string
-const char* default_gestures[] = {
-	"region 1 0 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 RelativeAxisScale 0 31 0 0 \
-		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
-	"region 1 0 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 MultiBlobScale 0 31 0 0 \
-		rotate 5 1 MultiBlobRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
-};
-const char* defaults = default_gestures[0];
-
-
 
 struct DaemonMatcher: public Matcher {
 
 	DaemonMatcher(): Matcher() { }
 
-	void request_update( int id ) {
+	void request_update( unsigned long long id ) {
 		if (gstcon) *gstcon << "update " << id << std::endl;
 	}
 
-	void trigger_gesture( int id, Gesture* g ) {
+	void trigger_gesture( unsigned long long id, Gesture* g ) {
 		if (gstcon) *gstcon << "gesture " << id << " " << *g << std::endl;
 	}
 };
@@ -90,8 +68,7 @@ struct GestureThread: public Thread {
 
 		// use blob peak instead of centroid
 		if (cmd == "use_peak") {
-			// TODO: move to Matcher class
-			//use_peak = true;
+			matcher.peakmode( 1 );
 			return 1;
 		}
 
@@ -123,9 +100,6 @@ struct GestureThread: public Thread {
 
 	void* run() {
 
-		std::istringstream defstream( defaults );
-		process( defstream );
-
 		while (1) {
 
 			if (!gstcon) { 
@@ -152,38 +126,20 @@ GestureThread gthr;
 
 
 
-struct MatcherTUIOInput: public TUIOInStream {
-
-	MatcherTUIOInput(): TUIOInStream() { }
-	
-	virtual void process_frame() {
-		matcher.process_gestures();
-	}
-
-	virtual void process_blob( BasicBlob& b ) {
-		matcher.process_blob( b );
-	}
-
-};
-
-
-
 int main( int argc, char* argv[] ) {
 
-	int defnum, defcount = (sizeof(default_gestures)/sizeof(const char*))-1;
-	MatcherTUIOInput input;
+	MatcherTUIOInput input( &matcher );
+	int defnum = 0;
 
 	std::cout << "gestured - libTISCH 2.0 interpretation layer" << std::endl;
-	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	for ( int opt = 0; opt != -1; opt = getopt( argc, argv, "vhd:" ) ) switch (opt) {
 
 		case 'v': verbose += 1; break;
 		case 'd': defnum = atoi(optarg);
-		          defnum = (defnum < 0 ? 0 : (defnum > defcount ? defcount : defnum ) );
-		          defaults = default_gestures[defnum];
-							std::cout << "selected default gesture set #" << defnum << std::endl;
-							break;
+		          std::cout << "selected default gesture set #" << defnum << std::endl;
+		          break;
 
 		case 'h':
 		case '?': std::cout << "\nUsage: gestured [options]\n\n";
@@ -192,6 +148,8 @@ int main( int argc, char* argv[] ) {
 		          std::cout << "  -h      this\n\n";
 		          return 0; break;
 	}
+
+	matcher.load_defaults( defnum );
 
 	gthr.start();
 	input.run();

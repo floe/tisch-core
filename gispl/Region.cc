@@ -58,7 +58,7 @@ std::ostream& operator<< ( std::ostream& s, Region& r ) {
 }
 
 
-Region::Region( int _flags ): std::vector<Vector>(), gestures(), m_flags(_flags) { }
+Region::Region( unsigned int _flags ): std::vector<Vector>(), gestures(), m_flags(_flags) { }
 
 int Region::contains( Vector v ) {
 

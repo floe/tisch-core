@@ -1,13 +1,13 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
 #include "RelativeAxisRotation.h"
 #include "Factory.h"
 
-RelativeAxisRotation::RelativeAxisRotation( int tf ): Rotation( tf ) { }
+RelativeAxisRotation::RelativeAxisRotation( unsigned int tf ): Rotation( tf ) { }
 RelativeAxisRotation::~RelativeAxisRotation() { }
 
 void RelativeAxisRotation::load( InputState& state ) {
