@@ -312,41 +312,40 @@ void IntensityImage::lowpass( IntensityImage& target, unsigned char range, unsig
 
 void IntensityImage::houghLine( IntensityImage& target ) const {
 
-	double theta,rho;
-	double pi_n = M_PI / (double)target.width;
+	float theta,rho,fx,fy;
 	unsigned char tmp;
-	int offset, max = 0;
+	int x, y, j, offset, res, max = 0;
 
 	int  size = target.width * target.height;
 	int* accu = new int[ size ];
 	for (int i = 0; i < size; i++) accu[i] = 0;
 
-	target.clear();
+	float dx = 1.0/(float)width;
+	float dy = 1.0/(float)height;
+	float dt = M_PI/(float)target.width;
+
+	float rf = (float)target.height/2.5;
+
+	for (x = 0, fx = 0.0; fx < 1.0; fx+=dx) for (y = 0, fy = 0.0; fy < 1.0; fy+=dy) {
 	
-	for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
-	
-		tmp = getPixel(x,y); 	
+		tmp = data[ (int)((fx+fy*(float)height)*width) ];
 		if (tmp == 0) continue;
 		
-		for (int j = 0; j < target.width; j++) {
+		for (j = 0, theta = 0; j < target.width; j++,theta+=dt) {
 			
-			theta = pi_n * (double)j;
-			rho = (double)x/(double)width * cos(theta) + (double)y/(double)height * sin(theta);
+			rho = fx * cosf(theta) + fy * sinf(theta);
 			
-			rho = (rho+1.0)/2.5;
-			rho = rho * (double)target.height;
+			rho = (rho+1.0)*rf;
 
-			offset = target.pixelOffset(j,(int)round(rho));
-			/*tmp = target.data[ offset ];
-			target.data[ offset ] = (tmp=255)?255:tmp+1;*/
-			accu [ offset ] += tmp ;
+			offset = j+target.width*(int)roundf(rho);
+
+			res = accu [ offset ] + tmp;
+			if (res > max) max = res;
+			accu [ offset ] = res;
 		}
 	}
 
-	for (int i = 0; i < size; i++) if (accu[i] > max) max = accu[i];
-	for (int i = 0; i < size; i++) target.data[i] = (unsigned char) round( ((double)accu[i] * 255.0) / (double)max );
-
-	//std::cout << max << std::endl;
+	for (int i = 0; i < size; i++) target.data[i] = (unsigned char) roundf( ((float)accu[i] * 255.0) / (float)max );
 
 	delete[] accu;
 }
