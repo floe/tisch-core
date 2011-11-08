@@ -312,7 +312,7 @@ void IntensityImage::lowpass( IntensityImage& target, unsigned char range, unsig
 
 void IntensityImage::houghLine( IntensityImage& target ) const {
 
-	float theta,rho,fx,fy;
+	float theta,rho;
 	unsigned char tmp;
 	int x, y, j, offset, res, max = 0;
 
@@ -320,26 +320,23 @@ void IntensityImage::houghLine( IntensityImage& target ) const {
 	int* accu = new int[ size ];
 	for (int i = 0; i < size; i++) accu[i] = 0;
 
-	float dx = 1.0/(float)width;
-	float dy = 1.0/(float)height;
 	float dt = M_PI/(float)target.width;
 
-	float rf = (float)target.height/2.5;
+	float rf = 2.0*(float)(width+height);
 
-	for (x = 0, fx = 0.0; fx < 1.0; fx+=dx) for (y = 0, fy = 0.0; fy < 1.0; fy+=dy) {
+	for (x = 0; x < width; x++) for (y = 0; y < height; y++) {
 	
-		tmp = data[ (int)((fx+fy*(float)height)*width) ];
+		tmp = data[ x+y*width ];
 		if (tmp == 0) continue;
 		
 		for (j = 0, theta = 0; j < target.width; j++,theta+=dt) {
 			
-			rho = fx * cosf(theta) + fy * sinf(theta);
-			
-			rho = (rho+1.0)*rf;
+			rho = x * cosf(theta) + y * sinf(theta);
+			rho = (rho/rf+0.5)*target.height;
 
 			offset = j+target.width*(int)roundf(rho);
 
-			res = accu [ offset ] + tmp;
+			res = accu [ offset ] + 1;
 			if (res > max) max = res;
 			accu [ offset ] = res;
 		}
