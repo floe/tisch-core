@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*   Copyright (c) 2006 - 2011 by Florian Echtler, <floe@butterbrot.org>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -22,13 +22,15 @@ const char* address = "127.0.0.1";
 
 int vidout  = 0;
 int verbose = 0;
-int startup = 1;
+int startup = 5;
 
 GLUTWindow* win = 0;
 Filter* tmp = 0;
 Configurator* configure = 0;
 int showHelp = 0;
 int editvalue = 0;
+int storeSettingsAllFilter = 0;
+int storeSettingsCurrentFilter = 0;
 std::string userinput = "";
 
 Pipeline* mypipe = 0;
@@ -55,7 +57,6 @@ void cleanup( int signal ) {
 
 	exit(0);
 }
-
 
 void disp() {
 
@@ -91,6 +92,13 @@ void disp() {
 		if(editvalue == 1) {
 			configure->showEditInfo();
 		}
+
+		if(storeSettingsAllFilter == 1) {
+			configure->showStoreInfo(0);
+		}
+		else if(storeSettingsCurrentFilter == 1) {
+			configure->showStoreInfo(1);
+		}
 	}
 
 	win->swap();
@@ -107,13 +115,13 @@ void mouse( int button, int state, int x, int y )
 void keyb( unsigned char c, int, int ) {
 
 	if (c == 'q') cleanup( 0 );
-	if (c == ' ') mypipe->reset();
+	if (c == ' ') mypipe->reset( 0 ); // reset all filter
 
 	// switching to editing mode
 	if (editvalue == 1 && configure != 0) {
 
 		// quit edit mode without applying changes
-		if(c == 'e') {
+		if(c == 0x1B) { // ESC
 			editvalue = 0;
 		}
 
@@ -129,7 +137,36 @@ void keyb( unsigned char c, int, int ) {
 			userinput += c;
 		}
 
-	} else { // processing keyboard entries as usual
+	}
+	else if(storeSettingsAllFilter == 1 && configure != 0) {
+		// save configuration of ALL filters
+
+		// quit storing mode without saving
+		if(c == 0x1B) { // ESC
+			storeSettingsAllFilter = 0;
+		}
+
+		if(c == 0x0D){ // Enter
+			// save new xml
+			mypipe->storeXMLConfig(cfgfile);
+			storeSettingsAllFilter = 0; // close storing mode
+		}
+
+	}
+	else if(storeSettingsCurrentFilter == 1 && configure != 0) {
+		// save configuration of CURRENT filter, keep all other settings
+
+		// quit storing mode without saving
+		if(c == 0x1B) { // ESC
+			storeSettingsCurrentFilter = 0;
+		}
+
+		if(c == 0x0D) { // ENTER
+			//(mypipe->storeXMLConfig(cfgfile); // TODO
+			storeSettingsCurrentFilter = 0;
+		}
+	}
+	else { // processing keyboard entries as usual
 	// switching filters
 		if ((c >= '0') && (c <= '9')) {
 			c = c - '0';
@@ -178,29 +215,42 @@ void keyb( unsigned char c, int, int ) {
 				}
 			}
 
+			// activate saving mode
+			if(c == 's') { // store settings of CURRENT filter
+				storeSettingsCurrentFilter = 1;
+			}
+
+			if(c == 'S') { // store settings of ALL filters
+				storeSettingsAllFilter = 1;
+			}
+
 			// toggle Option with Tab
 			if(c == 0x09) {
 				tmp->nextOption();
 			}
 
-			//reset filter
+			// reset only this filter
 			if(c == 'r') {
-				tmp->reset();
+				tmp->reset( 0 );
 			}
 		}
 
-		if (c == 'x') {
-			if( angle > -30 ) angle--;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+		if(configure == 0) {
+			// move Kinect only when configurator is closed
+			if (c == 'x') {
+				if( angle > -30 ) angle--;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
+			if (c == 'w') {
+				if( angle < 30 ) angle++;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
+			if (c == 's') {
+				angle = 0;
+				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+			}
 		}
-		if (c == 'w') {
-			if( angle < 30 ) angle++;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-		}
-		if (c == 's') {
-			angle = 0;
-			((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-		}
+
 	}
 	glutPostRedisplay();
 }
@@ -208,7 +258,10 @@ void keyb( unsigned char c, int, int ) {
 void idle() {
 
 	if (mypipe->process() == 0) curframe++;
-	if (startup) { mypipe->reset(); startup = 0; }
+	if (startup > 0) {
+		mypipe->reset( 1 ); // initial Reset: yes!
+		startup--;
+	}
 
 	tuio->start();
 
@@ -223,13 +276,12 @@ void idle() {
 	if (win) glutPostRedisplay();
 }
 
-
 int main( int argc, char* argv[] ) {
 
-	int outport = TISCH_PORT_CALIB;
+	int outport = TISCH_PORT_RAW;
 
 	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
-	std::cout << "(c) 2010 by Florian Echtler <floe@butterbrot.org>" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	// create expected config file path
 	const char* homedir = getenv( "HOME" );
@@ -266,8 +318,12 @@ int main( int argc, char* argv[] ) {
 	TiXmlDocument doc( cfgfile );
 	doc.LoadFile();
 
-	mypipe = new Pipeline( doc.FirstChildElement() );
-	tmp = (*mypipe)[0];
+	// get Filter subtree
+	TiXmlElement* root = doc.RootElement();
+	
+	// pass subtree of Filter subtree
+	mypipe = new Pipeline( root );
+	tmp = (*mypipe)[0]; // CameraFilter
 
 	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, address, outport );
 

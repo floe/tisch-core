@@ -35,12 +35,17 @@ public class Scale extends FeatureDouble {
     super.delete();
   }
 
-  public Scale(int tf) {
+  public Scale(long tf) {
     this(libtischJNI.new_Scale__SWIG_0(tf), true);
   }
 
   public Scale() {
     this(libtischJNI.new_Scale__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.Scale_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new Scale(cPtr, false);
   }
 
   public void load(InputState state) {

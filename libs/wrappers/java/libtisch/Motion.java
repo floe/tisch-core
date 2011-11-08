@@ -35,12 +35,17 @@ public class Motion extends FeatureVector {
     super.delete();
   }
 
-  public Motion(int tf) {
+  public Motion(long tf) {
     this(libtischJNI.new_Motion__SWIG_0(tf), true);
   }
 
   public Motion() {
     this(libtischJNI.new_Motion__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.Motion_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new Motion(cPtr, false);
   }
 
   public void load(InputState state) {

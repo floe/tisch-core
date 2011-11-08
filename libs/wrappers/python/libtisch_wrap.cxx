@@ -148,6 +148,7 @@ template <typename T> T SwigValueInit() {
 
 /* Python.h has to appear first */
 #include <Python.h>
+#include <stddef.h>
 
 /* -----------------------------------------------------------------------------
  * swigrun.swg
@@ -3188,108 +3189,114 @@ namespace Swig {
 #define SWIGTYPE_p_GLvoid swig_types[24]
 #define SWIGTYPE_p_Gesture swig_types[25]
 #define SWIGTYPE_p_InputState swig_types[26]
-#define SWIGTYPE_p_IntensityImage swig_types[27]
-#define SWIGTYPE_p_Label swig_types[28]
-#define SWIGTYPE_p_MasterContainer swig_types[29]
-#define SWIGTYPE_p_Motion swig_types[30]
-#define SWIGTYPE_p_Mouse swig_types[31]
-#define SWIGTYPE_p_MultiBlobRotation swig_types[32]
-#define SWIGTYPE_p_MultiBlobScale swig_types[33]
-#define SWIGTYPE_p_RGBImage swig_types[34]
-#define SWIGTYPE_p_Region swig_types[35]
-#define SWIGTYPE_p_Rotation swig_types[36]
-#define SWIGTYPE_p_Scale swig_types[37]
-#define SWIGTYPE_p_ShortImage swig_types[38]
-#define SWIGTYPE_p_Slider swig_types[39]
-#define SWIGTYPE_p_SmartPtrT_FeatureBase_t swig_types[40]
-#define SWIGTYPE_p_StateRegion swig_types[41]
-#define SWIGTYPE_p_Textbox swig_types[42]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t swig_types[43]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[44]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[45]
-#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[46]
-#define SWIGTYPE_p_Tile swig_types[47]
-#define SWIGTYPE_p_Type swig_types[48]
-#define SWIGTYPE_p_Widget swig_types[49]
-#define SWIGTYPE_p_Window swig_types[50]
-#define SWIGTYPE_p__QuaternionT_double_t swig_types[51]
-#define SWIGTYPE_p__VectorT_GLdouble_t swig_types[52]
-#define SWIGTYPE_p__VectorT_double_t swig_types[53]
-#define SWIGTYPE_p__VectorT_float_t swig_types[54]
-#define SWIGTYPE_p__VectorT_int_t swig_types[55]
-#define SWIGTYPE_p__VectorT_unsigned_char_t swig_types[56]
-#define SWIGTYPE_p__VectorT_unsigned_int_t swig_types[57]
-#define SWIGTYPE_p_allocator_type swig_types[58]
-#define SWIGTYPE_p_char swig_types[59]
-#define SWIGTYPE_p_difference_type swig_types[60]
-#define SWIGTYPE_p_int swig_types[61]
-#define SWIGTYPE_p_int64_t swig_types[62]
-#define SWIGTYPE_p_key_type swig_types[63]
-#define SWIGTYPE_p_mapped_type swig_types[64]
-#define SWIGTYPE_p_p_BlobCount swig_types[65]
-#define SWIGTYPE_p_p_BlobDim swig_types[66]
-#define SWIGTYPE_p_p_BlobGroup swig_types[67]
-#define SWIGTYPE_p_p_BlobID swig_types[68]
-#define SWIGTYPE_p_p_BlobPos swig_types[69]
-#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[70]
-#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[71]
-#define SWIGTYPE_p_p_FeatureT_double_t swig_types[72]
-#define SWIGTYPE_p_p_FeatureT_int_t swig_types[73]
-#define SWIGTYPE_p_p_Motion swig_types[74]
-#define SWIGTYPE_p_p_MultiBlobRotation swig_types[75]
-#define SWIGTYPE_p_p_MultiBlobScale swig_types[76]
-#define SWIGTYPE_p_p_PyObject swig_types[77]
-#define SWIGTYPE_p_p_Rotation swig_types[78]
-#define SWIGTYPE_p_p_Scale swig_types[79]
-#define SWIGTYPE_p_ptrdiff_t swig_types[80]
-#define SWIGTYPE_p_size_type swig_types[81]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t swig_types[82]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type swig_types[83]
-#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type swig_types[84]
-#define SWIGTYPE_p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t swig_types[85]
-#define SWIGTYPE_p_std__invalid_argument swig_types[86]
-#define SWIGTYPE_p_std__istream swig_types[87]
-#define SWIGTYPE_p_std__lessT_int_t swig_types[88]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[89]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t swig_types[90]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__allocator_type swig_types[91]
-#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type swig_types[92]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t swig_types[93]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__allocator_type swig_types[94]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[95]
-#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_pfpFfF_t_t_t swig_types[96]
-#define SWIGTYPE_p_std__ostream swig_types[97]
-#define SWIGTYPE_p_std__setT_Widget_p_t swig_types[98]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t swig_types[99]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__allocator_type swig_types[100]
-#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__value_type swig_types[101]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t swig_types[102]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__allocator_type swig_types[103]
-#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__value_type swig_types[104]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t swig_types[105]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__allocator_type swig_types[106]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__iterator swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__value_type swig_types[108]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t swig_types[109]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__allocator_type swig_types[110]
-#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type swig_types[111]
-#define SWIGTYPE_p_std__vectorT_Vector_std__allocatorT_Vector_t_t__iterator swig_types[112]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t swig_types[113]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type swig_types[114]
-#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type swig_types[115]
-#define SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t swig_types[116]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[117]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type swig_types[118]
-#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t swig_types[119]
-#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t__allocator_type swig_types[120]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[121]
-#define SWIGTYPE_p_uint64_t swig_types[122]
-#define SWIGTYPE_p_unsigned_int swig_types[123]
-#define SWIGTYPE_p_unsigned_short swig_types[124]
-#define SWIGTYPE_p_value_type swig_types[125]
-#define SWIGTYPE_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[126]
-static swig_type_info *swig_types[128];
-static swig_module_info swig_module = {swig_types, 127, 0, 0, 0, 0};
+#define SWIGTYPE_p_InputThread swig_types[27]
+#define SWIGTYPE_p_IntensityImage swig_types[28]
+#define SWIGTYPE_p_InternalMatcher swig_types[29]
+#define SWIGTYPE_p_Label swig_types[30]
+#define SWIGTYPE_p_MasterContainer swig_types[31]
+#define SWIGTYPE_p_Matcher swig_types[32]
+#define SWIGTYPE_p_MatcherTUIOInput swig_types[33]
+#define SWIGTYPE_p_Motion swig_types[34]
+#define SWIGTYPE_p_Mouse swig_types[35]
+#define SWIGTYPE_p_MultiBlobRotation swig_types[36]
+#define SWIGTYPE_p_MultiBlobScale swig_types[37]
+#define SWIGTYPE_p_RGBImage swig_types[38]
+#define SWIGTYPE_p_Region swig_types[39]
+#define SWIGTYPE_p_Rotation swig_types[40]
+#define SWIGTYPE_p_Scale swig_types[41]
+#define SWIGTYPE_p_ShortImage swig_types[42]
+#define SWIGTYPE_p_Slider swig_types[43]
+#define SWIGTYPE_p_SmartPtrT_FeatureBase_t swig_types[44]
+#define SWIGTYPE_p_StateRegion swig_types[45]
+#define SWIGTYPE_p_Textbox swig_types[46]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE16_GL_LUMINANCE_GL_UNSIGNED_SHORT_t swig_types[47]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_LUMINANCE8_GL_LUMINANCE_GL_UNSIGNED_BYTE_t swig_types[48]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGB8_GL_RGB_GL_UNSIGNED_BYTE_t swig_types[49]
+#define SWIGTYPE_p_TextureT_DEFAULT_TEXTURE_TARGET_GL_RGBA8_GL_RGBA_GL_UNSIGNED_BYTE_t swig_types[50]
+#define SWIGTYPE_p_Tile swig_types[51]
+#define SWIGTYPE_p_Type swig_types[52]
+#define SWIGTYPE_p_Widget swig_types[53]
+#define SWIGTYPE_p_Window swig_types[54]
+#define SWIGTYPE_p__QuaternionT_double_t swig_types[55]
+#define SWIGTYPE_p__VectorT_GLdouble_t swig_types[56]
+#define SWIGTYPE_p__VectorT_double_t swig_types[57]
+#define SWIGTYPE_p__VectorT_float_t swig_types[58]
+#define SWIGTYPE_p__VectorT_int_t swig_types[59]
+#define SWIGTYPE_p__VectorT_unsigned_char_t swig_types[60]
+#define SWIGTYPE_p__VectorT_unsigned_int_t swig_types[61]
+#define SWIGTYPE_p_allocator_type swig_types[62]
+#define SWIGTYPE_p_char swig_types[63]
+#define SWIGTYPE_p_difference_type swig_types[64]
+#define SWIGTYPE_p_int swig_types[65]
+#define SWIGTYPE_p_int64_t swig_types[66]
+#define SWIGTYPE_p_key_type swig_types[67]
+#define SWIGTYPE_p_mapped_type swig_types[68]
+#define SWIGTYPE_p_p_BlobCount swig_types[69]
+#define SWIGTYPE_p_p_BlobDim swig_types[70]
+#define SWIGTYPE_p_p_BlobGroup swig_types[71]
+#define SWIGTYPE_p_p_BlobID swig_types[72]
+#define SWIGTYPE_p_p_BlobPos swig_types[73]
+#define SWIGTYPE_p_p_FeatureT_Dimensions_t swig_types[74]
+#define SWIGTYPE_p_p_FeatureT__VectorT_double_t_t swig_types[75]
+#define SWIGTYPE_p_p_FeatureT_double_t swig_types[76]
+#define SWIGTYPE_p_p_FeatureT_int_t swig_types[77]
+#define SWIGTYPE_p_p_Motion swig_types[78]
+#define SWIGTYPE_p_p_MultiBlobRotation swig_types[79]
+#define SWIGTYPE_p_p_MultiBlobScale swig_types[80]
+#define SWIGTYPE_p_p_PyObject swig_types[81]
+#define SWIGTYPE_p_p_Rotation swig_types[82]
+#define SWIGTYPE_p_p_Scale swig_types[83]
+#define SWIGTYPE_p_ptrdiff_t swig_types[84]
+#define SWIGTYPE_p_size_type swig_types[85]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t swig_types[86]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type swig_types[87]
+#define SWIGTYPE_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type swig_types[88]
+#define SWIGTYPE_p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t swig_types[89]
+#define SWIGTYPE_p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t swig_types[90]
+#define SWIGTYPE_p_std__invalid_argument swig_types[91]
+#define SWIGTYPE_p_std__istream swig_types[92]
+#define SWIGTYPE_p_std__lessT_int_t swig_types[93]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[94]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t swig_types[95]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__allocator_type swig_types[96]
+#define SWIGTYPE_p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type swig_types[97]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t swig_types[98]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__allocator_type swig_types[99]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[100]
+#define SWIGTYPE_p_std__mapT_std__string_FeatureBase_pfpFfF_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_pfpFfF_t_t_t swig_types[101]
+#define SWIGTYPE_p_std__ostream swig_types[102]
+#define SWIGTYPE_p_std__setT_Widget_p_t swig_types[103]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t swig_types[104]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__allocator_type swig_types[105]
+#define SWIGTYPE_p_std__vectorT_BlobState_std__allocatorT_BlobState_t_t__value_type swig_types[106]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t swig_types[107]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__allocator_type swig_types[108]
+#define SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t__value_type swig_types[109]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t swig_types[110]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__allocator_type swig_types[111]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__iterator swig_types[112]
+#define SWIGTYPE_p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__value_type swig_types[113]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t swig_types[114]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__allocator_type swig_types[115]
+#define SWIGTYPE_p_std__vectorT_SmartPtrT_FeatureBase_t_std__allocatorT_SmartPtrT_FeatureBase_t_t_t__value_type swig_types[116]
+#define SWIGTYPE_p_std__vectorT_Vector_std__allocatorT_Vector_t_t__iterator swig_types[117]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t swig_types[118]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__allocator_type swig_types[119]
+#define SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t__value_type swig_types[120]
+#define SWIGTYPE_p_std__vectorT__VectorT_int_t_p_std__allocatorT__VectorT_int_t_p_t_t swig_types[121]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[122]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t__allocator_type swig_types[123]
+#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t swig_types[124]
+#define SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t__allocator_type swig_types[125]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[126]
+#define SWIGTYPE_p_uint64_t swig_types[127]
+#define SWIGTYPE_p_unsigned_int swig_types[128]
+#define SWIGTYPE_p_unsigned_short swig_types[129]
+#define SWIGTYPE_p_value_type swig_types[130]
+#define SWIGTYPE_p_void swig_types[131]
+#define SWIGTYPE_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type swig_types[132]
+static swig_type_info *swig_types[134];
+static swig_module_info swig_module = {swig_types, 133, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -5606,6 +5613,22 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_int (PyObject * obj, unsigned int *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UINT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< unsigned int >(v);
+    }
+  }  
+  return res;
+}
+
+
 SWIGINTERNINLINE PyObject *
 SWIG_FromCharPtrAndSize(const char* carray, size_t size)
 {
@@ -5631,6 +5654,13 @@ SWIGINTERNINLINE PyObject *
 SWIG_FromCharPtr(const char *cptr)
 { 
   return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_unsigned_SS_int  (unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
 }
 
 
@@ -6059,6 +6089,17 @@ SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
     PyLong_FromUnsignedLongLong(value) : PyInt_FromLong(static_cast< long >(value)); 
 }
 
+
+SWIGINTERN int
+SWIG_AsVal_bool (PyObject *obj, bool *val)
+{
+  int r = PyObject_IsTrue(obj);
+  if (r == -1)
+    return SWIG_ERROR;
+  if (val) *val = r ? true : false;
+  return SWIG_OK;
+}
+
 SWIGINTERN Feature< int > *Feature_Sl_int_Sg__dynamic_cast(FeatureBase *base){
     return dynamic_cast<Feature<int>*>(base);
   }
@@ -6361,24 +6402,6 @@ SWIGINTERN MultiBlobScale *MultiBlobScale_dynamic_cast(FeatureBase *base){
         return dynamic_cast<MultiBlobScale*>(base);
     }
 
-SWIGINTERNINLINE PyObject *
-SWIG_From_unsigned_SS_int  (unsigned int value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_bool (PyObject *obj, bool *val)
-{
-  int r = PyObject_IsTrue(obj);
-  if (r == -1)
-    return SWIG_ERROR;
-  if (val) *val = r ? true : false;
-  return SWIG_OK;
-}
-
-
 SWIGINTERN int
 SWIG_AsVal_float (PyObject * obj, float *val)
 {
@@ -6402,7 +6425,7 @@ SWIG_AsVal_float (PyObject * obj, float *val)
 
 #include "libtisch_wrap.h"
 
-SwigDirector_FeatureBase::SwigDirector_FeatureBase(PyObject *self, int _tf): FeatureBase(_tf), Swig::Director(self) {
+SwigDirector_FeatureBase::SwigDirector_FeatureBase(PyObject *self, unsigned int _tf): FeatureBase(_tf), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((FeatureBase *)this, this); 
 }
 
@@ -6447,6 +6470,39 @@ char const *SwigDirector_FeatureBase::name() const {
 }
 
 
+FeatureBase *SwigDirector_FeatureBase::clone() const {
+  void *swig_argp ;
+  int swig_res ;
+  swig_owntype own ;
+  
+  FeatureBase *c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call FeatureBase.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 1;
+  const char * const swig_method_name = "clone";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *) "clone", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'FeatureBase.clone'");
+    }
+  }
+  swig_res = SWIG_ConvertPtrAndOwn(result, &swig_argp, SWIGTYPE_p_FeatureBase,  0  | SWIG_POINTER_DISOWN, &own);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""FeatureBase *""'");
+  }
+  c_result = reinterpret_cast< FeatureBase * >(swig_argp);
+  swig_acquire_ownership_obj(SWIG_as_voidptr(c_result), own /* & TODO: SWIG_POINTER_OWN */);
+  return (FeatureBase *) c_result;
+}
+
+
 void SwigDirector_FeatureBase::load(InputState &state) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&state), SWIGTYPE_p_InputState,  0 );
@@ -6454,7 +6510,7 @@ void SwigDirector_FeatureBase::load(InputState &state) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call FeatureBase.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 1;
+  const size_t swig_method_index = 2;
   const char * const swig_method_name = "load";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6476,7 +6532,7 @@ int SwigDirector_FeatureBase::next() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call FeatureBase.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 2;
+  const size_t swig_method_index = 3;
   const char * const swig_method_name = "next";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -6506,7 +6562,7 @@ void SwigDirector_FeatureBase::serialize(std::ostream &s) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call FeatureBase.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 3;
+  const size_t swig_method_index = 4;
   const char * const swig_method_name = "serialize";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6529,7 +6585,7 @@ void SwigDirector_FeatureBase::unserialize(std::istream &s) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call FeatureBase.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "unserialize";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6545,7 +6601,7 @@ void SwigDirector_FeatureBase::unserialize(std::istream &s) {
 }
 
 
-SwigDirector_Widget::SwigDirector_Widget(PyObject *self, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, int _regflags): Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(self) {
+SwigDirector_Widget::SwigDirector_Widget(PyObject *self, int _w, int _h, int _x, int _y, double _angle, RGBATexture *_tex, unsigned int _regflags): Widget(_w, _h, _x, _y, _angle, _tex, _regflags), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((Widget *)this, this); 
 }
 
@@ -6599,11 +6655,9 @@ void SwigDirector_Widget::update(Widget *target) {
 }
 
 
-void SwigDirector_Widget::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Widget::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
@@ -6611,9 +6665,9 @@ void SwigDirector_Widget::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -6631,7 +6685,7 @@ void SwigDirector_Widget::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6654,7 +6708,7 @@ void SwigDirector_Widget::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6675,7 +6729,7 @@ void SwigDirector_Widget::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -6698,7 +6752,7 @@ void SwigDirector_Widget::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6721,7 +6775,7 @@ void SwigDirector_Widget::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6744,7 +6798,7 @@ void SwigDirector_Widget::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Widget.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6814,11 +6868,9 @@ void SwigDirector_Label::update(Widget *target) {
 }
 
 
-void SwigDirector_Label::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Label::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
@@ -6826,9 +6878,9 @@ void SwigDirector_Label::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -6846,7 +6898,7 @@ void SwigDirector_Label::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6869,7 +6921,7 @@ void SwigDirector_Label::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6890,7 +6942,7 @@ void SwigDirector_Label::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -6913,7 +6965,7 @@ void SwigDirector_Label::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6936,7 +6988,7 @@ void SwigDirector_Label::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -6959,7 +7011,7 @@ void SwigDirector_Label::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Label.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7029,11 +7081,9 @@ void SwigDirector_Button::update(Widget *target) {
 }
 
 
-void SwigDirector_Button::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Button::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
@@ -7041,9 +7091,9 @@ void SwigDirector_Button::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -7061,7 +7111,7 @@ void SwigDirector_Button::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7084,7 +7134,7 @@ void SwigDirector_Button::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7105,7 +7155,7 @@ void SwigDirector_Button::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7128,7 +7178,7 @@ void SwigDirector_Button::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7151,7 +7201,7 @@ void SwigDirector_Button::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7174,7 +7224,7 @@ void SwigDirector_Button::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7199,7 +7249,7 @@ void SwigDirector_Button::tap(Vector pos, int id) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "tap";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -7220,7 +7270,7 @@ void SwigDirector_Button::release() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Button.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 17;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "release";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7290,11 +7340,9 @@ void SwigDirector_Tile::update(Widget *target) {
 }
 
 
-void SwigDirector_Tile::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Tile::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
@@ -7302,9 +7350,9 @@ void SwigDirector_Tile::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -7322,7 +7370,7 @@ void SwigDirector_Tile::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7345,7 +7393,7 @@ void SwigDirector_Tile::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7366,7 +7414,7 @@ void SwigDirector_Tile::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7389,7 +7437,7 @@ void SwigDirector_Tile::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7412,7 +7460,7 @@ void SwigDirector_Tile::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7435,7 +7483,7 @@ void SwigDirector_Tile::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7460,7 +7508,7 @@ void SwigDirector_Tile::tap(Vector pos, int id) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "tap";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -7481,7 +7529,7 @@ void SwigDirector_Tile::release() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 17;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "release";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7504,7 +7552,7 @@ void SwigDirector_Tile::apply(Vector delta) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 17;
   const char * const swig_method_name = "apply";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7574,11 +7622,9 @@ void SwigDirector_Container::update(Widget *target) {
 }
 
 
-void SwigDirector_Container::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Container::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
@@ -7586,9 +7632,9 @@ void SwigDirector_Container::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -7606,7 +7652,7 @@ void SwigDirector_Container::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7629,7 +7675,7 @@ void SwigDirector_Container::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7650,7 +7696,7 @@ void SwigDirector_Container::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7673,7 +7719,7 @@ void SwigDirector_Container::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7696,7 +7742,7 @@ void SwigDirector_Container::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7719,7 +7765,7 @@ void SwigDirector_Container::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7744,7 +7790,7 @@ void SwigDirector_Container::tap(Vector vec, int id) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "tap";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -7765,7 +7811,7 @@ void SwigDirector_Container::release() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 17;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "release";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7788,7 +7834,7 @@ void SwigDirector_Container::apply(Vector delta) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Container.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 17;
   const char * const swig_method_name = "apply";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7858,11 +7904,9 @@ void SwigDirector_Slider::update(Widget *target) {
 }
 
 
-void SwigDirector_Slider::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Slider::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
@@ -7870,9 +7914,9 @@ void SwigDirector_Slider::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -7890,7 +7934,7 @@ void SwigDirector_Slider::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7913,7 +7957,7 @@ void SwigDirector_Slider::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7934,7 +7978,7 @@ void SwigDirector_Slider::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -7957,7 +8001,7 @@ void SwigDirector_Slider::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -7980,7 +8024,7 @@ void SwigDirector_Slider::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8003,7 +8047,7 @@ void SwigDirector_Slider::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Slider.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8073,11 +8117,9 @@ void SwigDirector_Dial::update(Widget *target) {
 }
 
 
-void SwigDirector_Dial::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Dial::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
@@ -8085,9 +8127,9 @@ void SwigDirector_Dial::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -8105,7 +8147,7 @@ void SwigDirector_Dial::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8128,7 +8170,7 @@ void SwigDirector_Dial::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8149,7 +8191,7 @@ void SwigDirector_Dial::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -8172,7 +8214,7 @@ void SwigDirector_Dial::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8195,7 +8237,7 @@ void SwigDirector_Dial::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8218,7 +8260,7 @@ void SwigDirector_Dial::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Dial.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8234,7 +8276,7 @@ void SwigDirector_Dial::paint(bool update_stencil) {
 }
 
 
-SwigDirector_MasterContainer::SwigDirector_MasterContainer(PyObject *self, int w, int h, char const *target): MasterContainer(w, h, target), Swig::Director(self) {
+SwigDirector_MasterContainer::SwigDirector_MasterContainer(PyObject *self, int w, int h, int defaults): MasterContainer(w, h, defaults), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((MasterContainer *)this, this); 
 }
 
@@ -8288,11 +8330,9 @@ void SwigDirector_MasterContainer::update(Widget *target) {
 }
 
 
-void SwigDirector_MasterContainer::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_MasterContainer::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
@@ -8300,9 +8340,9 @@ void SwigDirector_MasterContainer::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 3;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -8320,7 +8360,7 @@ void SwigDirector_MasterContainer::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8343,7 +8383,7 @@ void SwigDirector_MasterContainer::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8364,7 +8404,7 @@ void SwigDirector_MasterContainer::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -8387,7 +8427,7 @@ void SwigDirector_MasterContainer::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8410,7 +8450,7 @@ void SwigDirector_MasterContainer::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8433,7 +8473,7 @@ void SwigDirector_MasterContainer::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8458,7 +8498,7 @@ void SwigDirector_MasterContainer::tap(Vector vec, int id) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "tap";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -8479,7 +8519,7 @@ void SwigDirector_MasterContainer::release() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 17;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "release";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -8502,7 +8542,7 @@ void SwigDirector_MasterContainer::apply(Vector delta) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call MasterContainer.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 17;
   const char * const swig_method_name = "apply";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8518,7 +8558,7 @@ void SwigDirector_MasterContainer::apply(Vector delta) {
 }
 
 
-SwigDirector_Window::SwigDirector_Window(PyObject *self, int w, int h, std::string title, int use_mouse, char const *target): Window(w, h, title, use_mouse, target), Swig::Director(self) {
+SwigDirector_Window::SwigDirector_Window(PyObject *self, int w, int h, std::string title, int use_mouse): Window(w, h, title, use_mouse), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((Window *)this, this); 
 }
 
@@ -8776,11 +8816,9 @@ void SwigDirector_Window::update(Widget *target) {
 }
 
 
-void SwigDirector_Window::doUpdate(Widget *target, std::ostream *ost) {
+void SwigDirector_Window::doUpdate(Widget *target) {
   swig::SwigVar_PyObject obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(target), SWIGTYPE_p_Widget,  0 );
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(ost), SWIGTYPE_p_std__ostream,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
@@ -8788,9 +8826,9 @@ void SwigDirector_Window::doUpdate(Widget *target, std::ostream *ost) {
   const size_t swig_method_index = 11;
   const char * const swig_method_name = "doUpdate";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
 #else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
+  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"doUpdate", (char *)"(O)" ,(PyObject *)obj0);
 #endif
   if (result == NULL) {
     PyObject *error = PyErr_Occurred();
@@ -8808,7 +8846,7 @@ void SwigDirector_Window::raise(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "_raise";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8831,7 +8869,7 @@ void SwigDirector_Window::lower(Widget *widget) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "lower";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8852,7 +8890,7 @@ void SwigDirector_Window::draw() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 17;
   const char * const swig_method_name = "draw";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -8875,7 +8913,7 @@ void SwigDirector_Window::action(Gesture *gesture) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 19;
+  const size_t swig_method_index = 18;
   const char * const swig_method_name = "action";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8898,7 +8936,7 @@ void SwigDirector_Window::enter(double z) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 20;
+  const size_t swig_method_index = 19;
   const char * const swig_method_name = "enter";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8921,7 +8959,7 @@ void SwigDirector_Window::paint(bool update_stencil) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 22;
+  const size_t swig_method_index = 21;
   const char * const swig_method_name = "paint";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -8946,7 +8984,7 @@ void SwigDirector_Window::tap(Vector vec, int id) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 24;
+  const size_t swig_method_index = 23;
   const char * const swig_method_name = "tap";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -8967,7 +9005,7 @@ void SwigDirector_Window::release() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 25;
+  const size_t swig_method_index = 24;
   const char * const swig_method_name = "release";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, NULL, NULL);
@@ -8990,7 +9028,7 @@ void SwigDirector_Window::apply(Vector delta) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Window.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 26;
+  const size_t swig_method_index = 25;
   const char * const swig_method_name = "apply";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -20855,8 +20893,8 @@ SWIGINTERN PyObject *InputState_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
 SWIGINTERN PyObject *_wrap_new_FeatureBase__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
-  int arg2 ;
-  int val2 ;
+  unsigned int arg2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -20864,11 +20902,11 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   
   if (!PyArg_ParseTuple(args,(char *)"OO:new_FeatureBase",&obj0,&obj1)) SWIG_fail;
   arg1 = obj0;
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_FeatureBase" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_FeatureBase" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   {
     try {
       if ( arg1 != Py_None ) {
@@ -20941,7 +20979,7 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase(PyObject *self, PyObject *args) {
     _v = (argv[0] != 0);
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -20953,7 +20991,7 @@ SWIGINTERN PyObject *_wrap_new_FeatureBase(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_FeatureBase'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    FeatureBase(PyObject *,int)\n"
+    "    FeatureBase(PyObject *,unsigned int)\n"
     "    FeatureBase(PyObject *)\n");
   return NULL;
 }
@@ -21022,6 +21060,55 @@ SWIGINTERN PyObject *_wrap_FeatureBase_name(PyObject *SWIGUNUSEDPARM(self), PyOb
   resultobj = SWIG_FromCharPtr((const char *)result);
   if (director) {
     director->swig_release_ownership(SWIG_as_voidptr(result));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_FeatureBase_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  FeatureBase *arg1 = (FeatureBase *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  FeatureBase *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureBase_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureBase, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureBase_clone" "', argument " "1"" of type '" "FeatureBase const *""'"); 
+  }
+  arg1 = reinterpret_cast< FeatureBase * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    {
+      try {
+        if (upcall) {
+          Swig::DirectorPureVirtualException::raise("FeatureBase::clone");
+        } else {
+          result = (FeatureBase *)((FeatureBase const *)arg1)->clone();
+        }
+      } catch (std::exception& e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  director = SWIG_DIRECTOR_CAST(result);
+  if (director) {
+    resultobj = director->swig_get_self();
+    Py_INCREF(resultobj);
+  } else {
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_FeatureBase, 0 |  0 );
+  }
+  if (director) {
+    SWIG_AcquirePtr(resultobj, director->swig_release_ownership(SWIG_as_voidptr(result)));
   }
   return resultobj;
 fail:
@@ -21277,10 +21364,10 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   FeatureBase *arg1 = (FeatureBase *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -21292,11 +21379,11 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_set(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureBase_typeflags_set" "', argument " "1"" of type '" "FeatureBase *""'"); 
   }
   arg1 = reinterpret_cast< FeatureBase * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "FeatureBase_typeflags_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "FeatureBase_typeflags_set" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
   if (arg1) darg->typeflags = arg2;
   resultobj = SWIG_Py_Void();
@@ -21313,7 +21400,7 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_get(PyObject *SWIGUNUSEDPARM(se
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   SwigDirector_FeatureBase *darg = 0;
-  int result;
+  unsigned int result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:FeatureBase_typeflags_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureBase, 0 |  0 );
@@ -21322,8 +21409,8 @@ SWIGINTERN PyObject *_wrap_FeatureBase_typeflags_get(PyObject *SWIGUNUSEDPARM(se
   }
   arg1 = reinterpret_cast< FeatureBase * >(argp1);
   darg = dynamic_cast<SwigDirector_FeatureBase *>(arg1);
-  result = (int) (darg->typeflags);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (unsigned int) (darg->typeflags);
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -23033,6 +23120,41 @@ SWIGINTERN PyObject *_wrap_smartPtrFeatureBase_name(PyObject *SWIGUNUSEDPARM(sel
     }
   }
   resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_smartPtrFeatureBase_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SmartPtr< FeatureBase > *arg1 = (SmartPtr< FeatureBase > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  FeatureBase *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:smartPtrFeatureBase_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SmartPtrT_FeatureBase_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "smartPtrFeatureBase_clone" "', argument " "1"" of type '" "SmartPtr< FeatureBase > const *""'"); 
+  }
+  arg1 = reinterpret_cast< SmartPtr< FeatureBase > * >(argp1);
+  {
+    try {
+      result = (FeatureBase *)(*arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  director = SWIG_DIRECTOR_CAST(result);
+  if (director) {
+    resultobj = director->swig_get_self();
+    Py_INCREF(resultobj);
+  } else {
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_FeatureBase, 0 |  0 );
+  }
   return resultobj;
 fail:
   return NULL;
@@ -25381,6 +25503,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_Gesture__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Gesture *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Gesture *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Gesture",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Gesture,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Gesture" "', argument " "1"" of type '" "Gesture const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Gesture" "', argument " "1"" of type '" "Gesture const &""'"); 
+  }
+  arg1 = reinterpret_cast< Gesture * >(argp1);
+  {
+    try {
+      result = (Gesture *)new Gesture((Gesture const &)*arg1);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Gesture, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Gesture(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[3];
@@ -25393,6 +25546,14 @@ SWIGINTERN PyObject *_wrap_new_Gesture(PyObject *self, PyObject *args) {
   }
   if (argc == 0) {
     return _wrap_new_Gesture__SWIG_0(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Gesture, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Gesture__SWIG_3(self, args);
+    }
   }
   if (argc == 1) {
     int _v;
@@ -25422,7 +25583,8 @@ fail:
     "  Possible C/C++ prototypes are:\n"
     "    Gesture()\n"
     "    Gesture(std::string,int)\n"
-    "    Gesture(std::string)\n");
+    "    Gesture(std::string)\n"
+    "    Gesture(Gesture const &)\n");
   return NULL;
 }
 
@@ -25455,6 +25617,33 @@ SWIGINTERN PyObject *_wrap_Gesture_load(PyObject *SWIGUNUSEDPARM(self), PyObject
   {
     try {
       (arg1)->load(*arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Gesture_check(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Gesture *arg1 = (Gesture *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Gesture_check",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Gesture, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Gesture_check" "', argument " "1"" of type '" "Gesture *""'"); 
+  }
+  arg1 = reinterpret_cast< Gesture * >(argp1);
+  {
+    try {
+      (arg1)->check();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
@@ -27664,18 +27853,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Region__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Region *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Region",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Region" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Region" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Region *)new Region(arg1);
@@ -27725,7 +27914,7 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -27736,7 +27925,7 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Region'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Region(int)\n"
+    "    Region(unsigned int)\n"
     "    Region()\n");
   return NULL;
 }
@@ -27793,7 +27982,7 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int result;
+  unsigned int result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Region_flags",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
@@ -27803,12 +27992,12 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
   arg1 = reinterpret_cast< Region * >(argp1);
   {
     try {
-      result = (int)((Region const *)arg1)->flags();
+      result = (unsigned int)((Region const *)arg1)->flags();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -27818,10 +28007,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Region_flags__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
-  int arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  unsigned int val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -27832,11 +28021,11 @@ SWIGINTERN PyObject *_wrap_Region_flags__SWIG_1(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_flags" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_flags" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_flags" "', argument " "2"" of type '" "unsigned int""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   {
     try {
       (arg1)->flags(arg2);
@@ -27877,7 +28066,7 @@ SWIGINTERN PyObject *_wrap_Region_flags(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -27890,7 +28079,7 @@ fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Region_flags'.\n"
     "  Possible C/C++ prototypes are:\n"
     "    flags(Region const *)\n"
-    "    flags(Region *,int)\n");
+    "    flags(Region *,unsigned int)\n");
   return NULL;
 }
 
@@ -28358,6 +28547,666 @@ SWIGINTERN PyObject *StateRegion_swigregister(PyObject *SWIGUNUSEDPARM(self), Py
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_Matcher_request_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_request_update",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_request_update" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_request_update" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  {
+    try {
+      (arg1)->request_update(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_trigger_gesture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  Gesture *arg3 = (Gesture *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Matcher_trigger_gesture",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_trigger_gesture" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_trigger_gesture" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Gesture, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Matcher_trigger_gesture" "', argument " "3"" of type '" "Gesture *""'"); 
+  }
+  arg3 = reinterpret_cast< Gesture * >(argp3);
+  {
+    try {
+      (arg1)->trigger_gesture(arg2,arg3);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_process_blob(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  BasicBlob *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_process_blob",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_process_blob" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_BasicBlob,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Matcher_process_blob" "', argument " "2"" of type '" "BasicBlob &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Matcher_process_blob" "', argument " "2"" of type '" "BasicBlob &""'"); 
+  }
+  arg2 = reinterpret_cast< BasicBlob * >(argp2);
+  {
+    try {
+      (arg1)->process_blob(*arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_process_gestures(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Matcher_process_gestures",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_process_gestures" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      (arg1)->process_gestures();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_load_defaults__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_load_defaults",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_load_defaults" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_load_defaults" "', argument " "2"" of type '" "unsigned int""'");
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  {
+    try {
+      (arg1)->load_defaults(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_load_defaults__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Matcher_load_defaults",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_load_defaults" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      (arg1)->load_defaults();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_load_defaults(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Matcher, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Matcher_load_defaults__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Matcher, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Matcher_load_defaults__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Matcher_load_defaults'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    load_defaults(Matcher *,unsigned int)\n"
+    "    load_defaults(Matcher *)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_run(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  void *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Matcher_run",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_run" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      result = (void *)(arg1)->run();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  Region *arg3 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Matcher_update",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_update" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_update" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Matcher_update" "', argument " "3"" of type '" "Region *""'"); 
+  }
+  arg3 = reinterpret_cast< Region * >(argp3);
+  {
+    try {
+      (arg1)->update(arg2,arg3);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_remove(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_remove",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_remove" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_remove" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  {
+    try {
+      (arg1)->remove(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher__raise(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher__raise",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher__raise" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher__raise" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  {
+    try {
+      (arg1)->raise(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_lower(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  unsigned long long arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_lower",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_lower" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long_SS_long(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_lower" "', argument " "2"" of type '" "unsigned long long""'");
+  } 
+  arg2 = static_cast< unsigned long long >(val2);
+  {
+    try {
+      (arg1)->lower(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_peakmode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Matcher_peakmode",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_peakmode" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Matcher_peakmode" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  {
+    try {
+      (arg1)->peakmode(arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Matcher_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Matcher_clear",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Matcher_clear" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      (arg1)->clear();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Matcher(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Matcher",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Matcher" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Matcher_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Matcher, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MatcherTUIOInput(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Matcher *arg1 = (Matcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MatcherTUIOInput *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MatcherTUIOInput",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Matcher, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MatcherTUIOInput" "', argument " "1"" of type '" "Matcher *""'"); 
+  }
+  arg1 = reinterpret_cast< Matcher * >(argp1);
+  {
+    try {
+      result = (MatcherTUIOInput *)new MatcherTUIOInput(arg1);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MatcherTUIOInput, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MatcherTUIOInput_process_frame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MatcherTUIOInput_process_frame",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MatcherTUIOInput, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MatcherTUIOInput_process_frame" "', argument " "1"" of type '" "MatcherTUIOInput *""'"); 
+  }
+  arg1 = reinterpret_cast< MatcherTUIOInput * >(argp1);
+  {
+    try {
+      (arg1)->process_frame();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MatcherTUIOInput_process_blob(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  BasicBlob *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MatcherTUIOInput_process_blob",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MatcherTUIOInput, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MatcherTUIOInput_process_blob" "', argument " "1"" of type '" "MatcherTUIOInput *""'"); 
+  }
+  arg1 = reinterpret_cast< MatcherTUIOInput * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_BasicBlob,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MatcherTUIOInput_process_blob" "', argument " "2"" of type '" "BasicBlob &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "MatcherTUIOInput_process_blob" "', argument " "2"" of type '" "BasicBlob &""'"); 
+  }
+  arg2 = reinterpret_cast< BasicBlob * >(argp2);
+  {
+    try {
+      (arg1)->process_blob(*arg2);
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MatcherTUIOInput(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MatcherTUIOInput *arg1 = (MatcherTUIOInput *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MatcherTUIOInput",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MatcherTUIOInput, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MatcherTUIOInput" "', argument " "1"" of type '" "MatcherTUIOInput *""'"); 
+  }
+  arg1 = reinterpret_cast< MatcherTUIOInput * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MatcherTUIOInput_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MatcherTUIOInput, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_delete_FeatureInt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
@@ -28416,25 +29265,36 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureInt_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
+  std::vector< int,std::allocator< int > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< int,std::allocator< int > > *result = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:FeatureInt_bounds",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureInt_bounds",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureInt_bounds" "', argument " "1"" of type '" "Feature< int > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< int > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< int,std::allocator< int > > * >(argp2);
   {
     try {
-      result = (std::vector< int,std::allocator< int > > *) &(arg1)->bounds();
+      (arg1)->bounds(*arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t, 0 |  0 );
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -30617,18 +31477,18 @@ SWIGINTERN PyObject *vectorInt_swigregister(PyObject *SWIGUNUSEDPARM(self), PyOb
 
 SWIGINTERN PyObject *_wrap_new_BlobCount__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobCount *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobCount",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobCount" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobCount" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobCount *)new BlobCount(arg1);
@@ -30678,7 +31538,7 @@ SWIGINTERN PyObject *_wrap_new_BlobCount(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -30689,7 +31549,7 @@ SWIGINTERN PyObject *_wrap_new_BlobCount(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobCount'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobCount(int)\n"
+    "    BlobCount(unsigned int)\n"
     "    BlobCount()\n");
   return NULL;
 }
@@ -30716,6 +31576,34 @@ SWIGINTERN PyObject *_wrap_delete_BlobCount(PyObject *SWIGUNUSEDPARM(self), PyOb
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BlobCount_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BlobCount *arg1 = (BlobCount *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  BlobCount *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BlobCount_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BlobCount, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BlobCount_clone" "', argument " "1"" of type '" "BlobCount const *""'"); 
+  }
+  arg1 = reinterpret_cast< BlobCount * >(argp1);
+  {
+    try {
+      result = (BlobCount *)((BlobCount const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BlobCount, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -30882,25 +31770,36 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDimensions_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Dimensions > *arg1 = (Feature< Dimensions > *) 0 ;
+  std::vector< Dimensions,std::allocator< Dimensions > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Dimensions,std::allocator< Dimensions > > *result = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDimensions_bounds",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDimensions_bounds",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_Dimensions_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDimensions_bounds" "', argument " "1"" of type '" "Feature< Dimensions > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Dimensions > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< Dimensions,std::allocator< Dimensions > > * >(argp2);
   {
     try {
-      result = (std::vector< Dimensions,std::allocator< Dimensions > > *) &(arg1)->bounds();
+      (arg1)->bounds(*arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t, 0 |  0 );
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -33636,18 +34535,18 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_BlobDim__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobDim *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobDim",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobDim" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobDim" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobDim *)new BlobDim(arg1);
@@ -33697,7 +34596,7 @@ SWIGINTERN PyObject *_wrap_new_BlobDim(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -33708,7 +34607,7 @@ SWIGINTERN PyObject *_wrap_new_BlobDim(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobDim'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobDim(int)\n"
+    "    BlobDim(unsigned int)\n"
     "    BlobDim()\n");
   return NULL;
 }
@@ -33735,6 +34634,34 @@ SWIGINTERN PyObject *_wrap_delete_BlobDim(PyObject *SWIGUNUSEDPARM(self), PyObje
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BlobDim_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BlobDim *arg1 = (BlobDim *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  BlobDim *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BlobDim_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BlobDim, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BlobDim_clone" "', argument " "1"" of type '" "BlobDim const *""'"); 
+  }
+  arg1 = reinterpret_cast< BlobDim * >(argp1);
+  {
+    try {
+      result = (BlobDim *)((BlobDim const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BlobDim, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -33873,18 +34800,18 @@ SWIGINTERN PyObject *BlobDim_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 SWIGINTERN PyObject *_wrap_new_BlobID__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobID *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobID",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobID" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobID" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobID *)new BlobID(arg1);
@@ -33934,7 +34861,7 @@ SWIGINTERN PyObject *_wrap_new_BlobID(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -33945,7 +34872,7 @@ SWIGINTERN PyObject *_wrap_new_BlobID(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobID'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobID(int)\n"
+    "    BlobID(unsigned int)\n"
     "    BlobID()\n");
   return NULL;
 }
@@ -33972,6 +34899,34 @@ SWIGINTERN PyObject *_wrap_delete_BlobID(PyObject *SWIGUNUSEDPARM(self), PyObjec
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BlobID_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BlobID *arg1 = (BlobID *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  BlobID *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BlobID_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BlobID, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BlobID_clone" "', argument " "1"" of type '" "BlobID const *""'"); 
+  }
+  arg1 = reinterpret_cast< BlobID * >(argp1);
+  {
+    try {
+      result = (BlobID *)((BlobID const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BlobID, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -34166,25 +35121,36 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureVector_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Vector > *arg1 = (Feature< Vector > *) 0 ;
+  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *result = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:FeatureVector_bounds",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureVector_bounds",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT__VectorT_double_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureVector_bounds" "', argument " "1"" of type '" "Feature< Vector > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Vector > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< _Vector< double >,std::allocator< _Vector< double > > > * >(argp2);
   {
     try {
-      result = (std::vector< _Vector< double >,std::allocator< _Vector< double > > > *) &(arg1)->bounds();
+      (arg1)->bounds(*arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0 |  0 );
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -34401,18 +35367,18 @@ SWIGINTERN PyObject *FeatureVector_swigregister(PyObject *SWIGUNUSEDPARM(self), 
 
 SWIGINTERN PyObject *_wrap_new_BlobPos__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobPos *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobPos",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobPos" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobPos" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobPos *)new BlobPos(arg1);
@@ -34462,7 +35428,7 @@ SWIGINTERN PyObject *_wrap_new_BlobPos(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -34473,7 +35439,7 @@ SWIGINTERN PyObject *_wrap_new_BlobPos(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobPos'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobPos(int)\n"
+    "    BlobPos(unsigned int)\n"
     "    BlobPos()\n");
   return NULL;
 }
@@ -34500,6 +35466,34 @@ SWIGINTERN PyObject *_wrap_delete_BlobPos(PyObject *SWIGUNUSEDPARM(self), PyObje
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BlobPos_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BlobPos *arg1 = (BlobPos *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  BlobPos *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BlobPos_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BlobPos, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BlobPos_clone" "', argument " "1"" of type '" "BlobPos const *""'"); 
+  }
+  arg1 = reinterpret_cast< BlobPos * >(argp1);
+  {
+    try {
+      result = (BlobPos *)((BlobPos const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BlobPos, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -34742,18 +35736,18 @@ SWIGINTERN PyObject *BlobPos_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 SWIGINTERN PyObject *_wrap_new_BlobGroup__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   BlobGroup *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_BlobGroup",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobGroup" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_BlobGroup" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (BlobGroup *)new BlobGroup(arg1);
@@ -34803,7 +35797,7 @@ SWIGINTERN PyObject *_wrap_new_BlobGroup(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -34814,7 +35808,7 @@ SWIGINTERN PyObject *_wrap_new_BlobGroup(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_BlobGroup'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    BlobGroup(int)\n"
+    "    BlobGroup(unsigned int)\n"
     "    BlobGroup()\n");
   return NULL;
 }
@@ -34841,6 +35835,34 @@ SWIGINTERN PyObject *_wrap_delete_BlobGroup(PyObject *SWIGUNUSEDPARM(self), PyOb
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BlobGroup_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BlobGroup *arg1 = (BlobGroup *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  BlobGroup *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BlobGroup_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BlobGroup, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BlobGroup_clone" "', argument " "1"" of type '" "BlobGroup const *""'"); 
+  }
+  arg1 = reinterpret_cast< BlobGroup * >(argp1);
+  {
+    try {
+      result = (BlobGroup *)((BlobGroup const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BlobGroup, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -35035,25 +36057,36 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDouble_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< double > *arg1 = (Feature< double > *) 0 ;
+  std::vector< double,std::allocator< double > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< double,std::allocator< double > > *result = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDouble_bounds",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDouble_bounds",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDouble_bounds" "', argument " "1"" of type '" "Feature< double > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< double > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< double,std::allocator< double > > * >(argp2);
   {
     try {
-      result = (std::vector< double,std::allocator< double > > *) &(arg1)->bounds();
+      (arg1)->bounds(*arg2);
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t, 0 |  0 );
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -37236,18 +38269,18 @@ SWIGINTERN PyObject *vectorDouble_swigregister(PyObject *SWIGUNUSEDPARM(self), P
 
 SWIGINTERN PyObject *_wrap_new_Motion__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Motion *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Motion",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Motion" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Motion" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Motion *)new Motion(arg1);
@@ -37297,7 +38330,7 @@ SWIGINTERN PyObject *_wrap_new_Motion(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -37308,7 +38341,7 @@ SWIGINTERN PyObject *_wrap_new_Motion(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Motion'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Motion(int)\n"
+    "    Motion(unsigned int)\n"
     "    Motion()\n");
   return NULL;
 }
@@ -37335,6 +38368,34 @@ SWIGINTERN PyObject *_wrap_delete_Motion(PyObject *SWIGUNUSEDPARM(self), PyObjec
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Motion_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Motion *arg1 = (Motion *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Motion *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Motion_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Motion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Motion_clone" "', argument " "1"" of type '" "Motion const *""'"); 
+  }
+  arg1 = reinterpret_cast< Motion * >(argp1);
+  {
+    try {
+      result = (Motion *)((Motion const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Motion, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -37445,18 +38506,18 @@ SWIGINTERN PyObject *Motion_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
 
 SWIGINTERN PyObject *_wrap_new_Rotation__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Rotation *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Rotation",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Rotation" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Rotation" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Rotation *)new Rotation(arg1);
@@ -37506,7 +38567,7 @@ SWIGINTERN PyObject *_wrap_new_Rotation(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -37517,7 +38578,7 @@ SWIGINTERN PyObject *_wrap_new_Rotation(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Rotation'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Rotation(int)\n"
+    "    Rotation(unsigned int)\n"
     "    Rotation()\n");
   return NULL;
 }
@@ -37544,6 +38605,34 @@ SWIGINTERN PyObject *_wrap_delete_Rotation(PyObject *SWIGUNUSEDPARM(self), PyObj
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Rotation_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Rotation *arg1 = (Rotation *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Rotation *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Rotation_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Rotation, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Rotation_clone" "', argument " "1"" of type '" "Rotation const *""'"); 
+  }
+  arg1 = reinterpret_cast< Rotation * >(argp1);
+  {
+    try {
+      result = (Rotation *)((Rotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rotation, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -37654,18 +38743,18 @@ SWIGINTERN PyObject *Rotation_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObj
 
 SWIGINTERN PyObject *_wrap_new_MultiBlobRotation__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   MultiBlobRotation *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_MultiBlobRotation",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobRotation" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobRotation" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (MultiBlobRotation *)new MultiBlobRotation(arg1);
@@ -37715,7 +38804,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobRotation(PyObject *self, PyObject *args)
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -37726,7 +38815,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobRotation(PyObject *self, PyObject *args)
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MultiBlobRotation'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MultiBlobRotation(int)\n"
+    "    MultiBlobRotation(unsigned int)\n"
     "    MultiBlobRotation()\n");
   return NULL;
 }
@@ -37753,6 +38842,34 @@ SWIGINTERN PyObject *_wrap_delete_MultiBlobRotation(PyObject *SWIGUNUSEDPARM(sel
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MultiBlobRotation_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MultiBlobRotation *arg1 = (MultiBlobRotation *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MultiBlobRotation *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MultiBlobRotation_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MultiBlobRotation, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MultiBlobRotation_clone" "', argument " "1"" of type '" "MultiBlobRotation const *""'"); 
+  }
+  arg1 = reinterpret_cast< MultiBlobRotation * >(argp1);
+  {
+    try {
+      result = (MultiBlobRotation *)((MultiBlobRotation const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MultiBlobRotation, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -37863,18 +38980,18 @@ SWIGINTERN PyObject *MultiBlobRotation_swigregister(PyObject *SWIGUNUSEDPARM(sel
 
 SWIGINTERN PyObject *_wrap_new_Scale__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   Scale *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_Scale",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Scale" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Scale" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (Scale *)new Scale(arg1);
@@ -37924,7 +39041,7 @@ SWIGINTERN PyObject *_wrap_new_Scale(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -37935,7 +39052,7 @@ SWIGINTERN PyObject *_wrap_new_Scale(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Scale'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Scale(int)\n"
+    "    Scale(unsigned int)\n"
     "    Scale()\n");
   return NULL;
 }
@@ -37962,6 +39079,34 @@ SWIGINTERN PyObject *_wrap_delete_Scale(PyObject *SWIGUNUSEDPARM(self), PyObject
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scale_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Scale *arg1 = (Scale *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Scale *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Scale_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Scale, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scale_clone" "', argument " "1"" of type '" "Scale const *""'"); 
+  }
+  arg1 = reinterpret_cast< Scale * >(argp1);
+  {
+    try {
+      result = (Scale *)((Scale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Scale, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -38072,18 +39217,18 @@ SWIGINTERN PyObject *Scale_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
 
 SWIGINTERN PyObject *_wrap_new_MultiBlobScale__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
+  unsigned int arg1 ;
+  unsigned int val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
   MultiBlobScale *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_MultiBlobScale",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  ecode1 = SWIG_AsVal_unsigned_SS_int(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobScale" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MultiBlobScale" "', argument " "1"" of type '" "unsigned int""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< unsigned int >(val1);
   {
     try {
       result = (MultiBlobScale *)new MultiBlobScale(arg1);
@@ -38133,7 +39278,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobScale(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
       _v = SWIG_CheckState(res);
     }
     if (_v) {
@@ -38144,7 +39289,7 @@ SWIGINTERN PyObject *_wrap_new_MultiBlobScale(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MultiBlobScale'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MultiBlobScale(int)\n"
+    "    MultiBlobScale(unsigned int)\n"
     "    MultiBlobScale()\n");
   return NULL;
 }
@@ -38171,6 +39316,34 @@ SWIGINTERN PyObject *_wrap_delete_MultiBlobScale(PyObject *SWIGUNUSEDPARM(self),
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MultiBlobScale_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MultiBlobScale *arg1 = (MultiBlobScale *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MultiBlobScale *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MultiBlobScale_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MultiBlobScale, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MultiBlobScale_clone" "', argument " "1"" of type '" "MultiBlobScale const *""'"); 
+  }
+  arg1 = reinterpret_cast< MultiBlobScale * >(argp1);
+  {
+    try {
+      result = (MultiBlobScale *)((MultiBlobScale const *)arg1)->clone();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MultiBlobScale, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -41653,6 +42826,29 @@ SWIGINTERN PyObject *Swig_var_g_widgets_get(void) {
 }
 
 
+SWIGINTERN int Swig_var_g_matcher_set(PyObject *_val) {
+  {
+    void *argp = 0;
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_Matcher,  0 );  
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""g_matcher""' of type '""Matcher *""'");
+    }
+    g_matcher = reinterpret_cast< Matcher * >(argp);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_g_matcher_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(g_matcher), SWIGTYPE_p_Matcher,  0 );
+  return pyobj;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
@@ -41662,7 +42858,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
   int arg5 ;
   double arg6 ;
   RGBATexture *arg7 = (RGBATexture *) 0 ;
-  int arg8 ;
+  unsigned int arg8 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
@@ -41675,7 +42871,7 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
   int ecode6 = 0 ;
   void *argp7 = 0 ;
   int res7 = 0 ;
-  int val8 ;
+  unsigned int val8 ;
   int ecode8 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -41719,11 +42915,11 @@ SWIGINTERN PyObject *_wrap_new_Widget__SWIG_0(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Widget" "', argument " "7"" of type '" "RGBATexture *""'"); 
   }
   arg7 = reinterpret_cast< RGBATexture * >(argp7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
+  ecode8 = SWIG_AsVal_unsigned_SS_int(obj7, &val8);
   if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_Widget" "', argument " "8"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_Widget" "', argument " "8"" of type '" "unsigned int""'");
   } 
-  arg8 = static_cast< int >(val8);
+  arg8 = static_cast< unsigned int >(val8);
   {
     try {
       if ( arg1 != Py_None ) {
@@ -42268,7 +43464,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
                 _v = SWIG_CheckState(res);
                 if (_v) {
                   {
-                    int res = SWIG_AsVal_int(argv[7], NULL);
+                    int res = SWIG_AsVal_unsigned_SS_int(argv[7], NULL);
                     _v = SWIG_CheckState(res);
                   }
                   if (_v) {
@@ -42286,7 +43482,7 @@ SWIGINTERN PyObject *_wrap_new_Widget(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Widget'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Widget(PyObject *,int,int,int,int,double,RGBATexture *,int)\n"
+    "    Widget(PyObject *,int,int,int,int,double,RGBATexture *,unsigned int)\n"
     "    Widget(PyObject *,int,int,int,int,double,RGBATexture *)\n"
     "    Widget(PyObject *,int,int,int,int,double)\n"
     "    Widget(PyObject *,int,int,int,int)\n"
@@ -42665,63 +43861,6 @@ SWIGINTERN PyObject *_wrap_Widget_doUpdate__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   PyObject *resultobj = 0;
   Widget *arg1 = (Widget *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Widget_doUpdate",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_doUpdate" "', argument " "1"" of type '" "Widget *""'"); 
-  }
-  arg1 = reinterpret_cast< Widget * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Widget_doUpdate" "', argument " "2"" of type '" "Widget *""'"); 
-  }
-  arg2 = reinterpret_cast< Widget * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_std__ostream, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Widget_doUpdate" "', argument " "3"" of type '" "std::ostream *""'"); 
-  }
-  arg3 = reinterpret_cast< std::ostream * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==obj0));
-  try {
-    {
-      try {
-        if (upcall) {
-          (arg1)->Widget::doUpdate(arg2,arg3);
-        } else {
-          (arg1)->doUpdate(arg2,arg3);
-        }
-      } catch (std::exception& e) {
-        SWIG_exception(SWIG_RuntimeError, e.what());
-      }
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Widget_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Widget *arg1 = (Widget *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -42766,7 +43905,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Widget_doUpdate__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Widget_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Widget *arg1 = (Widget *) 0 ;
   void *argp1 = 0 ;
@@ -42807,12 +43946,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_Widget_doUpdate(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[4];
+  PyObject *argv[3];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 1) {
@@ -42821,7 +43960,7 @@ SWIGINTERN PyObject *_wrap_Widget_doUpdate(PyObject *self, PyObject *args) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Widget, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Widget_doUpdate__SWIG_2(self, args);
+      return _wrap_Widget_doUpdate__SWIG_1(self, args);
     }
   }
   if (argc == 2) {
@@ -42834,26 +43973,7 @@ SWIGINTERN PyObject *_wrap_Widget_doUpdate(PyObject *self, PyObject *args) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Widget_doUpdate__SWIG_1(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Widget, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__ostream, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_Widget_doUpdate__SWIG_0(self, args);
-        }
+        return _wrap_Widget_doUpdate__SWIG_0(self, args);
       }
     }
   }
@@ -42861,7 +43981,6 @@ SWIGINTERN PyObject *_wrap_Widget_doUpdate(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Widget_doUpdate'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    doUpdate(Widget *,Widget *,std::ostream *)\n"
     "    doUpdate(Widget *,Widget *)\n"
     "    doUpdate(Widget *)\n");
   return NULL;
@@ -44896,62 +46015,6 @@ SWIGINTERN PyObject *_wrap_Widget_parent_get(PyObject *SWIGUNUSEDPARM(self), PyO
   darg = dynamic_cast<SwigDirector_Widget *>(arg1);
   result = (Container *) (darg->parent);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Container, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Widget_regstream_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Widget *arg1 = (Widget *) 0 ;
-  std::ostream *arg2 = (std::ostream *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  SwigDirector_Widget *darg = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Widget_regstream_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_regstream_set" "', argument " "1"" of type '" "Widget *""'"); 
-  }
-  arg1 = reinterpret_cast< Widget * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_std__ostream, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Widget_regstream_set" "', argument " "2"" of type '" "std::ostream *""'"); 
-  }
-  arg2 = reinterpret_cast< std::ostream * >(argp2);
-  darg = dynamic_cast<SwigDirector_Widget *>(arg1);
-  if (arg1) darg->regstream = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Widget_regstream_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Widget *arg1 = (Widget *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  SwigDirector_Widget *darg = 0;
-  std::ostream *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Widget_regstream_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Widget_regstream_get" "', argument " "1"" of type '" "Widget *""'"); 
-  }
-  arg1 = reinterpret_cast< Widget * >(argp1);
-  darg = dynamic_cast<SwigDirector_Widget *>(arg1);
-  result = (std::ostream *) (darg->regstream);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__ostream, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -49506,63 +50569,6 @@ SWIGINTERN PyObject *_wrap_Container_doUpdate__SWIG_0(PyObject *SWIGUNUSEDPARM(s
   PyObject *resultobj = 0;
   Container *arg1 = (Container *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Container_doUpdate",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Container, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Container_doUpdate" "', argument " "1"" of type '" "Container *""'"); 
-  }
-  arg1 = reinterpret_cast< Container * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Container_doUpdate" "', argument " "2"" of type '" "Widget *""'"); 
-  }
-  arg2 = reinterpret_cast< Widget * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_std__ostream, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Container_doUpdate" "', argument " "3"" of type '" "std::ostream *""'"); 
-  }
-  arg3 = reinterpret_cast< std::ostream * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==obj0));
-  try {
-    {
-      try {
-        if (upcall) {
-          (arg1)->Container::doUpdate(arg2,arg3);
-        } else {
-          (arg1)->doUpdate(arg2,arg3);
-        }
-      } catch (std::exception& e) {
-        SWIG_exception(SWIG_RuntimeError, e.what());
-      }
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Container_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Container *arg1 = (Container *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -49607,7 +50613,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Container_doUpdate__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Container_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Container *arg1 = (Container *) 0 ;
   void *argp1 = 0 ;
@@ -49648,12 +50654,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_Container_doUpdate(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[4];
+  PyObject *argv[3];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 1) {
@@ -49662,7 +50668,7 @@ SWIGINTERN PyObject *_wrap_Container_doUpdate(PyObject *self, PyObject *args) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Container, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Container_doUpdate__SWIG_2(self, args);
+      return _wrap_Container_doUpdate__SWIG_1(self, args);
     }
   }
   if (argc == 2) {
@@ -49675,26 +50681,7 @@ SWIGINTERN PyObject *_wrap_Container_doUpdate(PyObject *self, PyObject *args) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Container_doUpdate__SWIG_1(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Container, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__ostream, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_Container_doUpdate__SWIG_0(self, args);
-        }
+        return _wrap_Container_doUpdate__SWIG_0(self, args);
       }
     }
   }
@@ -49702,7 +50689,6 @@ SWIGINTERN PyObject *_wrap_Container_doUpdate(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Container_doUpdate'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    doUpdate(Container *,Widget *,std::ostream *)\n"
     "    doUpdate(Container *,Widget *)\n"
     "    doUpdate(Container *)\n");
   return NULL;
@@ -52883,14 +53869,13 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
   PyObject *arg1 = (PyObject *) 0 ;
   int arg2 ;
   int arg3 ;
-  char *arg4 = (char *) 0 ;
+  int arg4 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -52909,18 +53894,18 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MasterContainer" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_MasterContainer" "', argument " "4"" of type '" "char const *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MasterContainer" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
   {
     try {
       if ( arg1 != Py_None ) {
         /* subclassed */
-        result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,arg3,(char const *)arg4); 
+        result = (MasterContainer *)new SwigDirector_MasterContainer(arg1,arg2,arg3,arg4); 
       } else {
-        result = (MasterContainer *)new MasterContainer(arg2,arg3,(char const *)arg4); 
+        result = (MasterContainer *)new MasterContainer(arg2,arg3,arg4); 
       }
       
     } catch (std::exception& e) {
@@ -52928,10 +53913,8 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer__SWIG_0(PyObject *SWIGUNUSEDPARM(
     }
   }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MasterContainer, SWIG_POINTER_NEW |  0 );
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -53025,8 +54008,10 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
-          _v = SWIG_CheckState(res);
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
           if (_v) {
             return _wrap_new_MasterContainer__SWIG_0(self, args);
           }
@@ -53038,7 +54023,7 @@ SWIGINTERN PyObject *_wrap_new_MasterContainer(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_MasterContainer'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MasterContainer(PyObject *,int,int,char const *)\n"
+    "    MasterContainer(PyObject *,int,int,int)\n"
     "    MasterContainer(PyObject *,int,int)\n");
   return NULL;
 }
@@ -53071,92 +54056,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MasterContainer_process(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_process",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_process" "', argument " "1"" of type '" "MasterContainer *""'"); 
-  }
-  arg1 = reinterpret_cast< MasterContainer * >(argp1);
-  {
-    try {
-      result = (int)(arg1)->process();
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  Widget *arg2 = (Widget *) 0 ;
-  std::ostream *arg3 = (std::ostream *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:MasterContainer_doUpdate",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_doUpdate" "', argument " "1"" of type '" "MasterContainer *""'"); 
-  }
-  arg1 = reinterpret_cast< MasterContainer * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Widget, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MasterContainer_doUpdate" "', argument " "2"" of type '" "Widget *""'"); 
-  }
-  arg2 = reinterpret_cast< Widget * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_std__ostream, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "MasterContainer_doUpdate" "', argument " "3"" of type '" "std::ostream *""'"); 
-  }
-  arg3 = reinterpret_cast< std::ostream * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==obj0));
-  try {
-    {
-      try {
-        if (upcall) {
-          (arg1)->MasterContainer::doUpdate(arg2,arg3);
-        } else {
-          (arg1)->doUpdate(arg2,arg3);
-        }
-      } catch (std::exception& e) {
-        SWIG_exception(SWIG_RuntimeError, e.what());
-      }
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   Widget *arg2 = (Widget *) 0 ;
@@ -53204,7 +54104,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   MasterContainer *arg1 = (MasterContainer *) 0 ;
   void *argp1 = 0 ;
@@ -53245,12 +54145,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[4];
+  PyObject *argv[3];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 1) {
@@ -53259,7 +54159,7 @@ SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate(PyObject *self, PyObject *ar
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_MasterContainer, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_MasterContainer_doUpdate__SWIG_2(self, args);
+      return _wrap_MasterContainer_doUpdate__SWIG_1(self, args);
     }
   }
   if (argc == 2) {
@@ -53272,26 +54172,7 @@ SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate(PyObject *self, PyObject *ar
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_MasterContainer_doUpdate__SWIG_1(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_MasterContainer, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Widget, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__ostream, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_MasterContainer_doUpdate__SWIG_0(self, args);
-        }
+        return _wrap_MasterContainer_doUpdate__SWIG_0(self, args);
       }
     }
   }
@@ -53299,7 +54180,6 @@ SWIGINTERN PyObject *_wrap_MasterContainer_doUpdate(PyObject *self, PyObject *ar
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'MasterContainer_doUpdate'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    doUpdate(MasterContainer *,Widget *,std::ostream *)\n"
     "    doUpdate(MasterContainer *,Widget *)\n"
     "    doUpdate(MasterContainer *)\n");
   return NULL;
@@ -53351,33 +54231,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MasterContainer_signOff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MasterContainer *arg1 = (MasterContainer *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_signOff",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_signOff" "', argument " "1"" of type '" "MasterContainer *""'"); 
-  }
-  arg1 = reinterpret_cast< MasterContainer * >(argp1);
-  {
-    try {
-      (arg1)->signOff();
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_MasterContainer_usePeak(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   MasterContainer *arg1 = (MasterContainer *) 0 ;
@@ -53399,6 +54252,202 @@ SWIGINTERN PyObject *_wrap_MasterContainer_usePeak(PyObject *SWIGUNUSEDPARM(self
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_process_gestures(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_process_gestures",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_process_gestures" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  {
+    try {
+      result = (int)(arg1)->process_gestures();
+    } catch (std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_matcher_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  InternalMatcher *arg2 = (InternalMatcher *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MasterContainer_matcher_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_matcher_set" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_InternalMatcher, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MasterContainer_matcher_set" "', argument " "2"" of type '" "InternalMatcher *""'"); 
+  }
+  arg2 = reinterpret_cast< InternalMatcher * >(argp2);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->matcher = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_matcher_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  InternalMatcher *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_matcher_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_matcher_get" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (InternalMatcher *) (darg->matcher);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_InternalMatcher, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_input_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  MatcherTUIOInput *arg2 = (MatcherTUIOInput *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MasterContainer_input_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_input_set" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_MatcherTUIOInput, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MasterContainer_input_set" "', argument " "2"" of type '" "MatcherTUIOInput *""'"); 
+  }
+  arg2 = reinterpret_cast< MatcherTUIOInput * >(argp2);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->input = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_input_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  MatcherTUIOInput *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_input_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_input_get" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (MatcherTUIOInput *)& (darg->input);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MatcherTUIOInput, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_inthread_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  InputThread *arg2 = (InputThread *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MasterContainer_inthread_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_inthread_set" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_InputThread, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MasterContainer_inthread_set" "', argument " "2"" of type '" "InputThread *""'"); 
+  }
+  arg2 = reinterpret_cast< InputThread * >(argp2);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  if (arg1) darg->inthread = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MasterContainer_inthread_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MasterContainer *arg1 = (MasterContainer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SwigDirector_MasterContainer *darg = 0;
+  InputThread *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MasterContainer_inthread_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MasterContainer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MasterContainer_inthread_get" "', argument " "1"" of type '" "MasterContainer *""'"); 
+  }
+  arg1 = reinterpret_cast< MasterContainer * >(argp1);
+  darg = dynamic_cast<SwigDirector_MasterContainer *>(arg1);
+  result = (InputThread *) (darg->inthread);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_InputThread, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -53438,84 +54487,6 @@ SWIGINTERN PyObject *MasterContainer_swigregister(PyObject *SWIGUNUSEDPARM(self)
 }
 
 SWIGINTERN PyObject *_wrap_new_Window__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PyObject *arg1 = (PyObject *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  std::string arg4 ;
-  int arg5 ;
-  char *arg6 = (char *) 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
-  int res6 ;
-  char *buf6 = 0 ;
-  int alloc6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  Window *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:new_Window",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  arg1 = obj0;
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Window" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Window" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(obj3, &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Window" "', argument " "4"" of type '" "std::string""'"); 
-    }
-    arg4 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_Window" "', argument " "5"" of type '" "int""'");
-  } 
-  arg5 = static_cast< int >(val5);
-  res6 = SWIG_AsCharPtrAndSize(obj5, &buf6, NULL, &alloc6);
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Window" "', argument " "6"" of type '" "char const *""'");
-  }
-  arg6 = reinterpret_cast< char * >(buf6);
-  {
-    try {
-      if ( arg1 != Py_None ) {
-        /* subclassed */
-        result = (Window *)new SwigDirector_Window(arg1,arg2,arg3,arg4,arg5,(char const *)arg6); 
-      } else {
-        result = (Window *)new Window(arg2,arg3,arg4,arg5,(char const *)arg6); 
-      }
-      
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Window, SWIG_POINTER_NEW |  0 );
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
-  return resultobj;
-fail:
-  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Window__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
   int arg2 ;
@@ -53581,7 +54552,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Window__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Window__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PyObject *arg1 = (PyObject *) 0 ;
   int arg2 ;
@@ -53640,12 +54611,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[7];
+  PyObject *argv[6];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 6); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 4) {
@@ -53665,7 +54636,7 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
           int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_new_Window__SWIG_2(self, args);
+            return _wrap_new_Window__SWIG_1(self, args);
           }
         }
       }
@@ -53693,40 +54664,7 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_new_Window__SWIG_1(self, args);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    _v = (argv[0] != 0);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            {
-              int res = SWIG_AsVal_int(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              int res = SWIG_AsCharPtrAndSize(argv[5], 0, NULL, 0);
-              _v = SWIG_CheckState(res);
-              if (_v) {
-                return _wrap_new_Window__SWIG_0(self, args);
-              }
+              return _wrap_new_Window__SWIG_0(self, args);
             }
           }
         }
@@ -53737,7 +54675,6 @@ SWIGINTERN PyObject *_wrap_new_Window(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Window'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Window(PyObject *,int,int,std::string,int,char const *)\n"
     "    Window(PyObject *,int,int,std::string,int)\n"
     "    Window(PyObject *,int,int,std::string)\n");
   return NULL;
@@ -54690,33 +55627,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Window_signOff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Window *arg1 = (Window *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Window_signOff",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Window, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Window_signOff" "', argument " "1"" of type '" "Window *""'"); 
-  }
-  arg1 = reinterpret_cast< Window * >(argp1);
-  {
-    try {
-      (arg1)->signOff();
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Window_usePeak(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Window *arg1 = (Window *) 0 ;
@@ -54738,34 +55648,6 @@ SWIGINTERN PyObject *_wrap_Window_usePeak(PyObject *SWIGUNUSEDPARM(self), PyObje
     }
   }
   resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Window_process(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Window *arg1 = (Window *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Window_process",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Window, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Window_process" "', argument " "1"" of type '" "Window *""'"); 
-  }
-  arg1 = reinterpret_cast< Window * >(argp1);
-  {
-    try {
-      result = (int)(arg1)->process();
-    } catch (std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
-  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -55441,6 +56323,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_FeatureBase", _wrap_new_FeatureBase, METH_VARARGS, NULL},
 	 { (char *)"delete_FeatureBase", _wrap_delete_FeatureBase, METH_VARARGS, NULL},
 	 { (char *)"FeatureBase_name", _wrap_FeatureBase_name, METH_VARARGS, NULL},
+	 { (char *)"FeatureBase_clone", _wrap_FeatureBase_clone, METH_VARARGS, NULL},
 	 { (char *)"FeatureBase_load", _wrap_FeatureBase_load, METH_VARARGS, NULL},
 	 { (char *)"FeatureBase_next", _wrap_FeatureBase_next, METH_VARARGS, NULL},
 	 { (char *)"FeatureBase_serialize", _wrap_FeatureBase_serialize, METH_VARARGS, NULL},
@@ -55491,6 +56374,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"smartPtrFeatureBase_get", _wrap_smartPtrFeatureBase_get, METH_VARARGS, NULL},
 	 { (char *)"smartPtrFeatureBase_unique", _wrap_smartPtrFeatureBase_unique, METH_VARARGS, NULL},
 	 { (char *)"smartPtrFeatureBase_name", _wrap_smartPtrFeatureBase_name, METH_VARARGS, NULL},
+	 { (char *)"smartPtrFeatureBase_clone", _wrap_smartPtrFeatureBase_clone, METH_VARARGS, NULL},
 	 { (char *)"smartPtrFeatureBase_load", _wrap_smartPtrFeatureBase_load, METH_VARARGS, NULL},
 	 { (char *)"smartPtrFeatureBase_next", _wrap_smartPtrFeatureBase_next, METH_VARARGS, NULL},
 	 { (char *)"smartPtrFeatureBase_serialize", _wrap_smartPtrFeatureBase_serialize, METH_VARARGS, NULL},
@@ -55534,6 +56418,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"vectorSmartPtrFeatureBase_swigregister", vectorSmartPtrFeatureBase_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Gesture", _wrap_new_Gesture, METH_VARARGS, NULL},
 	 { (char *)"Gesture_load", _wrap_Gesture_load, METH_VARARGS, NULL},
+	 { (char *)"Gesture_check", _wrap_Gesture_check, METH_VARARGS, NULL},
 	 { (char *)"Gesture_next", _wrap_Gesture_next, METH_VARARGS, NULL},
 	 { (char *)"Gesture_match", _wrap_Gesture_match, METH_VARARGS, NULL},
 	 { (char *)"Gesture_name", _wrap_Gesture_name, METH_VARARGS, NULL},
@@ -55594,6 +56479,25 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StateRegion_gst_get", _wrap_StateRegion_gst_get, METH_VARARGS, NULL},
 	 { (char *)"delete_StateRegion", _wrap_delete_StateRegion, METH_VARARGS, NULL},
 	 { (char *)"StateRegion_swigregister", StateRegion_swigregister, METH_VARARGS, NULL},
+	 { (char *)"Matcher_request_update", _wrap_Matcher_request_update, METH_VARARGS, NULL},
+	 { (char *)"Matcher_trigger_gesture", _wrap_Matcher_trigger_gesture, METH_VARARGS, NULL},
+	 { (char *)"Matcher_process_blob", _wrap_Matcher_process_blob, METH_VARARGS, NULL},
+	 { (char *)"Matcher_process_gestures", _wrap_Matcher_process_gestures, METH_VARARGS, NULL},
+	 { (char *)"Matcher_load_defaults", _wrap_Matcher_load_defaults, METH_VARARGS, NULL},
+	 { (char *)"Matcher_run", _wrap_Matcher_run, METH_VARARGS, NULL},
+	 { (char *)"Matcher_update", _wrap_Matcher_update, METH_VARARGS, NULL},
+	 { (char *)"Matcher_remove", _wrap_Matcher_remove, METH_VARARGS, NULL},
+	 { (char *)"Matcher__raise", _wrap_Matcher__raise, METH_VARARGS, NULL},
+	 { (char *)"Matcher_lower", _wrap_Matcher_lower, METH_VARARGS, NULL},
+	 { (char *)"Matcher_peakmode", _wrap_Matcher_peakmode, METH_VARARGS, NULL},
+	 { (char *)"Matcher_clear", _wrap_Matcher_clear, METH_VARARGS, NULL},
+	 { (char *)"delete_Matcher", _wrap_delete_Matcher, METH_VARARGS, NULL},
+	 { (char *)"Matcher_swigregister", Matcher_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MatcherTUIOInput", _wrap_new_MatcherTUIOInput, METH_VARARGS, NULL},
+	 { (char *)"MatcherTUIOInput_process_frame", _wrap_MatcherTUIOInput_process_frame, METH_VARARGS, NULL},
+	 { (char *)"MatcherTUIOInput_process_blob", _wrap_MatcherTUIOInput_process_blob, METH_VARARGS, NULL},
+	 { (char *)"delete_MatcherTUIOInput", _wrap_delete_MatcherTUIOInput, METH_VARARGS, NULL},
+	 { (char *)"MatcherTUIOInput_swigregister", MatcherTUIOInput_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_FeatureInt", _wrap_delete_FeatureInt, METH_VARARGS, NULL},
 	 { (char *)"FeatureInt_result", _wrap_FeatureInt_result, METH_VARARGS, NULL},
 	 { (char *)"FeatureInt_bounds", _wrap_FeatureInt_bounds, METH_VARARGS, NULL},
@@ -55640,6 +56544,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"vectorInt_swigregister", vectorInt_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BlobCount", _wrap_new_BlobCount, METH_VARARGS, NULL},
 	 { (char *)"delete_BlobCount", _wrap_delete_BlobCount, METH_VARARGS, NULL},
+	 { (char *)"BlobCount_clone", _wrap_BlobCount_clone, METH_VARARGS, NULL},
 	 { (char *)"BlobCount_load", _wrap_BlobCount_load, METH_VARARGS, NULL},
 	 { (char *)"BlobCount_name", _wrap_BlobCount_name, METH_VARARGS, NULL},
 	 { (char *)"BlobCount_dynamic_cast", _wrap_BlobCount_dynamic_cast, METH_VARARGS, NULL},
@@ -55705,6 +56610,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"write_to", _wrap_write_to, METH_VARARGS, NULL},
 	 { (char *)"new_BlobDim", _wrap_new_BlobDim, METH_VARARGS, NULL},
 	 { (char *)"delete_BlobDim", _wrap_delete_BlobDim, METH_VARARGS, NULL},
+	 { (char *)"BlobDim_clone", _wrap_BlobDim_clone, METH_VARARGS, NULL},
 	 { (char *)"BlobDim_load", _wrap_BlobDim_load, METH_VARARGS, NULL},
 	 { (char *)"BlobDim_next", _wrap_BlobDim_next, METH_VARARGS, NULL},
 	 { (char *)"BlobDim_name", _wrap_BlobDim_name, METH_VARARGS, NULL},
@@ -55712,6 +56618,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"BlobDim_swigregister", BlobDim_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BlobID", _wrap_new_BlobID, METH_VARARGS, NULL},
 	 { (char *)"delete_BlobID", _wrap_delete_BlobID, METH_VARARGS, NULL},
+	 { (char *)"BlobID_clone", _wrap_BlobID_clone, METH_VARARGS, NULL},
 	 { (char *)"BlobID_load", _wrap_BlobID_load, METH_VARARGS, NULL},
 	 { (char *)"BlobID_next", _wrap_BlobID_next, METH_VARARGS, NULL},
 	 { (char *)"BlobID_name", _wrap_BlobID_name, METH_VARARGS, NULL},
@@ -55729,6 +56636,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"FeatureVector_swigregister", FeatureVector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BlobPos", _wrap_new_BlobPos, METH_VARARGS, NULL},
 	 { (char *)"delete_BlobPos", _wrap_delete_BlobPos, METH_VARARGS, NULL},
+	 { (char *)"BlobPos_clone", _wrap_BlobPos_clone, METH_VARARGS, NULL},
 	 { (char *)"BlobPos_load", _wrap_BlobPos_load, METH_VARARGS, NULL},
 	 { (char *)"BlobPos_next", _wrap_BlobPos_next, METH_VARARGS, NULL},
 	 { (char *)"BlobPos_name", _wrap_BlobPos_name, METH_VARARGS, NULL},
@@ -55740,6 +56648,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"BlobPos_swigregister", BlobPos_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BlobGroup", _wrap_new_BlobGroup, METH_VARARGS, NULL},
 	 { (char *)"delete_BlobGroup", _wrap_delete_BlobGroup, METH_VARARGS, NULL},
+	 { (char *)"BlobGroup_clone", _wrap_BlobGroup_clone, METH_VARARGS, NULL},
 	 { (char *)"BlobGroup_load", _wrap_BlobGroup_load, METH_VARARGS, NULL},
 	 { (char *)"BlobGroup_next", _wrap_BlobGroup_next, METH_VARARGS, NULL},
 	 { (char *)"BlobGroup_name", _wrap_BlobGroup_name, METH_VARARGS, NULL},
@@ -55791,30 +56700,35 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"vectorDouble_swigregister", vectorDouble_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Motion", _wrap_new_Motion, METH_VARARGS, NULL},
 	 { (char *)"delete_Motion", _wrap_delete_Motion, METH_VARARGS, NULL},
+	 { (char *)"Motion_clone", _wrap_Motion_clone, METH_VARARGS, NULL},
 	 { (char *)"Motion_load", _wrap_Motion_load, METH_VARARGS, NULL},
 	 { (char *)"Motion_name", _wrap_Motion_name, METH_VARARGS, NULL},
 	 { (char *)"Motion_dynamic_cast", _wrap_Motion_dynamic_cast, METH_VARARGS, NULL},
 	 { (char *)"Motion_swigregister", Motion_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Rotation", _wrap_new_Rotation, METH_VARARGS, NULL},
 	 { (char *)"delete_Rotation", _wrap_delete_Rotation, METH_VARARGS, NULL},
+	 { (char *)"Rotation_clone", _wrap_Rotation_clone, METH_VARARGS, NULL},
 	 { (char *)"Rotation_load", _wrap_Rotation_load, METH_VARARGS, NULL},
 	 { (char *)"Rotation_name", _wrap_Rotation_name, METH_VARARGS, NULL},
 	 { (char *)"Rotation_dynamic_cast", _wrap_Rotation_dynamic_cast, METH_VARARGS, NULL},
 	 { (char *)"Rotation_swigregister", Rotation_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_MultiBlobRotation", _wrap_new_MultiBlobRotation, METH_VARARGS, NULL},
 	 { (char *)"delete_MultiBlobRotation", _wrap_delete_MultiBlobRotation, METH_VARARGS, NULL},
+	 { (char *)"MultiBlobRotation_clone", _wrap_MultiBlobRotation_clone, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobRotation_load", _wrap_MultiBlobRotation_load, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobRotation_name", _wrap_MultiBlobRotation_name, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobRotation_dynamic_cast", _wrap_MultiBlobRotation_dynamic_cast, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobRotation_swigregister", MultiBlobRotation_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Scale", _wrap_new_Scale, METH_VARARGS, NULL},
 	 { (char *)"delete_Scale", _wrap_delete_Scale, METH_VARARGS, NULL},
+	 { (char *)"Scale_clone", _wrap_Scale_clone, METH_VARARGS, NULL},
 	 { (char *)"Scale_load", _wrap_Scale_load, METH_VARARGS, NULL},
 	 { (char *)"Scale_name", _wrap_Scale_name, METH_VARARGS, NULL},
 	 { (char *)"Scale_dynamic_cast", _wrap_Scale_dynamic_cast, METH_VARARGS, NULL},
 	 { (char *)"Scale_swigregister", Scale_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_MultiBlobScale", _wrap_new_MultiBlobScale, METH_VARARGS, NULL},
 	 { (char *)"delete_MultiBlobScale", _wrap_delete_MultiBlobScale, METH_VARARGS, NULL},
+	 { (char *)"MultiBlobScale_clone", _wrap_MultiBlobScale_clone, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobScale_load", _wrap_MultiBlobScale_load, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobScale_name", _wrap_MultiBlobScale_name, METH_VARARGS, NULL},
 	 { (char *)"MultiBlobScale_dynamic_cast", _wrap_MultiBlobScale_dynamic_cast, METH_VARARGS, NULL},
@@ -55905,8 +56819,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Widget_mycolor_get", _wrap_Widget_mycolor_get, METH_VARARGS, NULL},
 	 { (char *)"Widget_parent_set", _wrap_Widget_parent_set, METH_VARARGS, NULL},
 	 { (char *)"Widget_parent_get", _wrap_Widget_parent_get, METH_VARARGS, NULL},
-	 { (char *)"Widget_regstream_set", _wrap_Widget_regstream_set, METH_VARARGS, NULL},
-	 { (char *)"Widget_regstream_get", _wrap_Widget_regstream_get, METH_VARARGS, NULL},
 	 { (char *)"Widget_m_model_set", _wrap_Widget_m_model_set, METH_VARARGS, NULL},
 	 { (char *)"Widget_m_model_get", _wrap_Widget_m_model_get, METH_VARARGS, NULL},
 	 { (char *)"disown_Widget", _wrap_disown_Widget, METH_VARARGS, NULL},
@@ -56007,11 +56919,16 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Dial_swigregister", Dial_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_MasterContainer", _wrap_new_MasterContainer, METH_VARARGS, NULL},
 	 { (char *)"delete_MasterContainer", _wrap_delete_MasterContainer, METH_VARARGS, NULL},
-	 { (char *)"MasterContainer_process", _wrap_MasterContainer_process, METH_VARARGS, NULL},
 	 { (char *)"MasterContainer_doUpdate", _wrap_MasterContainer_doUpdate, METH_VARARGS, NULL},
 	 { (char *)"MasterContainer_adjust", _wrap_MasterContainer_adjust, METH_VARARGS, NULL},
-	 { (char *)"MasterContainer_signOff", _wrap_MasterContainer_signOff, METH_VARARGS, NULL},
 	 { (char *)"MasterContainer_usePeak", _wrap_MasterContainer_usePeak, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_process_gestures", _wrap_MasterContainer_process_gestures, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_matcher_set", _wrap_MasterContainer_matcher_set, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_matcher_get", _wrap_MasterContainer_matcher_get, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_input_set", _wrap_MasterContainer_input_set, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_input_get", _wrap_MasterContainer_input_get, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_inthread_set", _wrap_MasterContainer_inthread_set, METH_VARARGS, NULL},
+	 { (char *)"MasterContainer_inthread_get", _wrap_MasterContainer_inthread_get, METH_VARARGS, NULL},
 	 { (char *)"disown_MasterContainer", _wrap_disown_MasterContainer, METH_VARARGS, NULL},
 	 { (char *)"MasterContainer_swigregister", MasterContainer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Window", _wrap_new_Window, METH_VARARGS, NULL},
@@ -56028,9 +56945,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Window_remove", _wrap_Window_remove, METH_VARARGS, NULL},
 	 { (char *)"Window_update", _wrap_Window_update, METH_VARARGS, NULL},
 	 { (char *)"Window_adjust", _wrap_Window_adjust, METH_VARARGS, NULL},
-	 { (char *)"Window_signOff", _wrap_Window_signOff, METH_VARARGS, NULL},
 	 { (char *)"Window_usePeak", _wrap_Window_usePeak, METH_VARARGS, NULL},
-	 { (char *)"Window_process", _wrap_Window_process, METH_VARARGS, NULL},
 	 { (char *)"disown_Window", _wrap_disown_Window, METH_VARARGS, NULL},
 	 { (char *)"Window_swigregister", Window_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Mouse", _wrap_new_Mouse, METH_VARARGS, NULL},
@@ -56281,9 +57196,13 @@ static swig_type_info _swigt__p_GLuint = {"_p_GLuint", "GLuint *", 0, 0, (void*)
 static swig_type_info _swigt__p_GLvoid = {"_p_GLvoid", "GLvoid *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Gesture = {"_p_Gesture", "Gesture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_InputState = {"_p_InputState", "InputState *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_InputThread = {"_p_InputThread", "InputThread *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IntensityImage = {"_p_IntensityImage", "IntensityImage *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_InternalMatcher = {"_p_InternalMatcher", "InternalMatcher *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Label = {"_p_Label", "Label *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MasterContainer = {"_p_MasterContainer", "MasterContainer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Matcher = {"_p_Matcher", "Matcher *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MatcherTUIOInput = {"_p_MatcherTUIOInput", "MatcherTUIOInput *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Motion = {"_p_Motion", "Motion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mouse = {"_p_Mouse", "Mouse *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MultiBlobRotation = {"_p_MultiBlobRotation", "MultiBlobRotation *", 0, 0, (void*)0, 0};
@@ -56325,6 +57244,7 @@ static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0
 static swig_type_info _swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t = {"_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t", "std::deque< BasicBlob > *|std::deque< BasicBlob,std::allocator< BasicBlob > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type = {"_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type", "std::allocator< BasicBlob > *|std::deque< BasicBlob >::allocator_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type = {"_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type", "std::deque< BasicBlob >::value_type *|BasicBlob *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t = {"_p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t", "std::deque< StateRegion *,std::allocator< StateRegion * > > *|RegionList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t = {"_p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t", "std::deque< Widget *,std::allocator< Widget * > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__invalid_argument = {"_p_std__invalid_argument", "std::invalid_argument *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
@@ -56380,6 +57300,7 @@ static swig_type_info _swigt__p_uint64_t = {"_p_uint64_t", "uint64_t *|GLuint64E
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|GLhandleARB *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|GLhalfNV *|GLhalfARB *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type = {"_std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type", "std::map< std::string,FeatureBase * >::mapped_type|FeatureBase *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
@@ -56410,9 +57331,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_GLvoid,
   &_swigt__p_Gesture,
   &_swigt__p_InputState,
+  &_swigt__p_InputThread,
   &_swigt__p_IntensityImage,
+  &_swigt__p_InternalMatcher,
   &_swigt__p_Label,
   &_swigt__p_MasterContainer,
+  &_swigt__p_Matcher,
+  &_swigt__p_MatcherTUIOInput,
   &_swigt__p_Motion,
   &_swigt__p_Mouse,
   &_swigt__p_MultiBlobRotation,
@@ -56468,6 +57393,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t,
   &_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type,
   &_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type,
+  &_swigt__p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t,
   &_swigt__p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t,
   &_swigt__p_std__invalid_argument,
   &_swigt__p_std__istream,
@@ -56509,6 +57435,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_short,
   &_swigt__p_value_type,
+  &_swigt__p_void,
   &_swigt__std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type,
 };
 
@@ -56539,9 +57466,13 @@ static swig_cast_info _swigc__p_GLuint[] = {  {&_swigt__p_GLuint, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_GLvoid[] = {  {&_swigt__p_GLvoid, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Gesture[] = {  {&_swigt__p_Gesture, 0, 0, 0},  {&_swigt__p_std__vectorT_Gesture_std__allocatorT_Gesture_t_t__value_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_InputState[] = {  {&_swigt__p_InputState, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_InputThread[] = {  {&_swigt__p_InputThread, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IntensityImage[] = {  {&_swigt__p_IntensityImage, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_InternalMatcher[] = {  {&_swigt__p_InternalMatcher, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Label[] = {  {&_swigt__p_Label, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MasterContainer[] = {  {&_swigt__p_Window, _p_WindowTo_p_MasterContainer, 0, 0},  {&_swigt__p_MasterContainer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Matcher[] = {  {&_swigt__p_Matcher, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MatcherTUIOInput[] = {  {&_swigt__p_MatcherTUIOInput, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Motion[] = {  {&_swigt__p_Motion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mouse[] = {  {&_swigt__p_Mouse, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MultiBlobRotation[] = {  {&_swigt__p_MultiBlobRotation, 0, 0, 0},{0, 0, 0, 0}};
@@ -56583,6 +57514,7 @@ static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0}
 static swig_cast_info _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t[] = {  {&_swigt__p_BlobHistory, _p_BlobHistoryTo_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0},  {&_swigt__p_std__mapT_int_BlobHistory_std__lessT_int_t_std__allocatorT_std__pairT_int_const_BlobHistory_t_t_t__mapped_type, _p_BlobHistoryTo_p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0},  {&_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type[] = {  {&_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type[] = {  {&_swigt__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type, 0, 0, 0},  {&_swigt__p_BasicBlob, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t[] = {  {&_swigt__p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t[] = {  {&_swigt__p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
@@ -56638,6 +57570,7 @@ static swig_cast_info _swigc__p_uint64_t[] = {  {&_swigt__p_uint64_t, 0, 0, 0},{
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type[] = {  {&_swigt__p_BlobPos, _p_BlobPosTo_p_FeatureBase, 0, 0},  {&_swigt__p_MultiBlobRotation, _p_MultiBlobRotationTo_p_FeatureBase, 0, 0},  {&_swigt__p_Rotation, _p_RotationTo_p_FeatureBase, 0, 0},  {&_swigt__p_Scale, _p_ScaleTo_p_FeatureBase, 0, 0},  {&_swigt__p_FeatureT_double_t, _p_FeatureT_double_tTo_p_FeatureBase, 0, 0},  {&_swigt__p_Motion, _p_MotionTo_p_FeatureBase, 0, 0},  {&_swigt__p_FeatureBase, 0, 0, 0},  {&_swigt__p_BlobGroup, _p_BlobGroupTo_p_FeatureBase, 0, 0},  {&_swigt__p_FeatureT__VectorT_double_t_t, _p_FeatureT__VectorT_double_t_tTo_p_FeatureBase, 0, 0},  {&_swigt__p_BlobCount, _p_BlobCountTo_p_FeatureBase, 0, 0},  {&_swigt__p_FeatureT_Dimensions_t, _p_FeatureT_Dimensions_tTo_p_FeatureBase, 0, 0},  {&_swigt__std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type, 0, 0, 0},  {&_swigt__p_BlobDim, _p_BlobDimTo_p_FeatureBase, 0, 0},  {&_swigt__p_FeatureT_int_t, _p_FeatureT_int_tTo_p_FeatureBase, 0, 0},  {&_swigt__p_MultiBlobScale, _p_MultiBlobScaleTo_p_FeatureBase, 0, 0},  {&_swigt__p_BlobID, _p_BlobIDTo_p_FeatureBase, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
@@ -56668,9 +57601,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_GLvoid,
   _swigc__p_Gesture,
   _swigc__p_InputState,
+  _swigc__p_InputThread,
   _swigc__p_IntensityImage,
+  _swigc__p_InternalMatcher,
   _swigc__p_Label,
   _swigc__p_MasterContainer,
+  _swigc__p_Matcher,
+  _swigc__p_MatcherTUIOInput,
   _swigc__p_Motion,
   _swigc__p_Mouse,
   _swigc__p_MultiBlobRotation,
@@ -56726,6 +57663,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t,
   _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__allocator_type,
   _swigc__p_std__dequeT_BasicBlob_std__allocatorT_BasicBlob_t_t__value_type,
+  _swigc__p_std__dequeT_StateRegion_p_std__allocatorT_StateRegion_p_t_t,
   _swigc__p_std__dequeT_Widget_p_std__allocatorT_Widget_p_t_t,
   _swigc__p_std__invalid_argument,
   _swigc__p_std__istream,
@@ -56767,6 +57705,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_short,
   _swigc__p_value_type,
+  _swigc__p_void,
   _swigc__std__mapT_std__string_FeatureBase_p_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_FeatureBase_p_t_t_t__mapped_type,
 };
 
@@ -57361,16 +58300,41 @@ SWIG_init(void) {
   SWIG_InstallConstants(d,swig_const_table);
   
   
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_SHADOW",SWIG_From_int(static_cast< int >(INPUT_TYPE_SHADOW)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_UNKNOWN",SWIG_From_int(static_cast< int >(INPUT_TYPE_UNKNOWN)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RI",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RI)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RM",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RM)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RR",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RR)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RL",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_RT",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_RT)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LI",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LI)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LM",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LM)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LR",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LR)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LL",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FINGER_LT",SWIG_From_int(static_cast< int >(INPUT_TYPE_FINGER_LT)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_STYLUS",SWIG_From_int(static_cast< int >(INPUT_TYPE_STYLUS)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_LASER",SWIG_From_int(static_cast< int >(INPUT_TYPE_LASER)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_MOUSE",SWIG_From_int(static_cast< int >(INPUT_TYPE_MOUSE)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_TRACKBALL",SWIG_From_int(static_cast< int >(INPUT_TYPE_TRACKBALL)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_JOYSTICK",SWIG_From_int(static_cast< int >(INPUT_TYPE_JOYSTICK)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_WIIMOTE",SWIG_From_int(static_cast< int >(INPUT_TYPE_WIIMOTE)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_EYETRACKER",SWIG_From_int(static_cast< int >(INPUT_TYPE_EYETRACKER)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_OBJECT",SWIG_From_int(static_cast< int >(INPUT_TYPE_OBJECT)));
-  SWIG_Python_SetConstant(d, "INPUT_TYPE_OTHER",SWIG_From_int(static_cast< int >(INPUT_TYPE_OTHER)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_TOKEN",SWIG_From_int(static_cast< int >(INPUT_TYPE_TOKEN)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RP",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RP)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RO",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RO)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_RC",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_RC)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LP",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LP)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LO",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LO)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HAND_LC",SWIG_From_int(static_cast< int >(INPUT_TYPE_HAND_LC)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FOOT_R",SWIG_From_int(static_cast< int >(INPUT_TYPE_FOOT_R)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_FOOT_L",SWIG_From_int(static_cast< int >(INPUT_TYPE_FOOT_L)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_HEAD",SWIG_From_int(static_cast< int >(INPUT_TYPE_HEAD)));
+  SWIG_Python_SetConstant(d, "INPUT_TYPE_PERSON",SWIG_From_int(static_cast< int >(INPUT_TYPE_PERSON)));
   SWIG_Python_SetConstant(d, "INPUT_TYPE_COUNT",SWIG_From_int(static_cast< int >(INPUT_TYPE_COUNT)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_STICKY",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_ONESHOT",SWIG_From_int(static_cast< int >(2)));
   SWIG_Python_SetConstant(d, "GESTURE_FLAGS_DEFAULT",SWIG_From_int(static_cast< int >(4)));
-  SWIG_Python_SetConstant(d, "GL_GLEXT_VERSION",SWIG_From_int(static_cast< int >(64)));
+  SWIG_Python_SetConstant(d, "GL_GLEXT_VERSION",SWIG_From_int(static_cast< int >(71)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_BYTE_3_3_2",SWIG_From_int(static_cast< int >(0x8032)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_SHORT_4_4_4_4",SWIG_From_int(static_cast< int >(0x8033)));
   SWIG_Python_SetConstant(d, "GL_UNSIGNED_SHORT_5_5_5_1",SWIG_From_int(static_cast< int >(0x8034)));
@@ -60612,6 +61576,8 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV",SWIG_From_int(static_cast< int >(0x8E5B)));
   SWIG_Python_SetConstant(d, "GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV",SWIG_From_int(static_cast< int >(0x8E5C)));
   SWIG_Python_SetConstant(d, "GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV",SWIG_From_int(static_cast< int >(0x8E5D)));
+  SWIG_Python_SetConstant(d, "GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV",SWIG_From_int(static_cast< int >(0x8E5E)));
+  SWIG_Python_SetConstant(d, "GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV",SWIG_From_int(static_cast< int >(0x8E5F)));
   SWIG_Python_SetConstant(d, "GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV",SWIG_From_int(static_cast< int >(0x8F44)));
   SWIG_Python_SetConstant(d, "GL_MAX_PROGRAM_SUBROUTINE_NUM_NV",SWIG_From_int(static_cast< int >(0x8F45)));
   SWIG_Python_SetConstant(d, "GL_INT64_NV",SWIG_From_int(static_cast< int >(0x140E)));
@@ -60672,6 +61638,19 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_SURFACE_REGISTERED_NV",SWIG_From_int(static_cast< int >(0x86FD)));
   SWIG_Python_SetConstant(d, "GL_SURFACE_MAPPED_NV",SWIG_From_int(static_cast< int >(0x8700)));
   SWIG_Python_SetConstant(d, "GL_WRITE_DISCARD_NV",SWIG_From_int(static_cast< int >(0x88BE)));
+  SWIG_Python_SetConstant(d, "GL_DEPTH_CLAMP_NEAR_AMD",SWIG_From_int(static_cast< int >(0x901E)));
+  SWIG_Python_SetConstant(d, "GL_DEPTH_CLAMP_FAR_AMD",SWIG_From_int(static_cast< int >(0x901F)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_SRGB_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A48)));
+  SWIG_Python_SetConstant(d, "GL_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A49)));
+  SWIG_Python_SetConstant(d, "GL_SKIP_DECODE_EXT",SWIG_From_int(static_cast< int >(0x8A4A)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_COVERAGE_SAMPLES_NV",SWIG_From_int(static_cast< int >(0x9045)));
+  SWIG_Python_SetConstant(d, "GL_TEXTURE_COLOR_SAMPLES_NV",SWIG_From_int(static_cast< int >(0x9046)));
+  SWIG_Python_SetConstant(d, "GL_FACTOR_MIN_AMD",SWIG_From_int(static_cast< int >(0x901C)));
+  SWIG_Python_SetConstant(d, "GL_FACTOR_MAX_AMD",SWIG_From_int(static_cast< int >(0x901D)));
+  SWIG_Python_SetConstant(d, "GL_SUBSAMPLE_DISTANCE_AMD",SWIG_From_int(static_cast< int >(0x883F)));
+  SWIG_Python_SetConstant(d, "GL_SYNC_X11_FENCE_EXT",SWIG_From_int(static_cast< int >(0x90E1)));
+  SWIG_Python_SetConstant(d, "GL_SCALED_RESOLVE_FASTEST_EXT",SWIG_From_int(static_cast< int >(0x90BA)));
+  SWIG_Python_SetConstant(d, "GL_SCALED_RESOLVE_NICEST_EXT",SWIG_From_int(static_cast< int >(0x90BB)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_2",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_2_DEPRECATED",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_VERSION_1_3",SWIG_From_int(static_cast< int >(1)));
@@ -61065,15 +62044,26 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "GL_AMD_debug_output",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_NV_vdpau_interop",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "GL_AMD_transform_feedback3_lines_triangles",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_depth_clamp_separate",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_texture_sRGB_decode",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_NV_texture_multisample",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_blend_minmax_factor",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_sample_positions",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_x11_sync_object",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_AMD_multi_draw_indirect",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, "GL_EXT_framebuffer_multisample_blit_scaled",SWIG_From_int(static_cast< int >(1)));
   PyDict_SetItemString(d,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"g_proj",Swig_var_g_proj_get, Swig_var_g_proj_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_view",Swig_var_g_view_get, Swig_var_g_view_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"g_widgets",Swig_var_g_widgets_get, Swig_var_g_widgets_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"g_matcher",Swig_var_g_matcher_get, Swig_var_g_matcher_set);
   SWIG_Python_SetConstant(d, "TISCH_TILE_MOVE",SWIG_From_int(static_cast< int >(1)));
   SWIG_Python_SetConstant(d, "TISCH_TILE_SCALE",SWIG_From_int(static_cast< int >(2)));
   SWIG_Python_SetConstant(d, "TISCH_TILE_ROTATE",SWIG_From_int(static_cast< int >(4)));
   SWIG_Python_SetConstant(d, "TISCH_TILE_SLIDE",SWIG_From_int(static_cast< int >(8)));
   SWIG_Python_SetConstant(d, "TISCH_TILE_BOUNCE",SWIG_From_int(static_cast< int >(16)));
+  SWIG_Python_SetConstant(d, "TISCH_TILE_BBOX",SWIG_From_int(static_cast< int >(32)));
+  SWIG_Python_SetConstant(d, "TISCH_TILE_CIRCLE",SWIG_From_int(static_cast< int >(64)));
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

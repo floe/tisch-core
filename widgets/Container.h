@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -16,7 +16,7 @@ class TISCH_SHARED Container: public Tile {
 
 	public:
 
-		 Container( int w, int h, int x, int y, double angle = 0.0, RGBATexture* tex = 0, int mode = 0 );
+		 Container( int w, int h, int x, int y, double angle = 0.0, RGBATexture* tex = 0, int mode = TISCH_TILE_BBOX );
 		~Container();
 
 		void add( Widget* widget, int back = 1 );
@@ -26,7 +26,7 @@ class TISCH_SHARED Container: public Tile {
 
 		virtual void draw();
 		virtual void paint( bool update_stencil = false );
-		virtual void doUpdate( Widget* target = 0, std::ostream* ost = 0 );	
+		virtual void doUpdate( Widget* target = 0 );	
 
 		void tap( Vector vec, int id );
 

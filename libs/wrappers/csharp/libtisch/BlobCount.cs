@@ -39,12 +39,19 @@ public class BlobCount : FeatureInt {
     }
   }
 
-  public BlobCount(int tf) : this(libtischPINVOKE.new_BlobCount__SWIG_0(tf), true) {
+  public BlobCount(uint tf) : this(libtischPINVOKE.new_BlobCount__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public BlobCount() : this(libtischPINVOKE.new_BlobCount__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobCount_clone(swigCPtr);
+    BlobCount ret = (cPtr == IntPtr.Zero) ? null : new BlobCount(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

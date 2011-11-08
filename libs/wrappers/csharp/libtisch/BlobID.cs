@@ -39,12 +39,19 @@ public class BlobID : FeatureInt {
     }
   }
 
-  public BlobID(int tf) : this(libtischPINVOKE.new_BlobID__SWIG_0(tf), true) {
+  public BlobID(uint tf) : this(libtischPINVOKE.new_BlobID__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public BlobID() : this(libtischPINVOKE.new_BlobID__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobID_clone(swigCPtr);
+    BlobID ret = (cPtr == IntPtr.Zero) ? null : new BlobID(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

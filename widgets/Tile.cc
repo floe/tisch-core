@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -37,10 +37,20 @@ void Tile::apply( Vector delta ) {
 	if (parent && (mode & TISCH_TILE_BOUNCE)) {
 		int maxx = parent->w/2;
 		int maxy = parent->h/2;
-		if (x < -maxx) { x = -maxx; vel.x = -vel.x; }
-		if (x >  maxx) { x =  maxx; vel.x = -vel.x; }
-		if (y < -maxy) { y = -maxy; vel.y = -vel.y; }
-		if (y >  maxy) { y =  maxy; vel.y = -vel.y; }
+		if (parent->mode & TISCH_TILE_BBOX) {
+			if (x < -maxx) { x = -maxx; vel.x = -vel.x; }
+			if (x >  maxx) { x =  maxx; vel.x = -vel.x; }
+			if (y < -maxy) { y = -maxy; vel.y = -vel.y; }
+			if (y >  maxy) { y =  maxy; vel.y = -vel.y; }
+		} else if (parent->mode & TISCH_TILE_CIRCLE) {
+			int radius = (maxx>maxy?maxy:maxx);
+			double len = sqrt(x*x+y*y);
+			if (len > radius) {
+				vel = -vel;
+				x *= radius/len;
+				y *= radius/len;
+			}
+		}
 	}
 }
 
@@ -74,6 +84,9 @@ void Tile::action( Gesture* gesture ) {
 		if (!r) return;
 		sx *= r->result();
 		sy *= r->result();
+		/* TODO: configurable scale limits
+		if (sx > 2.50) { sx = sy = 2.50; }
+		if (sx < 0.25) { sx = sy = 0.25; }*/
 	}
 
 	if ((mode & TISCH_TILE_ROTATE) && (gesture->name() == "rotate")) {

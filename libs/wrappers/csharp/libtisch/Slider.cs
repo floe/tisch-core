@@ -103,29 +103,27 @@ public class Slider : Widget {
       swigDelegate3 = new SwigDelegateSlider_3(SwigDirectordoUpdate__SWIG_0);
     if (SwigDerivedClassHasMethod("doUpdate", swigMethodTypes4))
       swigDelegate4 = new SwigDelegateSlider_4(SwigDirectordoUpdate__SWIG_1);
-    if (SwigDerivedClassHasMethod("doUpdate", swigMethodTypes5))
-      swigDelegate5 = new SwigDelegateSlider_5(SwigDirectordoUpdate__SWIG_2);
+    if (SwigDerivedClassHasMethod("raise", swigMethodTypes5))
+      swigDelegate5 = new SwigDelegateSlider_5(SwigDirectorraise__SWIG_0);
     if (SwigDerivedClassHasMethod("raise", swigMethodTypes6))
-      swigDelegate6 = new SwigDelegateSlider_6(SwigDirectorraise__SWIG_0);
-    if (SwigDerivedClassHasMethod("raise", swigMethodTypes7))
-      swigDelegate7 = new SwigDelegateSlider_7(SwigDirectorraise__SWIG_1);
+      swigDelegate6 = new SwigDelegateSlider_6(SwigDirectorraise__SWIG_1);
+    if (SwigDerivedClassHasMethod("lower", swigMethodTypes7))
+      swigDelegate7 = new SwigDelegateSlider_7(SwigDirectorlower__SWIG_0);
     if (SwigDerivedClassHasMethod("lower", swigMethodTypes8))
-      swigDelegate8 = new SwigDelegateSlider_8(SwigDirectorlower__SWIG_0);
-    if (SwigDerivedClassHasMethod("lower", swigMethodTypes9))
-      swigDelegate9 = new SwigDelegateSlider_9(SwigDirectorlower__SWIG_1);
-    if (SwigDerivedClassHasMethod("draw", swigMethodTypes10))
-      swigDelegate10 = new SwigDelegateSlider_10(SwigDirectordraw);
-    if (SwigDerivedClassHasMethod("action", swigMethodTypes11))
-      swigDelegate11 = new SwigDelegateSlider_11(SwigDirectoraction);
+      swigDelegate8 = new SwigDelegateSlider_8(SwigDirectorlower__SWIG_1);
+    if (SwigDerivedClassHasMethod("draw", swigMethodTypes9))
+      swigDelegate9 = new SwigDelegateSlider_9(SwigDirectordraw);
+    if (SwigDerivedClassHasMethod("action", swigMethodTypes10))
+      swigDelegate10 = new SwigDelegateSlider_10(SwigDirectoraction);
+    if (SwigDerivedClassHasMethod("enter", swigMethodTypes11))
+      swigDelegate11 = new SwigDelegateSlider_11(SwigDirectorenter__SWIG_0);
     if (SwigDerivedClassHasMethod("enter", swigMethodTypes12))
-      swigDelegate12 = new SwigDelegateSlider_12(SwigDirectorenter__SWIG_0);
-    if (SwigDerivedClassHasMethod("enter", swigMethodTypes13))
-      swigDelegate13 = new SwigDelegateSlider_13(SwigDirectorenter__SWIG_1);
+      swigDelegate12 = new SwigDelegateSlider_12(SwigDirectorenter__SWIG_1);
+    if (SwigDerivedClassHasMethod("paint", swigMethodTypes13))
+      swigDelegate13 = new SwigDelegateSlider_13(SwigDirectorpaint__SWIG_0);
     if (SwigDerivedClassHasMethod("paint", swigMethodTypes14))
-      swigDelegate14 = new SwigDelegateSlider_14(SwigDirectorpaint__SWIG_0);
-    if (SwigDerivedClassHasMethod("paint", swigMethodTypes15))
-      swigDelegate15 = new SwigDelegateSlider_15(SwigDirectorpaint__SWIG_1);
-    libtischPINVOKE.Slider_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15);
+      swigDelegate14 = new SwigDelegateSlider_14(SwigDirectorpaint__SWIG_1);
+    libtischPINVOKE.Slider_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14);
   }
 
   private bool SwigDerivedClassHasMethod(string methodName, Type[] methodTypes) {
@@ -146,15 +144,11 @@ public class Slider : Widget {
     update();
   }
 
-  private void SwigDirectordoUpdate__SWIG_0(IntPtr target, IntPtr ost) {
-    doUpdate((target == IntPtr.Zero) ? null : new Widget(target, false), (ost == IntPtr.Zero) ? null : new SWIGTYPE_p_std__ostream(ost, false));
-  }
-
-  private void SwigDirectordoUpdate__SWIG_1(IntPtr target) {
+  private void SwigDirectordoUpdate__SWIG_0(IntPtr target) {
     doUpdate((target == IntPtr.Zero) ? null : new Widget(target, false));
   }
 
-  private void SwigDirectordoUpdate__SWIG_2() {
+  private void SwigDirectordoUpdate__SWIG_1() {
     doUpdate();
   }
 
@@ -201,19 +195,18 @@ public class Slider : Widget {
   public delegate void SwigDelegateSlider_0();
   public delegate void SwigDelegateSlider_1(IntPtr target);
   public delegate void SwigDelegateSlider_2();
-  public delegate void SwigDelegateSlider_3(IntPtr target, IntPtr ost);
-  public delegate void SwigDelegateSlider_4(IntPtr target);
-  public delegate void SwigDelegateSlider_5();
-  public delegate void SwigDelegateSlider_6(IntPtr widget);
-  public delegate void SwigDelegateSlider_7();
-  public delegate void SwigDelegateSlider_8(IntPtr widget);
+  public delegate void SwigDelegateSlider_3(IntPtr target);
+  public delegate void SwigDelegateSlider_4();
+  public delegate void SwigDelegateSlider_5(IntPtr widget);
+  public delegate void SwigDelegateSlider_6();
+  public delegate void SwigDelegateSlider_7(IntPtr widget);
+  public delegate void SwigDelegateSlider_8();
   public delegate void SwigDelegateSlider_9();
-  public delegate void SwigDelegateSlider_10();
-  public delegate void SwigDelegateSlider_11(IntPtr gesture);
-  public delegate void SwigDelegateSlider_12(double z);
-  public delegate void SwigDelegateSlider_13();
-  public delegate void SwigDelegateSlider_14(bool update_stencil);
-  public delegate void SwigDelegateSlider_15();
+  public delegate void SwigDelegateSlider_10(IntPtr gesture);
+  public delegate void SwigDelegateSlider_11(double z);
+  public delegate void SwigDelegateSlider_12();
+  public delegate void SwigDelegateSlider_13(bool update_stencil);
+  public delegate void SwigDelegateSlider_14();
 
   private SwigDelegateSlider_0 swigDelegate0;
   private SwigDelegateSlider_1 swigDelegate1;
@@ -230,22 +223,20 @@ public class Slider : Widget {
   private SwigDelegateSlider_12 swigDelegate12;
   private SwigDelegateSlider_13 swigDelegate13;
   private SwigDelegateSlider_14 swigDelegate14;
-  private SwigDelegateSlider_15 swigDelegate15;
 
   private static Type[] swigMethodTypes0 = new Type[] {  };
   private static Type[] swigMethodTypes1 = new Type[] { typeof(Widget) };
   private static Type[] swigMethodTypes2 = new Type[] {  };
-  private static Type[] swigMethodTypes3 = new Type[] { typeof(Widget), typeof(SWIGTYPE_p_std__ostream) };
-  private static Type[] swigMethodTypes4 = new Type[] { typeof(Widget) };
-  private static Type[] swigMethodTypes5 = new Type[] {  };
-  private static Type[] swigMethodTypes6 = new Type[] { typeof(Widget) };
-  private static Type[] swigMethodTypes7 = new Type[] {  };
-  private static Type[] swigMethodTypes8 = new Type[] { typeof(Widget) };
+  private static Type[] swigMethodTypes3 = new Type[] { typeof(Widget) };
+  private static Type[] swigMethodTypes4 = new Type[] {  };
+  private static Type[] swigMethodTypes5 = new Type[] { typeof(Widget) };
+  private static Type[] swigMethodTypes6 = new Type[] {  };
+  private static Type[] swigMethodTypes7 = new Type[] { typeof(Widget) };
+  private static Type[] swigMethodTypes8 = new Type[] {  };
   private static Type[] swigMethodTypes9 = new Type[] {  };
-  private static Type[] swigMethodTypes10 = new Type[] {  };
-  private static Type[] swigMethodTypes11 = new Type[] { typeof(Gesture) };
-  private static Type[] swigMethodTypes12 = new Type[] { typeof(double) };
-  private static Type[] swigMethodTypes13 = new Type[] {  };
-  private static Type[] swigMethodTypes14 = new Type[] { typeof(bool) };
-  private static Type[] swigMethodTypes15 = new Type[] {  };
+  private static Type[] swigMethodTypes10 = new Type[] { typeof(Gesture) };
+  private static Type[] swigMethodTypes11 = new Type[] { typeof(double) };
+  private static Type[] swigMethodTypes12 = new Type[] {  };
+  private static Type[] swigMethodTypes13 = new Type[] { typeof(bool) };
+  private static Type[] swigMethodTypes14 = new Type[] {  };
 }

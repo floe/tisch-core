@@ -53,4 +53,13 @@ public class libtisch implements libtischConstants {
     return (cPtr == 0) ? null : new SWIGTYPE_p_std__setT_Widget_p_t(cPtr, false);
   }
 
+  public static void setG_matcher(Matcher value) {
+    libtischJNI.g_matcher_set(Matcher.getCPtr(value), value);
+  }
+
+  public static Matcher getG_matcher() {
+    long cPtr = libtischJNI.g_matcher_get();
+    return (cPtr == 0) ? null : new Matcher(cPtr, false);
+  }
+
 }

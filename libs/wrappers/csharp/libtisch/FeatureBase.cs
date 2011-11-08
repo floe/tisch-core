@@ -40,7 +40,7 @@ public class FeatureBase : IDisposable {
     }
   }
 
-  public FeatureBase(int _tf) : this(libtischPINVOKE.new_FeatureBase__SWIG_0(_tf), true) {
+  public FeatureBase(uint _tf) : this(libtischPINVOKE.new_FeatureBase__SWIG_0(_tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     SwigDirectorConnect();
   }
@@ -52,6 +52,13 @@ public class FeatureBase : IDisposable {
 
   public virtual string name() {
     string ret = libtischPINVOKE.FeatureBase_name(swigCPtr);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public virtual FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.FeatureBase_clone(swigCPtr);
+    FeatureBase ret = (cPtr == IntPtr.Zero) ? null : new FeatureBase(cPtr, false);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -89,13 +96,13 @@ public class FeatureBase : IDisposable {
     } 
   }
 
-  protected int typeflags {
+  protected uint typeflags {
     set {
       libtischPINVOKE.FeatureBase_typeflags_set(swigCPtr, value);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     } 
     get {
-      int ret = libtischPINVOKE.FeatureBase_typeflags_get(swigCPtr);
+      uint ret = libtischPINVOKE.FeatureBase_typeflags_get(swigCPtr);
       if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 
@@ -104,15 +111,17 @@ public class FeatureBase : IDisposable {
   private void SwigDirectorConnect() {
     if (SwigDerivedClassHasMethod("name", swigMethodTypes0))
       swigDelegate0 = new SwigDelegateFeatureBase_0(SwigDirectorname);
-    if (SwigDerivedClassHasMethod("load", swigMethodTypes1))
-      swigDelegate1 = new SwigDelegateFeatureBase_1(SwigDirectorload);
-    if (SwigDerivedClassHasMethod("next", swigMethodTypes2))
-      swigDelegate2 = new SwigDelegateFeatureBase_2(SwigDirectornext);
-    if (SwigDerivedClassHasMethod("serialize", swigMethodTypes3))
-      swigDelegate3 = new SwigDelegateFeatureBase_3(SwigDirectorserialize);
-    if (SwigDerivedClassHasMethod("unserialize", swigMethodTypes4))
-      swigDelegate4 = new SwigDelegateFeatureBase_4(SwigDirectorunserialize);
-    libtischPINVOKE.FeatureBase_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4);
+    if (SwigDerivedClassHasMethod("clone", swigMethodTypes1))
+      swigDelegate1 = new SwigDelegateFeatureBase_1(SwigDirectorclone);
+    if (SwigDerivedClassHasMethod("load", swigMethodTypes2))
+      swigDelegate2 = new SwigDelegateFeatureBase_2(SwigDirectorload);
+    if (SwigDerivedClassHasMethod("next", swigMethodTypes3))
+      swigDelegate3 = new SwigDelegateFeatureBase_3(SwigDirectornext);
+    if (SwigDerivedClassHasMethod("serialize", swigMethodTypes4))
+      swigDelegate4 = new SwigDelegateFeatureBase_4(SwigDirectorserialize);
+    if (SwigDerivedClassHasMethod("unserialize", swigMethodTypes5))
+      swigDelegate5 = new SwigDelegateFeatureBase_5(SwigDirectorunserialize);
+    libtischPINVOKE.FeatureBase_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5);
   }
 
   private bool SwigDerivedClassHasMethod(string methodName, Type[] methodTypes) {
@@ -123,6 +132,10 @@ public class FeatureBase : IDisposable {
 
   private string SwigDirectorname() {
     return name();
+  }
+
+  private IntPtr SwigDirectorclone() {
+    return FeatureBase.getCPtr(clone()).Handle;
   }
 
   private void SwigDirectorload(IntPtr state) {
@@ -142,20 +155,23 @@ public class FeatureBase : IDisposable {
   }
 
   public delegate string SwigDelegateFeatureBase_0();
-  public delegate void SwigDelegateFeatureBase_1(IntPtr state);
-  public delegate int SwigDelegateFeatureBase_2();
-  public delegate void SwigDelegateFeatureBase_3(IntPtr s);
+  public delegate IntPtr SwigDelegateFeatureBase_1();
+  public delegate void SwigDelegateFeatureBase_2(IntPtr state);
+  public delegate int SwigDelegateFeatureBase_3();
   public delegate void SwigDelegateFeatureBase_4(IntPtr s);
+  public delegate void SwigDelegateFeatureBase_5(IntPtr s);
 
   private SwigDelegateFeatureBase_0 swigDelegate0;
   private SwigDelegateFeatureBase_1 swigDelegate1;
   private SwigDelegateFeatureBase_2 swigDelegate2;
   private SwigDelegateFeatureBase_3 swigDelegate3;
   private SwigDelegateFeatureBase_4 swigDelegate4;
+  private SwigDelegateFeatureBase_5 swigDelegate5;
 
   private static Type[] swigMethodTypes0 = new Type[] {  };
-  private static Type[] swigMethodTypes1 = new Type[] { typeof(InputState) };
-  private static Type[] swigMethodTypes2 = new Type[] {  };
-  private static Type[] swigMethodTypes3 = new Type[] { typeof(SWIGTYPE_p_std__ostream) };
-  private static Type[] swigMethodTypes4 = new Type[] { typeof(SWIGTYPE_p_std__istream) };
+  private static Type[] swigMethodTypes1 = new Type[] {  };
+  private static Type[] swigMethodTypes2 = new Type[] { typeof(InputState) };
+  private static Type[] swigMethodTypes3 = new Type[] {  };
+  private static Type[] swigMethodTypes4 = new Type[] { typeof(SWIGTYPE_p_std__ostream) };
+  private static Type[] swigMethodTypes5 = new Type[] { typeof(SWIGTYPE_p_std__istream) };
 }

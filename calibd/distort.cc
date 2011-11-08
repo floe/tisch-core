@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -150,11 +150,11 @@ int main( int argc, char* argv[] ) {
 
 	try {
 
-		std::cout << "distort - libTISCH 1.1 radial undistortion tool" << std::endl;
-		std::cout << "(c) 2009 by Florian Echtler <echtler@in.tum.de>" << std::endl;
+		std::cout << "distort - libTISCH 2.0 radial undistortion tool" << std::endl;
+		std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 		
 		bla = new IntensityImage( width, height );
-		win = new GLUTWindow( width, height, "distort - libTISCH 1.1 radial undistortion tool" );
+		win = new GLUTWindow( width, height, "distort - libTISCH 2.0 radial undistortion tool" );
 
 		try {
 			cal.load();

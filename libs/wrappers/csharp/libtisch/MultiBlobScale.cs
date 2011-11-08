@@ -39,12 +39,19 @@ public class MultiBlobScale : Scale {
     }
   }
 
-  public MultiBlobScale(int tf) : this(libtischPINVOKE.new_MultiBlobScale__SWIG_0(tf), true) {
+  public MultiBlobScale(uint tf) : this(libtischPINVOKE.new_MultiBlobScale__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public MultiBlobScale() : this(libtischPINVOKE.new_MultiBlobScale__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.MultiBlobScale_clone(swigCPtr);
+    MultiBlobScale ret = (cPtr == IntPtr.Zero) ? null : new MultiBlobScale(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

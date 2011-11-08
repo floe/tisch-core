@@ -39,12 +39,19 @@ public class Motion : FeatureVector {
     }
   }
 
-  public Motion(int tf) : this(libtischPINVOKE.new_Motion__SWIG_0(tf), true) {
+  public Motion(uint tf) : this(libtischPINVOKE.new_Motion__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public Motion() : this(libtischPINVOKE.new_Motion__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.Motion_clone(swigCPtr);
+    Motion ret = (cPtr == IntPtr.Zero) ? null : new Motion(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

@@ -1,3 +1,22 @@
+libtisch2 (2.0.2-0ubuntu3~oneiric) oneiric; urgency=low
+
+  * fix obscure C# build issue on Oneiric Ocelot
+  * bump version to 2.0.2 due to forgotten wrapper update
+
+ -- Florian Echtler <floe@butterbrot.org>  Mon, 07 Nov 2011 16:07:04 +0100
+
+libtisch2 (2.0.1-0ubuntu1~oneiric) oneiric; urgency=low
+
+  * update to 2.0.1 from Sourceforge SVN rev. 367
+
+ -- Florian Echtler <floe@butterbrot.org>  Mon, 07 Nov 2011 14:39:08 +0100
+
+libtisch2 (2.0-0ubuntu1~natty) natty; urgency=low
+
+  * update to 2.0 release from Sourceforge SVN rev. 361
+
+ -- Florian Echtler <floe@butterbrot.org>  Sun, 18 Sep 2011 12:22:03 +0200
+
 libtisch2 (0.1-0ubuntu4~maverick) maverick; urgency=low
 
   * support three ghost overlay images in GUI frontend (one each for RGB)

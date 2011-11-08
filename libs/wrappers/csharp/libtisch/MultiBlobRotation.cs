@@ -39,12 +39,19 @@ public class MultiBlobRotation : Rotation {
     }
   }
 
-  public MultiBlobRotation(int tf) : this(libtischPINVOKE.new_MultiBlobRotation__SWIG_0(tf), true) {
+  public MultiBlobRotation(uint tf) : this(libtischPINVOKE.new_MultiBlobRotation__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public MultiBlobRotation() : this(libtischPINVOKE.new_MultiBlobRotation__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.MultiBlobRotation_clone(swigCPtr);
+    MultiBlobRotation ret = (cPtr == IntPtr.Zero) ? null : new MultiBlobRotation(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

@@ -50,7 +50,7 @@ public class Widget {
     libtischJNI.Widget_change_ownership(this, swigCPtr, true);
   }
 
-  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, int _regflags) {
+  public Widget(int _w, int _h, int _x, int _y, double _angle, RGBATexture _tex, long _regflags) {
     this(libtischJNI.new_Widget__SWIG_0(_w, _h, _x, _y, _angle, libtischJNI.getCPtrAddRef(_tex), _tex, _regflags), true);
     libtischJNI.Widget_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
@@ -100,16 +100,12 @@ public class Widget {
     if (getClass() == Widget.class) libtischJNI.Widget_update__SWIG_1(swigCPtr, this); else libtischJNI.Widget_updateSwigExplicitWidget__SWIG_1(swigCPtr, this);
   }
 
-  public void doUpdate(Widget target, SWIGTYPE_p_std__ostream ost) {
-    if (getClass() == Widget.class) libtischJNI.Widget_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost)); else libtischJNI.Widget_doUpdateSwigExplicitWidget__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost));
-  }
-
   public void doUpdate(Widget target) {
-    if (getClass() == Widget.class) libtischJNI.Widget_doUpdate__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.Widget_doUpdateSwigExplicitWidget__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
+    if (getClass() == Widget.class) libtischJNI.Widget_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.Widget_doUpdateSwigExplicitWidget__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
   }
 
   public void doUpdate() {
-    if (getClass() == Widget.class) libtischJNI.Widget_doUpdate__SWIG_2(swigCPtr, this); else libtischJNI.Widget_doUpdateSwigExplicitWidget__SWIG_2(swigCPtr, this);
+    if (getClass() == Widget.class) libtischJNI.Widget_doUpdate__SWIG_1(swigCPtr, this); else libtischJNI.Widget_doUpdateSwigExplicitWidget__SWIG_1(swigCPtr, this);
   }
 
   public void raise(Widget widget) {
@@ -331,15 +327,6 @@ public class Widget {
   protected Container getParent() {
     long cPtr = libtischJNI.Widget_parent_get(swigCPtr, this);
     return (cPtr == 0) ? null : new Container(cPtr, false);
-  }
-
-  protected void setRegstream(SWIGTYPE_p_std__ostream value) {
-    libtischJNI.Widget_regstream_set(swigCPtr, this, SWIGTYPE_p_std__ostream.getCPtr(value));
-  }
-
-  protected SWIGTYPE_p_std__ostream getRegstream() {
-    long cPtr = libtischJNI.Widget_regstream_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__ostream(cPtr, false);
   }
 
   protected void setM_model(SWIGTYPE_p_GLdouble value) {

@@ -39,12 +39,19 @@ public class Rotation : FeatureDouble {
     }
   }
 
-  public Rotation(int tf) : this(libtischPINVOKE.new_Rotation__SWIG_0(tf), true) {
+  public Rotation(uint tf) : this(libtischPINVOKE.new_Rotation__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public Rotation() : this(libtischPINVOKE.new_Rotation__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.Rotation_clone(swigCPtr);
+    Rotation ret = (cPtr == IntPtr.Zero) ? null : new Rotation(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

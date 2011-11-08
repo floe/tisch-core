@@ -35,12 +35,17 @@ public class MultiBlobScale extends Scale {
     super.delete();
   }
 
-  public MultiBlobScale(int tf) {
+  public MultiBlobScale(long tf) {
     this(libtischJNI.new_MultiBlobScale__SWIG_0(tf), true);
   }
 
   public MultiBlobScale() {
     this(libtischJNI.new_MultiBlobScale__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.MultiBlobScale_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new MultiBlobScale(cPtr, false);
   }
 
   public void load(InputState state) {

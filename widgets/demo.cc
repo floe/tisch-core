@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -23,7 +23,7 @@ class MyButton: public Button {
 		MyButton( int _w, int _h, int _x = 0, int _y = 0, double angle = 0.0, RGBATexture* _tex = 0 ):
 			Button( _w,_h,_x,_y,angle,_tex) { }
 
-		void tap( Vector pos, int id ) { lbl->set( " click!" ); }
+		void tap( Vector pos, int id ) { lbl->set( " tap!" ); }
 		void release( ) { lbl->set( " Button" ); }
 
 		// example code for a "close" button:
@@ -35,6 +35,9 @@ class MyButton: public Button {
 
 
 int main( int argc, char* argv[] ) {
+
+	std::cout << "demo - libTISCH 2.0 widget layer demo" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>" << std::endl;
 
 	// create a new window: width, height, title, use_mouse
 	Window* win = new Window( 800, 480, "Widget Demo", (argc > 1) );

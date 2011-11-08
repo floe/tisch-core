@@ -39,12 +39,19 @@ public class BlobGroup : FeatureVector {
     }
   }
 
-  public BlobGroup(int tf) : this(libtischPINVOKE.new_BlobGroup__SWIG_0(tf), true) {
+  public BlobGroup(uint tf) : this(libtischPINVOKE.new_BlobGroup__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public BlobGroup() : this(libtischPINVOKE.new_BlobGroup__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobGroup_clone(swigCPtr);
+    BlobGroup ret = (cPtr == IntPtr.Zero) ? null : new BlobGroup(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

@@ -35,12 +35,17 @@ public class BlobCount extends FeatureInt {
     super.delete();
   }
 
-  public BlobCount(int tf) {
+  public BlobCount(long tf) {
     this(libtischJNI.new_BlobCount__SWIG_0(tf), true);
   }
 
   public BlobCount() {
     this(libtischJNI.new_BlobCount__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobCount_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobCount(cPtr, false);
   }
 
   public void load(InputState state) {

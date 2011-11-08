@@ -35,12 +35,17 @@ public class BlobDim extends FeatureDimensions {
     super.delete();
   }
 
-  public BlobDim(int tf) {
+  public BlobDim(long tf) {
     this(libtischJNI.new_BlobDim__SWIG_0(tf), true);
   }
 
   public BlobDim() {
     this(libtischJNI.new_BlobDim__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobDim_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobDim(cPtr, false);
   }
 
   public void load(InputState state) {

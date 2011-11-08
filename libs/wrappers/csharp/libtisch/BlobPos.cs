@@ -39,12 +39,19 @@ public class BlobPos : FeatureVector {
     }
   }
 
-  public BlobPos(int tf) : this(libtischPINVOKE.new_BlobPos__SWIG_0(tf), true) {
+  public BlobPos(uint tf) : this(libtischPINVOKE.new_BlobPos__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public BlobPos() : this(libtischPINVOKE.new_BlobPos__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobPos_clone(swigCPtr);
+    BlobPos ret = (cPtr == IntPtr.Zero) ? null : new BlobPos(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

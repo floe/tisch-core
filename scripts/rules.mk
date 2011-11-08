@@ -21,14 +21,14 @@ all: $(APPS) $(LIBS) $(WRAP)
 	$(CXX) -c $(CFLAGS) $< -o $@
 
 $(APPS): %: %.o $(OBJS) $(LIBS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $^ $(LDFLAGS) -o $@
 
 ifeq ($(OS),linux)
   SLFLAGS += -Wl,-soname,$(subst .2.0,.2,$@)
 endif
 
 $(LIBS): $(OBJS)
-	$(CXX) $(SLFLAGS) $(LDFLAGS) $^ -o $@
+	$(CXX) $^ $(SLFLAGS) $(LDFLAGS) -o $@
 	-ln -s $@ $(subst .2.0,.2,$@)
 	-ln -s $(subst .2.0,.2,$@) $(subst .2.0,,$@)
 

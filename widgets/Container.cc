@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -36,7 +36,7 @@ void Container::add( Widget* widget, int back ) {
 
 	// if this container can move, then its child widgets are implicitly volatile
 	if (mode != 0) {
-		int tmp = widget->region.flags();
+		unsigned int tmp = widget->region.flags();
 		widget->region.flags( tmp | REGION_FLAGS_VOLATILE );
 	}
 
@@ -57,7 +57,7 @@ void Container::raise( Widget* widget ) {
 		remove( widget, 0 );
 		add( widget );
 
-		*regstream << "raise " << (unsigned long long)widget << std::endl;
+		g_matcher->raise( (unsigned long long)widget );
 
 	} else {
 
@@ -65,14 +65,14 @@ void Container::raise( Widget* widget ) {
 		if (widget != this) 
 			if (parent) parent->raise(this);
 
-		*regstream << "raise " << (unsigned long long)this << std::endl;
+		g_matcher->raise( (unsigned long long)this );
 
 		std::deque<Widget*>::const_iterator pos = widgets.begin();
 		std::deque<Widget*>::const_iterator end = widgets.end();
 		
 		for ( ; pos != end ; pos++ )
 			if (dynamic_cast<Container*>(*pos)) (*pos)->raise(*pos);
-			else *regstream << "raise " << (unsigned long long)(*pos) << std::endl;
+			else g_matcher->raise( (unsigned long long)(*pos) );
 	}
 }
 
@@ -85,20 +85,20 @@ void Container::lower( Widget* widget ) {
 		remove( widget, 0 );
 		add( widget, 0 );
 
-		*regstream << "lower " << (unsigned long long)widget << std::endl;
+		g_matcher->lower( (unsigned long long)widget );
 
 	} else {
 
 		if (parent) parent->lower(this);
 
-		*regstream << "lower " << (unsigned long long)this << std::endl;
+		g_matcher->lower( (unsigned long long)this );
 
 		std::deque<Widget*>::const_iterator pos = widgets.begin();
 		std::deque<Widget*>::const_iterator end = widgets.end();
 		
 		for ( ; pos != end; pos++ )
 			if (dynamic_cast<Container*>(*pos)) (*pos)->lower(); // danger: this may invalidate the iterator!
-			else *regstream << "lower " << (unsigned long long)(*pos) << std::endl;
+			else g_matcher->lower( (unsigned long long)(*pos) );
 	}
 }
 
@@ -115,9 +115,9 @@ void Container::remove( Widget* widget, int unreg ) {
 }
 
 
-void Container::doUpdate( Widget* target, std::ostream* ost ) {
+void Container::doUpdate( Widget* target ) {
 
-	Widget::doUpdate( target, ost );
+	Widget::doUpdate( target );
 	
 	std::deque<Widget*>::const_iterator pos = widgets.begin();
 	std::deque<Widget*>::const_iterator end = widgets.end();
@@ -125,7 +125,7 @@ void Container::doUpdate( Widget* target, std::ostream* ost ) {
 	enter();
 
 	for ( ; pos != end; pos++)
-		(*pos)->doUpdate( target, ost );
+		(*pos)->doUpdate( target );
 
 	leave();
 }

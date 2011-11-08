@@ -1,9 +1,10 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
+#include <Windows.h>
 #include "FFMVImageSource.h"
 
 #include <iostream>
@@ -12,6 +13,17 @@
 #include <fstream>
 #include <stdexcept>
 
+
+// some useful IIDC registers
+#define FRAME_INFO    0x12F8
+#define PIO_DIRECTION 0x11F8
+
+#define STROBE_0_CNT  0x1500
+#define STROBE_1_CNT  0x1504
+#define STROBE_2_CNT  0x1508
+#define STROBE_3_CNT  0x150C
+
+
 #define LOG4CPP_INFO(x,y) x << y << std::endl;
 #define LOG4CPP_WARN(x,y) x << y << std::endl;
 #define LOG4CPP_DEBUG(x,y) x << y << std::endl;
@@ -19,6 +31,9 @@
 FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev, int verbose ) {
 		
 		camera = new FlyCapture2::Camera();
+
+		m_sampleWidth  = dwidth;
+		m_sampleHeight = dheight;
 
 		std::stringstream stream;
 		stream << videodev;
@@ -46,10 +61,30 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
 			printError( error );
 		//printCameraInfo( &camInfo ); 
 
-		error = camera->SetVideoModeAndFrameRate(
+		/*error = camera->SetVideoModeAndFrameRate(
 			FlyCapture2::VIDEOMODE_640x480Y8, 
-			FlyCapture2::FRAMERATE_30);
+			FlyCapture2::FRAMERATE_30);*/
 
+    FlyCapture2::Format7ImageSettings imgset;
+    imgset.mode = FlyCapture2::MODE_0;
+    imgset.offsetX = 0;
+    imgset.offsetY = 0;
+    imgset.width = dwidth;
+    imgset.height = dheight;
+    imgset.pixelFormat = FlyCapture2::PIXEL_FORMAT_MONO8;
+
+/*    bool valid;
+    FlyCapture2::Format7PacketInfo fmt7PacketInfo;
+
+    // Validate the settings to make sure that they are valid
+    error = camera->ValidateFormat7Settings( &imgset, &valid, &fmt7PacketInfo );
+    if (error != FlyCapture2::PGRERROR_OK) printError( error );
+
+    if ( !valid )printf("Format7 settings are not valid\n");
+        
+	error = camera->SetFormat7Configuration( &imgset, fmt7PacketInfo.recommendedBytesPerPacket ); */
+
+		error = camera->SetFormat7Configuration( &imgset, 100.0f );
 		if( error != FlyCapture2::PGRERROR_OK )
 			printError( error );
 
@@ -66,9 +101,19 @@ FFMVImageSource::FFMVImageSource( int dwidth, int dheight, const char* videodev,
 			printError( error );
 		*/
 		
-		imgbuffer = new RGBImage(640,480);
-		intensityImgbuffer = new IntensityImage(640, 480);
+		imgbuffer = new RGBImage(dwidth,dheight);
+		intensityImgbuffer = new IntensityImage(dwidth, dheight);
 		running = 0;
+
+		// switch GPIO0-3 to output
+		unsigned int reg; error = camera->ReadRegister( PIO_DIRECTION, &reg );
+		camera->WriteRegister( PIO_DIRECTION, reg | 0xF0000000 );
+
+		// enable GPIO0-3 10us high strobe on exposure start
+		camera->WriteRegister( STROBE_0_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_1_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_2_CNT, 0x83000020 );
+		camera->WriteRegister( STROBE_3_CNT, 0x83000020 );
 }
 
 FFMVImageSource::~FFMVImageSource(){
@@ -180,10 +225,40 @@ void FFMVImageSource::printCameraInfo( FlyCapture2::CameraInfo* pCamInfo ){
 		pCamInfo->firmwareBuildTime );
 }
 
+void FFMVImageSource::set_feature( FlyCapture2::PropertyType feature, int value ) {
+
+	if (feature >= FlyCapture2::UNSPECIFIED_PROPERTY_TYPE) return;
+
+	FlyCapture2::Property prop( feature );
+	usleep( 500 );
+
+	if (value == IMGSRC_OFF) {
+
+		prop.autoManualMode = false; 
+		prop.onOff = false;
+		camera->SetProperty( &prop );
+
+	} else if (value == IMGSRC_AUTO) {
+
+		prop.autoManualMode = true; 
+		prop.onOff = true;
+		camera->SetProperty( &prop );
+
+	} else {
+
+		prop.autoManualMode = false; 
+		prop.absControl = true;
+		prop.absValue = value;
+		camera->SetProperty( &prop );
+
+	}
+}
+
 // dummy functions for now
+void FFMVImageSource::setGain      ( int gain   ) { set_feature( FlyCapture2::GAIN,          gain   ); }
+void FFMVImageSource::setShutter   ( int speed  ) { set_feature( FlyCapture2::SHUTTER,       speed  ); }
+void FFMVImageSource::setExposure  ( int exp    ) { set_feature( FlyCapture2::AUTO_EXPOSURE, exp    ); }
+void FFMVImageSource::setBrightness( int bright ) { set_feature( FlyCapture2::BRIGHTNESS,    bright ); }
+
 void FFMVImageSource::setFPS( int fps ) {}
-void FFMVImageSource::setGain( int gain ) {}
-void FFMVImageSource::setExposure( int exp ) {}
-void FFMVImageSource::setShutter( int speed ) {}
-void FFMVImageSource::setBrightness( int bright ) {}
 void FFMVImageSource::printInfo( int feature ) {}

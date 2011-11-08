@@ -50,7 +50,7 @@ public class FeatureBase {
     libtischJNI.FeatureBase_change_ownership(this, swigCPtr, true);
   }
 
-  public FeatureBase(int _tf) {
+  public FeatureBase(long _tf) {
     this(libtischJNI.new_FeatureBase__SWIG_0(_tf), true);
     libtischJNI.FeatureBase_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
@@ -62,6 +62,11 @@ public class FeatureBase {
 
   public String name() {
     return libtischJNI.FeatureBase_name(swigCPtr, this);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.FeatureBase_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new FeatureBase(cPtr, false);
   }
 
   public void load(InputState state) {
@@ -88,11 +93,11 @@ public class FeatureBase {
     return libtischJNI.FeatureBase_has_result_get(swigCPtr, this);
   }
 
-  protected void setTypeflags(int value) {
+  protected void setTypeflags(long value) {
     libtischJNI.FeatureBase_typeflags_set(swigCPtr, this, value);
   }
 
-  protected int getTypeflags() {
+  protected long getTypeflags() {
     return libtischJNI.FeatureBase_typeflags_get(swigCPtr, this);
   }
 

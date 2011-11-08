@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -319,10 +319,10 @@ void glutMouseFunc(void (*func)(int button, int state, int x, int y)) { }
 void glutMotionFunc(void (*func)(int x, int y)) { }
 void glutPassiveMotionFunc(void (*func)(int x, int y)) { }
 
-void glutXExtensionEntryFunc( void (*func)(int num, int state) ) { g_extentryfunc = func; }
-void glutXExtensionMotionFunc( void (*func)(int num, int x, int y) ) { g_extmotionfunc = func; }
-void glutXExtensionButtonFunc( void (*func)(int num, int x, int y, int button, int state) ) { g_extbuttonfunc = func; }
-void glutXExtensionPassiveFunc( void (*func)(int num, int x, int y) ) { g_extpassivefunc = func; }
+void glutMultiEntryFunc( void (*func)(int num, int state) ) { g_extentryfunc = func; }
+void glutMultiMotionFunc( void (*func)(int num, int x, int y) ) { g_extmotionfunc = func; }
+void glutMultiButtonFunc( void (*func)(int num, int x, int y, int button, int state) ) { g_extbuttonfunc = func; }
+void glutMultiPassiveFunc( void (*func)(int num, int x, int y) ) { g_extpassivefunc = func; }
 
 void glutDestroyWindow(int win) { }
 void glutPostRedisplay() { g_redisplay = 1; }

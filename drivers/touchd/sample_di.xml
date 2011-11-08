@@ -1,0 +1,14 @@
+<!-- libTISCH 2.0 touchd example config file -->
+<libTISCH version="2.0"><Filter>
+<Camera SourceType=2 SourcePath="/dev/video0" UseIntensityImage=1 Width=720 Height=480 FPS=0 Verbose=0 FlashMode=0 FlashPath="/dev/ttyS0" Gain=64 Exposure=25 Brightness=255>
+	<BGSubFilter Invert=0>
+	<BandpassFilter>
+		<ThreshFilter Threshold=20>
+			<SpeckleFilter NoiseLevel=2>
+				<BlobFilter MinSize=20 MaxSize=300 Type=0/>
+			</SpeckleFilter>
+		</ThreshFilter>
+	</BandpassFilter>
+	</BGSubFilter>
+</Camera>
+</Filter></libTISCH>

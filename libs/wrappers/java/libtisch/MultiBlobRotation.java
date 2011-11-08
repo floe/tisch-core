@@ -35,12 +35,17 @@ public class MultiBlobRotation extends Rotation {
     super.delete();
   }
 
-  public MultiBlobRotation(int tf) {
+  public MultiBlobRotation(long tf) {
     this(libtischJNI.new_MultiBlobRotation__SWIG_0(tf), true);
   }
 
   public MultiBlobRotation() {
     this(libtischJNI.new_MultiBlobRotation__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.MultiBlobRotation_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new MultiBlobRotation(cPtr, false);
   }
 
   public void load(InputState state) {

@@ -39,12 +39,19 @@ public class BlobDim : FeatureDimensions {
     }
   }
 
-  public BlobDim(int tf) : this(libtischPINVOKE.new_BlobDim__SWIG_0(tf), true) {
+  public BlobDim(uint tf) : this(libtischPINVOKE.new_BlobDim__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public BlobDim() : this(libtischPINVOKE.new_BlobDim__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.BlobDim_clone(swigCPtr);
+    BlobDim ret = (cPtr == IntPtr.Zero) ? null : new BlobDim(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

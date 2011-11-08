@@ -9,11 +9,36 @@
 package libtisch;
 
 public final class InputType {
-  public final static InputType INPUT_TYPE_FINGER = new InputType("INPUT_TYPE_FINGER");
-  public final static InputType INPUT_TYPE_HAND = new InputType("INPUT_TYPE_HAND");
-  public final static InputType INPUT_TYPE_SHADOW = new InputType("INPUT_TYPE_SHADOW");
+  public final static InputType INPUT_TYPE_UNKNOWN = new InputType("INPUT_TYPE_UNKNOWN");
+  public final static InputType INPUT_TYPE_FINGER_RI = new InputType("INPUT_TYPE_FINGER_RI");
+  public final static InputType INPUT_TYPE_FINGER_RM = new InputType("INPUT_TYPE_FINGER_RM");
+  public final static InputType INPUT_TYPE_FINGER_RR = new InputType("INPUT_TYPE_FINGER_RR");
+  public final static InputType INPUT_TYPE_FINGER_RL = new InputType("INPUT_TYPE_FINGER_RL");
+  public final static InputType INPUT_TYPE_FINGER_RT = new InputType("INPUT_TYPE_FINGER_RT");
+  public final static InputType INPUT_TYPE_FINGER_LI = new InputType("INPUT_TYPE_FINGER_LI");
+  public final static InputType INPUT_TYPE_FINGER_LM = new InputType("INPUT_TYPE_FINGER_LM");
+  public final static InputType INPUT_TYPE_FINGER_LR = new InputType("INPUT_TYPE_FINGER_LR");
+  public final static InputType INPUT_TYPE_FINGER_LL = new InputType("INPUT_TYPE_FINGER_LL");
+  public final static InputType INPUT_TYPE_FINGER_LT = new InputType("INPUT_TYPE_FINGER_LT");
+  public final static InputType INPUT_TYPE_STYLUS = new InputType("INPUT_TYPE_STYLUS");
+  public final static InputType INPUT_TYPE_LASER = new InputType("INPUT_TYPE_LASER");
+  public final static InputType INPUT_TYPE_MOUSE = new InputType("INPUT_TYPE_MOUSE");
+  public final static InputType INPUT_TYPE_TRACKBALL = new InputType("INPUT_TYPE_TRACKBALL");
+  public final static InputType INPUT_TYPE_JOYSTICK = new InputType("INPUT_TYPE_JOYSTICK");
+  public final static InputType INPUT_TYPE_WIIMOTE = new InputType("INPUT_TYPE_WIIMOTE");
+  public final static InputType INPUT_TYPE_EYETRACKER = new InputType("INPUT_TYPE_EYETRACKER");
   public final static InputType INPUT_TYPE_OBJECT = new InputType("INPUT_TYPE_OBJECT");
-  public final static InputType INPUT_TYPE_OTHER = new InputType("INPUT_TYPE_OTHER");
+  public final static InputType INPUT_TYPE_TOKEN = new InputType("INPUT_TYPE_TOKEN");
+  public final static InputType INPUT_TYPE_HAND_RP = new InputType("INPUT_TYPE_HAND_RP", libtischJNI.INPUT_TYPE_HAND_RP_get());
+  public final static InputType INPUT_TYPE_HAND_RO = new InputType("INPUT_TYPE_HAND_RO");
+  public final static InputType INPUT_TYPE_HAND_RC = new InputType("INPUT_TYPE_HAND_RC");
+  public final static InputType INPUT_TYPE_HAND_LP = new InputType("INPUT_TYPE_HAND_LP");
+  public final static InputType INPUT_TYPE_HAND_LO = new InputType("INPUT_TYPE_HAND_LO");
+  public final static InputType INPUT_TYPE_HAND_LC = new InputType("INPUT_TYPE_HAND_LC");
+  public final static InputType INPUT_TYPE_FOOT_R = new InputType("INPUT_TYPE_FOOT_R");
+  public final static InputType INPUT_TYPE_FOOT_L = new InputType("INPUT_TYPE_FOOT_L");
+  public final static InputType INPUT_TYPE_HEAD = new InputType("INPUT_TYPE_HEAD");
+  public final static InputType INPUT_TYPE_PERSON = new InputType("INPUT_TYPE_PERSON");
   public final static InputType INPUT_TYPE_COUNT = new InputType("INPUT_TYPE_COUNT");
 
   public final int swigValue() {
@@ -50,7 +75,7 @@ public final class InputType {
     swigNext = this.swigValue+1;
   }
 
-  private static InputType[] swigValues = { INPUT_TYPE_FINGER, INPUT_TYPE_HAND, INPUT_TYPE_SHADOW, INPUT_TYPE_OBJECT, INPUT_TYPE_OTHER, INPUT_TYPE_COUNT };
+  private static InputType[] swigValues = { INPUT_TYPE_UNKNOWN, INPUT_TYPE_FINGER_RI, INPUT_TYPE_FINGER_RM, INPUT_TYPE_FINGER_RR, INPUT_TYPE_FINGER_RL, INPUT_TYPE_FINGER_RT, INPUT_TYPE_FINGER_LI, INPUT_TYPE_FINGER_LM, INPUT_TYPE_FINGER_LR, INPUT_TYPE_FINGER_LL, INPUT_TYPE_FINGER_LT, INPUT_TYPE_STYLUS, INPUT_TYPE_LASER, INPUT_TYPE_MOUSE, INPUT_TYPE_TRACKBALL, INPUT_TYPE_JOYSTICK, INPUT_TYPE_WIIMOTE, INPUT_TYPE_EYETRACKER, INPUT_TYPE_OBJECT, INPUT_TYPE_TOKEN, INPUT_TYPE_HAND_RP, INPUT_TYPE_HAND_RO, INPUT_TYPE_HAND_RC, INPUT_TYPE_HAND_LP, INPUT_TYPE_HAND_LO, INPUT_TYPE_HAND_LC, INPUT_TYPE_FOOT_R, INPUT_TYPE_FOOT_L, INPUT_TYPE_HEAD, INPUT_TYPE_PERSON, INPUT_TYPE_COUNT };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

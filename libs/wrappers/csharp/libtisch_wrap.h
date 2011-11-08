@@ -14,9 +14,10 @@
 class SwigDirector_FeatureBase : public FeatureBase, public Swig::Director {
 
 public:
-    SwigDirector_FeatureBase(int _tf = 0);
+    SwigDirector_FeatureBase(unsigned int _tf = 0);
     virtual ~SwigDirector_FeatureBase();
     virtual char const *name() const;
+    virtual FeatureBase *clone() const;
     virtual void load(InputState &state);
     virtual int next();
     virtual void serialize(std::ostream &s);
@@ -24,29 +25,31 @@ public:
     using FeatureBase::typeflags;
 
     typedef char * (SWIGSTDCALL* SWIG_Callback0_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
-    typedef int (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void * (SWIGSTDCALL* SWIG_Callback1_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback2_t)(void *);
+    typedef int (SWIGSTDCALL* SWIG_Callback3_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    void swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackload, SWIG_Callback2_t callbacknext, SWIG_Callback3_t callbackserialize, SWIG_Callback4_t callbackunserialize);
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    void swig_connect_director(SWIG_Callback0_t callbackname, SWIG_Callback1_t callbackclone, SWIG_Callback2_t callbackload, SWIG_Callback3_t callbacknext, SWIG_Callback4_t callbackserialize, SWIG_Callback5_t callbackunserialize);
 
 private:
     SWIG_Callback0_t swig_callbackname;
-    SWIG_Callback1_t swig_callbackload;
-    SWIG_Callback2_t swig_callbacknext;
-    SWIG_Callback3_t swig_callbackserialize;
-    SWIG_Callback4_t swig_callbackunserialize;
+    SWIG_Callback1_t swig_callbackclone;
+    SWIG_Callback2_t swig_callbackload;
+    SWIG_Callback3_t swig_callbacknext;
+    SWIG_Callback4_t swig_callbackserialize;
+    SWIG_Callback5_t swig_callbackunserialize;
     void swig_init_callbacks();
 };
 
 class SwigDirector_Widget : public Widget, public Swig::Director {
 
 public:
-    SwigDirector_Widget(int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture *_tex = 0, int _regflags = (1 << INPUT_TYPE_COUNT) -1);
+    SwigDirector_Widget(int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture *_tex = 0, unsigned int _regflags = (((unsigned int) 1 << INPUT_TYPE_COUNT) -1));
     virtual ~SwigDirector_Widget();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -57,26 +60,24 @@ public:
     using Widget::mytex;
     using Widget::mycolor;
     using Widget::parent;
-    using Widget::regstream;
     using Widget::m_model;
 
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -84,17 +85,16 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
     void swig_init_callbacks();
 };
 
@@ -105,7 +105,7 @@ public:
     virtual ~SwigDirector_Label();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -119,20 +119,19 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -140,17 +139,16 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
     void swig_init_callbacks();
 };
 
@@ -161,7 +159,7 @@ public:
     virtual ~SwigDirector_Button();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -175,22 +173,21 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback16_t)(void *, int);
-    typedef void (SWIGSTDCALL* SWIG_Callback17_t)();
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback15_t)(void *, int);
+    typedef void (SWIGSTDCALL* SWIG_Callback16_t)();
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -198,19 +195,18 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
-    SWIG_Callback16_t swig_callbacktap;
-    SWIG_Callback17_t swig_callbackrelease;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback15_t swig_callbacktap;
+    SWIG_Callback16_t swig_callbackrelease;
     void swig_init_callbacks();
 };
 
@@ -221,7 +217,7 @@ public:
     virtual ~SwigDirector_Tile();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -238,23 +234,22 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback16_t)(void *, int);
-    typedef void (SWIGSTDCALL* SWIG_Callback17_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback18_t)(void *);
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback15_t)(void *, int);
+    typedef void (SWIGSTDCALL* SWIG_Callback16_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback17_t)(void *);
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -262,31 +257,30 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
-    SWIG_Callback16_t swig_callbacktap;
-    SWIG_Callback17_t swig_callbackrelease;
-    SWIG_Callback18_t swig_callbackapply;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback15_t swig_callbacktap;
+    SWIG_Callback16_t swig_callbackrelease;
+    SWIG_Callback17_t swig_callbackapply;
     void swig_init_callbacks();
 };
 
 class SwigDirector_Container : public Container, public Swig::Director {
 
 public:
-    SwigDirector_Container(int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 0);
+    SwigDirector_Container(int w, int h, int x, int y, double angle = 0.0, RGBATexture *tex = 0, int mode = 32);
     virtual ~SwigDirector_Container();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -303,23 +297,22 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback16_t)(void *, int);
-    typedef void (SWIGSTDCALL* SWIG_Callback17_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback18_t)(void *);
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback15_t)(void *, int);
+    typedef void (SWIGSTDCALL* SWIG_Callback16_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback17_t)(void *);
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -327,20 +320,19 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
-    SWIG_Callback16_t swig_callbacktap;
-    SWIG_Callback17_t swig_callbackrelease;
-    SWIG_Callback18_t swig_callbackapply;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback15_t swig_callbacktap;
+    SWIG_Callback16_t swig_callbackrelease;
+    SWIG_Callback17_t swig_callbackapply;
     void swig_init_callbacks();
 };
 
@@ -351,7 +343,7 @@ public:
     virtual ~SwigDirector_Slider();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -363,20 +355,19 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -384,17 +375,16 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
     void swig_init_callbacks();
 };
 
@@ -405,7 +395,7 @@ public:
     virtual ~SwigDirector_Dial();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -420,20 +410,19 @@ public:
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -441,28 +430,27 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
     void swig_init_callbacks();
 };
 
 class SwigDirector_MasterContainer : public MasterContainer, public Swig::Director {
 
 public:
-    SwigDirector_MasterContainer(int w, int h, char const *target = "127.0.0.1");
+    SwigDirector_MasterContainer(int w, int h, int defaults = 1);
     virtual ~SwigDirector_MasterContainer();
     virtual void outline();
     virtual void update(Widget *target = 0);
-    virtual void doUpdate(Widget *target = 0, std::ostream *ost = 0);
+    virtual void doUpdate(Widget *target = 0);
     virtual void raise(Widget *widget = 0);
     virtual void lower(Widget *widget = 0);
     virtual void draw();
@@ -472,27 +460,29 @@ public:
     virtual void tap(Vector vec, int id);
     virtual void release();
     virtual void apply(Vector delta);
+    using MasterContainer::matcher;
+    using MasterContainer::input;
+    using MasterContainer::inthread;
 
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *);
     typedef void (SWIGSTDCALL* SWIG_Callback2_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback4_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback5_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback6_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback7_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback8_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback4_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback5_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback6_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback7_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback8_t)();
     typedef void (SWIGSTDCALL* SWIG_Callback9_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback10_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback12_t)(double);
-    typedef void (SWIGSTDCALL* SWIG_Callback13_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback14_t)(unsigned int);
-    typedef void (SWIGSTDCALL* SWIG_Callback15_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback16_t)(void *, int);
-    typedef void (SWIGSTDCALL* SWIG_Callback17_t)();
-    typedef void (SWIGSTDCALL* SWIG_Callback18_t)(void *);
-    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackdoUpdate__SWIG_2, SWIG_Callback6_t callbackraise__SWIG_0, SWIG_Callback7_t callbackraise__SWIG_1, SWIG_Callback8_t callbacklower__SWIG_0, SWIG_Callback9_t callbacklower__SWIG_1, SWIG_Callback10_t callbackdraw, SWIG_Callback11_t callbackaction, SWIG_Callback12_t callbackenter__SWIG_0, SWIG_Callback13_t callbackenter__SWIG_1, SWIG_Callback14_t callbackpaint__SWIG_0, SWIG_Callback15_t callbackpaint__SWIG_1, SWIG_Callback16_t callbacktap, SWIG_Callback17_t callbackrelease, SWIG_Callback18_t callbackapply);
+    typedef void (SWIGSTDCALL* SWIG_Callback10_t)(void *);
+    typedef void (SWIGSTDCALL* SWIG_Callback11_t)(double);
+    typedef void (SWIGSTDCALL* SWIG_Callback12_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback13_t)(unsigned int);
+    typedef void (SWIGSTDCALL* SWIG_Callback14_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback15_t)(void *, int);
+    typedef void (SWIGSTDCALL* SWIG_Callback16_t)();
+    typedef void (SWIGSTDCALL* SWIG_Callback17_t)(void *);
+    void swig_connect_director(SWIG_Callback0_t callbackoutline, SWIG_Callback1_t callbackupdate__SWIG_0, SWIG_Callback2_t callbackupdate__SWIG_1, SWIG_Callback3_t callbackdoUpdate__SWIG_0, SWIG_Callback4_t callbackdoUpdate__SWIG_1, SWIG_Callback5_t callbackraise__SWIG_0, SWIG_Callback6_t callbackraise__SWIG_1, SWIG_Callback7_t callbacklower__SWIG_0, SWIG_Callback8_t callbacklower__SWIG_1, SWIG_Callback9_t callbackdraw, SWIG_Callback10_t callbackaction, SWIG_Callback11_t callbackenter__SWIG_0, SWIG_Callback12_t callbackenter__SWIG_1, SWIG_Callback13_t callbackpaint__SWIG_0, SWIG_Callback14_t callbackpaint__SWIG_1, SWIG_Callback15_t callbacktap, SWIG_Callback16_t callbackrelease, SWIG_Callback17_t callbackapply);
 
 private:
     SWIG_Callback0_t swig_callbackoutline;
@@ -500,27 +490,26 @@ private:
     SWIG_Callback2_t swig_callbackupdate__SWIG_1;
     SWIG_Callback3_t swig_callbackdoUpdate__SWIG_0;
     SWIG_Callback4_t swig_callbackdoUpdate__SWIG_1;
-    SWIG_Callback5_t swig_callbackdoUpdate__SWIG_2;
-    SWIG_Callback6_t swig_callbackraise__SWIG_0;
-    SWIG_Callback7_t swig_callbackraise__SWIG_1;
-    SWIG_Callback8_t swig_callbacklower__SWIG_0;
-    SWIG_Callback9_t swig_callbacklower__SWIG_1;
-    SWIG_Callback10_t swig_callbackdraw;
-    SWIG_Callback11_t swig_callbackaction;
-    SWIG_Callback12_t swig_callbackenter__SWIG_0;
-    SWIG_Callback13_t swig_callbackenter__SWIG_1;
-    SWIG_Callback14_t swig_callbackpaint__SWIG_0;
-    SWIG_Callback15_t swig_callbackpaint__SWIG_1;
-    SWIG_Callback16_t swig_callbacktap;
-    SWIG_Callback17_t swig_callbackrelease;
-    SWIG_Callback18_t swig_callbackapply;
+    SWIG_Callback5_t swig_callbackraise__SWIG_0;
+    SWIG_Callback6_t swig_callbackraise__SWIG_1;
+    SWIG_Callback7_t swig_callbacklower__SWIG_0;
+    SWIG_Callback8_t swig_callbacklower__SWIG_1;
+    SWIG_Callback9_t swig_callbackdraw;
+    SWIG_Callback10_t swig_callbackaction;
+    SWIG_Callback11_t swig_callbackenter__SWIG_0;
+    SWIG_Callback12_t swig_callbackenter__SWIG_1;
+    SWIG_Callback13_t swig_callbackpaint__SWIG_0;
+    SWIG_Callback14_t swig_callbackpaint__SWIG_1;
+    SWIG_Callback15_t swig_callbacktap;
+    SWIG_Callback16_t swig_callbackrelease;
+    SWIG_Callback17_t swig_callbackapply;
     void swig_init_callbacks();
 };
 
 class SwigDirector_Window : public Window, public Swig::Director {
 
 public:
-    SwigDirector_Window(int w, int h, std::string title, int use_mouse = 0, char const *target = "127.0.0.1");
+    SwigDirector_Window(int w, int h, std::string title, int use_mouse = 0);
     virtual ~SwigDirector_Window();
     virtual void idle();
     virtual void display();

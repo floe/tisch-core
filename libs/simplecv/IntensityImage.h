@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -48,6 +48,7 @@ class TISCH_SHARED IntensityImage: public Image {
 
 		void despeckle( IntensityImage& target, unsigned char threshold = 8 ) const;
 		void lowpass( IntensityImage& target, unsigned char range = 1, unsigned char mode = 0 ) const;
+		void bandpass( IntensityImage& target, int outer = 16, int inner = 8 ) const;
 		void houghLine( IntensityImage& target ) const;
 		void areamask( IntensityImage& target, std::vector<int> edgepoints) const;
 

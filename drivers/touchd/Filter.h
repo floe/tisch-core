@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -9,6 +9,8 @@
 
 #include <tinyxml.h>
 #include <algorithm>
+
+#include <fstream>
 
 #include "GLUTWindow.h"
 #include "ShortImage.h"
@@ -46,7 +48,7 @@ class Filter {
 		}
 
 		virtual int process() = 0;
-		virtual void reset() { }
+		virtual void reset(int initialReset) { }
 		virtual void processMouseButton(int button, int state, int x, int y) { }
 
 		// TODO: print filter information
@@ -65,6 +67,8 @@ class Filter {
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
 		int getUseIntensityImage() { return useIntensityImage; };
+		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
+		Filter* getParent() {return input;};
 
 	protected:
 
@@ -79,10 +83,8 @@ class Filter {
 		int toggle; // initialized in basic Filter constructor
 		int MAX_VALUE; // initialized in basic Filter constructor
 		int countOfOptions; // Initialization required in each subfilter class !
+		int resetOnInit;
 };
-
-
-// TODO add highpass filter from ITS paper
 
 
 class BGSubFilter: public Filter {
@@ -90,16 +92,22 @@ class BGSubFilter: public Filter {
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual ~BGSubFilter();
 		virtual int process();
-		virtual void reset();
+		virtual void reset(int initialReset);
 		virtual void link( Filter* _mask );
 		// Configurator
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
+		int getBGSubFilterID();
+		TiXmlElement* getXMLofBackground(int BGSubFilterID, std::string pathToSaveBackgroundIMG);
+		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
+		int loadPGMImageFromFile(std::string filename, bool debug);
 	protected:
 		ShortImage* background;
 		Filter* mask;
-		int invert, adaptive;
+		int invert, adaptive, storeBGImg;
+		int BGSubFilterID; 
 
 };
 
@@ -111,6 +119,7 @@ class FlipFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		// Options
 		int hflip;
@@ -125,6 +134,7 @@ class ThreshFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int THRESH_MAX; // 255 if intensity image is used, else 2047
 		// Options
@@ -140,6 +150,7 @@ class SpeckleFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int noiselevel;
 };
@@ -152,8 +163,22 @@ class LowpassFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		int mode, range;
+};
+
+class BandpassFilter: public Filter {
+	public:
+		BandpassFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta, bool overwrite);
+		virtual TiXmlElement* getXMLRepresentation();
+	protected:
+		int inner, outer;
 };
 
 class SplitFilter: public Filter {
@@ -162,6 +187,7 @@ class SplitFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual IntensityImage* getImage();
+		virtual TiXmlElement* getXMLRepresentation();
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;
@@ -171,7 +197,7 @@ class AreaFilter: public Filter {
 	public:
 		AreaFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
-		virtual void reset();
+		virtual void reset(int initialReset);
 		virtual void processMouseButton(int button, int state, int x, int y);
 		void generateEdgepoints( std::vector<Point*> cornerpoints );
 		// Configurator
@@ -179,8 +205,14 @@ class AreaFilter: public Filter {
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual void draw( GLUTWindow* win );
+		virtual TiXmlElement* getXMLRepresentation();
+		int getAreaFilterID();
+		TiXmlElement* getXMLofAreas(int AreaFilterID);
+		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
+		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);
 	protected:
 		int enabled;
+		int AreaFilterID;
 		bool updated;
 		std::vector<int> edgepoints;
 		std::vector<std::vector<Point*> > cornerpointvector;

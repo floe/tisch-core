@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -17,12 +17,17 @@ class Pipeline: public std::vector<Filter*> {
 		 Pipeline( TiXmlElement* _config );
 		~Pipeline();
 
-		void createFilter( TiXmlElement* config, Filter* parent );
+		void createFilter( TiXmlElement* config, Filter* parent, TiXmlElement* optionSubtree );
 
 		int process();
-		void reset();
+		void reset(int initialReset);
+
+		// storing configuration
+		std::vector<AreaFilter*> AreaFilterVec;
+		std::vector<BGSubFilter*> BGSubFilterVec;
+		void storeXMLConfig(std::string storingTarget);
+		TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot);
 
 };
 
 #endif // _PIPELINE2_H_
-

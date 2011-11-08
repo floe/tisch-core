@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -155,8 +155,13 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 			dccam->setReg( HDR_GAIN3,    0x820002AB );*/
 		} else
 	#endif
-
-		throw std::runtime_error( "Error: unknown camera type requested." );
+		/*
+		* If the program crashes while debugging at this position please
+		* check the specified SourceType in your configuration xml
+		* have a look in the wiki for possible options
+		*/
+		throw std::runtime_error( "Error: unknown camera type requested. Linux "
+				"needs SourceType=1, for Windows use SourceType=3" );
 
 	// disable auto exposure, set other parameters
 	cam->setExposure( IMGSRC_OFF );
@@ -195,7 +200,6 @@ Camera::~Camera() {
 	delete cam;
 }
 
-
 int Camera::process() {
 
 	// get the image, retry on error
@@ -219,3 +223,26 @@ void Camera::tilt_kinect( int angle ) {
 #endif
 }
 
+TiXmlElement* Camera::getXMLRepresentation() {
+		
+	TiXmlElement* XMLNode = new TiXmlElement( "Camera" );
+
+	XMLNode->SetAttribute( "SourceType", sourcetype );
+	XMLNode->SetAttribute( "SourcePath", sourcepath );
+	XMLNode->SetAttribute( "UseIntensityImage", useIntensityImage );
+
+	XMLNode->SetAttribute( "Width", width );
+	XMLNode->SetAttribute( "Height", height );
+	XMLNode->SetAttribute( "FPS", fps );
+
+	XMLNode->SetAttribute( "Verbose", verbose );
+
+	XMLNode->SetAttribute( "FlashMode", flashmode );
+	XMLNode->SetAttribute( "FlashPath", flashpath );
+
+	XMLNode->SetAttribute( "Gain", gain );
+	XMLNode->SetAttribute( "Exposure", expo );
+	XMLNode->SetAttribute( "Brightness", bright);
+	
+	return XMLNode;
+}

@@ -50,18 +50,13 @@ public class Window extends GLUTWindow {
     libtischJNI.Window_change_ownership(this, swigCPtr, true);
   }
 
-  public Window(int w, int h, String title, int use_mouse, String target) {
-    this(libtischJNI.new_Window__SWIG_0(w, h, title, use_mouse, target), true);
-    libtischJNI.Window_director_connect(this, swigCPtr, swigCMemOwn, true);
-  }
-
   public Window(int w, int h, String title, int use_mouse) {
-    this(libtischJNI.new_Window__SWIG_1(w, h, title, use_mouse), true);
+    this(libtischJNI.new_Window__SWIG_0(w, h, title, use_mouse), true);
     libtischJNI.Window_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
   public Window(int w, int h, String title) {
-    this(libtischJNI.new_Window__SWIG_2(w, h, title), true);
+    this(libtischJNI.new_Window__SWIG_1(w, h, title), true);
     libtischJNI.Window_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
@@ -125,16 +120,8 @@ public class Window extends GLUTWindow {
     libtischJNI.Window_adjust(swigCPtr, this, w, h);
   }
 
-  public void signOff() {
-    libtischJNI.Window_signOff(swigCPtr, this);
-  }
-
   public void usePeak() {
     libtischJNI.Window_usePeak(swigCPtr, this);
-  }
-
-  public int process() {
-    return libtischJNI.Window_process(swigCPtr, this);
   }
 
 }

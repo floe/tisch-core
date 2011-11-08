@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -9,40 +9,95 @@
 
 #include "MasterContainer.h"
 
-// This timeout should be shorter than 1/f of the fastest tracker.
-// This is the Wiimote at 200 Hz = 5000 uS -> timeout 4500 uS.
-struct timeval tv = { 0, 4500 };
-
 TISCH_SHARED GLdouble g_proj[16];
 TISCH_SHARED GLint    g_view[4];
 
 TISCH_SHARED std::set<Widget*> g_widgets;
 
+TISCH_SHARED Matcher* g_matcher;
 
-MasterContainer::MasterContainer( int w, int h, const char* target ):
+
+// wrapper thread for input socket
+struct TISCH_SHARED InputThread: public Thread {
+	InputThread( MatcherTUIOInput* _socket ): Thread(), socket(_socket) { }
+	virtual void* run() { socket->run(); return NULL; }
+	MatcherTUIOInput* socket;
+};
+
+
+typedef std::pair<Widget*,Gesture> Action;
+typedef std::deque<Action> ActionQueue;
+
+// matcher class for use with socket thread and OpenGL mainloop
+struct TISCH_SHARED InternalMatcher: public Matcher {
+
+	InternalMatcher(): Matcher(), queue() { do_run = 0; }
+
+	// called from socket context
+	void process_gestures() { do_run = 1; }
+
+	// called from OpenGL context
+	int do_process_gestures() {
+		if (do_run) {
+			Matcher::process_gestures();
+			while (!queue.empty()) {
+				Action& a = queue.front();
+				a.first->action( &a.second );
+				queue.pop_front();
+			}
+		}
+		int res = do_run;
+		do_run = 0;
+		return res;
+	}
+		
+	// called from OpenGL context (via do_process_gestures)
+	void request_update( unsigned long long id ) { 
+		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+		if (target == g_widgets.end()) return;
+		(*target)->update();
+	}
+
+	// called from OpenGL context (via do_process_gestures)
+	void trigger_gesture( unsigned long long id, Gesture* g ) {
+		// deliver to widget
+		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
+		if (target == g_widgets.end()) return;
+		//(*target)->action( g );
+		queue.push_back( Action( *target, *g ) );
+	}
+
+	ActionQueue queue;
+
+};
+
+
+MasterContainer::MasterContainer( int w, int h, int defaults ):
 	Container( w, h, w/2, h/2 ),
-	input( (in_addr_t)INADDR_ANY, 0, &tv )
+	matcher( new InternalMatcher() ), input( matcher ), inthread( new InputThread(&input) )
 {
-	std::cout << "connecting to gestured..." << std::flush;
-	input.target( target, TISCH_PORT_EVENT );
-	std::cout << " connection successful." << std::endl;
-	//region.flags( (1<<INPUT_TYPE_COUNT)-1 );
-	//region.gestures.clear();
+	g_matcher = matcher;
+	matcher->load_defaults(defaults);
+	inthread->start();
 }
 
-MasterContainer::~MasterContainer() {}
-
-void MasterContainer::signOff() {
-	input << "bye 0" << std::endl;
+MasterContainer::~MasterContainer() {
+	delete inthread;
+	delete matcher;
 }
 
 void MasterContainer::usePeak() {
-	input << "use_peak 0" << std::endl;
+	matcher->peakmode( 1 );
+}
+
+int MasterContainer::process_gestures() {
+	return matcher->do_process_gestures();
 }
 
 
-void MasterContainer::doUpdate( Widget* target, std::ostream* ost ) {
+void MasterContainer::doUpdate( Widget* target ) {
 
+	//std::cout << "MC::doUpdate " << (unsigned long long) target << std::endl;
 	glGetDoublev( GL_PROJECTION_MATRIX, g_proj );
 	glGetIntegerv( GL_VIEWPORT, g_view );
 
@@ -50,7 +105,7 @@ void MasterContainer::doUpdate( Widget* target, std::ostream* ost ) {
 	glPushMatrix();
 	glLoadIdentity();
 
-	Container::doUpdate( target, &input );
+	Container::doUpdate( target );
 
 	glPopMatrix();
 }
@@ -74,34 +129,4 @@ void MasterContainer::adjust( int width, int height ) {
 }
 
 
-int MasterContainer::process() {
-
-	std::string type;
-	unsigned long long tmp;
-
-	input >> type >> tmp;
-
-	if (!input || !tmp) {
-		input.clear();
-		return 0;
-	}
-
-	if (type.compare("update") == 0) {
-		// update widget
-		Widget* target = (Widget*)tmp;
-		doUpdate( target );
-	}
-
-	if (type.compare("gesture") == 0) {
-		// parse gesture
-		Gesture gesture; input >> gesture;
-		if (!input) { input.flush(); return 0; }
-		// deliver to widget
-		std::set<Widget*>::iterator target = g_widgets.find((Widget*)tmp);
-		if (target == g_widgets.end()) return 0;
-		(*target)->action(&gesture);
-	}
-
-	return 1;
-}
 

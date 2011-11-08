@@ -219,11 +219,36 @@ class vectorVector(_object):
 vectorVector_swigregister = _libtisch.vectorVector_swigregister
 vectorVector_swigregister(vectorVector)
 
-INPUT_TYPE_FINGER = _libtisch.INPUT_TYPE_FINGER
-INPUT_TYPE_HAND = _libtisch.INPUT_TYPE_HAND
-INPUT_TYPE_SHADOW = _libtisch.INPUT_TYPE_SHADOW
+INPUT_TYPE_UNKNOWN = _libtisch.INPUT_TYPE_UNKNOWN
+INPUT_TYPE_FINGER_RI = _libtisch.INPUT_TYPE_FINGER_RI
+INPUT_TYPE_FINGER_RM = _libtisch.INPUT_TYPE_FINGER_RM
+INPUT_TYPE_FINGER_RR = _libtisch.INPUT_TYPE_FINGER_RR
+INPUT_TYPE_FINGER_RL = _libtisch.INPUT_TYPE_FINGER_RL
+INPUT_TYPE_FINGER_RT = _libtisch.INPUT_TYPE_FINGER_RT
+INPUT_TYPE_FINGER_LI = _libtisch.INPUT_TYPE_FINGER_LI
+INPUT_TYPE_FINGER_LM = _libtisch.INPUT_TYPE_FINGER_LM
+INPUT_TYPE_FINGER_LR = _libtisch.INPUT_TYPE_FINGER_LR
+INPUT_TYPE_FINGER_LL = _libtisch.INPUT_TYPE_FINGER_LL
+INPUT_TYPE_FINGER_LT = _libtisch.INPUT_TYPE_FINGER_LT
+INPUT_TYPE_STYLUS = _libtisch.INPUT_TYPE_STYLUS
+INPUT_TYPE_LASER = _libtisch.INPUT_TYPE_LASER
+INPUT_TYPE_MOUSE = _libtisch.INPUT_TYPE_MOUSE
+INPUT_TYPE_TRACKBALL = _libtisch.INPUT_TYPE_TRACKBALL
+INPUT_TYPE_JOYSTICK = _libtisch.INPUT_TYPE_JOYSTICK
+INPUT_TYPE_WIIMOTE = _libtisch.INPUT_TYPE_WIIMOTE
+INPUT_TYPE_EYETRACKER = _libtisch.INPUT_TYPE_EYETRACKER
 INPUT_TYPE_OBJECT = _libtisch.INPUT_TYPE_OBJECT
-INPUT_TYPE_OTHER = _libtisch.INPUT_TYPE_OTHER
+INPUT_TYPE_TOKEN = _libtisch.INPUT_TYPE_TOKEN
+INPUT_TYPE_HAND_RP = _libtisch.INPUT_TYPE_HAND_RP
+INPUT_TYPE_HAND_RO = _libtisch.INPUT_TYPE_HAND_RO
+INPUT_TYPE_HAND_RC = _libtisch.INPUT_TYPE_HAND_RC
+INPUT_TYPE_HAND_LP = _libtisch.INPUT_TYPE_HAND_LP
+INPUT_TYPE_HAND_LO = _libtisch.INPUT_TYPE_HAND_LO
+INPUT_TYPE_HAND_LC = _libtisch.INPUT_TYPE_HAND_LC
+INPUT_TYPE_FOOT_R = _libtisch.INPUT_TYPE_FOOT_R
+INPUT_TYPE_FOOT_L = _libtisch.INPUT_TYPE_FOOT_L
+INPUT_TYPE_HEAD = _libtisch.INPUT_TYPE_HEAD
+INPUT_TYPE_PERSON = _libtisch.INPUT_TYPE_PERSON
 INPUT_TYPE_COUNT = _libtisch.INPUT_TYPE_COUNT
 class BasicBlob(_object):
     __swig_setmethods__ = {}
@@ -514,6 +539,7 @@ class FeatureBase(_object):
     __swig_destroy__ = _libtisch.delete_FeatureBase
     __del__ = lambda self : None;
     def name(self): return _libtisch.FeatureBase_name(self)
+    def clone(self): return _libtisch.FeatureBase_clone(self)
     def load(self, *args): return _libtisch.FeatureBase_load(self, *args)
     def next(self): return _libtisch.FeatureBase_next(self)
     def serialize(self, *args): return _libtisch.FeatureBase_serialize(self, *args)
@@ -604,6 +630,7 @@ class smartPtrFeatureBase(_object):
     def get(self): return _libtisch.smartPtrFeatureBase_get(self)
     def unique(self): return _libtisch.smartPtrFeatureBase_unique(self)
     def name(self): return _libtisch.smartPtrFeatureBase_name(self)
+    def clone(self): return _libtisch.smartPtrFeatureBase_clone(self)
     def load(self, *args): return _libtisch.smartPtrFeatureBase_load(self, *args)
     def next(self): return _libtisch.smartPtrFeatureBase_next(self)
     def serialize(self, *args): return _libtisch.smartPtrFeatureBase_serialize(self, *args)
@@ -677,6 +704,7 @@ class Gesture(vectorSmartPtrFeatureBase):
         try: self.this.append(this)
         except: self.this = this
     def load(self, *args): return _libtisch.Gesture_load(self, *args)
+    def check(self): return _libtisch.Gesture_check(self)
     def next(self): return _libtisch.Gesture_next(self)
     def match(self): return _libtisch.Gesture_match(self)
     def name(self): return _libtisch.Gesture_name(self)
@@ -786,6 +814,47 @@ class StateRegion(Region):
 StateRegion_swigregister = _libtisch.StateRegion_swigregister
 StateRegion_swigregister(StateRegion)
 
+class Matcher(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Matcher, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Matcher, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    def request_update(self, *args): return _libtisch.Matcher_request_update(self, *args)
+    def trigger_gesture(self, *args): return _libtisch.Matcher_trigger_gesture(self, *args)
+    def process_blob(self, *args): return _libtisch.Matcher_process_blob(self, *args)
+    def process_gestures(self): return _libtisch.Matcher_process_gestures(self)
+    def load_defaults(self, set = 0): return _libtisch.Matcher_load_defaults(self, set)
+    def run(self): return _libtisch.Matcher_run(self)
+    def update(self, *args): return _libtisch.Matcher_update(self, *args)
+    def remove(self, *args): return _libtisch.Matcher_remove(self, *args)
+    def _raise(self, *args): return _libtisch.Matcher__raise(self, *args)
+    def lower(self, *args): return _libtisch.Matcher_lower(self, *args)
+    def peakmode(self, *args): return _libtisch.Matcher_peakmode(self, *args)
+    def clear(self): return _libtisch.Matcher_clear(self)
+    __swig_destroy__ = _libtisch.delete_Matcher
+    __del__ = lambda self : None;
+Matcher_swigregister = _libtisch.Matcher_swigregister
+Matcher_swigregister(Matcher)
+
+class MatcherTUIOInput(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MatcherTUIOInput, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MatcherTUIOInput, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _libtisch.new_MatcherTUIOInput(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def process_frame(self): return _libtisch.MatcherTUIOInput_process_frame(self)
+    def process_blob(self, *args): return _libtisch.MatcherTUIOInput_process_blob(self, *args)
+    __swig_destroy__ = _libtisch.delete_MatcherTUIOInput
+    __del__ = lambda self : None;
+MatcherTUIOInput_swigregister = _libtisch.MatcherTUIOInput_swigregister
+MatcherTUIOInput_swigregister(MatcherTUIOInput)
+
 class FeatureInt(FeatureBase):
     __swig_setmethods__ = {}
     for _s in [FeatureBase]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -874,6 +943,7 @@ class BlobCount(FeatureInt):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobCount
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobCount_clone(self)
     def load(self, *args): return _libtisch.BlobCount_load(self, *args)
     def name(self): return _libtisch.BlobCount_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.BlobCount_dynamic_cast
@@ -1003,6 +1073,7 @@ class BlobDim(FeatureDimensions):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobDim
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobDim_clone(self)
     def load(self, *args): return _libtisch.BlobDim_load(self, *args)
     def next(self): return _libtisch.BlobDim_next(self)
     def name(self): return _libtisch.BlobDim_name(self)
@@ -1037,6 +1108,7 @@ class BlobID(FeatureInt):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobID
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobID_clone(self)
     def load(self, *args): return _libtisch.BlobID_load(self, *args)
     def next(self): return _libtisch.BlobID_next(self)
     def name(self): return _libtisch.BlobID_name(self)
@@ -1090,6 +1162,7 @@ class BlobPos(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobPos
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobPos_clone(self)
     def load(self, *args): return _libtisch.BlobPos_load(self, *args)
     def next(self): return _libtisch.BlobPos_next(self)
     def name(self): return _libtisch.BlobPos_name(self)
@@ -1122,6 +1195,7 @@ class BlobGroup(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_BlobGroup
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.BlobGroup_clone(self)
     def load(self, *args): return _libtisch.BlobGroup_load(self, *args)
     def next(self): return _libtisch.BlobGroup_next(self)
     def name(self): return _libtisch.BlobGroup_name(self)
@@ -1222,6 +1296,7 @@ class Motion(FeatureVector):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Motion
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Motion_clone(self)
     def load(self, *args): return _libtisch.Motion_load(self, *args)
     def name(self): return _libtisch.Motion_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Motion_dynamic_cast
@@ -1247,6 +1322,7 @@ class Rotation(FeatureDouble):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Rotation
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Rotation_clone(self)
     def load(self, *args): return _libtisch.Rotation_load(self, *args)
     def name(self): return _libtisch.Rotation_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Rotation_dynamic_cast
@@ -1272,6 +1348,7 @@ class MultiBlobRotation(Rotation):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_MultiBlobRotation
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.MultiBlobRotation_clone(self)
     def load(self, *args): return _libtisch.MultiBlobRotation_load(self, *args)
     def name(self): return _libtisch.MultiBlobRotation_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.MultiBlobRotation_dynamic_cast
@@ -1297,6 +1374,7 @@ class Scale(FeatureDouble):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_Scale
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.Scale_clone(self)
     def load(self, *args): return _libtisch.Scale_load(self, *args)
     def name(self): return _libtisch.Scale_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.Scale_dynamic_cast
@@ -1322,6 +1400,7 @@ class MultiBlobScale(Scale):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_MultiBlobScale
     __del__ = lambda self : None;
+    def clone(self): return _libtisch.MultiBlobScale_clone(self)
     def load(self, *args): return _libtisch.MultiBlobScale_load(self, *args)
     def name(self): return _libtisch.MultiBlobScale_name(self)
     __swig_getmethods__["dynamic_cast"] = lambda x: _libtisch.MultiBlobScale_dynamic_cast
@@ -4575,6 +4654,8 @@ GL_MAX_GEOMETRY_PROGRAM_INVOCATIONS_NV = _libtisch.GL_MAX_GEOMETRY_PROGRAM_INVOC
 GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV = _libtisch.GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV
 GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV = _libtisch.GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV
 GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV = _libtisch.GL_FRAGMENT_PROGRAM_INTERPOLATION_OFFSET_BITS_NV
+GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV = _libtisch.GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_NV
+GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV = _libtisch.GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_NV
 GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV = _libtisch.GL_MAX_PROGRAM_SUBROUTINE_PARAMETERS_NV
 GL_MAX_PROGRAM_SUBROUTINE_NUM_NV = _libtisch.GL_MAX_PROGRAM_SUBROUTINE_NUM_NV
 GL_INT64_NV = _libtisch.GL_INT64_NV
@@ -4635,6 +4716,19 @@ GL_SURFACE_STATE_NV = _libtisch.GL_SURFACE_STATE_NV
 GL_SURFACE_REGISTERED_NV = _libtisch.GL_SURFACE_REGISTERED_NV
 GL_SURFACE_MAPPED_NV = _libtisch.GL_SURFACE_MAPPED_NV
 GL_WRITE_DISCARD_NV = _libtisch.GL_WRITE_DISCARD_NV
+GL_DEPTH_CLAMP_NEAR_AMD = _libtisch.GL_DEPTH_CLAMP_NEAR_AMD
+GL_DEPTH_CLAMP_FAR_AMD = _libtisch.GL_DEPTH_CLAMP_FAR_AMD
+GL_TEXTURE_SRGB_DECODE_EXT = _libtisch.GL_TEXTURE_SRGB_DECODE_EXT
+GL_DECODE_EXT = _libtisch.GL_DECODE_EXT
+GL_SKIP_DECODE_EXT = _libtisch.GL_SKIP_DECODE_EXT
+GL_TEXTURE_COVERAGE_SAMPLES_NV = _libtisch.GL_TEXTURE_COVERAGE_SAMPLES_NV
+GL_TEXTURE_COLOR_SAMPLES_NV = _libtisch.GL_TEXTURE_COLOR_SAMPLES_NV
+GL_FACTOR_MIN_AMD = _libtisch.GL_FACTOR_MIN_AMD
+GL_FACTOR_MAX_AMD = _libtisch.GL_FACTOR_MAX_AMD
+GL_SUBSAMPLE_DISTANCE_AMD = _libtisch.GL_SUBSAMPLE_DISTANCE_AMD
+GL_SYNC_X11_FENCE_EXT = _libtisch.GL_SYNC_X11_FENCE_EXT
+GL_SCALED_RESOLVE_FASTEST_EXT = _libtisch.GL_SCALED_RESOLVE_FASTEST_EXT
+GL_SCALED_RESOLVE_NICEST_EXT = _libtisch.GL_SCALED_RESOLVE_NICEST_EXT
 GL_VERSION_1_2 = _libtisch.GL_VERSION_1_2
 GL_VERSION_1_2_DEPRECATED = _libtisch.GL_VERSION_1_2_DEPRECATED
 GL_VERSION_1_3 = _libtisch.GL_VERSION_1_3
@@ -5028,6 +5122,14 @@ GL_AMD_name_gen_delete = _libtisch.GL_AMD_name_gen_delete
 GL_AMD_debug_output = _libtisch.GL_AMD_debug_output
 GL_NV_vdpau_interop = _libtisch.GL_NV_vdpau_interop
 GL_AMD_transform_feedback3_lines_triangles = _libtisch.GL_AMD_transform_feedback3_lines_triangles
+GL_AMD_depth_clamp_separate = _libtisch.GL_AMD_depth_clamp_separate
+GL_EXT_texture_sRGB_decode = _libtisch.GL_EXT_texture_sRGB_decode
+GL_NV_texture_multisample = _libtisch.GL_NV_texture_multisample
+GL_AMD_blend_minmax_factor = _libtisch.GL_AMD_blend_minmax_factor
+GL_AMD_sample_positions = _libtisch.GL_AMD_sample_positions
+GL_EXT_x11_sync_object = _libtisch.GL_EXT_x11_sync_object
+GL_AMD_multi_draw_indirect = _libtisch.GL_AMD_multi_draw_indirect
+GL_EXT_framebuffer_multisample_blit_scaled = _libtisch.GL_EXT_framebuffer_multisample_blit_scaled
 class GLUTWindow(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, GLUTWindow, name, value)
@@ -5104,7 +5206,7 @@ class Widget(_object):
     def glOutline2d(self, *args): return _libtisch.Widget_glOutline2d(self, *args)
     def outline(self): return _libtisch.Widget_outline(self)
     def update(self, target = None): return _libtisch.Widget_update(self, target)
-    def doUpdate(self, target = None, ost = None): return _libtisch.Widget_doUpdate(self, target, ost)
+    def doUpdate(self, target = None): return _libtisch.Widget_doUpdate(self, target)
     def _raise(self, widget = None): return _libtisch.Widget__raise(self, widget)
     def lower(self, widget = None): return _libtisch.Widget_lower(self, widget)
     def transform(self, *args): return _libtisch.Widget_transform(self, *args)
@@ -5169,9 +5271,6 @@ class Widget(_object):
     __swig_setmethods__["parent"] = _libtisch.Widget_parent_set
     __swig_getmethods__["parent"] = _libtisch.Widget_parent_get
     if _newclass:parent = _swig_property(_libtisch.Widget_parent_get, _libtisch.Widget_parent_set)
-    __swig_setmethods__["regstream"] = _libtisch.Widget_regstream_set
-    __swig_getmethods__["regstream"] = _libtisch.Widget_regstream_get
-    if _newclass:regstream = _swig_property(_libtisch.Widget_regstream_get, _libtisch.Widget_regstream_set)
     __swig_setmethods__["m_model"] = _libtisch.Widget_m_model_set
     __swig_getmethods__["m_model"] = _libtisch.Widget_m_model_get
     if _newclass:m_model = _swig_property(_libtisch.Widget_m_model_get, _libtisch.Widget_m_model_set)
@@ -5257,6 +5356,8 @@ TISCH_TILE_SCALE = _libtisch.TISCH_TILE_SCALE
 TISCH_TILE_ROTATE = _libtisch.TISCH_TILE_ROTATE
 TISCH_TILE_SLIDE = _libtisch.TISCH_TILE_SLIDE
 TISCH_TILE_BOUNCE = _libtisch.TISCH_TILE_BOUNCE
+TISCH_TILE_BBOX = _libtisch.TISCH_TILE_BBOX
+TISCH_TILE_CIRCLE = _libtisch.TISCH_TILE_CIRCLE
 class Tile(Button):
     __swig_setmethods__ = {}
     for _s in [Button]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -5319,7 +5420,7 @@ class Container(Tile):
     def remove(self, *args): return _libtisch.Container_remove(self, *args)
     def draw(self): return _libtisch.Container_draw(self)
     def paint(self, update_stencil = False): return _libtisch.Container_paint(self, update_stencil)
-    def doUpdate(self, target = None, ost = None): return _libtisch.Container_doUpdate(self, target, ost)
+    def doUpdate(self, target = None): return _libtisch.Container_doUpdate(self, target)
     def tap(self, *args): return _libtisch.Container_tap(self, *args)
     def totalHeight(self): return _libtisch.Container_totalHeight(self)
     __swig_setmethods__["widgets"] = _libtisch.Container_widgets_set
@@ -5468,11 +5569,19 @@ class MasterContainer(Container):
         except: self.this = this
     __swig_destroy__ = _libtisch.delete_MasterContainer
     __del__ = lambda self : None;
-    def process(self): return _libtisch.MasterContainer_process(self)
-    def doUpdate(self, target = None, ost = None): return _libtisch.MasterContainer_doUpdate(self, target, ost)
+    def doUpdate(self, target = None): return _libtisch.MasterContainer_doUpdate(self, target)
     def adjust(self, *args): return _libtisch.MasterContainer_adjust(self, *args)
-    def signOff(self): return _libtisch.MasterContainer_signOff(self)
     def usePeak(self): return _libtisch.MasterContainer_usePeak(self)
+    def process_gestures(self): return _libtisch.MasterContainer_process_gestures(self)
+    __swig_setmethods__["matcher"] = _libtisch.MasterContainer_matcher_set
+    __swig_getmethods__["matcher"] = _libtisch.MasterContainer_matcher_get
+    if _newclass:matcher = _swig_property(_libtisch.MasterContainer_matcher_get, _libtisch.MasterContainer_matcher_set)
+    __swig_setmethods__["input"] = _libtisch.MasterContainer_input_set
+    __swig_getmethods__["input"] = _libtisch.MasterContainer_input_get
+    if _newclass:input = _swig_property(_libtisch.MasterContainer_input_get, _libtisch.MasterContainer_input_set)
+    __swig_setmethods__["inthread"] = _libtisch.MasterContainer_inthread_set
+    __swig_getmethods__["inthread"] = _libtisch.MasterContainer_inthread_get
+    if _newclass:inthread = _swig_property(_libtisch.MasterContainer_inthread_get, _libtisch.MasterContainer_inthread_set)
     def __disown__(self):
         self.this.disown()
         _libtisch.disown_MasterContainer(self)
@@ -5510,9 +5619,7 @@ class Window(GLUTWindow,MasterContainer):
     def remove(self, *args): return _libtisch.Window_remove(self, *args)
     def update(self, target = None): return _libtisch.Window_update(self, target)
     def adjust(self, *args): return _libtisch.Window_adjust(self, *args)
-    def signOff(self): return _libtisch.Window_signOff(self)
     def usePeak(self): return _libtisch.Window_usePeak(self)
-    def process(self): return _libtisch.Window_process(self)
     def __disown__(self):
         self.this.disown()
         _libtisch.disown_Window(self)

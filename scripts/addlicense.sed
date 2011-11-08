@@ -1,5 +1,5 @@
 # sed script to insert "header.txt" above the first line
-/\*\*\*\*\*\*\*\*\*\*\\$/{ h; b done; }
+/\*\*\*\*\*\*\*\*\*\*\\/{ h; b done; }
 1{ h; r license.txt
 D; }
 2{ x; G; }

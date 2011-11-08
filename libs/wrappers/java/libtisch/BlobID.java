@@ -35,12 +35,17 @@ public class BlobID extends FeatureInt {
     super.delete();
   }
 
-  public BlobID(int tf) {
+  public BlobID(long tf) {
     this(libtischJNI.new_BlobID__SWIG_0(tf), true);
   }
 
   public BlobID() {
     this(libtischJNI.new_BlobID__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.BlobID_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new BlobID(cPtr, false);
   }
 
   public void load(InputState state) {

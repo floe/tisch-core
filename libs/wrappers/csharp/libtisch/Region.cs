@@ -39,7 +39,7 @@ public class Region : vectorVector {
     }
   }
 
-  public Region(int _flags) : this(libtischPINVOKE.new_Region__SWIG_0(_flags), true) {
+  public Region(uint _flags) : this(libtischPINVOKE.new_Region__SWIG_0(_flags), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -53,13 +53,13 @@ public class Region : vectorVector {
     return ret;
   }
 
-  public int flags() {
-    int ret = libtischPINVOKE.Region_flags__SWIG_0(swigCPtr);
+  public uint flags() {
+    uint ret = libtischPINVOKE.Region_flags__SWIG_0(swigCPtr);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void flags(int _flags) {
+  public void flags(uint _flags) {
     libtischPINVOKE.Region_flags__SWIG_1(swigCPtr, _flags);
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }

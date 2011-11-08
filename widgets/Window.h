@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -18,7 +18,7 @@ class TISCH_SHARED Window: public GLUTWindow, public MasterContainer {
 
 	public:
 
-		 Window( int w, int h, std::string title, int use_mouse = 0, const char* target = "127.0.0.1" );
+		 Window( int w, int h, std::string title, int use_mouse = 0 );
 		~Window();
 
 		void idle();
@@ -41,9 +41,7 @@ class TISCH_SHARED Window: public GLUTWindow, public MasterContainer {
 
 		void adjust( int w, int h );
 
-		void signOff();
 		void usePeak();
-		int  process();
 
 	#endif
 

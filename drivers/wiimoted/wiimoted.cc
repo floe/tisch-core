@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -124,8 +124,8 @@ void handle_event( wiimote_t* wm, int num ) {
 
 int main( int argc, char* argv[] ) {
 
-	std::cout << "wiimoted - libTISCH 1.1 Wiimote adapter" << std::endl;
-	std::cout << "(c) 2009 by Florian Echtler <echtler@in.tum.de>\n" << std::endl;
+	std::cout << "wiimoted - libTISCH 2.0 Wiimote adapter" << std::endl;
+	std::cout << "(c) 2011 by Florian Echtler <floe@butterbrot.org>\n" << std::endl;
 
 	out.target( INADDR_LOOPBACK, TISCH_PORT_CALIB );
 

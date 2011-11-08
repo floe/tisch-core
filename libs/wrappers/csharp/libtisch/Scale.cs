@@ -39,12 +39,19 @@ public class Scale : FeatureDouble {
     }
   }
 
-  public Scale(int tf) : this(libtischPINVOKE.new_Scale__SWIG_0(tf), true) {
+  public Scale(uint tf) : this(libtischPINVOKE.new_Scale__SWIG_0(tf), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public Scale() : this(libtischPINVOKE.new_Scale__SWIG_1(), true) {
     if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public override FeatureBase clone() {
+    IntPtr cPtr = libtischPINVOKE.Scale_clone(swigCPtr);
+    Scale ret = (cPtr == IntPtr.Zero) ? null : new Scale(cPtr, false);
+    if (libtischPINVOKE.SWIGPendingException.Pending) throw libtischPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public override void load(InputState state) {

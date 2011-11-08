@@ -1,0 +1,156 @@
+%/*************************************************************************\
+%*    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
+%*     Copyright (c) 2011 by Norbert Wiedermann, <wiederma@in.tum.de>      *
+%*   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
+%\*************************************************************************/
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows}
+
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+
+\begin{document}
+\pagestyle{empty}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=4.5em, text centered, node distance=5cm, inner sep=0pt, outer sep=0pt]
+
+\tikzstyle{block} = [rectangle, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=8em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
+\centering
+\scalebox{.87}{
+\begin{tikzpicture}[node distance=5cm, auto]
+	% Place nodes
+	\node [block] (init) {void keyb( unsigned\\ char c, int, int )};
+
+	\node [decision, below of=init] (quit) {c == 'q' ?};
+	\node [block, right of=quit] (cleanup) {cleanup(0)};
+
+	\node [decision, below of=quit] (space) {c == ' ' ?};
+	\node [block, right of=space] (reset) {mypipe$->$reset()};
+
+	\node [decision, below of=space] (config) {editvalue == 1 \&\& configure != 0 ?};
+
+	\node [decision, left of=config, node distance=3cm] (edit) {c == 'e' ?};
+	\node [block, left of=edit] (quit_editmode) {editvalue = 0\\ close edit mode without changes};
+	
+	\node [decision, below of=edit] (input) {c == '0x0D'\\ (enter) ?};
+	\node [block, left of=input] (process_input) {process input};
+	\node [block, below of=input] (add_to_input) {add entered character to cue};
+	
+	\node [decision, right of=config, node distance=4cm] (number) {c $\geq$ '0' \&\& c $\leq$ '9' ?};
+	\node [block, right of=number] (switch_filter) {switch filter};
+
+	\node [decision, below of=number, node distance=4cm] (activate_configurator) {c == 'c' ?};
+	\node [block, right of=activate_configurator] (switch_on_off) {switch configurator on/off};
+
+	\node [decision, below of=activate_configurator] (configurator) {configure != 0 ?};
+
+	\node [block, right of=configurator] (configurator_on) {Configurator is active};
+
+	\node [decision, below of=configurator_on] (help) {c == 'h' ?};
+	\node [block, right of=help] (help_on_off) {switch help on/off};
+
+	\node [decision, below of=help] (increase) {c == 'i' ?};
+	\node [block, right of=increase] (increase_action) {increase selected value by 1};
+
+	\node [decision, below of=increase] (decrease) {c == 'd' ?};
+	\node [block, right of=decrease] (decrease_action) {decrease selected value by 1};
+
+	\node [decision, below of=decrease] (edit_mode) {c == 'e' ?};
+	\node [block, right of=edit_mode] (edit_mode_action) {switch edit mode on};
+
+	\node [decision, below of=edit_mode] (toggle_tab) {c == '0x09' \\ (tab) ?};
+	\node [block, right of=toggle_tab] (toggle_tab_action) {toggle to next option};
+
+	\node [decision, below of=toggle_tab] (reset_filter) {c == 'r' ?};
+	\node [block, right of=reset_filter] (reset_filter_action) {call reset function of filter};
+
+	\node [block, below of=reset_filter] (configurator_finished) {all configurator options checked};
+
+	\node [decision, below of=configurator] (kinect_down) {c == 'x' ?};
+	
+	\node [block, left of=kinect_down] (tilt_kinect_down) {tilt kinect down};
+	
+	\node [decision, below of=kinect_down] (kinect_up) {c == 'w' ?};
+	\node [block, left of=kinect_up] (tilt_kinect_up) {tilt kinect up};
+	
+	\node [decision, below of=kinect_up] (kinect_center) {c == 's' ?};
+	\node [block, left of=kinect_center] (reset_kinect) {center kinect};
+
+	\node [block, below of=kinect_center] (function_finished) {function processed};
+
+	% Draw edges
+	\path [line] (init) -- (quit);
+
+	\path [line] (quit) -- node {yes} (cleanup);
+	\path [line] (quit) -- node {no} (space);
+
+	\path [line] (space) -- node {yes} (reset);
+	\path [line] (space) -- node {no} (config);
+
+	\path [line] (config) -- node {yes} (edit);
+	\path [line] (config) -- node {no} (number);
+
+	\path [line] (edit) -- node {yes} (quit_editmode);
+	\path [line] (edit) -- node {no} (input);
+
+	\path [line] (input) -- node {yes} (process_input);
+	\path [line] (input) -- node {no} (add_to_input);
+
+	\path [line] (number) -- node {yes} (switch_filter);
+	\path [line] (number) -- node {no} (activate_configurator);
+
+	\path [line] (activate_configurator) -- node {yes} (switch_on_off);
+	\path [line] (activate_configurator) -- node {no} (configurator);
+
+	\path [line] (configurator) -- node {yes} (configurator_on);
+	\path [line] (configurator) -- node {no} (kinect_down);
+
+	\path [line] (configurator_on) -- (help);
+
+	\path [line] (help) -- node {yes} (help_on_off);
+	\path [line] (help) -- node {no} (increase);
+
+	\path [line] (increase) -- node {yes} (increase_action);
+	\path [line] (increase) -- node {no} (decrease);
+
+	\path [line] (decrease) -- node {yes} (decrease_action);
+	\path [line] (decrease) -- node {no} (edit_mode);
+
+	\path [line] (edit_mode) -- node {yes} (edit_mode_action);
+	\path [line] (edit_mode) -- node {no} (toggle_tab);
+
+	\path [line] (toggle_tab) -- node {yes} (toggle_tab_action);
+	\path [line] (toggle_tab) -- node {no} (reset_filter);
+
+	\path [line] (reset_filter) -- node {yes} (reset_filter_action);
+	\path [line] (reset_filter) -- node {no} (configurator_finished);
+
+	\draw[->] (configurator_finished.west) -- ++(-.6,0) -| ++(0,30) -- (kinect_down.east);	
+
+	\path [line] (kinect_down) -- node {yes} (tilt_kinect_down);
+	\path [line] (kinect_down) -- node {no} (kinect_up);
+
+	\path [line] (kinect_up) -- node {yes} (tilt_kinect_up);
+	\path [line] (kinect_up) -- node {no} (kinect_center);
+
+	\path [line] (kinect_center) -- node {yes} (reset_kinect);
+	\path [line] (kinect_center) -- (function_finished);
+
+\end{tikzpicture}
+}
+
+\end{document}

@@ -114,16 +114,12 @@ public class Container extends Tile {
     if (getClass() == Container.class) libtischJNI.Container_paint__SWIG_1(swigCPtr, this); else libtischJNI.Container_paintSwigExplicitContainer__SWIG_1(swigCPtr, this);
   }
 
-  public void doUpdate(Widget target, SWIGTYPE_p_std__ostream ost) {
-    if (getClass() == Container.class) libtischJNI.Container_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost)); else libtischJNI.Container_doUpdateSwigExplicitContainer__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target, SWIGTYPE_p_std__ostream.getCPtr(ost));
-  }
-
   public void doUpdate(Widget target) {
-    if (getClass() == Container.class) libtischJNI.Container_doUpdate__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.Container_doUpdateSwigExplicitContainer__SWIG_1(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
+    if (getClass() == Container.class) libtischJNI.Container_doUpdate__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target); else libtischJNI.Container_doUpdateSwigExplicitContainer__SWIG_0(swigCPtr, this, libtischJNI.getCPtrAddRef(target), target);
   }
 
   public void doUpdate() {
-    if (getClass() == Container.class) libtischJNI.Container_doUpdate__SWIG_2(swigCPtr, this); else libtischJNI.Container_doUpdateSwigExplicitContainer__SWIG_2(swigCPtr, this);
+    if (getClass() == Container.class) libtischJNI.Container_doUpdate__SWIG_1(swigCPtr, this); else libtischJNI.Container_doUpdateSwigExplicitContainer__SWIG_1(swigCPtr, this);
   }
 
   public void tap(Vector vec, int id) {

@@ -35,12 +35,17 @@ public class Rotation extends FeatureDouble {
     super.delete();
   }
 
-  public Rotation(int tf) {
+  public Rotation(long tf) {
     this(libtischJNI.new_Rotation__SWIG_0(tf), true);
   }
 
   public Rotation() {
     this(libtischJNI.new_Rotation__SWIG_1(), true);
+  }
+
+  public FeatureBase clone() {
+    long cPtr = libtischJNI.Rotation_clone(swigCPtr, this);
+    return (cPtr == 0) ? null : new Rotation(cPtr, false);
   }
 
   public void load(InputState state) {

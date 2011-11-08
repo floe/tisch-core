@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2009 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -65,7 +65,7 @@
 	#define glutSetWindowTitle(x)
 
 	// GLUT replacement definitions
-	#define GLUT_HAS_MPX 1
+	#define GLUT_HAS_MULTI 1
 
 	#define GLUT_ENTERED 1 
 	#define GLUT_LEFT    2
@@ -89,10 +89,10 @@
 	void glutMotionFunc( void (*func)(int x, int y) );
 	void glutPassiveMotionFunc( void (*func)(int x, int y) );
 
-	void glutXExtensionEntryFunc( void (*func)(int num, int state) );
-	void glutXExtensionButtonFunc( void (*func)(int num, int x, int y, int button, int state) );
-	void glutXExtensionMotionFunc( void (*func)(int num, int x, int y) );
-	void glutXExtensionPassiveFunc( void (*func)(int num, int x, int y) );
+	void glutMultiEntryFunc( void (*func)(int num, int state) );
+	void glutMultiButtonFunc( void (*func)(int num, int x, int y, int button, int state) );
+	void glutMultiMotionFunc( void (*func)(int num, int x, int y) );
+	void glutMultiPassiveFunc( void (*func)(int num, int x, int y) );
 
 	void glutDestroyWindow( int win );
 	void glutPostRedisplay();

@@ -63,10 +63,10 @@ void Configurator::showInfo() {
  */
 void Configurator::showHelp() {
 	int xCoord = 100;
-	int yCoord = 200;
+	int yCoord = 140;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 380, 140, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 410, 180, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("use (tab) to toggle selected value"), xCoord, yCoord);
@@ -81,26 +81,51 @@ void Configurator::showHelp() {
 	yCoord += 20;
 	win->print(std::string("use (space) to reset all filters"), xCoord, yCoord);
 	yCoord += 20;
+	win->print(std::string("use (s) to save config of CURRENT filter"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("use (S) to save config of ALL filters"), xCoord, yCoord);
+	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);
 
 }
 
 void Configurator::showEditInfo() {
 	int xCoord = 100;
-	int yCoord = 200;
+	int yCoord = 140;
+
+	glColor4f(1.0, 1.0, 1.0, 1.0); // white
+	win->drawRectangleBackground(xCoord, yCoord, 450, 130, 2);
+
+	glColor4f(0.0, 0.0, 0.0, 1.0); // black
+	win->print(std::string("Your are now in editing mode."), xCoord, yCoord);
+	yCoord += 30;
+	win->print(std::string("Please enter a numerical value"), xCoord, yCoord);
+	yCoord += 20;
+	win->print(std::string("to overwrite the selected value."), xCoord, yCoord);
+	yCoord += 30;
+	win->print(std::string("Finish your input with ENTER."), xCoord, yCoord);
+	yCoord += 30;
+	win->print(std::string("Leave editing mode without changes with ESC."), xCoord, yCoord);
+}
+
+void Configurator::showStoreInfo(int mode) {
+	int xCoord = 100;
+	int yCoord = 140;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
 	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
-	win->print(std::string("Your are now in editing mode."), xCoord, yCoord);
+	win->print(std::string("Saving Mode"), xCoord, yCoord);
+	yCoord += 30;
+	win->print(std::string("Press ENTER to save current settings"), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("Please enter a numerical value"), xCoord, yCoord);
-	yCoord += 20;
-	win->print(std::string("to overwrite the selected value."), xCoord, yCoord);
-	yCoord += 20;
-	win->print(std::string("Finish your input with enter."), xCoord, yCoord);
-	yCoord += 20;
-	win->print(std::string("Leave editing mode without changes with (e)."), xCoord, yCoord);
+	if(mode == 0) {
+		win->print(std::string("of ALL filters"), xCoord, yCoord);
+	}
+	else if(mode == 1) {
+		win->print(std::string("of CURRENT filter"), xCoord, yCoord);
+	}
+	yCoord += 30;
+	win->print(std::string("Use ESC to leave without saving."), xCoord, yCoord);
 }
-

@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006,07,08 by Florian Echtler, TUM <echtler@in.tum.de>   *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -8,11 +8,13 @@
 #include <Container.h>
 
 void Widget::update( Widget* target ) {
-	if( this->parent == 0 )
+	if (target == 0) target = this;
+	//std::cout << "update " << (unsigned long long int)target << std::endl;
+	if (parent == 0)
 		//Problem: hier wird doUpdate von Container, anstatt von MasterContainer aufgerufen.
 		doUpdate( target );
 	else
-		(this->parent)->update( target );
+		parent->update( target );
 }
 
 void Widget::raise( Widget* widget ) { if (parent) parent->raise( this ); }

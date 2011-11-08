@@ -1,6 +1,6 @@
 /*************************************************************************\
 *    Part of the TISCH framework - see http://tisch.sourceforge.net/      *
-*  Copyright (c) 2006 - 2010 by Florian Echtler, TUM <echtler@in.tum.de>  *
+*   Copyright (c) 2006 - 2011 by Florian Echtler <floe@butterbrot.org>    *
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
@@ -13,12 +13,17 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _conf
 	checkImage();
 	invert = 0;
 	adaptive = 0;
+	resetOnInit = 1;
+	BGSubFilterID = -1; // -1 is invalid
+	storeBGImg = 0;
 	if(useIntensityImage) background = new ShortImage( image->getWidth(), image->getHeight() );
 	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
+	config->QueryIntAttribute( "BGSubFilterID", &BGSubFilterID );
 	config->QueryIntAttribute( "Invert",   &invert   );
 	config->QueryIntAttribute( "Adaptive", &adaptive );
+	config->QueryIntAttribute( "storeBGImg", &storeBGImg );
 	// setting variables for Configurator
-	countOfOptions = 2; // quantity of variables that can be manipulated
+	countOfOptions = 3; // quantity of variables that can be manipulated
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -29,9 +34,11 @@ void BGSubFilter::link( Filter* _mask ) {
 	mask = _mask;
 }
 
-void BGSubFilter::reset() {
-	if(useIntensityImage) *background = *(input->getImage());
-	else *background = *(input->getShortImage());
+void BGSubFilter::reset(int initialReset) {
+	if( (initialReset == 1 && resetOnInit == 1) || initialReset == 0 ) {
+		if(useIntensityImage) *background = *(input->getImage());
+		else *background = *(input->getShortImage());
+	}
 }
 
 int BGSubFilter::process() {
@@ -62,6 +69,9 @@ const char* BGSubFilter::getOptionName(int option) {
 	case 1:
 		OptionName = "Adaptive";
 		break;
+	case 2:
+		OptionName = "store BGImg";
+		break;
 	default:
 		// leave OptionName empty
 		break;
@@ -79,6 +89,9 @@ double BGSubFilter::getOptionValue(int option) {
 		break;
 	case 1:
 		OptionValue = adaptive;
+		break;
+	case 2:
+		OptionValue = storeBGImg;
 		break;
 	default:
 		// leave OptionValue = -1.0
@@ -106,17 +119,198 @@ void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
 			adaptive = (adaptive < 0) ? 0 : (adaptive > 1) ? 1 : adaptive;
 		}
 		break;
+	case 2: // overwrite is boolean value
+		if(overwrite) {
+			storeBGImg = (delta == 0 ? 0 : (delta == 1 ? 1 : storeBGImg));
+		}
+		else {
+			storeBGImg += delta;
+			storeBGImg = (storeBGImg < 0) ? 0 : (storeBGImg > 1) ? 1 : storeBGImg;
+		}
 	}
 }
 
+TiXmlElement* BGSubFilter::getXMLRepresentation() {
+	
+	TiXmlElement* XMLNode = new TiXmlElement( "BGSubFilter" );
+	
+	XMLNode->SetAttribute( "BGSubFilterID" , BGSubFilterID );
+	XMLNode->SetAttribute( "Invert" , invert );
+	XMLNode->SetAttribute( "Adaptive" , adaptive );
+	XMLNode->SetAttribute( "storeBGImg" , storeBGImg );
+	
+	return XMLNode;
+}
+
+int BGSubFilter::getBGSubFilterID() {
+	return BGSubFilterID;
+}
+
+TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string path) {
+	TiXmlElement* XMLNodeBG = new TiXmlElement( "BGSubFilter" );
+	XMLNodeBG->SetAttribute( "BGSubFilterID" , BGSubFilterID );
+
+	// filename
+	std::ostringstream filename;
+	filename.str("");
+	filename << "BGSubFilter_ID_" << BGSubFilterID << "_Background.pgm";
+
+	// store location
+	std::string BGImg = path.append(filename.str());
+
+	// check whether file already exists
+    std::fstream testExistance(BGImg.c_str(), std::ios::in);
+    if (testExistance.good()) {
+		// file already exists
+        testExistance.close();
+        if( storeBGImg == 0 ) {
+			// don't overwrite BGImg
+			XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
+			return XMLNodeBG;
+		}
+    }
+	else {
+		// doesnt exist
+		if( storeBGImg == 0 ) {
+			// don't store
+			return 0;
+		}
+    } 
+
+	// store/overwrite BG Image only if storing for this BGSubfilter is enabled
+	if(storeBGImg == 1) {
+
+		std::ofstream bgimage(BGImg.c_str(), std::ios::out);
+
+		// filecontent
+		bgimage << "P2\n";
+		bgimage << "# CREATOR: libTISCH version 2.0\n";
+		bgimage << background->getWidth() << " " << background->getHeight() << "\n";
+		bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
+	
+		// write background image pixel by pixel, for each one line
+		for( int y = 0; y < background->getHeight(); y++) {
+			for (int x = 0; x < background->getWidth(); x++) {
+				bgimage << background->getPixel(x,y) << "\n";
+			}
+		}
+	
+		// be polite and tidy up ;)
+		bgimage.close();
+
+		XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
+		return XMLNodeBG;
+	}
+
+	XMLNodeBG->SetAttribute( "something went wrong" , -1 );
+	return XMLNodeBG;
+
+}
+
+void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
+	std::cout << "reading stored options for BGSubFilter from config ... ";
+	if(debug)
+		std::cout << std::endl;
+
+	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
+	do {
+		// iterate through all children of OptionSubtree
+		std::string type = filterOption->Value();
+		if(type == "BGSubFilter") {
+			int filterID = -1;
+			filterOption->QueryIntAttribute( "BGSubFilterID" , &filterID );
+			if( (filterID == BGSubFilterID) && (filterID != -1) ) {
+				// settings are for the current BGSubFilter
+
+				if(debug)
+					std::cout << "BGSubFilterID: " << BGSubFilterID << std::endl;
+
+				std::string filename;
+				filterOption->QueryStringAttribute( "BGImgPath", &filename);
+				resetOnInit = loadPGMImageFromFile( filename , debug);
+				break;
+			}
+		}
+	} while((filterOption = filterOption->NextSiblingElement()));
+
+	// TODO: read Background Image here and store it to background
+
+	std::cout << "done" << std::endl;
+}
+
+int BGSubFilter::loadPGMImageFromFile(std::string filename, bool debug) {
+	if(debug)
+		std::cout << "reading pixel values from " << filename << std::endl;
+
+	std::ifstream inputFile;
+	inputFile.open(filename.c_str());
+
+	if(!inputFile) {
+		std::cout << " something went wrong reading pgm file! check format!" << std::endl;
+		return 1;
+	}
+
+	int x = 0;
+	int y = 0;
+	int height;
+	int width;
+	std::string line;
+
+	// Fileheader: we expect pgm file format
+	// PGM magic number
+	inputFile >> line;
+	if(strcmp(line.c_str(), "P2") != 0) {
+		if(debug)
+			std::cout << "provided file has wrong magic number: P2 expected" << std::endl;
+		return 1;
+	}
+
+	// Creator comment
+	inputFile >> line;
+	
+	// width x height
+	inputFile >> line;
+	size_t found;
+	found = line.find(" ");
+	if (found != std::string::npos) {
+		width = atoi(line.substr(0,found).c_str());
+		height = atoi(line.substr(found+1).c_str());
+	}
+    
+	// colour depth
+	inputFile >> line;
+
+	// read the content line by line, so pixel by pixel
+	while(inputFile >> line) {
+		int pixelVal = atoi(line.c_str());
+
+		background->setPixel(x, y, pixelVal);
+		if(x + 1 < width)
+			x++;
+		else {
+			x = 0;
+			if(y + 1 < height)
+				y++;
+			else 
+				std::cout << "pixel position out of range" << std::endl;
+		}
+		
+	}
+
+	// be polite and tidy up ;)
+	inputFile.close();
+	
+	return 0; // everything OK
+}
 /*==============================================================================
  * FlipFilter
 ==============================================================================*/
-// TODO: make hflip/vflip configurable
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();
 	hflip = 0;
 	vflip = 0;
+	config->QueryIntAttribute( "HFlip" , &hflip );
+	config->QueryIntAttribute( "VFlip" , &vflip );
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
@@ -124,38 +318,121 @@ FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 // TODO: should be MMX-accelerated
 int FlipFilter::process() {
 	
+	int width = 0;
+	int height = 0;
+
 	if(useIntensityImage) 
 	{
 		unsigned char* inbuf = input->getImage()->getData();
 		unsigned char* outbuf = image->getData();
-		
-		int width  = image->getWidth();
-		int height = image->getHeight();
 
-		int inoffset  = 0;
-		int outoffset = width-1;
-		
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
-			inoffset  += width;
-			outoffset += width;
+		width  = image->getWidth();
+		height = image->getHeight();
+
+		// no flipping
+		if (vflip == 0 && hflip == 0) {
+			int inoffset  = 0;
+			int outoffset = 0;
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
 		}
-	} 
+
+		// horizontal flipping - flipping along vertical axis
+		if(vflip == 0 && hflip == 1){
+			int inoffset  = 0;
+			int outoffset = width - 1; // same line last index
+		
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// vertical flipping - flipping along horzontal axis
+		if(vflip == 1 && hflip == 0){
+			int inoffset  = 0;
+			int outoffset = (height * width) - (width + 2); // beginning of the last line
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+
+		// vertical && horizontal flipping
+		// reversing the order of the pixel
+		if(vflip == 1 && hflip == 1) {
+			int inoffset  = 0;
+			int outoffset = (height * width) - 1; // very last element of the array
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+	}
 	else 
 	{
 		unsigned short* inbuf  = input->getShortImage()->getSData();
 		unsigned short* outbuf = shortimage->getSData();
 
-		int width  = shortimage->getWidth();
-		int height = shortimage->getHeight();
+		width  = shortimage->getWidth();
+		height = shortimage->getHeight();
 
-		int inoffset  = 0;
-		int outoffset = width-1;
+		// no flipping
+		if (vflip == 0 && hflip == 0) {
+			int inoffset  = 0;
+			int outoffset = 0;
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) outbuf[outoffset-x] = inbuf[inoffset+x];
-			inoffset  += width;
-			outoffset += width;
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// horizontal flipping - flipping along the vertical axis
+		if(vflip == 0 && hflip == 1){
+			int inoffset  = 0;
+			int outoffset = width - 1; // same line last index
+		
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset += width;
+			}
+		}
+
+		// vertical flipping - flipping along the horizontal axis
+		if(vflip == 1 && hflip == 0){
+			int inoffset  = 0;
+			int outoffset = (height * width) - (width + 2); // beginning of the last line
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
+		}
+
+		// vertical && horizontal flipping
+		// reversing the order of the pixel
+		if(vflip == 1 && hflip == 1) {
+			int inoffset  = 0;
+			int outoffset = (height * width) - 1; // very last element of the array
+
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) outbuf[outoffset - x] = inbuf[inoffset + x];
+				inoffset  += width;
+				outoffset -= width;
+			}
 		}
 	}
 
@@ -219,6 +496,14 @@ void FlipFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* FlipFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "FlipFilter" );
+	
+	XMLNode->SetAttribute( "HFlip" , hflip );
+	XMLNode->SetAttribute( "VFlip" , vflip );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * ThreshFilter
 ==============================================================================*/
@@ -227,7 +512,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 	checkImage();
 	threshold_min = 128;
 	threshold_max = 255;
-	config->QueryIntAttribute(      "Threshold", &threshold_min );
+	config->QueryIntAttribute(      "Threshold", &threshold_min ); // TODO remove this when storing xml works
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
 	(useIntensityImage == 1) ? THRESH_MAX = 255 : THRESH_MAX = 2047;
@@ -298,6 +583,14 @@ void ThreshFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* ThreshFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "ThreshFilter" );
+	
+	XMLNode->SetAttribute( "LowerThreshold", threshold_min );
+	XMLNode->SetAttribute( "UpperThreshold", threshold_max );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * SpeckleFilter
 ==============================================================================*/
@@ -348,6 +641,13 @@ void SpeckleFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* SpeckleFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "SpeckleFilter" );
+	
+	XMLNode->SetAttribute( "NoiseLevel", noiselevel );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * LowpassFilter
 ==============================================================================*/
@@ -355,8 +655,8 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 	checkImage();
 	mode = 0;
 	range = 1;
-	config->QueryIntAttribute( "Mode", &mode);
-	config->QueryIntAttribute( "Range", &range);
+	config->QueryIntAttribute( "Mode", &mode );
+	config->QueryIntAttribute( "Range", &range );
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
@@ -424,6 +724,98 @@ void LowpassFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
+TiXmlElement* LowpassFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "LowpassFilter" );
+	
+	XMLNode->SetAttribute( "Mode", mode );
+	XMLNode->SetAttribute( "Range", range );
+	
+	return XMLNode;
+}
+/*==============================================================================
+ * BandpassFilter
+==============================================================================*/
+BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+	inner = 8;
+	outer = 16;
+	config->QueryIntAttribute( "InnerRadius", &inner );
+	config->QueryIntAttribute( "OuterRadius", &outer );
+	// setting variables for Configurator
+	countOfOptions = 2; // quantity of variables that can be manipulated
+}
+
+int BandpassFilter::process() {
+	if(useIntensityImage) input->getImage()->bandpass( *image, outer, inner );
+	//else input->getShortImage()->lowpass( *shortimage, range, mode );
+	return 0;
+}
+
+const char* BandpassFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "OuterRadius";
+		break;
+	case 1:
+		OptionName = "InnerRadius";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double BandpassFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = outer;
+		break;
+	case 1:
+		OptionValue = inner;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void BandpassFilter::modifyOptionValue(double delta, bool overwrite) {
+	switch(toggle) {
+	case 0: // outer: 4..64
+		if(overwrite) {
+			outer = (delta < 4) ? 4 : (delta > 64) ? 64 : delta;
+		} else {
+			outer += delta;
+			outer = (outer < 4) ? 4 : (outer > 64) ? 64 : outer;
+		}
+		break;
+	case 1: // inner: 4..64
+		if(overwrite) {
+			inner = (delta < 4) ? 4 : (delta > 64) ? 64 : delta;
+		} else {
+			inner += delta;
+			inner = (inner < 4) ? 4 : (inner > 64) ? 64 : inner;
+		}
+		break;
+	}
+}
+
+TiXmlElement* BandpassFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "BandpassFilter" );
+	
+	XMLNode->SetAttribute( "InnerRadius", inner );
+	XMLNode->SetAttribute( "OuterRadius", outer );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * SplitFilter
 ==============================================================================*/
@@ -457,6 +849,13 @@ IntensityImage* SplitFilter::getImage() {
 	else return image2 ? image2 : image;
 }
 
+TiXmlElement* SplitFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "SplitFilter" );
+	
+	//XMLNode->SetAttribute( "name", value );
+	
+	return XMLNode;
+}
 /*==============================================================================
  * AreaFilter
 ==============================================================================*/
@@ -464,7 +863,10 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 	checkImage();
 	enabled = 0;
 	updated = true;
-	config->QueryIntAttribute( "Enabled", &enabled);
+	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
+	AreaFilterID = -1;
+	config->QueryIntAttribute( "AreaFilterID", &AreaFilterID );
+	config->QueryIntAttribute( "Enabled", &enabled );
 	// setting variables for Configurator
 	countOfOptions = 1; // quantity of variables that can be manipulated
 }
@@ -509,7 +911,7 @@ void AreaFilter::processMouseButton( int button, int state, int x, int y )
 			if(*((*it).begin()) != *((*it).end()-1)) (*it).push_back(*(*it).begin()); //copies the first point of a polygon to the end of its pointvector
 			generateEdgepoints(*it);
 		}
-		std::sort(edgepoints.begin(), edgepoints.end()); //sort the list for later use
+		std::sort(edgepoints.begin(), edgepoints.end()); // sort the list so that the areamask is applied to the right pixelareas
 	}
 }
 
@@ -529,11 +931,13 @@ void AreaFilter::generateEdgepoints( std::vector<Point*> cornerpoints )
 	}
 }
 
-void AreaFilter::reset()
+void AreaFilter::reset(int initialReset)
 {
-	edgepoints.clear();
-	cornerpointvector.clear();
-	updated = true;
+	if( (initialReset == 1 && resetOnInit == 1) || initialReset == 0 ) {
+		edgepoints.clear();
+		cornerpointvector.clear();
+		updated = true;
+	}
 }
 
 const char* AreaFilter::getOptionName(int option) {
@@ -586,4 +990,156 @@ void AreaFilter::draw( GLUTWindow* win )
 	glColor4f(1,0,0,1);
 	for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		win->drawPolygon( *it, 1, image->getHeight() );
+}
+
+TiXmlElement* AreaFilter::getXMLRepresentation() {
+	TiXmlElement* XMLNode = new TiXmlElement( "AreaFilter" );
+	
+	XMLNode->SetAttribute( "AreaFilterID" , AreaFilterID );
+	XMLNode->SetAttribute( "Enabled" , enabled );
+	
+	return XMLNode;
+}
+
+int AreaFilter::getAreaFilterID() {
+	return AreaFilterID;
+}
+
+TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
+	
+	int polygoncounter = 0;
+
+	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "AreaFilter" );
+	polygonsOfAreaFilter->SetAttribute( "AreaFilterID" , AreaFilterID );
+
+	// no areas are selected
+	if(cornerpointvector.empty())
+		return 0;
+
+	for(std::vector<std::vector<Point*> >::iterator iter_polygons = cornerpointvector.begin(); iter_polygons != cornerpointvector.end(); iter_polygons++) {
+		// iterate through all polygons
+
+		// ignore polygons with less than 3 edges
+		if((*iter_polygons).size() < 3) {
+			continue;
+		}
+
+		TiXmlElement* polygon = new TiXmlElement( "Polygon" );
+		polygon->SetAttribute("number", polygoncounter );
+
+		for(std::vector<Point*>::iterator iter_points = (*iter_polygons).begin(); iter_points != (*iter_polygons).end(); iter_points++) {
+			// iterate through all points of current polygon
+
+			// create XML Node and store point values
+			TiXmlElement* point = new TiXmlElement( "Point" );
+			point->SetAttribute("x", (*iter_points)->x);
+			point->SetAttribute("y", (*iter_points)->y);
+
+			// store XML Node in tree
+			polygon->LinkEndChild(point);
+
+		} // end iter_points
+
+		polygonsOfAreaFilter->LinkEndChild(polygon);
+		polygoncounter++;
+		
+	} // end iter_polygons
+
+	if(polygonsOfAreaFilter->NoChildren())
+		return 0;
+	return polygonsOfAreaFilter;
+}
+
+void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
+	
+	// check OptionSubtree to find settings for current AreaFilter ...
+	std::cout << "reading stored areas for AreaFilter from config ... ";
+	if(debug)
+		 std::cout << std::endl;
+
+	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
+	do {
+		std::string type = filterOption->Value();
+		if(type == "AreaFilter") {
+			// current Options are for an AreaFilter
+			int filterID = -1;
+			filterOption->QueryIntAttribute( "AreaFilterID" , &filterID);
+			if( filterID == AreaFilterID && filterID != -1) {
+				// settings are for current AreaFilter
+
+				// filterOption has AreaFilter Subtree -> children are Polygons
+				if(debug)
+					std::cout << "AreaFilterID: " << AreaFilterID << std::endl;
+				
+				resetOnInit = createFilterAreaFromConfig(filterOption, debug);
+				break;
+			}
+		}
+	} while((filterOption = filterOption->NextSiblingElement()));
+	
+	std::cout << "done" << std::endl;
+
+}
+
+/*
+* returns 0 if edgepoint vector was filled with polygons from config
+* else returns 1;
+*/
+int AreaFilter::createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug) {
+	
+	// reset cornerpointvector for this areafilter
+	cornerpointvector.clear();
+	edgepoints.clear();
+
+	// first polygon
+	TiXmlElement* Polygon = PolygonsOfAreaFilter->FirstChildElement();
+
+	do {
+		// process polygon
+		TiXmlElement* Coords = Polygon->FirstChildElement();
+		int polygonNr;
+		Polygon->QueryIntAttribute("number", &polygonNr);
+		
+		if(debug)
+			std::cout << "Polygon: " << polygonNr << std::endl;
+		
+		cornerpointvector.push_back(std::vector<Point*>());
+					
+		do {
+			// process Points
+			int x_coord;
+			int y_coord;
+
+			Coords->QueryIntAttribute("x", &x_coord);
+			Coords->QueryIntAttribute("y", &y_coord);
+			
+			if(debug)
+				std::cout << "Point: " << "x: " << x_coord << " / " << "y: " << y_coord << std::endl;
+		
+			Point* p = new Point();
+			p->x = x_coord;
+			p->y = y_coord;
+
+			(*(cornerpointvector.end() - 1)).push_back(p);
+
+			// get next point
+		} while ((Coords = Coords->NextSiblingElement()));
+		
+		generateEdgepoints(*(cornerpointvector.end() - 1));
+		std::sort(edgepoints.begin(), edgepoints.end());
+		
+		// get next polygon
+	} while((Polygon = Polygon->NextSiblingElement()));
+
+	if(debug) {
+		for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++) {
+			for(std::vector<Point*>::iterator it2 = (*it).begin(); it2 != (*it).end(); it2++) {
+				std::cout << "x: " << (*(*it2)).x << " y: " << (*it2)->y << std::endl;
+			}
+		}
+	}
+
+	if(edgepoints.size() > 0)
+		return 0;
+	return 1;
 }
