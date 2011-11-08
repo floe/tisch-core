@@ -322,7 +322,7 @@ void IntensityImage::houghLine( IntensityImage& target ) const {
 
 	float dt = M_PI/(float)target.width;
 
-	float rf = 2.0*(float)(width+height);
+	float rf = 2.0*sqrtf(width*width+height*height);
 
 	for (x = 0; x < width; x++) for (y = 0; y < height; y++) {
 	
