@@ -194,12 +194,12 @@ void FFMVImageSource::release( ) {
 // application gets image data from here
 void FFMVImageSource::getImage( IntensityImage& target ) const {
 	//if (imgbuffer) imgbuffer->getIntensity( target );
-	if(intensityImgbuffer) target = *intensityImgbuffer;
+	if(intensityImgbuffer) intensityImgbuffer->swapData( target );
 }
 
 // application gets image data from here
 void FFMVImageSource::getImage( RGBImage& target ) const {
-	if (imgbuffer) target = *imgbuffer;
+	if (imgbuffer) imgbuffer->swapData( target );
 }
 
 void FFMVImageSource::printError( FlyCapture2::Error error ){

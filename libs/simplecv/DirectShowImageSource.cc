@@ -232,7 +232,7 @@ void DirectShowImageSource::getImage( IntensityImage& target ) const {
 }
 
 void DirectShowImageSource::getImage( RGBImage&       target ) const {
-	if (imgbuffer) target = *imgbuffer;
+	if (imgbuffer) imgbuffer->swapData( target );
 }
 
 

@@ -103,6 +103,12 @@ class TISCH_SHARED Image {
 			return *this;
 		}
 
+		void swapData( Image& img ) {
+			if (size != img.size) throw std::runtime_error( "Image: raw size mismatch in buffer swap" );
+			uint8_t* tmp = img.data; img.data = data; data = tmp;
+			tmp = img.rawdata; img.rawdata = rawdata; rawdata = tmp;
+		}
+
 		inline unsigned char* getData() const { return data; }
 		inline int getCount () const { return count;  }
 		inline int getWidth () const { return width;  }
