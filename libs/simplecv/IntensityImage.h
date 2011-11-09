@@ -30,11 +30,12 @@ class TISCH_SHARED IntensityImage: public Image {
 		IntensityImage( const IntensityImage& img, int downsample );
 		void sobel( IntensityImage& target );
 		void sobel();
+		void mask( IntensityImage& target );
 		
 		void adaptive_threshold( int radius, int bias, IntensityImage& target ) const;
 
 		int  threshold( unsigned char value, IntensityImage& target , unsigned char minvalue = 255 ) const;
-		int  threshold( unsigned char value );
+		int  threshold( unsigned char value, unsigned char minvalue = 255 );
 
 		void invert( IntensityImage& target ) const;
 		void invert( );

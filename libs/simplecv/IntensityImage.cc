@@ -373,7 +373,10 @@ void IntensityImage::gradient( char* xgrad, char* ygrad ) {
 	}
 }
 
-
+void IntensityImage::mask( IntensityImage& target ) {
+	for (int i = 0; i < size; i++) if (data[i] == 0) target.data[i] = 0;
+}
+	
 void IntensityImage::sobel( unsigned char* target ) {
 	
 	int xval,yval,value;
@@ -448,8 +451,8 @@ void IntensityImage::adaptive_threshold( int radius, int bias, IntensityImage& t
 	delete colsum;
 }
 
-int IntensityImage::threshold( unsigned char value ) {
-	return threshold( value, *this );
+int IntensityImage::threshold( unsigned char value, unsigned char minvalue ) {
+	return threshold( value, *this, minvalue );
 }
 
 int IntensityImage::threshold( unsigned char value, IntensityImage& target , unsigned char minvalue ) const {
