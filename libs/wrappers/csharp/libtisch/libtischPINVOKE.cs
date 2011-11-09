@@ -1163,7 +1163,7 @@ class libtischPINVOKE {
   public static extern int FeatureInt_result(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureInt_bounds")]
-  public static extern void FeatureInt_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureInt_bounds(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureInt_next")]
   public static extern int FeatureInt_next(HandleRef jarg1);
@@ -1289,7 +1289,7 @@ class libtischPINVOKE {
   public static extern IntPtr FeatureDimensions_result(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureDimensions_bounds")]
-  public static extern void FeatureDimensions_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureDimensions_bounds(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureDimensions_next")]
   public static extern int FeatureDimensions_next(HandleRef jarg1);
@@ -1472,7 +1472,7 @@ class libtischPINVOKE {
   public static extern IntPtr FeatureVector_result(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureVector_bounds")]
-  public static extern void FeatureVector_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureVector_bounds(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureVector_next")]
   public static extern int FeatureVector_next(HandleRef jarg1);
@@ -1559,7 +1559,7 @@ class libtischPINVOKE {
   public static extern double FeatureDouble_result(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureDouble_bounds")]
-  public static extern void FeatureDouble_bounds(HandleRef jarg1, HandleRef jarg2);
+  public static extern IntPtr FeatureDouble_bounds(HandleRef jarg1);
 
   [DllImport("tisch_csharp", EntryPoint="CSharp_FeatureDouble_next")]
   public static extern int FeatureDouble_next(HandleRef jarg1);

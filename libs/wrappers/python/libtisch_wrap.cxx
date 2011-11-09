@@ -29265,36 +29265,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureInt_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< int > *arg1 = (Feature< int > *) 0 ;
-  std::vector< int,std::allocator< int > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< int,std::allocator< int > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureInt_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureInt_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_int_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureInt_bounds" "', argument " "1"" of type '" "Feature< int > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< int > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureInt_bounds" "', argument " "2"" of type '" "std::vector< int,std::allocator< int > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< int,std::allocator< int > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< int,std::allocator< int > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_int_std__allocatorT_int_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -31770,36 +31759,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDimensions_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Dimensions > *arg1 = (Feature< Dimensions > *) 0 ;
-  std::vector< Dimensions,std::allocator< Dimensions > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< Dimensions,std::allocator< Dimensions > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDimensions_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDimensions_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_Dimensions_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDimensions_bounds" "', argument " "1"" of type '" "Feature< Dimensions > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Dimensions > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDimensions_bounds" "', argument " "2"" of type '" "std::vector< Dimensions,std::allocator< Dimensions > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< Dimensions,std::allocator< Dimensions > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< Dimensions,std::allocator< Dimensions > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Dimensions_std__allocatorT_Dimensions_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -35121,36 +35099,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureVector_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< Vector > *arg1 = (Feature< Vector > *) 0 ;
-  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< _Vector< double >,std::allocator< _Vector< double > > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureVector_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureVector_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT__VectorT_double_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureVector_bounds" "', argument " "1"" of type '" "Feature< Vector > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< Vector > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureVector_bounds" "', argument " "2"" of type '" "std::vector< _Vector< double >,std::allocator< _Vector< double > > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< _Vector< double >,std::allocator< _Vector< double > > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< _Vector< double >,std::allocator< _Vector< double > > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT__VectorT_double_t_std__allocatorT__VectorT_double_t_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -36057,36 +36024,25 @@ fail:
 SWIGINTERN PyObject *_wrap_FeatureDouble_bounds(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Feature< double > *arg1 = (Feature< double > *) 0 ;
-  std::vector< double,std::allocator< double > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  std::vector< double,std::allocator< double > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:FeatureDouble_bounds",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:FeatureDouble_bounds",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_FeatureT_double_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FeatureDouble_bounds" "', argument " "1"" of type '" "Feature< double > *""'"); 
   }
   arg1 = reinterpret_cast< Feature< double > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FeatureDouble_bounds" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > &""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< double,std::allocator< double > > * >(argp2);
   {
     try {
-      (arg1)->bounds(*arg2);
+      result = (std::vector< double,std::allocator< double > > *) &(arg1)->bounds();
     } catch (std::exception& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     }
   }
-  resultobj = SWIG_Py_Void();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;

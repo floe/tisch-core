@@ -34,8 +34,7 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 	if (s.peek() == ']') {
 		DefaultMap::iterator it = g_defaults().find( g.m_name );
 		if (it != g_defaults().end()) {
-			std::istringstream tmp( it->second );
-			tmp >> g;
+			g = it->second;
 			s.ignore(2);
 			return s;
 		}
@@ -69,8 +68,8 @@ std::ostream& operator<< ( std::ostream& s, Gesture& g ) {
 	s << "{\n\"name\":\"" << g.m_name << "\",\n";
 	s << "\"flags\":" << g.m_flags << ",\n";
 	s << "\"features\":[\n";
-	std::vector< SmartPtr<FeatureBase> >::iterator pos = g.begin();
-	std::vector< SmartPtr<FeatureBase> >::iterator end = g.end();
+	//std::vector< SmartPtr<FeatureBase> >::iterator pos = g.begin();
+	//std::vector< SmartPtr<FeatureBase> >::iterator end = g.end();
 	int size = g.size();
 	for (int i = 0; i < size; i++) { 
 		g[i]->serialize( s );

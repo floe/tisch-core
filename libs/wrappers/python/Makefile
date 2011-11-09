@@ -17,7 +17,7 @@ PYTHON := -I/usr/include/$(PYTHON)/ -l$(PYTHON)
 	echo $* > $@
 
 _%.so: %_wrap.cxx
-	g++ $(CFLAGS) $(SLFLAGS) $(LDFLAGS) -I$(TOPDIR) -I$(TOPDIR)/libs/osc -I$(TOPDIR)/libs/tools -I$(TOPDIR)/gestured -I$(TOPDIR)/widgets -I$(TOPDIR)/libs/simplecv -I$(TOPDIR)/libs/simplegl -I$(TOPDIR)/gestured/features -L$(TOPDIR)/libs/tools -L$(TOPDIR)/gestured -L$(TOPDIR)/widgets -L$(TOPDIR)/libs/simplecv -L$(TOPDIR)/libs/simplegl $< -ltools -loscpack -lgestures -lsimplecv -lsimplegl -lwidgets -lGL -lGLU $(PYTHON) -o $@ 
+	g++ $(CFLAGS) $(SLFLAGS) $(LDFLAGS) -I$(TOPDIR) -I$(TOPDIR)/libs/osc -I$(TOPDIR)/libs/tools -I$(TOPDIR)/gispl -I$(TOPDIR)/widgets -I$(TOPDIR)/libs/simplecv -I$(TOPDIR)/libs/simplegl -I$(TOPDIR)/gispl/features -L$(TOPDIR)/libs/tools -L$(TOPDIR)/libs/osc -L$(TOPDIR)/gispl -L$(TOPDIR)/widgets -L$(TOPDIR)/libs/simplecv -L$(TOPDIR)/libs/simplegl $< -ltools -loscpack -lgispl -lsimplecv -lsimplegl -lwidgets -lGL -lGLU $(PYTHON) -o $@ 
 
 clean:
 	-rm _$(PACKAGE).so $(PACKAGE).pyc $(PACKAGE).pth

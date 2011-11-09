@@ -118,7 +118,7 @@ namespace osc {
 
 %include ../../gispl/Region.h
 
-%include ../../gestured/Matcher.h
+%include ../../gispl/Matcher.h
 
 
 %template(FeatureInt) Feature<int>;
