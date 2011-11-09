@@ -26,6 +26,7 @@ class TISCH_SHARED RGBImage: public Image {
 
 		void getChannel(int channel, IntensityImage& target) const;
 		void getIntensity(IntensityImage& target) const;
+		void getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage& val ) const;
 
 		void combine(const IntensityImage& red, const IntensityImage& green, const IntensityImage& blue);
 

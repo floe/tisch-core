@@ -58,10 +58,44 @@ RGBImage::RGBImage( const char* path ) {
 
 
 void RGBImage::getIntensity(IntensityImage& target) const {
-	int offset;
-	for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
-		offset = pixelOffset(x,y,0);
-		target.setPixel(x,y,(unsigned char)((data[offset+R] + data[offset+G] + data[offset+B]) / 3));
+	for (int offset = 0; offset < size; offset+=3) {
+		target.data[offset/3] = (data[offset+R] + data[offset+G] + data[offset+B]) / 3;
+	}
+}
+
+void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage& val ) const {
+	unsigned char r,g,b,max,min,h,s,v,c;
+	int target_offs;
+	for (int offset = 0; offset < size; offset+=3) {
+
+		r = data[offset+R];
+		g = data[offset+G];
+		b = data[offset+B];
+
+		max = (r > g ? r : g); max = (max > b ? max : b);
+		min = (r < g ? r : g); min = (min < b ? min : b);
+
+		c = max - min;
+		v = max;
+
+		if (c == 0) {
+			h = 0;
+			s = 0;
+		} else {
+			s = c/v;
+			if (r == max) {
+				h = 0 + 43*(g - b)/c;
+			} else if (g == max) {
+				h = 85 + 43*(b - r)/c;
+			} else { // b == max
+				h = 171 + 43*(r - g)/c;
+			}
+		}
+
+		target_offs = offset/3;
+		hue.data[target_offs] = h;
+		sat.data[target_offs] = s;
+		val.data[target_offs] = v;
 	}
 }
 
