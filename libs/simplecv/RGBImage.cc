@@ -82,7 +82,7 @@ void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage&
 			h = 0;
 			s = 0;
 		} else {
-			s = c/v;
+			s = 255*(int)c/v;
 			if (r == max) {
 				h = 0 + 43*(g - b)/c;
 			} else if (g == max) {
