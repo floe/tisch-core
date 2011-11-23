@@ -34,6 +34,7 @@ inline long long atoll( const char* in ) {
 #define isnan(x) _isnan(x)
 #define isinf(x) (!_finite(x))
 inline double round(double x) { return floor(x+0.5); }
+inline float  roundf(float x) { return floor(x+0.5); }
 
 #define M_PI 3.14159265358979323846
 

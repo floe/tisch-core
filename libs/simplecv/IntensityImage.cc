@@ -7,6 +7,8 @@
 #include "IntensityImage.h"
 #include "mmx.h"
 
+#include <nanolibc.h>
+
 #include <stdint.h>
 #include <string.h>
 #include <math.h>
