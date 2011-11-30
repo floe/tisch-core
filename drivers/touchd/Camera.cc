@@ -59,6 +59,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
 	useIntensityImage = 1;
+	displayRGBImage = 0;
 	// setting variables for Configurator
 	countOfOptions = 0; // quantity of variables that can be manipulated
 
@@ -88,10 +89,11 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 
 	config->QueryIntAttribute( "Verbose", &verbose );
 
-	// create image buffer
-	image = new IntensityImage( width, height, shmid, 1 );
-	shortimage = new ShortImage( width, height );
-
+	// create image buffer see Filter.h
+	image		= new IntensityImage( width, height, shmid, 1 );
+	shortimage	= new ShortImage( width, height );
+	rgbimage	= new RGBImage( width, height );
+	
 	#ifdef HAS_DIRECTSHOW
 		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
 			cam = new DirectShowImageSource( width, height, sourcepath.c_str(), verbose );
@@ -209,7 +211,10 @@ int Camera::process() {
 	// retrieve image, release buffer and return
 	if(useIntensityImage) cam->getImage( *image );
 #ifdef HAS_FREENECT
-	else ((KinectImageSource*)cam)->getImage( *shortimage );
+	else {
+		((KinectImageSource*)cam)->getImage( *shortimage ); // depth image
+		((KinectImageSource*)cam)->getImage( *rgbimage ); // rgb image
+	}
 #endif
 	cam->release();
 

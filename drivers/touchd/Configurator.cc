@@ -81,8 +81,8 @@ void Configurator::showHelp() {
 	yCoord += 20;
 	win->print(std::string("use (space) to reset all filters"), xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("use (s) to save config of CURRENT filter"), xCoord, yCoord);
-	yCoord += 20;
+	//win->print(std::string("use (s) to save config of CURRENT filter"), xCoord, yCoord);
+	//yCoord += 20;
 	win->print(std::string("use (S) to save config of ALL filters"), xCoord, yCoord);
 	yCoord += 20;
 	win->print(std::string("use (h) to show/hide this help"), xCoord, yCoord);

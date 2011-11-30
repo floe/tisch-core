@@ -42,6 +42,7 @@ void BGSubFilter::reset(int initialReset) {
 }
 
 int BGSubFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(useIntensityImage) 
 	{
 		IntensityImage* inputimg = input->getImage();
@@ -317,7 +318,7 @@ FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 
 // TODO: should be MMX-accelerated
 int FlipFilter::process() {
-	
+
 	int width = 0;
 	int height = 0;
 
@@ -331,13 +332,8 @@ int FlipFilter::process() {
 
 		// no flipping
 		if (vflip == 0 && hflip == 0) {
-			int inoffset  = 0;
-			int outoffset = 0;
-
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
-				inoffset  += width;
-				outoffset += width;
+			for (int i = 0; i < height * width; i++) {
+				outbuf[i] = inbuf[i];
 			}
 		}
 
@@ -353,10 +349,10 @@ int FlipFilter::process() {
 			}
 		}
 
-		// vertical flipping - flipping along horzontal axis
+		// vertical flipping - flipping along horizontal axis
 		if(vflip == 1 && hflip == 0){
 			int inoffset  = 0;
-			int outoffset = (height * width) - (width + 2); // beginning of the last line
+			int outoffset = (height * width) - width; // beginning of the last line
 
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
@@ -380,6 +376,8 @@ int FlipFilter::process() {
 	}
 	else 
 	{
+		// Kinect Depth Image
+
 		unsigned short* inbuf  = input->getShortImage()->getSData();
 		unsigned short* outbuf = shortimage->getSData();
 
@@ -388,13 +386,8 @@ int FlipFilter::process() {
 
 		// no flipping
 		if (vflip == 0 && hflip == 0) {
-			int inoffset  = 0;
-			int outoffset = 0;
-
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
-				inoffset  += width;
-				outoffset += width;
+			for (int i = 0; i < height * width; i++) {
+				outbuf[i] = inbuf[i];
 			}
 		}
 
@@ -413,7 +406,7 @@ int FlipFilter::process() {
 		// vertical flipping - flipping along the horizontal axis
 		if(vflip == 1 && hflip == 0){
 			int inoffset  = 0;
-			int outoffset = (height * width) - (width + 2); // beginning of the last line
+			int outoffset = (height * width) - width; // beginning of the last line
 
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) outbuf[outoffset + x] = inbuf[inoffset + x];
@@ -433,6 +426,73 @@ int FlipFilter::process() {
 				inoffset  += width;
 				outoffset -= width;
 			}
+		}
+	}
+
+	// Kinect RGB Image
+
+	unsigned char* inputIMG  = input->getRGBImage()->getData(); // get pointer form previous filter
+	unsigned char* outputIMG = rgbimage->getData(); // prepare for processed filter output
+	
+	// flip RGB Image
+	width = rgbimage->getWidth();
+	height = rgbimage->getHeight();
+	
+	// no flipping
+	if (vflip == 0 && hflip == 0) {
+		for(int i = 0; i < height * width * 3; i += 3) {
+			outputIMG[i]	= inputIMG[i];		// r
+			outputIMG[i+1]	= inputIMG[i+1];	// g
+			outputIMG[i+2]	= inputIMG[i+2];	// b
+		}
+	}
+	
+	// horizontal flipping - flipping along vertical axis
+	if(vflip == 0 && hflip == 1) {
+		int inoffset  = 0;
+		int outoffset = (width - 1) * 3; // same line last index
+		
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width * 3; x += 3) {
+				outputIMG[outoffset - x]		= inputIMG[inoffset + x]; // r
+				outputIMG[outoffset - x + 1]	= inputIMG[inoffset + x +1]; // g
+				outputIMG[outoffset - x + 2]	= inputIMG[inoffset + x +2]; // b
+			}
+			inoffset  += width * 3;
+			outoffset += width * 3;
+		}
+	}
+
+	// vertical flipping - flipping along horizontal axis
+	if(vflip == 1 && hflip == 0){
+		int inoffset  = 0;
+		int outoffset = (height * width * 3) - width * 3; // beginning of the last line
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width * 3; x += 3) {
+				outputIMG[outoffset + x]		= inputIMG[inoffset + x]; // r
+				outputIMG[outoffset + x + 1]	= inputIMG[inoffset + x + 1]; // g
+				outputIMG[outoffset + x + 2]	= inputIMG[inoffset + x + 2]; // b
+			}
+			inoffset  += width * 3;
+			outoffset -= width * 3;
+		}
+	}
+
+	// vertical && horizontal flipping
+	// reversing the order of the pixel
+	if(vflip == 1 && hflip == 1) {
+		int inoffset  = 0;
+		int outoffset = (height * width * 3) - 3; // very last element of the array
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width * 3; x += 3) {
+				outputIMG[outoffset - x]		= inputIMG[inoffset + x]; // r
+				outputIMG[outoffset - x + 1]	= inputIMG[inoffset + x + 1]; // g
+				outputIMG[outoffset - x + 2]	= inputIMG[inoffset + x + 2]; // b
+			}
+			inoffset  += width * 3;
+			outoffset -= width * 3;
 		}
 	}
 
@@ -521,6 +581,7 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _co
 }
 
 int ThreshFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(useIntensityImage) input->getImage()->threshold( threshold_min, *image, threshold_max );
 	else input->getShortImage()->threshold( threshold_min << 5, *shortimage, threshold_max << 5 );
 	return 0;
@@ -603,6 +664,7 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int SpeckleFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(useIntensityImage) input->getImage()->despeckle( *image, noiselevel );
 	else input->getShortImage()->despeckle( *shortimage, noiselevel );
 	return 0;
@@ -662,6 +724,7 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int LowpassFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(useIntensityImage) input->getImage()->lowpass( *image, range, mode );
 	else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;
@@ -746,6 +809,7 @@ BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ): Filter(
 }
 
 int BandpassFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(useIntensityImage) input->getImage()->bandpass( *image, outer, inner );
 	//else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;
@@ -832,6 +896,7 @@ void SplitFilter::reset() {
 }	
 
 int SplitFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	incount++;
 	if (incount % 2) {
 		*image = *(input->getImage());
@@ -872,6 +937,7 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 }
 
 int AreaFilter::process() {
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(enabled)
 		if(useIntensityImage) input->getImage()->areamask( *image, edgepoints );
 		else input->getShortImage()->areamask( *shortimage, edgepoints );
@@ -985,8 +1051,13 @@ void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
 
 void AreaFilter::draw( GLUTWindow* win )
 { 
-	if(useIntensityImage) win->show( *image, 0, 0 ); 
-	else win->show( *shortimage, 0, 0 );
+	if(useIntensityImage)
+		win->show( *image, 0, 0 );
+	else if( displayRGBImage )
+		win->show( *rgbimage, 0, 0 );
+	else
+		win->show( *shortimage, 0, 0 );
+
 	glColor4f(1,0,0,1);
 	for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)
 		win->drawPolygon( *it, 1, image->getHeight() );

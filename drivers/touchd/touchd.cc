@@ -153,7 +153,7 @@ void keyb( unsigned char c, int, int ) {
 		}
 
 	}
-	else if(storeSettingsCurrentFilter == 1 && configure != 0) {
+	/*else if(storeSettingsCurrentFilter == 1 && configure != 0) {
 		// save configuration of CURRENT filter, keep all other settings
 
 		// quit storing mode without saving
@@ -166,6 +166,7 @@ void keyb( unsigned char c, int, int ) {
 			storeSettingsCurrentFilter = 0;
 		}
 	}
+	*/
 	else { // processing keyboard entries as usual
 	// switching filters
 		if ((c >= '0') && (c <= '9')) {
@@ -216,9 +217,9 @@ void keyb( unsigned char c, int, int ) {
 			}
 
 			// activate saving mode
-			if(c == 's') { // store settings of CURRENT filter
-				storeSettingsCurrentFilter = 1;
-			}
+			//if(c == 's') { // store settings of CURRENT filter
+			//	storeSettingsCurrentFilter = 1;
+			//}
 
 			if(c == 'S') { // store settings of ALL filters
 				storeSettingsAllFilter = 1;
@@ -227,6 +228,11 @@ void keyb( unsigned char c, int, int ) {
 			// toggle Option with Tab
 			if(c == 0x09) {
 				tmp->nextOption();
+			}
+
+			// switch between displaying DepthImage and RGBImage
+			if( c == 'm' ) {
+				tmp->showRGBImage();
 			}
 
 			// reset only this filter
@@ -316,7 +322,13 @@ int main( int argc, char* argv[] ) {
 
 	std::cout << "Loading configuration from " << cfgfile << std::endl;
 	TiXmlDocument doc( cfgfile );
-	doc.LoadFile();
+	bool success = doc.LoadFile();
+
+	if(!success) {
+		std::cout << "no config file found at specified location!" << std::endl;
+		std::cout << "quit!" << std::endl;
+		return -1;
+	}
 
 	// get Filter subtree
 	TiXmlElement* root = doc.RootElement();
