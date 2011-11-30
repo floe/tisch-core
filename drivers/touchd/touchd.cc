@@ -216,9 +216,9 @@ void keyb( unsigned char c, int, int ) {
 			}
 
 			// activate saving mode
-			if(c == 's') { // store settings of CURRENT filter
-				storeSettingsCurrentFilter = 1;
-			}
+			//if(c == 's') { // store settings of CURRENT filter
+			//	storeSettingsCurrentFilter = 1;
+			//}
 
 			if(c == 'S') { // store settings of ALL filters
 				storeSettingsAllFilter = 1;
@@ -316,7 +316,13 @@ int main( int argc, char* argv[] ) {
 
 	std::cout << "Loading configuration from " << cfgfile << std::endl;
 	TiXmlDocument doc( cfgfile );
-	doc.LoadFile();
+	bool success = doc.LoadFile();
+
+	if(!success) {
+		std::cout << "no config file found at specified location!" << std::endl;
+		std::cout << "quit!" << std::endl;
+		return -1;
+	}
 
 	// get Filter subtree
 	TiXmlElement* root = doc.RootElement();
