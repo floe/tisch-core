@@ -98,45 +98,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\gestured\features\BlobCount.cc" />
-    <ClCompile Include="..\gestured\features\BlobDelay.cc" />
-    <ClCompile Include="..\gestured\features\BlobDim.cc" />
-    <ClCompile Include="..\gestured\features\BlobGroup.cc" />
-    <ClCompile Include="..\gestured\features\BlobID.cc" />
-    <ClCompile Include="..\gestured\features\BlobPos.cc" />
-    <ClCompile Include="..\gestured\Factory.cc" />
-    <ClCompile Include="..\gestured\Gesture.cc" />
-    <ClCompile Include="..\gestured\InputState.cc" />
-    <ClCompile Include="..\gestured\Matcher.cc" />
-    <ClCompile Include="..\gestured\features\Motion.cc" />
-    <ClCompile Include="..\gestured\features\MultiBlobRotation.cc" />
-    <ClCompile Include="..\gestured\features\MultiBlobScale.cc" />
-    <ClCompile Include="..\gestured\Region.cc" />
-    <ClCompile Include="..\gestured\features\RelativeAxisRotation.cc" />
-    <ClCompile Include="..\gestured\features\RelativeAxisScale.cc" />
-    <ClCompile Include="..\gestured\features\Rotation.cc" />
-    <ClCompile Include="..\gestured\features\Scale.cc" />
+    <ClCompile Include="..\gispl\Factory.cc" />
+    <ClCompile Include="..\gispl\features\BlobCount.cc" />
+    <ClCompile Include="..\gispl\features\BlobDelay.cc" />
+    <ClCompile Include="..\gispl\features\BlobDim.cc" />
+    <ClCompile Include="..\gispl\features\BlobGroup.cc" />
+    <ClCompile Include="..\gispl\features\BlobID.cc" />
+    <ClCompile Include="..\gispl\features\BlobPos.cc" />
+    <ClCompile Include="..\gispl\features\Motion.cc" />
+    <ClCompile Include="..\gispl\features\MultiBlobRotation.cc" />
+    <ClCompile Include="..\gispl\features\MultiBlobScale.cc" />
+    <ClCompile Include="..\gispl\features\RelativeAxisRotation.cc" />
+    <ClCompile Include="..\gispl\features\RelativeAxisScale.cc" />
+    <ClCompile Include="..\gispl\features\Rotation.cc" />
+    <ClCompile Include="..\gispl\features\Scale.cc" />
+    <ClCompile Include="..\gispl\Gesture.cc" />
+    <ClCompile Include="..\gispl\InputState.cc" />
+    <ClCompile Include="..\gispl\Matcher.cc" />
+    <ClCompile Include="..\gispl\Region.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\gestured\features\BlobCount.h" />
-    <ClInclude Include="..\gestured\features\BlobDelay.h" />
-    <ClInclude Include="..\gestured\features\BlobDim.h" />
-    <ClInclude Include="..\gestured\features\BlobGroup.h" />
-    <ClInclude Include="..\gestured\features\BlobID.h" />
-    <ClInclude Include="..\gestured\features\BlobPos.h" />
-    <ClInclude Include="..\gestured\Factory.h" />
-    <ClInclude Include="..\gestured\Feature.h" />
-    <ClInclude Include="..\gestured\Gesture.h" />
-    <ClInclude Include="..\gestured\InputState.h" />
-    <ClInclude Include="..\gestured\Matcher.h" />
-    <ClInclude Include="..\gestured\features\Motion.h" />
-    <ClInclude Include="..\gestured\features\MultiBlobRotation.h" />
-    <ClInclude Include="..\gestured\features\MultiBlobScale.h" />
-    <ClInclude Include="..\gestured\Region.h" />
-    <ClInclude Include="..\gestured\features\RelativeAxisRotation.h" />
-    <ClInclude Include="..\gestured\features\RelativeAxisScale.h" />
-    <ClInclude Include="..\gestured\features\Rotation.h" />
-    <ClInclude Include="..\gestured\features\Scale.h" />
+    <ClInclude Include="..\gispl\Factory.h" />
+    <ClInclude Include="..\gispl\Feature.h" />
+    <ClInclude Include="..\gispl\features\BlobCount.h" />
+    <ClInclude Include="..\gispl\features\BlobDelay.h" />
+    <ClInclude Include="..\gispl\features\BlobDim.h" />
+    <ClInclude Include="..\gispl\features\BlobGroup.h" />
+    <ClInclude Include="..\gispl\features\BlobID.h" />
+    <ClInclude Include="..\gispl\features\BlobPos.h" />
+    <ClInclude Include="..\gispl\features\Motion.h" />
+    <ClInclude Include="..\gispl\features\MultiBlobRotation.h" />
+    <ClInclude Include="..\gispl\features\MultiBlobScale.h" />
+    <ClInclude Include="..\gispl\features\RelativeAxisRotation.h" />
+    <ClInclude Include="..\gispl\features\RelativeAxisScale.h" />
+    <ClInclude Include="..\gispl\features\Rotation.h" />
+    <ClInclude Include="..\gispl\features\Scale.h" />
+    <ClInclude Include="..\gispl\Gesture.h" />
+    <ClInclude Include="..\gispl\InputState.h" />
+    <ClInclude Include="..\gispl\Matcher.h" />
+    <ClInclude Include="..\gispl\Region.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="libtools.vcxproj">

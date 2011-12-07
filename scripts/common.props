@@ -12,7 +12,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\calibd;$(WindowsSdkDir)\Include;$(freeglut)\include;..\libs\tools;..\libs\simplecv;..\libs\simplegl;..\gestured;..\gestured\features;..\widgets;..\;..\libs\math\jama;..\libs\math\tnt;..\libs\math;..\libs\osc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\calibd;$(WindowsSdkDir)\Include;$(freeglut)\include;..\libs\tools;..\libs\simplecv;..\libs\simplegl;..\gispl;..\gispl\features;..\widgets;..\;..\libs\math\jama;..\libs\math\tnt;..\libs\math;..\libs\osc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="Exists('$(flycapture)\include\FlyCapture2.h')">$(flycapture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="Exists('$(freenect)\libfreenect.h')">$(freenect);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;TIXML_USE_STL;%(PreprocessorDefinitions)</PreprocessorDefinitions>

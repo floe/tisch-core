@@ -100,9 +100,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\gestured\gestured.cc" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="libgestures.vcxproj">
       <Project>{6ce6e65b-84eb-49b0-99a0-140f8ae472f0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -123,6 +120,9 @@
       <Project>{a3953bb4-55ea-4a8a-9c76-dca66048ef7b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\gispl\gestured.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
