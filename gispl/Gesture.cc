@@ -22,7 +22,7 @@ DefaultMap& g_defaults() {
 std::istream& operator>> ( std::istream& s, Gesture& g ) {
 
 	char name[1024];
-	if (s.peek() != '{') throw std::runtime_error("{"); s.ignore(1); 
+	if (mypeek(s) != '{') throw std::runtime_error("missing {"); s.ignore(1); 
 	s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"name\"") != name) throw std::runtime_error(name);
 	s >> std::ws; s.getline(name,sizeof(name),','); g.m_name.assign(name+1,strlen(name)-2);
 	s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"flags\"") != name) throw std::runtime_error(name);
@@ -31,7 +31,7 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 	
 	// an empty gesture doesn't really make sense, so
 	// let's see if we can find a default definition..
-	if (s.peek() == ']') {
+	if (mypeek(s) == ']') {
 		DefaultMap::iterator it = g_defaults().find( g.m_name );
 		if (it != g_defaults().end()) {
 			g = it->second;
@@ -41,7 +41,7 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 	}
 
 	// read features
-	while (s.peek() != ']') {
+	while (mypeek(s) != ']') {
 		std::string fname;
 		s >> std::ws; s.ignore(1);
 		s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"type\"") != name) throw std::runtime_error(std::string("\\")+name+std::string("\\"));
@@ -51,9 +51,11 @@ std::istream& operator>> ( std::istream& s, Gesture& g ) {
 			res->unserialize( s );
 			g.push_back( res );
 		} 
-		s >> std::ws;
-		if (s.peek() == ',') s.ignore(1);
+		if (mypeek(s) == ',') s.ignore(1);
 	}
+
+	// skip two closing braces (featurelist & entire gesture)
+	s.ignore(1); s >> std::ws; s.ignore(1); 
 	
 	// if this gesture is a default definition, store it
 	if (g.m_flags & GESTURE_FLAGS_DEFAULT) {

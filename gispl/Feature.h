@@ -42,6 +42,11 @@ class TISCH_SHARED FeatureBase {
 };
 
 
+inline int mypeek( std::istream& s ) {
+	s >> std::ws;
+	return s.peek();
+}
+
 template< class Value > class Feature: public FeatureBase {
 
 	public:
@@ -98,15 +103,15 @@ template< class Value > class Feature: public FeatureBase {
 			s >> typeflags; s.ignore(1);
 			s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"constraints\"") != name) throw std::runtime_error(name);
 			s.ignore(1);
-			while (s.peek() != ']') {
+			while (mypeek(s) != ']') {
 				Value tmp;
 				s >> tmp;
 				m_bounds.push_back(tmp);
-				if (s.peek() == ',') s.ignore(1);
+				if (mypeek(s) == ',') s.ignore(1);
 			}
 			s.ignore(2);
 			s >> std::ws; s.getline(name,sizeof(name),':'); if (std::string("\"result\"") != name) throw std::runtime_error(name);
-			if (s.peek() != '[') {
+			if (mypeek(s) != '[') {
 				s >> m_result;
 				has_result = 1;
 				s >> std::ws;

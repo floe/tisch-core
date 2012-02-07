@@ -28,19 +28,19 @@
 // default gesture sets as parseable strings
 TISCH_SHARED const char* default_gesture_set[] = {
 	"0 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 MultiBlobScale 0 31 0 0 \
-		rotate 5 1 MultiBlobRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
+		{ \"name\":\"move\",    \"flags\":5, \"features\":[{ \"type\":\"Motion\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"scale\",   \"flags\":5, \"features\":[{ \"type\":\"MultiBlobScale\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"rotate\",  \"flags\":5, \"features\":[{ \"type\":\"MultiBlobRotation\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"tap\",     \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[], \"result\":[]}, { \"type\":\"BlobPos\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"remove\",  \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[ -1 ], \"result\":[]}] } \
+		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 2, 2 ], \"result\":[]}] }",
 	"0 0 6 \
-		move 5 1 Motion 0 31 0 0 0 0 \
-		scale 5 1 RelativeAxisScale 0 31 0 0 \
-		rotate 5 1 RelativeAxisRotation 0 31 0 0 \
-		tap 6 2 BlobID 0 27 0 0 BlobPos 0 27 0 0 0 0 \
-		remove 6 1 BlobID 0 31 0 1 -1 \
-		release 6 1 BlobCount 0 31 0 2 0 0",
+		{ \"name\":\"move\",    \"flags\":5, \"features\":[{ \"type\":\"Motion\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"scale\",   \"flags\":5, \"features\":[{ \"type\":\"RelativeAxisScale\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"rotate\",  \"flags\":5, \"features\":[{ \"type\":\"RelativeAxisRotation\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"tap\",     \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[], \"result\":[]}, { \"type\":\"BlobPos\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
+		{ \"name\":\"remove\",  \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[ -1 ], \"result\":[]}] } \
+		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 2, 2 ], \"result\":[]}] }"
 };
 
 
