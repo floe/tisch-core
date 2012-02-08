@@ -11,6 +11,8 @@
 #include <X11/extensions/Xrender.h>
 #include "PicoPNG.h"
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 Display* dpy;
@@ -32,6 +34,16 @@ Cursor load( const char* file ) {
 	Picture picture;
 	GC      gc;
 	XRenderPictFormat* format;
+
+	/* nasty hack: convert RGBA to BGRA. colors are mixed up otherwise.
+	 * conversions are: PNG -> raw buffer -> XImage -> Pixmap -> Picture -> Cursor
+	 */
+	unsigned char* data = image.data();
+	for (unsigned int i = 0; i < image.width() * image.height() * 4; i+=4) {
+		unsigned char tmp = data[i];
+		data[i] = data[i+2];
+		data[i+2] = tmp;
+	}
 
 	ximage.width = image.width();
 	ximage.height = image.height();
