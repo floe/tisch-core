@@ -80,9 +80,9 @@ template< class Value > class Feature: public FeatureBase {
 		virtual const char* name() const = 0;
 
 		void serialize( std::ostream& s ) {
-			s << "{\n\"type\":\"" << name() << "\",\n";
+			s << "{ \"type\":\"" << name() << "\", ";
 			//s << has_result << " ";
-			s << "\"filters\":" << typeflags << ",\n";
+			s << "\"filters\":" << typeflags << ", ";
 			s << "\"constraints\":[";
 			if (!has_result) {
 				int size = m_bounds.size();
@@ -91,10 +91,10 @@ template< class Value > class Feature: public FeatureBase {
 					if (i < size-1) s << ",";
 				}
 			}
-			s << "],\n";
+			s << "], ";
 			s << "\"result\":";
 			if (has_result) s << m_result; else s << "[]";
-			s << "\n}";
+			s << " }";
 		}
 
 		void unserialize( std::istream& s ) {
