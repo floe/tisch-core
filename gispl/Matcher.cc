@@ -33,14 +33,14 @@ TISCH_SHARED const char* default_gesture_set[] = {
 		{ \"name\":\"rotate\",  \"flags\":5, \"features\":[{ \"type\":\"MultiBlobRotation\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"tap\",     \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[], \"result\":[]}, { \"type\":\"BlobPos\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"remove\",  \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[ -1 ], \"result\":[]}] } \
-		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 2, 2 ], \"result\":[]}] }",
+		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 0, 0 ], \"result\":[]}] }",
 	"0 0 6 \
 		{ \"name\":\"move\",    \"flags\":5, \"features\":[{ \"type\":\"Motion\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"scale\",   \"flags\":5, \"features\":[{ \"type\":\"RelativeAxisScale\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"rotate\",  \"flags\":5, \"features\":[{ \"type\":\"RelativeAxisRotation\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"tap\",     \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[], \"result\":[]}, { \"type\":\"BlobPos\", \"filters\":31, \"constraints\":[], \"result\":[]}] } \
 		{ \"name\":\"remove\",  \"flags\":6, \"features\":[{ \"type\":\"BlobID\", \"filters\":31, \"constraints\":[ -1 ], \"result\":[]}] } \
-		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 2, 2 ], \"result\":[]}] }"
+		{ \"name\":\"release\", \"flags\":6, \"features\":[{ \"type\":\"BlobCount\", \"filters\":31, \"constraints\":[ 0, 0 ], \"result\":[]}] }"
 };
 
 
