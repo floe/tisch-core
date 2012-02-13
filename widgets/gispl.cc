@@ -15,14 +15,6 @@
 #include "Dial.h"
 #include "Label.h"
 
-class MyCheckbox;
-
-Dial* dial;
-
-MyCheckbox* single;
-MyCheckbox* mb_rot;
-MyCheckbox* ra_rot;
-
 std::string single_tmpl(
 	"{ \"name\":\"single\", \"flags\":1, \"features\":[ \
 		{ \"type\":\"BlobPos\", \"filters\":2047, \"constraints\":[], \"result\":[] }, \
@@ -39,23 +31,49 @@ std::string ra_rot_tmpl(
 		{ \"type\":\"RelativeAxisRotation\", \"filters\":31, \"constraints\":[], \"result\":[]} \
 	] }" );
 
+class MyCheckbox;
+
+class MyDial: public Dial {
+	public:
+
+		MyDial( int _r, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture* _tex = 0 ):
+			Dial(_r,_x,_y,_angle,_tex) { }
+
+		void action( Gesture* g ) {
+			Dial::action( g );
+			std::cout << (char)27 << "[00;32m" << *g << std::endl;
+		}
+};
+
+MyDial* dial;
+
+MyCheckbox* single;
+MyCheckbox* mb_rot;
+MyCheckbox* ra_rot;
+
+void push_gesture( std::string& tmpl ) {
+	Gesture tmp;
+	std::istringstream stream( tmpl );
+	stream >> tmp;
+	dial->region.gestures.push_back( tmp ); 
+	std::cout << (char)27 << "[01;31m" << tmp << std::endl;
+}
+
 class MyCheckbox: public Checkbox {
 	public:
 
-		MyCheckbox( int _w, int _h, int _x = 0, int _y = 0, double angle = 0.0, RGBATexture* _tex = 0 ):
-			Checkbox( _w,_h,_x,_y,angle,_tex) { }
+		MyCheckbox( int _w, int _h, int _x = 0, int _y = 0, double _angle = 0.0, RGBATexture* _tex = 0 ):
+			Checkbox( _w,_h,_x,_y,_angle,_tex) { }
 
 		void tap( Vector pos, int id ) { 
-
-			std::istringstream stream;
 
 			Checkbox::tap( pos, id );
 
 			dial->region.gestures.clear();
 
-			if (single->get()) { Gesture tmp; stream.str(single_tmpl); stream >> tmp; dial->region.gestures.push_back( tmp ); }
-			if (mb_rot->get()) { Gesture tmp; stream.str(mb_rot_tmpl); stream >> tmp; dial->region.gestures.push_back( tmp ); }
-			if (ra_rot->get()) { Gesture tmp; stream.str(ra_rot_tmpl); stream >> tmp; dial->region.gestures.push_back( tmp ); }
+			if (single->get()) push_gesture(single_tmpl);
+			if (mb_rot->get()) push_gesture(mb_rot_tmpl);
+			if (ra_rot->get()) push_gesture(ra_rot_tmpl);
 
 			dial->update();
 		}
@@ -70,7 +88,7 @@ int main( int argc, char* argv[] ) {
 	Window* win = new Window( 800, 480, "GISpL Demo", (argc > 1) );
 	win->texture( 0 );
 
-	dial = new Dial( 400, 160,0, 3.1 );
+	dial = new MyDial( 400, 160,0, 3.1 );
 	dial->region.gestures.clear();
 	win->add( dial );
 
