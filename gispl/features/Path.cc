@@ -120,20 +120,41 @@ std::vector<Vector> vectorize( std::vector<Vector>& path ) {
 
 std::vector<Vector> resample( std::vector<Vector>& path, int num_points ) {
 
-	std::vector<Vector> result; result.push_back(path[0]);
+	std::cout << "plen: " << path_length(path) << std::endl;
+
+	std::deque<Vector> dpath( path.begin(), path.end() );
+	Vector cur = dpath.front(); dpath.pop_front();
+	Vector prev = cur;
+
+	std::vector<Vector> result; result.push_back( prev );
 	double interval = path_length( path ) / (num_points-1);
 	double total_dist = 0.0;
 
-	for (unsigned int i = 1; i < path.size(); i++) {
-		double dist = (path[i] - path[i-1]).length();
+	while (!dpath.empty()) {
+
+		cur = dpath.front();
+		dpath.pop_front();
+
+		std::cout << "prev: " << prev << " cur: " << cur << std::endl;
+
+		double dist = (cur - prev).length();
+
 		if ((total_dist+dist) >= interval) {
-			double qx = path[i-1].x + ((interval - total_dist) / dist) * (path[i].x - path[i-1].x);
-			double qy = path[i-1].y + ((interval - total_dist) / dist) * (path[i].y - path[i-1].y);
+
+			double qx = prev.x + ((interval - total_dist) / dist) * (cur.x - prev.x);
+			double qy = prev.y + ((interval - total_dist) / dist) * (cur.y - prev.y);
 			Vector q(qx,qy,0);
+
 			result.push_back( q );
-			//path.insert( &(path[i+1]), q ); // FIXME
+			prev = q; 
+			dpath.push_front( cur );
+
 			total_dist = 0.0;
-		} else total_dist += dist;
+
+		} else {
+			total_dist += dist;
+			prev = cur;
+		}
 	}
 
 	if ((int)result.size() == num_points-1)
