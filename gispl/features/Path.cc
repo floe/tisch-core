@@ -14,6 +14,7 @@ Path::~Path() { }
 // Original code is under New BSD License; since this is a rewrite using
 // the libTISCH geometry classes, LGPL relicensing should be acceptable.
 
+// piecewise length of path
 double path_length( std::vector<Vector>& path ) {
 	double length = 0;
 	for (unsigned int i = 1; i < path.size(); i++)
@@ -21,38 +22,16 @@ double path_length( std::vector<Vector>& path ) {
 	return length;
 }
 
-double path_dist( std::vector<Vector>& path1, std::vector<Vector>& path2 ) {
+/*double path_dist( std::vector<Vector>& path1, std::vector<Vector>& path2 ) {
 	double dist = 0;
 	int n = path1.size();
 	for (int i = 0; i < n; i++)
 		dist += (path1[i] - path2[i]).length();
 	return dist/(double)n;
-}
+}*/
 
-Vector bbox_dim( std::vector<Vector>& path ) {
-
-	double minx = __DBL_MIN__;
-	double miny = __DBL_MIN__; 
-	double minz = __DBL_MIN__;
-	double maxx = __DBL_MAX__; 
-	double maxy = __DBL_MAX__; 
-	double maxz = __DBL_MAX__;
-
-	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++) {
-
-		if (p->x < minx) minx = p->x; 
-		if (p->y < miny) miny = p->y; 
-		if (p->z < minz) minz = p->z;
-
-		if (p->x > maxx) maxx = p->x; 
-		if (p->y > maxy) maxy = p->y; 
-		if (p->z > maxz) maxz = p->z;
-	}
-
-	return Vector( maxx-minx, maxy-miny, maxz-minz );
-}
-
-Vector centroid( std::vector<Vector>& path ) {
+// determine centroid
+Vector path_centroid( std::vector<Vector>& path ) {
 	Vector result(0,0,0);
 	double n = path.size();
 	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++)
@@ -60,100 +39,68 @@ Vector centroid( std::vector<Vector>& path ) {
 	return result*(1.0/n);
 }
 
-std::vector<Vector> rotate_path( std::vector<Vector>& path, double rad ) {
+// shift centroid to origin, rotate first point onto x axis, scale to cube
+void path_transform( std::vector<Vector>& path, Vector center, double scale ) {
 
-	std::vector<Vector> result;
-	Vector center = centroid( path );
+	double minx = __DBL_MAX__; double maxx = __DBL_MIN__; 
+	double miny = __DBL_MAX__; double maxy = __DBL_MIN__; 
+	double minz = __DBL_MAX__; double maxz = __DBL_MIN__;
 
-	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++) {
-		Vector tmp = (*p - center); tmp.rotate(rad);
-		result.push_back( tmp + center );
-	}
-
-	return result;
-}
-
-std::vector<Vector> scale_path( std::vector<Vector>& path, double factor ) {
-
-	std::vector<Vector> result;
-	Vector bbox = bbox_dim( path );
-
-	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++)
-		result.push_back( Vector( p->x * (factor/bbox.x), p->y * (factor/bbox.y), 0 ) ); //p->z * (factor/bbox.z) ) );
-
-	return result;
-}
-
-std::vector<Vector> translate_path( std::vector<Vector>& path, Vector shift ) {
-
-	std::vector<Vector> result;
-	Vector center = centroid( path );
-
-	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++)
-		result.push_back( (*p - center) + shift );
-
-	return result;
-}
-
-double direction( std::vector<Vector>& path ) {
-	Vector center = centroid( path );
-	return atan2( center.y - path[0].y, center.x - path[0].x );
-}
-
-std::vector<Vector> vectorize( std::vector<Vector>& path ) {
-
-	std::vector<Vector> result;
-	double mag,sum = 0.0;
+	// determine angle from centroid to first point
+	double direction = atan2( center.y - path[0].y, center.x - path[0].x ); // FIXME: only 2D
 
 	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++) {
-		result.push_back( *p );
-		sum += p->x * p->x + p->y * p->y;
+		Vector tmp = (*p - center);
+		tmp.rotate(direction);
+		if (tmp.x < minx) minx = tmp.x; if (tmp.x > maxx) maxx = tmp.x; 
+		if (tmp.y < miny) miny = tmp.y; if (tmp.y > maxy) maxy = tmp.y; 
+		if (tmp.z < minz) minz = tmp.z; if (tmp.z > maxz) maxz = tmp.z;
+		*p = tmp;
 	}
 
-	mag = sqrt(sum);
-	for (std::vector<Vector>::iterator r = result.begin(); r != result.end(); r++) {
-		*r = *r * (1.0/mag);
-	}
-
-	return result;
+	Vector bbox = Vector( maxx-minx, maxy-miny, maxz-minz );
+	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++)
+		*p = Vector( p->x * (scale/bbox.x), p->y * (scale/bbox.y), 0 ); // FIXME: tmp.z * (scale/bbox.z) ) );*/
 }
 
-std::vector<Vector> resample( std::vector<Vector>& path, int num_points ) {
+// prepare path for protractor matcher
+void path_vectorize( std::vector<Vector>& path ) {
 
-	std::cout << "plen: " << path_length(path) << std::endl;
+	double sum = 0.0;
+	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++) 
+		sum += p->x * p->x + p->y * p->y; // FIXME: + p->z * p->z?
 
-	std::deque<Vector> dpath( path.begin(), path.end() );
-	Vector cur = dpath.front(); dpath.pop_front();
+	double mag = sqrt(sum);
+	for (std::vector<Vector>::iterator p = path.begin(); p != path.end(); p++) 
+		*p = *p * (1.0/mag);
+}
+
+
+std::vector<Vector> path_resample( std::vector<Vector>& path, int num_points ) {
+
+	Vector cur = path[0];
 	Vector prev = cur;
+	unsigned int i = 1;
 
 	std::vector<Vector> result; result.push_back( prev );
 	double interval = path_length( path ) / (num_points-1);
 	double total_dist = 0.0;
 
-	while (!dpath.empty()) {
+	while (i < path.size()) {
 
-		cur = dpath.front();
-		dpath.pop_front();
-
-		std::cout << "prev: " << prev << " cur: " << cur << std::endl;
+		cur = path[i];
 
 		double dist = (cur - prev).length();
 
 		if ((total_dist+dist) >= interval) {
-
-			double qx = prev.x + ((interval - total_dist) / dist) * (cur.x - prev.x);
-			double qy = prev.y + ((interval - total_dist) / dist) * (cur.y - prev.y);
-			Vector q(qx,qy,0);
-
+			Vector q = prev + (cur - prev) * ((interval - total_dist) / dist);
 			result.push_back( q );
 			prev = q; 
-			dpath.push_front( cur );
-
 			total_dist = 0.0;
-
 		} else {
 			total_dist += dist;
 			prev = cur;
+			i++;
 		}
 	}
 
@@ -163,7 +110,7 @@ std::vector<Vector> resample( std::vector<Vector>& path, int num_points ) {
 	return result;
 }
 
-double protractor_distance( std::vector<Vector>& path1, std::vector<Vector>& path2 ) {
+double path_distance( std::vector<Vector>& path1, std::vector<Vector>& path2 ) {
 	double a = 0.0;
 	double b = 0.0;
 	int n = path1.size();
@@ -175,20 +122,24 @@ double protractor_distance( std::vector<Vector>& path1, std::vector<Vector>& pat
 	return acos( a*cos(angle) + b*sin(angle) );
 }
 
-void process_path( std::vector<Vector>& path ) {
-	// resample(path,64);
-	// rotate_path(path,direction);
-	// scale_path(path, 250.0);
-	// translate_path(path,Vector(0,0,0));
-	// vectorize(path);
+std::vector<Vector> path_process( std::vector<Vector>& path ) {
+
+	Vector centroid,bbox;
+
+	std::vector<Vector> result = path_resample( path, 64 );
+	path_transform( result, path_centroid(result), 250 );
+	path_vectorize( result );
+
+	return result;
 }
-
-
 
 
 // actual feature value calculation takes place below
 
 void Path::load( InputState& state ) {
+
+	if (path.empty())
+		path = path_process( m_bounds );
 
 	m_result = Vector(0,0,0);
 	has_result = 0;
@@ -201,20 +152,19 @@ void Path::load( InputState& state ) {
 		BlobState& bs = state[i];
 
 		for (std::map<int,BlobHistory>::iterator hist = bs.begin(); hist != bs.end(); hist++ ) {
-			if (hist->second.size() <= 1) continue;
-			Vector tmp = hist->second.pos - hist->second[1].pos;
-			m_result = m_result + tmp;
+			std::vector<Vector> rawpath; 
+			for (std::deque<BasicBlob>::iterator b = hist->second.begin(); b != hist->second.end(); b++)
+				rawpath.push_back( b->pos );
+
+			std::vector<Vector> curpath = path_process( rawpath );
+			m_result.x += path_distance( curpath, path );
 			count++;
 		}
 	}
 
 	if (count == 0) return;
 	m_result = m_result * (1.0/(double)count);
-
-	double tmp = m_result.length();
-	if (tmp == 0.0) return;
-
-	has_result = (m_bounds.size() == 2) ? ((tmp >= m_bounds[0].length()) && (tmp <= m_bounds[1].length())) : 1;
+	if (m_result.x >= 0.8) has_result = 1;
 }
 
 

@@ -24,6 +24,10 @@ class TISCH_SHARED Path: public Feature<Vector> {
 
 		const char* name() const { return "Path"; }
 
+	private:
+
+		std::vector<Vector> path;
+
 };
 
 #endif // _PATH_H_
