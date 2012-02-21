@@ -56,7 +56,7 @@ void push_gesture( std::string& tmpl ) {
 	std::istringstream stream( tmpl );
 	stream >> tmp;
 	dial->region.gestures.push_back( tmp ); 
-	std::cout << (char)27 << "[01;31m" << tmp << std::endl;
+	std::cerr << (char)27 << "[01;31m" << tmp << std::endl;
 }
 
 class MyCheckbox: public Checkbox {
@@ -69,6 +69,7 @@ class MyCheckbox: public Checkbox {
 
 			Checkbox::tap( pos, id );
 
+			std::cerr << (char)27 << "[2J" << (char)27 << "[;f" <<std::flush;
 			dial->region.gestures.clear();
 
 			if (single->get()) push_gesture(single_tmpl);
