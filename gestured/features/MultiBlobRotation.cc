@@ -58,6 +58,8 @@ void MultiBlobRotation::load( InputState& state ) {
 	if (count <= 1) return;
 	m_result = m_result / (double)count;
 
+	// FIXME: why can result be NaN on rare occasions?
+	if (isnan(m_result) || isinf(m_result)) return;
 	if (m_result == 0.0) return;
 	while (m_result <  0.0) m_result += 2*M_PI;
 
