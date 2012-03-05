@@ -23,9 +23,9 @@ void Widget::lower( Widget* widget ) { if (parent) parent->lower( this ); }
 void Widget::transform( Vector& vec, int abs, int local ) { 
 	if (abs) vec = vec - abspos; 
 	if (parent && !local) {
+		vec.rotate( parent->absangle );
 		vec.x /= parent->asx;
 		vec.y /= parent->asy;
-		vec.rotate( parent->absangle );
 	} else {
 		vec.x /= asx;
 		vec.y /= asy;

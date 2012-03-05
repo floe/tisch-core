@@ -172,11 +172,12 @@ void Matcher::process_blob( BasicBlob& blob ) {
 }
 
 
-void Matcher::process_gestures() {
+void Matcher::prepare_updates() {
 
 	lock();
 
 	int update = 0;
+	has_frame = true;
 
 	// remove vanished IDs from stickies, add to update list
 	for (std::set<int>::iterator id = old_ids.begin(); id != old_ids.end(); id++)
@@ -205,9 +206,13 @@ void Matcher::process_gestures() {
 		// add all stickies to update list
 		for (std::map<int,StateRegion*>::iterator sticky = stickies.begin(); sticky != stickies.end(); sticky++)
 			needs_update.insert( sticky->second );
+	}
 
 		// release semaphore so that incoming updates can be processed
 		release();
+}
+
+void Matcher::process_updates() {
 
 		// update all (ex-)stickies and all volatiles
 		for (std::set<StateRegion*>::iterator reg = needs_update.begin(); reg != needs_update.end(); reg++) {
@@ -216,11 +221,9 @@ void Matcher::process_gestures() {
 		}
 
 		needs_update.clear();
+}
 
-	} else release();
-
-	// TODO: sleep? if so, how long?
-	usleep( 5000 );
+void Matcher::prepare_gestures() {
 
 	// cycle ids
 	old_ids = cur_ids;
@@ -256,7 +259,7 @@ void Matcher::process_gestures() {
 
 			// transmit the current gesture along with the matched feature instances
 			if (verbose > 2) std::cout << "recognized a gesture: " << (*reg)->id << " " << *gst << std::endl;
-			trigger_gesture( (*reg)->id, gst );
+			action_queue.push_back( Action( (*reg)->id, gst ) );
 
 			if (gst->flags() & GESTURE_FLAGS_STICKY) {
 				// now add all blob ids from the current input state to stickies..
@@ -274,12 +277,27 @@ void Matcher::process_gestures() {
 	release();
 }
 
+void Matcher::process_gestures() {
+	while (!action_queue.empty()) {
+		Action& a = action_queue.front();
+		trigger_gesture( a.first, a.second );
+		action_queue.pop_front();
+	}
+}
+
+bool Matcher::has_input_data() {
+	bool res = has_frame;
+	has_frame = 0;
+	return res;
+}
+
 
 
 MatcherTUIOInput::MatcherTUIOInput( Matcher* m ): TUIOInStream(), matcher(m) { }
 
 void MatcherTUIOInput::process_frame() {
-	matcher->process_gestures();
+	matcher->prepare_updates();
+	matcher->prepare_gestures();
 }
 
 void MatcherTUIOInput::process_blob( BasicBlob& b ) {

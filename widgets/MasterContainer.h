@@ -24,7 +24,7 @@ class TISCH_SHARED MasterContainer: public Container {
 		void doUpdate( Widget* target = 0 );
 		void adjust( int w, int h );
 		void usePeak();
-		int process_gestures();
+		bool process_gestures();
 
 	protected:
 

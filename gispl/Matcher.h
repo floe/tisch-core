@@ -17,6 +17,7 @@
 #include <Thread.h>
 
 
+typedef std::pair<unsigned long long,Gesture*> Action;
 typedef std::deque<StateRegion*> RegionList;
 
 class TISCH_SHARED Matcher: public Thread {
@@ -29,7 +30,14 @@ class TISCH_SHARED Matcher: public Thread {
 		virtual void trigger_gesture( unsigned long long id, Gesture* g ) = 0;
 
 		virtual void process_blob( BasicBlob& blob );
+
+		virtual void prepare_updates();
+		virtual void process_updates();
+
+		virtual void prepare_gestures();
 		virtual void process_gestures();
+
+		bool has_input_data();
 
 		void load_defaults( unsigned int set = 0 );
 		void* run();
@@ -48,7 +56,7 @@ class TISCH_SHARED Matcher: public Thread {
 		RegionList::iterator find( unsigned long long id );
 
 		int verbose;
-		bool do_run, use_peak;
+		bool do_run, use_peak, has_frame;
 
 		std::map<int,StateRegion*> stickies;
 		RegionList regions;
@@ -57,6 +65,7 @@ class TISCH_SHARED Matcher: public Thread {
 		std::set<int> old_ids;
 
 		std::set<StateRegion*> needs_update;
+		std::deque<Action> action_queue;
 };
 
 
