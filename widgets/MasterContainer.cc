@@ -25,50 +25,25 @@ struct TISCH_SHARED InputThread: public Thread {
 };
 
 
-typedef std::pair<Widget*,Gesture> Action;
-typedef std::deque<Action> ActionQueue;
-
 // matcher class for use with socket thread and OpenGL mainloop
 struct TISCH_SHARED InternalMatcher: public Matcher {
 
-	InternalMatcher(): Matcher(), queue() { do_run = 0; }
+	InternalMatcher(): Matcher() { }
 
-	// called from socket context
-	void process_gestures() { do_run = 1; }
-
-	// called from OpenGL context
-	int do_process_gestures() {
-		if (do_run) {
-			Matcher::process_gestures();
-			while (!queue.empty()) {
-				Action& a = queue.front();
-				a.first->action( &a.second );
-				queue.pop_front();
-			}
-		}
-		int res = do_run;
-		do_run = 0;
-		return res;
-	}
-		
-	// called from OpenGL context (via do_process_gestures)
+	// called from OpenGL context (via process_updates)
 	void request_update( unsigned long long id ) { 
 		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
 		if (target == g_widgets.end()) return;
 		(*target)->update();
 	}
 
-	// called from OpenGL context (via do_process_gestures)
+	// called from OpenGL context (via process_gestures)
 	void trigger_gesture( unsigned long long id, Gesture* g ) {
 		// deliver to widget
 		std::set<Widget*>::iterator target = g_widgets.find( (Widget*)id );
 		if (target == g_widgets.end()) return;
-		//(*target)->action( g );
-		queue.push_back( Action( *target, *g ) );
+		(*target)->action( g );
 	}
-
-	ActionQueue queue;
-
 };
 
 
@@ -90,8 +65,10 @@ void MasterContainer::usePeak() {
 	matcher->peakmode( 1 );
 }
 
-int MasterContainer::process_gestures() {
-	return matcher->do_process_gestures();
+bool MasterContainer::process_gestures() {
+	matcher->process_updates();
+	matcher->process_gestures();
+	return matcher->has_input_data();
 }
 
 
