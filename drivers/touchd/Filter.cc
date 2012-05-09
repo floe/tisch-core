@@ -1214,3 +1214,202 @@ int AreaFilter::createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, b
 		return 0;
 	return 1;
 }
+
+#ifdef HAS_FREENECT
+/*==============================================================================
+ * MarkerTrackerFilter
+==============================================================================*/
+MarkerTrackerFilter::MarkerTrackerFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+	checkImage();
+	
+	config->QueryIntAttribute( "MarkerTracker", &int_mt_enabled );
+	config->QueryIntAttribute( "MTthresh", &int_mt_thresh );
+	config->QueryIntAttribute( "MTbwthresh", &int_mt_bw_thresh );
+	config->QueryIntAttribute( "MTmax", &int_mt_max );
+	config->QueryIntAttribute( "MTshowMarker", &int_mt_showMarker );
+
+	// check values for value range and set default values
+	(int_mt_enabled == 1)								? mt_enabled = true					: mt_enabled = false;
+	(int_mt_thresh >= 0 && int_mt_thresh <= 255)		? mt_thresh = int_mt_thresh			: mt_thresh = 100;
+	(int_mt_bw_thresh >= 0 && int_mt_bw_thresh <= 255)	? mt_bw_thresh = int_mt_bw_thresh	: mt_bw_thresh = 40;
+	(int_mt_max >= 0 && int_mt_max <= 255)				? mt_max = int_mt_max				: mt_max = 255;
+	(int_mt_showMarker == 1)							? mt_showMarker = true				: mt_showMarker = false;
+
+	// create MarkerTracker with read settings
+	mMarkerTracker = new MarkerTracker(mt_thresh, mt_bw_thresh, mt_max, _input->getImage()->getWidth(), _input->getImage()->getHeight() );
+
+	// setting variables for Configurator
+	countOfOptions = 5; // quantity of variables that can be manipulated
+
+}
+
+int MarkerTrackerFilter::process() {
+
+	//shortimage = input->getShortImage();
+	// MarkerTrackFilter needs no SplitFilter to seperate IntensityImage and RGBImage
+	// to get access to RGBImage.
+	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
+	image = input->getImage();
+
+	if( mt_enabled ) {
+		// call MarkerTracker here
+		mMarkerTracker->findMarker(rgbimage, image);
+	}
+
+	return 0;
+}
+
+void MarkerTrackerFilter::draw( GLUTWindow* win ) {
+
+	if( displayRGBImage )
+		win->show( *rgbimage, 0, 0);
+	else
+		win->show( *image, 0, 0);
+	
+	if( displayRGBImage && mt_enabled ) {
+		// show detected Marker here
+
+		/*
+		glTranslatef(0,0,500);
+		glLineWidth(2.0);
+		glColor4f(0.0,1.0,0.0,1.0);//Change the object colors to green
+		glBegin(GL_QUADS);//Start drawing quads
+		glVertex2f(40,40);//first coordinate
+		glVertex2f(40,20);//second coordinate
+		glColor4f(0.0,0.0,1.0,1.0);//Change the color to blue halfway through to create a neat color effect
+		glVertex2f(20,20);//third coordinate (now blue)
+		glVertex2f(20,40);//last coordinate
+		glEnd();//Stop drawing quads
+		*/
+	}
+
+	if( mt_enabled ) {
+		glColor4f( 1.0, 0.0, 0.0, 1.0 );
+		win->print( std::string("makertracker running"), 10, win->getHeight() - 30 );
+	}
+
+	if( mt_enabled && mt_showMarker ) {
+		glColor4f( 1.0, 0.0, 0.0, 1.0 );
+		win->print( std::string("maker"), 10, win->getHeight() - 50 );
+	}
+	
+}
+
+const char* MarkerTrackerFilter::getOptionName(int option) {
+	const char* OptionName = "";
+
+	switch(option) {
+	case 0:
+		OptionName = "MT enabled";
+		break;
+	case 1:
+		OptionName = "MT show Marker";
+		break;
+	case 2:
+		OptionName = "MT thresh";
+		break;
+	case 3:
+		OptionName = "MT BW thresh";
+		break;
+	case 4:
+		OptionName = "MT max";
+		break;
+	default:
+		// leave OptionName empty
+		break;
+	}
+
+	return OptionName;
+}
+
+double MarkerTrackerFilter::getOptionValue(int option) {
+	double OptionValue = -1.0;
+
+	switch(option) {
+	case 0:
+		OptionValue = mt_enabled;
+		break;
+	case 1:
+		OptionValue = mt_showMarker;
+		break;
+	case 2:
+		OptionValue = mt_thresh;
+		break;
+	case 3:
+		OptionValue = mt_bw_thresh;
+		break;
+	case 4:
+		OptionValue = mt_max;
+		break;
+	default:
+		// leave OptionValue = -1.0
+		break;
+	}
+
+	return OptionValue;
+}
+
+void MarkerTrackerFilter::modifyOptionValue(double delta, bool overwrite) {
+	switch(toggle) {
+	case 0: // mt_enabled is a boolean value
+		if(overwrite) {
+			mt_enabled = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_enabled));
+		} else {
+			mt_enabled += delta;
+			mt_enabled = (mt_enabled < 0) ? 0 : (mt_enabled > 1) ? 1 : mt_enabled;
+		}
+		break;
+	case 1: // mt_showMarker is a boolean value
+		if(overwrite) {
+			mt_showMarker = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_showMarker));
+		} else {
+			mt_showMarker += delta;
+			mt_showMarker = (mt_showMarker < 0) ? 0 : (mt_showMarker > 1) ? 1 : mt_showMarker;
+		}
+		break;
+	case 2:
+		if(overwrite) {
+			mt_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
+		} else {
+			mt_thresh += delta;
+			mt_thresh = (mt_thresh < 0) ? 0 : (mt_thresh > mt_max) ? mt_max : mt_thresh;
+		}
+		// pass new setting to MarkerTracker
+		mMarkerTracker->update_thresh(mt_thresh);
+		break;
+	case 3:
+		if(overwrite) {
+			mt_bw_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
+		} else {
+			mt_bw_thresh += delta;
+			mt_bw_thresh = (mt_bw_thresh < 0) ? 0 : (mt_bw_thresh > mt_max) ? mt_max : mt_bw_thresh;
+		}
+		// pass new setting to MarkerTracker
+		mMarkerTracker->update_bw_thresh(mt_bw_thresh);
+		break;
+	case 4:
+		if(overwrite) {
+			mt_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+		} else {
+			mt_max += delta;
+			mt_max = (mt_max < 0) ? 0 : (mt_max > 255) ? 255 : mt_max;
+		}
+		break;
+	
+	}
+}
+
+TiXmlElement* MarkerTrackerFilter::getXMLRepresentation() {
+	
+	TiXmlElement* XMLNode = new TiXmlElement( "MarkerTrackerFilter" );
+	
+	XMLNode->SetAttribute( "MarkerTracker", mt_enabled );
+	XMLNode->SetAttribute( "MTthresh", mt_thresh );
+	XMLNode->SetAttribute( "MTBWthresh", mt_bw_thresh );
+	XMLNode->SetAttribute( "MTmax", mt_max );
+	XMLNode->SetAttribute( "MTshowMarker", mt_showMarker );
+	
+	return XMLNode;
+}
+
+#endif // HAS_FREENECT

@@ -36,9 +36,9 @@ void YUV420Image::getImage( RGBImage& target ) {
 		g = G_FROMYUV(Y1,Cr,Cb);
 		b = B_FROMYU(Y1,Cb);
 
-		target.setPixel(x,y,r,R);
-		target.setPixel(x,y,g,G);
-		target.setPixel(x,y,b,B);
+		target.setPixel(x,y,r,TR);
+		target.setPixel(x,y,g,TG);
+		target.setPixel(x,y,b,TB);
 	}
 }
 

@@ -52,6 +52,21 @@ class BlobList: public Filter {
 		BlobList* parent;
 		int width, height;
 
+#ifdef HAS_FREENECT
+		// MarkerTracker
+		// variables to read from XML
+		int int_mt_enabled;
+		int int_mt_thresh;
+		int int_mt_bw_thresh;
+		int int_mt_max;
+		
+		// variables for further use
+		bool mt_enabled;
+		unsigned char mt_thresh;
+		unsigned char mt_bw_thresh;
+		unsigned char mt_max;
+		MarkerTracker* mMarkerTracker;
+#endif
 		std::vector<Blob>* blobs;
 		std::vector<Blob>* oldblobs;
 };

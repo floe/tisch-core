@@ -70,7 +70,7 @@ class TISCH_SHARED Image {
 				
 				// no key given, so simply delete the image
 				delete[] rawdata;
-				
+				// delete[] data; // this is missing I think??
 			}
 			
 			#if !defined(_MSC_VER) && !defined(__ANDROID__)

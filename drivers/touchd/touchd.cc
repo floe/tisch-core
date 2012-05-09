@@ -229,12 +229,12 @@ void keyb( unsigned char c, int, int ) {
 			if(c == 0x09) {
 				tmp->nextOption();
 			}
-
+#ifdef HAS_FREENECT
 			// switch between displaying DepthImage and RGBImage
 			if( c == 'm' ) {
 				tmp->showRGBImage();
 			}
-
+#endif
 			// reset only this filter
 			if(c == 'r') {
 				tmp->reset( 0 );

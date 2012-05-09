@@ -17,9 +17,9 @@ void RGBImage::setPixel(int x, int y, unsigned char value, int channel) { data[(
 
 void RGBImage::setPixel(int x, int y, unsigned char r, unsigned char g, unsigned char b ) {
 	int offset = pixelOffset( x, y, 0 );
-	data[offset+0] = r;
-	data[offset+1] = g;
-	data[offset+2] = b;
+	data[offset + TR]	= r;
+	data[offset + TG]	= g;
+	data[offset + TB]	= b;
 }
 
 
@@ -59,7 +59,7 @@ RGBImage::RGBImage( const char* path ) {
 
 void RGBImage::getIntensity(IntensityImage& target) const {
 	for (int offset = 0; offset < size; offset+=3) {
-		target.data[offset/3] = (data[offset+R] + data[offset+G] + data[offset+B]) / 3;
+		target.data[offset/3] = (data[offset + TR] + data[offset + TG] + data[offset + TB]) / 3;
 	}
 }
 
@@ -68,9 +68,9 @@ void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage&
 	int target_offs;
 	for (int offset = 0; offset < size; offset+=3) {
 
-		r = data[offset+R];
-		g = data[offset+G];
-		b = data[offset+B];
+		r = data[offset + TR];
+		g = data[offset + TG];
+		b = data[offset + TB];
 
 		max = (r > g ? r : g); max = (max > b ? max : b);
 		min = (r < g ? r : g); min = (min < b ? min : b);
@@ -104,9 +104,9 @@ void RGBImage::combine(const IntensityImage& red, const IntensityImage& green, c
 	for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
 		chanoffset = red.pixelOffset(x,y);
 		rgboffset  = pixelOffset(x,y,0);
-		data[rgboffset+R] =   red.data[chanoffset];
-		data[rgboffset+G] = green.data[chanoffset];
-		data[rgboffset+B] =  blue.data[chanoffset];
+		data[rgboffset + TR]	=   red.data[chanoffset];
+		data[rgboffset + TG]	= green.data[chanoffset];
+		data[rgboffset + TB]	=  blue.data[chanoffset];
 	}
 }
 
@@ -129,9 +129,9 @@ void RGBImage::undistort( Vector scale, Vector delta, double coeff[5], RGBImage&
 		if ((temp.x < 0) || (temp.x >=  width)) continue;
 		if ((temp.y < 0) || (temp.y >= height)) continue;
 
-		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, R ), R );
-		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, G ), G );
-		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, B ), B );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, TR ), TR );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, TG ), TG );
+		target.setPixel( u, v, getPixel( (int)temp.x, (int)temp.y, TB ), TB );
 	}
 }
 

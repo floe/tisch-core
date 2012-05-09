@@ -52,8 +52,27 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	//config->QueryIntAttribute( "CrossColor", &cross);
 	//config->QueryIntAttribute( "TrailColor", &trail);
 
+#ifdef HAS_FREENECT
+	// MarkerTracker
+	config->QueryIntAttribute( "MarkerTracker", &int_mt_enabled );
+	config->QueryIntAttribute( "MTthresh", &int_mt_thresh );
+	config->QueryIntAttribute( "MTbwthresh", &int_mt_bw_thresh );
+	config->QueryIntAttribute( "MTmax", &int_mt_max );
+
+	// check values for value range and set default values
+	(int_mt_enabled == 1)								? mt_enabled = true					: mt_enabled = false;
+	(int_mt_thresh >= 0 && int_mt_thresh <= 255)		? mt_thresh = int_mt_thresh			: mt_thresh = 100;
+	(int_mt_bw_thresh >= 0 && int_mt_bw_thresh <= 255)	? mt_bw_thresh = int_mt_bw_thresh	: mt_bw_thresh = 40;
+	(int_mt_max >= 0 && int_mt_max <= 255)				? mt_max = int_mt_max				: mt_max = 255;
+
+	// create MarkerTracker with read settings
+	mMarkerTracker = new MarkerTracker(mt_thresh, mt_bw_thresh, mt_max, width, height);
+
 	// setting variables for Configurator
+	countOfOptions = 9; // quantity of variables that can be manipulated
+#else
 	countOfOptions = 5; // quantity of variables that can be manipulated
+#endif
 }
 
 BlobList::~BlobList() {
@@ -86,6 +105,14 @@ int BlobList::process() {
 	{
 		*shortimage = *(input->getShortImage());
 		shortimage->convert(*image);
+
+#ifdef HAS_FREENECT
+		rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
+
+		if( mt_enabled ) {
+			// call MarkerTracker here
+		}
+#endif
 	}
 
 	// frame-local blob counter to differentiate between blobs
@@ -175,62 +202,84 @@ int BlobList::getID( unsigned char value ) {
 
 // draw the entire list to a window, taking care to minimize GL state switches
 void BlobList::draw( GLUTWindow* win ) {
+#ifdef HAS_FREENECT
+	if( displayRGBImage ) {
+		win->show( *rgbimage, 0, 0 );
+		if( mt_enabled ) {
+			// show detected Marker here
 
-	double xoff,yoff,height,size;
-	height = win->getHeight();
-
-	win->show( *image, 0, 0 );
-
-	glTranslatef(0,0,500); // FIXME: compensate video image default z offset
-	glLineWidth(2.0);
-
-	// draw trails
-	// glColor4f( trail.x, trail.y, trail.z, 1.0 );
-	glColor4f( 0.0, 0.0, 1.0, 1.0 );
-	glBegin( GL_LINES );
-
-	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
-
-		xoff = blob->pos.x;
-		yoff = height - blob->pos.y;
-
-		glVertex2d( xoff, yoff );
-		glVertex2d( xoff - blob->speed.x, yoff + blob->speed.y );
+			glTranslatef(0,0,500);
+			glLineWidth(2.0);
+			glColor4f(0.0,1.0,0.0,1.0);//Change the object colors to green
+			glBegin(GL_QUADS);//Start drawing quads
+			glVertex2f(40,40);//first coordinate
+			glVertex2f(40,20);//second coordinate
+			glColor4f(0.0,0.0,1.0,1.0);//Change the color to blue halfway through to create a neat color effect
+			glVertex2f(20,20);//third coordinate (now blue)
+			glVertex2f(20,40);//last coordinate
+			glEnd();//Stop drawing quads
+		}
 	}
+	else {
+#endif //HAS_FREENECT
+		double xoff,yoff,height,size;
+		height = win->getHeight();
 
-	glEnd();
+		win->show( *image, 0, 0 );
 
-	// draw size-adjusted crosshairs
-	//glColor4f( cross.x, cross.y, cross.z, 1.0 );
-	glColor4f( 0.0, 1.0, 0.0, 1.0 );
-	glBegin( GL_LINES );
+		glTranslatef(0,0,500); // FIXME: compensate video image default z offset
+		glLineWidth(2.0);
 
-	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
+		// draw trails
+		// glColor4f( trail.x, trail.y, trail.z, 1.0 );
+		glColor4f( 0.0, 0.0, 1.0, 1.0 );
+		glBegin( GL_LINES );
 
-		xoff = blob->pos.x;
-		yoff = height - blob->pos.y;
-		size = sqrt((double)blob->size)/factor;
+		for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 
-		glVertex2d( xoff - blob->axis1.x, yoff + blob->axis1.y );
-		glVertex2d( xoff + blob->axis1.x, yoff - blob->axis1.y );
+			xoff = blob->pos.x;
+			yoff = height - blob->pos.y;
 
-		glVertex2d( xoff - blob->axis2.x, yoff + blob->axis2.y );
-		glVertex2d( xoff + blob->axis2.x, yoff - blob->axis2.y );
+			glVertex2d( xoff, yoff );
+			glVertex2d( xoff - blob->speed.x, yoff + blob->speed.y );
+		}
 
-		/*glVertex2f( xoff - size, yoff );
-		glVertex2f( xoff + size, yoff );
-		glVertex2f( xoff, yoff - size );
-		glVertex2f( xoff, yoff + size );*/
+		glEnd();
+
+		// draw size-adjusted crosshairs
+		//glColor4f( cross.x, cross.y, cross.z, 1.0 );
+		glColor4f( 0.0, 1.0, 0.0, 1.0 );
+		glBegin( GL_LINES );
+
+		for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
+
+			xoff = blob->pos.x;
+			yoff = height - blob->pos.y;
+			size = sqrt((double)blob->size)/factor;
+
+			glVertex2d( xoff - blob->axis1.x, yoff + blob->axis1.y );
+			glVertex2d( xoff + blob->axis1.x, yoff - blob->axis1.y );
+
+			glVertex2d( xoff - blob->axis2.x, yoff + blob->axis2.y );
+			glVertex2d( xoff + blob->axis2.x, yoff - blob->axis2.y );
+
+			/*glVertex2f( xoff - size, yoff );
+			glVertex2f( xoff + size, yoff );
+			glVertex2f( xoff, yoff - size );
+			glVertex2f( xoff, yoff + size );*/
+		}
+
+		glEnd();
+
+		// print IDs (and parent IDs)
+		for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
+			std::ostringstream tmp;
+			tmp << blob->id; if (blob->pid) tmp << "." << blob->pid;
+			win->print( tmp.str(), (int)blob->peak.x, (int)blob->peak.y );
+		}
+#ifdef HAS_FREENECT
 	}
-
-	glEnd();
-
-	// print IDs (and parent IDs)
-	for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
-		std::ostringstream tmp;
-		tmp << blob->id; if (blob->pid) tmp << "." << blob->pid;
-		win->print( tmp.str(), (int)blob->peak.x, (int)blob->peak.y );
-	}
+#endif
 }
 
 
@@ -278,6 +327,21 @@ const char* BlobList::getOptionName(int option) {
 	case 4:
 		OptionName = "Peakmode";
 		break;
+#ifdef HAS_FREENECT
+	// MarkerTracker
+	case 5:
+		OptionName = "MT enabled";
+		break;
+	case 6:
+		OptionName = "MT thresh";
+		break;
+	case 7:
+		OptionName = "MT BW thresh";
+		break;
+	case 8:
+		OptionName = "MT max";
+		break;
+#endif
 	default:
 		// leave OptionName empty
 		break;
@@ -305,6 +369,21 @@ double BlobList::getOptionValue(int option) {
 	case 4:
 		OptionValue = peakmode;
 		break;
+#ifdef HAS_FREENECT
+	// MarkerTracker
+	case 5:
+		OptionValue = mt_enabled;
+		break;
+	case 6:
+		OptionValue = mt_thresh;
+		break;
+	case 7:
+		OptionValue = mt_bw_thresh;
+		break;
+	case 8:
+		OptionValue = mt_max;
+		break;
+#endif
 	default:
 		// leave OptionValue = -1.0
 		break;
@@ -355,7 +434,46 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 			peakmode = (peakmode < -MAX_VALUE) ? -MAX_VALUE : (peakmode > MAX_VALUE) ? MAX_VALUE : peakmode;
 		}
 		break;
+#ifdef HAS_FREENECT
+	// MarkerTracker
+	case 5: // mt_enabled is a boolean value
+		if(overwrite) {
+			mt_enabled = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_enabled));
+		} else {
+			mt_enabled += delta;
+			mt_enabled = (mt_enabled < 0) ? 0 : (mt_enabled > 1) ? 1 : mt_enabled;
+		}
+		break;
+	case 6:
+		if(overwrite) {
+			mt_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
+		} else {
+			mt_thresh += delta;
+			mt_thresh = (mt_thresh < 0) ? 0 : (mt_thresh > mt_max) ? mt_max : mt_thresh;
+		}
+		// pass new setting to MarkerTracker
+		mMarkerTracker->update_thresh(mt_thresh);
+		break;
+	case 7:
+		if(overwrite) {
+			mt_bw_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
+		} else {
+			mt_bw_thresh += delta;
+			mt_bw_thresh = (mt_bw_thresh < 0) ? 0 : (mt_bw_thresh > mt_max) ? mt_max : mt_bw_thresh;
+		}
+		// pass new setting to MarkerTracker
+		mMarkerTracker->update_bw_thresh(mt_bw_thresh);
+		break;
+	case 8:
+		if(overwrite) {
+			mt_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
+		} else {
+			mt_max += delta;
+			mt_max = (mt_max < 0) ? 0 : (mt_max > 255) ? 255 : mt_max;
+		}
+		break;
 	}
+#endif
 }
 
 TiXmlElement* BlobList::getXMLRepresentation() {
@@ -368,8 +486,16 @@ TiXmlElement* BlobList::getXMLRepresentation() {
 	XMLNode->SetAttribute( "HFlip", hflip );
 	XMLNode->SetAttribute( "VFlip", vflip );
 	XMLNode->SetAttribute( "Type",  type  );
-	XMLNode->SetAttribute( "TrackRadius", radius );
+	XMLNode->SetAttribute( "TrackRadiusZ", radius );
 	XMLNode->SetAttribute( "PeakFactor", factor );
-	
+
+#ifdef HAS_FREENECT
+	// MarkerTracker
+	XMLNode->SetAttribute( "MarkerTracker", mt_enabled );
+	XMLNode->SetAttribute( "MTthresh", mt_thresh );
+	XMLNode->SetAttribute( "MTbwthresh", mt_bw_thresh );
+	XMLNode->SetAttribute( "MTmax", mt_max );
+#endif
+
 	return XMLNode;
 }

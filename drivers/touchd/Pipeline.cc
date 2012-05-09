@@ -50,6 +50,7 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent, TiXmlElement*
 	if (type ==  "SpeckleFilter") filter = new  SpeckleFilter( config, parent );
 	if (type ==  "LowpassFilter") filter = new  LowpassFilter( config, parent );
 	if (type == "BandpassFilter") filter = new BandpassFilter( config, parent );
+	if (type == "MarkerTrackerFilter") filter = new MarkerTrackerFilter( config, parent );
 
 	if (filter) push_back( filter );
 

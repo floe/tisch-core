@@ -9,9 +9,9 @@
 
 #include "IntensityImage.h"
 
-#define R 0
-#define G 1
-#define B 2
+#define TR	0
+#define TG	1
+#define TB	2
 
 class TISCH_SHARED RGBImage: public Image {
 

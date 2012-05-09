@@ -59,6 +59,12 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
 	useIntensityImage = 1;
+	flashmode = 0;
+	flashpath = "/";
+	gain = 0;
+	expo = 0;
+	bright = 0;
+
 	displayRGBImage = 0;
 	// setting variables for Configurator
 	countOfOptions = 0; // quantity of variables that can be manipulated

@@ -16,6 +16,7 @@
 #include "ShortImage.h"
 #include "IntensityImage.h"
 #include "RGBImage.h"
+#include "MarkerTracker.h"
 
 class Filter {
 
@@ -30,7 +31,9 @@ class Filter {
 			MAX_VALUE = 65535;
 			if(input != 0) {
 				useIntensityImage = input->getUseIntensityImage();
+#ifdef HAS_FREENECT
 				displayRGBImage = input->getdisplayRGBImage();
+#endif
 			}
 		}
 
@@ -49,12 +52,14 @@ class Filter {
 				int h = inputimg->getHeight();
 				shortimage = new ShortImage( w, h );
 			}
+#ifdef HAS_FREENECT
 			if(!rgbimage) {
 				RGBImage* inputimg = input->getRGBImage();
 				int w = inputimg->getWidth();
 				int h = inputimg->getHeight();
 				rgbimage = new RGBImage( w, h );
 			}
+#endif
 		}
 
 		virtual int process() = 0;
@@ -65,8 +70,10 @@ class Filter {
 		virtual void draw( GLUTWindow* win ) {
 			if(useIntensityImage)
 				win->show( *image, 0, 0 );
+#ifdef HAS_FREENECT
 			else if( displayRGBImage )
 				win->show( *rgbimage, 0, 0 );
+#endif
 			else
 				win->show( *shortimage, 0, 0 );
 		}
@@ -79,17 +86,18 @@ class Filter {
 
 		// Configurator functions
 		void nextOption() { toggle = (countOfOptions > 0) ? ((toggle + 1) % countOfOptions) : toggle; }
-		void showRGBImage() { displayRGBImage = (displayRGBImage + 1) % 2; };
 		int getCurrentOption() { return toggle; }
 		const int getOptionCount() { return countOfOptions; }
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
 		int getUseIntensityImage() { return useIntensityImage; };
-		int getdisplayRGBImage() { return displayRGBImage; };
 		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
 		Filter* getParent() {return input;};
-
+#ifdef HAS_FREENECT
+		int getdisplayRGBImage() { return displayRGBImage; };
+		void showRGBImage() { displayRGBImage = (displayRGBImage + 1) % 2; };
+#endif
 	protected:
 
 		int shmid;
@@ -241,5 +249,36 @@ class AreaFilter: public Filter {
 		 
 };
 
-#endif // _FILTER_H_
+#ifdef HAS_FREENECT
+class MarkerTrackerFilter: public Filter {
+	public:
+		MarkerTrackerFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		virtual int process();
+		virtual void draw( GLUTWindow* win );
 
+		// Configurator
+		virtual const char* getOptionName(int option);
+		virtual double getOptionValue(int option);
+		virtual void modifyOptionValue(double delta, bool overwrite);
+		
+		virtual TiXmlElement* getXMLRepresentation();
+	protected:
+		// variables to read from XML
+		int int_mt_enabled;
+		int int_mt_thresh;
+		int int_mt_bw_thresh;
+		int int_mt_max;
+		int int_mt_showMarker;
+		
+		// variables for further use
+		bool mt_enabled;
+		bool mt_showMarker;
+		unsigned char mt_thresh;
+		unsigned char mt_bw_thresh;
+		unsigned char mt_max;
+		MarkerTracker* mMarkerTracker;
+
+};
+#endif // HAS_FREENECT
+
+#endif // _FILTER_H_
