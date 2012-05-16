@@ -58,18 +58,22 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	config->QueryIntAttribute( "MTthresh", &int_mt_thresh );
 	config->QueryIntAttribute( "MTbwthresh", &int_mt_bw_thresh );
 	config->QueryIntAttribute( "MTmax", &int_mt_max );
+	config->QueryIntAttribute( "MTshowMarker", &int_mt_showMarker );
 
 	// check values for value range and set default values
 	(int_mt_enabled == 1)								? mt_enabled = true					: mt_enabled = false;
 	(int_mt_thresh >= 0 && int_mt_thresh <= 255)		? mt_thresh = int_mt_thresh			: mt_thresh = 100;
 	(int_mt_bw_thresh >= 0 && int_mt_bw_thresh <= 255)	? mt_bw_thresh = int_mt_bw_thresh	: mt_bw_thresh = 40;
 	(int_mt_max >= 0 && int_mt_max <= 255)				? mt_max = int_mt_max				: mt_max = 255;
+	(int_mt_showMarker == 1)							? mt_showMarker = true				: mt_showMarker = false;
 
 	// create MarkerTracker with read settings
 	mMarkerTracker = new MarkerTracker(mt_thresh, mt_bw_thresh, mt_max, width, height);
 
+	foundMarkers = new std::vector<MarkerTracker::markerData>;
+
 	// setting variables for Configurator
-	countOfOptions = 9; // quantity of variables that can be manipulated
+	countOfOptions = 10; // quantity of variables that can be manipulated
 #else
 	countOfOptions = 5; // quantity of variables that can be manipulated
 #endif
@@ -78,6 +82,8 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 BlobList::~BlobList() {
 	delete blobs;
 	delete oldblobs;
+	delete mMarkerTracker;
+	delete foundMarkers;
 }
 
 void BlobList::reset() {
@@ -111,6 +117,10 @@ int BlobList::process() {
 
 		if( mt_enabled ) {
 			// call MarkerTracker here
+			mMarkerTracker->findMarker(rgbimage, image, foundMarkers);
+
+			//cout << "#Marker: " << foundMarkers->size() << endl;
+
 		}
 #endif
 	}
@@ -205,20 +215,6 @@ void BlobList::draw( GLUTWindow* win ) {
 #ifdef HAS_FREENECT
 	if( displayRGBImage ) {
 		win->show( *rgbimage, 0, 0 );
-		if( mt_enabled ) {
-			// show detected Marker here
-
-			glTranslatef(0,0,500);
-			glLineWidth(2.0);
-			glColor4f(0.0,1.0,0.0,1.0);//Change the object colors to green
-			glBegin(GL_QUADS);//Start drawing quads
-			glVertex2f(40,40);//first coordinate
-			glVertex2f(40,20);//second coordinate
-			glColor4f(0.0,0.0,1.0,1.0);//Change the color to blue halfway through to create a neat color effect
-			glVertex2f(20,20);//third coordinate (now blue)
-			glVertex2f(20,40);//last coordinate
-			glEnd();//Stop drawing quads
-		}
 	}
 	else {
 #endif //HAS_FREENECT
@@ -279,6 +275,28 @@ void BlobList::draw( GLUTWindow* win ) {
 		}
 #ifdef HAS_FREENECT
 	}
+	
+	if( mt_enabled ) {
+		glColor4f( 1.0, 0.0, 0.0, 1.0 );
+		win->print( std::string("makertracker running"), 10, win->getHeight() - 30 );
+	}
+
+	if( mt_enabled && mt_showMarker ) {
+		
+		glColor4f( 1.0, 0.0, 0.0, 1.0 );
+
+		std::ostringstream MarkerID;
+		MarkerID.str("");
+		MarkerID << "marker ";
+
+		std::vector<MarkerTracker::markerData>::iterator iter;
+		for(iter = foundMarkers->begin(); iter < foundMarkers->end(); iter++) {
+			MarkerID << std::hex << setfill('0') << setw(2) << nouppercase << iter->markerID << " ";
+		}
+
+		win->print( MarkerID.str(), 10, win->getHeight() - 50  );
+		
+	}
 #endif
 }
 
@@ -333,12 +351,15 @@ const char* BlobList::getOptionName(int option) {
 		OptionName = "MT enabled";
 		break;
 	case 6:
-		OptionName = "MT thresh";
+		OptionName = "MT show marker";
 		break;
 	case 7:
-		OptionName = "MT BW thresh";
+		OptionName = "MT thresh";
 		break;
 	case 8:
+		OptionName = "MT BW thresh";
+		break;
+	case 9:
 		OptionName = "MT max";
 		break;
 #endif
@@ -375,12 +396,15 @@ double BlobList::getOptionValue(int option) {
 		OptionValue = mt_enabled;
 		break;
 	case 6:
-		OptionValue = mt_thresh;
+		OptionValue = mt_showMarker;
 		break;
 	case 7:
-		OptionValue = mt_bw_thresh;
+		OptionValue = mt_thresh;
 		break;
 	case 8:
+		OptionValue = mt_bw_thresh;
+		break;
+	case 9:
 		OptionValue = mt_max;
 		break;
 #endif
@@ -444,7 +468,15 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 			mt_enabled = (mt_enabled < 0) ? 0 : (mt_enabled > 1) ? 1 : mt_enabled;
 		}
 		break;
-	case 6:
+	case 6: // mt_showMarker is a boolean value
+		if(overwrite) {
+			mt_showMarker = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_showMarker));
+		} else {
+			mt_showMarker += delta;
+			mt_showMarker = (mt_showMarker < 0) ? 0 : (mt_showMarker > 1) ? 1 : mt_showMarker;
+		}
+		break;
+	case 7:
 		if(overwrite) {
 			mt_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
 		} else {
@@ -454,7 +486,7 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 		// pass new setting to MarkerTracker
 		mMarkerTracker->update_thresh(mt_thresh);
 		break;
-	case 7:
+	case 8:
 		if(overwrite) {
 			mt_bw_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
 		} else {
@@ -464,7 +496,7 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 		// pass new setting to MarkerTracker
 		mMarkerTracker->update_bw_thresh(mt_bw_thresh);
 		break;
-	case 8:
+	case 9:
 		if(overwrite) {
 			mt_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
 		} else {
@@ -495,6 +527,8 @@ TiXmlElement* BlobList::getXMLRepresentation() {
 	XMLNode->SetAttribute( "MTthresh", mt_thresh );
 	XMLNode->SetAttribute( "MTbwthresh", mt_bw_thresh );
 	XMLNode->SetAttribute( "MTmax", mt_max );
+	XMLNode->SetAttribute( "MTshowMarker", mt_showMarker );
+	
 #endif
 
 	return XMLNode;

@@ -255,6 +255,7 @@ class MarkerTrackerFilter: public Filter {
 		MarkerTrackerFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
 		virtual int process();
 		virtual void draw( GLUTWindow* win );
+		virtual ~MarkerTrackerFilter();
 
 		// Configurator
 		virtual const char* getOptionName(int option);
@@ -277,6 +278,7 @@ class MarkerTrackerFilter: public Filter {
 		unsigned char mt_bw_thresh;
 		unsigned char mt_max;
 		MarkerTracker* mMarkerTracker;
+		std::vector<MarkerTracker::markerData>* foundMarkers;
 
 };
 #endif // HAS_FREENECT

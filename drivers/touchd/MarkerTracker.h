@@ -7,7 +7,7 @@
 #ifndef _MARKERTRACKER_H_
 #define _MARKERTRACKER_H_
 
-#define MY_DEBUG 1;
+//#define MY_DEBUG;
 
 #include "PoseEstimation.h"
 
@@ -28,30 +28,26 @@ public:
 	MarkerTracker(unsigned char thresh, unsigned char bw_thresh, unsigned char max, int imgwidth, int imgheight);
 	virtual ~MarkerTracker();
 
+	struct markerData {
+		int markerID;
+		float resultMatrix[16];
+	};
+
 	void update_thresh( unsigned char new_thresh );
 	void update_bw_thresh( unsigned char new_bw_thresh );
 
 	int subpixSampleSafe( cv::Mat pSrc, CvPoint2D32f p );
-	void findMarker( RGBImage* rgbimage, IntensityImage* image );
-	//void findSquares( cv::Mat& matThresholded, cv::Mat& matRGBImage, cv::Mat& matConverted );
-	//void drawSquares( cv::Mat& matRGBImage );
-	//void detectBorder( cv::Mat& matRGBImage, cv::Mat& matConverted, vector<cv::Vec4f>* lineParams );
-	//void drawDetectedBorder( cv::Mat& matRGBImage, vector<cv::Vec4f>* lineParams );
-	//void detectExactCorners( cv::Mat& matRGBImage, cv::Mat& matConverted, vector<cv::Vec4f>* lineParams );
-	//void identifyMarker( );
-
-
+	void findMarker( RGBImage* rgbimage, IntensityImage* image, std::vector<markerData>* foundMarkers );
+	
+	
 protected:
 	
-	//CvMemStorage* memStorage;
 	bool isFirstStripe;
 	bool isFirstMarker;
 	CvSize picSize;
-	//vector<vector<cv::Point> > squares;
-	//cv::Point2f corners[4];
-	//int amountOfContours;
 	cv::Mat matMarker;
-
+	float markerPoseResultMatrix[16];
+	
 	cv::Scalar cv_red;
 	cv::Scalar cv_green;
 	cv::Scalar cv_blue;

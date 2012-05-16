@@ -29,7 +29,6 @@ MarkerTracker::MarkerTracker(unsigned char _thresh, unsigned char _bw_thresh, un
 #ifdef MY_DEBUG
 	cv::namedWindow("marker", CV_WINDOW_AUTOSIZE);
 	cv::namedWindow("thresholded", CV_WINDOW_AUTOSIZE);
-	cv::namedWindow("converted", CV_WINDOW_AUTOSIZE);
 	cv::namedWindow("stripe", CV_WINDOW_AUTOSIZE);
 #endif
 }
@@ -80,7 +79,7 @@ int MarkerTracker::subpixSampleSafe ( cv::Mat pSrc, CvPoint2D32f p )
 /*
 * main function called by process function in MarkerTrackerFilter from Filter.cc
 */
-void MarkerTracker::findMarker(RGBImage* rgbimage, IntensityImage* image) {
+void MarkerTracker::findMarker(RGBImage* rgbimage, IntensityImage* image, std::vector<markerData>* foundMarkers) {
 	unsigned char* org_rgb_image_data = rgbimage->getData(); // pointer to unsigned char array
 	//unsigned char* org_intensity_image_data = image->getData();
 
@@ -99,6 +98,8 @@ void MarkerTracker::findMarker(RGBImage* rgbimage, IntensityImage* image) {
 #ifdef MY_DEBUG
 	cv::imshow("thresholded", matThresholded);
 #endif
+
+	std::vector<MarkerTracker::markerData> tmpMarkers;
 
 	// find contours in thresholded image
 	vector< vector<cv::Point> > mCvContours;
@@ -436,11 +437,7 @@ void MarkerTracker::findMarker(RGBImage* rgbimage, IntensityImage* image) {
 			cv::threshold( matMarker, matMarker, bw_thresh, 255, CV_THRESH_BINARY);
 			//cvThreshold(iplMarker, iplMarker, bw_thresh, 255, CV_THRESH_BINARY);
 			
-#ifdef MY_DEBUG	
-			cv::Mat matTmp = cv::Mat( 100, 100, CV_8UC1);
-			cv::resize( matMarker, matTmp, matTmp.size(), 0, 0, cv::INTER_NEAREST);
-			cv::imshow("marker", matTmp);
-#endif MY_DEBUG
+
 
 //now we have a B/W image of a supposed Marker
 
@@ -469,12 +466,95 @@ void MarkerTracker::findMarker(RGBImage* rgbimage, IntensityImage* image) {
 				}
 			}
 
-			// missing: ID detection
+			//save the ID of the marker
+			int codes[4];
+			codes[0] = codes[1] = codes[2] = codes[3] = 0;
+			for (int i = 0; i < 16; i++)
+			{
+				int row = i >> 2;
+				int col = i % 4;
 
+				codes[0] <<= 1;
+				codes[0] |= cP[row][col]; // 0°
 
+				codes[1] <<= 1;
+				codes[1] |= cP[3-col][row]; // 90°
+
+				codes[2] <<= 1;
+				codes[2] |= cP[3-row][3-col]; // 180°
+
+				codes[3] <<= 1;
+				codes[3] |= cP[col][3-row]; // 270°
+			}
+
+			// cout << codes[0] << " " << codes[1] << " " << codes[2] << " " << codes[3] << endl;
+
+			if ( (codes[0]==0) || (codes[0]==0xffff) )
+				continue;
+
+			// account for symmetry
+			code = codes[0];
+			int angle = 0;
+			for ( int i = 1; i < 4; ++i ) {
+				if ( codes[i] < code ) {
+					code = codes[i];
+					angle = i;
+				}
+			}
+
+			//correct order of corners
+			if(angle != 0) {
+				CvPoint2D32f corrected_corners[4];
+				for(int i = 0; i < 4; i++)	corrected_corners[(i + angle)%4] = corners[i];
+				for(int i = 0; i < 4; i++)	corners[i] = corrected_corners[i];
+			}
+
+			//	printf ("Found: %04x\n", code);
+
+			//cout << "found marker " << std::hex << setfill('0') << setw(2) << nouppercase << code << endl;
+
+#ifdef MY_DEBUG
+			if ( isFirstMarker ) {
+				isFirstMarker = false;
+				cv::Mat matTmp = cv::Mat( 100, 100, CV_8UC1);
+				cv::resize( matMarker, matTmp, matTmp.size(), 0, 0, cv::INTER_NEAREST);
+				cv::imshow("marker", matTmp);
+			}
+#endif MY_DEBUG
+
+			// transfer camera coords to screen coords
+			for(int i = 0; i < 4; i++) {
+				corners[i].x -= picSize.width/2;
+				corners[i].y = -corners[i].y + picSize.height/2;
+			}
+
+			CvPoint2D32f c_corners[4];
+			c_corners[0] = corners[0];
+			c_corners[1] = corners[1];
+			c_corners[2] = corners[2];
+			c_corners[3] = corners[3];
+
+			estimateSquarePose( markerPoseResultMatrix, c_corners, 0.045 );
+
+			MarkerTracker::markerData myMarker;
+			myMarker.markerID = code;
+			for(int i = 0; i<16; i++) {
+				myMarker.resultMatrix[i] = markerPoseResultMatrix[i];
+			}
+
+			tmpMarkers.push_back(myMarker);
+		
 		} // if( approx.size() == 4 ) {
 //------------------------------------------------------------------------------------
 	} // end main for loop looking for contours for( size_t i = 0; i < mCvContours.size(); i++) {
 //====================================================================================
+			
+	foundMarkers->clear();
+
+	std::vector<MarkerTracker::markerData>::iterator cp_iter;
+	for(cp_iter = tmpMarkers.begin(); cp_iter < tmpMarkers.end(); cp_iter++) {
+		foundMarkers->push_back(*cp_iter);
+	}
+
 
 }

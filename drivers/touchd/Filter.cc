@@ -1238,9 +1238,16 @@ MarkerTrackerFilter::MarkerTrackerFilter( TiXmlElement* _config, Filter* _input 
 	// create MarkerTracker with read settings
 	mMarkerTracker = new MarkerTracker(mt_thresh, mt_bw_thresh, mt_max, _input->getImage()->getWidth(), _input->getImage()->getHeight() );
 
+	foundMarkers = new std::vector<MarkerTracker::markerData>;
+	
 	// setting variables for Configurator
 	countOfOptions = 5; // quantity of variables that can be manipulated
 
+}
+
+MarkerTrackerFilter::~MarkerTrackerFilter() {
+	delete mMarkerTracker;
+	delete foundMarkers;
 }
 
 int MarkerTrackerFilter::process() {
@@ -1253,7 +1260,9 @@ int MarkerTrackerFilter::process() {
 
 	if( mt_enabled ) {
 		// call MarkerTracker here
-		mMarkerTracker->findMarker(rgbimage, image);
+		mMarkerTracker->findMarker(rgbimage, image, foundMarkers);
+
+		//cout << "#Marker: " << foundMarkers->size() << endl;
 	}
 
 	return 0;
@@ -1265,23 +1274,6 @@ void MarkerTrackerFilter::draw( GLUTWindow* win ) {
 		win->show( *rgbimage, 0, 0);
 	else
 		win->show( *image, 0, 0);
-	
-	if( displayRGBImage && mt_enabled ) {
-		// show detected Marker here
-
-		/*
-		glTranslatef(0,0,500);
-		glLineWidth(2.0);
-		glColor4f(0.0,1.0,0.0,1.0);//Change the object colors to green
-		glBegin(GL_QUADS);//Start drawing quads
-		glVertex2f(40,40);//first coordinate
-		glVertex2f(40,20);//second coordinate
-		glColor4f(0.0,0.0,1.0,1.0);//Change the color to blue halfway through to create a neat color effect
-		glVertex2f(20,20);//third coordinate (now blue)
-		glVertex2f(20,40);//last coordinate
-		glEnd();//Stop drawing quads
-		*/
-	}
 
 	if( mt_enabled ) {
 		glColor4f( 1.0, 0.0, 0.0, 1.0 );
@@ -1289,8 +1281,20 @@ void MarkerTrackerFilter::draw( GLUTWindow* win ) {
 	}
 
 	if( mt_enabled && mt_showMarker ) {
+		
 		glColor4f( 1.0, 0.0, 0.0, 1.0 );
-		win->print( std::string("maker"), 10, win->getHeight() - 50 );
+
+		std::ostringstream MarkerID;
+		MarkerID.str("");
+		MarkerID << "marker ";
+		
+		std::vector<MarkerTracker::markerData>::iterator iter;
+		for(iter = foundMarkers->begin(); iter < foundMarkers->end(); iter++) {
+			MarkerID << std::hex << setfill('0') << setw(2) << nouppercase << iter->markerID << " ";
+		}
+
+		win->print( MarkerID.str(), 10, win->getHeight() - 50  );
+		
 	}
 	
 }
