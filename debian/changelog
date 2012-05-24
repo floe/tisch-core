@@ -1,4 +1,4 @@
-libtisch2 (2.0.2-0ubuntu3~oneiric) oneiric; urgency=low
+libtisch2 (2.0.2-0ubuntu3~precise) precise; urgency=low
 
   * fix obscure C# build issue on Oneiric Ocelot
   * bump version to 2.0.2 due to forgotten wrapper update
