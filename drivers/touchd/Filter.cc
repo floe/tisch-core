@@ -1223,31 +1223,27 @@ MarkerTrackerFilter::MarkerTrackerFilter( TiXmlElement* _config, Filter* _input 
 	checkImage();
 	
 	config->QueryIntAttribute( "MarkerTracker", &int_mt_enabled );
-	config->QueryIntAttribute( "MTthresh", &int_mt_thresh );
-	config->QueryIntAttribute( "MTbwthresh", &int_mt_bw_thresh );
-	config->QueryIntAttribute( "MTmax", &int_mt_max );
 	config->QueryIntAttribute( "MTshowMarker", &int_mt_showMarker );
 
 	// check values for value range and set default values
-	(int_mt_enabled == 1)								? mt_enabled = true					: mt_enabled = false;
-	(int_mt_thresh >= 0 && int_mt_thresh <= 255)		? mt_thresh = int_mt_thresh			: mt_thresh = 100;
-	(int_mt_bw_thresh >= 0 && int_mt_bw_thresh <= 255)	? mt_bw_thresh = int_mt_bw_thresh	: mt_bw_thresh = 40;
-	(int_mt_max >= 0 && int_mt_max <= 255)				? mt_max = int_mt_max				: mt_max = 255;
-	(int_mt_showMarker == 1)							? mt_showMarker = true				: mt_showMarker = false;
+	(int_mt_enabled == 1)		? mt_enabled = true		: mt_enabled = false;
+	(int_mt_showMarker == 1)	? mt_showMarker = true	: mt_showMarker = false;
 
 	// create MarkerTracker with read settings
-	mMarkerTracker = new MarkerTracker(mt_thresh, mt_bw_thresh, mt_max, _input->getImage()->getWidth(), _input->getImage()->getHeight() );
+	mMarkerTracker = new MarkerTracker( _input->getImage()->getWidth(), _input->getImage()->getHeight() );
+	mMarkerTracker->addMarkerID(0xb44);
+	mMarkerTracker->addMarkerID(0x272);
 
-	foundMarkers = new std::vector<MarkerTracker::markerData>;
+	detectedMarkers = new std::vector<Ubitrack::Vision::SimpleMarkerInfo>;
 	
 	// setting variables for Configurator
-	countOfOptions = 5; // quantity of variables that can be manipulated
+	countOfOptions = 2; // quantity of variables that can be manipulated
 
 }
 
 MarkerTrackerFilter::~MarkerTrackerFilter() {
 	delete mMarkerTracker;
-	delete foundMarkers;
+	delete detectedMarkers;
 }
 
 int MarkerTrackerFilter::process() {
@@ -1260,9 +1256,8 @@ int MarkerTrackerFilter::process() {
 
 	if( mt_enabled ) {
 		// call MarkerTracker here
-		mMarkerTracker->findMarker(rgbimage, image, foundMarkers);
+		mMarkerTracker->findMarker(rgbimage, image, detectedMarkers);
 
-		//cout << "#Marker: " << foundMarkers->size() << endl;
 	}
 
 	return 0;
@@ -1288,9 +1283,9 @@ void MarkerTrackerFilter::draw( GLUTWindow* win ) {
 		MarkerID.str("");
 		MarkerID << "marker ";
 		
-		std::vector<MarkerTracker::markerData>::iterator iter;
-		for(iter = foundMarkers->begin(); iter < foundMarkers->end(); iter++) {
-			MarkerID << std::hex << setfill('0') << setw(2) << nouppercase << iter->markerID << " ";
+		std::vector<Ubitrack::Vision::SimpleMarkerInfo>::iterator iter;
+		for(iter = detectedMarkers->begin(); iter < detectedMarkers->end(); iter++) {
+			MarkerID << std::hex << setfill('0') << setw(2) << nouppercase << iter->ID << " ";
 		}
 
 		win->print( MarkerID.str(), 10, win->getHeight() - 50  );
@@ -1309,15 +1304,6 @@ const char* MarkerTrackerFilter::getOptionName(int option) {
 	case 1:
 		OptionName = "MT show Marker";
 		break;
-	case 2:
-		OptionName = "MT thresh";
-		break;
-	case 3:
-		OptionName = "MT BW thresh";
-		break;
-	case 4:
-		OptionName = "MT max";
-		break;
 	default:
 		// leave OptionName empty
 		break;
@@ -1335,15 +1321,6 @@ double MarkerTrackerFilter::getOptionValue(int option) {
 		break;
 	case 1:
 		OptionValue = mt_showMarker;
-		break;
-	case 2:
-		OptionValue = mt_thresh;
-		break;
-	case 3:
-		OptionValue = mt_bw_thresh;
-		break;
-	case 4:
-		OptionValue = mt_max;
 		break;
 	default:
 		// leave OptionValue = -1.0
@@ -1371,34 +1348,6 @@ void MarkerTrackerFilter::modifyOptionValue(double delta, bool overwrite) {
 			mt_showMarker = (mt_showMarker < 0) ? 0 : (mt_showMarker > 1) ? 1 : mt_showMarker;
 		}
 		break;
-	case 2:
-		if(overwrite) {
-			mt_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
-		} else {
-			mt_thresh += delta;
-			mt_thresh = (mt_thresh < 0) ? 0 : (mt_thresh > mt_max) ? mt_max : mt_thresh;
-		}
-		// pass new setting to MarkerTracker
-		mMarkerTracker->update_thresh(mt_thresh);
-		break;
-	case 3:
-		if(overwrite) {
-			mt_bw_thresh = (delta < 0) ? 0 : (delta > mt_max) ? mt_max : delta;
-		} else {
-			mt_bw_thresh += delta;
-			mt_bw_thresh = (mt_bw_thresh < 0) ? 0 : (mt_bw_thresh > mt_max) ? mt_max : mt_bw_thresh;
-		}
-		// pass new setting to MarkerTracker
-		mMarkerTracker->update_bw_thresh(mt_bw_thresh);
-		break;
-	case 4:
-		if(overwrite) {
-			mt_max = (delta < 0) ? 0 : (delta > 255) ? 255 : delta;
-		} else {
-			mt_max += delta;
-			mt_max = (mt_max < 0) ? 0 : (mt_max > 255) ? 255 : mt_max;
-		}
-		break;
 	
 	}
 }
@@ -1408,9 +1357,6 @@ TiXmlElement* MarkerTrackerFilter::getXMLRepresentation() {
 	TiXmlElement* XMLNode = new TiXmlElement( "MarkerTrackerFilter" );
 	
 	XMLNode->SetAttribute( "MarkerTracker", mt_enabled );
-	XMLNode->SetAttribute( "MTthresh", mt_thresh );
-	XMLNode->SetAttribute( "MTBWthresh", mt_bw_thresh );
-	XMLNode->SetAttribute( "MTmax", mt_max );
 	XMLNode->SetAttribute( "MTshowMarker", mt_showMarker );
 	
 	return XMLNode;

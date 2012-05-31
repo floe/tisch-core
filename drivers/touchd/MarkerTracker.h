@@ -7,7 +7,7 @@
 #ifndef _MARKERTRACKER_H_
 #define _MARKERTRACKER_H_
 
-//#define MY_DEBUG;
+#define MT_DEBUG
 
 #include "PoseEstimation.h"
 
@@ -15,9 +15,10 @@
 #include "ShortImage.h"
 #include "RGBImage.h"
 
+#include "SimpleMarkerDetection.h"
 #include "opencv2/imgproc/imgproc.hpp"
 
-#ifdef MY_DEBUG
+#ifdef MT_DEBUG
 #include "opencv2/highgui/highgui.hpp"
 #endif
 
@@ -25,28 +26,17 @@ using namespace std;
 
 class MarkerTracker {
 public:
-	MarkerTracker(unsigned char thresh, unsigned char bw_thresh, unsigned char max, int imgwidth, int imgheight);
+	MarkerTracker(int imgwidth, int imgheight);
 	virtual ~MarkerTracker();
 
-	struct markerData {
-		int markerID;
-		float resultMatrix[16];
-	};
-
-	void update_thresh( unsigned char new_thresh );
-	void update_bw_thresh( unsigned char new_bw_thresh );
-
+	void addMarkerID(int markerID);
 	int subpixSampleSafe( cv::Mat pSrc, CvPoint2D32f p );
-	void findMarker( RGBImage* rgbimage, IntensityImage* image, std::vector<markerData>* foundMarkers );
+	void findMarker( RGBImage* rgbimage, IntensityImage* image, std::vector<Ubitrack::Vision::SimpleMarkerInfo>* foundMarkers );
 	
 	
 protected:
 	
-	bool isFirstStripe;
-	bool isFirstMarker;
 	CvSize picSize;
-	cv::Mat matMarker;
-	float markerPoseResultMatrix[16];
 	
 	cv::Scalar cv_red;
 	cv::Scalar cv_green;
@@ -58,6 +48,11 @@ protected:
 	unsigned char thresh;
 	unsigned char bw_thresh;
 	unsigned char max;
+
+	IplImage* iplRGBImage;
+	IplImage* iplConverted;
+	std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers;
+    std::vector<int>* markerList;
 
 };
 

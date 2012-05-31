@@ -266,19 +266,13 @@ class MarkerTrackerFilter: public Filter {
 	protected:
 		// variables to read from XML
 		int int_mt_enabled;
-		int int_mt_thresh;
-		int int_mt_bw_thresh;
-		int int_mt_max;
 		int int_mt_showMarker;
 		
 		// variables for further use
 		bool mt_enabled;
 		bool mt_showMarker;
-		unsigned char mt_thresh;
-		unsigned char mt_bw_thresh;
-		unsigned char mt_max;
 		MarkerTracker* mMarkerTracker;
-		std::vector<MarkerTracker::markerData>* foundMarkers;
+		std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers;
 
 };
 #endif // HAS_FREENECT
