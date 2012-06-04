@@ -25,7 +25,6 @@ class Blob: public BasicBlob {
 
 		struct markerData {
 			int markerID;
-			float resultMatrix[16];
 		} assignedMarker;
 
 	protected:

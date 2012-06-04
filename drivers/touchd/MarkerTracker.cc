@@ -34,7 +34,6 @@ MarkerTracker::MarkerTracker(int _imgwidth, int _imgheight) {
 MarkerTracker::~MarkerTracker() {
 	cvReleaseImage(&iplRGBImage);
 	cvReleaseImage(&iplConverted);
-	delete detectedMarkers;
 	delete markerList;
 #ifdef MT_DEBUG
 	cvDestroyAllWindows();

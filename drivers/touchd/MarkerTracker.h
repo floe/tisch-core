@@ -31,7 +31,7 @@ public:
 
 	void addMarkerID(int markerID);
 	int subpixSampleSafe( cv::Mat pSrc, CvPoint2D32f p );
-	void findMarker( RGBImage* rgbimage, IntensityImage* image, std::vector<Ubitrack::Vision::SimpleMarkerInfo>* foundMarkers );
+	void findMarker( RGBImage* rgbimage, IntensityImage* image, std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers );
 	
 	
 protected:
@@ -45,13 +45,8 @@ protected:
 	cv::Scalar cv_magenta;
 	cv::Scalar cv_cyan;
 
-	unsigned char thresh;
-	unsigned char bw_thresh;
-	unsigned char max;
-
 	IplImage* iplRGBImage;
 	IplImage* iplConverted;
-	std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers;
     std::vector<int>* markerList;
 
 };
