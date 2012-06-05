@@ -22,6 +22,7 @@ BasicBlob::BasicBlob():
 	value = 1;
 	tracked = 0;
 	id = pid = 0;
+	assignedMarker.markerID = 0;
 }
 
 // load from istream
@@ -33,6 +34,7 @@ std::istream& operator>>( std::istream& s, BasicBlob& blob ) {
 	s >> blob.peak.x >> blob.peak.y;
 	s >> blob.axis1.x >> blob.axis1.y;
 	s >> blob.axis2.x >> blob.axis2.y;
+	s >> blob.assignedMarker.markerID;
 
 	return s;
 }
@@ -45,7 +47,8 @@ std::ostream& operator<<( std::ostream& s, BasicBlob& blob ) {
 	s << blob.id << " " << blob.pid << " ";
 	s << blob.peak.x << " " << blob.peak.y << " ";
 	s << blob.axis1.x << " " << blob.axis1.y << " ";
-	s << blob.axis2.x << " " << blob.axis2.y;
+	s << blob.axis2.x << " " << blob.axis2.y << " ";
+	s << blob.assignedMarker.markerID;
 
 	return s;
 }

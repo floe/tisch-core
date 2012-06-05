@@ -23,10 +23,6 @@ class Blob: public BasicBlob {
 
 		void setPeak( IntensityImage* image, double factor, double peakmode );
 
-		struct markerData {
-			int markerID;
-		} assignedMarker;
-
 	protected:
 		// Configutator
 		int toggle;

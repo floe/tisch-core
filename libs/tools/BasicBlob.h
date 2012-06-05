@@ -80,6 +80,10 @@ class TISCH_SHARED BasicBlob {
 		::Vector pos, speed;
 		::Vector peak, axis1, axis2;
 
+		struct markerData {
+			int markerID;
+		} assignedMarker;
+
 };
 
 #endif // _BASICBLOB_H_
