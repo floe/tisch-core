@@ -550,7 +550,7 @@ TiXmlElement* BlobList::getXMLRepresentation() {
 	XMLNode->SetAttribute( "HFlip", hflip );
 	XMLNode->SetAttribute( "VFlip", vflip );
 	XMLNode->SetAttribute( "Type",  type  );
-	XMLNode->SetAttribute( "TrackRadiusZ", radius );
+	XMLNode->SetAttribute( "TrackRadius", radius );
 	XMLNode->SetAttribute( "PeakFactor", factor );
 
 #ifdef HAS_FREENECT
