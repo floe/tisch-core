@@ -22,8 +22,9 @@ class TISCH_SHARED BlobMarker: public Feature<int> {
 		void load( InputState& state );
 
 		const char* name() const { return "BlobMarker"; }
-	
-		int markerID;
+		
+		std::vector<int> ids;
+		std::vector<int>::iterator cur;
 };
 
 #endif // _BLOBMARKER_H_

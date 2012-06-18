@@ -63,8 +63,12 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 
 	// create MarkerTracker with read settings
 	mMarkerTracker = new MarkerTracker(width, height);
-	mMarkerTracker->addMarkerID(0xb44);
-	mMarkerTracker->addMarkerID(0x272);
+	mMarkerTracker->addMarkerID(0x1228);
+	mMarkerTracker->addMarkerID(0x1c44);
+	mMarkerTracker->addMarkerID(0x0b44);
+	mMarkerTracker->addMarkerID(0x0690);
+	mMarkerTracker->addMarkerID(0x005a);
+	mMarkerTracker->addMarkerID(0x0272);
 
 	detectedMarkers = new std::vector<Ubitrack::Vision::SimpleMarkerInfo>;
 
@@ -228,7 +232,6 @@ int BlobList::process() {
 
 			if(abs(blob_x - mx) < xThresh && abs(blob_y - my) < yThresh) {
 				blob->assignedMarker.markerID = marker_iter->ID;
-				std::cout << "blobID: " << blob->id << " has markerID " << blob->assignedMarker.markerID << std::endl;
 			}
 		}
 
@@ -399,7 +402,7 @@ void BlobList::send( TUIOOutStream* oscOut ) {
 			tmp.pos.y  = 1.0 - tmp.pos.y;
 			tmp.peak.y = 1.0 - tmp.peak.y;
 		}
-
+		
 		*oscOut << tmp;
 	}
 }

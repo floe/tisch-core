@@ -42,6 +42,7 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 		curblob.id = blobid;
 		curblob.peak.x = x;
 		curblob.peak.y = y;
+		curblob.assignedMarker.markerID = unused;
 
 	} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
 

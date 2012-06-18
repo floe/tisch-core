@@ -35,13 +35,13 @@ std::istream& operator>>( std::istream& s, BasicBlob& blob ) {
 	s >> blob.axis1.x >> blob.axis1.y;
 	s >> blob.axis2.x >> blob.axis2.y;
 	s >> blob.assignedMarker.markerID;
-
+	
 	return s;
 }
 
 // dump to ostream
 std::ostream& operator<<( std::ostream& s, BasicBlob& blob ) {
-
+	
 	s << blob.pos.x << " " << blob.pos.y << " ";
 	s << blob.size << " ";
 	s << blob.id << " " << blob.pid << " ";

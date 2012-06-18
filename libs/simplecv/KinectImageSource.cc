@@ -151,7 +151,13 @@ void KinectImageSource::getImage( IntensityImage& target ) const {
 }
 
 void KinectImageSource::getImage( ShortImage& target ) const {
-	depthbuf[(curdb+1)%2]->swapData(target);
+	uint16_t* source = (uint16_t*)depthbuf[(curdb+1)%2]->getData();
+	uint16_t* targ = (uint16_t*)target.getData();
+	for (int i = 0; i < width*height; i++) {
+		// the depth data is in mm, from 0 to ~8000 = 13 bits
+		targ[i] = (8191 - source[i]) << 3;
+	}
+	//depthbuf[(curdb+1)%2]->swapData(target);
 }
 
 void KinectImageSource::getImage( RGBImage& target ) const {

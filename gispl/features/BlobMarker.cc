@@ -12,7 +12,9 @@ BlobMarker::BlobMarker( unsigned int tf ): Feature<int>( tf ) { }
 BlobMarker::~BlobMarker() { }
 
 void BlobMarker::load( InputState& state ) {
-	int markerID = 0;
+
+	ids.clear();
+
 	for (int i = 0; i < INPUT_TYPE_COUNT; i++) { 
 		if (!(typeflags & (1<<i))) continue;
 		
@@ -20,13 +22,16 @@ void BlobMarker::load( InputState& state ) {
 		std::map<int,BlobHistory>::iterator end = state[i].end();
 
 		while (pos != end) {
-			markerID = pos->second.first.assignedMarker.markerID;
+			ids.push_back(pos->second[0].assignedMarker.markerID);
 			pos++;
 		}
 
 	}
-
-	m_result = markerID;
+	cur = ids.begin();
+	if (cur != ids.end()) {
+		m_result = *cur;
+		has_result = 1;
+	} else has_result = 0;
 }
 
 RegisterFeature( BlobMarker );
