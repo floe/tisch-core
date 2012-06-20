@@ -184,42 +184,45 @@ int BlobList::process() {
 		blob->setPeak( image, factor, peakmode );
 	}
 
+
+	// also try to find a blob for each marker; if no blob is found, a blob is created for the marker position
 	for(std::vector<Ubitrack::Vision::SimpleMarkerInfo>::iterator marker_iter = detectedMarkers->begin();
 		marker_iter != detectedMarkers->end(); marker_iter++)
 	{
-		// also try to find a blob to marker
+		bool blob_found = false;
 			
+		double marker_x = marker_iter->pos[0];
+		double marker_y = marker_iter->pos[1];
+		double marker_z = marker_iter->pos[2];
+		
+		//           120cm
+		//        ----------  -
+		//       /        /   90
+		//      /        /    cm
+		//     ----------     -
+		// when kinect is 100cm above surface
+
+		// (x/z) / (FieldOfView_x_100cm/2) * width/2
+		// (y/z) / (FieldOfView_y_100cm/2) * height/2
+
+		// x -2.02 y -1.38			x 1.99 y -1.44
+		//
+		//
+		// x -2.03 y 1.44			x 1.96 y 1.49
+
+		// => x 0..4 y 0..2.8
+		// 640 = 4 => 1 = 160
+		// 480 = 2.8 => 1 = 171
+
+ 		// invert x coordinates (-), move origin to top left corner (+2), map to image coords (*160)
+		double mx = (-((marker_x / marker_z) / 60 * 320) + 2) * 160;
+		// move origin to top left corner (+1.4), map to image coords (*171)
+		double my = (((marker_y / marker_z) / 45 * 240) + 1.4) * 171;
+
 		for ( std::vector<Blob>::iterator blob = blobs->begin(); blob != blobs->end(); blob++ ) {
 
 			double blob_x = blob->pos.x;
 			double blob_y = blob->pos.y;
-			double marker_x = marker_iter->pos[0];
-			double marker_y = marker_iter->pos[1];
-			double marker_z = marker_iter->pos[2];
-		
-			//           120cm
-			//        ----------  -
-			//       /        /   90
-			//      /        /    cm
-			//     ----------     -
-			// when kinect is 100cm above surface
-
-			// (x/z) / (FieldOfView_x_100cm/2) * width/2
-			// (y/z) / (FieldOfView_y_100cm/2) * height/2
-
-			// x -2.02 y -1.38			x 1.99 y -1.44
-			//
-			//
-			// x -2.03 y 1.44			x 1.96 y 1.49
-
-			// => x 0..4 y 0..2.8
-			// 640 = 4 => 1 = 160
-			// 480 = 2.8 => 1 = 171
-
- 			// invert x coordinates (-), move origin to top left corner (+2), map to image coords (*160)
-			double mx = (-((marker_x / marker_z) / 60 * 320) + 2) * 160;
-			// move origin to top left corner (+1.4), map to image coords (*171)
-			double my = (((marker_y / marker_z) / 45 * 240) + 1.4) * 171;
 
 			//std::cout << "mx " << marker_x << " my " << marker_y << " mz " << marker_z << " calX " << mx << " calY " << my << std::endl;
 		
@@ -232,7 +235,26 @@ int BlobList::process() {
 
 			if(abs(blob_x - mx) < xThresh && abs(blob_y - my) < yThresh) {
 				blob->assignedMarker.markerID = marker_iter->ID;
+				blob_found = true;
+				break;
 			}
+		}
+		if(!blob_found)
+		{
+			Blob markerblob(value, gid);
+			value--; gid++;
+
+			if (value == 0) {
+				value = 254;
+				std::cerr << "Warning: too many type " << type << " blobs!" << std::endl;
+			}
+
+			markerblob.pos.x = mx; markerblob.pos.y = my;
+			markerblob.peak.x = mx;	markerblob.peak.y = my;
+			markerblob.size = 2000;
+			markerblob.type = INPUT_TYPE_FINGER;
+			markerblob.assignedMarker.markerID = marker_iter->ID;
+			blobs->push_back(markerblob);
 		}
 
 	}

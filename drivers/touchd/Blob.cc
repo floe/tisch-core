@@ -37,6 +37,17 @@ Blob::Blob( IntensityImage* image, Point seed, unsigned char _value, int gid, in
 	countOfOptions = 0; // number of variables that can be manipulated
 }
 
+Blob::Blob ( unsigned char _value, int gid )
+{
+	id = gid;
+	value = _value;
+	size = 1;
+	type = 0;
+	tracked = 0;
+	pid = 0;
+	assignedMarker.markerID = 0;
+}
+
 
 // scan a circular area around the blob position for non-zero pixels
 unsigned char Blob::scan( IntensityImage* image, double factor ) {

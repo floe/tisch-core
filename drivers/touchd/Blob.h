@@ -19,6 +19,8 @@ class Blob: public BasicBlob {
 
 		Blob( IntensityImage* image, Point seed, unsigned char value, int gid, int minsize, int maxsize );
 
+		Blob( unsigned char value, int gid );
+
 		unsigned char scan( IntensityImage* image, double factor );
 
 		void setPeak( IntensityImage* image, double factor, double peakmode );
