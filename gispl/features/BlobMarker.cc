@@ -22,7 +22,8 @@ void BlobMarker::load( InputState& state ) {
 		std::map<int,BlobHistory>::iterator end = state[i].end();
 
 		while (pos != end) {
-			ids.push_back(pos->second[0].assignedMarker.markerID);
+			if(pos->second[0].assignedMarker.markerID != 0)
+				ids.push_back(pos->second[0].assignedMarker.markerID);
 			pos++;
 		}
 
