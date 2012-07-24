@@ -214,13 +214,16 @@ void Matcher::prepare_updates() {
 
 void Matcher::process_updates() {
 
+	lock();
+	std::set<StateRegion*> tmp_update = needs_update;
+	needs_update.clear();
+	release();
+
 		// update all (ex-)stickies and all volatiles
-		for (std::set<StateRegion*>::iterator reg = needs_update.begin(); reg != needs_update.end(); reg++) {
+		for (std::set<StateRegion*>::iterator reg = tmp_update.begin(); reg != tmp_update.end(); reg++) {
 			if (verbose) std::cout << "requesting update of " << (*reg)->id << std::endl;
 			request_update( (*reg)->id );
 		}
-
-		needs_update.clear();
 }
 
 void Matcher::prepare_gestures() {
