@@ -68,8 +68,10 @@ KinectImageSource::KinectImageSource( int debug ) {
 KinectImageSource::~KinectImageSource() {
 	stop();
 	pthread_join( kinect_thread, NULL );
-	delete depthbuf;
-	delete videobuf;
+	delete depthbuf[0];
+	delete depthbuf[1];
+	delete videobuf[0];
+	delete videobuf[1];
 }
 
 
@@ -114,6 +116,9 @@ void* kinecthandler( void* arg ) {
 		int res = freenect_process_events( src->f_ctx );
 		if (res != 0) throw std::runtime_error( "freenect_process_events() failed." );
 	}
+
+	freenect_stop_depth( src->f_dev );
+	freenect_stop_video( src->f_dev );
 
 	return 0;
 }
