@@ -14,8 +14,22 @@ all: $(APPS) $(LIBS) $(WRAP)
 %.oo: %.mm *.h
 	$(CXX) -c $(CFLAGS) $< -o $@
 
+ifeq ($(OS),apple)
+
+%.S: %.sx
+	grep -v .hidden $< > $@
+	sed -i -e 's/jb .*/jb 0b/' $@
+	sed -i -e 's/_loop:/_loop: 0:/' $@
+
+%.o: %.S
+	gcc -Wall -c $(ASFLAGS) $< -o $@
+
+else
+
 %.o: %.sx
 	gcc -Wall -c $(ASFLAGS) $< -o $@
+
+endif
 
 %.o: %.cc *.h
 	$(CXX) -c $(CFLAGS) $< -o $@
