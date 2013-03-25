@@ -172,6 +172,29 @@ void KinectImageSource::setBrightness( int bright ) { }
 void KinectImageSource::printInfo( int feature ) { }
 void KinectImageSource::setFPS( int fps ) { }
 
+
+void KinectImageSource::setHiRes( bool hires ) {
+
+	freenect_frame_mode vmode;
+
+	if (run) return;
+
+	delete videobuf[0];
+	delete videobuf[1];
+
+	if (hires) {
+		vmode = freenect_find_video_mode( FREENECT_RESOLUTION_HIGH,   FREENECT_VIDEO_RGB );
+		videobuf[0] = new RGBImage( 1280, 1024 );
+		videobuf[1] = new RGBImage( 1280, 1024 );
+	} else {
+		vmode = freenect_find_video_mode( FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB );
+		videobuf[0] = new RGBImage( width, height );
+		videobuf[1] = new RGBImage( width, height );
+	}
+
+	freenect_set_video_mode( f_dev, vmode ); 
+}
+
 void KinectImageSource::tilt( int angle )
 {
 	freenect_set_tilt_degs(f_dev,angle);
