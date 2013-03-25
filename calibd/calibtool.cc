@@ -197,8 +197,8 @@ InputThread inputthread;
 
 void keyb( unsigned char key, int x, int y ) {
 	if ((key == 'f') || (key == 'F')) {
-		glutPositionWindow( 0, 0 );
-		glutReshapeWindow( xres, yres );
+		//glutPositionWindow( 0, 0 );
+		//glutReshapeWindow( xres, yres );
 		glutFullScreen();
 	}
 	if ((key == 'q') || (key == 'Q')) {

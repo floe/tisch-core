@@ -16,7 +16,15 @@ TUIOInStream::TUIOInStream( int port ):
 void TUIOInStream::process_blob( BasicBlob& b ) { }
 void TUIOInStream::process_frame() { }
 
-void TUIOInStream::run() { sock.Run(); }
+void TUIOInStream::run() { 
+	retry:
+	try {
+		sock.Run();
+	} catch (osc::Exception e) {
+		std::cerr << "calibd restarting due to exception: " << e.what() << std::endl;
+		goto retry;
+	}
+}
 void TUIOInStream::stop() { sock.AsynchronousBreak(); }
 
 
