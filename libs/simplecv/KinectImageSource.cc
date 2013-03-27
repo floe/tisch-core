@@ -55,12 +55,18 @@ KinectImageSource::KinectImageSource( int debug ) {
 	curvb  =   0;
 
 	fps    =  30;
-	run    =   1;
+	run    =   0;
 
 	depthbuf[0] = new ShortImage( width, height );
 	depthbuf[1] = new ShortImage( width, height );
 	videobuf[0] = new RGBImage( width, height );
 	videobuf[1] = new RGBImage( width, height );
+
+	freenect_frame_mode dmode = freenect_find_depth_mode( FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_REGISTERED );
+	freenect_frame_mode vmode = freenect_find_video_mode( FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB        );
+
+	freenect_set_depth_mode( f_dev, dmode ); // assert(dmode.bytes == src->depthbuf[0]->size())
+	freenect_set_video_mode( f_dev, vmode ); // assert(vmode.bytes == src->videobuf[0]->size())
 
 	freenect_set_user( f_dev, this );
 }
@@ -100,12 +106,6 @@ void* kinecthandler( void* arg ) {
 	freenect_set_depth_callback( src->f_dev, depth_cb );
 	freenect_set_video_callback( src->f_dev, rgb_cb );
 
-	freenect_frame_mode dmode = freenect_find_depth_mode( FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_REGISTERED );
-	freenect_frame_mode vmode = freenect_find_video_mode( FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB        );
-
-	freenect_set_depth_mode( src->f_dev, dmode ); // assert(dmode.bytes == src->depthbuf[0]->size())
-	freenect_set_video_mode( src->f_dev, vmode ); // assert(vmode.bytes == src->videobuf[0]->size())
-
 	freenect_set_depth_buffer( src->f_dev, src->depthbuf[src->curdb]->getData() );
 	freenect_set_video_buffer( src->f_dev, src->videobuf[src->curvb]->getData() );
 
@@ -125,6 +125,7 @@ void* kinecthandler( void* arg ) {
 
 
 void KinectImageSource::start() {
+	run = 1;
 	int res = pthread_create( &kinect_thread, NULL, kinecthandler, this );
 	if (res != 0) throw std::runtime_error( "error in pthread_create." );
 }
