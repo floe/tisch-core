@@ -104,6 +104,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\libs\simplecv\Blob.cc" />
     <ClCompile Include="..\libs\simplecv\Circle.cc" />
     <ClCompile Include="..\libs\simplecv\ColorLUT.cc" />
     <ClCompile Include="..\libs\simplecv\IntensityImage.cc" />
@@ -129,6 +130,7 @@
     <ClCompile Include="..\libs\simplecv\DirectShowImageSource.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\libs\simplecv\Blob.h" />
     <ClInclude Include="..\libs\simplecv\Circle.h" />
     <ClInclude Include="..\libs\simplecv\ColorLUT.h" />
     <ClInclude Include="..\libs\simplecv\Image.h" />

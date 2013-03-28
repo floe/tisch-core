@@ -99,7 +99,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\drivers\touchd\Blob.cc" />
     <ClCompile Include="..\drivers\touchd\BlobList.cc" />
     <ClCompile Include="..\drivers\touchd\Camera.cc" />
     <ClCompile Include="..\drivers\touchd\Configurator.cc" />
@@ -109,7 +108,6 @@
     <ClCompile Include="..\drivers\touchd\touchd.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\drivers\touchd\Blob.h" />
     <ClInclude Include="..\drivers\touchd\BlobList.h" />
     <ClInclude Include="..\drivers\touchd\Camera.h" />
     <ClInclude Include="..\drivers\touchd\Configurator.h" />

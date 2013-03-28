@@ -3,7 +3,7 @@ CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR)/calibd/ -I$(TOPDIR)/libs/osc/
 
 LIBS = libsimplecv.$(LSF)
 INCS = *.h
-OBJS = IntensityImage.o RGBImage.o YUV420Image.o YUV420SPImage.o YUYVImage.o Line.o Circle.o ShortImage.o ColorLUT.o
+OBJS = IntensityImage.o RGBImage.o YUV420Image.o YUV420SPImage.o YUYVImage.o Line.o Circle.o ShortImage.o ColorLUT.o Blob.o
 
 ifdef USE_BIGTOUCH
   APPS += ledtouch/bttest ledtouch/BigTouchCalibration 
