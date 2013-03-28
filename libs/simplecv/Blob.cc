@@ -31,10 +31,6 @@ Blob::Blob( IntensityImage* image, Point seed, unsigned char _value, int gid, in
 
 	speed.set( 0.0, 0.0 );
 	peak.set( image->getWidth()/2.0, image->getHeight()/2.0 );
-
-	// setting variables for Configurator
-	toggle = 0;
-	countOfOptions = 0; // number of variables that can be manipulated
 }
 
 Blob::Blob ( unsigned char _value, int gid )
