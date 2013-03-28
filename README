@@ -1,9 +1,9 @@
-TISCH Framework - Release 2.0 "Better Late Than Never"
-======================================================
+TISCH Framework - Release 3.0 "Back From The Dead"
+==================================================
 
 "Tangible Interactive Surfaces for Collaboration between Humans"
 
-The TISCH framework supports cross-platform development of multitouch
+The TISCH framework supports cross-platform development of novel UI
 applications. For details on the underlying architecture and source 
 code documentation, please visit the Sourceforge website:
 
@@ -13,7 +13,8 @@ http://tisch.sourceforge.net/
 Highlights
 ----------
 
-- ready-to-use multitouch widgets based on OpenGL
+- support for multitouch, tangible interfaces, full-body interaction...
+- ready-to-use user interface widgets based on OpenGL
 - reconfigurable, hardware-independent gesture recognition engine
 - support for widely used (move, scale, rotate..) as well as custom gestures
 
@@ -27,10 +28,10 @@ Highlights
 Directory Layout
 ----------------
 
-libtisch2-2.0/
+libtisch-3.0/
 	calibd/      Calibration Layer
 	drivers/     Hardware Abstraction Layer (HAL)
-	gestured/    Generic Gesture Recognition Layer
+	gispl/       Gestural Interface Specification Layer (gesture recognizer)
 	libs/        various helper libraries & wrappers for C#, Java, Python
 	scripts/     build scripts
 	widgets/     OpenGL-based Widget Layer
@@ -69,7 +70,7 @@ you can actually use multiple mice to emulate multitouch fairly well.
 Building & Requirements
 -----------------------
 
-Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
+Windows (tested with Visual Studio 2010 on Windows 7)
 
 	Requirements:
 	- Windows SDK 6.1 or greater (for DirectShow camera input)
@@ -77,7 +78,7 @@ Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
 
 	You need to have the Windows SDK & freeglut 2.4.0 or greater installed. By
 	default, the include paths point to a "freeglut" directory in the same parent
-	folder as the "libtisch-1.0" directory and to the default Windows SDK install
+	folder as the "libtisch-3.0" directory and to the default Windows SDK install
 	directory.
 
 	If you installed your libraries somewhere else, you may need to adjust these
@@ -93,7 +94,7 @@ Windows (tested with Visual Studio 2008 on Windows XP and Windows 7)
 	Then, just select the Debug or Release config and build the solution. All libs 
 	and binaries should be created in the appropriate output directory.
 
-Linux   (tested with gcc 4.4.4 on Ubuntu 10.10 and gcc 4.5.2 on Ubuntu 11.04)
+Linux   (tested with gcc 4.5.2 on Ubuntu 11.04 and gcc 4.6.3 on Ubuntu 12.04)
 MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
 
 	Requirements:
