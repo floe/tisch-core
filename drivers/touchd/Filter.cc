@@ -1215,7 +1215,7 @@ int AreaFilter::createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, b
 	return 1;
 }
 
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 /*==============================================================================
  * MarkerTrackerFilter
 ==============================================================================*/

@@ -52,7 +52,7 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 	//config->QueryIntAttribute( "CrossColor", &cross);
 	//config->QueryIntAttribute( "TrailColor", &trail);
 
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	// MarkerTracker
 	config->QueryIntAttribute( "MarkerTracker", &int_mt_enabled );
 	config->QueryIntAttribute( "MTshowMarker", &int_mt_showMarker );
@@ -82,8 +82,10 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _i
 BlobList::~BlobList() {
 	delete blobs;
 	delete oldblobs;
+	#ifdef HAS_UBITRACK
 	delete mMarkerTracker;
 	delete detectedMarkers;
+	#endif
 }
 
 void BlobList::reset() {
@@ -112,7 +114,7 @@ int BlobList::process() {
 		*shortimage = *(input->getShortImage());
 		shortimage->convert(*image);
 
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 		rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 
 		if( mt_enabled ) {
@@ -184,7 +186,7 @@ int BlobList::process() {
 		blob->setPeak( image, factor, peakmode );
 	}
 
-
+	#ifdef HAS_UBITRACK
 	// also try to find a blob for each marker; if no blob is found, a blob is created for the marker position
 	for(std::vector<Ubitrack::Vision::SimpleMarkerInfo>::iterator marker_iter = detectedMarkers->begin();
 		marker_iter != detectedMarkers->end(); marker_iter++)
@@ -258,6 +260,8 @@ int BlobList::process() {
 		}
 
 	}
+	#endif
+
 	// ---------------------------------------------------------------------------
 	// TODO: allow disabling this feature (even if parent set)
 	// find parent IDs from another list (if available)
@@ -285,7 +289,7 @@ int BlobList::getID( unsigned char value ) {
 
 // draw the entire list to a window, taking care to minimize GL state switches
 void BlobList::draw( GLUTWindow* win ) {
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	if( displayRGBImage ) {
 		win->show( *rgbimage, 0, 0 );
 	}
@@ -346,7 +350,7 @@ void BlobList::draw( GLUTWindow* win ) {
 			tmp << blob->id; if (blob->pid) tmp << "." << blob->pid;
 			win->print( tmp.str(), (int)blob->peak.x, (int)blob->peak.y );
 		}
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	}
 	
 	if( mt_enabled ) {
@@ -448,7 +452,7 @@ const char* BlobList::getOptionName(int option) {
 	case 4:
 		OptionName = "Peakmode";
 		break;
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	// MarkerTracker
 	case 5:
 		OptionName = "MT enabled";
@@ -484,7 +488,7 @@ double BlobList::getOptionValue(int option) {
 	case 4:
 		OptionValue = peakmode;
 		break;
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	// MarkerTracker
 	case 5:
 		OptionValue = mt_enabled;
@@ -543,7 +547,7 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 			peakmode = (peakmode < -MAX_VALUE) ? -MAX_VALUE : (peakmode > MAX_VALUE) ? MAX_VALUE : peakmode;
 		}
 		break;
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	// MarkerTracker
 	case 5: // mt_enabled is a boolean value
 		if(overwrite) {
@@ -561,8 +565,8 @@ void BlobList::modifyOptionValue(double delta, bool overwrite) {
 			mt_showMarker = (mt_showMarker < 0) ? 0 : (mt_showMarker > 1) ? 1 : mt_showMarker;
 		}
 		break;
-	}
 #endif
+	}
 }
 
 TiXmlElement* BlobList::getXMLRepresentation() {
@@ -578,7 +582,7 @@ TiXmlElement* BlobList::getXMLRepresentation() {
 	XMLNode->SetAttribute( "TrackRadius", radius );
 	XMLNode->SetAttribute( "PeakFactor", factor );
 
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 	// MarkerTracker
 	XMLNode->SetAttribute( "MarkerTracker", mt_enabled );
 	XMLNode->SetAttribute( "MTshowMarker", mt_showMarker );

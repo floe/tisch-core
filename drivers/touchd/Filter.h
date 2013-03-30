@@ -16,7 +16,10 @@
 #include "ShortImage.h"
 #include "IntensityImage.h"
 #include "RGBImage.h"
+
+#ifdef HAS_UBITRACK
 #include "MarkerTracker.h"
+#endif
 
 class Filter {
 
@@ -249,7 +252,7 @@ class AreaFilter: public Filter {
 		 
 };
 
-#ifdef HAS_FREENECT
+#ifdef HAS_UBITRACK
 class MarkerTrackerFilter: public Filter {
 	public:
 		MarkerTrackerFilter( TiXmlElement* _config = 0, Filter* _input = 0 );

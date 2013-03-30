@@ -52,7 +52,7 @@ class BlobList: public Filter {
 		BlobList* parent;
 		int width, height;
 
-#ifdef HAS_FREENECT
+	#ifdef HAS_UBITRACK
 		// MarkerTracker
 		// variables to read from XML
 		int int_mt_enabled;
@@ -63,8 +63,8 @@ class BlobList: public Filter {
 		bool mt_showMarker;
 		MarkerTracker* mMarkerTracker;
 		std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers;
+	#endif
 
-#endif
 		std::vector<Blob>* blobs;
 		std::vector<Blob>* oldblobs;
 };
