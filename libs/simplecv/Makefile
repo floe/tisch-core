@@ -1,5 +1,6 @@
 TOPDIR = ../../
 CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR)/calibd/ -I$(TOPDIR)/libs/osc/
+LDFLAGS += -ltools -L$(TOPDIR)/libs/tools/
 
 LIBS = libsimplecv.$(LSF)
 INCS = *.h
