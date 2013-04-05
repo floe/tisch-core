@@ -262,7 +262,7 @@ void Matcher::prepare_gestures() {
 
 			// transmit the current gesture along with the matched feature instances
 			if (verbose > 2) std::cout << "recognized a gesture: " << (*reg)->id << " " << *gst << std::endl;
-			action_queue.push_back( Action( (*reg)->id, gst ) );
+			action_queue.push_back( Action( (*reg)->id, *gst ) );
 
 			if (gst->flags() & GESTURE_FLAGS_STICKY) {
 				// now add all blob ids from the current input state to stickies..
@@ -283,7 +283,7 @@ void Matcher::prepare_gestures() {
 void Matcher::process_gestures() {
 	while (!action_queue.empty()) {
 		Action& a = action_queue.front();
-		trigger_gesture( a.first, a.second );
+		trigger_gesture( a.first, &(a.second) );
 		action_queue.pop_front();
 	}
 }

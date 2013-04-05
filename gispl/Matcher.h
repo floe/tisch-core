@@ -17,7 +17,7 @@
 #include <Thread.h>
 
 
-typedef std::pair<unsigned long long,Gesture*> Action;
+typedef std::pair<unsigned long long,Gesture> Action;
 typedef std::deque<StateRegion*> RegionList;
 
 class TISCH_SHARED Matcher: public Thread {
