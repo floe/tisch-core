@@ -11,7 +11,7 @@
 #include <BasicBlob.h>
 
 
-class Blob: public BasicBlob {
+class TISCH_SHARED Blob: public BasicBlob {
 
 	friend class BlobList;
 
