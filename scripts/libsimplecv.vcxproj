@@ -67,7 +67,7 @@
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(flycapture)\include\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(freenect)\include\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(flycapture)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -90,7 +90,7 @@
     <Link>
       <AdditionalDependencies>libtools.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(flycapture)\include\FlyCapture2.h')">FlyCapture2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="Exists('$(freenect)\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="Exists('$(freenect)\include\libfreenect.h')">pthreadVC2.lib;freenect.lib;libusb.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalDependencies Condition="Exists('$(winsdk)\include\dshow.h')">strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(flycapture)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,7 +120,7 @@
     <ClInclude Include="..\libs\simplecv\FFMVImageSource.h" />
     <ClCompile Include="..\libs\simplecv\FFMVImageSource.cc" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(freenect)\libfreenect.h')">
+  <ItemGroup Condition="Exists('$(freenect)\include\libfreenect.h')">
     <ClInclude Include="..\libs\simplecv\KinectImageSource.h" />
     <ClCompile Include="..\libs\simplecv\KinectImageSource.cc" />
   </ItemGroup>
