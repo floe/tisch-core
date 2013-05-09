@@ -73,13 +73,15 @@ Building & Requirements
 Windows (tested with Visual Studio 2010 on Windows 7)
 
 	Requirements:
-	- Windows SDK 6.1 or greater (for DirectShow camera input)
-	- freeglut 2.4.0 or greater (preferably 2.6.0)
+	- Windows SDK 7.0A or greater (for DirectShow camera input)
+	- freeglut 2.6.0   or greater (for OpenGL graphics)
+	- freenect 0.1.2   or greater (OpenKinect library, for Kinect input)
 
-	You need to have the Windows SDK & freeglut 2.4.0 or greater installed. By
-	default, the include paths point to a "freeglut" directory in the same parent
-	folder as the "libtisch-3.0" directory and to the default Windows SDK install
-	directory.
+	You need to have the Windows SDK & freeglut 2.6.0 or greater installed. By
+	default, the include paths point to a "libs/freeglut/" directory and to the
+	default Windows SDK install directory. Optionally, you can also include
+	libfreenect in "libs/freenect/". Pre-built binaries for freeglut and
+	freenect are provided in 2 ZIP archives in libs/.
 
 	If you installed your libraries somewhere else, you may need to adjust these
 	paths. To do so,
@@ -92,7 +94,9 @@ Windows (tested with Visual Studio 2010 on Windows 7)
 	Windows SDK (formerly Platform SDK) is installed.
 
 	Then, just select the Debug or Release config and build the solution. All libs 
-	and binaries should be created in the appropriate output directory.
+	and binaries should be created in the appropriate output directory. Note: for
+	Debug builds, the packaged binary libs are unsuitable, as they were compiled
+	as Release builds. 
 
 Linux   (tested with gcc 4.5.2 on Ubuntu 11.04 and gcc 4.6.3 on Ubuntu 12.04)
 MacOS X (tested with gcc 4.0 on MacOS X 10.5 and gcc 4.2 on MacOS X 10.6)
