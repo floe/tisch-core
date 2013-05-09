@@ -17,10 +17,6 @@
 #include <sys/time.h>
 #endif
 
-/*#ifdef _MSC_VER
-#include "usb.h"
-#endif*/
-
 #include <errno.h>  // errno
 
 #include <cstdio>
@@ -31,12 +27,6 @@
 
 
 KinectImageSource::KinectImageSource( int debug ) {
-
-	/*#ifdef _MSC_VER
-		usb_init();
-	#else
-		libusb_init( NULL );
-	#endif*/
 
 	// open the device
 	if (freenect_init( &f_ctx, NULL ) < 0)
