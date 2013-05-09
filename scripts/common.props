@@ -25,7 +25,7 @@
       <ForcedIncludeFiles>$(SolutionDir)\tisch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut)\lib;$(freeglut)\lib\x86;$(freenect)\lib;$(flycapture);..\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(winsdk)\Lib;$(freeglut)\lib;$(freenect)\lib;$(freenect)\lib\$(Configuration);$(flycapture);..\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
