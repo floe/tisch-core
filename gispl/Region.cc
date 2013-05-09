@@ -62,6 +62,8 @@ Region::Region( unsigned int _flags ): std::vector<Vector>(), gestures(), m_flag
 
 int Region::contains( Vector v ) {
 
+	if (size() < 3) return 0;
+
 	std::vector<Vector>::iterator pos1 = this->begin();
 	std::vector<Vector>::iterator pos2 = pos1; pos2++;
 	std::vector<Vector>::iterator end  = this->end();
