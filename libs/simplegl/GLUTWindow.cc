@@ -118,17 +118,12 @@ GLUTWindow::GLUTWindow( int w, int h, const std::string& title, int mode ) {
 		glutMultiButtonFunc( g_extbutton );
 		glutMultiMotionFunc( g_extmotion );
 		glutMultiPassiveFunc( g_extpassive );
-	#elif GLUT_HAS_MPX
-		glutXExtensionEntryFunc( g_extentry );
-		glutXExtensionButtonFunc( g_extbutton );
-		glutXExtensionMotionFunc( g_extmotion );
-		glutXExtensionPassiveFunc( g_extpassive );
-	#else
-		glutEntryFunc( g_entry );
-		glutMouseFunc( g_mouse );
-		glutMotionFunc( g_motion );
-		glutPassiveMotionFunc( g_passive );
 	#endif
+
+	glutEntryFunc( g_entry );
+	glutMouseFunc( g_mouse );
+	glutMotionFunc( g_motion );
+	glutPassiveMotionFunc( g_passive );
 }
 
 
