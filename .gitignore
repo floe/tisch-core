@@ -1,6 +1,9 @@
 libtisch.suo
+libtisch.dll
+libtisch.jar
 *.o
 *.so*
+*.class
 build/
 Debug/
 Release/
@@ -16,6 +19,8 @@ drivers/touchd/touchd
 gispl/gestured
 libs/simplegl/gldemo
 libs/simplegl/osmdemo
+libs/freeglut/
+libs/freenect/
 widgets/demo
 widgets/gispl
 widgets/graph
