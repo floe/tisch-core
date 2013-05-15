@@ -17,6 +17,7 @@ calibd/distort
 drivers/evdevd/evdevd
 drivers/touchd/touchd
 gispl/gestured
+gispl/generator
 libs/simplegl/gldemo
 libs/simplegl/osmdemo
 libs/freeglut/
