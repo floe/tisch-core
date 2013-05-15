@@ -15,6 +15,7 @@ BlobGroup::~BlobGroup() { }
 void BlobGroup::load( InputState& state ) {
 
 	groups.clear();
+	if (m_bounds.size() == 0) return;
 	unsigned int count = (unsigned int)m_bounds[0].x;
 	double radius = m_bounds[0].y;
 

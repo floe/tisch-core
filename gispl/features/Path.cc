@@ -138,6 +138,8 @@ std::vector<Vector> path_process( std::vector<Vector>& path ) {
 
 void Path::load( InputState& state ) {
 
+	if (m_bounds.size() == 0) return;
+
 	if (path.empty())
 		path = path_process( m_bounds );
 
