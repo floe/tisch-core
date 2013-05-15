@@ -50,7 +50,7 @@ $(LIBS): $(OBJS)
 
 %_wrap.cxx: ../%.i
 	mkdir -p $*
-	swig $(SWIGFLAGS) -I/usr/include -DTISCH_SHARED="" -o $@ -oh $*_wrap.h $<
+	swig2.0 $(SWIGFLAGS) -I/usr/include -DTISCH_SHARED="" -o $@ -oh $*_wrap.h $<
 
 clean:
 	-rm $(APPS) $(LIBS) $(OBJS) $(WRAP) *.o *.so* gmon.out
