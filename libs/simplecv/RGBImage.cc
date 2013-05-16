@@ -65,7 +65,7 @@ void RGBImage::getIntensity(IntensityImage& target) const {
 
 void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage& val ) const {
 	unsigned char r,g,b,max,min,h,s,v,c;
-	int target_offs;
+	int target_offs = 0;
 	for (int offset = 0; offset < size; offset+=3) {
 
 		r = data[offset + TR];
@@ -92,14 +92,16 @@ void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage&
 			}
 		}
 
-		target_offs = offset/3;
 		hue.data[target_offs] = h;
 		sat.data[target_offs] = s;
 		val.data[target_offs] = v;
+		target_offs++;
 	}
 }
 
-void RGBImage::combine(const IntensityImage& red, const IntensityImage& green, const IntensityImage& blue) {
+void RGBImage::combine(const IntensityImage& hue, const IntensityImage& sat, const IntensityImage& val) {
+
+	/* original (unused) code for combining RGB
 	int chanoffset,rgboffset;
 	for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
 		chanoffset = red.pixelOffset(x,y);
@@ -107,6 +109,41 @@ void RGBImage::combine(const IntensityImage& red, const IntensityImage& green, c
 		data[rgboffset + TR]	=   red.data[chanoffset];
 		data[rgboffset + TG]	= green.data[chanoffset];
 		data[rgboffset + TB]	=  blue.data[chanoffset];
+	}*/
+
+	unsigned char r,g,b,area,rest,p,q,t,h,s,v;
+	int target_offset = 0;
+
+	for (int offset = 0; offset < count; offset++) {
+
+		h = hue.data[offset];
+		s = sat.data[offset];
+		v = val.data[offset];
+
+		if (s == 0) {
+			r = v;
+			g = v;
+			b = v;
+		} else {
+			area = h / 43;
+			rest = h % 43; //?
+			p = ((int)v * ( 255 - s )) >> 8;
+			q = ((int)v * ( 255 - ((s * rest) >> 8))) >> 8;
+			t = ((int)v * ( 255 - ((s * (255-rest)) >> 8))) >> 8;
+			switch (area) {
+				case 0:  r = v; g = t; b = p; break;
+				case 1:  r = q; g = v; b = p; break;
+				case 2:  r = p; g = v; b = t; break;
+				case 3:  r = p; g = q; b = v; break;
+				case 4:  r = t; g = p; b = v; break;
+				default: r = v; g = p; b = q; break;
+			}
+		}
+
+		data[target_offset+TR] = r;
+		data[target_offset+TG] = g;
+		data[target_offset+TB] = b;
+		target_offset+=3;
 	}
 }
 
