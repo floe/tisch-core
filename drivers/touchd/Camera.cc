@@ -15,10 +15,6 @@
 	#include "FFMVImageSource.h"
 #endif
 
-#ifdef USE_BIGTOUCH
-	#include "ledtouch/FlatSensorImageSource.h"
-#endif
-
 #ifdef __linux
 	#include "V4LImageSource.h"
 #endif
@@ -115,12 +111,6 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	#ifdef __linux
 		if (sourcetype == CAMERA_TYPE_V4L) 
 			cam = new V4LImageSource( sourcepath, width, height, fps, verbose );
-		else
-	#endif
-
-	#ifdef USE_BIGTOUCH
-		if (sourcetype == CAMERA_TYPE_BIGTOUCH)
-			cam = new FlatSensorImageSource( width, height, "bigtouch.bin", false ); // true );
 		else
 	#endif
 

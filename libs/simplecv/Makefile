@@ -6,13 +6,6 @@ LIBS = libsimplecv.$(LSF)
 INCS = *.h
 OBJS = IntensityImage.o RGBImage.o YUV420Image.o YUV420SPImage.o YUYVImage.o Line.o Circle.o ShortImage.o ColorLUT.o Blob.o
 
-ifdef USE_BIGTOUCH
-  APPS += ledtouch/bttest ledtouch/BigTouchCalibration 
-  OBJS += ledtouch/BigTouch.o ledtouch/FlatSensorImageSource.o ledtouch/cusbdev.o ledtouch/ItNorm.o 
-  CFLAGS += -I. -Iledtouch/ -O2 $(shell pkg-config --cflags opencv)
-  LDFLAGS += -lusb -lpthread $(shell pkg-config --libs opencv)
-endif
-
 ifeq ($(ARCH),x86_64)
   OBJS += mmx.o mmx_threshold.o mmx_despeckle.o mmx_update.o mmx_intensity_c.o mmx_intensity_s.o mmx_subtract_cs.o mmx_subtract_sc.o
   ASFLAGS = -g -Dpax=rax -Dpbx=rbx -Dpcx=rcx -Dpdx=rdx -Dpsi=rsi -Dpdi=rdi
@@ -48,7 +41,4 @@ ifeq ($(OS)-$(ABI),linux-gnu)
 endif
 
 include $(TOPDIR)/scripts/rules.mk
-
-cvdemo.prof: cvdemo.o $(OBJS)
-	g++ $(CFLAGS) $^ -o $@ ../simplecv/*.o ../tools/*.o
 
