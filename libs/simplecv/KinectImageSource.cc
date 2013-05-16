@@ -77,7 +77,8 @@ void depth_cb( freenect_device* dev, void* depth, uint32_t timestamp ) {
 	pthread_mutex_lock( &(src->kinect_lock) );
 	src->curdb = (src->curdb+1)%2;
 	freenect_set_depth_buffer( dev, src->depthbuf[src->curdb]->getData() );
-	pthread_cond_signal( &(src->kinect_cond) );
+	// FIXME hack: always keep depth buffer synchronous with color buffer
+	// pthread_cond_signal( &(src->kinect_cond) );
 	pthread_mutex_unlock( &(src->kinect_lock) );
 }
 
