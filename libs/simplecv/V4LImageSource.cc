@@ -36,8 +36,8 @@
 
 
 int formats[] = {
-	V4L2_PIX_FMT_YUV420,
-	V4L2_PIX_FMT_YUYV
+	V4L2_PIX_FMT_YUYV,
+	V4L2_PIX_FMT_YUV420
 };
 
 const int num_formats = sizeof(formats)/sizeof(int);
