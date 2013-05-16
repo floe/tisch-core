@@ -52,3 +52,6 @@ include $(TOPDIR)/scripts/rules.mk
 cvdemo.prof: cvdemo.o $(OBJS)
 	g++ $(CFLAGS) $^ -o $@ ../simplecv/*.o ../tools/*.o
 
+test: test.o
+	g++ $(CFLAGS) $(LDFLAGS) $^ -o $@ -I$(TOPDIR)/libs/simplegl/ -lsimplecv -lglut -lsimplegl -L. -L$(TOPDIR)/libs/simplegl/
+
