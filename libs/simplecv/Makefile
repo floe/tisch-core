@@ -42,3 +42,5 @@ endif
 
 include $(TOPDIR)/scripts/rules.mk
 
+test: test.o
+	g++ $(CFLAGS) $(LDFLAGS) $^ -o $@ -I$(TOPDIR)/libs/simplegl/ -lsimplecv -lglut -lsimplegl -L. -L$(TOPDIR)/libs/simplegl/
