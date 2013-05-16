@@ -4,7 +4,7 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-#include "Filter.h"
+#include "LowpassFilter.h"
 
 LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
 	checkImage();

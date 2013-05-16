@@ -9,6 +9,17 @@
 #include "BlobList.h"
 #include "Camera.h"
 
+#include "AreaFilter.h"
+#include "BandpassFilter.h"
+#include "BGSubFilter.h"
+#include "FlipFilter.h"
+#include "LowpassFilter.h"
+#include "MarkerTrackerFilter.h"
+#include "SpeckleFilter.h"
+#include "SplitFilter.h"
+#include "ThreshFilter.h"
+
+
 Pipeline::Pipeline( TiXmlElement* _config ) {
 	// _config = root node of XML
 	TiXmlElement* filterSubtree = _config->FirstChildElement(); // access Filter Node

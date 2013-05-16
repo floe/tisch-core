@@ -7,7 +7,8 @@
 #ifndef _PIPELINE2_H_
 #define _PIPELINE2_H_
 
-#include "Filter.h"
+#include "AreaFilter.h"
+#include "BGSubFilter.h"
 
 
 class Pipeline: public std::vector<Filter*> {
