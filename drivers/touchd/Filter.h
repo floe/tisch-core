@@ -21,13 +21,14 @@ class Filter {
 
 	public:
 
+		static const int MAX_VALUE = 65535;
+
 		Filter( TiXmlElement* _config = 0, Filter* _input = 0 ):
 			shmid(0), input(_input), result(0.0), config(_config), image(NULL), shortimage(NULL), rgbimage(NULL)
 		{ 
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
 			// init switching variable for Configurator options
 			toggle = 0;
-			MAX_VALUE = 65535;
 			if(input != 0) {
 				useIntensityImage = input->getUseIntensityImage();
 #ifdef HAS_FREENECT
@@ -110,7 +111,6 @@ class Filter {
 		// Configurator
 		int displayRGBImage;
 		int toggle; // initialized in basic Filter constructor
-		int MAX_VALUE; // initialized in basic Filter constructor
 		int countOfOptions; // Initialization required in each subfilter class !
 		int resetOnInit;
 };
