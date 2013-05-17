@@ -31,9 +31,7 @@ class Filter {
 			toggle = 0;
 			if(input != 0) {
 				useIntensityImage = input->getUseIntensityImage();
-#ifdef HAS_FREENECT
 				displayRGBImage = input->getdisplayRGBImage();
-#endif
 			}
 		}
 
@@ -52,14 +50,12 @@ class Filter {
 				int h = inputimg->getHeight();
 				shortimage = new ShortImage( w, h );
 			}
-#ifdef HAS_FREENECT
 			if(!rgbimage) {
 				RGBImage* inputimg = input->getRGBImage();
 				int w = inputimg->getWidth();
 				int h = inputimg->getHeight();
 				rgbimage = new RGBImage( w, h );
 			}
-#endif
 		}
 
 		virtual int process() = 0;
@@ -70,10 +66,8 @@ class Filter {
 		virtual void draw( GLUTWindow* win ) {
 			if(useIntensityImage)
 				win->show( *image, 0, 0 );
-#ifdef HAS_FREENECT
 			else if( displayRGBImage )
 				win->show( *rgbimage, 0, 0 );
-#endif
 			else
 				win->show( *shortimage, 0, 0 );
 		}
@@ -94,10 +88,10 @@ class Filter {
 		int getUseIntensityImage() { return useIntensityImage; };
 		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
 		Filter* getParent() {return input;};
-#ifdef HAS_FREENECT
+
 		int getdisplayRGBImage() { return displayRGBImage; };
 		void showRGBImage() { displayRGBImage = (displayRGBImage + 1) % 2; };
-#endif
+
 	protected:
 
 		int shmid;
