@@ -7,7 +7,7 @@
 #include "FlipFilter.h"
 
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT | FILTER_TYPE_RGB )
+	Filter( _config, _input, FILTER_TYPE_ALL )
 {
 	hflip = 0;
 	vflip = 0;

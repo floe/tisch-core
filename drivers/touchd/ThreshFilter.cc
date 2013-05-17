@@ -8,7 +8,7 @@
 
 // TODO: use result from bgsub filter for threshold adjustment
 ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+	Filter( _config, _input, FILTER_TYPE_GREY )
 {
 	threshold_min = 128;
 	threshold_max = 255;

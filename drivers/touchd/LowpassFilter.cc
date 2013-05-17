@@ -7,7 +7,7 @@
 #include "LowpassFilter.h"
 
 LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+	Filter( _config, _input, FILTER_TYPE_GREY )
 {
 	mode = 0;
 	range = 1;

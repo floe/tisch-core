@@ -7,7 +7,7 @@
 #include "AreaFilter.h"
 
 AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+	Filter( _config, _input, FILTER_TYPE_GREY )
 {
 	enabled = 0;
 	updated = true;

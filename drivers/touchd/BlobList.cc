@@ -15,7 +15,7 @@ int gid = 0;
 
 // create new BlobList from a {0,255}-image
 BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+	Filter( _config, _input, FILTER_TYPE_GREY )
 {
 
 	blobs = oldblobs = NULL;
