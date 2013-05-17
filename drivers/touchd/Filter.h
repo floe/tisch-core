@@ -53,14 +53,14 @@ class Filter {
 			if (type & FILTER_TYPE_SHORT) {
 				int w = shortimage->getWidth();
 				int h = shortimage->getHeight();
-				shortimage = new ShortImage( w, h, shmid+1, 1 );
+				shortimage = new ShortImage( w, h, shmid?shmid+1:0, 1 );
 			}
 
 			rgbimage = input->getRGBImage();
 			if (type & FILTER_TYPE_RGB) {
 				int w = rgbimage->getWidth();
 				int h = rgbimage->getHeight();
-				rgbimage = new RGBImage( w, h, shmid+2, 1 );
+				rgbimage = new RGBImage( w, h, shmid?shmid+2:0, 1 );
 			}
 		}
 

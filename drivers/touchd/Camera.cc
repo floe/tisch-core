@@ -75,7 +75,6 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ):
 	// try to read settings from XML
 	config->QueryIntAttribute   ( "SourceType", &sourcetype );
 	config->QueryStringAttribute( "SourcePath", &sourcepath );
-	//config->QueryIntAttribute	( "UseIntensityImage", &useIntensityImage );
 
 	config->QueryIntAttribute   ( "FlashMode",  &flashmode );
 	config->QueryStringAttribute( "FlashPath",  &flashpath );
@@ -90,39 +89,40 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ):
 
 	config->QueryIntAttribute( "Verbose", &verbose );
 
-	// create image buffer see Filter.h
-	image		= new IntensityImage( width, height, shmid, 1 );
-	shortimage	= new ShortImage( width, height );
-	rgbimage	= new RGBImage( width, height );
-	
 	#ifdef HAS_DIRECTSHOW
-		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) 
+		if (sourcetype == CAMERA_TYPE_DIRECTSHOW) {
 			cam = new DirectShowImageSource( width, height, sourcepath.c_str(), verbose );
-		else
+			image = new IntensityImage( width, height, shmid, 1 );
+		} else
 	#endif
 
 	#ifdef HAS_FLYCAPTURE
-		if (sourcetype == CAMERA_TYPE_FFMV) 
+		if (sourcetype == CAMERA_TYPE_FFMV) {
 			cam = new FFMVImageSource( width, height, sourcepath.c_str(), verbose );
-		else
+			image = new IntensityImage( width, height, shmid, 1 );
+		} else
 	#endif
 
 	#ifdef __linux
-		if (sourcetype == CAMERA_TYPE_V4L) 
+		if (sourcetype == CAMERA_TYPE_V4L) {
 			cam = new V4LImageSource( sourcepath, width, height, fps, verbose );
-		else
+			image = new IntensityImage( width, height, shmid, 1 );
+		} else
 	#endif
 
 	#ifdef HAS_FREENECT
-		if (sourcetype == CAMERA_TYPE_KINECT) 
+		if (sourcetype == CAMERA_TYPE_KINECT) {
 			cam = new KinectImageSource( );
-		else
+			shortimage = new ShortImage( width, height, shmid?shmid+1:0, 1 );
+			rgbimage   = new RGBImage  ( width, height, shmid?shmid+2:0, 1 );
+		} else
 	#endif
 
 	#ifdef HAS_DC1394
 		if (sourcetype == CAMERA_TYPE_DC1394) {
 
 			DCImageSource* dccam = new DCImageSource( width, height, fps, 0, verbose );
+			image = new IntensityImage( width, height, shmid, 1 );
 			cam = dccam;
 
 			// switch GPIO0-3 to output
@@ -204,18 +204,16 @@ int Camera::process() {
 	if (!res) cam->acquire();
 
 	// retrieve image, release buffer and return
-	if(image) cam->getImage( *image );
-#ifdef HAS_FREENECT
-	else {
-		((KinectImageSource*)cam)->getImage( *shortimage ); // depth image
-		((KinectImageSource*)cam)->getImage( *rgbimage ); // rgb image
-	}
-#endif
+	if (image)      cam->getImage( *image );
+	if (shortimage) cam->getImage( *shortimage );
+	if (rgbimage)   cam->getImage( *rgbimage );
+
 	cam->release();
 
 	return 0;
 }
 
+// TODO: clean this up somehow
 void Camera::tilt_kinect( int angle ) {
 #ifdef HAS_FREENECT
 	if( sourcetype == CAMERA_TYPE_KINECT )
@@ -229,7 +227,6 @@ TiXmlElement* Camera::getXMLRepresentation() {
 
 	XMLNode->SetAttribute( "SourceType", sourcetype );
 	XMLNode->SetAttribute( "SourcePath", sourcepath );
-	//XMLNode->SetAttribute( "UseIntensityImage", useIntensityImage );
 
 	XMLNode->SetAttribute( "Width", width );
 	XMLNode->SetAttribute( "Height", height );
