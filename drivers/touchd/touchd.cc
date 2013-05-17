@@ -75,13 +75,6 @@ void disp() {
 
 	tmp->draw( win, mode );
 
-	std::string filter = typeid( *tmp ).name();
-	const char* name = filter.c_str();
-	while (name && (*name >= '0') && (*name <= '9')) name++;
-
-	glColor4f( 1.0, 0.0, 0.0, 1.0 );
-	win->print( std::string("showing filter: ") + name, 10, 10 );
-
 	// display data of configurator
 	if(configure != 0) {
 

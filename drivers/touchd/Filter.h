@@ -83,7 +83,7 @@ class Filter {
 				case FILTER_TYPE_RGB:   if (rgbimage)   { win->show( *rgbimage,   0, 0 ); break; }
 			}
 
-			std::string filter = typeid( this ).name();
+			std::string filter = typeid( *this ).name();
 			const char* name = filter.c_str();
 			while (name && (*name >= '0') && (*name <= '9')) name++;
 
