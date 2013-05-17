@@ -6,8 +6,9 @@
 
 #include "FlipFilter.h"
 
-FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT | FILTER_TYPE_RGB )
+{
 	hflip = 0;
 	vflip = 0;
 	config->QueryIntAttribute( "HFlip" , &hflip );
@@ -22,7 +23,7 @@ int FlipFilter::process() {
 	int width = 0;
 	int height = 0;
 
-	if(useIntensityImage) 
+	if(image) 
 	{
 		unsigned char* inbuf = input->getImage()->getData();
 		unsigned char* outbuf = image->getData();

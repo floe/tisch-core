@@ -10,6 +10,7 @@
 #include <tinyxml.h>
 #include <algorithm>
 
+#include <typeinfo>
 #include <fstream>
 
 #include "GLUTWindow.h"
@@ -17,61 +18,80 @@
 #include "IntensityImage.h"
 #include "RGBImage.h"
 
+
+#define FILTER_TYPE_NONE   0x00
+#define FILTER_TYPE_BASIC  0x01
+#define FILTER_TYPE_SHORT  0x02
+#define FILTER_TYPE_GREY   0x03
+#define FILTER_TYPE_RGB    0x04
+#define FILTER_TYPE_ALL    0x07
+
+
 class Filter {
 
 	public:
 
 		static const int MAX_VALUE = 65535;
 
-		Filter( TiXmlElement* _config = 0, Filter* _input = 0 ):
-			shmid(0), input(_input), result(0.0), config(_config), image(NULL), shortimage(NULL), rgbimage(NULL)
-		{ 
+		Filter( TiXmlElement* _config = 0, Filter* _input = 0, int _type = FILTER_TYPE_NONE ):
+			shmid(0), input(_input), result(0.0), type(_type), config(_config), image(NULL), shortimage(NULL), rgbimage(NULL)
+		{
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
 			// init switching variable for Configurator options
 			toggle = 0;
-			if(input != 0) {
-				useIntensityImage = input->getUseIntensityImage();
-				displayRGBImage = input->getdisplayRGBImage();
+
+			if (!input) return;
+
+			image = input->getImage();
+			if (type & FILTER_TYPE_BASIC) {
+				int w = image->getWidth();
+				int h = image->getHeight();
+				image = new IntensityImage( w, h, shmid, 1 );
+			}
+
+			shortimage = input->getShortImage();
+			if (type & FILTER_TYPE_SHORT) {
+				int w = shortimage->getWidth();
+				int h = shortimage->getHeight();
+				shortimage = new ShortImage( w, h, shmid+1, 1 );
+			}
+
+			rgbimage = input->getRGBImage();
+			if (type & FILTER_TYPE_RGB) {
+				int w = rgbimage->getWidth();
+				int h = rgbimage->getHeight();
+				rgbimage = new RGBImage( w, h, shmid+2, 1 );
 			}
 		}
 
-		virtual ~Filter() { delete image; delete shortimage; delete rgbimage; }
-
-		void checkImage() {
-			if (!image) {
-				IntensityImage* inputimg = input->getImage();
-				int w = inputimg->getWidth();
-				int h = inputimg->getHeight();
-				image = new IntensityImage( w, h, shmid, 1 );
-			}
-			if (/*TODO: do we have to add this? !useIntensityImage &&*/ !shortimage) {
-				ShortImage* inputimg = input->getShortImage();
-				int w = inputimg->getWidth();
-				int h = inputimg->getHeight();
-				shortimage = new ShortImage( w, h );
-			}
-			if(!rgbimage) {
-				RGBImage* inputimg = input->getRGBImage();
-				int w = inputimg->getWidth();
-				int h = inputimg->getHeight();
-				rgbimage = new RGBImage( w, h );
-			}
+		virtual ~Filter() {
+			delete image;
+			delete shortimage;
+			delete rgbimage;
 		}
 
 		virtual int process() = 0;
 		virtual void reset(int initialReset) { }
 		virtual void processMouseButton(int button, int state, int x, int y) { }
 
-		// TODO: print filter information
-		virtual void draw( GLUTWindow* win ) {
-			if(useIntensityImage)
-				win->show( *image, 0, 0 );
-			else if( displayRGBImage )
-				win->show( *rgbimage, 0, 0 );
-			else
-				win->show( *shortimage, 0, 0 );
+		virtual void draw( GLUTWindow* win, int show_image = FILTER_TYPE_BASIC ) {
+
+			switch (show_image) {
+				case FILTER_TYPE_BASIC: 
+				case FILTER_TYPE_SHORT: if (shortimage) { win->show( *shortimage, 0, 0 ); break; }
+				                        if (image)      { win->show( *image,      0, 0 ); break; }
+				case FILTER_TYPE_RGB:   if (rgbimage)   { win->show( *rgbimage,   0, 0 ); break; }
+			}
+
+			std::string filter = typeid( this ).name();
+			const char* name = filter.c_str();
+			while (name && (*name >= '0') && (*name <= '9')) name++;
+
+			glColor4f( 1.0, 0.0, 0.0, 1.0 );
+			win->print( std::string("showing filter: ") + name, 10, 10 );
 		}
-		virtual void link( Filter* _link   ) { }
+
+		virtual void link( Filter* _link ) { }
 
 		virtual IntensityImage* getImage() { return image; }
 		virtual ShortImage* getShortImage() { return shortimage; }
@@ -85,25 +105,22 @@ class Filter {
 		virtual const char* getOptionName(int option) { return ""; };
 		virtual double getOptionValue(int option) { return -1;};
 		virtual void modifyOptionValue(double delta, bool overwrite) { };
-		int getUseIntensityImage() { return useIntensityImage; };
 		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
 		Filter* getParent() {return input;};
-
-		int getdisplayRGBImage() { return displayRGBImage; };
-		void showRGBImage() { displayRGBImage = (displayRGBImage + 1) % 2; };
 
 	protected:
 
 		int shmid;
 		Filter* input;
 		double result;
+		int type;
+
 		TiXmlElement* config;
 		IntensityImage* image;
 		ShortImage* shortimage;
 		RGBImage* rgbimage;
-		int useIntensityImage;
+
 		// Configurator
-		int displayRGBImage;
 		int toggle; // initialized in basic Filter constructor
 		int countOfOptions; // Initialization required in each subfilter class !
 		int resetOnInit;

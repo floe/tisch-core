@@ -6,8 +6,9 @@
 
 #include "LowpassFilter.h"
 
-LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 	mode = 0;
 	range = 1;
 	config->QueryIntAttribute( "Mode", &mode );
@@ -17,8 +18,7 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int LowpassFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-	if(useIntensityImage) input->getImage()->lowpass( *image, range, mode );
+	if(image) input->getImage()->lowpass( *image, range, mode );
 	else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;
 }

@@ -49,19 +49,18 @@ void dump_plot( int in[], const char* name ) {
 }*/
 
 
-Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-
+Camera::Camera( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_ALL )
+{
 	// generic low-end default settings
 	width = 640; height = 480; fps = 30;
 	sourcepath = "/dev/video0";
-	useIntensityImage = 1;
 	flashmode = 0;
 	flashpath = "/";
 	gain = 0;
 	expo = 0;
 	bright = 0;
 
-	displayRGBImage = 0;
 	// setting variables for Configurator
 	countOfOptions = 0; // quantity of variables that can be manipulated
 
@@ -76,7 +75,7 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ): Filter( _config, _input
 	// try to read settings from XML
 	config->QueryIntAttribute   ( "SourceType", &sourcetype );
 	config->QueryStringAttribute( "SourcePath", &sourcepath );
-	config->QueryIntAttribute	( "UseIntensityImage", &useIntensityImage );
+	//config->QueryIntAttribute	( "UseIntensityImage", &useIntensityImage );
 
 	config->QueryIntAttribute   ( "FlashMode",  &flashmode );
 	config->QueryStringAttribute( "FlashPath",  &flashpath );
@@ -205,7 +204,7 @@ int Camera::process() {
 	if (!res) cam->acquire();
 
 	// retrieve image, release buffer and return
-	if(useIntensityImage) cam->getImage( *image );
+	if(image) cam->getImage( *image );
 #ifdef HAS_FREENECT
 	else {
 		((KinectImageSource*)cam)->getImage( *shortimage ); // depth image
@@ -230,7 +229,7 @@ TiXmlElement* Camera::getXMLRepresentation() {
 
 	XMLNode->SetAttribute( "SourceType", sourcetype );
 	XMLNode->SetAttribute( "SourcePath", sourcepath );
-	XMLNode->SetAttribute( "UseIntensityImage", useIntensityImage );
+	//XMLNode->SetAttribute( "UseIntensityImage", useIntensityImage );
 
 	XMLNode->SetAttribute( "Width", width );
 	XMLNode->SetAttribute( "Height", height );

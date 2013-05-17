@@ -6,8 +6,9 @@
 
 #include "SplitFilter.h"
 
-SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC )
+{
 	image2 = NULL;
 	reset();
 	// setting variables for Configurator
@@ -19,7 +20,6 @@ void SplitFilter::reset() {
 }	
 
 int SplitFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	incount++;
 	if (incount % 2) {
 		*image = *(input->getImage());

@@ -41,6 +41,8 @@ int lasttime = 0;
 int lastframe = 0;
 int angle = 0;
 
+int mode = FILTER_TYPE_SHORT;
+
 TUIOOutStream* tuio;
 
 
@@ -71,7 +73,7 @@ void disp() {
 	win->clear();
 	win->mode2D();
 
-	tmp->draw( win );
+	tmp->draw( win, mode );
 
 	std::string filter = typeid( *tmp ).name();
 	const char* name = filter.c_str();
@@ -229,12 +231,12 @@ void keyb( unsigned char c, int, int ) {
 			if(c == 0x09) {
 				tmp->nextOption();
 			}
-#ifdef HAS_FREENECT
+
 			// switch between displaying DepthImage and RGBImage
 			if( c == 'm' ) {
-				tmp->showRGBImage();
+				mode = (mode==FILTER_TYPE_SHORT) ? FILTER_TYPE_RGB : FILTER_TYPE_SHORT;
 			}
-#endif
+
 			// reset only this filter
 			if(c == 'r') {
 				tmp->reset( 0 );

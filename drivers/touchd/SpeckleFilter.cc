@@ -6,8 +6,9 @@
 
 #include "SpeckleFilter.h"
 
-SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 	noiselevel = 7;
 	config->QueryIntAttribute( "NoiseLevel", &noiselevel );
 	// setting variables for Configurator
@@ -15,8 +16,7 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ): Filter( _
 }
 
 int SpeckleFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-	if(useIntensityImage) input->getImage()->despeckle( *image, noiselevel );
+	if(image) input->getImage()->despeckle( *image, noiselevel );
 	else input->getShortImage()->despeckle( *shortimage, noiselevel );
 	return 0;
 }

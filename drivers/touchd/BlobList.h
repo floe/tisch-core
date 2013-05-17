@@ -27,7 +27,7 @@ class BlobList: public Filter {
 		virtual void reset();
 		virtual int process();
 
-		virtual void draw( GLUTWindow* win );
+		virtual void draw( GLUTWindow* win, int show_image );
 		virtual void link( Filter* _link   );
 
 		void send( TUIOOutStream* tuio );

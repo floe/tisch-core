@@ -14,12 +14,13 @@ int gid = 0;
 
 
 // create new BlobList from a {0,255}-image
-BlobList::BlobList( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
+BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 
 	blobs = oldblobs = NULL;
 	reset();
 
-	checkImage();
 	parent = 0;
 
 	width  = image->getWidth();
@@ -109,7 +110,7 @@ int BlobList::process() {
 
 	// clone the input image
 	*image = *(input->getImage());
-	if(!useIntensityImage) 
+	if(!image) 
 	{
 		*shortimage = *(input->getShortImage());
 		shortimage->convert(*image);
@@ -288,14 +289,11 @@ int BlobList::getID( unsigned char value ) {
 
 
 // draw the entire list to a window, taking care to minimize GL state switches
-void BlobList::draw( GLUTWindow* win ) {
-#ifdef HAS_UBITRACK
-	if( displayRGBImage ) {
-		win->show( *rgbimage, 0, 0 );
-	}
-	else {
-#endif //HAS_FREENECT
-		double xoff,yoff,height,size;
+void BlobList::draw( GLUTWindow* win, int show_image ) {
+
+	Filter::draw( win, show_image );
+
+		double xoff,yoff,height;
 		height = win->getHeight();
 
 		win->show( *image, 0, 0 );
@@ -328,7 +326,7 @@ void BlobList::draw( GLUTWindow* win ) {
 			
 			xoff = blob->pos.x;
 			yoff = height - blob->pos.y;
-			size = sqrt((double)blob->size)/factor;
+			//size = sqrt((double)blob->size)/factor;
 
 			glVertex2d( xoff - blob->axis1.x, yoff + blob->axis1.y );
 			glVertex2d( xoff + blob->axis1.x, yoff - blob->axis1.y );

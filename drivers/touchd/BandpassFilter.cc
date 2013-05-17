@@ -6,8 +6,9 @@
 
 #include "BandpassFilter.h"
 
-BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC)
+{
 	inner = 8;
 	outer = 16;
 	config->QueryIntAttribute( "InnerRadius", &inner );
@@ -17,8 +18,7 @@ BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ): Filter(
 }
 
 int BandpassFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-	if(useIntensityImage) input->getImage()->bandpass( *image, outer, inner );
+	if(image) input->getImage()->bandpass( *image, outer, inner );
 	//else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;
 }

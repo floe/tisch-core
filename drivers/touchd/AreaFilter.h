@@ -20,7 +20,7 @@ class AreaFilter: public Filter {
 		virtual const char* getOptionName(int option);
 		virtual double getOptionValue(int option);
 		virtual void modifyOptionValue(double delta, bool overwrite);
-		virtual void draw( GLUTWindow* win );
+		virtual void draw( GLUTWindow* win, int show_image );
 		virtual TiXmlElement* getXMLRepresentation();
 		int getAreaFilterID();
 		TiXmlElement* getXMLofAreas(int AreaFilterID);

@@ -6,8 +6,9 @@
 
 #include "AreaFilter.h"
 
-AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 	enabled = 0;
 	updated = true;
 	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
@@ -19,12 +20,11 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ): Filter( _config
 }
 
 int AreaFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
 	if(enabled)
-		if(useIntensityImage) input->getImage()->areamask( *image, edgepoints );
+		if(image) input->getImage()->areamask( *image, edgepoints );
 		else input->getShortImage()->areamask( *shortimage, edgepoints );
 	else
-		if(useIntensityImage) *image = *(input->getImage());
+		if(image) *image = *(input->getImage());
 		else *shortimage = *(input->getShortImage());
 	return 0;
 }
@@ -131,14 +131,9 @@ void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
 	}
 }
 
-void AreaFilter::draw( GLUTWindow* win )
-{ 
-	if(useIntensityImage)
-		win->show( *image, 0, 0 );
-	else if( displayRGBImage )
-		win->show( *rgbimage, 0, 0 );
-	else
-		win->show( *shortimage, 0, 0 );
+void AreaFilter::draw( GLUTWindow* win, int show_image ) { 
+
+	Filter::draw( win, show_image );
 
 	glColor4f(1,0,0,1);
 	for(std::vector<std::vector<Point*> >::iterator it = cornerpointvector.begin(); it != cornerpointvector.end(); it++)

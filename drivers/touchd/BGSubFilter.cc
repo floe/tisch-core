@@ -6,14 +6,15 @@
 
 #include "BGSubFilter.h"
 
-BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 	invert = 0;
 	adaptive = 0;
 	resetOnInit = 1;
 	BGSubFilterID = -1; // -1 is invalid
 	storeBGImg = 0;
-	if(useIntensityImage) background = new ShortImage( image->getWidth(), image->getHeight() );
+	if (image) background = new ShortImage( image->getWidth(), image->getHeight() );
 	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
 	config->QueryIntAttribute( "BGSubFilterID", &BGSubFilterID );
 	config->QueryIntAttribute( "Invert",   &invert   );
@@ -33,14 +34,13 @@ void BGSubFilter::link( Filter* _mask ) {
 
 void BGSubFilter::reset(int initialReset) {
 	if( (initialReset == 1 && resetOnInit == 1) || initialReset == 0 ) {
-		if(useIntensityImage) *background = *(input->getImage());
+		if (image) *background = *(input->getImage());
 		else *background = *(input->getShortImage());
 	}
 }
 
 int BGSubFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-	if(useIntensityImage) 
+	if(image) 
 	{
 		IntensityImage* inputimg = input->getImage();
 		background->subtract( *(inputimg), *image, invert );

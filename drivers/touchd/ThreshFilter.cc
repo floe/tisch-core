@@ -7,21 +7,21 @@
 #include "ThreshFilter.h"
 
 // TODO: use result from bgsub filter for threshold adjustment
-ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ): Filter( _config, _input ) {
-	checkImage();
+ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ):
+	Filter( _config, _input, FILTER_TYPE_BASIC | FILTER_TYPE_SHORT )
+{
 	threshold_min = 128;
 	threshold_max = 255;
 	config->QueryIntAttribute(      "Threshold", &threshold_min ); // TODO remove this when storing xml works
 	config->QueryIntAttribute( "LowerThreshold", &threshold_min );
 	config->QueryIntAttribute( "UpperThreshold", &threshold_max );
-	(useIntensityImage == 1) ? THRESH_MAX = 255 : THRESH_MAX = 2047;
+	(image) ? THRESH_MAX = 255 : THRESH_MAX = 2047;
 	// setting variables for Configurator
 	countOfOptions = 2; // quantity of variables that can be manipulated
 }
 
 int ThreshFilter::process() {
-	rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-	if(useIntensityImage) input->getImage()->threshold( threshold_min, *image, threshold_max );
+	if(image) input->getImage()->threshold( threshold_min, *image, threshold_max );
 	else input->getShortImage()->threshold( threshold_min << 5, *shortimage, threshold_max << 5 );
 	return 0;
 }
