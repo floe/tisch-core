@@ -7,6 +7,7 @@
 #ifndef _IMAGESOURCE_H_
 #define _IMAGESOURCE_H_
 
+#include "ShortImage.h"
 #include "RGBImage.h"
 
 // special parameters for camera features
@@ -26,8 +27,9 @@ class TISCH_SHARED ImageSource {
 		virtual void start() = 0;
 		virtual void stop () = 0;
 		
-		virtual void getImage( IntensityImage& target ) const = 0;
-		virtual void getImage( RGBImage&       target ) const = 0;
+		virtual void getImage( IntensityImage& target ) const { }
+		virtual void getImage( ShortImage&     target ) const { }
+		virtual void getImage( RGBImage&       target ) const { }
 
 		virtual void setGain( int gain ) = 0;
 		virtual void setExposure( int exp ) = 0;
