@@ -12,7 +12,7 @@
 unsigned short ShortImage::getPixel(int x, int y) const { return ((unsigned short*)data)[(y*width)+x]; }
 void ShortImage::setPixel(int x, int y, unsigned short value) { ((unsigned short*)data)[(y*width)+x] = value; }
 
-ShortImage::ShortImage( int w, int h ): Image( w, h, sizeof(unsigned short) ) { sdata = (unsigned short*)data; }
+ShortImage::ShortImage( int w, int h, key_t key, unsigned long long int flags ): Image( w, h, sizeof(unsigned short), key, flags ) { sdata = (unsigned short*)data; }
 ShortImage::ShortImage( const ShortImage& img ): Image( img ) { sdata = (unsigned short*)data; }
 
 ShortImage::ShortImage( const IntensityImage& img ):

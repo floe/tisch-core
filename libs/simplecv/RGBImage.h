@@ -21,7 +21,7 @@ class TISCH_SHARED RGBImage: public Image {
 	
 	public:
 
-		RGBImage(int w, int h): Image(w,h,3) { }
+		RGBImage( int w, int h, key_t key = 0, unsigned long long int flags = 0 ): Image( w, h, 3, key, flags ) { }
 		RGBImage( const char* path );
 
 		void getChannel(int channel, IntensityImage& target) const;

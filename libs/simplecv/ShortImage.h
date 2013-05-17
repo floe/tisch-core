@@ -15,8 +15,8 @@ class TISCH_SHARED ShortImage: public Image {
 
 	public:
 
-		ShortImage( int w, int h );
-
+		ShortImage( int w, int h, key_t key = 0, unsigned long long int flags = 0 );
+	
 		ShortImage( const ShortImage&     img );
 		ShortImage( const IntensityImage& img );
 
