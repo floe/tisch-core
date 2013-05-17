@@ -43,21 +43,21 @@ class Filter {
 			if (!input) return;
 
 			image = input->getImage();
-			if (type & FILTER_TYPE_BASIC) {
+			if ((type & FILTER_TYPE_BASIC) && image) {
 				int w = image->getWidth();
 				int h = image->getHeight();
 				image = new IntensityImage( w, h, shmid, 1 );
 			}
 
 			shortimage = input->getShortImage();
-			if (type & FILTER_TYPE_SHORT) {
+			if ((type & FILTER_TYPE_SHORT) && shortimage) {
 				int w = shortimage->getWidth();
 				int h = shortimage->getHeight();
 				shortimage = new ShortImage( w, h, shmid?shmid+1:0, 1 );
 			}
 
 			rgbimage = input->getRGBImage();
-			if (type & FILTER_TYPE_RGB) {
+			if ((type & FILTER_TYPE_RGB) && rgbimage) {
 				int w = rgbimage->getWidth();
 				int h = rgbimage->getHeight();
 				rgbimage = new RGBImage( w, h, shmid?shmid+2:0, 1 );
