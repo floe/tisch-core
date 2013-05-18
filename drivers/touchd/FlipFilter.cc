@@ -75,8 +75,8 @@ int FlipFilter::process() {
 			}
 		}
 	}
-	else 
-	{
+	
+	if (shortimage) {
 		// Kinect Depth Image
 
 		unsigned short* inbuf  = input->getShortImage()->getSData();
@@ -132,6 +132,7 @@ int FlipFilter::process() {
 
 	// Kinect RGB Image
 
+	if (rgbimage) {
 	unsigned char* inputIMG  = input->getRGBImage()->getData(); // get pointer form previous filter
 	unsigned char* outputIMG = rgbimage->getData(); // prepare for processed filter output
 	
@@ -195,6 +196,7 @@ int FlipFilter::process() {
 			inoffset  += width * 3;
 			outoffset -= width * 3;
 		}
+	}
 	}
 
 	return 0;
