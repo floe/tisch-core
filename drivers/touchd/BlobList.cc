@@ -15,7 +15,7 @@ int gid = 0;
 
 // create new BlobList from a {0,255}-image
 BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
-	Filter( _config, _input, FILTER_TYPE_GREY )
+	Filter( _config, _input, FILTER_TYPE_NONE )
 {
 
 	blobs = oldblobs = NULL;
@@ -23,8 +23,16 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
 
 	parent = 0;
 
-	width  = image->getWidth();
-	height = image->getHeight();
+	if (input->getImage()) {
+		width  = input->getImage()->getWidth();
+		height = input->getImage()->getHeight();
+	} else {
+		width  = input->getShortImage()->getWidth();
+		height = input->getShortImage()->getHeight();
+	}
+
+	image = new IntensityImage( width, height );
+	shortimage = NULL;
 
 	type  = 0;
 	hflip = 0;
@@ -109,19 +117,15 @@ int BlobList::process() {
 	blobs = new std::vector<Blob>;
 
 	// clone the input image
-	*image = *(input->getImage());
-	if(!image) 
-	{
-		*shortimage = *(input->getShortImage());
-		shortimage->convert(*image);
+	if (input->getImage()) {
+		*image = *(input->getImage());
+	} else {
+		input->getShortImage()->convert(*image);
 
 #ifdef HAS_UBITRACK
-		rgbimage = input->getRGBImage(); // get pointer from previous filter, do nothing
-
 		if( mt_enabled ) {
 			// call MarkerTracker here
 			mMarkerTracker->findMarker(rgbimage, image, detectedMarkers);
-			
 		}
 #endif
 	}
@@ -291,12 +295,10 @@ int BlobList::getID( unsigned char value ) {
 // draw the entire list to a window, taking care to minimize GL state switches
 void BlobList::draw( GLUTWindow* win, int show_image ) {
 
-	Filter::draw( win, show_image );
+		Filter::draw( win, show_image );
 
 		double xoff,yoff,height;
 		height = win->getHeight();
-
-		win->show( *image, 0, 0 );
 
 		glTranslatef(0,0,500); // FIXME: compensate video image default z offset
 		glLineWidth(2.0);
@@ -349,7 +351,6 @@ void BlobList::draw( GLUTWindow* win, int show_image ) {
 			win->print( tmp.str(), (int)blob->peak.x, (int)blob->peak.y );
 		}
 #ifdef HAS_UBITRACK
-	}
 	
 	if( mt_enabled ) {
 		glColor4f( 1.0, 0.0, 0.0, 1.0 );

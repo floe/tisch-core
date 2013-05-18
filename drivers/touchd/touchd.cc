@@ -279,6 +279,7 @@ void idle() {
 
 int main( int argc, char* argv[] ) {
 
+	int width,height;
 	int outport = TISCH_PORT_RAW;
 
 	std::cout << "touchd - libTISCH 2.0 image processing layer" << std::endl;
@@ -334,8 +335,13 @@ int main( int argc, char* argv[] ) {
 
 	tuio = new TUIOOutStream( TISCH_TUIO1 | TISCH_TUIO2, address, outport );
 
-	int width  = tmp->getImage()->getWidth();
-	int height = tmp->getImage()->getHeight();
+	if (tmp->getImage()) {
+		width  = tmp->getImage()->getWidth();
+		height = tmp->getImage()->getHeight();
+	} else if (tmp->getShortImage()) {
+		width  = tmp->getShortImage()->getWidth();
+		height = tmp->getShortImage()->getHeight();
+	} 
 
 	if (!vidout) {
 		while (1) idle();
@@ -348,6 +354,4 @@ int main( int argc, char* argv[] ) {
 		win->run();
 	}
 }
-
-
 
