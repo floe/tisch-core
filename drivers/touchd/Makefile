@@ -5,7 +5,7 @@ LDFLAGS += -ltools -loscpack -lsimplecv -lsimplegl -L$(TOPDIR)/libs/tools/ -L$(T
 
 APPS=touchd
 MORE=*.xml
-OBJS=AreaFilter.o BandpassFilter.o BGSubFilter.o FlipFilter.o LowpassFilter.o MarkerTrackerFilter.o SpeckleFilter.o SplitFilter.o ThreshFilter.o Pipeline.o FlashControl.o BlobList.o Camera.o Configurator.o 
+OBJS=AreaFilter.o BandpassFilter.o BGSubFilter.o FlipFilter.o LowpassFilter.o MarkerTrackerFilter.o SpeckleFilter.o SplitFilter.o ThreshFilter.o Pipeline.o FlashControl.o BlobList.o Camera.o Configurator.o Option.o
 
 include $(TOPDIR)/scripts/rules.mk
 

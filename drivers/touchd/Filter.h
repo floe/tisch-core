@@ -18,6 +18,8 @@
 #include "IntensityImage.h"
 #include "RGBImage.h"
 
+#include "Option.h"
+
 
 #define FILTER_TYPE_NONE   0x00
 #define FILTER_TYPE_BASIC  0x01
