@@ -14,17 +14,21 @@ class Option {
 
 	public:
 
-		Option( int _init, int _min, int _max );
+		static const double MAX_VALUE = 65535;
+
+		Option() { }
+
+		Option( double _init, double _min = 0, double _max = MAX_VALUE );
 		
-		int get();
-		void set( int value );
+		double get();
+		void set( double value );
 
 		void inc();
 		void dec();
 
 	protected:
 
-		int min, max, value;
+		double min, max, value;
 };
 
 typedef std::map<std::string,Option> OptionList;

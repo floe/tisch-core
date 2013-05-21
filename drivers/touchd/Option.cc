@@ -6,13 +6,13 @@
 
 #include <Option.h>
 
-Option::Option( int _init, int _min, int _max ):
+Option::Option( double _init, double _min, double _max ):
 	min(_min), max(_max), value(_init)
 { }
 		
-int Option::get() { return value; }
+double Option::get() { return value; }
 
-void Option::set( int _value ) {
+void Option::set( double _value ) {
 	value = _value;
 	if (value > max) value = max;
 	if (value < min) value = min;

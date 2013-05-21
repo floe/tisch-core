@@ -33,14 +33,10 @@ class Filter {
 
 	public:
 
-		static const int MAX_VALUE = 65535;
-
 		Filter( TiXmlElement* _config = 0, Filter* _input = 0, int _type = FILTER_TYPE_NONE ):
 			shmid(0), input(_input), result(0.0), type(_type), config(_config), image(NULL), shortimage(NULL), rgbimage(NULL)
 		{
 			if (config) config->QueryIntAttribute("ShmID",&shmid);
-			// init switching variable for Configurator options
-			toggle = 0;
 
 			if (!input) return;
 
@@ -66,6 +62,24 @@ class Filter {
 			}
 		}
 
+		void createOption( const std::string _name, double _init, double _min = 0, double _max = Option::MAX_VALUE ) {
+			
+			Option tmp( _init, _min, _max );
+			double config_val = _init;
+
+			if (config) config->QueryDoubleAttribute( _name, &config_val );
+			tmp.set(config_val);
+
+			options[_name] = tmp;
+		}
+
+		virtual TiXmlElement* getXMLRepresentation() {
+			TiXmlElement* XMLNode = new TiXmlElement( name() );
+			for (OptionList::iterator opt = options.begin(); opt != options.end(); opt++)
+				XMLNode->SetAttribute( opt->first, opt->second.get() );
+			return XMLNode;
+		}
+
 		virtual ~Filter() {
 			delete image;
 			delete shortimage;
@@ -73,6 +87,8 @@ class Filter {
 		}
 
 		virtual int process() = 0;
+		virtual const char* name() const = 0;
+
 		virtual void reset(int initialReset) { }
 		virtual void processMouseButton(int button, int state, int x, int y) { }
 
@@ -85,12 +101,8 @@ class Filter {
 				case FILTER_TYPE_RGB:   if (rgbimage)   { win->show( *rgbimage,   0, 0 ); break; }
 			}
 
-			std::string filter = typeid( *this ).name();
-			const char* name = filter.c_str();
-			while (name && (*name >= '0') && (*name <= '9')) name++;
-
 			glColor4f( 1.0, 0.0, 0.0, 1.0 );
-			win->print( std::string("showing filter: ") + name, 10, 10 );
+			win->print( std::string("showing filter: ") + name(), 10, 10 );
 		}
 
 		virtual void link( Filter* _link ) { }
@@ -100,15 +112,7 @@ class Filter {
 		virtual RGBImage* getRGBImage() { return rgbimage; }
 		virtual double getResult() { return result; }
 
-		// Configurator functions
-		void nextOption() { toggle = (countOfOptions > 0) ? ((toggle + 1) % countOfOptions) : toggle; }
-		int getCurrentOption() { return toggle; }
-		const int getOptionCount() { return countOfOptions; }
-		virtual const char* getOptionName(int option) { return ""; };
-		virtual double getOptionValue(int option) { return -1;};
-		virtual void modifyOptionValue(double delta, bool overwrite) { };
-		virtual TiXmlElement* getXMLRepresentation() {return new TiXmlElement( "something_went_wrong" );};
-		Filter* getParent() {return input;};
+		OptionList const& getOptions() { return options; }
 
 	protected:
 
@@ -122,10 +126,7 @@ class Filter {
 		ShortImage* shortimage;
 		RGBImage* rgbimage;
 
-		// Configurator
-		int toggle; // initialized in basic Filter constructor
-		int countOfOptions; // Initialization required in each subfilter class !
-		int resetOnInit;
+		OptionList options;
 };
 
 #endif // _FILTER_H_
