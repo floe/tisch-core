@@ -12,27 +12,28 @@
 class AreaFilter: public Filter {
 	public:
 		AreaFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+		
 		virtual int process();
 		virtual void reset(int initialReset);
+
 		virtual void processMouseButton(int button, int state, int x, int y);
 		void generateEdgepoints( std::vector<Point*> cornerpoints );
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
+
 		virtual void draw( GLUTWindow* win, int show_image );
+		const char* name() const { return "AreaFilter"; }
+
 		virtual TiXmlElement* getXMLRepresentation();
-		int getAreaFilterID();
 		TiXmlElement* getXMLofAreas(int AreaFilterID);
+
 		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
 		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);
+
 	protected:
 		int enabled;
-		int AreaFilterID;
+		int resetOnInit;
 		bool updated;
 		std::vector<int> edgepoints;
 		std::vector<std::vector<Point*> > cornerpointvector;
-		 
 };
 
 #endif // _AREAFILTER_H_

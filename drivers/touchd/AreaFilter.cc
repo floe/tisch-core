@@ -9,18 +9,13 @@
 AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
 	Filter( _config, _input, FILTER_TYPE_GREY )
 {
-	enabled = 0;
 	updated = true;
 	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
-	AreaFilterID = -1;
-	config->QueryIntAttribute( "AreaFilterID", &AreaFilterID );
-	config->QueryIntAttribute( "Enabled", &enabled );
-	// setting variables for Configurator
-	countOfOptions = 1; // quantity of variables that can be manipulated
+	createOption( "Enabled", 0, 0, 1 );
 }
 
 int AreaFilter::process() {
-	if(enabled)
+	if (int(options["Enabled"].get()))
 		if(image) input->getImage()->areamask( *image, edgepoints );
 		else input->getShortImage()->areamask( *shortimage, edgepoints );
 	else
@@ -88,49 +83,6 @@ void AreaFilter::reset(int initialReset)
 	}
 }
 
-const char* AreaFilter::getOptionName(int option) {
-	const char* OptionName = "";
-
-	switch(option) {
-	case 0:
-		OptionName = "Enabled";
-		break;
-	default:
-		// leave OptionName empty
-		break;
-	}
-
-	return OptionName;
-}
-
-double AreaFilter::getOptionValue(int option) {
-	double OptionValue = -1.0;
-
-	switch(option) {
-	case 0:
-		OptionValue = enabled;
-		break;
-	default:
-		// leave OptionValue = -1.0
-		break;
-	}
-
-	return OptionValue;
-}
-
-void AreaFilter::modifyOptionValue(double delta, bool overwrite) {
-	switch(toggle) {
-	case 0: // enabled is a boolean value
-		if(overwrite) {
-			enabled = (delta == 0 ? 0 : (delta == 1 ? 1 : enabled));
-		} else {
-			enabled += delta;
-			enabled = (enabled < 0) ? 0 : (enabled > 1) ? 1 : enabled;
-		}
-		break;
-	}
-}
-
 void AreaFilter::draw( GLUTWindow* win, int show_image ) { 
 
 	Filter::draw( win, show_image );
@@ -141,24 +93,17 @@ void AreaFilter::draw( GLUTWindow* win, int show_image ) {
 }
 
 TiXmlElement* AreaFilter::getXMLRepresentation() {
-	TiXmlElement* XMLNode = new TiXmlElement( "AreaFilter" );
-	
-	XMLNode->SetAttribute( "AreaFilterID" , AreaFilterID );
-	XMLNode->SetAttribute( "Enabled" , enabled );
+	TiXmlElement* XMLNode = Filter::getXMLRepresentation();
 	
 	return XMLNode;
 }
 
-int AreaFilter::getAreaFilterID() {
-	return AreaFilterID;
-}
 
 TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
 	
 	int polygoncounter = 0;
 
-	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "AreaFilter" );
-	polygonsOfAreaFilter->SetAttribute( "AreaFilterID" , AreaFilterID );
+	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "Polygons" );
 
 	// no areas are selected
 	if(cornerpointvector.empty())
@@ -208,20 +153,10 @@ void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
 	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
 	do {
 		std::string type = filterOption->Value();
-		if(type == "AreaFilter") {
+		if(type == "Polygons") {
 			// current Options are for an AreaFilter
-			int filterID = -1;
-			filterOption->QueryIntAttribute( "AreaFilterID" , &filterID);
-			if( filterID == AreaFilterID && filterID != -1) {
-				// settings are for current AreaFilter
-
-				// filterOption has AreaFilter Subtree -> children are Polygons
-				if(debug)
-					std::cout << "AreaFilterID: " << AreaFilterID << std::endl;
-				
-				resetOnInit = createFilterAreaFromConfig(filterOption, debug);
-				break;
-			}
+			resetOnInit = createFilterAreaFromConfig(filterOption, debug);
+			break;
 		}
 	} while((filterOption = filterOption->NextSiblingElement()));
 	
