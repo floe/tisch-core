@@ -12,17 +12,9 @@
 class ThreshFilter: public Filter {
 	public:
 		ThreshFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+
 		virtual int process();
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
-		virtual TiXmlElement* getXMLRepresentation();
-	protected:
-		int THRESH_MAX; // 255 if intensity image is used, else 2047
-		// Options
-		int threshold_min;
-		int threshold_max;
+		const char* name() const { return "ThreshFilter"; }
 };
 
 #endif // _THRESHFILTER_H_

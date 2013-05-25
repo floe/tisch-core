@@ -11,8 +11,6 @@ SplitFilter::SplitFilter( TiXmlElement* _config, Filter* _input ):
 {
 	image2 = NULL;
 	reset();
-	// setting variables for Configurator
-	countOfOptions = 0; // quantity of variables that can be manipulated
 }
 
 void SplitFilter::reset() {
@@ -37,10 +35,3 @@ IntensityImage* SplitFilter::getImage() {
 	else return image2 ? image2 : image;
 }
 
-TiXmlElement* SplitFilter::getXMLRepresentation() {
-	TiXmlElement* XMLNode = new TiXmlElement( "SplitFilter" );
-	
-	//XMLNode->SetAttribute( "name", value );
-	
-	return XMLNode;
-}

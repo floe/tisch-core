@@ -9,12 +9,8 @@
 FlipFilter::FlipFilter( TiXmlElement* _config, Filter* _input ):
 	Filter( _config, _input, FILTER_TYPE_ALL )
 {
-	hflip = 0;
-	vflip = 0;
-	config->QueryIntAttribute( "HFlip" , &hflip );
-	config->QueryIntAttribute( "VFlip" , &vflip );
-	// setting variables for Configurator
-	countOfOptions = 2; // quantity of variables that can be manipulated
+	createOption( "HFlip", 0, 0, 1 );
+	createOption( "VFlip", 0, 0, 1 );
 }
 
 // TODO: should be MMX-accelerated
@@ -22,6 +18,9 @@ int FlipFilter::process() {
 
 	int width = 0;
 	int height = 0;
+
+	int hflip = options["HFlip"].get();
+	int vflip = options["VFlip"].get();
 
 	if(image) 
 	{
@@ -202,68 +201,3 @@ int FlipFilter::process() {
 	return 0;
 }
 
-const char* FlipFilter::getOptionName(int option) {
-	const char* OptionName = "";
-
-	switch(option) {
-	case 0:
-		OptionName = "Horizontal Flip";
-		break;
-	case 1:
-		OptionName = "Vertical Flip";
-		break;
-	default:
-		// leave OptionName empty
-		break;
-	}
-
-	return OptionName;
-}
-
-double FlipFilter::getOptionValue(int option) {
-	double OptionValue = -1.0;
-
-		switch(option) {
-		case 0:
-			OptionValue = hflip;
-			break;
-		case 1:
-			OptionValue = vflip;
-			break;
-		default:
-			// leave OptionValue = -1.0
-			break;
-		}
-
-		return OptionValue;
-}
-
-void FlipFilter::modifyOptionValue(double delta, bool overwrite) {
-	switch(toggle) {
-	case 0: // hflip is a boolean value
-		if(overwrite) {
-			hflip = (delta == 0 ? 0 : (delta == 1 ? 1 : hflip));
-		} else {
-			hflip += delta;
-			hflip = (hflip < 0) ? 0 : (hflip > 1) ? 1 : hflip;
-		}
-		break;
-	case 1: // vflip is a boolean value
-		if(overwrite) {
-			vflip = (delta == 0 ? 0 : (delta == 1 ? 1 : vflip));
-		} else {
-			vflip += delta;
-			vflip = (vflip < 0) ? 0 : (vflip > 1) ? 1 : vflip;
-		}
-		break;
-	}
-}
-
-TiXmlElement* FlipFilter::getXMLRepresentation() {
-	TiXmlElement* XMLNode = new TiXmlElement( "FlipFilter" );
-	
-	XMLNode->SetAttribute( "HFlip" , hflip );
-	XMLNode->SetAttribute( "VFlip" , vflip );
-	
-	return XMLNode;
-}

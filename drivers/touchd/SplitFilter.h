@@ -15,7 +15,7 @@ class SplitFilter: public Filter {
 		virtual int process();
 		virtual void reset();
 		virtual IntensityImage* getImage();
-		virtual TiXmlElement* getXMLRepresentation();
+		const char* name() const { return "SplitFilter"; }
 	protected:
 		IntensityImage* image2;
 		int incount, outcount;

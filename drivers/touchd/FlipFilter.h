@@ -12,16 +12,10 @@
 class FlipFilter: public Filter {
 	public:
 		FlipFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual int process();
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
-		virtual TiXmlElement* getXMLRepresentation();
-	protected:
-		// Options
-		int hflip;
-		int vflip;
+
+		int process();
+		const char* name() const { return "FlipFilter"; }
+
 };
 
 #endif // _FLIPFILTER_H_

@@ -12,14 +12,9 @@
 class BandpassFilter: public Filter {
 	public:
 		BandpassFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
-		virtual int process();
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
-		virtual TiXmlElement* getXMLRepresentation();
-	protected:
-		int inner, outer;
+
+		int process();
+		const char* name() const { return "BandpassFilter"; }
 };
 
 #endif // _BANDPASSFILTER_H_
