@@ -18,14 +18,12 @@ class Pipeline: public std::vector<Filter*> {
 		 Pipeline( TiXmlElement* _config );
 		~Pipeline();
 
-		void createFilter( TiXmlElement* config, Filter* parent, TiXmlElement* optionSubtree );
+		void createFilter( TiXmlElement* config, Filter* parent );
 
 		int process();
 		void reset(int initialReset);
 
 		// storing configuration
-		std::vector<AreaFilter*> AreaFilterVec;
-		std::vector<BGSubFilter*> BGSubFilterVec;
 		void storeXMLConfig(std::string storingTarget);
 		TiXmlElement* getXMLSubTree(int startIndex, Filter* parentOfRoot);
 

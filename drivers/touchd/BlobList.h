@@ -33,8 +33,6 @@ class BlobList: public Filter {
 		void send( TUIOOutStream* tuio );
 		const char* name() const { return "BlobList"; }
 
-		virtual TiXmlElement* getXMLRepresentation();
-
 	protected:
 
 		int getID( unsigned char value );
