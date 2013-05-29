@@ -62,13 +62,13 @@ class Filter {
 			}
 		}
 
-		void createOption( const std::string _name, double _init, double _min = 0, double _max = Option::MAX_VALUE ) {
+		void createOption( const std::string _name, double _init, double _min = 0, double _max = __UINT32_MAX__ ) {
 			
-			Option tmp( _init, _min, _max );
+			Option* tmp = new Option( _init, _min, _max );
 			double config_val = _init;
 
 			if (config) config->QueryDoubleAttribute( _name, &config_val );
-			tmp.set(config_val);
+			tmp->set(config_val);
 
 			options[_name] = tmp;
 		}
@@ -76,7 +76,7 @@ class Filter {
 		virtual TiXmlElement* getXMLRepresentation() {
 			TiXmlElement* XMLNode = new TiXmlElement( name() );
 			for (OptionList::iterator opt = options.begin(); opt != options.end(); opt++)
-				XMLNode->SetAttribute( opt->first, opt->second.get() );
+				XMLNode->SetAttribute( opt->first, opt->second->get() );
 			return XMLNode;
 		}
 
@@ -111,6 +111,7 @@ class Filter {
 		virtual ShortImage* getShortImage() { return shortimage; }
 		virtual RGBImage* getRGBImage() { return rgbimage; }
 		virtual double getResult() { return result; }
+		virtual Filter* getParent() { return input; }
 
 		OptionList const& getOptions() { return options; }
 

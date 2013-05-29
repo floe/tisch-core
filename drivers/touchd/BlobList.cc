@@ -89,16 +89,16 @@ void BlobList::link( Filter* _link ) {
 int BlobList::process() {
 
 	// tracking & peak settings
-	double radius = options["TrackRadius"].get();
-	double factor = options["PeakFactor"].get();
-	double peakmode = options["PeakMode"].get();
+	double radius = options["TrackRadius"]->get();
+	double factor = options["PeakFactor"]->get();
+	double peakmode = options["PeakMode"]->get();
 
 	// blob detection settings
-	int minsize = options["MinSize"].get();
-	int maxsize = options["MaxSize"].get();
+	int minsize = options["MinSize"]->get();
+	int maxsize = options["MaxSize"]->get();
 
-	int ignore_orphans = options["IgnoreOrphans"].get();
-	int type = options["Type"].get();
+	int ignore_orphans = options["IgnoreOrphans"]->get();
+	int type = options["Type"]->get();
 
 	// swap blob lists
 	delete oldblobs;
@@ -112,7 +112,7 @@ int BlobList::process() {
 		input->getShortImage()->convert(*image);
 
 #ifdef HAS_UBITRACK
-		if( options["MarkerTracker"].get() != 0) {
+		if( options["MarkerTracker"]->get() != 0) {
 			// call MarkerTracker here
 			mMarkerTracker->findMarker(rgbimage, image, detectedMarkers);
 		}
@@ -402,8 +402,8 @@ void BlobList::draw( GLUTWindow* win, int show_image ) {
 // send blob list via OSC as TUIO 2.0
 void BlobList::send( TUIOOutStream* oscOut ) {
 
-	int hflip = options["HFlip"].get();
-	int vflip = options["VFlip"].get();
+	int hflip = options["HFlip"]->get();
+	int vflip = options["VFlip"]->get();
 
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 

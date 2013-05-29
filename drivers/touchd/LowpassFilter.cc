@@ -14,8 +14,8 @@ LowpassFilter::LowpassFilter( TiXmlElement* _config, Filter* _input ):
 }
 
 int LowpassFilter::process() {
-	int mode  = options["Mode" ].get();
-	int range = options["Range"].get();
+	int mode  = options["Mode" ]->get();
+	int range = options["Range"]->get();
 	if (image) input->getImage()->lowpass( *image, range, mode );
 	else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;

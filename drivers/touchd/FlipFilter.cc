@@ -19,8 +19,8 @@ int FlipFilter::process() {
 	int width = 0;
 	int height = 0;
 
-	int hflip = options["HFlip"].get();
-	int vflip = options["VFlip"].get();
+	int hflip = options["HFlip"]->get();
+	int vflip = options["VFlip"]->get();
 
 	if(image) 
 	{

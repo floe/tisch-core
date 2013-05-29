@@ -10,7 +10,7 @@ Option::Option( double _init, double _min, double _max ):
 	min(_min), max(_max), value(_init)
 { }
 		
-double Option::get() { return value; }
+double Option::get() const { return value; }
 
 void Option::set( double _value ) {
 	value = _value;

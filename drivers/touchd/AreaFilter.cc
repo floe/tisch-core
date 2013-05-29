@@ -16,7 +16,7 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
 }
 
 int AreaFilter::process() {
-	if (int(options["Enabled"].get()))
+	if (bool(options["Enabled"]->get()))
 		if(image) input->getImage()->areamask( *image, edgepoints );
 		else input->getShortImage()->areamask( *shortimage, edgepoints );
 	else

@@ -15,8 +15,8 @@ ThreshFilter::ThreshFilter( TiXmlElement* _config, Filter* _input ):
 }
 
 int ThreshFilter::process() {
-	int threshold_min = options["LowerThreshold"].get();
-	int threshold_max = options["UpperThreshold"].get();
+	int threshold_min = options["LowerThreshold"]->get();
+	int threshold_max = options["UpperThreshold"]->get();
 	if (image) input->getImage()->threshold( threshold_min, *image, threshold_max );
 	else input->getShortImage()->threshold( threshold_min << 5, *shortimage, threshold_max << 5 );
 	return 0;

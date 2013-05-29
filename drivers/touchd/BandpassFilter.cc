@@ -14,8 +14,8 @@ BandpassFilter::BandpassFilter( TiXmlElement* _config, Filter* _input ):
 }
 
 int BandpassFilter::process() {
-	int inner = options["InnerRadius"].get();
-	int outer = options["OuterRadius"].get();
+	int inner = options["InnerRadius"]->get();
+	int outer = options["OuterRadius"]->get();
 	if (image) input->getImage()->bandpass( *image, outer, inner );
 	//else input->getShortImage()->lowpass( *shortimage, range, mode );
 	return 0;

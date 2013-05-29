@@ -13,7 +13,7 @@ SpeckleFilter::SpeckleFilter( TiXmlElement* _config, Filter* _input ):
 }
 
 int SpeckleFilter::process() {
-	int noiselevel = options["NoiseLevel"].get();
+	int noiselevel = options["NoiseLevel"]->get();
 	if (image) input->getImage()->despeckle( *image, noiselevel );
 	else input->getShortImage()->despeckle( *shortimage, noiselevel );
 	return 0;

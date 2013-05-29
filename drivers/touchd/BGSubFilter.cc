@@ -34,8 +34,8 @@ void BGSubFilter::reset(int initialReset) {
 }
 
 int BGSubFilter::process() {
-	int invert = options["Invert"].get();
-	int adaptive = options["Adaptive"].get();
+	int invert = options["Invert"]->get();
+	int adaptive = options["Adaptive"]->get();
 	if(image) 
 	{
 		IntensityImage* inputimg = input->getImage();
