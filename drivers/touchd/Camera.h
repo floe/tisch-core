@@ -30,6 +30,7 @@ class Camera: public Filter {
 		virtual int process( );
 
 		void tilt_kinect( int angle );
+		const char* name() const { return "Camera"; }
 
 		// Configurator
 		virtual TiXmlElement* getXMLRepresentation();

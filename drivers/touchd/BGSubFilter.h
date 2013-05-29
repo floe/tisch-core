@@ -12,25 +12,24 @@
 class BGSubFilter: public Filter {
 	public:
 		BGSubFilter( TiXmlElement* _config = 0, Filter* _input = 0 );
+
 		virtual ~BGSubFilter();
 		virtual int process();
 		virtual void reset(int initialReset);
 		virtual void link( Filter* _mask );
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
+		const char* name() const { return "BGSubFilter"; }
+
 		virtual TiXmlElement* getXMLRepresentation();
-		int getBGSubFilterID();
 		TiXmlElement* getXMLofBackground(int BGSubFilterID, std::string pathToSaveBackgroundIMG);
+
 		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
 		int loadPGMImageFromFile(std::string filename, bool debug);
+
 	protected:
 		ShortImage* background;
 		Filter* mask;
 		int invert, adaptive, storeBGImg;
-		int BGSubFilterID; 
-
+		int resetOnInit;
 };
 
 #endif // _BGSUBFILTER_H_

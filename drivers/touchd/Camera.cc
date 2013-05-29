@@ -61,9 +61,6 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ):
 	expo = 0;
 	bright = 0;
 
-	// setting variables for Configurator
-	countOfOptions = 0; // quantity of variables that can be manipulated
-
 	#ifdef __linux
 		sourcetype = CAMERA_TYPE_V4L;
 	#elif _MSC_VER

@@ -12,6 +12,7 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
 	updated = true;
 	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
 	createOption( "Enabled", 0, 0, 1 );
+	loadFilterOptions( _config, true );
 }
 
 int AreaFilter::process() {
@@ -94,12 +95,13 @@ void AreaFilter::draw( GLUTWindow* win, int show_image ) {
 
 TiXmlElement* AreaFilter::getXMLRepresentation() {
 	TiXmlElement* XMLNode = Filter::getXMLRepresentation();
-	
+	TiXmlElement* polygons = getXMLofAreas();
+	XMLNode->LinkEndChild(polygons);
 	return XMLNode;
 }
 
 
-TiXmlElement* AreaFilter::getXMLofAreas(int AreaFilterID) {
+TiXmlElement* AreaFilter::getXMLofAreas() {
 	
 	int polygoncounter = 0;
 

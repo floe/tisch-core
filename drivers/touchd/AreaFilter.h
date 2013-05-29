@@ -23,7 +23,7 @@ class AreaFilter: public Filter {
 		const char* name() const { return "AreaFilter"; }
 
 		virtual TiXmlElement* getXMLRepresentation();
-		TiXmlElement* getXMLofAreas(int AreaFilterID);
+		TiXmlElement* getXMLofAreas();
 
 		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
 		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);

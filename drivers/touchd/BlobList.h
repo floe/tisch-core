@@ -31,36 +31,18 @@ class BlobList: public Filter {
 		virtual void link( Filter* _link   );
 
 		void send( TUIOOutStream* tuio );
+		const char* name() const { return "BlobList"; }
 
-		// Configurator
-		virtual const char* getOptionName(int option);
-		virtual double getOptionValue(int option);
-		virtual void modifyOptionValue(double delta, bool overwrite);
 		virtual TiXmlElement* getXMLRepresentation();
 
 	protected:
 
 		int getID( unsigned char value );
 
-		double radius, factor, peakmode; // tracking & peak settings
-		int minsize, maxsize;            // blob detection settings
-
-		// Color cross, trail;
-		int type, hflip, vflip;
-		int ignore_orphans;
-
 		BlobList* parent;
 		int width, height;
 
 	#ifdef HAS_UBITRACK
-		// MarkerTracker
-		// variables to read from XML
-		int int_mt_enabled;
-		int int_mt_showMarker;
-		
-		// variables for further use
-		bool mt_enabled;
-		bool mt_showMarker;
 		MarkerTracker* mMarkerTracker;
 		std::vector<Ubitrack::Vision::SimpleMarkerInfo>* detectedMarkers;
 	#endif

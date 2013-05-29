@@ -9,19 +9,13 @@
 BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ):
 	Filter( _config, _input, FILTER_TYPE_GREY )
 {
-	invert = 0;
-	adaptive = 0;
 	resetOnInit = 1;
-	BGSubFilterID = -1; // -1 is invalid
-	storeBGImg = 0;
 	if (image) background = new ShortImage( image->getWidth(), image->getHeight() );
 	else background = new ShortImage( shortimage->getWidth(), shortimage->getHeight() );
-	config->QueryIntAttribute( "BGSubFilterID", &BGSubFilterID );
-	config->QueryIntAttribute( "Invert",   &invert   );
-	config->QueryIntAttribute( "Adaptive", &adaptive );
-	config->QueryIntAttribute( "storeBGImg", &storeBGImg );
-	// setting variables for Configurator
-	countOfOptions = 3; // quantity of variables that can be manipulated
+	createOption( "Invert", 0, 0, 1 );
+	createOption( "Adaptive", 0, 0, 1 );
+	createOption( "storeBGImg", 0, 0, 1 );
+	loadFilterOptions( _config, true );
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -40,6 +34,8 @@ void BGSubFilter::reset(int initialReset) {
 }
 
 int BGSubFilter::process() {
+	int invert = options["Invert"].get();
+	int adaptive = options["Adaptive"].get();
 	if(image) 
 	{
 		IntensityImage* inputimg = input->getImage();
@@ -57,96 +53,16 @@ int BGSubFilter::process() {
 	return 0;
 }
 
-const char* BGSubFilter::getOptionName(int option) {
-	const char* OptionName = "";
-
-	switch(option) {
-	case 0:
-		OptionName = "Invert";
-		break;
-	case 1:
-		OptionName = "Adaptive";
-		break;
-	case 2:
-		OptionName = "store BGImg";
-		break;
-	default:
-		// leave OptionName empty
-		break;
-	}
-
-	return OptionName;
-}
-
-double BGSubFilter::getOptionValue(int option) {
-	double OptionValue = -1.0;
-
-	switch(option) {
-	case 0:
-		OptionValue = invert;
-		break;
-	case 1:
-		OptionValue = adaptive;
-		break;
-	case 2:
-		OptionValue = storeBGImg;
-		break;
-	default:
-		// leave OptionValue = -1.0
-		break;
-	}
-
-	return OptionValue;
-}
-
-void BGSubFilter::modifyOptionValue(double delta, bool overwrite) {
-	switch(toggle) {
-	case 0: // invert is a boolean value
-		if(overwrite) {
-			invert = (delta == 0 ? 0 : (delta == 1 ? 1 : invert));
-		} else {
-			invert += delta;
-			invert = (invert < 0) ? 0 : (invert > 1) ? 1 : invert;
-		}
-		break;
-	case 1: // adaptive is a boolean value
-		if(overwrite) {
-			adaptive = (delta == 0 ? 0 : (delta == 1 ? 1 : adaptive));
-		} else {
-			adaptive += delta;
-			adaptive = (adaptive < 0) ? 0 : (adaptive > 1) ? 1 : adaptive;
-		}
-		break;
-	case 2: // overwrite is boolean value
-		if(overwrite) {
-			storeBGImg = (delta == 0 ? 0 : (delta == 1 ? 1 : storeBGImg));
-		}
-		else {
-			storeBGImg += delta;
-			storeBGImg = (storeBGImg < 0) ? 0 : (storeBGImg > 1) ? 1 : storeBGImg;
-		}
-	}
-}
 
 TiXmlElement* BGSubFilter::getXMLRepresentation() {
-	
-	TiXmlElement* XMLNode = new TiXmlElement( "BGSubFilter" );
-	
-	XMLNode->SetAttribute( "BGSubFilterID" , BGSubFilterID );
-	XMLNode->SetAttribute( "Invert" , invert );
-	XMLNode->SetAttribute( "Adaptive" , adaptive );
-	XMLNode->SetAttribute( "storeBGImg" , storeBGImg );
-	
+	TiXmlElement* XMLNode = Filter::getXMLRepresentation();
+	TiXmlElement* bg_node = getXMLofBackground(123,"foo");
+	XMLNode->LinkEndChild( bg_node );
 	return XMLNode;
-}
-
-int BGSubFilter::getBGSubFilterID() {
-	return BGSubFilterID;
 }
 
 TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string path) {
 	TiXmlElement* XMLNodeBG = new TiXmlElement( "BGSubFilter" );
-	XMLNodeBG->SetAttribute( "BGSubFilterID" , BGSubFilterID );
 
 	// filename
 	std::ostringstream filename;
@@ -157,23 +73,22 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 	std::string BGImg = path.append(filename.str());
 
 	// check whether file already exists
-    std::fstream testExistance(BGImg.c_str(), std::ios::in);
-    if (testExistance.good()) {
+	std::fstream testExistance(BGImg.c_str(), std::ios::in);
+	if (testExistance.good()) {
 		// file already exists
-        testExistance.close();
-        if( storeBGImg == 0 ) {
+		testExistance.close();
+		if( storeBGImg == 0 ) {
 			// don't overwrite BGImg
 			XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
 			return XMLNodeBG;
 		}
-    }
-	else {
+	} else {
 		// doesnt exist
 		if( storeBGImg == 0 ) {
 			// don't store
 			return 0;
 		}
-    } 
+	} 
 
 	// store/overwrite BG Image only if storing for this BGSubfilter is enabled
 	if(storeBGImg == 1) {
@@ -214,20 +129,11 @@ void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
 	do {
 		// iterate through all children of OptionSubtree
 		std::string type = filterOption->Value();
-		if(type == "BGSubFilter") {
-			int filterID = -1;
-			filterOption->QueryIntAttribute( "BGSubFilterID" , &filterID );
-			if( (filterID == BGSubFilterID) && (filterID != -1) ) {
-				// settings are for the current BGSubFilter
-
-				if(debug)
-					std::cout << "BGSubFilterID: " << BGSubFilterID << std::endl;
-
-				std::string filename;
-				filterOption->QueryStringAttribute( "BGImgPath", &filename);
-				resetOnInit = loadPGMImageFromFile( filename , debug);
-				break;
-			}
+		if(type == "BGImage") {
+			std::string filename;
+			filterOption->QueryStringAttribute( "BGImgPath", &filename);
+			resetOnInit = loadPGMImageFromFile( filename , debug);
+			break;
 		}
 	} while((filterOption = filterOption->NextSiblingElement()));
 

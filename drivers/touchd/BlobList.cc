@@ -34,42 +34,24 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
 	image = new IntensityImage( width, height );
 	shortimage = NULL;
 
-	type  = 0;
-	hflip = 0;
-	vflip = 0;
-
-	minsize = 50;
-	maxsize = 0;
-
-	factor = 1.5;
-	radius = 20;
-	peakmode = 0.0;
-	ignore_orphans = 0;
-
 	// try to read settings from XML
-	config->QueryIntAttribute( "Type",  &type  );
-	config->QueryIntAttribute( "HFlip", &hflip );
-	config->QueryIntAttribute( "VFlip", &vflip );
-	config->QueryIntAttribute( "IgnoreOrphans", &ignore_orphans );
+	createOption( "Type",  0, 0, 32 );
+	createOption( "HFlip", 0, 0,  1 );
+	createOption( "VFlip", 0, 0,  1 );
+	createOption( "IgnoreOrphans", 0, 0, 1 );
 
-	config->QueryIntAttribute( "MinSize",  &minsize  );
-	config->QueryIntAttribute( "MaxSize",  &maxsize  );
+	createOption( "MinSize", 50, 1 );
+	createOption( "MaxSize",  0, 0 );
 
-	config->QueryDoubleAttribute( "TrackRadius", &radius   );
-	config->QueryDoubleAttribute( "PeakFactor",  &factor   );
-	config->QueryDoubleAttribute( "PeakMode",    &peakmode );
-	//config->QueryIntAttribute( "CrossColor", &cross);
-	//config->QueryIntAttribute( "TrailColor", &trail);
+	createOption( "TrackRadius",  20,  1 );
+	createOption( "PeakFactor",  1.5,  1 );
+	createOption( "PeakMode",    0.0, -1 );
+
+	// MarkerTracker
+	createOption( "MarkerTracker", 0, 0, 1 );
+	createOption( "MTshowMarker",  0, 0, 1 );
 
 #ifdef HAS_UBITRACK
-	// MarkerTracker
-	config->QueryIntAttribute( "MarkerTracker", &int_mt_enabled );
-	config->QueryIntAttribute( "MTshowMarker", &int_mt_showMarker );
-
-	// check values for value range and set default values
-	(int_mt_enabled == 1)		? mt_enabled = true		: mt_enabled = false;
-	(int_mt_showMarker == 1)	? mt_showMarker = true	: mt_showMarker = false;
-
 	// create MarkerTracker with read settings
 	mMarkerTracker = new MarkerTracker(width, height);
 	mMarkerTracker->addMarkerID(0x1228);
@@ -80,11 +62,6 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
 	mMarkerTracker->addMarkerID(0x0272);
 
 	detectedMarkers = new std::vector<Ubitrack::Vision::SimpleMarkerInfo>;
-
-	// setting variables for Configurator
-	countOfOptions = 7; // quantity of variables that can be manipulated
-#else
-	countOfOptions = 5; // quantity of variables that can be manipulated
 #endif
 }
 
@@ -111,6 +88,18 @@ void BlobList::link( Filter* _link ) {
 
 int BlobList::process() {
 
+	// tracking & peak settings
+	double radius = options["TrackRadius"].get();
+	double factor = options["PeakFactor"].get();
+	double peakmode = options["PeakMode"].get();
+
+	// blob detection settings
+	int minsize = options["MinSize"].get();
+	int maxsize = options["MaxSize"].get();
+
+	int ignore_orphans = options["IgnoreOrphans"].get();
+	int type = options["Type"].get();
+
 	// swap blob lists
 	delete oldblobs;
 	oldblobs = blobs;
@@ -123,7 +112,7 @@ int BlobList::process() {
 		input->getShortImage()->convert(*image);
 
 #ifdef HAS_UBITRACK
-		if( mt_enabled ) {
+		if( options["MarkerTracker"].get() != 0) {
 			// call MarkerTracker here
 			mMarkerTracker->findMarker(rgbimage, image, detectedMarkers);
 		}
@@ -352,6 +341,9 @@ void BlobList::draw( GLUTWindow* win, int show_image ) {
 		}
 #ifdef HAS_UBITRACK
 	
+	bool mt_enabled = options["MarkerTracker"].get();
+	bool mt_showMarker = options["MTShowMarker"].get();
+
 	if( mt_enabled ) {
 		glColor4f( 1.0, 0.0, 0.0, 1.0 );
 		win->print( std::string("makertracker running"), 10, win->getHeight() - 30 );
@@ -410,6 +402,9 @@ void BlobList::draw( GLUTWindow* win, int show_image ) {
 // send blob list via OSC as TUIO 2.0
 void BlobList::send( TUIOOutStream* oscOut ) {
 
+	int hflip = options["HFlip"].get();
+	int vflip = options["VFlip"].get();
+
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 
 		BasicBlob tmp = *it;
@@ -430,163 +425,4 @@ void BlobList::send( TUIOOutStream* oscOut ) {
 		
 		*oscOut << tmp;
 	}
-}
-
-const char* BlobList::getOptionName(int option) {
-	const char* OptionName = "";
-
-	switch(option) {
-	case 0:
-		OptionName = "Horizontal Flip";
-		break;
-	case 1:
-		OptionName = "Vertical Flip";
-		break;
-	case 2:
-		OptionName = "Minimum Size";
-		break;
-	case 3:
-		OptionName = "Maximum Size";
-		break;
-	case 4:
-		OptionName = "Peakmode";
-		break;
-#ifdef HAS_UBITRACK
-	// MarkerTracker
-	case 5:
-		OptionName = "MT enabled";
-		break;
-	case 6:
-		OptionName = "MT show marker";
-		break;
-#endif
-	default:
-		// leave OptionName empty
-		break;
-	}
-
-	return OptionName;
-}
-
-double BlobList::getOptionValue(int option) {
-	double OptionValue = -1.0;
-
-	switch(option) {
-	case 0:
-		OptionValue = hflip;
-		break;
-	case 1:
-		OptionValue = vflip;
-		break;
-	case 2:
-		OptionValue = minsize;
-		break;
-	case 3:
-		OptionValue = maxsize;
-		break;
-	case 4:
-		OptionValue = peakmode;
-		break;
-#ifdef HAS_UBITRACK
-	// MarkerTracker
-	case 5:
-		OptionValue = mt_enabled;
-		break;
-	case 6:
-		OptionValue = mt_showMarker;
-		break;
-#endif
-	default:
-		// leave OptionValue = -1.0
-		break;
-	}
-
-	return OptionValue;
-}
-
-void BlobList::modifyOptionValue(double delta, bool overwrite) {
-	switch(toggle) {
-	case 0: // hflip is a boolean value
-		if(overwrite) {
-			hflip = (delta == 0 ? 0 : (delta == 1 ? 1 : hflip));
-		} else {
-			hflip += delta;
-			hflip = (hflip < 0) ? 0 : (hflip > 1) ? 1 : hflip;
-		}
-		break;
-	case 1: // vflip is a boolean value
-		if(overwrite) {
-			vflip = (delta == 0 ? 0 : (delta == 1 ? 1 : vflip));
-		} else {
-			vflip += delta;
-			vflip = (vflip < 0) ? 0 : (vflip > 1) ? 1 : vflip;
-		}
-		break;
-	case 2:
-		if(overwrite) {
-			minsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
-		} else {
-			minsize += delta;
-			minsize = (minsize < 0) ? 0 : (minsize > MAX_VALUE) ? MAX_VALUE : minsize;
-		}
-		break;
-	case 3:
-		if(overwrite) {
-			maxsize = (delta < 0) ? 0 : (delta > MAX_VALUE) ? MAX_VALUE : delta;
-		} else {
-			maxsize += delta;
-			maxsize = (maxsize < 0) ? 0 : (maxsize > MAX_VALUE) ? MAX_VALUE : maxsize;
-		}
-		break;
-	case 4:
-		if(overwrite) {
-			peakmode = (delta < -MAX_VALUE) ? -MAX_VALUE : (delta > MAX_VALUE) ? MAX_VALUE : delta;
-		} else {
-			peakmode += delta;
-			peakmode = (peakmode < -MAX_VALUE) ? -MAX_VALUE : (peakmode > MAX_VALUE) ? MAX_VALUE : peakmode;
-		}
-		break;
-#ifdef HAS_UBITRACK
-	// MarkerTracker
-	case 5: // mt_enabled is a boolean value
-		if(overwrite) {
-			mt_enabled = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_enabled));
-		} else {
-			mt_enabled += delta;
-			mt_enabled = (mt_enabled < 0) ? 0 : (mt_enabled > 1) ? 1 : mt_enabled;
-		}
-		break;
-	case 6: // mt_showMarker is a boolean value
-		if(overwrite) {
-			mt_showMarker = (delta == 0 ? 0 : (delta == 1 ? 1 : mt_showMarker));
-		} else {
-			mt_showMarker += delta;
-			mt_showMarker = (mt_showMarker < 0) ? 0 : (mt_showMarker > 1) ? 1 : mt_showMarker;
-		}
-		break;
-#endif
-	}
-}
-
-TiXmlElement* BlobList::getXMLRepresentation() {
-	TiXmlElement* XMLNode = new TiXmlElement( "BlobFilter" );
-	
-	XMLNode->SetAttribute( "IgnoreOrphans", ignore_orphans );
-	XMLNode->SetAttribute( "MinSize",  minsize );
-	XMLNode->SetAttribute( "MaxSize",  maxsize );
-	XMLNode->SetAttribute( "PeakMode", peakmode );
-	XMLNode->SetAttribute( "HFlip", hflip );
-	XMLNode->SetAttribute( "VFlip", vflip );
-	XMLNode->SetAttribute( "Type",  type  );
-	XMLNode->SetAttribute( "TrackRadius", radius );
-	XMLNode->SetAttribute( "PeakFactor", factor );
-
-#ifdef HAS_UBITRACK
-	// MarkerTracker
-	XMLNode->SetAttribute( "MarkerTracker", mt_enabled );
-	XMLNode->SetAttribute( "MTshowMarker", mt_showMarker );
-	
-#endif
-
-	return XMLNode;
 }
