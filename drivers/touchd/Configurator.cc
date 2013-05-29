@@ -11,7 +11,9 @@
  */
 Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
 	win = targetWindow;
-
+	helpMode = false;
+	editMode = false;
+	visible =  false;
 	updateCurrentFilter(currentFilter);
 
 }
@@ -19,11 +21,19 @@ Configurator::Configurator(GLUTWindow* targetWindow, Filter* currentFilter) {
 Configurator::~Configurator() {
 }
 
+void Configurator::draw() {
+	if (!visible) return;
+	showInfo();
+	if (helpMode) showHelp();
+	if (editMode) showEditInfo();
+}
+
 /*
  * updating the Configurator when switching the filter
  */
 void Configurator::updateCurrentFilter(Filter* currentFilter) {
 	filter = currentFilter;
+	current = filter->getOptions().begin();
 }
 
 /*
@@ -33,28 +43,30 @@ void Configurator::showInfo() {
 	int xCoord = 10;
 	int yCoord = 40;
 
+	OptionList const& options = filter->getOptions();
+
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 225, (filter->getOptionCount()+1)*20, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 225, (options.size()+1)*20, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("Configuration: (h)elp"), xCoord, yCoord);
 
-	for (int i = 0; i < filter->getOptionCount(); i++) {
+	for (OptionList::const_iterator opt = options.begin(); opt != options.end(); opt++) {
 		yCoord += 20;
 
 		// highlight the current selected option
-		if (i == filter->getCurrentOption()) {
+		if (opt == current) {
 			glColor4f(1.0, 0.5, 0.0, 1.0); // orange
 		} else {
 			glColor4f(0.0, 0.0, 0.0, 1.0); // black
 		}
+
 		// display each option of filter in a line
 		std::ostringstream OptionValue;
 		OptionValue.str("");
-		OptionValue << filter->getOptionName(i) << ": ";
-		OptionValue << filter->getOptionValue(i);
+		OptionValue << opt->first << ": ";
+		OptionValue << opt->second->get();
 		win->print(OptionValue.str(), xCoord, yCoord);
-
 	}
 }
 
@@ -108,24 +120,60 @@ void Configurator::showEditInfo() {
 	win->print(std::string("Leave editing mode without changes with ESC."), xCoord, yCoord);
 }
 
-void Configurator::showStoreInfo(int mode) {
-	int xCoord = 100;
-	int yCoord = 140;
+int Configurator::handleInput( unsigned char c ) {
 
-	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
+	if (!visible) return 0;
 
-	glColor4f(0.0, 0.0, 0.0, 1.0); // black
-	win->print(std::string("Saving Mode"), xCoord, yCoord);
-	yCoord += 30;
-	win->print(std::string("Press ENTER to save current settings"), xCoord, yCoord);
-	yCoord += 20;
-	if(mode == 0) {
-		win->print(std::string("of ALL filters"), xCoord, yCoord);
+	// switching to editing mode
+	if (editMode) {
+
+		// ESC quits edit mode without applying changes
+		if (c == 0x1B) editMode = false;
+
+		// Enter finishes Input
+		if (c != 0x0D) 
+			userinput += c;
+		else {
+			// parse input to double, 0.0 if a double couldn't be read
+			double result = atof(userinput.c_str());
+			// apply new value
+			current->second->set(result);
+			std::cout << "input was: " << result << std::endl;
+			editMode = false; // close editing mode
+		}
+
+		return 1;
 	}
-	else if(mode == 1) {
-		win->print(std::string("of CURRENT filter"), xCoord, yCoord);
+	
+	// processing keyboard entries as usual
+
+	// show/hide configurator
+	if (c == 'c') visible = !visible;
+
+	// show/hide help
+	if (c == 'h') helpMode = !helpMode;
+
+	// increase value
+	if (c == 'i') current->second->inc();
+
+	// decrease value
+	if (c == 'd') current->second->dec();
+
+	// activate editing mode: overwrite non bool variables with user input
+	if (c == 'e') {
+		if (filter->getOptions().size() > 0) {
+			userinput = "";
+			editMode = true;
+		}
 	}
-	yCoord += 30;
-	win->print(std::string("Use ESC to leave without saving."), xCoord, yCoord);
+
+	// toggle Option with Tab
+	if (c == 0x09) {
+		current++;
+		if (current == filter->getOptions().end())
+			current = filter->getOptions().begin();
+	}
+
+	return 0;
 }
+

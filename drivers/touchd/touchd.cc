@@ -27,11 +27,7 @@ int startup = 5;
 GLUTWindow* win = 0;
 Filter* tmp = 0;
 Configurator* configure = 0;
-int showHelp = 0;
-int editvalue = 0;
-int storeSettingsAllFilter = 0;
-int storeSettingsCurrentFilter = 0;
-std::string userinput = "";
+bool storeSettings = false;
 
 Pipeline* mypipe = 0;
 std::string cfgfile;
@@ -53,7 +49,10 @@ void cleanup( int signal ) {
 	delete mypipe;
 	delete tuio;
 
-	if (vidout) delete win;
+	if (vidout) {
+		delete configure;
+		delete win;
+	}
 
 	std::cout << "done. Goodbye." << std::endl;
 
@@ -76,24 +75,22 @@ void disp() {
 	tmp->draw( win, mode );
 
 	// display data of configurator
-	if(configure != 0) {
+	configure->draw();
 
-		configure->showInfo();
+	if (storeSettings) {
+	
+		int xCoord = 100;
+		int yCoord = 140;
 
-		if(showHelp == 1) {
-			configure->showHelp();
-		}
+		glColor4f(1.0, 1.0, 1.0, 1.0); // white
+		win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
 
-		if(editvalue == 1) {
-			configure->showEditInfo();
-		}
-
-		if(storeSettingsAllFilter == 1) {
-			configure->showStoreInfo(0);
-		}
-		else if(storeSettingsCurrentFilter == 1) {
-			configure->showStoreInfo(1);
-		}
+		glColor4f(0.0, 0.0, 0.0, 1.0); // black
+		win->print(std::string("Saving Mode"), xCoord, yCoord);
+		yCoord += 30;
+		win->print(std::string("Press ENTER to save current settings of ALL filters."), xCoord, yCoord);
+		yCoord += 30;
+		win->print(std::string("Press any other key to leave without saving."), xCoord, yCoord);
 	}
 
 	win->swap();
@@ -109,150 +106,49 @@ void mouse( int button, int state, int x, int y )
 // TODO: better keyboard functionality (adjust filter params)
 void keyb( unsigned char c, int, int ) {
 
+	if (storeSettings) {
+		if (c == 0x0D) mypipe->storeXMLConfig(cfgfile); // Enter
+		storeSettings = false;
+	}
+
+	if (configure->handleInput(c)) return;
+
 	if (c == 'q') cleanup( 0 );
-	if (c == ' ') mypipe->reset( 0 ); // reset all filter
 
-	// switching to editing mode
-	if (editvalue == 1 && configure != 0) {
+	if (c == ' ') mypipe->reset( 0 ); // reset all filters
+	if (c == 'r') tmp->reset( 0 ); // reset only this filter
 
-		// quit edit mode without applying changes
-		if(c == 0x1B) { // ESC
-			editvalue = 0;
-		}
+	// switch between displaying DepthImage and RGBImage
+	if (c == 'm')
+		mode = (mode==FILTER_TYPE_SHORT) ? FILTER_TYPE_RGB : FILTER_TYPE_SHORT;
 
-		// Enter finishes Input
-		if (c == 0x0D) {
-			// parse input to double, 0.0 if a double couldn't be read
-			double result = atof(userinput.c_str());
-			// apply new value
-			tmp->modifyOptionValue(result, true);
-			std::cout << "input was: " << result << std::endl;
-			editvalue = 0; // close editing mode
-		} else {
-			userinput += c;
-		}
+	// store settings of ALL filters
+	if (c == 'S') 
+		storeSettings = true;
 
-	}
-	else if(storeSettingsAllFilter == 1 && configure != 0) {
-		// save configuration of ALL filters
-
-		// quit storing mode without saving
-		if(c == 0x1B) { // ESC
-			storeSettingsAllFilter = 0;
-		}
-
-		if(c == 0x0D){ // Enter
-			// save new xml
-			mypipe->storeXMLConfig(cfgfile);
-			storeSettingsAllFilter = 0; // close storing mode
-		}
-
-	}
-	/*else if(storeSettingsCurrentFilter == 1 && configure != 0) {
-		// save configuration of CURRENT filter, keep all other settings
-
-		// quit storing mode without saving
-		if(c == 0x1B) { // ESC
-			storeSettingsCurrentFilter = 0;
-		}
-
-		if(c == 0x0D) { // ENTER
-			//(mypipe->storeXMLConfig(cfgfile); // TODO
-			storeSettingsCurrentFilter = 0;
-		}
-	}
-	*/
-	else { // processing keyboard entries as usual
 	// switching filters
-		if ((c >= '0') && (c <= '9')) {
-			c = c - '0';
-			if (c < mypipe->size()){
-				tmp = (*mypipe)[c];
-				if(configure != 0) {
-					configure->updateCurrentFilter(tmp);
-				}
-			}
+	if ((c >= '0') && (c <= '9')) {
+		c = c - '0';
+		if (c < mypipe->size()){
+			tmp = (*mypipe)[c];
+			configure->updateCurrentFilter(tmp);
 		}
-
-		// switch configurator on/off
-		if(c == 'c'){
-			if (configure == 0)
-				configure = new Configurator(win, tmp);
-			else{
-				delete configure; // free memory, also calls destructor
-				showHelp = 0;
-				configure = 0;
-			}
-		}
-
-		// adjust values
-		if(configure != 0) {
-			// show/hide help
-			if(c == 'h') {
-				showHelp = (showHelp + 1) % 2; // boolean value
-			}
-
-			// increase value
-			if(c == 'i') {
-				tmp->modifyOptionValue(1.0, false);
-			}
-
-			// decrease value
-			if(c == 'd') {
-				tmp->modifyOptionValue(-1.0, false);
-			}
-
-			// activate editing mode: overwrite non bool variables with user input
-			if(c == 'e') {
-				if(tmp->getOptionCount() > 0) {
-					showHelp = 0;
-					userinput = "";
-					editvalue = 1; // boolean value
-				}
-			}
-
-			// activate saving mode
-			//if(c == 's') { // store settings of CURRENT filter
-			//	storeSettingsCurrentFilter = 1;
-			//}
-
-			if(c == 'S') { // store settings of ALL filters
-				storeSettingsAllFilter = 1;
-			}
-
-			// toggle Option with Tab
-			if(c == 0x09) {
-				tmp->nextOption();
-			}
-
-			// switch between displaying DepthImage and RGBImage
-			if( c == 'm' ) {
-				mode = (mode==FILTER_TYPE_SHORT) ? FILTER_TYPE_RGB : FILTER_TYPE_SHORT;
-			}
-
-			// reset only this filter
-			if(c == 'r') {
-				tmp->reset( 0 );
-			}
-		}
-
-		if(configure == 0) {
-			// move Kinect only when configurator is closed
-			if (c == 'x') {
-				if( angle > -30 ) angle--;
-				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-			}
-			if (c == 'w') {
-				if( angle < 30 ) angle++;
-				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-			}
-			if (c == 's') {
-				angle = 0;
-				((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
-			}
-		}
-
 	}
+
+	// move Kinect (if applicable)
+	if (c == 'x') {
+		if (angle > -30) angle--;
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+	if (c == 'w') {
+		if (angle < 30) angle++;
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+	if (c == 's') {
+		angle = 0;
+		((Camera*)((*mypipe)[0]))->tilt_kinect( angle );
+	}
+
 	glutPostRedisplay();
 }
 
@@ -347,6 +243,7 @@ int main( int argc, char* argv[] ) {
 		while (1) idle();
 	} else {
 		win = new GLUTWindow( width, height, "libTISCH 2.0 image processor - press 0-9 to switch filter" );
+		configure = new Configurator( win, tmp );
 		glutIdleFunc(idle);
 		glutDisplayFunc(disp);
 		glutKeyboardFunc(keyb);
