@@ -57,7 +57,7 @@ int BGSubFilter::process() {
 TiXmlElement* BGSubFilter::getXMLRepresentation() {
 	TiXmlElement* XMLNode = Filter::getXMLRepresentation();
 	TiXmlElement* bg_node = getXMLofBackground(123,"foo");
-	XMLNode->LinkEndChild( bg_node );
+	if (bg_node) XMLNode->LinkEndChild( bg_node );
 	return XMLNode;
 }
 

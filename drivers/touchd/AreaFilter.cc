@@ -96,7 +96,7 @@ void AreaFilter::draw( GLUTWindow* win, int show_image ) {
 TiXmlElement* AreaFilter::getXMLRepresentation() {
 	TiXmlElement* XMLNode = Filter::getXMLRepresentation();
 	TiXmlElement* polygons = getXMLofAreas();
-	XMLNode->LinkEndChild(polygons);
+	if (polygons) XMLNode->LinkEndChild(polygons);
 	return XMLNode;
 }
 
