@@ -103,17 +103,15 @@ void Configurator::showHelp() {
 
 void Configurator::showEditInfo() {
 	int xCoord = 100;
-	int yCoord = 140;
+	int yCoord = 320;
 
 	glColor4f(1.0, 1.0, 1.0, 1.0); // white
-	win->drawRectangleBackground(xCoord, yCoord, 450, 130, 2);
+	win->drawRectangleBackground(xCoord, yCoord, 450, 100, 2);
 
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
-	win->print(std::string("Your are now in editing mode."), xCoord, yCoord);
-	yCoord += 30;
-	win->print(std::string("Please enter a numerical value"), xCoord, yCoord);
+	win->print(std::string("Editing value for ")+current->first, xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("to overwrite the selected value."), xCoord, yCoord);
+	win->print(std::string("New value: ")+userinput, xCoord, yCoord);
 	yCoord += 30;
 	win->print(std::string("Finish your input with ENTER."), xCoord, yCoord);
 	yCoord += 30;
@@ -122,33 +120,47 @@ void Configurator::showEditInfo() {
 
 int Configurator::handleInput( unsigned char c ) {
 
+	// show/hide configurator
+	if (c == 'c') visible = !visible;
+
 	if (!visible) return 0;
 
 	// switching to editing mode
 	if (editMode) {
 
-		// ESC quits edit mode without applying changes
-		if (c == 0x1B) editMode = false;
+		switch (c) {
 
-		// Enter finishes Input
-		if (c != 0x0D) 
-			userinput += c;
-		else {
-			// parse input to double, 0.0 if a double couldn't be read
-			double result = atof(userinput.c_str());
-			// apply new value
-			current->second->set(result);
-			std::cout << "input was: " << result << std::endl;
-			editMode = false; // close editing mode
+			// ESC quits edit mode without applying changes
+			case 0x1B:
+				editMode = false;
+				break;
+
+			// backspace deletes last char
+			case 0x08:
+				if (userinput.size() > 0)
+					userinput.resize(userinput.size()-1);
+				break;
+
+			// Enter finishes Input
+			case 0x0D: {
+				// parse input to double, 0.0 if a double couldn't be read
+				double result = atof(userinput.c_str());
+				// apply new value
+				current->second->set(result);
+				std::cout << "input was: " << result << std::endl;
+				editMode = false; // close editing mode
+				break;
+			}
+
+			default: 
+				userinput += c;
+				break;
 		}
 
 		return 1;
 	}
 	
 	// processing keyboard entries as usual
-
-	// show/hide configurator
-	if (c == 'c') visible = !visible;
 
 	// show/hide help
 	if (c == 'h') helpMode = !helpMode;
