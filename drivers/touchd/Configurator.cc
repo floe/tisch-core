@@ -111,7 +111,7 @@ void Configurator::showEditInfo() {
 	glColor4f(0.0, 0.0, 0.0, 1.0); // black
 	win->print(std::string("Editing value for ")+current->first, xCoord, yCoord);
 	yCoord += 20;
-	win->print(std::string("New value: ")+userinput, xCoord, yCoord);
+	win->print(std::string("Enter new numerical value: ")+userinput, xCoord, yCoord);
 	yCoord += 30;
 	win->print(std::string("Finish your input with ENTER."), xCoord, yCoord);
 	yCoord += 30;
@@ -144,7 +144,10 @@ int Configurator::handleInput( unsigned char c ) {
 			// Enter finishes Input
 			case 0x0D: {
 				// parse input to double, 0.0 if a double couldn't be read
-				double result = atof(userinput.c_str());
+				char* last = NULL;
+				const char *data = userinput.c_str();
+				double result = strtod(data,&last);
+				if (last == data) break;
 				// apply new value
 				current->second->set(result);
 				std::cout << "input was: " << result << std::endl;
