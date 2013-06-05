@@ -43,7 +43,7 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	Filter* filter = 0;
 
 	if (type ==         "Camera") filter = new         Camera( config, parent );
-	if (type ==     "BlobFilter") filter = new       BlobList( config, parent );
+	if (type ==       "BlobList") filter = new       BlobList( config, parent );
 	if (type ==     "FlipFilter") filter = new     FlipFilter( config, parent );
 	if (type ==     "AreaFilter") filter = new     AreaFilter( config, parent );
 	if (type ==    "SplitFilter") filter = new    SplitFilter( config, parent );
@@ -57,6 +57,7 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	#endif
 
 	if (filter) push_back( filter );
+	else std::cout << "Warning: unknown filter element \"" << type << "\"" << std::endl;
 
 	for ( TiXmlElement* child = config->FirstChildElement(); child != 0; child = child->NextSiblingElement() )
 		createFilter( child, filter );
