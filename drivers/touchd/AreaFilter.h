@@ -25,7 +25,7 @@ class AreaFilter: public Filter {
 		virtual TiXmlElement* getXMLRepresentation();
 		TiXmlElement* getXMLofAreas();
 
-		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
+		void loadFilterOptions(TiXmlElement* OptionSubtree);
 		int createFilterAreaFromConfig(TiXmlElement* PolygonsOfAreaFilter, bool debug);
 
 	protected:

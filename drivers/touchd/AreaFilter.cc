@@ -12,7 +12,7 @@ AreaFilter::AreaFilter( TiXmlElement* _config, Filter* _input ):
 	updated = true;
 	resetOnInit = 1; // is set to 0 if polygons where read from config to edgepoint vector
 	createOption( "Enabled", 0, 0, 1 );
-	loadFilterOptions( _config, true );
+	loadFilterOptions( _config );
 }
 
 int AreaFilter::process() {
@@ -145,25 +145,18 @@ TiXmlElement* AreaFilter::getXMLofAreas() {
 	return polygonsOfAreaFilter;
 }
 
-void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
+void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree) {
 	
 	// check OptionSubtree to find settings for current AreaFilter ...
-	std::cout << "reading stored areas for AreaFilter from config ... ";
-	if(debug)
-		 std::cout << std::endl;
-
 	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
 	do {
 		std::string type = filterOption->Value();
-		if(type == "Polygons") {
+		if (type == "Polygons") {
 			// current Options are for an AreaFilter
-			resetOnInit = createFilterAreaFromConfig(filterOption, debug);
+			resetOnInit = createFilterAreaFromConfig( filterOption, false );
 			break;
 		}
 	} while((filterOption = filterOption->NextSiblingElement()));
-	
-	std::cout << "done" << std::endl;
-
 }
 
 /*
