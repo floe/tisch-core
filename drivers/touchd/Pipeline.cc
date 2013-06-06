@@ -14,7 +14,6 @@
 #include "BGSubFilter.h"
 #include "FlipFilter.h"
 #include "LowpassFilter.h"
-#include "MarkerTrackerFilter.h"
 #include "SpeckleFilter.h"
 #include "SplitFilter.h"
 #include "ThreshFilter.h"
@@ -52,9 +51,6 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	if (type ==  "SpeckleFilter") filter = new  SpeckleFilter( config, parent );
 	if (type ==  "LowpassFilter") filter = new  LowpassFilter( config, parent );
 	if (type == "BandpassFilter") filter = new BandpassFilter( config, parent );
-	#ifdef HAS_UBITRACK
-	if (type == "MarkerTrackerFilter") filter = new MarkerTrackerFilter( config, parent );
-	#endif
 
 	if (filter) push_back( filter );
 	else std::cout << "Warning: unknown filter element \"" << type << "\"" << std::endl;
