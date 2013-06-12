@@ -25,6 +25,8 @@ class TISCH_SHARED Blob: public BasicBlob {
 
 		void setPeak( IntensityImage* image, double factor, double peakmode );
 
+		std::vector<Point> border;
+
 };
 
 #endif // _BLOB_H_
