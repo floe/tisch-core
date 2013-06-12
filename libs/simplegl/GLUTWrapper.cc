@@ -51,6 +51,18 @@ void glWindowPos2iINT( GLint x, GLint y ) {
 	glPopAttrib();
 }
 
+// Helper function to enable DPI awareness on Windows
+void enable_dpi_awareness() {
+	#ifdef _MSC_VER
+		HWND desktop = GetDesktopWindow();
+		HDC  context = GetDC( desktop );
+		SetProcessDPIAware();
+		GetDeviceCaps( context, LOGPIXELSX );
+		GetDeviceCaps( context, LOGPIXELSY );
+		ReleaseDC( desktop, context );
+	#endif
+}
+
 
 // GLUTWrapper class
 bool g_initglut = true;
@@ -61,11 +73,12 @@ class GLUTWrapper {
 		void reload();
 };
 
-
 GLUTWrapper::GLUTWrapper( ) {
 
 	int myargc = 1;
 	char* myargv[] = { "libsimplecv", 0 };
+
+	enable_dpi_awareness();
 
 	if (g_initglut) { glutInit( &myargc, myargv ); g_initglut = false; }
 	reload();
