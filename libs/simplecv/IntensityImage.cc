@@ -100,15 +100,7 @@ inline long long int sqsum( int x1, int x2 ) { return sqsum(x2)-sqsum(x1-1); } /
 
 void IntensityImage::scanSpan( int add, int dir, int x1, int x2, int y, Moments* m ) {
 
-	// error condition:
-	// scanspan: add -2, dir 1, x1 751, x2 752, y 436
-	// scanspan: add 1, dir 1, x1 752, x2 751, y 437
-	// scanspan: add 1, dir 1, x1 752, x2 751, y 437
-	// ..... ad nauseam.
-	// printf("scanspan: add %d, dir %d, x1 %d, x2 %d, y %d\n",add,dir,x1,x2,y);
-
-	// add error checking for x1,x2 >= width
-	if (x2 < x1) std::swap(x1,x2); // return
+	if (x2 < x1) std::swap(x1,x2);
 	if (x1 >= width) x1 = width-1;
 	if (x2 >= width) x2 = width-1;
 
@@ -125,6 +117,11 @@ void IntensityImage::scanSpan( int add, int dir, int x1, int x2, int y, Moments*
 		m->m10 += tmpsum;
 		m->m20 += sqsum(x1,x2);
 		m->m11 += tmpsum*y0;
+
+		if (m->border) {
+			m->border->push_back(Point(x1,y0));
+			m->border->push_back(Point(x2,y0));
+		}
 	}
 
 	if ((y < 0) || (y >= height)) return;
@@ -167,7 +164,7 @@ void IntensityImage::scanSpan( int add, int dir, int x1, int x2, int y, Moments*
 
 long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& axis1, Vector& axis2, unsigned char oldcol, unsigned char newcol, std::vector<Point>* border ) {
 
-	Moments m = { 0, 0, 0, 0, 0, 0, oldcol, newcol };
+	Moments m = { 0, 0, 0, 0, 0, 0, oldcol, newcol, border };
 
 	//m.m00 = integrate( start.x, start.y, &m );
 
@@ -214,9 +211,9 @@ long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& 
 	double angle2 = atan(t+sqrt(t*t+1));*/
 	centroid.z = 0.5 * atan( 2.0*mu11 / ( mu20 - mu02 ) );
 
-	if (!border) return m.m00;
+	/*if (!border) return m.m00;
 
-	// scan the border
+	// scan the border using chain code
 	int neighbor[] = { -width-1, -width, -width+1, +1, width+1, width, width-1, -1 };
 
 	int offs0 = start.y * width + start.x;
@@ -233,7 +230,7 @@ long long int IntensityImage::integrate( Point start, Vector& centroid, Vector& 
 				break;
 			}
 		if (!found) { offset++; offs0 = offset; }
-	}
+	}*/
 
 	return m.m00;
 }

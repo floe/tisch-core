@@ -81,6 +81,7 @@ class TISCH_SHARED IntensityImage: public Image {
 			long long int m02;
 			unsigned char ov;
 			unsigned char nv;
+			std::vector<Point>* border;
 		};
 
 		void scanSpan( int add, int dir, int x1, int x2, int y, Moments* m );
