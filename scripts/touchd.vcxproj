@@ -99,21 +99,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\drivers\touchd\AreaFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\BandpassFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\BGSubFilter.cc" />
     <ClCompile Include="..\drivers\touchd\BlobList.cc" />
     <ClCompile Include="..\drivers\touchd\Camera.cc" />
     <ClCompile Include="..\drivers\touchd\Configurator.cc" />
-    <ClCompile Include="..\drivers\touchd\Filter.cc" />
     <ClCompile Include="..\drivers\touchd\FlashControl.cc" />
+    <ClCompile Include="..\drivers\touchd\FlipFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\LowpassFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\Option.cc" />
     <ClCompile Include="..\drivers\touchd\Pipeline.cc" />
+    <ClCompile Include="..\drivers\touchd\SpeckleFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\SplitFilter.cc" />
+    <ClCompile Include="..\drivers\touchd\ThreshFilter.cc" />
     <ClCompile Include="..\drivers\touchd\touchd.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\drivers\touchd\AreaFilter.h" />
+    <ClInclude Include="..\drivers\touchd\BandpassFilter.h" />
+    <ClInclude Include="..\drivers\touchd\BGSubFilter.h" />
     <ClInclude Include="..\drivers\touchd\BlobList.h" />
     <ClInclude Include="..\drivers\touchd\Camera.h" />
     <ClInclude Include="..\drivers\touchd\Configurator.h" />
     <ClInclude Include="..\drivers\touchd\Filter.h" />
     <ClInclude Include="..\drivers\touchd\FlashControl.h" />
+    <ClInclude Include="..\drivers\touchd\FlipFilter.h" />
+    <ClInclude Include="..\drivers\touchd\LowpassFilter.h" />
+    <ClInclude Include="..\drivers\touchd\Option.h" />
     <ClInclude Include="..\drivers\touchd\Pipeline.h" />
+    <ClInclude Include="..\drivers\touchd\SpeckleFilter.h" />
+    <ClInclude Include="..\drivers\touchd\SplitFilter.h" />
+    <ClInclude Include="..\drivers\touchd\ThreshFilter.h" />
     <ClInclude Include="..\drivers\touchd\touchd.h" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 *   Licensed under GNU Lesser General Public License (LGPL) 3 or later    *
 \*************************************************************************/
 
-#include <Option.h>
+#include "Option.h"
 
 Option::Option( double _init, double _min, double _max ):
 	min(_min), max(_max), value(_init)

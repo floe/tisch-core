@@ -10,6 +10,11 @@
 #include <map>
 #include <string>
 
+#ifndef __UINT32_MAX__
+#include <cstdint>
+#define __UINT32_MAX__ ((uint32_t)-1)
+#endif
+
 class Option {
 
 	public:

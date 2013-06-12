@@ -43,6 +43,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include <stdint.h>
 #include <string.h>
