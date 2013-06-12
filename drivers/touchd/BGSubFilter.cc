@@ -15,7 +15,7 @@ BGSubFilter::BGSubFilter( TiXmlElement* _config, Filter* _input ):
 	createOption( "Invert", 0, 0, 1 );
 	createOption( "Adaptive", 0, 0, 1 );
 	createOption( "storeBGImg", 0, 0, 1 );
-	loadFilterOptions( _config, true );
+	loadFilterOptions( _config );
 }
 
 BGSubFilter::~BGSubFilter() {
@@ -93,23 +93,7 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 	// store/overwrite BG Image only if storing for this BGSubfilter is enabled
 	if(storeBGImg == 1) {
 
-		std::ofstream bgimage(BGImg.c_str(), std::ios::out);
-
-		// filecontent
-		bgimage << "P2\n";
-		bgimage << "# CREATOR: libTISCH version 2.0\n";
-		bgimage << background->getWidth() << " " << background->getHeight() << "\n";
-		bgimage << "65535\n"; // a ShortImage can store 2^16 Bit (2Byte) per pixel
-	
-		// write background image pixel by pixel, for each one line
-		for( int y = 0; y < background->getHeight(); y++) {
-			for (int x = 0; x < background->getWidth(); x++) {
-				bgimage << background->getPixel(x,y) << "\n";
-			}
-		}
-	
-		// be polite and tidy up ;)
-		bgimage.close();
+		background->save(BGImg.c_str());
 
 		XMLNodeBG->SetAttribute( "BGImgPath" , BGImg );
 		return XMLNodeBG;
@@ -120,89 +104,30 @@ TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string pat
 
 }
 
-void BGSubFilter::loadFilterOptions(TiXmlElement* OptionSubtree, bool debug) {
-	std::cout << "reading stored options for BGSubFilter from config ... ";
-	if(debug)
-		std::cout << std::endl;
+void BGSubFilter::loadFilterOptions( TiXmlElement* OptionSubtree ) {
 
 	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
 	do {
 		// iterate through all children of OptionSubtree
 		std::string type = filterOption->Value();
-		if(type == "BGImage") {
+		if (type == "BGImage") {
 			std::string filename;
 			filterOption->QueryStringAttribute( "BGImgPath", &filename);
-			resetOnInit = loadPGMImageFromFile( filename , debug);
+			resetOnInit = loadPGMImageFromFile( filename );
 			break;
 		}
 	} while((filterOption = filterOption->NextSiblingElement()));
-
-	// TODO: read Background Image here and store it to background
-
-	std::cout << "done" << std::endl;
 }
 
-int BGSubFilter::loadPGMImageFromFile(std::string filename, bool debug) {
-	if(debug)
-		std::cout << "reading pixel values from " << filename << std::endl;
+int BGSubFilter::loadPGMImageFromFile( std::string filename ) {
 
-	std::ifstream inputFile;
-	inputFile.open(filename.c_str());
-
-	if(!inputFile) {
-		std::cout << " something went wrong reading pgm file! check format!" << std::endl;
+	try {
+		ShortImage* oldbg = background;
+		background = new ShortImage(filename.c_str());
+		delete oldbg;
+	} catch(...) {
 		return 1;
 	}
-
-	int x = 0;
-	int y = 0;
-	int height;
-	int width;
-	std::string line;
-
-	// Fileheader: we expect pgm file format
-	// PGM magic number
-	inputFile >> line;
-	if(strcmp(line.c_str(), "P2") != 0) {
-		if(debug)
-			std::cout << "provided file has wrong magic number: P2 expected" << std::endl;
-		return 1;
-	}
-
-	// Creator comment
-	inputFile >> line;
-	
-	// width x height
-	inputFile >> line;
-	size_t found;
-	found = line.find(" ");
-	if (found != std::string::npos) {
-		width = atoi(line.substr(0,found).c_str());
-		height = atoi(line.substr(found+1).c_str());
-	}
-    
-	// colour depth
-	inputFile >> line;
-
-	// read the content line by line, so pixel by pixel
-	while(inputFile >> line) {
-		int pixelVal = atoi(line.c_str());
-
-		background->setPixel(x, y, pixelVal);
-		if(x + 1 < width)
-			x++;
-		else {
-			x = 0;
-			if(y + 1 < height)
-				y++;
-			else 
-				std::cout << "pixel position out of range" << std::endl;
-		}
-		
-	}
-
-	// be polite and tidy up ;)
-	inputFile.close();
 	
 	return 0; // everything OK
 }

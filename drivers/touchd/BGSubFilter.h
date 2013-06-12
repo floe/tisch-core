@@ -22,8 +22,8 @@ class BGSubFilter: public Filter {
 		virtual TiXmlElement* getXMLRepresentation();
 		TiXmlElement* getXMLofBackground(int BGSubFilterID, std::string pathToSaveBackgroundIMG);
 
-		void loadFilterOptions(TiXmlElement* OptionSubtree, bool debug);
-		int loadPGMImageFromFile(std::string filename, bool debug);
+		void loadFilterOptions( TiXmlElement* OptionSubtree );
+		int loadPGMImageFromFile( std::string filename );
 
 	protected:
 		ShortImage* background;
