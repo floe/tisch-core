@@ -62,7 +62,7 @@ TiXmlElement* BGSubFilter::getXMLRepresentation() {
 }
 
 TiXmlElement* BGSubFilter::getXMLofBackground(int BGSubFilterID, std::string path) {
-	TiXmlElement* XMLNodeBG = new TiXmlElement( "BGSubFilter" );
+	TiXmlElement* XMLNodeBG = new TiXmlElement( "Options" );
 
 	// filename
 	std::ostringstream filename;
@@ -110,7 +110,7 @@ void BGSubFilter::loadFilterOptions( TiXmlElement* OptionSubtree ) {
 	do {
 		// iterate through all children of OptionSubtree
 		std::string type = filterOption->Value();
-		if (type == "BGImage") {
+		if (type == "Options") {
 			std::string filename;
 			filterOption->QueryStringAttribute( "BGImgPath", &filename);
 			resetOnInit = loadPGMImageFromFile( filename );

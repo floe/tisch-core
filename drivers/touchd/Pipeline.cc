@@ -52,6 +52,8 @@ void Pipeline::createFilter( TiXmlElement* config, Filter* parent ) {
 	if (type ==  "LowpassFilter") filter = new  LowpassFilter( config, parent );
 	if (type == "BandpassFilter") filter = new BandpassFilter( config, parent );
 
+	if (type == "Options") return;
+
 	if (filter) push_back( filter );
 	else std::cout << "Warning: unknown filter element \"" << type << "\"" << std::endl;
 

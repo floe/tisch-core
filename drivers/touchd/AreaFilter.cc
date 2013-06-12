@@ -105,7 +105,7 @@ TiXmlElement* AreaFilter::getXMLofAreas() {
 	
 	int polygoncounter = 0;
 
-	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "Polygons" );
+	TiXmlElement* polygonsOfAreaFilter = new TiXmlElement( "Options" );
 
 	// no areas are selected
 	if(cornerpointvector.empty())
@@ -151,7 +151,7 @@ void AreaFilter::loadFilterOptions(TiXmlElement* OptionSubtree) {
 	TiXmlElement* filterOption = OptionSubtree->FirstChildElement();
 	do {
 		std::string type = filterOption->Value();
-		if (type == "Polygons") {
+		if (type == "Options") {
 			// current Options are for an AreaFilter
 			resetOnInit = createFilterAreaFromConfig( filterOption, false );
 			break;
