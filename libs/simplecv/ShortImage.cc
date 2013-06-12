@@ -23,6 +23,14 @@ ShortImage::ShortImage( const IntensityImage& img ):
 	for (int i = 0; i < count; i++) sdata[i] = imgdata[i] << 8;
 }
 
+ShortImage::ShortImage( const char* filename ) {
+	Image::load( filename, "P5", 2 );
+}
+
+void ShortImage::save( const char* path ) {
+	Image::save( path, "P5" );
+}
+
 
 ShortImage& ShortImage::operator= ( const IntensityImage& img ) {
 	//if (this == &img) return *this;

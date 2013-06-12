@@ -42,6 +42,7 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <fstream>
 
 #include <stdint.h>
 #include <string.h>
@@ -204,6 +205,50 @@ class TISCH_SHARED Image {
 			}
 
 			#endif
+		}
+
+		void load( const char* path, const char* type, int maxbpp ) {
+
+			int fwidth,fheight,fvalues;
+			std::string magic,tmp;
+
+			// open file with whitespace skipping
+			std::ifstream myfile( path, std::ios::in );
+			myfile >> std::skipws;
+
+			// parse the header
+			myfile >> magic;   myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
+			myfile >> fwidth;  myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
+			myfile >> fheight; myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
+			myfile >> fvalues;
+
+			if ((magic != type) || (fvalues >= (1<<(8*maxbpp))) || (fvalues < 1)) 
+				throw std::runtime_error( std::string("Image::load( ") + std::string(path) + std::string(" ): no valid PGM file") );
+
+			// init the base class
+			init( fwidth, fheight, maxbpp, 0, 0 );
+
+			// skip one byte, read the rest
+			myfile.ignore( 1 );
+			myfile.read( (char*)data, size );
+			myfile.close( );
+		}
+
+		void save( const char* filename, const char* magic ) {
+
+			std::ofstream imagefile( filename, std::ios::out );
+
+			// file header 
+			imagefile << magic << "\n";
+			imagefile << "# CREATOR: libTISCH version 3.0\n";
+			imagefile << width << " " << height << " ";
+			imagefile << ((1<<(8*bpp))-1) << "\n"; // values per pixel
+
+			// file content
+			imagefile.write( (char*)data, size );
+
+			// be polite and tidy up ;)
+			imagefile.close();
 		}
 
 		#if !defined(_MSC_VER) && !defined(__ANDROID__)

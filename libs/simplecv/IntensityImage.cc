@@ -37,30 +37,11 @@ void IntensityImage::box( int x1, int y1, int x2, int y2, unsigned char color ) 
 
 
 IntensityImage::IntensityImage( const char* path ) {
+	Image::load( path, "P5", 1 );
+}
 
-	int fwidth,fheight,fbpp;
-	std::string magic,tmp;
-
-	// open file with whitespace skipping
-	std::ifstream myfile( path, std::ios::in );
-	myfile >> std::skipws;
-
-	// parse the header
-	myfile >> magic;   myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
-	myfile >> fwidth;  myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
-	myfile >> fheight; myfile.ignore(1); if (myfile.peek() == '#') getline( myfile, tmp );
-	myfile >> fbpp;
-
-	if ((magic != "P5") || (fbpp > 255) || (fbpp < 1)) 
-		throw std::runtime_error( std::string("IntensityImage: ") + std::string(path) + std::string(": no valid PGM file") );
-
-	// init the base class
-	init( fwidth, fheight, 1, 0, 0 );
-
-	// skip one byte, read the rest
-	myfile.ignore( 1 );
-	myfile.read( (char*)data, size );
-	myfile.close( );
+void IntensityImage::save( const char* path ) {
+	Image::save( path, "P5" );
 }
 
 

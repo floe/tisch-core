@@ -16,12 +16,15 @@ class TISCH_SHARED ShortImage: public Image {
 	public:
 
 		ShortImage( int w, int h, key_t key = 0, unsigned long long int flags = 0 );
+		ShortImage( const char* path );
 	
 		ShortImage( const ShortImage&     img );
 		ShortImage( const IntensityImage& img );
 
 		ShortImage& operator= ( const ShortImage&     img );
 		ShortImage& operator= ( const IntensityImage& img );
+
+		void save( const char* path );
 
 		void update( const IntensityImage& img, const IntensityImage& mask );
 		void update( const ShortImage& img, const ShortImage& mask );

@@ -28,6 +28,9 @@ class TISCH_SHARED IntensityImage: public Image {
 		IntensityImage( const char* path );
 
 		IntensityImage( const IntensityImage& img, int downsample );
+
+		void save( const char* path );
+
 		void sobel( IntensityImage& target );
 		void sobel();
 		void mask( IntensityImage& target );
