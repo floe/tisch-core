@@ -34,6 +34,12 @@ BlobList::BlobList( TiXmlElement* _config, Filter* _input ):
 	image = new IntensityImage( width, height );
 	shortimage = NULL;
 
+	if (input->getRGBImage())
+		rgbimage = new RGBImage(
+			input->getRGBImage()->getWidth(),
+			input->getRGBImage()->getHeight()
+		);
+
 	// try to read settings from XML
 	createOption( "Type",  0, 0, 32 );
 	createOption( "HFlip", 0, 0,  1 );
@@ -122,6 +128,8 @@ int BlobList::process() {
 	// frame-local blob counter to differentiate between blobs
 	unsigned char value = 254;
 
+	RGBImage* rgb = input->getRGBImage();
+
 	// scan for bright spots
 	unsigned char* data = image->getData();
 	for (int i = 0; i < width*height; i++) if (data[i] == 255) try {
@@ -137,6 +145,21 @@ int BlobList::process() {
 		if (value == 0) {
 			value = 254;
 			std::cerr << "Warning: too many type " << type << " blobs!" << std::endl;
+		}
+
+		if (rgb) {
+			std::vector<Point>& border = blobs->back().border;
+			std::vector<Point>::iterator pt = border.begin();
+			rgbimage->clear();
+			while (pt != border.end()) {
+				Point p1 = *pt; pt++;
+				Point p2 = *pt; pt++;
+				int offset = rgbimage->pixelOffset(p1.x,p1.y,TR);
+				int target = rgbimage->pixelOffset(p2.x,p2.y,TR);
+				unsigned char* src = rgb->getData();
+				unsigned char* dst = rgbimage->getData();
+				for (; offset <= target; offset++) dst[offset] = src[offset];
+			}
 		}
 
 	} catch (...) { }
