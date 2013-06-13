@@ -2,6 +2,10 @@ TOPDIR = ../../
 CFLAGS += -I$(TOPDIR)/libs/tools/ -I$(TOPDIR)/calibd/ -I$(TOPDIR)/libs/osc/
 LDFLAGS += -ltools -L$(TOPDIR)/libs/tools/
 
+#APPS = test
+#CFLAGS += -I$(TOPDIR)/libs/simplegl/
+#LDFLAGS += -lsimplecv -lglut -lsimplegl -L. -L$(TOPDIR)/libs/simplegl/
+
 LIBS = libsimplecv.$(LSF)
 INCS = *.h
 OBJS = IntensityImage.o RGBImage.o YUV420Image.o YUV420SPImage.o YUYVImage.o Line.o Circle.o ShortImage.o ColorLUT.o Blob.o
@@ -41,6 +45,3 @@ ifeq ($(OS)-$(ABI),linux-gnu)
 endif
 
 include $(TOPDIR)/scripts/rules.mk
-
-test: test.o
-	g++ $(CFLAGS) $(LDFLAGS) $^ -o $@ -I$(TOPDIR)/libs/simplegl/ -lsimplecv -lglut -lsimplegl -L. -L$(TOPDIR)/libs/simplegl/

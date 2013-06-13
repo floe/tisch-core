@@ -26,11 +26,12 @@ void display() {
 
 	buf.getHSV(hue,sat,val);
 
-	switch (mode%4) {
+	switch (mode%5) {
 		case 0: break;
-		case 1: buf.combine(hue,max,val); break;
-		case 2: buf.combine(hue,sat,max); break;
-		case 3: buf.combine(hue,max,max); break;
+		case 1: buf.combine(hue,sat,val); break;
+		case 2: buf.combine(hue,max,val); break;
+		case 3: buf.combine(hue,sat,max); break;
+		case 4: buf.combine(hue,max,max); break;
 	}
 
 	win->show(buf,0,0);
@@ -42,6 +43,11 @@ void display() {
 void kbd( unsigned char key, int, int ) {
 	if (key == 'q') exit(1);
 	if (key == ' ') mode++;
+	if (key == '0') mode=0;
+	if (key == '1') mode=1;
+	if (key == '2') mode=2;
+	if (key == '3') mode=3;
+	if (key == '4') mode=4;
 }
 
 int main(int argc, char* argv[]) {
