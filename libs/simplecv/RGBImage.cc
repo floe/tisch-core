@@ -30,30 +30,7 @@ void RGBImage::getChannel(int channel, IntensityImage& target) const {
 }
 
 RGBImage::RGBImage( const char* path ) {
-
-	int fwidth,fheight,fbpp;
-	std::string magic;
-
-	// open file with whitespace skipping
-	std::ifstream myfile( path, std::ios::in );
-	myfile >> std::skipws;
-
-	// parse the header
-	myfile >> magic;
-	myfile >> fwidth;
-	myfile >> fheight;
-	myfile >> fbpp;
-
-	if ((magic != "P6") || (fbpp > 255) || (fbpp < 1)) 
-		throw std::runtime_error( std::string("RGBImage: ") + std::string(path) + std::string(": no valid PPM file") );
-
-	// init the base class
-	init( fwidth, fheight, 3, 0, 0 );
-
-	// skip one byte, read the rest
-	myfile.ignore( 1 );
-	myfile.read( (char*)data, size );
-	myfile.close( );
+	Image::load( path, "P6", 3 );
 }
 
 
