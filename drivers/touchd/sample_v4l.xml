@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<libTISCH version="2.0">
+    <Filter>
+        <Camera SourceType="1" SourcePath="/dev/video0" Width="640" Height="480" FPS="30" Verbose="0" FlashMode="0" FlashPath="/" Gain="0" Exposure="0" Brightness="0">
+            <FlipFilter HFlip="0" VFlip="0">
+                <AreaFilter Enabled="1">
+                    <Options>
+                        <Polygon number="0">
+                            <Point x="156" y="176" />
+                            <Point x="576" y="136" />
+                            <Point x="447" y="394" />
+                            <Point x="139" y="310" />
+                            <Point x="157" y="175" />
+                            <Point x="156" y="176" />
+                        </Polygon>
+                    </Options>
+                    <BGSubFilter Adaptive="0" Invert="0" storeBGImg="0">
+                        <ThreshFilter LowerThreshold="2" UpperThreshold="8">
+                            <LowpassFilter Mode="2" Range="1">
+                                <BlobList HFlip="0" IgnoreOrphans="1" MTshowMarker="0" MarkerTracker="0" MaxSize="300" MinSize="50" PeakFactor="1" PeakMode="-1" TrackRadius="20" Type="1" VFlip="1" />
+                            </LowpassFilter>
+                        </ThreshFilter>
+                    </BGSubFilter>
+                </AreaFilter>
+            </FlipFilter>
+        </Camera>
+    </Filter>
+</libTISCH>

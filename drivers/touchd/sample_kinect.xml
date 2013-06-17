@@ -7,7 +7,7 @@
                     <BGSubFilter BGSubFilterID="0" Invert="0" Adaptive="0" storeBGImg="0">
                         <ThreshFilter LowerThreshold="2" UpperThreshold="8">
                             <LowpassFilter Mode="2" Range="1">
-                                <BlobFilter IgnoreOrphans="1" MinSize="50" MaxSize="300" PeakMode="-1" HFlip="0" VFlip="1" Type="1" TrackRadius="20" PeakFactor="1" MarkerTracker="0" MTthresh="128" MTmax="255" />
+                                <BlobList IgnoreOrphans="1" MinSize="50" MaxSize="300" PeakMode="-1" HFlip="0" VFlip="1" Type="1" TrackRadius="20" PeakFactor="1" MarkerTracker="0" MTthresh="128" MTmax="255" />
                             </LowpassFilter>
                         </ThreshFilter>
                     </BGSubFilter>

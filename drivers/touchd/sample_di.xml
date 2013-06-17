@@ -5,7 +5,7 @@
 	<BandpassFilter>
 		<ThreshFilter Threshold=20>
 			<SpeckleFilter NoiseLevel=2>
-				<BlobFilter MinSize=20 MaxSize=300 Type=0/>
+				<BlobList MinSize=20 MaxSize=300 Type=0/>
 			</SpeckleFilter>
 		</ThreshFilter>
 	</BandpassFilter>
