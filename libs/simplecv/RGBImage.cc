@@ -40,7 +40,7 @@ void RGBImage::getIntensity(IntensityImage& target) const {
 	}
 }
 
-inline void rgb2hsv( int r, int g, int b, unsigned char &h, unsigned char &s, unsigned char &v ) {
+void rgb2hsv( int r, int g, int b, unsigned char &h, unsigned char &s, unsigned char &v ) {
 
 	int max,min,c;
 
