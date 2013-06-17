@@ -148,18 +148,29 @@ int BlobList::process() {
 		}
 
 		if (rgb) {
-			std::vector<Point>& border = blobs->back().border;
+			Blob& blob = blobs->back();
+			std::vector<Point>& border = blob.border;
 			std::vector<Point>::iterator pt = border.begin();
 			rgbimage->clear();
+			unsigned long long int r = 0,g = 0,b = 0,count = 0;
 			while (pt != border.end()) {
 				Point p1 = *pt; pt++;
 				Point p2 = *pt; pt++;
 				int offset = rgbimage->pixelOffset(p1.x,p1.y,TR);
-				int target = rgbimage->pixelOffset(p2.x,p2.y,TR);
+				int target = rgbimage->pixelOffset(p2.x,p2.y,TB);
 				unsigned char* src = rgb->getData();
 				unsigned char* dst = rgbimage->getData();
-				for (; offset <= target; offset++) dst[offset] = src[offset];
+				while (offset <= target) {
+					dst[offset] = src[offset]; r += src[offset++];
+					dst[offset] = src[offset]; g += src[offset++];
+					dst[offset] = src[offset]; b += src[offset++];
+					count++;
+				}
 			}
+			r = r/count;
+			g = g/count;
+			b = b/count;
+			rgb2hsv(r,g,b,blob.h,blob.s,blob.v);
 		}
 
 	} catch (...) { }
