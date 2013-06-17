@@ -88,6 +88,9 @@ class TISCH_SHARED TiXmlAttribute;
 class TISCH_SHARED TiXmlText;
 class TISCH_SHARED TiXmlDeclaration;
 class TISCH_SHARED TiXmlParsingData;
+class TISCH_SHARED TiXmlBase;
+class TISCH_SHARED TiXmlNode;
+class TISCH_SHARED TiXmlElement;
 
 const int TIXML_MAJOR_VERSION = 2;
 const int TIXML_MINOR_VERSION = 6;
