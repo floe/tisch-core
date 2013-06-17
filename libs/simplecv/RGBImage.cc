@@ -40,8 +40,34 @@ void RGBImage::getIntensity(IntensityImage& target) const {
 	}
 }
 
+inline void rgb2hsv( int r, int g, int b, unsigned char &h, unsigned char &s, unsigned char &v ) {
+
+	int max,min,c;
+
+	max = (r > g ? r : g); max = (max > b ? max : b);
+	min = (r < g ? r : g); min = (min < b ? min : b);
+
+	c = max - min;
+	v = max;
+
+	if (c == 0) {
+		h = 0;
+		s = 0;
+	} else {
+		s = 255*(int)c/v;
+		if (r == max) {
+			h = 0 + 43*(g - b)/c;
+		} else if (g == max) {
+			h = 85 + 43*(b - r)/c;
+		} else { // b == max
+			h = 171 + 43*(r - g)/c;
+		}
+	}
+}
+	
+
 void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage& val ) const {
-	unsigned char r,g,b,max,min,h,s,v,c;
+	unsigned char r,g,b,h,s,v;
 	int target_offs = 0;
 	for (int offset = 0; offset < size; offset+=3) {
 
@@ -49,25 +75,7 @@ void RGBImage::getHSV( IntensityImage& hue, IntensityImage& sat, IntensityImage&
 		g = data[offset + TG];
 		b = data[offset + TB];
 
-		max = (r > g ? r : g); max = (max > b ? max : b);
-		min = (r < g ? r : g); min = (min < b ? min : b);
-
-		c = max - min;
-		v = max;
-
-		if (c == 0) {
-			h = 0;
-			s = 0;
-		} else {
-			s = 255*(int)c/v;
-			if (r == max) {
-				h = 0 + 43*(g - b)/c;
-			} else if (g == max) {
-				h = 85 + 43*(b - r)/c;
-			} else { // b == max
-				h = 171 + 43*(r - g)/c;
-			}
-		}
+		rgb2hsv(r,g,b,h,s,v);
 
 		hue.data[target_offs] = h;
 		sat.data[target_offs] = s;

@@ -39,6 +39,8 @@ class TISCH_SHARED RGBImage: public Image {
 
 };
 
+void TISCH_SHARED rgb2hsv( int r, int g, int b, unsigned char &h, unsigned char &s, unsigned char &v );
+
 std::ostream& operator<<( std::ostream& s, const RGBImage& i );
 
 #endif // _RGBIMAGE_H_
