@@ -110,8 +110,8 @@ void RGBImage::combine(const IntensityImage& hue, const IntensityImage& sat, con
 			g = v;
 			b = v;
 		} else {
-			area = h / 43;
-			rest = h % 43; //?
+			area =  h / 43;
+			rest = (h % 43)*6;
 			p = ((int)v * ( 255 - s )) >> 8;
 			q = ((int)v * ( 255 - ((s * rest) >> 8))) >> 8;
 			t = ((int)v * ( 255 - ((s * (255-rest)) >> 8))) >> 8;
