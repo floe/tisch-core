@@ -443,6 +443,7 @@ void BlobList::send( TUIOOutStream* oscOut ) {
 
 		BasicBlob tmp = *it;
 		tmp.type = blobtype;
+		tmp.h = it->h; // FIXME: are these assignments needed at all?
 
 		tmp.pos.x  = tmp.pos.x  / (double)width; tmp.pos.y  = tmp.pos.y  / (double)height;
 		tmp.peak.x = tmp.peak.x / (double)width; tmp.peak.y = tmp.peak.y / (double)height;
