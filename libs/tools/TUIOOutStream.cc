@@ -58,7 +58,7 @@ TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 		s.osc2 << osc::BeginMessage( "/tuio2/ptr" )
 			<< b.id << b.type << osc::int32(b.assignedMarker.markerID)
 			<< float(b.peak.x) << float(b.peak.y)
-			<< w << float(1.0)
+			<< w << float(b.h)
 			<< osc::EndMessage;
 		
 		if (b.pid)

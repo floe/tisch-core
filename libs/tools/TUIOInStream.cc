@@ -34,7 +34,7 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 	osc::int32 blobid, unused, parent;
-	float x, y, width, height, angle, area;
+	float x, y, width, height, angle, area, hue;
 	bool tmp;
 
 	if (std::string(m.AddressPattern()) == "/tuio2/frm") {
@@ -46,10 +46,11 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc]
 		args >> blobid;
 		BasicBlob& curblob = blobs[blobid];
-		args >> curblob.type >> unused >> x >> y >> width;
+		args >> curblob.type >> unused >> x >> y >> width >> hue;
 		curblob.id = blobid;
 		curblob.peak.x = x;
 		curblob.peak.y = y;
+		curblob.h = hue;
 		curblob.assignedMarker.markerID = unused;
 
 	} else if (std::string(m.AddressPattern()) == "/tuio2/bnd") {
