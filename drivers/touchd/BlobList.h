@@ -39,6 +39,7 @@ class BlobList: public Filter {
 
 		BlobList* parent;
 		int width, height;
+		int blobtype;
 
 	#ifdef HAS_UBITRACK
 		MarkerTracker* mMarkerTracker;

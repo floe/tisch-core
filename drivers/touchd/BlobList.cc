@@ -104,7 +104,7 @@ int BlobList::process() {
 	int maxsize = options["MaxSize"]->get();
 
 	int ignore_orphans = options["IgnoreOrphans"]->get();
-	int type = options["Type"]->get();
+	blobtype = options["Type"]->get();
 
 	// swap blob lists
 	delete oldblobs;
@@ -144,7 +144,7 @@ int BlobList::process() {
 		// did the frame-local blob counter overflow?
 		if (value == 0) {
 			value = 254;
-			std::cerr << "Warning: too many type " << type << " blobs!" << std::endl;
+			std::cerr << "Warning: too many type " << blobtype << " blobs!" << std::endl;
 		}
 
 		if (rgb) {
@@ -276,7 +276,7 @@ int BlobList::process() {
 
 			if (value == 0) {
 				value = 254;
-				std::cerr << "Warning: too many type " << type << " blobs!" << std::endl;
+				std::cerr << "Warning: too many type " << blobtype << " blobs!" << std::endl;
 			}
 
 			markerblob.pos.x = mx; markerblob.pos.y = my;
@@ -442,7 +442,7 @@ void BlobList::send( TUIOOutStream* oscOut ) {
 	for (std::vector<Blob>::iterator it = blobs->begin(); it != blobs->end(); it++) {
 
 		BasicBlob tmp = *it;
-		tmp.type = type;
+		tmp.type = blobtype;
 
 		tmp.pos.x  = tmp.pos.x  / (double)width; tmp.pos.y  = tmp.pos.y  / (double)height;
 		tmp.peak.x = tmp.peak.x / (double)width; tmp.peak.y = tmp.peak.y / (double)height;
