@@ -101,6 +101,7 @@
   <ItemGroup>
     <ClCompile Include="..\libs\tools\BasicBlob.cc" />
     <ClCompile Include="..\libs\tools\nanolibc.cc" />
+    <ClCompile Include="..\libs\tools\SharedMem.cc" />
     <ClCompile Include="..\libs\tools\Socket.cc" />
     <ClCompile Include="..\libs\tools\Thread.cc" />
     <ClCompile Include="..\libs\tools\TUIOInStream.cc" />
@@ -111,6 +112,7 @@
     <ClInclude Include="..\libs\tools\BasicBlob.h" />
     <ClInclude Include="..\libs\tools\Functor.h" />
     <ClInclude Include="..\libs\tools\nanolibc.h" />
+    <ClInclude Include="..\libs\tools\SharedMem.h" />
     <ClInclude Include="..\libs\tools\SmartPtr.h" />
     <ClInclude Include="..\libs\tools\Socket.h" />
     <ClInclude Include="..\libs\tools\Thread.h" />

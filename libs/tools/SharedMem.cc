@@ -12,9 +12,13 @@
 #include <errno.h>
 #include <stdexcept>
 
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/sem.h>
+#ifndef _MSC_VER
+	#include <sys/ipc.h>
+	#include <sys/shm.h>
+	#include <sys/sem.h>
+#else
+	#include <Windows.h>
+#endif
 
 SharedMem::SharedMem( int _key, int _size, bool _create ) {
 
@@ -40,13 +44,13 @@ SharedMem::SharedMem( int _key, int _size, bool _create ) {
 
 		char name[64];
 
-		snprintf(name,sizeof(name),"libTISCH-SHM-0x%08X",key);
-		shm = CreateFileMapping( (HANDLE)0xFFFFFFFF, NULL, PAGE_READWRITE, 0, size, name );
+		sprintf_s(name,sizeof(name),"libTISCH-SHM-0x%08X",key);
+		shm = (int)CreateFileMappingA( (HANDLE)0xFFFFFFFF, NULL, PAGE_READWRITE, 0, size, name );
 
-		snprintf(name,sizeof(name),"libTISCH-SEM-0x%08X",key);
-		sem = CreateSemaphore( NULL, 1, 1, name );
+		sprintf_s(name,sizeof(name),"libTISCH-SEM-0x%08X",key);
+		sem = (int)CreateSemaphoreA( NULL, 1, 1, name );
 
-		buffer = MapViewOfFile( handle, FILE_MAP_WRITE, 0, 0, size );
+		buffer = (unsigned char*)MapViewOfFile( (HANDLE)sem, FILE_MAP_WRITE, 0, 0, size );
 
 	#endif
 }
@@ -85,8 +89,8 @@ int SharedMem::do_sem( short int val ) {
 }
 #else
 int SharedMem::do_sem( short int val ) {
-	if (val > 0) return ReleaseSemaphore( sem, val, NULL );
-	else return WaitForSingleObject( sem, INFINITE );
+	if (val > 0) return ReleaseSemaphore( (HANDLE)sem, val, NULL );
+	else return WaitForSingleObject( (HANDLE)sem, INFINITE );
 }
 #endif
 
