@@ -4,6 +4,7 @@ libtisch.jar
 *.o
 *.so*
 *.class
+.*.swp
 build/
 Debug/
 Release/
