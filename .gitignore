@@ -1,6 +1,7 @@
 libtisch.suo
 libtisch.dll
 libtisch.jar
+libtisch.pth
 *.o
 *.so*
 *.class
