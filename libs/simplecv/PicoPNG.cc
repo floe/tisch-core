@@ -1,29 +1,3 @@
-/***********************************************************************************\
-*                                                                                   *
-*  picoPNG version 20080503                                                         *
-*  Copyright (c) 2005-2008 Lode Vandevenne                                          *
-*                                                                                   *
-*  This software is provided 'as-is', without any express or implied                *
-*  warranty. In no event will the authors be held liable for any damages            *
-*  arising from the use of this software.                                           *
-*                                                                                   *
-*  Permission is granted to anyone to use this software for any purpose,            *
-*  including commercial applications, and to alter it and redistribute it           *
-*  freely, subject to the following restrictions:                                   *
-*                                                                                   *
-*      1. The origin of this software must not be misrepresented; you must not      *
-*      claim that you wrote the original software. If you use this software         *
-*      in a product, an acknowledgment in the product documentation would be        *
-*      appreciated but is not required.                                             *
-*      2. Altered source versions must be plainly marked as such, and must not be   *
-*      misrepresented as being the original software.                               *
-*      3. This notice may not be removed or altered from any source distribution.   *
-*                                                                                   *
-*  picoPNG is a PNG decoder in one C++ function. Use picoPNG for programs that need *
-*  only 1 .cpp file. Apologies for the compact code style, it's to make it tiny.    *
-*                                                                                   *
-\***********************************************************************************/
-
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -33,16 +7,39 @@
 
 #include <nanolibc.h>
 
-static const unsigned long LENBASE[29] =  {3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258};
+int decodePNG(std::vector<unsigned char>& out_image, unsigned long& image_width, unsigned long& image_height, const unsigned char* in_png, size_t in_size, bool convert_to_rgba32 = true)
+{
+  // picoPNG version 20101224
+  // Copyright (c) 2005-2010 Lode Vandevenne
+  //
+  // This software is provided 'as-is', without any express or implied
+  // warranty. In no event will the authors be held liable for any damages
+  // arising from the use of this software.
+  //
+  // Permission is granted to anyone to use this software for any purpose,
+  // including commercial applications, and to alter it and redistribute it
+  // freely, subject to the following restrictions:
+  //
+  //     1. The origin of this software must not be misrepresented; you must not
+  //     claim that you wrote the original software. If you use this software
+  //     in a product, an acknowledgment in the product documentation would be
+  //     appreciated but is not required.
+  //     2. Altered source versions must be plainly marked as such, and must not be
+  //     misrepresented as being the original software.
+  //     3. This notice may not be removed or altered from any source distribution.
+  
+  // picoPNG is a PNG decoder in one C++ function of around 500 lines. Use picoPNG for
+  // programs that need only 1 .cpp file. Since it's a single function, it's very limited,
+  // it can convert a PNG to raw pixel data either converted to 32-bit RGBA color or
+  // with no color conversion at all. For anything more complex, another tiny library
+  // is available: LodePNG (lodepng.c(pp)), which is a single source and header file.
+  // Apologies for the compact code style, it's to make this tiny.
+  
+  static const unsigned long LENBASE[29] =  {3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258};
   static const unsigned long LENEXTRA[29] = {0,0,0,0,0,0,0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4,  4,  5,  5,  5,  5,  0};
   static const unsigned long DISTBASE[30] =  {1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577};
   static const unsigned long DISTEXTRA[30] = {0,0,0,0,1,1,2, 2, 3, 3, 4, 4, 5, 5,  6,  6,  7,  7,  8,  8,   9,   9,  10,  10,  11,  11,  12,   12,   13,   13};
-    static const unsigned long CLCL[19] = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15}; //code length code lengths
-
-
-int decodePNG(std::vector<unsigned char>& out_image_32bit, unsigned long& image_width, unsigned long& image_height, const unsigned char* in_png, unsigned long in_size)
-{
- 
+  static const unsigned long CLCL[19] = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15}; //code length code lengths
   struct Zlib //nested functions for zlib decompression
   {
     static unsigned long readBitFromStream(size_t& bitp, const unsigned char* bits) { unsigned long result = (bits[bitp >> 3] >> (bitp & 0x7)) & 1; bitp++; return result;}
@@ -242,7 +239,7 @@ int decodePNG(std::vector<unsigned char>& out_image_32bit, unsigned long& image_
       std::vector<unsigned char> palette;
     } info;
     int error;
-    void decode(std::vector<unsigned char>& out, const unsigned char* in, unsigned long size)
+    void decode(std::vector<unsigned char>& out, const unsigned char* in, size_t size, bool convert_to_rgba32)
     {
       error = 0;
       if(size == 0 || in == 0) { error = 48; return; } //the given data is empty
@@ -347,7 +344,7 @@ int decodePNG(std::vector<unsigned char>& out_image_32bit, unsigned long& image_
         for(int i = 0; i < 7; i++)
           adam7Pass(&out_[0], &scanlinen[0], &scanlineo[0], &scanlines[passstart[i]], info.width, pattern[i], pattern[i + 7], pattern[i + 14], pattern[i + 21], passw[i], passh[i], bpp);
       }
-      if(info.colorType != 6 || info.bitDepth != 8) //conversion needed
+      if(convert_to_rgba32 && (info.colorType != 6 || info.bitDepth != 8)) //conversion needed
       {
         std::vector<unsigned char> data = out;
         error = convert(out, &data[0], info, info.width, info.height);
@@ -393,13 +390,13 @@ int decodePNG(std::vector<unsigned char>& out_image_32bit, unsigned long& image_
         case 4:
           if(precon)
           {
-            for(size_t i =         0; i < bytewidth; i++) recon[i] = (unsigned char)(scanline[i] + paethPredictor(0, precon[i], 0));
-            for(size_t i = bytewidth; i <    length; i++) recon[i] = (unsigned char)(scanline[i] + paethPredictor(recon[i - bytewidth], precon[i], precon[i - bytewidth]));
+            for(size_t i =         0; i < bytewidth; i++) recon[i] = scanline[i] + paethPredictor(0, precon[i], 0);
+            for(size_t i = bytewidth; i <    length; i++) recon[i] = scanline[i] + paethPredictor(recon[i - bytewidth], precon[i], precon[i - bytewidth]);
           }
           else
           {
             for(size_t i =         0; i < bytewidth; i++) recon[i] = scanline[i];
-            for(size_t i = bytewidth; i <    length; i++) recon[i] = (unsigned char)(scanline[i] + paethPredictor(recon[i - bytewidth], 0, 0));
+            for(size_t i = bytewidth; i <    length; i++) recon[i] = scanline[i] + paethPredictor(recon[i - bytewidth], 0, 0);
           }
           break;
         default: error = 36; return; //error: unexisting filter type given
@@ -510,13 +507,13 @@ int decodePNG(std::vector<unsigned char>& out_image_32bit, unsigned long& image_
       }
       return 0;
     }
-    long paethPredictor(long a, long b, long c) //Paeth predicter, used by PNG filter type 4
+    unsigned char paethPredictor(short a, short b, short c) //Paeth predicter, used by PNG filter type 4
     {
-      long p = a + b - c, pa = p > a ? (p - a) : (a - p), pb = p > b ? (p - b) : (b - p), pc = p > c ? (p - c) : (c - p);
-      return (pa <= pb && pa <= pc) ? a : pb <= pc ? b : c;
+      short p = a + b - c, pa = p > a ? (p - a) : (a - p), pb = p > b ? (p - b) : (b - p), pc = p > c ? (p - c) : (c - p);
+      return (unsigned char)((pa <= pb && pa <= pc) ? a : pb <= pc ? b : c);
     }
   };
-  PNG decoder; decoder.decode(out_image_32bit, in_png, in_size);
+  PNG decoder; decoder.decode(out_image, in_png, in_size, convert_to_rgba32);
   image_width = decoder.info.width; image_height = decoder.info.height;
   return decoder.error;
 }
@@ -543,7 +540,7 @@ PNGImage::PNGImage( const std::string& filename ) {
   //load and decode
   std::vector<unsigned char> filebuf;
   loadFile( filebuf, filename );
-  int error = decodePNG( buffer, m_width, m_height, filebuf.empty() ? 0 : &filebuf[0], (unsigned long)filebuf.size() );
+  int error = decodePNG( buffer, m_width, m_height, filebuf.empty() ? 0 : &filebuf[0], (unsigned long)filebuf.size(), true );
   
   //if there's an error, display it
   if (error) {
