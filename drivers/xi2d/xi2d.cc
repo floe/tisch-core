@@ -110,6 +110,10 @@ int main( int argc, char* argv[] ) {
 	XISelectEvents( display, DefaultRootWindow(display), &mask, 1 );
 	free( mask.mask );
 
+	XWindowAttributes attribs;
+	XGetWindowAttributes( display, DefaultRootWindow(display), &attribs );
+	int ydim = attribs.height;
+
 	// start UDP thread
 	outthr.start();
 
@@ -144,7 +148,7 @@ int main( int argc, char* argv[] ) {
 					break;
 				case XI_Motion:
 					blobs[xide->deviceid].pos.x = xide->root_x;
-					blobs[xide->deviceid].pos.y = 1050-xide->root_y;
+					blobs[xide->deviceid].pos.y = ydim - xide->root_y;
 					break;
 				default:
 					std::cout << "Unknown event type " << cookie->evtype << " received." << std::endl;
