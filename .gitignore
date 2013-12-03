@@ -18,6 +18,8 @@ calibd/calibtool
 calibd/distort
 drivers/evdevd/evdevd
 drivers/touchd/touchd
+drivers/xi2d/xicursor
+drivers/xi2d/xi2d
 gispl/gestured
 libs/simplegl/gldemo
 libs/simplegl/osmdemo

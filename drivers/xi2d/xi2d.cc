@@ -17,13 +17,13 @@
 #include <string.h>
 
 #include <BasicBlob.h>
-#include <Socket.h>
+#include <TUIOOutStream.h>
 #include <Thread.h>
 #include <tisch.h>
 #include <map>
 
 
-UDPSocket output( INADDR_ANY, 0 );
+TUIOOutStream output( TISCH_TUIO1 | TISCH_TUIO2 );
 
 std::map<int,BasicBlob> blobs;
 int framenum = 0;
@@ -38,6 +38,8 @@ struct OutputThread: public Thread {
 		while (1) {
 
 			lock();
+
+			output.start();
 			
 			// send everything out
 			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++) {
@@ -47,20 +49,22 @@ struct OutputThread: public Thread {
 				if (blob->second.value >= 1) {
 					blob->second.id  = blob->first+1;
 					blob->second.pid = 0;
-					output << "shadow " << blob->second << std::endl;
+					blob->second.type = INPUT_TYPE_MOUSE;
+					output << blob->second;
 				}
 
 				if (blob->second.value >= 2) {
 					blob->second.id  = blob->first;
 					blob->second.pid = blob->first+1;
-					output << "finger " << blob->second << std::endl;
+					blob->second.type = INPUT_TYPE_FINGER;
+					output << blob->second;
 				}
 
 			}
 
 			release();
 
-			output << "frame " << framenum++ << std::endl;
+			output.send();
 		
 			usleep( 16666 ); // 60 Hz
 		}
@@ -106,8 +110,7 @@ int main( int argc, char* argv[] ) {
 	XISelectEvents( display, DefaultRootWindow(display), &mask, 1 );
 	free( mask.mask );
 
-	// set UDP target and start UDP thread
-	output.target( INADDR_LOOPBACK, TISCH_PORT_CALIB );
+	// start UDP thread
 	outthr.start();
 
 	while(1) {
