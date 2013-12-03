@@ -112,6 +112,7 @@ int main( int argc, char* argv[] ) {
 
 	XWindowAttributes attribs;
 	XGetWindowAttributes( display, DefaultRootWindow(display), &attribs );
+	int xdim = attribs.width;
 	int ydim = attribs.height;
 
 	// start UDP thread
@@ -147,8 +148,8 @@ int main( int argc, char* argv[] ) {
 					blobs[xide->deviceid].value = 1;
 					break;
 				case XI_Motion:
-					blobs[xide->deviceid].pos.x = xide->root_x;
-					blobs[xide->deviceid].pos.y = ydim - xide->root_y;
+					blobs[xide->deviceid].pos.x = xide->root_x/(double)xdim;
+					blobs[xide->deviceid].pos.y = (ydim - xide->root_y)/(double)ydim;
 					break;
 				default:
 					std::cout << "Unknown event type " << cookie->evtype << " received." << std::endl;
