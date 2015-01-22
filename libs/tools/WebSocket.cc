@@ -133,21 +133,21 @@ int WebSocketStream::underflow( ) {
 }
 
 void WebSocketStream::put_char( int chr ) {
-	char tmp[3] = { 0x00, (char)chr, (char)0xFF };
+	uint8_t tmp[3] = { 0x81, 0x01, chr };
 	if (filter)
-		sendto( sock,   tmp,     3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		sendto( sock, tmp,   3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 	else
-		sendto( sock, &(tmp[1]), 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		sendto( sock, tmp+2, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 }
 
 void WebSocketStream::put_buffer() {
-	char fstart = 0x00;
-	char fstop  = 0xFF;
 	int len = pptr() - pbase();
+	uint8_t header[4] = { 0x81, len & 0xFF, 0x00, 0x00 };
+	int hs = 2;
+	if (len > 125) { hs = 4; header[1] = 126; header[2] = (len >> 8)&0xFF; header[3] = len & 0xFF; }
 	if (len) {
-		if (filter) sendto( sock, &fstart, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
+		if (filter) sendto( sock, &header, hs, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 		sendto( sock, pbase(), len, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
-		if (filter) sendto( sock,  &fstop, 1, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 		setp( pbase(), epptr() );
 	}
 }
