@@ -110,15 +110,23 @@ int WebSocketStream::underflow( ) {
 	SocketStream::underflow();
 
 	char*  ptr =  gptr();
-	char* eptr = egptr() - 1;
+	char* eptr = egptr();
 	if (!filter) return *ptr;
 
-	for (char* p = ptr; p <= eptr; p++) printf("%02hhx ",*p); printf("\n"); 
 
-	/*if ((unsigned char)(*ptr ) != 0x00) throw std::runtime_error( "Error: WebSocket frame not starting with 0x00." );
-	if ((unsigned char)(*eptr) != 0xFF) throw std::runtime_error( "Error: WebSocket frame not ending with 0xFF." );*/
+	uint8_t* msg = (uint8_t*)ptr;
+	int mask_off = 2;
+	int len = msg[1] & 0x7F;
+	if (len == 126) { len = (msg[2] << 8) | msg[3]; mask_off = 4; }
+	else if (len == 127) { /* ... */ }
+	uint8_t* mask = msg+mask_off;
 
-	ptr = ptr+1;
+	for (int i = 0; i < len; i++) {
+		msg[i+mask_off+4] ^= mask[i%4];
+		//printf("%c",msg[i+mask_off+4]);
+	}
+
+	ptr = ptr+mask_off+4;
 	setg( ptr, ptr, eptr );
 
 	return *ptr;
