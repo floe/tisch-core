@@ -147,7 +147,7 @@ int WebSocketStream::underflow( ) {
 }
 
 void WebSocketStream::put_char( int chr ) {
-	uint8_t tmp[3] = { 0x81, 0x01, chr };
+	uint8_t tmp[3] = { 0x81, 0x01, (uint8_t)chr };
 	if (filter)
 		sendto( sock, tmp,   3, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 	else
@@ -156,9 +156,15 @@ void WebSocketStream::put_char( int chr ) {
 
 void WebSocketStream::put_buffer() {
 	int len = pptr() - pbase();
-	uint8_t header[4] = { 0x81, len & 0xFF, 0x00, 0x00 };
+	uint8_t header[4] = {
+		0x81,
+		(uint8_t)(len & 0xFF), 
+		(uint8_t)((len>>8) & 0xFF),
+		(uint8_t)(len & 0xFF)
+	};
 	int hs = 2;
-	if (len > 125) { hs = 4; header[1] = 126; header[2] = (len >> 8)&0xFF; header[3] = len & 0xFF; }
+	if (len > 125) { hs = 4; header[1] = 126; }
+	// FIXME: deal with packets > 64k
 	if (len) {
 		if (filter) sendto( sock, &header, hs, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
 		sendto( sock, pbase(), len, 0, (struct sockaddr*)&target_addr, sizeof(target_addr) );
