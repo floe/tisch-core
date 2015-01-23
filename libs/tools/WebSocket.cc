@@ -83,7 +83,7 @@ WebSocket* WebSocket::listen() {
 
 
 WebSocketStream::WebSocketStream( int _type, in_addr_t addr, int port, struct timeval* _timeout ):
-	SocketStream( _type, addr, port, _timeout, 0, 0x10000 ), filter( 0 )
+	SocketStream( _type, addr, port, _timeout, 0, 0x10000 ), filter( 0 ), raw_end( NULL )
 { }
 
 WebSocketStream::WebSocketStream( const WebSocketStream* stream ):
@@ -107,27 +107,41 @@ void WebSocketStream::close() {
 
 int WebSocketStream::underflow( ) {
 
-	SocketStream::underflow();
+	if (raw_end <= egptr()) {
+		SocketStream::underflow();
+		raw_end = egptr();
+	}
 
 	char*  ptr =  gptr();
-	char* eptr = egptr();
+	char* eptr = raw_end;
 	if (!filter) return *ptr;
 
 	uint8_t* msg = (uint8_t*)ptr;
-	int mask_off = 2;
-	int len = msg[1] & 0x7F;
-	if (len == 126) { len = (msg[2] << 8) | msg[3]; mask_off = 4; }
-	else if (len == 127) { /* FIXME - 64 bit length */ }
-	uint8_t* mask = msg+mask_off;
 
-	//printf("length: from packet %d, from buffer %d\n",len,eptr-ptr);
-	for (int i = 0; i < len; i++) {
-		msg[i+mask_off+4] ^= mask[i%4];
-		//printf("%c",msg[i+mask_off+4]);
+	// we assume that ptr is now at the start of a new packet header
+	int size = msg[1] & 0x7F;
+	int mask_off = 2;
+
+	// determine true length & XOR mask offset
+	if (size == 126) { size = (msg[2] << 8) | msg[3]; mask_off = 4; }
+	else if (size == 127) { /* FIXME - 64 bit length */ mask_off = 10; }
+
+	// save the current XOR mask (possibly still needed for next packet)
+	for (int i = 0; i < 4; i++) mask[i] = msg[mask_off+i];
+
+	// the exact amount of payload that is currently available in the buffer
+	int rawsize = (eptr-ptr)-(mask_off+4);
+
+	if (rawsize >= size) {
+		// we have at least one full packet in the buffer, process it
+		for (int i = 0; i < size; i++)
+			msg[i+mask_off+4] ^= mask[i%4];
+	} else {
+		/* FIXME incomplete WS packet, to be continued in next TCP packet */
 	}
 
 	ptr = ptr+mask_off+4;
-	setg( ptr, ptr, ptr+len );
+	setg( ptr, ptr, ptr+size );
 
 	return *ptr;
 }

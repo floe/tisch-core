@@ -50,7 +50,8 @@ class TISCH_SHARED WebSocketStream: public SocketStream {
 		virtual void put_char( int chr );
 
 		int filter;
-
+		uint8_t mask[4];
+		char* raw_end;
 };
 
 #endif // _WEBSOCKET_H_
