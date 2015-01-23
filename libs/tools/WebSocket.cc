@@ -113,21 +113,21 @@ int WebSocketStream::underflow( ) {
 	char* eptr = egptr();
 	if (!filter) return *ptr;
 
-
 	uint8_t* msg = (uint8_t*)ptr;
 	int mask_off = 2;
 	int len = msg[1] & 0x7F;
 	if (len == 126) { len = (msg[2] << 8) | msg[3]; mask_off = 4; }
-	else if (len == 127) { /* ... */ }
+	else if (len == 127) { /* FIXME - 64 bit length */ }
 	uint8_t* mask = msg+mask_off;
 
+	//printf("length: from packet %d, from buffer %d\n",len,eptr-ptr);
 	for (int i = 0; i < len; i++) {
 		msg[i+mask_off+4] ^= mask[i%4];
 		//printf("%c",msg[i+mask_off+4]);
 	}
 
 	ptr = ptr+mask_off+4;
-	setg( ptr, ptr, eptr );
+	setg( ptr, ptr, ptr+len );
 
 	return *ptr;
 }
