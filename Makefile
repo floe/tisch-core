@@ -58,7 +58,7 @@ ifndef TISCH_CONFIG
     endif
 
     SLFLAGS += -shared
-    CFLAGS  += -O2 -fno-strict-aliasing
+    CFLAGS  += -fno-strict-aliasing
     SUFFIX = so
     LSF = so.3.0
 
@@ -123,7 +123,7 @@ default:
 
 
 # target directories
-TARGETS = libs/osc libs/tools libs/simplecv libs/simplegl gispl widgets
+TARGETS = libs/tuio2/demos libs/tools libs/simplecv libs/simplegl gispl widgets
 
 ifneq ($(ABI),opengles)
   TARGETS += drivers/touchd calibd

@@ -1,5 +1,0 @@
-This directory contains a stripped-down variant of oscpack v1.1.0,
-with an adapted Makefile for the libTISCH build system.
-
-Full source code is available from https://code.google.com/p/oscpack/.
-

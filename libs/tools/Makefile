@@ -6,8 +6,8 @@ OBJS = Socket.o BasicBlob.o Thread.o WebSocket.o TUIOOutStream.o TUIOInStream.o 
 DOCS = $(TOPDIR)/README $(TOPDIR)/scripts/tisch.sh $(TOPDIR)/scripts/calib.sh
 #APPS = wstest
 
-CFLAGS  += -I$(TOPDIR) -I$(TOPDIR)/libs/osc
-LDFLAGS += -loscpack -L$(TOPDIR)/libs/osc
+CFLAGS  += -I$(TOPDIR) -I$(TOPDIR)/libs/tuio2/ -I$(TOPDIR)/libs/tuio2/oscpack/
+LDFLAGS += -lTUIO2 -L$(TOPDIR)/libs/tuio2/demos
 
 ifeq ($(OS)-$(ABI),linux-gnu)
 
