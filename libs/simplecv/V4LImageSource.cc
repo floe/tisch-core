@@ -36,6 +36,7 @@
 
 
 int formats[] = {
+	V4L2_PIX_FMT_GREY,
 	V4L2_PIX_FMT_YUYV,
 	V4L2_PIX_FMT_YUV420
 };
@@ -103,6 +104,7 @@ V4LImageSource::V4LImageSource( const std::string& path, int _width, int _height
 	format = vfmt.fmt.pix.pixelformat;
 
 	switch (format) {
+		case V4L2_PIX_FMT_GREY:   bpp = 1.0; break;
 		case V4L2_PIX_FMT_YUV420: bpp = 1.5; break;
 		case V4L2_PIX_FMT_YUYV:   bpp = 2.0; break;
 		default: throw std::runtime_error( "V4LImageSource: unsupported raw image format" );
@@ -128,7 +130,6 @@ V4LImageSource::V4LImageSource( const std::string& path, int _width, int _height
 	// final setup and start
 	setFPS( fps );
 	current = -1;
-	start();
 
 	// done, do debug output
 	if (debug) 
@@ -198,9 +199,11 @@ void V4LImageSource::release() {
 void V4LImageSource::getImage( IntensityImage& target ) const {
 	YUV420Image* raw1;
 	YUYVImage*   raw2;
+	IntensityImage* raw3;
 	switch (format) {
 		case V4L2_PIX_FMT_YUV420: raw1 = (YUV420Image*)(buffers[current]); raw1->getImage(target); break;
 		case V4L2_PIX_FMT_YUYV:   raw2 = (YUYVImage*  )(buffers[current]); raw2->getImage(target); break;
+		case V4L2_PIX_FMT_GREY:   raw3 = (IntensityImage*)(buffers[current]); target = *raw3; break;
 	}
 	target.timestamp( frametime );
 }

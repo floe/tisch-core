@@ -13,7 +13,7 @@
 #include "Image.h"
 
 
-#define IMGSRC_BUFCOUNT 2
+#define IMGSRC_BUFCOUNT 3
 
 
 class V4LImageSource: public ImageSource {
