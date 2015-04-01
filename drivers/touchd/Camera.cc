@@ -196,9 +196,8 @@ Camera::~Camera() {
 
 int Camera::process() {
 
-	// get the image, retry on error
-	int res = cam->acquire();
-	if (!res) cam->acquire();
+	// get the image
+	cam->acquire();
 
 	// retrieve image, release buffer and return
 	if (image)      cam->getImage( *image );
