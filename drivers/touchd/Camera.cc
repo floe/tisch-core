@@ -181,7 +181,6 @@ Camera::Camera( TiXmlElement* _config, Filter* _input ):
 		flash = 0;
 	}
 
-	sleep(1); // FIXME: really needed for Kinect?
 	cam->start();
 }
 
