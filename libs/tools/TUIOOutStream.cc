@@ -21,7 +21,7 @@ void TUIOOutStream::start() {
 	if (mode & TISCH_TUIO2) {
 		// frame message
 		osc2 << osc::BeginBundleImmediate;
-		osc2 << osc::BeginMessage( "/tuio2/frm" ) << ++frame << osc::TimeTag(time(NULL));
+		osc2 << osc::BeginMessage( "/tuio2/frm" ) << ++frame << osc::TimeTag(time(NULL)) << 0x00FF00FF << "TISCH";
 		osc2 << osc::EndMessage;
 	}
 
