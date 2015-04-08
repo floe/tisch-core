@@ -54,11 +54,11 @@ TUIOOutStream& operator<< ( TUIOOutStream& s, const BasicBlob& b ) {
 			<< angle << w << h << float(b.size/(w*h))
 			<< osc::EndMessage;
 
-		// /tuio2/ptr s_id tu_id c_id x_pos y_pos width press [x_vel y_vel m_acc] 
+		// /tuio2/ptr s_id tu_id c_id x_pos y_pos angle shear radius press [x_vel y_vel p_vel m_acc p_acc]
 		s.osc2 << osc::BeginMessage( "/tuio2/ptr" )
 			<< b.id << b.type << osc::int32(b.assignedMarker.markerID)
 			<< float(b.peak.x) << float(b.peak.y)
-			<< w << float(b.h)
+			<< 0.0f << 0.0f << w << float(b.h)
 			<< osc::EndMessage;
 		
 		if (b.pid)
