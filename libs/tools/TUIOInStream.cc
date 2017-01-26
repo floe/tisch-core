@@ -83,4 +83,27 @@ void TUIOInStream::ReceiverThread::ProcessMessage( const osc::ReceivedMessage& m
 		blobs.clear();
 		stream->process_frame();
 	}
+
+	// ugly hacks for TUIO1 backwards compatibility
+	else if( std::string(m.AddressPattern()) == "/tuio/2Dcur" ) {
+		const char* type;
+		args >> type;
+		if ( std::string(type) == "fseq" ) {
+			for (std::map<int,BasicBlob>::iterator blob = blobs.begin(); blob != blobs.end(); blob++)
+				stream->process_blob( blob->second );
+			blobs.clear();
+			stream->process_frame();
+		} else if ( std::string(type) == "set") {
+			args >> blobid;
+			BasicBlob& curblob = blobs[blobid];
+			//args >> unused >> x >> y;
+			args >> x >> y;
+			curblob.id = blobid;
+			curblob.type = INPUT_TYPE_FINGER;
+			curblob.pos.x = x;
+			curblob.pos.y = y;
+			curblob.peak.x = x;
+			curblob.peak.y = y;
+		}
+	}
 }
